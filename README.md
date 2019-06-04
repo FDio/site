@@ -62,8 +62,8 @@ you like, but it's not necessary.
 ``` console
 
 $ git add *
-
-
+$ git commit -s -m "Add a descriptive comment here"
+$
 ```
 
 
