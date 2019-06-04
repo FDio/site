@@ -106,10 +106,22 @@ $ git branch
 * add-to-readme
   master
 $ git push origin add-to-readme
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (6/6), 1.68 KiB | 1.68 MiB/s, done.
+Total 6 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+remote:
+remote: Create a pull request for 'add-to-readme' on GitHub by visiting:
+remote:      https://github.com/jadenisco/site/pull/new/add-to-readme
+remote:
+To ssh://github.com/jadenisco/site
+ * [new branch]      add-to-readme -> add-to-readme
 $
 ```
 
 Then from your browser, from your account find the "CREATE PULL REQUEST" button.
-
 
 
