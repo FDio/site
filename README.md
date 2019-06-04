@@ -35,10 +35,37 @@ Receiving objects: 100% (3/3), done.
 $ cd site
 ```
 
-### Work locally, then push changes to your fork on Github
+### Work Locally with Hugo
+
+To make your changes locally initialize the git submodules.
+
+``` console
+$ git submodule update --init --recursive
+$
+```
+
+Then run the Hugo server locally.
+
+``` console
+$ hugo server --disableFastRender
+$
+```
+
+You can then make your changes and preview them by pointing your browser to the URL
+displayed from the hugo server command. 
+
+### Push changes to your fork on Github
 
 Edit and commit work locally. You can create local topic branch(es) if
 you like, but it's not necessary.
+
+``` console
+
+$ git add *
+$ git commit -s -m "Add a descriptive comment here"
+$
+```
+
 
 Upload patches to your fork on Github:
 
@@ -57,7 +84,7 @@ The pull request will then be reviewed. You can modify pull request
 content if needed. Once your changes have been reviewed and approved
 the site administrators will merge your change.
 
-### Appendix: how to commit code to a git repo
+### Appendix: how to commit code to a git repo (using a branch)
 
 ```console
 $ git status
@@ -96,9 +123,9 @@ Total 6 (delta 1), reused 0 (delta 0)
 remote: Resolving deltas: 100% (1/1), done.
 remote:
 remote: Create a pull request for 'add-to-readme' on GitHub by visiting:
-remote:      https://github.com/jadenisco/site/pull/new/add-to-readme
+remote:      https://github.com/<userid>/site/pull/new/add-to-readme
 remote:
-To ssh://github.com/jadenisco/site
+To ssh://github.com/<userid>/site
  * [new branch]      add-to-readme -> add-to-readme
 $
 ```
