@@ -41,6 +41,9 @@ To make your changes locally initialize the git submodules.
 
 ``` console
 $ git submodule update --init --recursive
+Submodule 'themes/airspace-hugo' (https://github.com/themefisher/airspace-hugo.git) registered for path 'themes/airspace-hugo'
+Cloning into '/Developer/hugo/site/themes/airspace-hugo'...
+Submodule path 'themes/airspace-hugo': checked out '207d048784e04bfef6564615ff6addfb35480611'
 $
 ```
 
@@ -48,6 +51,24 @@ Then run the Hugo server locally.
 
 ``` console
 $ hugo server --disableFastRender
+
+                   | EN
++------------------+----+
+  Pages            | 42
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     | 96
+  Processed images |  0
+  Aliases          | 11
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Total in 40 ms
+Watching for changes in /Developer/hugo/site/{assets,content,data,layouts,static,themes}
+Watching for config changes in /Developer/hugo/site/config.toml
+Serving pages from memory
+Web Server is available at //localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
 $
 ```
 

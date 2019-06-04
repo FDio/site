@@ -1,0 +1,25 @@
+<div class="dropdown">
+    <button class="btn btn-main dropdown-toggle"type="button"
+	    id="dropdownMenu1" data-toggle="dropdown">
+	{{ .Params.btntxt }}<span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	<li role="presentation">
+	    {{ $txt := index (split .Params.latest ",") 0 }}
+	    {{ $url := trim (index (split .Params.latest ",") 1) " "}}
+	    <a role="menuitem" tabindex="-1" 
+	       href="{{ $url | absURL }}">{{ $txt }}
+	    </a>
+	</li>
+	<li class="divider"></li>
+	<li role="presentation">
+	    {{ range .Params.versions }}
+	    {{ $txt := index (split . ",") 0 }}
+	    {{ $url := trim (index (split . ",") 1) " " }}
+	    <a role="menuitem" tabindex="-1" 
+	       href="{{ $url | absURL }}">{{ $txt }}
+	    </a>
+	    {{ end }}
+	</li>
+    </ul>
+</div>

@@ -1,0 +1,60 @@
+title = "FDio - The Universal Dataplane"
+baseURL = "/"
+languageCode = "en-us"
+theme = "airspace-hugo"
+
+publishDir = "public"
+
+[menu]
+
+  [[menu.header]]
+    weight = 1
+    name = "PROJECTS"
+    url = "/projects"
+
+  [[menu.header]]
+    weight = 4
+    name = "COMMUNITY"
+    url = "/community"
+  [[menu.header]]
+    weight = 5
+    name = "EVENTS"
+    url = "/events"
+
+# The site's parameters
+[params]
+
+  # If you want to remove the copyright text you need a Themefisher license.
+  # This license is offered with a 50% discount for all Hugo users.
+  # For information see https://github.com/gohugoio/hugoThemes/issues/260
+
+  dateFormat = "6 January 2006"
+
+  home = "Home"
+
+  [params.slider]
+    enable = true
+    bgImage = "img/fdio_bg_tech2.jpg"
+    title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project"
+    subtitle = "Relentlessly focused on data IO and efficiency for more flexable and scalable networks and storage<br/>"
+    btnText = "The FD.io Projects"
+    url = "/projects"
+
+  [params.wrapper]
+    enable = true
+    image = "img/logo_fdio_header.png"
+    title = "The Fast Data Project"
+    italic = "FD.io is a collection of several projects and libraries"
+    paragraph = "FD.io offers the Software Defined Infrastructure developer community a landing site with multiple projects fostering innovations in software-based packet processing towards the creation of high-throughput, low-latency and resource-efficient IO services suitable to many architectures (x86, ARM, and PowerPC) and deployment environments (bare metal, VM, container)."
+
+  [params.feature]
+    enable = true
+    title = "What is the Vector Packet Processor (VPP)?"
+    content = """
+VPP is the core technolgy behind the FD.io projects. It is a fast, scalable and multi-platform network stack built over the Data Plane Development Kit (DPDK).
+
+VPP is, at it’s core, it is a scalable layer 2-4 network stack. It supports integration into both Open Stack and Kubernetes environments. It supports network management features including configuration, counters and sampling. VPP supports extending with plugins, tracing and debugging. Use cases include vSwitch, vRouter, Gateways, Firewalls and Load Balancers, to name but a few. Finally it is useful both a software development kit or an appliance out of the box.
+"""
+    [params.feature.button]
+      caption = "Get Started With VPP"
+      url = "/vppproject"
