@@ -71,13 +71,45 @@ $ git branch
 $
 ```
 
+Now you can make your changes locally. Then to create the pull request you can
+do the foolwoing.
+
 ### Create the Pull Request
 
 After making your changes create the pull request by pushing your changes.
 
 ``` console
+$ git status
+On branch add-to-readme
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
 
+	modified:   README.md
 
+no changes added to commit (use "git add" and/or "git commit -a")
+$ git add *
+$ git status
+On branch add-to-readme
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   README.md
+
+$ git commit -m "Add to the README"
+[add-to-readme f81812c] Add to the README
+ 1 file changed, 76 insertions(+), 1 deletion(-)
+$ git status
+On branch add-to-readme
+nothing to commit, working tree clean
+$ git branch
+* add-to-readme
+  master
+$ git push origin add-to-readme
+$
 ```
+
+Then from your browser, from your account find the "CREATE PULL REQUEST" button.
+
 
 
