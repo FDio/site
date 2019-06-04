@@ -8,18 +8,18 @@ using the web site renderer Hugo. For more infor mation on Hugo please visit
 
 ### Fork your branch
 
-When logged into your github account fork your own branch. This is down by
+When logged into your github account fork your own branch. This is done by
 first signing into your github account. Once this is done go to
 [Your Github Account](https://github.com/FDio/site). At the right at the top
 of the page click on the fork button. When this succeeds you will have a forked
 branch in your account. From here you will be able to build and create a pull
-request from your account.
+request.
 
-### Add your SSH Key
+### Add your SSH Key/2 Factor Authentication
 
-To use this repo you will need to add 2 factor authentication to your github account.
-Then the easiest way to access tyour fork is to use ssh. You will need to add your
-publix ssh key to your github account.
+To use this repo you will need to enable 2 factor authentication to your github account.
+Once this is done the best way to access tyour fork is to use ssh. You will need to add
+a public ssh key to your github account.
 
 ### Create your clone
 
@@ -59,7 +59,7 @@ $
 
 ### Create a branch
 
-For the pull request you should create a branch with:
+For the pull request you should create a branch.
 
 ``` console
 $ git checkout -b add-more-to-readme
@@ -71,12 +71,9 @@ $ git branch
 $
 ```
 
-Now you can make your changes locally. Then to create the pull request you can
-do the foolwoing.
-
 ### Create the Pull Request
 
-After making your changes create the pull request by pushing your changes.
+Now you can make your changes locally. Then to create the pull request.
 
 ``` console
 $ git status
@@ -122,6 +119,10 @@ To ssh://github.com/jadenisco/site
 $
 ```
 
-Then from your browser, from your account find the "CREATE PULL REQUEST" button.
+Then from your browser, from your account find the "Compare & pull request" button.
+Click on this button, follow the instructions and the pull request should be created.
 
+The pull request will then be reviewed. You will be allowed to modify your changes if
+needed. Once your changes have been reviewed and approved the site
+administrators will merge your change.
 
