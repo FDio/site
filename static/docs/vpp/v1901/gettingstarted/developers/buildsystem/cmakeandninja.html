@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction to cmake and ninja &mdash; Vector Packet Processor 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Introduction to build-root/Makefile" href="buildrootmakefile.html" />
+    <link rel="prev" title="Introduction to the top-level Makefile" href="mainmakefile.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Build System</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="mainmakefile.html">Introduction to the top-level Makefile</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Introduction to cmake and ninja</a></li>
+<li class="toctree-l4"><a class="reference internal" href="buildrootmakefile.html">Introduction to build-root/Makefile</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Developers</a> &raquo;</li>
+        
+          <li><a href="index.html">Build System</a> &raquo;</li>
+        
+      <li>Introduction to cmake and ninja</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/developers/buildsystem/cmakeandninja.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction-to-cmake-and-ninja">
+<h1>Introduction to cmake and ninja<a class="headerlink" href="#introduction-to-cmake-and-ninja" title="Permalink to this headline">¶</a></h1>
+<p>Cmake plus ninja is approximately equal to GNU autotools plus GNU
+make, respectively. Both cmake and GNU autotools support self and
+cross-compilation, checking for required components and versions.</p>
+<ul class="simple">
+<li>For a decent-sized project - such as vpp - build performance is drastically better with (cmake, ninja).</li>
+<li>The cmake input language looks like an actual language, rather than a shell scripting scheme on steroids.</li>
+<li>Ninja doesn’t pretend to support manually-generated input files. Think of it as a fast, dumb robot which eats mildly legible byte-code.</li>
+</ul>
+<p>See the <a class="reference external" href="http://cmake.org">cmake website</a>, and the <a class="reference external" href="https://ninja-build.org">ninja website</a> for additional information.</p>
+<div class="section" id="vpp-cmake-configuration-files">
+<h2>vpp cmake configuration files<a class="headerlink" href="#vpp-cmake-configuration-files" title="Permalink to this headline">¶</a></h2>
+<p>The top of the vpp project cmake hierarchy lives in …/src/CMakeLists.txt.
+This file defines the vpp project, and (recursively) includes two kinds
+of files: rule/function definitions, and target lists.</p>
+<ul class="simple">
+<li>Rule/function definitions live in …/src/cmake/{*.cmake}. Although the contents of these files is simple enough to read, it shouldn’t be necessary to modify them very often</li>
+<li>Build target lists come from CMakeLists.txt files found in subdirectories, which are named in the SUBDIRS list in …/src/CMakeLists.txt</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>##############################################################################
+# subdirs - order matters
+##############################################################################
+if(&quot;${CMAKE_SYSTEM_NAME}&quot; STREQUAL &quot;Linux&quot;)
+  find_package(OpenSSL REQUIRED)
+  set(SUBDIRS
+    vppinfra svm vlib vlibmemory vlibapi vnet vpp vat vcl plugins
+    vpp-api tools/vppapigen tools/g2 tools/elftool tools/perftool)
+elseif(&quot;${CMAKE_SYSTEM_NAME}&quot; STREQUAL &quot;Darwin&quot;)
+  set(SUBDIRS vppinfra)
+else()
+  message(FATAL_ERROR &quot;Unsupported system: ${CMAKE_SYSTEM_NAME}&quot;)
+endif()
+
+foreach(DIR ${SUBDIRS})
+  add_subdirectory(${DIR})
+endforeach()
+</pre></div>
+</div>
+<ul class="simple">
+<li>The vpp cmake configuration hierarchy discovers the list of plugins to be built by searching for subdirectories in …/src/plugins which contain CMakeLists.txt files</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>##############################################################################
+# find and add all plugin subdirs
+##############################################################################
+FILE(GLOB files RELATIVE
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}/*/CMakeLists.txt
+)
+foreach (f ${files})
+  get_filename_component(dir ${f} DIRECTORY)
+  add_subdirectory(${dir})
+endforeach()
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-write-a-plugin-cmakelists-txt-file">
+<h2>How to write a plugin CMakeLists.txt file<a class="headerlink" href="#how-to-write-a-plugin-cmakelists-txt-file" title="Permalink to this headline">¶</a></h2>
+<p>It’s really quite simple. Follow the pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_vpp_plugin</span><span class="p">(</span><span class="n">mactime</span>
+  <span class="n">SOURCES</span>
+  <span class="n">mactime</span><span class="o">.</span><span class="n">c</span>
+  <span class="n">node</span><span class="o">.</span><span class="n">c</span>
+
+  <span class="n">API_FILES</span>
+  <span class="n">mactime</span><span class="o">.</span><span class="n">api</span>
+
+  <span class="n">INSTALL_HEADERS</span>
+  <span class="n">mactime_all_api_h</span><span class="o">.</span><span class="n">h</span>
+  <span class="n">mactime_msg_enum</span><span class="o">.</span><span class="n">h</span>
+
+  <span class="n">API_TEST_SOURCES</span>
+  <span class="n">mactime_test</span><span class="o">.</span><span class="n">c</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-a-target-elsewhere-in-the-source-tree">
+<h2>Adding a target elsewhere in the source tree<a class="headerlink" href="#adding-a-target-elsewhere-in-the-source-tree" title="Permalink to this headline">¶</a></h2>
+<p>Within reason, adding a subdirectory to the SUBDIRS list in
+…/src/CMakeLists.txt is perfectly OK. The indicated directory will
+need a CMakeLists.txt file.</p>
+<p>Here’s how we build the g2 event data visualization tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>option(VPP_BUILD_G2 &quot;Build g2 tool.&quot; OFF)
+if(VPP_BUILD_G2)
+  find_package(GTK2 COMPONENTS gtk)
+  if(GTK2_FOUND)
+    include_directories(${GTK2_INCLUDE_DIRS})
+    add_vpp_executable(g2
+      SOURCES
+      clib.c
+      cpel.c
+      events.c
+      main.c
+      menu1.c
+      pointsel.c
+      props.c
+      g2version.c
+      view1.c
+
+      LINK_LIBRARIES vppinfra Threads::Threads m ${GTK2_LIBRARIES}
+      NO_INSTALL
+    )
+  endif()
+endif()
+</pre></div>
+</div>
+<p>The g2 component is optional, and is not built by default. There are
+a couple of ways to tell cmake to include it in build.ninja [or in Makefile.]</p>
+<p>When invoking cmake manually [rarely done and not very easy], specify
+-DVPP_BUILD_G2=ON:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cmake ... -DVPP_BUILD_G2=ON
+</pre></div>
+</div>
+<p>Take a good look at …/build-data/packages/vpp.mk to see where and
+how the top-level Makefile and …/build-root/Makefile set all of the
+cmake arguments. One strategy to enable an optional component is fairly
+obvious. Add -DVPP_BUILD_G2=ON to vpp_cmake_args.</p>
+<p>That would work, of course, but it’s not a particularly elegant solution.</p>
+</div>
+<div class="section" id="tinkering-with-build-options-ccmake">
+<h2>Tinkering with build options: ccmake<a class="headerlink" href="#tinkering-with-build-options-ccmake" title="Permalink to this headline">¶</a></h2>
+<p>The easy way to set VPP_BUILD_G2 - or frankly <strong>any</strong> cmake
+parameter - is to install the “cmake-curses-gui” package and use
+it.</p>
+<ul class="simple">
+<li>Do a straightforward vpp build using the top level Makefile, “make build” or “make build-release”</li>
+<li>Ajourn to …/build-root/build-vpp-native/vpp or …/build-root/build-vpp_debug-native/vpp</li>
+<li>Invoke “ccmake .” to reconfigure the project as desired</li>
+</ul>
+<p>Here’s approximately what you’ll see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">CCACHE_FOUND</span>                     <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">ccache</span>
+ <span class="n">CMAKE_BUILD_TYPE</span>
+ <span class="n">CMAKE_INSTALL_PREFIX</span>             <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">vpp</span><span class="o">-</span><span class="n">gate</span><span class="o">/</span><span class="n">build</span><span class="o">-</span><span class="n">root</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">vpp</span><span class="o">-</span><span class="n">nati</span>
+ <span class="n">DPDK_INCLUDE_DIR</span>                 <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">vpp</span><span class="o">-</span><span class="n">gate</span><span class="o">/</span><span class="n">build</span><span class="o">-</span><span class="n">root</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">vpp</span><span class="o">-</span><span class="n">nati</span>
+ <span class="n">DPDK_LIB</span>                         <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">vpp</span><span class="o">-</span><span class="n">gate</span><span class="o">/</span><span class="n">build</span><span class="o">-</span><span class="n">root</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">vpp</span><span class="o">-</span><span class="n">nati</span>
+ <span class="n">MBEDTLS_INCLUDE_DIR</span>              <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">include</span>
+ <span class="n">MBEDTLS_LIB1</span>                     <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmbedtls</span><span class="o">.</span><span class="n">so</span>
+ <span class="n">MBEDTLS_LIB2</span>                     <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmbedx509</span><span class="o">.</span><span class="n">so</span>
+ <span class="n">MBEDTLS_LIB3</span>                     <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libmbedcrypto</span><span class="o">.</span><span class="n">so</span>
+ <span class="n">MUSDK_INCLUDE_DIR</span>                <span class="n">MUSDK_INCLUDE_DIR</span><span class="o">-</span><span class="n">NOTFOUND</span>
+ <span class="n">MUSDK_LIB</span>                        <span class="n">MUSDK_LIB</span><span class="o">-</span><span class="n">NOTFOUND</span>
+ <span class="n">PRE_DATA_SIZE</span>                    <span class="mi">128</span>
+ <span class="n">VPP_API_TEST_BUILTIN</span>             <span class="n">ON</span>
+ <span class="n">VPP_BUILD_G2</span>                     <span class="n">OFF</span>
+ <span class="n">VPP_BUILD_PERFTOOL</span>               <span class="n">OFF</span>
+ <span class="n">VPP_BUILD_VCL_TESTS</span>              <span class="n">ON</span>
+ <span class="n">VPP_BUILD_VPPINFRA_TESTS</span>         <span class="n">OFF</span>
+
+<span class="n">CCACHE_FOUND</span><span class="p">:</span> <span class="n">Path</span> <span class="n">to</span> <span class="n">a</span> <span class="n">program</span><span class="o">.</span>
+<span class="n">Press</span> <span class="p">[</span><span class="n">enter</span><span class="p">]</span> <span class="n">to</span> <span class="n">edit</span> <span class="n">option</span> <span class="n">Press</span> <span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="n">to</span> <span class="n">delete</span> <span class="n">an</span> <span class="n">entry</span>   <span class="n">CMake</span> <span class="n">Version</span> <span class="mf">3.10</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">Press</span> <span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="n">to</span> <span class="n">configure</span>
+<span class="n">Press</span> <span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="k">for</span> <span class="n">help</span>           <span class="n">Press</span> <span class="p">[</span><span class="n">q</span><span class="p">]</span> <span class="n">to</span> <span class="n">quit</span> <span class="n">without</span> <span class="n">generating</span>
+<span class="n">Press</span> <span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="n">to</span> <span class="n">toggle</span> <span class="n">advanced</span> <span class="n">mode</span> <span class="p">(</span><span class="n">Currently</span> <span class="n">Off</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use the cursor to point at the VPP_BUILD_G2 line. Press the return key
+to change OFF to ON. Press “c” to regenerate build.ninja, etc.</p>
+<p>At that point “make build” or “make build-release” will build g2. And so on.</p>
+<p>Note that toggling advanced mode [“t”] gives access to substantially
+all of the cmake option, discovered directories and paths.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="buildrootmakefile.html" class="btn btn-neutral float-right" title="Introduction to build-root/Makefile" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mainmakefile.html" class="btn btn-neutral" title="Introduction to the top-level Makefile" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

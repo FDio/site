@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Event-logger &mdash; Vector Packet Processor 01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="FIB 2.0 Hierarchical, Protocol, Independent" href="fib20/index.html" />
+    <link rel="prev" title="Introduction to build-root/Makefile" href="buildsystem/buildrootmakefile.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                19.08
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#g2-graphical-event-viewer">G2 graphical event viewer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-g2">Building G2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-the-display-preferences">Setting the Display Preferences</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#screen-taxonomy">Screen Taxonomy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mouse-gestures">Mouse Gestures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-ruler">Time Ruler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#event-selection">Event Selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#snapshot-ring">Snapshot Ring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chasing-events">Chasing Events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#burying-boring-tracks">Burying Boring Tracks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-mode">Summary Mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hotkeys">Hotkeys</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>Event-logger</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/eventviewer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="event-logger">
+<span id="eventviewer"></span><h1>Event-logger<a class="headerlink" href="#event-logger" title="Permalink to this headline">¶</a></h1>
+<p>The vppinfra event logger provides very lightweight (sub-100ns)
+precisely time-stamped event-logging services. See
+./src/vppinfra/{elog.c, elog.h}</p>
+<p>Serialization support makes it easy to save and ultimately to combine a
+set of event logs. In a distributed system running NTP over a local LAN,
+we find that event logs collected from multiple system elements can be
+combined with a temporal uncertainty no worse than 50us.</p>
+<p>A typical event definition and logging call looks like this:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ELOG_TYPE_DECLARE</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="p">.</span><span class="n">format</span> <span class="o">=</span> <span class="s">&quot;tx-msg: stream %d local seq %d attempt %d&quot;</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">format_args</span> <span class="o">=</span> <span class="s">&quot;i4i4i4&quot;</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="p">{</span> <span class="n">u32</span> <span class="n">stream_id</span><span class="p">,</span> <span class="n">local_sequence</span><span class="p">,</span> <span class="n">retry_count</span><span class="p">;</span> <span class="p">}</span> <span class="o">*</span> <span class="n">ed</span><span class="p">;</span>
+<span class="n">ed</span> <span class="o">=</span> <span class="n">ELOG_DATA</span> <span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">elog_main</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+<span class="n">ed</span><span class="o">-&gt;</span><span class="n">stream_id</span> <span class="o">=</span> <span class="n">stream_id</span><span class="p">;</span>
+<span class="n">ed</span><span class="o">-&gt;</span><span class="n">local_sequence</span> <span class="o">=</span> <span class="n">local_sequence</span><span class="p">;</span>
+<span class="n">ed</span><span class="o">-&gt;</span><span class="n">retry_count</span> <span class="o">=</span> <span class="n">retry_count</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The ELOG_DATA macro returns a pointer to 20 bytes worth of arbitrary
+event data, to be formatted (offline, not at runtime) as described by
+format_args. Aside from obvious integer formats, the CLIB event logger
+provides a couple of interesting additions. The “t4” format
+pretty-prints enumerated values:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ELOG_TYPE_DECLARE</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="p">.</span><span class="n">format</span> <span class="o">=</span> <span class="s">&quot;get_or_create: %s&quot;</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">format_args</span> <span class="o">=</span> <span class="s">&quot;t4&quot;</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">n_enum_strings</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">enum_strings</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&quot;old&quot;</span><span class="p">,</span> <span class="s">&quot;new&quot;</span><span class="p">,</span> <span class="p">},</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The “t” format specifier indicates that the corresponding datum is an
+index in the event’s set of enumerated strings, as shown in the previous
+event type definition.</p>
+<p>The “T” format specifier indicates that the corresponding datum is an
+index in the event log’s string heap. This allows the programmer to emit
+arbitrary formatted strings. One often combines this facility with a
+hash table to keep the event-log string heap from growing arbitrarily
+large.</p>
+<p>Noting the 20-octet limit per-log-entry data field, the event log
+formatter supports arbitrary combinations of these data types. As in:
+the “.format” field may contain one or more instances of the following:</p>
+<ul class="simple">
+<li><p>i1 - 8-bit unsigned integer</p></li>
+<li><p>i2 - 16-bit unsigned integer</p></li>
+<li><p>i4 - 32-bit unsigned integer</p></li>
+<li><p>i8 - 64-bit unsigned integer</p></li>
+<li><p>f4 - float</p></li>
+<li><p>f8 - double</p></li>
+<li><p>s - NULL-terminated string - be careful</p></li>
+<li><p>sN - N-byte character array</p></li>
+<li><p>t1,2,4 - per-event enumeration ID</p></li>
+<li><p>T4 - Event-log string table offset</p></li>
+</ul>
+<p>The vpp engine event log is thread-safe, and is shared by all threads.
+Take care not to serialize the computation. Although the event-logger is
+about as fast as practicable, it’s not appropriate for per-packet use in
+hard-core data plane code. It’s most appropriate for capturing rare
+events - link up-down events, specific control-plane events and so
+forth.</p>
+<p>The vpp engine has several debug CLI commands for manipulating its event
+log:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# event-logger clear</span>
+<span class="go">vpp# event-logger save &lt;filename&gt; # for security, writes into /tmp/&lt;filename&gt;.</span>
+<span class="gp">                                  #</span> &lt;filename&gt; must not contain <span class="s1">&#39;.&#39;</span> or <span class="s1">&#39;/&#39;</span> characters
+<span class="go">vpp# show event-logger [all] [&lt;nnn&gt;] # display the event log</span>
+<span class="gp">                                   #</span> by default, the last <span class="m">250</span> entries
+</pre></div>
+</div>
+<p>The event log defaults to 128K entries. The command-line argument “…
+vlib { elog-events nnn } …” configures the size of the event log.</p>
+<p>As described above, the vpp engine event log is thread-safe and shared.
+To avoid confusing non-appearance of events logged by worker threads,
+make sure to code vlib_global_main.elog_main - instead of
+vm-&gt;elog_main. The latter form is correct in the main thread, but
+will almost certainly produce bad results in worker threads.</p>
+</div>
+<div class="section" id="g2-graphical-event-viewer">
+<h1>G2 graphical event viewer<a class="headerlink" href="#g2-graphical-event-viewer" title="Permalink to this headline">¶</a></h1>
+<p>The G2 graphical event viewer can display serialized vppinfra event logs
+directly, or via the c2cpel tool. G2 is a fine-grained event-log viewer. It’s
+highly scalable, supporting O(1e7 events) and O(1e3 discrete display “tracks”).
+G2 displays binary data generated by the vppinfra “elog.[ch]” logger component,
+and also supports the CPEL file format, as described in this section.</p>
+<div class="section" id="building-g2">
+<h2>Building G2<a class="headerlink" href="#building-g2" title="Permalink to this headline">¶</a></h2>
+<p>This link describes <a class="reference internal" href="buildsystem/cmakeandninja.html#building-g2"><span class="std std-ref">how to build G2</span></a></p>
+</div>
+<div class="section" id="setting-the-display-preferences">
+<h2>Setting the Display Preferences<a class="headerlink" href="#setting-the-display-preferences" title="Permalink to this headline">¶</a></h2>
+<p>The file $&lt;<em>HOMEDIR</em>&gt;/.g2 contains display preferences, which can be overridden.
+Simply un-comment one of the stanzas shown below, or experiment as desired.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Property / parameter settings for G2</span>
+<span class="cm"> *</span>
+<span class="cm"> * Setting for a 1024x768 display:</span>
+<span class="cm"> * event_selector_lines=20</span>
+<span class="cm"> * drawbox_height=800</span>
+<span class="cm"> * drawbox_width=600</span>
+<span class="cm"> *</span>
+<span class="cm"> * new mac w/ no monitor:</span>
+<span class="cm"> * event_selector_lines=20</span>
+<span class="cm"> * drawbox_height=1200</span>
+<span class="cm"> * drawbox_width=700</span>
+<span class="cm"> *</span>
+<span class="cm"> * 1600x1200:</span>
+<span class="cm"> * drawbox_width=1200</span>
+<span class="cm"> * drawbox_height=1000</span>
+<span class="cm"> * event_selector_lines=25</span>
+<span class="cm"> *</span>
+<span class="cm"> * for making screenshots on a Macbook Pro</span>
+<span class="cm"> * drawbox_width=1200</span>
+<span class="cm"> * drawbox_height=600</span>
+<span class="cm"> * event_selector_lines=20</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="screen-taxonomy">
+<h2>Screen Taxonomy<a class="headerlink" href="#screen-taxonomy" title="Permalink to this headline">¶</a></h2>
+<p>Here is an annotated G2 viewer screenshot, corresponding to activity during BGP
+prefix download. This data was captured on a Cisco IOS-XR system:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/g21.jpg"><img alt="../../_images/g21.jpg" src="../../_images/g21.jpg" style="width: 878.25px; height: 549.75px;" /></a>
+</div>
+<p>The viewer has two main scrollbars: the horizontal axis scrollbar shifts the main
+drawing area in time; the vertical axis changes the set of visible process traces.
+The zoomin / zoomout operators change the time scale.</p>
+<p>The event selector PolyCheckMenu changes the set of displayed events.
+Using these tools – and some patience – you can understand a given event log.</p>
+</div>
+<div class="section" id="mouse-gestures">
+<h2>Mouse Gestures<a class="headerlink" href="#mouse-gestures" title="Permalink to this headline">¶</a></h2>
+<p>G2 has three fairly sophisticated mouse gesture interfaces, which are worth describing
+in detail. First, a left mouse click on a display event pops up a per-event detail box.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/g22.jpg"><img alt="../../_images/g22.jpg" src="../../_images/g22.jpg" style="width: 510.75px; height: 186.0px;" /></a>
+</div>
+<p>A left mouse click on an event detail box closes it.
+To zoom to a region of the display, press and hold the left mouse button, then drag
+right or left until the zoom-fence pair appears:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/g23.jpg"><img alt="../../_images/g23.jpg" src="../../_images/g23.jpg" style="width: 541.5px; height: 439.5px;" /></a>
+</div>
+<p>When the zoom operation completes, the display is as follows:</p>
+<div class="figure align-center">
+<img alt="../../_images/g24.jpg" src="../../_images/g24.jpg" />
+</div>
+<p>A click on any of the figures will show them at full resolution, right-click will open figures in new tabs,</p>
+</div>
+<div class="section" id="time-ruler">
+<h2>Time Ruler<a class="headerlink" href="#time-ruler" title="Permalink to this headline">¶</a></h2>
+<p>To use a time ruler, press and hold the right mouse button; drag right or left
+until the ruler measures the region of interest. If the time axis scale is coarse,
+event boxes can have significant width in time, so use a “reference point” in
+each event box when using the time ruler.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/g25.jpg"><img alt="../../_images/g25.jpg" src="../../_images/g25.jpg" style="width: 571.5px; height: 297.75px;" /></a>
+</div>
+</div>
+<div class="section" id="event-selection">
+<h2>Event Selection<a class="headerlink" href="#event-selection" title="Permalink to this headline">¶</a></h2>
+<p>Changing the Event Selector setup controls the set of points displayed in an
+obvious way. Here, we suppress all events except “this thread is now running on the CPU”:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/g26.jpg"><img alt="../../_images/g26.jpg" src="../../_images/g26.jpg" style="width: 825.0px; height: 547.5px;" /></a>
+</div>
+<p>Same setup, with all events displayed:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/g27.jpg"><img alt="../../_images/g27.jpg" src="../../_images/g27.jpg" style="width: 874.5px; height: 548.25px;" /></a>
+</div>
+<p>Note that event detail boxes previously shown, but suppressed due to deselection
+of the event code will reappear when one reselects the event code. In the example
+above, the “THREAD/THREADY pid:491720 tid:12” detail box appears in this fashion.</p>
+</div>
+<div class="section" id="snapshot-ring">
+<h2>Snapshot Ring<a class="headerlink" href="#snapshot-ring" title="Permalink to this headline">¶</a></h2>
+<p>Three buttons in lower left-hand corner of the g2 main window control the snapshot
+ring. Snapshots are simply saved views: maneuver the viewer into an “interesting”
+configuration, then press the “Snap” button to add a snapshot to the ring.</p>
+<p>Click <strong>Next</strong> to restore the next available snapshot. The <strong>Del</strong> button deletes the current snapshot.</p>
+<p>See the hotkey section below for access to a quick and easy method to save and
+restore the snapshot ring. Eventually we may add a safe/portable/supported mechanism
+to save/restore the snapshot ring from CPEL and vppinfra event log files.</p>
+</div>
+<div class="section" id="chasing-events">
+<h2>Chasing Events<a class="headerlink" href="#chasing-events" title="Permalink to this headline">¶</a></h2>
+<p>Event chasing sorts the trace axis by occurrence of the last selected event. For
+example, if one selects an event which means “thread running on the CPU” the first
+N displayed traces will be the first M threads to run (N &lt;= M; a thread may run
+more than once. This feature addresses analytic problems caused by the finite size of the drawing area.</p>
+<p>In standard (NoChaseEvent) mode, it looks like only BGP threads 5 and 9 are active:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/g28.jpg"><img alt="../../_images/g28.jpg" src="../../_images/g28.jpg" style="width: 607.5px; height: 473.25px;" /></a>
+</div>
+<p>After pressing the ChaseEvent button, we see a different picture:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../_images/g29.jpg"><img alt="../../_images/g29.jpg" src="../../_images/g29.jpg" style="width: 672.75px; height: 547.5px;" /></a>
+</div>
+</div>
+<div class="section" id="burying-boring-tracks">
+<h2>Burying Boring Tracks<a class="headerlink" href="#burying-boring-tracks" title="Permalink to this headline">¶</a></h2>
+<p>The sequence &lt;ctrl&gt;&lt;left-mouse-click&gt; moves the track under the mouse to the end
+of the set of tracks, effectively burying it. The sequence &lt;shift&gt;&lt;left-mouse-click&gt;
+moves the track under the mouse to the beginning of the set of tracks. The latter
+function probably isn’t precisely right–I think we may eventually provide an “undo”
+stack to provide precise thread exhumation.</p>
+</div>
+<div class="section" id="summary-mode">
+<h2>Summary Mode<a class="headerlink" href="#summary-mode" title="Permalink to this headline">¶</a></h2>
+<p>Summary mode declutters the screen by rendering events as short vertical line
+segments instead of numbered boxes. Event detail display is unaffected. G2 starts
+in summary mode, zoomed out sufficiently for all events in the trace to be displayed.
+Given a large number of events, summary mode reduces initial screen-paint time to a
+tolerable value. Once you’ve zoomed in sufficiently, type “e” - enter event mode,
+to enable boxed numeric event display.</p>
+</div>
+<div class="section" id="hotkeys">
+<h2>Hotkeys<a class="headerlink" href="#hotkeys" title="Permalink to this headline">¶</a></h2>
+<p>G2 supports the following hotkey actions, supposedly (circa 1996) Quake-like
+according to the feature’s original author:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>w</p></td>
+<td><p>Zoom-in</p></td>
+</tr>
+<tr class="row-odd"><td><p>s</p></td>
+<td><p>Zoom-out</p></td>
+</tr>
+<tr class="row-even"><td><p>a</p></td>
+<td><p>Scroll Left</p></td>
+</tr>
+<tr class="row-odd"><td><p>d</p></td>
+<td><p>Scroll Right</p></td>
+</tr>
+<tr class="row-even"><td><p>e</p></td>
+<td><p>Toggle between event and summary-event mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>p</p></td>
+<td><p>Put (write) snapshot ring to snapshots.g2</p></td>
+</tr>
+<tr class="row-even"><td><p>l</p></td>
+<td><p>Load (read) snapshot ring from snapshots.g2</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;ctrl&gt;-q</p></td>
+<td><p>quit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fib20/index.html" class="btn btn-neutral float-right" title="FIB 2.0 Hierarchical, Protocol, Independent" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="buildsystem/buildrootmakefile.html" class="btn btn-neutral float-left" title="Introduction to build-root/Makefile" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

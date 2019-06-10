@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Dry Run &mdash; Vector Packet Processor 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Apply the Configuration" href="commandthree.html" />
+    <link rel="prev" title="Show System Information" href="commandone.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Users</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">VPP Configuration Utility</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="installing.html">Installing VPP-Config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="usingvppconfig.html">Running</a></li>
+<li class="toctree-l4"><a class="reference internal" href="commandfour.html">List/Install/Uninstall VPP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="commandone.html">Show System Information</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Dry Run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#executing-the-dry-run">Executing the Dry Run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="commandthree.html">Apply the Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configapplied.html">The Configuration Applied</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../configuring/index.html">Configuring VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../running/index.html">Running VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../developers/index.html">For Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Users</a> &raquo;</li>
+        
+          <li><a href="index.html">VPP Configuration Utility</a> &raquo;</li>
+        
+      <li>Dry Run</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/users/configutil/commandtwo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dry-run">
+<span id="config-command-two"></span><h1>Dry Run<a class="headerlink" href="#dry-run" title="Permalink to this headline">¶</a></h1>
+<p>With command option ‘2’ (the config utility <em>dry run</em> option) the important
+configuration files are created so that the user can examine them, and then
+if they look reasonable apply them with command option 3.</p>
+<p>The files for <strong>Ubuntu</strong> can be found in the root directory <em>/usr/local/vpp/vpp-config/dryrun</em>
+and for <strong>Centos</strong> in directory <em>/usr/vpp/vpp-config/dryrun</em>.</p>
+<p>The important configuration files are <strong>/etc/vpp/startup.conf</strong>, <strong>/etc/sysctl.d/80-vpp.conf</strong>,
+and <strong>/etc/default/grub</strong></p>
+<div class="section" id="startup-conf">
+<h2>Startup.conf<a class="headerlink" href="#startup-conf" title="Permalink to this headline">¶</a></h2>
+<p>FD.io VPP startup parameters are configured in the file <strong>/etc/vpp/startup.conf</strong>.
+The utility creates this file under the <em>vpp-config</em> root directory in the file <em>vpp/startup.conf</em>.
+The values in this file come from the questions asked about the devices, cores, rx queues,
+and tcp parameters.</p>
+</div>
+<div class="section" id="vpp-conf">
+<h2>80-vpp.conf<a class="headerlink" href="#vpp-conf" title="Permalink to this headline">¶</a></h2>
+<p>The huge page configuration comes by setting values in the file <strong>/etc/sysctl.d/80-vpp.conf</strong>.
+The utility creates the file under the root directory in the file <em>sysctl.d/80-vpp.conf</em>. When asked the
+question about huge pages the correct values are put in the dryrun file.</p>
+</div>
+<div class="section" id="grub">
+<h2>grub<a class="headerlink" href="#grub" title="Permalink to this headline">¶</a></h2>
+<p>CPUs can be isolated for use by VPP or other processes such as VMs using the grub
+configuration file. This file is <strong>/etc/default/grub</strong>. This file must be modified with
+care. It is possible to make your system unusable if this file is modified incorrectly.
+The dry run file is located under the <em>vpp-config</em> root directory and then default.</p>
+</div>
+</div>
+<div class="section" id="executing-the-dry-run">
+<h1>Executing the Dry Run<a class="headerlink" href="#executing-the-dry-run" title="Permalink to this headline">¶</a></h1>
+<p>The following is an example of how to execute a dry run. Defaults should be picked first,
+and then the values increased accordingly.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) List/Install/Uninstall VPP.</span>
+<span class="go">q) Quit</span>
+
+<span class="go">Command: 2</span>
+
+<span class="go">These devices have kernel interfaces, but appear to be safe to use with VPP.</span>
+
+<span class="go">PCI ID          Kernel Interface(s)       Description</span>
+<span class="go">------------------------------------------------------------------------------------------</span>
+<span class="go">0000:8f:00.0    enp143s0                  VIC Ethernet NIC</span>
+<span class="go">0000:84:00.0    enp132s0f0,enp132s0f0d1   Ethernet Controller XL710 for 40GbE QSFP+</span>
+<span class="go">0000:84:00.1    enp132s0f1,enp132s0f1d1   Ethernet Controller XL710 for 40GbE QSFP+</span>
+<span class="go">0000:08:00.1    enp8s0f1                  I350 Gigabit Network Connection</span>
+<span class="go">0000:02:00.0    enp2s0f0                  82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:02:00.1    enp2s0f1                  82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:86:00.0    enp134s0f0                82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:86:00.1    enp134s0f1                82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+
+<span class="go">Would you like to use any of these device(s) for VPP [y/N]? y</span>
+<span class="go">Would you like to use device 0000:8f:00.0 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:84:00.0 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:84:00.1 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:08:00.1 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:02:00.0 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:02:00.1 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:86:00.0 for VPP [y/N]? y</span>
+<span class="go">Would you like to use device 0000:86:00.1 for VPP [y/N]? y</span>
+
+<span class="go">These device(s) will be used by VPP.</span>
+
+<span class="go">PCI ID          Description</span>
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">0000:86:00.0    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:86:00.1    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:90:00.0    VIC Ethernet NIC</span>
+
+<span class="go">Would you like to remove any of these device(s) [y/N]? y</span>
+<span class="go">Would you like to remove 0000:86:00.0 [y/N]?</span>
+<span class="go">Would you like to remove 0000:86:00.1 [y/N]?</span>
+<span class="go">Would you like to remove 0000:90:00.0 [y/N]? y</span>
+
+<span class="go">These device(s) will be used by VPP, please rerun this option if this is incorrect.</span>
+
+<span class="go">PCI ID          Description</span>
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">0000:86:00.0    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:86:00.1    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+
+<span class="go">Your system has 32 core(s) and 2 Numa Nodes.</span>
+<span class="go">To begin, we suggest not reserving any cores for VPP or other processes.</span>
+<span class="go">Then to improve performance start reserving cores and adding queues as needed.</span>
+
+<span class="go">How many core(s) shall we reserve for VPP [0-4][0]? 2</span>
+<span class="go">How many core(s) do you want to reserve for processes other than VPP? [0-15][0]?</span>
+<span class="go">Should we reserve 1 core for the VPP Main thread? [y/N]? y</span>
+<span class="go">How many RX queues per port shall we use for VPP [1-4][1]? 2</span>
+
+<span class="go">How many active-open / tcp client sessions are expected [0-10000000][0]?</span>
+<span class="go">How many passive-open / tcp server sessions are expected [0-10000000][0]?</span>
+
+<span class="go">There currently 896 2048 kB huge pages free.</span>
+<span class="go">Do you want to reconfigure the number of huge pages [y/N]? y</span>
+
+<span class="go">There currently a total of 1024 huge pages.</span>
+<span class="go">How many huge pages do you want [1024 - 15644][1024]? 8192</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) List/Install/Uninstall VPP.</span>
+<span class="go">q) Quit</span>
+
+<span class="go">Command:</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="commandthree.html" class="btn btn-neutral float-right" title="Apply the Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="commandone.html" class="btn btn-neutral" title="Show System Information" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VPP API module &mdash; Vector Packet Processor 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Binary API Support" href="binary_api_support.html" />
+    <link rel="prev" title="Bounded-index Extensible Hashing (bihash)" href="bihash.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VPP API module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-code">Common code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generated-code">Generated code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-generator">Code generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-usage">C Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-high-level-api">C++ high level API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">C++ Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>VPP API module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/vpp_api_module.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="vpp-api-module">
+</div>
+<div class="section" id="id1">
+<h1>VPP API module<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>VPP API module allows communicating with VPP over shared memory interface. The API consists of 3 parts:</p>
+<ul class="simple">
+<li>common code - low-level API</li>
+<li>generated code - high-level API</li>
+<li>code generator - to generate your own high-level API e.g. for custom plugins</li>
+</ul>
+</div>
+<div class="section" id="common-code">
+<h2>Common code<a class="headerlink" href="#common-code" title="Permalink to this headline">¶</a></h2>
+<p><strong>C</strong></p>
+<p>C common code represents the basic, low-level API, providing functions to connect/disconnect, perform message discovery and send/receive messages. The C variant is in vapi.h.</p>
+<p><strong>C++</strong></p>
+<p>C++ is provided by vapi.hpp and contains high-level API templates, which are specialized by generated code.</p>
+</div>
+<div class="section" id="generated-code">
+<h2>Generated code<a class="headerlink" href="#generated-code" title="Permalink to this headline">¶</a></h2>
+<p>Each API file present in the source tree is automatically translated to JSON file, which the code generator parses and generates either C (vapi_c_gen.py) or C++ (vapi_cpp_gen.py) code.</p>
+<p>This can then be included in the client application and provides convenient way to interact with VPP. This includes:</p>
+<ul class="simple">
+<li>automatic byte-swapping</li>
+<li>automatic request-response matching based on context</li>
+<li>automatic casts to appropriate types (type-safety) when calling callbacks</li>
+<li>automatic sending of control-pings for dump messages</li>
+</ul>
+<p>The API supports two modes of operation:</p>
+<ul class="simple">
+<li>blocking</li>
+<li>non-blocking</li>
+</ul>
+<p>In blocking mode, whenever an operation is initiated, the code waits until it can finish. This means that when sending a message, the call blocks until the message can be written to shared memory. Similarly, receiving a message blocks until a message becomes available. On higher level, this also means that when doing a request (e.g. show_version), the call blocks until a response comes back (e.g. show_version_reply).</p>
+<p>In non-blocking mode, these are decoupled, the API returns VAPI_EAGAIN whenever an operation cannot be performed and after sending a request, it’s up to the client to wait for and process a response.</p>
+</div>
+<div class="section" id="code-generator">
+<h2>Code generator<a class="headerlink" href="#code-generator" title="Permalink to this headline">¶</a></h2>
+<p>Python code generator comes in two flavors - C and C++ and generates high-level API headers. All the code is stored in the headers.</p>
+</div>
+<div class="section" id="c-usage">
+<h2>C Usage<a class="headerlink" href="#c-usage" title="Permalink to this headline">¶</a></h2>
+<p><strong>Low-level API</strong></p>
+<p>Refer to inline API documentation in doxygen format in vapi.h header for description of functions. It’s recommened to use the safer, high-level API provided by specialized headers (e.g. vpe.api.vapi.h or vpe.api.vapi.hpp).</p>
+<p><strong>C high-level API</strong></p>
+<p><em>Callbacks</em></p>
+<p>The C high-level API is strictly callback-based for maximum efficiency. Whenever an operation is initiated a callback with a callback context is part of that operation. The callback is then invoked when the response (or multiple responses) arrive which are tied to the request. Also, callbacks are invoked whenever an event arrives, if such callback is registered. All the pointers to responses/events point to shared memory and are immediately freed after callback finishes so the client needs to extract/copy any data in which it is interested in.</p>
+<p><strong>Blocking mode</strong></p>
+<p>In simple blocking mode, the whole operation (being a simple request or a dump) is finished and it’s callback is called (potentially multiple times for dumps) during function call.</p>
+<p>Example pseudo-code for a simple request in this mode:</p>
+<p>vapi_show_version(message, callback, callback_context)</p>
+<ol class="arabic simple">
+<li>generate unique internal context and assign it to message.header.context</li>
+<li>byteswap the message to network byte order</li>
+<li>send message to vpp (message is now consumed and vpp will free it)</li>
+<li>create internal “outstanding request context” which stores the callback, callback context and the internal context value</li>
+<li>call dispatch, which in this mode receives and processes responses until the internal “outstanding requests” queue is empty. In blocking mode, this queue always contains at most one item.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It’s possible for different - unrelated callbacks to be called before the response callbacks is called in cases where e.g. events are stored in shared memory queue.</p>
+</div>
+<p><strong>Non-blocking mode</strong>
+In non-blocking mode, all the requests are only byte-swapped and the context information along with callbacks is stored locally (so in the above example, only steps 1-4 are executed and step 5 is skipped). Calling dispatch is up to the client application. This allows to alternate between sending/receiving messages or have a dedicated thread which calls dispatch.</p>
+</div>
+<div class="section" id="c-high-level-api">
+<h2>C++ high level API<a class="headerlink" href="#c-high-level-api" title="Permalink to this headline">¶</a></h2>
+<p><strong>Callbacks</strong></p>
+<p>In C++ API, the response is automatically tied to the corresponding Request, Dump or Event_registration object. Optionally a callback might be specified, which then gets called when the response is received.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Responses take up shared memory space and should be freed either manually (in case of result sets) or automatically (by destroying the object owning them) when no longer needed. Once a Request or Dump object was executed, it cannot be re-sent, since the request itself (stores in shared memory) is consumed by vpp and inaccessible (set to nullptr) anymore.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>C++ Usage<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><strong>Requests &amp; dumps</strong></p>
+<p><em>Create an object of Connection type and call connect() to connect to vpp.</em></p>
+<ol class="arabic simple">
+<li>Create an object of Request or Dump type using it’s typedef (e.g. Show_version)</li>
+<li>Use get_request() to obtain and manipulate the underlying request if required.</li>
+<li>Issue execute() to send the request.</li>
+<li>Use either wait_for_response() or dispatch() to wait for the response.</li>
+<li>Use get_response_state() to get the state and get_response() to read the response.</li>
+</ol>
+<p><strong>Events</strong></p>
+<p><em>Create a Connection and execute the appropriate Request to subscribe to events (e.g. Want_stats)</em></p>
+<ol class="arabic simple">
+<li>Create an Event_registration with a template argument being the type of event you are insterested in.</li>
+<li>Call dispatch() or wait_for_response() to wait for the event. A callback will be called when an event occurs (if passed to Event_registration() constructor). Alternatively, read the result set.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Events stored in the result set take up space in shared memory and should be freed regularly (e.g. in the callback, once the event is processed).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="binary_api_support.html" class="btn btn-neutral float-right" title="Binary API Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bihash.html" class="btn btn-neutral" title="Bounded-index Extensible Hashing (bihash)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
