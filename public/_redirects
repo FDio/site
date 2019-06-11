@@ -1,5 +1,4 @@
 # These are the redirects for the VPP docs
 
-# /docs/vpp/v1904/*    https://fdio-sandbox.netlify.com/docs/vpp/v1904/
-/docs/vpp/*    https://fdio-sandbox.netlify.com/docs/vpp/
+/docs/vpp/v1904/*    https://fdio-sandbox.netlify.com/docs/vpp/v1904/
 
