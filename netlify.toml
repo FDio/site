@@ -33,8 +33,8 @@ HUGO_ENABLEGITINFO = "true"
 [[redirects]]
 from = "/docs/vpp/v1904/index.html"
 to = "https://fdio-sandbox.netlify.com/docs/vpp/v1904/"
+from = "/docs/vpp/v1904/gettingstarted/installing/index.html"
+to = "https://fdio-sandbox.netlify.com/docs/vpp/v1904/gettingstarted/installing/"
 
-# from = "/docs/vpp/v1904/gettingstarted/installing/index.html"
-# to = "https://fdio-sandbox.netlify.com/docs/vpp/v1904/gettingstarted/installing/index.html"
 # from = "/docs/vpp/v1904/gettingstarted/developers/building.html"
 # to = "https://fdio-sandbox.netlify.com/docs/vpp/v1904/gettingstarted/developers/building.html"
