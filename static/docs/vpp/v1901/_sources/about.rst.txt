@@ -1,9 +1,0 @@
-.. _about:
-
-=====
-About
-=====
-
-**VPP Version:** 19.01.2-rc0~17-gcfd30860f
-
-**Built on:** Thu May 16 19:55:08 GMT 2019

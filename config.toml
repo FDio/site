@@ -39,7 +39,7 @@ publishDir = "public"
   [params.slider]
     enable = true
     bgImage = "img/fdio_bg_tech2.jpg"
-    title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project"
+    title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project (REDIRECT)"
     subtitle = "Relentlessly focused on data IO and efficiency for more flexable and scalable networks and storage<br/>"
     btnText = "The FD.io Projects"
     url = "/projects"
