@@ -31,5 +31,5 @@ HUGO_ENABLEGITINFO = "true"
 
 # Redirects
 [[redirects]]
-from = "/docs/*"
-to = "https://fdio-sandbox.netlify.com/docs/"
+from = "/docs/vpp/1904/*"
+to = "https://fdio-sandbox.netlify.com/docs/vpp/1904/"
