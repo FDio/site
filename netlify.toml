@@ -32,4 +32,4 @@ HUGO_ENABLEGITINFO = "true"
 # Redirects
 [[redirects]]
 from = "/docs/vpp/v1904/*"
-to = "https://fdio-sandbox.netlify.com/docs/vpp/v1904/*"
+to = "https://fdio-sandbox.netlify.com/docs/vpp/v1904/"
