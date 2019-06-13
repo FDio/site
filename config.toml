@@ -18,10 +18,6 @@ publishDir = "public"
     url = "/community"
   [[menu.header]]
     weight = 5
-    name = "NEWS"
-    url = "/news"
-  [[menu.header]]
-    weight = 6
     name = "EVENTS"
     url = "/events"
 
