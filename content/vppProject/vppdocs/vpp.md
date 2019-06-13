@@ -9,9 +9,9 @@ btntxt="VPP DOCS "
 
 # The first part of these strings are displayed in the dropdown.
 # The second is the url
-latest = "Latest Release (1904), /docs/vpp/v1904/index.html"
+latest = "Latest Release (1904), https://fdio-sandbox.netlify.com/docs/vpp/v1904/"
 versions = ["Master, /docs/vpp/master/index.html",
-	 "1901, /docs/vpp/v1901/index.html"]
+	 "1901, https://fdio-sandbox.netlify.com/docs/vpp/v1901/"]
 
 +++
 
