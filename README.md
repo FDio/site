@@ -1,8 +1,44 @@
 # Repository for the FDio main site.
 
 Thos repository will be used for the FD.io main site. This site is created
-using the web site renderer Hugo. For more infor mation on Hugo please visit
+using the web site renderer Hugo. For more information on Hugo please visit
 [Hugo](https://gohugo.io).
+
+# Governance
+
+The fd.io main site is maintained by the fd.io community.
+
+Anyone can contribute.
+
+If you feel comfortable working with [Hugo](https://gohugo.io), please push a [PR](https://github.com/FDio/site/pulls).
+
+If you just have an idea for improvement, open an [issue](https://github.com/FDio/site/issues).
+
+## Who can merge changes
+
+Each fd.io project can name up to two representatives to work on maintaining the website.  The FD.io marketing committee can also name up to two representatives.
+
+Those representatives can merge changes to the site, and manage the [Netlify](https://www.netlify.com/) config for the site.
+
+| Name | Github ID | FD.io Project |
+| --- | --- | --- |
+| Luca Muscariello | @muscariello | [HICN](https://wiki.fd.io/view/HICN) |
+| Dave Barach | @dbarach | [VPP](https://wiki.fd.io/view/VPP) |
+| Mauro Sardara | @msardara | [HICN] (https://wiki.fd.io/view/HICN) |
+| Michal Cmarada | @mcmarada | [JVPP] (https://wiki.fd.io/view/JVPP), [honeycomb](https://wiki.fd.io/view/Honeycomb), [HC2VPP](https://wiki.fd.io/view/Hc2vpp) |
+| Rastislav Szabo| @rastislavszabo | |
+| Ondrej Fabry | @ondrej-fabry | |
+| John DeNisco | @jadenisco | [VPP](https://wiki.fd.io/view/VPP) |
+| Hongjun Ni | @HongjunNi | [Sweetcomb](https://wiki.fd.io/view/Sweetcomb) |
+| Peter Mikus | @pmikus | [CSIT](https://wiki.fd.io/view/CSIT) |
+| Tibor Frank | @tiborfrank | [CSIT](https://wiki.fd.io/view/CSIT) |
+| Ed Warnicke | @edwarnicke | [TSC](https://wiki.fd.io/view/TSC) |
+
+## Handling of frontpage, NEWs, etc
+
+The fd.io frontpage is how the world sees us.  We are fortunate enough to have an excellent marketing committee in FD.io.  Please make sure to include and get buy off from one of the reps of the marketing committee before merging substantive/stylistic changes to the frontpage, NEWs, etc.
+
+# Mechanics
 
 ## Build and push changes
 
