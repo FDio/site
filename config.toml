@@ -44,7 +44,7 @@ publishDir = "public"
     enable = true
     image = "img/logo_fdio_header.png"
     title = "Time is money."
-    italic = "**And in networking, the fast movement of data is essential to time.**"
+    subtitle = "**And in networking, the fast movement of data is essential to time.**"
     paragraph = """Kernel-based packet processing has reached its limits. Whether on bare metal, in a VM, or a container - your application will feel it.<br /><br />
     **FD.io’s Vector Packet Processing shatters the speed barrier.**"""
 
@@ -58,9 +58,9 @@ Up to two orders of magnitude greater packet processing throughput.<br /><br />
 Graph node processing tree enables entire networking and security functions to
 be injected into software packet processing.<br /><br />
 <b>Deploy anywhere.</b><br />
-Deploy on bare metal, VM or container.
-x86, ARM, and PowerPC architectures.
-The future of packet processing. Now.
+Bare metal, VM or container.
+x86, ARM, and PowerPC architectures.<br /> <br />
+<b>The future of packet processing. Now.</b>
 """
     [params.feature.button]
       caption = "Get Started With VPP"

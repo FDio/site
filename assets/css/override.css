@@ -188,3 +188,16 @@ header .container {
     text-align: center;
 }
 
+#intro div.block h2 {
+    text-transform: none;
+}
+
+#intro .block p {
+    font-family: roboto,sans-serif;
+    font-style: normal;
+}
+
+#intro .block .section-title p {
+    font-size: 1.5em;
+}
+
