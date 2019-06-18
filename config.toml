@@ -55,8 +55,8 @@ publishDir = "public"
 <b>Relentlessly speed and scale.</b><br />
 Up to two orders of magnitude greater packet processing throughput.<br /><br />
 <b>Easily programable.</b><br />
-Graph node processing tree enables entire networking and security functions to
-be injected into software packet processing.<br /><br />
+VPP's host stack comprises packet, transport, session, and application layer protocols - 
+enabling entire networking and security functions to be injected into software packet processing.  <br /><br />
 <b>Deploy anywhere.</b><br />
 Bare metal, VM or container.
 x86, ARM, and PowerPC architectures.<br /> <br />
