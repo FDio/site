@@ -50,7 +50,7 @@ publishDir = "public"
 
   [params.feature]
     enable = true
-    title = "What is the Vector Packet Processor (VPP)?"
+    title = "What is Vector Packet Processing (VPP)?"
     content = """
 <b>Relentlessly speed and scale.</b><br />
 Up to two orders of magnitude greater packet processing throughput.<br /><br />
