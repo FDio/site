@@ -37,12 +37,12 @@ publishDir = "public"
     bgImage = "img/fdio_bg_tech2.jpg"
     title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project"
     subtitle = "The world moves at light speed. <br/> Make sure your packet traffic keeps up."
-    btnText = "The FD.io Projects"
+    btnText = "FD.io Projects"
     url = "/projects"
 
   [params.wrapper]
     enable = true
-    image = "img/logo_fdio_header.png"
+    image = "img/logo_fdio_header.svg"
     title = "Time is money."
     subtitle = "**And in networking, the fast movement of data is essential to time.**"
     paragraph = """Kernel-based packet processing has reached its limits. Whether on bare metal, in a VM, or a container - your application will feel it.<br /><br />
