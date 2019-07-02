@@ -1,5 +1,4 @@
 +++
-title = "News"
 bgImage = "img/fdio_bg_tech2.jpg"
-type = "newssummaries"
+type = "newsannouncements"
 +++
