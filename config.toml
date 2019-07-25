@@ -13,13 +13,20 @@ publishDir = "public"
     url = "/projects"
 
   [[menu.header]]
+    weight = 2
+    name = "CASE STUDIES"
+    url = "/casestudies"
+
+  [[menu.header]]
     weight = 4
     name = "COMMUNITY"
     url = "/community"
+
   [[menu.header]]
     weight = 5
     name = "NEWS"
     url = "/news"
+
   [[menu.header]]
     weight = 6
     name = "EVENTS"
@@ -40,31 +47,24 @@ publishDir = "public"
     enable = true
     bgImage = "img/fdio_bg_tech2.jpg"
     title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project"
-    subtitle = "The world moves at light speed. <br/> Make sure your packet traffic keeps up."
-    btnText = "FD.io Projects"
+    subtitle = "Relentlessly focused on data IO and efficiency for more flexable and scalable networks and storage<br/>"
+    btnText = "The FD.io Projects"
     url = "/projects"
 
   [params.wrapper]
     enable = true
-    image = "img/logo_fdio_header.svg"
-    title = "Time is money."
-    subtitle = "**And in networking, the fast movement of data is essential to time.**"
-    paragraph = """Kernel-based packet processing has reached its limits. Whether on bare metal, in a VM, or a container - your application will feel it.<br /><br />
-    **FD.io’s Vector Packet Processing shatters the speed barrier.**"""
+    image = "img/logo_fdio_header.png"
+    title = "The Fast Data Project"
+    italic = "FD.io is a collection of several projects and libraries"
+    paragraph = "FD.io offers the Software Defined Infrastructure developer community a landing site with multiple projects fostering innovations in software-based packet processing towards the creation of high-throughput, low-latency and resource-efficient IO services suitable to many architectures (x86, ARM, and PowerPC) and deployment environments (bare metal, VM, container)."
 
   [params.feature]
     enable = true
-    title = "What is Vector Packet Processing (VPP)?"
+    title = "What is the Vector Packet Processor (VPP)?"
     content = """
-<b>Relentlessly speed and scale.</b><br />
-Up to two orders of magnitude greater packet processing throughput.<br /><br />
-<b>Easily programmable.</b><br />
-VPP's host stack comprises packet, transport, session, and application layer protocols - 
-enabling entire networking and security functions to be injected into software packet processing.  <br /><br />
-<b>Deploy anywhere.</b><br />
-Bare metal, VM or container.
-x86, ARM, and PowerPC architectures.<br /> <br />
-<b>The future of packet processing. Now.</b>
+VPP is the core technolgy behind the FD.io projects. It is a fast, scalable and multi-platform network stack built over the Data Plane Development Kit (DPDK).
+
+VPP is, at it’s core, it is a scalable layer 2-4 network stack. It supports integration into both Open Stack and Kubernetes environments. It supports network management features including configuration, counters and sampling. VPP supports extending with plugins, tracing and debugging. Use cases include vSwitch, vRouter, Gateways, Firewalls and Load Balancers, to name but a few. Finally it is useful both a software development kit or an appliance out of the box.
 """
     [params.feature.button]
       caption = "Get Started With VPP"
