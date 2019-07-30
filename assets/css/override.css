@@ -170,3 +170,33 @@ header .container {
     padding-bottom: 0px;
     padding-left: 0px;
 }
+
+#feature div.block {
+    color: #FFFFFF;
+    text-align: center;
+    padding: 2em;
+}
+#feature div.block b {
+    font-size: 1.25em;
+}
+#feature div.block h2 {
+    font-size: 1.5em;
+}
+
+#intro div.block {
+    text-align: center;
+}
+
+#intro div.block h2 {
+    text-transform: none;
+}
+
+#intro .block p {
+    font-family: roboto,sans-serif;
+    font-style: normal;
+}
+
+#intro .block .section-title p {
+    font-size: 1.5em;
+}
+
