@@ -110,6 +110,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homegateway.html">Using VPP as a Home Gateway</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contiv/index.html">Contiv/VPP</a></li>
@@ -198,12 +199,12 @@
   <span class="nt">&lt;name&gt;</span>iperf-server<span class="nt">&lt;/name&gt;</span>
   <span class="nt">&lt;memory</span> <span class="na">unit=</span><span class="s">&#39;KiB&#39;</span><span class="nt">&gt;</span>1048576<span class="nt">&lt;/memory&gt;</span>
   <span class="nt">&lt;currentMemory</span> <span class="na">unit=</span><span class="s">&#39;KiB&#39;</span><span class="nt">&gt;</span>1048576<span class="nt">&lt;/currentMemory&gt;</span>
-  <span class="nt">&lt;memoryBacking&gt;</span>
-    <span class="nt">&lt;hugepages&gt;</span>
-      <span class="nt">&lt;page</span> <span class="na">size=</span><span class="s">&#39;2048&#39;</span> <span class="na">unit=</span><span class="s">&#39;KiB&#39;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/hugepages&gt;</span>
-  <span class="nt">&lt;/memoryBacking&gt;</span>
-  <span class="nt">&lt;vcpu</span> <span class="na">placement=</span><span class="s">&#39;static&#39;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/vcpu&gt;</span>
+<span class="hll">  <span class="nt">&lt;memoryBacking&gt;</span>
+</span><span class="hll">    <span class="nt">&lt;hugepages&gt;</span>
+</span><span class="hll">      <span class="nt">&lt;page</span> <span class="na">size=</span><span class="s">&#39;2048&#39;</span> <span class="na">unit=</span><span class="s">&#39;KiB&#39;</span><span class="nt">/&gt;</span>
+</span><span class="hll">    <span class="nt">&lt;/hugepages&gt;</span>
+</span><span class="hll">  <span class="nt">&lt;/memoryBacking&gt;</span>
+</span>  <span class="nt">&lt;vcpu</span> <span class="na">placement=</span><span class="s">&#39;static&#39;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/vcpu&gt;</span>
   <span class="nt">&lt;resource&gt;</span>
     <span class="nt">&lt;partition&gt;</span>/machine<span class="nt">&lt;/partition&gt;</span>
   <span class="nt">&lt;/resource&gt;</span>
@@ -270,6 +271,7 @@
 <span class="hll">    <span class="nt">&lt;interface</span> <span class="na">type=</span><span class="s">&#39;vhostuser&#39;</span><span class="nt">&gt;</span>
 </span><span class="hll">      <span class="nt">&lt;mac</span> <span class="na">address=</span><span class="s">&#39;52:54:00:4c:47:f2&#39;</span><span class="nt">/&gt;</span>
 </span><span class="hll">      <span class="nt">&lt;source</span> <span class="na">type=</span><span class="s">&#39;unix&#39;</span> <span class="na">path=</span><span class="s">&#39;/tmp//vm00.sock&#39;</span> <span class="na">mode=</span><span class="s">&#39;server&#39;</span><span class="nt">/&gt;</span>
+</span><span class="hll">      <span class="nt">&lt;driver</span> <span class="na">rx_queue_size=</span><span class="s">&#39;1024&#39;</span> <span class="na">tx_queue_size=</span><span class="s">&#39;1024&#39;</span><span class="nt">/&gt;</span>
 </span><span class="hll">      <span class="nt">&lt;model</span> <span class="na">type=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
 </span><span class="hll">      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;net1&#39;</span><span class="nt">/&gt;</span>
 </span><span class="hll">      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x02&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
