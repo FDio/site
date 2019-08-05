@@ -9,21 +9,31 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
-    name = "PROJECTS"
-    url = "/projects"
+    name = "TECHNOLOGY"
+    url = "/technology"
 
   [[menu.header]]
-    weight = 4
-    name = "COMMUNITY"
-    url = "/community"
+    weight = 2
+    name = "PERFORMANCE"
+    url = "/performance"
+
   [[menu.header]]
-    weight = 5
-    name = "NEWS"
-    url = "/news"
-  [[menu.header]]
-    weight = 6
-    name = "EVENTS"
-    url = "/events"
+    weight = 3
+    name = "GET STARTED"
+    url = "/vppproject"
+
+#  [[menu.header]]
+#    weight = 4
+#    name = "COMMUNITY"
+#    url = "/community"
+#  [[menu.header]]
+#    weight = 5
+#    name = "NEWS"
+#    url = "/news"
+#  [[menu.header]]
+#    weight = 6
+#    name = "EVENTS"
+#    url = "/events"
 
 # The site's parameters
 [params]
@@ -39,18 +49,20 @@ publishDir = "public"
   [params.slider]
     enable = true
     bgImage = "img/fdio_bg_tech2.jpg"
-    title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project"
-    subtitle = "The world moves at light speed. <br/> Make sure your packet traffic keeps up."
-    btnText = "FD.io Projects"
-    url = "/projects"
+    title = "FD.io <br> An Open Source Terabit Software Packet Processor"
+    subtitle = "The world moves at light speed. <br> Make sure your packet traffic keeps up."
+    btnText = "Learn More About FD.io Technology"
+    url = "/technology"
 
   [params.wrapper]
     enable = true
-    image = "img/logo_fdio_header.svg"
+    image = "img/csit-01.png"
     title = "Time is money."
     subtitle = "**And in networking, the fast movement of data is essential to time.**"
     paragraph = """Kernel-based packet processing has reached its limits. Whether on bare metal, in a VM, or a container - your application will feel it.<br /><br />
     **FD.io’s Vector Packet Processing shatters the speed barrier.**"""
+    wbtnText = "Learn more about FD.io Performance"
+    wurl = "/performance"
 
   [params.feature]
     enable = true
