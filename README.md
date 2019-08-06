@@ -33,6 +33,8 @@ Those representatives can merge changes to the site, and manage the [Netlify](ht
 | Peter Mikus | @pmikus | [CSIT](https://wiki.fd.io/view/CSIT) |
 | Tibor Frank | @tiborfrank | [CSIT](https://wiki.fd.io/view/CSIT) |
 | Ed Warnicke | @edwarnicke | [TSC](https://wiki.fd.io/view/TSC) |
+| John DiGiglio | @JDiGiglio | FD.io Marketing Committee |
+| Neal Hartsell | @nealtex01  | FD.io Marketing Committee | 
 
 ## Handling of frontpage, NEWs, etc
 
