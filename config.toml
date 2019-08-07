@@ -51,6 +51,8 @@ publishDir = "public"
     subtitle = "**And in networking, the fast movement of data is essential to time.**"
     paragraph = """Kernel-based packet processing has reached its limits. Whether on bare metal, in a VM, or a container - your application will feel it.<br /><br />
     **FD.io’s Vector Packet Processing shatters the speed barrier.**"""
+    wbtnText = "Learn more about FD.io Performance"
+    wurl = "/performance"
 
   [params.feature]
     enable = true
