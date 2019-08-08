@@ -9,21 +9,33 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
-    name = "PROJECTS"
-    url = "/projects"
+    name = "Technology"
+    url = "/technology"
+
+  [[menu.header]]
+    weight = 2
+    name = "Performance"
+    url = "/performance"
+
+  [[menu.header]]
+    weight = 3
+    name = "VPP"
+    url = "/vppProject"
 
   [[menu.header]]
     weight = 4
-    name = "COMMUNITY"
-    url = "/community"
+    name = "Use Cases"
+    url = "/casestudies"
+
   [[menu.header]]
     weight = 5
-    name = "NEWS"
+    name = "News"
     url = "/news"
+
   [[menu.header]]
     weight = 6
-    name = "EVENTS"
-    url = "/events"
+    name = "Community"
+    url = "/community"
 
 # The site's parameters
 [params]
@@ -38,11 +50,11 @@ publishDir = "public"
 
   [params.slider]
     enable = true
-    bgImage = "img/fdio_bg_tech2.jpg"
-    title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project"
-    subtitle = "The world moves at light speed. <br/> Make sure your packet traffic keeps up."
-    btnText = "FD.io Projects"
-    url = "/projects"
+    bgImage = "img/fdio_bg.jpg"
+    title = "FD.io <br> An Open Source Terabit Software Packet Processor"
+    subtitle = "The world moves at light speed. <br> Make sure your packet traffic keeps up."
+    btnText = "Learn about the FD.io technology"
+    url = "/technology"
 
   [params.wrapper]
     enable = true
@@ -51,11 +63,12 @@ publishDir = "public"
     subtitle = "**And in networking, the fast movement of data is essential to time.**"
     paragraph = """Kernel-based packet processing has reached its limits. Whether on bare metal, in a VM, or a container - your application will feel it.<br /><br />
     **FD.io’s Vector Packet Processing shatters the speed barrier.**"""
-    wbtnText = "Learn more about FD.io Performance"
+    wbtnText = "Learn about FD.io Performance"
     wurl = "/performance"
 
   [params.feature]
     enable = true
+    bgImage = "img/fdio_bg.jpg"
     title = "What is Vector Packet Processing (VPP)?"
     content = """
 <b>Relentlessly speed and scale.</b><br />
@@ -71,3 +84,17 @@ x86, ARM, and PowerPC architectures.<br /> <br />
     [params.feature.button]
       caption = "Get Started With VPP"
       url = "/vppproject"
+
+  [params.prjcomnews]
+    enable=true
+    pimage = "img/prj.png"
+    title = "The Fd.io Community"
+    subtitle = "****"
+    paragraph = """"""
+    btnText1 = "Use Cases"
+    url1 = "/casestudies"
+    btnText2 = "The Latest News"
+    url2 = "/news"
+    btnText3 = "How to Get Involved"
+    url3 = "/community"
+
