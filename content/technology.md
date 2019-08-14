@@ -70,6 +70,8 @@ software processing is finished.  In this way, accelerating hardware can be used
 continues if it is missing or its resources are exhausted.  This architecture allows maximum space for
 innovation by hardware accelerators.
 
+<img src="/img/tech-04.png" width=50%>
+
 <br>
 # Programmability
 
