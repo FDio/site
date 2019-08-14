@@ -17,7 +17,7 @@ versions = ["Master, /docs/vpp/master/index.html",
 
 # VPP Documentation
 
-For the complete set of VPP dcouments click on the buttin below and select the
+For the complete set of VPP dcouments click on the button below and select the
 version needed. 
 
 
