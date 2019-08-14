@@ -46,7 +46,7 @@
 }
 
 #docs-header {
-    background: url("../img/fdio_bg_tech2.jpg") no-repeat;
+    background: url("../img/fdio_bg.jpg") no-repeat;
     background-size: cover;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -136,6 +136,8 @@ header .container {
 .container img.img-responsive {
     padding-top: 10px;
     max-height: 580px;
+    height: 128
+    width: 128
     margin: auto;
 }
 
