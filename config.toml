@@ -22,10 +22,10 @@ publishDir = "public"
     name = "VPP"
     url = "/vppProject"
 
-  [[menu.header]]
-    weight = 4
-    name = "Use Cases"
-    url = "/casestudies"
+#  [[menu.header]]
+#    weight = 4
+#    name = "Use Cases"
+#    url = "/casestudies"
 
   [[menu.header]]
     weight = 5
@@ -91,10 +91,8 @@ x86, ARM, and PowerPC architectures.<br /> <br />
     title = "The Fd.io Community"
     subtitle = "****"
     paragraph = """"""
-    btnText1 = "Use Cases"
-    url1 = "/casestudies"
-    btnText2 = "The Latest News"
-    url2 = "/news"
-    btnText3 = "How to Get Involved"
-    url3 = "/community"
+    btnText1 = "The Latest News"
+    url1 = "/news"
+    btnText2 = "How to Get Involved"
+    url2 = "/community"
 
