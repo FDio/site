@@ -146,6 +146,16 @@ the site administrators will merge your change.
 ### Appendix: how to commit code to a git repo (using a branch)
 
 ```console
+$ git remote add upstream ssh://git@github.com/FDio/site
+$ git remote -v
+origin	ssh://git@github.com/<username>/site (fetch)
+origin	ssh://git@github.com/<username>/site (push)
+upstream	ssh://git@github.com/FDio/site (fetch)
+upstream	ssh://git@github.com/FDio/site (push)
+$
+$ # Make your changes
+$
+$ git checkout -b add-to-readme
 $ git status
 On branch add-to-readme
 Changes not staged for commit:
