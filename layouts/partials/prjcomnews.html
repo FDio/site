@@ -1,0 +1,27 @@
+<!-- Wrapper Start -->
+<section id="intro">
+    <div class="container">
+	<div class="row">
+	    <div class="col-md-6 col-sm-12">
+		<div class="block">
+		    <div class="section-title">
+			<h2>{{ .Site.Params.prjcomnews.title }}</h2>
+			<p>{{ .Site.Params.prjcomnews.subtitle | markdownify}}</p>
+		    </div>
+		    <p>{{ .Site.Params.prjcomnews.paragraph | markdownify }}</p>
+		    <br/>
+		    <a class="btn btn-main btn-solid-border" href="{{ .Site.Params.prjcomnews.url1 | absURL }}" >
+			{{ .Site.Params.prjcomnews.btnText1 }}</a>
+		    <a class="btn btn-main btn-solid-border" href="{{ .Site.Params.prjcomnews.url2 | absURL }}" >
+			{{ .Site.Params.prjcomnews.btnText2 }}</a>
+		    <br></br>
+		</div>
+	    </div><!-- .col-md-7 close -->
+	    <div class="col-md-5 col-sm-12">
+		<div class="block">
+		    <img src="{{ with .Site.Params.prjcomnews.pimage }} {{ . | absURL }} {{ end }}" alt="Img">
+		</div>
+	    </div><!-- .col-md-5 close -->
+	</div>
+    </div>
+</section>
