@@ -7,10 +7,10 @@ publishDir = "public"
 
 [menu]
 
-  [[menu.header]]
-    weight = 1
-    name = "Technology"
-    url = "/technology"
+#  [[menu.header]]
+#    weight = 1
+#    name = "Technology"
+#    url = "/vppproject"
 
   [[menu.header]]
     weight = 2
@@ -53,8 +53,8 @@ publishDir = "public"
     bgImage = "img/fdio_bg.jpg"
     title = "FD.io <br> An Open Source Terabit Software Packet Processor"
     subtitle = "The world moves at light speed. <br> Make sure your packet traffic keeps up."
-    btnText = "Learn about the FD.io technology"
-    url = "/technology"
+    btnText = "Learn More"
+    url = "/vppproject"
 
   [params.wrapper]
     enable = true
@@ -63,7 +63,7 @@ publishDir = "public"
     subtitle = "**And in networking, the fast movement of data is essential to time.**"
     paragraph = """Kernel-based packet processing has reached its limits. Whether on bare metal, in a VM, or a container - your application will feel it.<br /><br />
     **FD.io’s Vector Packet Processing shatters the speed barrier.**"""
-    wbtnText = "Learn about FD.io Performance"
+    wbtnText = "More about FD.io Performance"
     wurl = "/performance"
 
   [params.feature]
@@ -82,7 +82,7 @@ x86, ARM, and PowerPC architectures.<br /> <br />
 <b>The future of packet processing. Now.</b>
 """
     [params.feature.button]
-      caption = "Get Started With VPP"
+      caption = "Learn More About VPP"
       url = "/vppproject"
 
   [params.prjcomnews]
