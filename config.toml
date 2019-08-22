@@ -7,34 +7,19 @@ publishDir = "public"
 
 [menu]
 
-#  [[menu.header]]
-#    weight = 1
-#    name = "Technology"
-#    url = "/vppproject"
+  [[menu.header]]
+    weight = 1
+    name = "Get Started"
+    url = "/vppproject/vppinstalling"
 
   [[menu.header]]
     weight = 2
-    name = "Performance"
-    url = "/performance"
-
-  [[menu.header]]
-    weight = 3
-    name = "VPP"
-    url = "/vppProject"
-
-#  [[menu.header]]
-#    weight = 4
-#    name = "Use Cases"
-#    url = "/casestudies"
-
-  [[menu.header]]
-    weight = 5
-    name = "News"
+    name = "The Latest News"
     url = "/news"
 
   [[menu.header]]
     weight = 6
-    name = "Community"
+    name = "Get Involved"
     url = "/community"
 
 # The site's parameters
@@ -52,18 +37,30 @@ publishDir = "public"
     enable = true
     bgImage = "img/fdio_bg.jpg"
     title = "FD.io <br> An Open Source Terabit Software Packet Processor"
-    subtitle = "The world moves at light speed. <br> Make sure your packet traffic keeps up."
-    btnText = "Learn More"
-    url = "/vppproject"
+    subtitle = """
+The world moves at light speed. <br>
+Make sure your packet traffic keeps up.<br>
+<br>
+VPP 19.08 is here!!!!!
+"""
+    btnText = "More about VPP 19.08"
+    url = "/news/announcements"
 
   [params.wrapper]
     enable = true
-    image = "img/logo_fdio_header.svg"
-    title = "Time is money."
-    subtitle = "**And in networking, the fast movement of data is essential to time.**"
-    paragraph = """Kernel-based packet processing has reached its limits. Whether on bare metal, in a VM, or a container - your application will feel it.<br /><br />
-    **FD.io’s Vector Packet Processing shatters the speed barrier.**"""
-    wbtnText = "More about FD.io Performance"
+    image = "img/universal-network-function.png"
+    title = "The Universal Network Function"
+    content = """
+### Lower the Barrier to Entry
+#### Industry Standard, Cross Platform, Network Stack, supported by multiple Si Vendors
+### Increase Velocity
+#### Encourage market disruption and foster innovation by encouraging new Markey Entrants
+### Platform optimised
+#### Built using same super-scalar optimizations as DPDK
+### Broad adoption
+#### Including hardware vendors Intel, TEM
+"""
+    wbtnText = "More about FD.io"
     wurl = "/performance"
 
   [params.feature]
@@ -82,17 +79,24 @@ x86, ARM, and PowerPC architectures.<br /> <br />
 <b>The future of packet processing. Now.</b>
 """
     [params.feature.button]
-      caption = "Learn More About VPP"
+      caption = "VPP Technology"
       url = "/vppproject"
+    [params.feature.button2]
+      caption = "VPP Performance"
+      url = "/performance"
+    [params.feature.button3]
+      caption = "Get Started"
+      url = "/vppproject/vppinstalling"
 
   [params.prjcomnews]
     enable=true
     pimage = "img/prj.png"
     title = "The Fd.io Community"
-    subtitle = "****"
-    paragraph = """"""
+    content = """
+### Can you describe the community in a paragraph. The buttons below will be for commuity things like, News, How to get involved, the projects etc.
+"""
     btnText1 = "The Latest News"
     url1 = "/news"
-    btnText2 = "How to Get Involved"
+    btnText2 = "Get Involved"
     url2 = "/community"
 
