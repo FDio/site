@@ -52,16 +52,16 @@ VPP 19.08 is here!!!!!
     title = "The Universal Network Function"
     content = """
 ### Lower the Barrier to Entry
-#### Industry Standard, Cross Platform, Network Stack, supported by multiple Si Vendors
+#### Industry Standard, Cross Platform, Network Stack, supported by multiple SI vendors
 ### Increase Velocity
-#### Encourage market disruption and foster innovation by encouraging new Markey Entrants
+#### Encourage market disruption and foster innovation by encouraging new market entrants
 ### Platform optimised
 #### Built using same super-scalar optimizations as DPDK
 ### Broad adoption
 #### Including hardware vendors Intel, TEM
 """
     wbtnText = "More about FD.io"
-    wurl = "/performance"
+    wurl = "/overview/usecases"
 
   [params.feature]
     enable = true
