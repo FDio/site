@@ -83,7 +83,7 @@ x86, ARM, and PowerPC architectures.<br /> <br />
       url = "/vppproject"
     [params.feature.button2]
       caption = "VPP Performance"
-      url = "/performance"
+      url = "/performance/scaling"
     [params.feature.button3]
       caption = "Get Started"
       url = "/vppproject/vppinstalling"

@@ -6,23 +6,23 @@
     <body>
 	{{ partial "header.html" . }}
 	{{ partial "performance-header.html" . }}
-
-	<section class="blog section">
-	    <div class="container">
-		<div class="row">
-		    {{ range (.Paginator 6).Pages.ByDate }}
-		    <div class="col-md-6">
-			{{ .Content | markdownify }}
-			<br></br>
-			{{ partial "btn-dropdown" . }}
-		    </div>
-		    {{ end }}
+	<h1 align="center">{{ .Title }}</h1>
+	<div class="container">
+	    <div class="row">
+		{{ range (.Paginator 6).Pages.ByDate }}
+		<div class="col-md-8">
+		    {{ .Params.subtitle | markdownify }}
+		    {{ .Content | markdownify }}
+		    <br></br>
+		    {{ partial "btn-dropdown" . }}
+		    <br></br>
 		</div>
-		<div class="col-12 text-center">
-		    {{ template "_internal/pagination.html" . }}
-		</div>
+		{{ end }}
 	    </div>
-	</section>
+	    <div class="col-12 text-center">
+		{{ template "_internal/pagination.html" . }}
+	    </div>
+	</div>
 
 	{{ partial "footer.html" . }}
     </body>
