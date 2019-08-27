@@ -6,15 +6,19 @@
     <body>
 	{{ partial "header.html" . }}
 	{{ partial "vppproject-header.html" . }}
-
-	<section class="blog section">
 	    <div class="container">
 		<div class="row">
 		    {{ range (.Paginator 6).Pages.ByDate }}
 		    <div class="col-md-6">
 			{{ .Content | markdownify }}
 			<br></br>
+			{{ if .Params.versions }}
 			{{ partial "btn-dropdown" . }}
+			{{ end }}
+			{{ if.Params.btnurl }}
+			<a href="{{ .Params.btnurl }}" class="btn btn-main">{{ .Params.btntxt }}</a>
+			{{ end }}
+			<br></br>
 		    </div>
 		    {{ end }}
 		</div>
@@ -22,7 +26,6 @@
 		    {{ template "_internal/pagination.html" . }}
 		</div>
 	    </div>
-	</section>
 
 	{{ partial "footer.html" . }}
     </body>
