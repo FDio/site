@@ -4,7 +4,7 @@ title = "The Vector Packet Processor (VPP)"
 type = "vppdocs"
 summary = "VPP is the core technology behind the FD.io project."
 
-btntxt="Installing VPP "
+btntxt="More on installing VPP "
 
 # The first part of these strings are displayed in the dropdown.
 # The second is the url

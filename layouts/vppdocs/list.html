@@ -12,7 +12,13 @@
 		    <div class="col-md-6">
 			{{ .Content | markdownify }}
 			<br></br>
+			{{ if .Params.versions }}
 			{{ partial "btn-dropdown" . }}
+			{{ end }}
+			{{ if.Params.btnurl }}
+			<a href="{{ .Params.btnurl }}" class="btn btn-main">{{ .Params.btntxt }}</a>
+			{{ end }}
+			<br></br>
 		    </div>
 		    {{ end }}
 		</div>

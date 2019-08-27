@@ -2,6 +2,10 @@
 title = "Technology"
 bgImage = "img/fdio_bg_tech2.jpg"
 id = "vppdocs"
+
+btntxt="Get Started with VPP"
+btnurl="/vppproject/vppinstalling"
+
 +++
 
 # Vector Packet Processing (VPP)
@@ -71,13 +75,3 @@ continues if it is missing or its resources are exhausted.  This architecture al
 innovation by hardware accelerators.
 
 <img src="/img/tech-04.png" width=50%>
-
-<br>
-# Programmability
-
-## Add Updated Section Here
-
-# Integration with Other Systems
-
-## Add Updated Section Here
-

@@ -93,7 +93,8 @@ x86, ARM, and PowerPC architectures.<br /> <br />
     pimage = "img/prj.png"
     title = "The Fd.io Community"
     content = """
-### Can you describe the community in a paragraph. The buttons below will be for commuity things like, News, How to get involved, the projects etc.
+#### The Fast Data Project (FD.io) “The Universal Dataplane” is a collaborative open source project that aims to significantly establish a high-performance IO services framework for dynamic computing environments.
+#### For the latest news or how you can get involved please see the links below.
 """
     btnText1 = "The Latest News"
     url1 = "/news"
