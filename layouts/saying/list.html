@@ -5,17 +5,16 @@
     </head>
     <body>
 	{{ partial "header.html" . }}
-	{{ partial "performance-header.html" . }}
+	{{ partial "overview-header.html" . }}
 	<h1 align="center">{{ .Title }}</h1>
+	<h1></h1>
 	<div class="container">
 	    <div class="row">
 		{{ range (.Paginator 6).Pages.ByDate }}
 		<div class="col-md-8">
-		    {{ .Params.subtitle | markdownify }}
 		    {{ .Content | markdownify }}
 		    <br></br>
-		    {{ partial "btn-dropdown" . }}
-		    <br></br>
+		    <!--{{ partial "btn-dropdown" . }} - -->
 		</div>
 		{{ end }}
 	    </div>
