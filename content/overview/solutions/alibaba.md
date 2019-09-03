@@ -2,10 +2,7 @@
 weight = "2"
 +++
 
-<br></br>
-# Alibaba Cloud
-<img src="/img/alibaba.png" width=20% >
-## Discrete Appliances
+# <img src="/img/alibaba.png" width=10% > Alibaba Cloud
 ### uCPE
 ## Network Virtual Functions
 ### Load Balancer

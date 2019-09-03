@@ -9,7 +9,7 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
-    name = "The Technology"
+    name = "Use Cases"
     url = "/overview/usecases"
 
   [[menu.header]]
@@ -19,13 +19,13 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 3
-    name = "The Community"
-    url = "/community/tsc"
+    name = "The Latest News"
+    url = "/news"
 
   [[menu.header]]
     weight = 4
-    name = "News"
-    url = "/news"
+    name = "Get Involved"
+    url = "/community/tsc"
 
 # The site's parameters
 [params]
@@ -54,18 +54,18 @@ VPP 19.08 is here!!!!!
   [params.wrapper]
     enable = true
     image = "img/universal-network-function.png"
-    title = "The Universal Network Function"
+    title = "Why Fd.io"
     content = """
 ### Lower the Barrier to Entry
-#### Industry Standard, Cross Platform, Network Stack, supported by multiple  vendors
+#### Industry Standard, Cross Platform, Network Stack, supported by multiple hardware vendors
 ### Increase Velocity
-#### Encourage market disruption and foster innovation by encouraging new market entrants
+#### Encourage industry disruption and foster innovation
 ### Platform optimized
-#### Built using same super-scalar optimizations as DPDK
+#### Built using same super-scalar optimizations as [DPDK](http://www.dpdk.org)
 ### Broad adoption
-#### Including hardware vendors Intel, TEM
+#### Supported by a broad community of industry contributors
 """
-    wbtnText = "FD.io Use Cases"
+    wbtnText = "More about FD.io Use Cases"
     wurl = "/overview/usecases"
 
   [params.feature]
@@ -104,5 +104,5 @@ x86, ARM, and PowerPC architectures.<br /> <br />
     btnText1 = "The Latest News"
     url1 = "/news"
     btnText2 = "Get Involved"
-    url2 = "/community"
+    url2 = "/community/tsc"
 
