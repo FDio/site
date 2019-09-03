@@ -5,22 +5,17 @@
     </head>
     <body>
 	{{ partial "header.html" . }}
-	{{ partial "overview-header.html" . }}
+	{{ partial "community-header.html" . }}
 	<h1 align="center">{{ .Title }}</h1>
 	{{ .Params.subtitle | markdownify }}
 	<div class="container">
-	    <div class="row">
-		{{ range (.Paginator 8).Pages.ByDate }}
+		{{ range (.Paginator 8).Pages }}
 		<div class="col-md-6">
+		    <h2>{{ .Title }}</h2>
 		    {{ .Content | markdownify }}
 		    <br></br>
-		    <!--{{ partial "btn-dropdown" . }} - -->
 		</div>
 		{{ end }}
-	    </div>
-	    <div class="col-12 text-center">
-		{{ template "_internal/pagination.html" . }}
-	    </div>
 	</div>
 
 	{{ partial "footer.html" . }}
