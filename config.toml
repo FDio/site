@@ -9,18 +9,23 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
+    name = "The Technology"
+    url = "/overview/usecases"
+
+  [[menu.header]]
+    weight = 2
     name = "Get Started"
     url = "/vppproject/vppinstalling"
 
   [[menu.header]]
-    weight = 2
-    name = "The Latest News"
-    url = "/news"
+    weight = 3
+    name = "The Community"
+    url = "/community/tsc"
 
   [[menu.header]]
-    weight = 6
-    name = "Get Involved"
-    url = "/community"
+    weight = 4
+    name = "News"
+    url = "/news"
 
 # The site's parameters
 [params]
@@ -52,15 +57,15 @@ VPP 19.08 is here!!!!!
     title = "The Universal Network Function"
     content = """
 ### Lower the Barrier to Entry
-#### Industry Standard, Cross Platform, Network Stack, supported by multiple SI vendors
+#### Industry Standard, Cross Platform, Network Stack, supported by multiple  vendors
 ### Increase Velocity
 #### Encourage market disruption and foster innovation by encouraging new market entrants
-### Platform optimised
+### Platform optimized
 #### Built using same super-scalar optimizations as DPDK
 ### Broad adoption
 #### Including hardware vendors Intel, TEM
 """
-    wbtnText = "More about FD.io"
+    wbtnText = "FD.io Use Cases"
     wurl = "/overview/usecases"
 
   [params.feature]

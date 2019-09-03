@@ -1,12 +1,10 @@
 +++
-title = "COMMUNITY"
-bgImage = "img/fdio_bg_tech2.jpg"
+title = ""
 id = "community"
 +++
 
-## Getting Involved
-
-We encourage discussion on our mailing lists, IRC channels etc.
+## We encourage discussion on our mailing lists, IRC channels etc.
+## Some Pointers can be found here:
 
 ### VPP Developer Resources
 [![VPP Gerrit Repo](https://img.shields.io/badge/Code-Gerrit-brightgreen.svg?style=plastic)](https://gerrit.fd.io)
