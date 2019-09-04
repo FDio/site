@@ -9,7 +9,7 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
-    name = "Use Cases"
+    name = "Why FD.io"
     url = "/overview/usecases"
 
   [[menu.header]]
@@ -65,7 +65,7 @@ VPP 19.08 is here!!!!!
 ### Broad adoption
 #### Supported by a broad community of industry contributors
 """
-    wbtnText = "More about FD.io Use Cases"
+    wbtnText = "More about FD.io"
     wurl = "/overview/usecases"
 
   [params.feature]
