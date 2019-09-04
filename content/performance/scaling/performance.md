@@ -18,7 +18,7 @@ versions = ["Master, https://docs.fd.io/csit/master/report/",
 <br>
 ### A Small Subset of the CSIT Perfomance Results
 
-<img src="/img/performance.png" width=100% >
+<img src="/img/performance.png" width=60% >
 <br>
 
 ### Tests Cases Summary
