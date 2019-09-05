@@ -6,7 +6,7 @@ weight = "5"
 
 **FD.io VPP has four different Access Control List technologies; ranging from the simple IP-address whitelisting (called COP) to the sophisticated FD.io VPP Classifiers.**
 
-### The Implementation
+**Featuring:**
 <table border = "3" width = "30%"> 
     <thead>
       <tr>

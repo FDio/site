@@ -54,7 +54,7 @@ VPP 19.08 is here!!!!!
   [params.wrapper]
     enable = true
     image = "img/universal-network-function.png"
-    title = "Why Fd.io"
+    title = "Why FD.io"
     content = """
 ### Lower the Barrier to Entry
 #### Industry Standard, Cross Platform, Network Stack, supported by multiple hardware vendors
@@ -73,12 +73,23 @@ VPP 19.08 is here!!!!!
     bgImage = "img/fdio_bg.jpg"
     title = "What is Vector Packet Processing (VPP)?"
     content = """
-<b>Relentlessly speed and scale.</b><br />
-Up to two orders of magnitude greater packet processing throughput.<br /><br />
-<b>Easily programmable.</b><br />
-VPP's host stack comprises packet, transport, session, and application layer protocols - 
-enabling entire networking and security functions to be injected into software packet processing.  <br /><br />
-<b>Deploy anywhere.</b><br />
+FD.io VPP is the swiss army knife of Networking toolchains, comprises packet,
+transport, session, and application layer protocols - enabling entire networking
+and security functions to be injected into software packet processing.
+<br></br>
+<b>Relentlessly speed and scale.</b>
+<br />
+Up to two orders of magnitude greater packet processing throughput.
+<br />
+VPP's host stack comprises packet, transport, session, and application layer protocols enabling entire networking and security functions to be injected into software packet processing.
+<br /><br />
+<b>Easily programmable.</b>
+<br />
+FD.io is easily extensible through plugins or by building applications on top of
+the FD.io VPP API.
+<br /><br />
+<b>Deploy anywhere.</b>
+<br />
 Bare metal, VM or container.
 x86, ARM, and PowerPC architectures.<br /> <br />
 <b>The future of packet processing. Now.</b>
