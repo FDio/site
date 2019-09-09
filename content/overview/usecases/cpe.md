@@ -2,12 +2,13 @@
 weight = "2"
 +++
 
-# <img src="/img/universalcpe.png" width=5% >  Routers/Universal CPE etc. 
+<br>
+## <img src="/img/universalcpe.png" width=5% >  Routers/Universal CPE etc. 
 
 **FD.io VPP supports entry hardware options from number of hardware vendors\
-for building Customer Premise Equipment devices. FD.io based commercial options are available from vendors such as Netgate with the [ TNSR ](https://www.tnsr.com), Cisco with the CSR, ASR 9000 and Carrier Grade Services Engine and many more.**
+for building Customer Premise Equipment devices. FD.io based commercial options are available from vendors such as Netgate with the [TNSR ](https://www.tnsr.com), Cisco with the CSR, ASR 9000 and Carrier Grade Services Engine and many more.**
 
-**Commercial implementations integrate Strong Swan for IKE. e.g. Netgate TSNR.**
+**Commercial implementations integrate Strong Swan for IKE. e.g. Netgate [TNSR ](https://www.tnsr.com).**
 
 **The implementations are accelerated with [DPDK](http://www.dpdk.org) Cryptodev for whole platform crypto.**
 
@@ -22,7 +23,7 @@ for building Customer Premise Equipment devices. FD.io based commercial options 
     <tbody bgcolor = "lightgray">
       <tr><td> L2 Switch</td><td>Netconf/Yang</td></tr>
       <tr><td> VLAN/ Q-inQ</td><td>BGP</td></tr>
-      <tr><td> L3 Router</td><td>TR-069</td></tr>
+      <tr><td> L3 Router</td><td></td></tr>
       <tr><td> NAT</td><td>IKEv2</td></tr>
       <tr><td> ACL (mac, ip, port)</td></tr>
       <tr><td> IPSEC </td></tr>

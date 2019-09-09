@@ -2,7 +2,8 @@
 weight = "3"
 +++
 
-# <img src="/img/broadbandnetworkgateway.png" width=5% > Broadband Network Gateway
+## <img src="/img/broadbandnetworkgateway.png" width=5% > Broadband Network Gateway
+
 **FD.io VPP has a growing list of network traffic management and security features to support gateway uses cases such as Broadband Network Gateway.**
 
 **Featuring:**

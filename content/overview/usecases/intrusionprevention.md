@@ -2,7 +2,7 @@
 weight = "5"
 +++
 
-# <img src="/img/intrusionpreventionsystem.png" width=5% >  Intrusion Prevention System
+## <img src="/img/intrusionpreventionsystem.png" width=5% >  Intrusion Prevention System
 
 **FD.io VPP has four different Access Control List technologies; ranging from the simple IP-address whitelisting (called COP) to the sophisticated FD.io VPP Classifiers.**
 
