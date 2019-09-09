@@ -4,7 +4,7 @@ Thos repository will be used for the FD.io main site. This site is created
 using the web site renderer Hugo. For more information on Hugo please visit
 [Hugo](https://gohugo.io).
 
-# Governance
+# Site Governance
 
 The fd.io main site is maintained by the fd.io community.
 
@@ -39,6 +39,58 @@ Those representatives can merge changes to the site, and manage the [Netlify](ht
 ## Handling of frontpage, NEWs, etc
 
 The fd.io frontpage is how the world sees us.  We are fortunate enough to have an excellent marketing committee in FD.io.  Please make sure to include and get buy off from one of the reps of the marketing committee before merging substantive/stylistic changes to the frontpage, NEWs, etc.
+
+# DNS Governance
+
+## Summary
+
+As part of the community control of the fd.io website, website reps will be given access to fd.io DNS records.
+
+Any user with shared DNSimple access is able to add, modify and delete services and DNS records for the domain. Please be very careful to understand the power that you wield, as it truly can be used for good or evil. We prefer good.
+
+Here are some things that you are not able to do with your access:
+* Transfer a domain in to or out of your account
+* Renew a domain in your account
+* Register or add a domain to your account
+* Enable or disable auto-renewal for domains in your account
+* Delete a domain from your account
+* Access any domain other than fd.io
+* Manage TLS certificates
+* Manage email forwards
+
+## Security Considerations
+
+LF will coordinate with the community to resolve any security related DNS changes that affect records managed by the community. This may be required in order to protect other services running under the *.fd.io domain that may be impacted by the attacker’s ability to perform malicious actions within the same domain space, such as setting and reading *.fd.io cookies, issuing cross-origin requests to access private or sensitive information on other *.fd.io sites using the victim’s authenticated channel, etc.
+
+In critical situations, LF IT may suspend a community-managed DNS record without prior notice, if there is evidence that it is actively participating in ongoing attacks targeting critical project infrastructure. In any such cases, LF IT will immediately notify the community of the actions it has taken and the reasons that necessitated them.
+
+## LF Managed Service Records
+Please contact the Linux Foundation for support when modifying any LF managed records below. These records are tied to services managed for fd.io on behalf of the Linux Foundation. Modification of these records will likely break both the availability of the related service and result in confusion around which services LF is expected to provide for the project.
+
+* awscloud.fd.io: Pointer to AWS external IP
+* dev.fd.io: Pointer to Vexxhost external IP
+* CNAME verification records (AWS ACM, DKIM): 4gxgyei37wvnvspctn64lqsrgqf3gbux._domainkey.fd.io, b7fc7z2rlt2sv6qhomy6yd7i4ouduxsg._domainkey.fd.io, _51c215367e72287a7faffaf40eb4cc0d.slack.fd.io, _87915a274e117de49cfe1b16e8065487.jira.fd.io, _b989f43e4e8206c0da130747f1336847.opengrok.fd.io, _be9db9a5f23c5643388d8ff0b28cdd7b.sonar.fd.io
+* apt.fd.io
+* git.fd.io: Cgit UI
+* wiki.fd.io
+* docs.fd.io
+* email.fd.io: mailgun email forwarding
+* gerrit.fd.io
+* jenkins.fd.io
+* jira.fd.io
+* logs.fd.io
+* nexus.fd.io
+* opengrok.fd.io
+* slack.fd.io
+* sonar.fd.io
+* status.fd.io
+* yul-vpn.fd.io
+* yum.fd.io
+* zuul.fd.io
+* MX Records (mailgun email forwarding)
+* NS Records (@ and lists.fd.io)
+* TXT records: fd.io, 200608._domainkey.fd.io, _amazonses.fd.io, _domainkey.fd.io, k1._domainkey.fd.io required for incoming/outgoing mail
+
 
 # Mechanics
 
