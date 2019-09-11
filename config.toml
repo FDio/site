@@ -45,11 +45,9 @@ publishDir = "public"
     subtitle = """
 The world moves at light speed. <br>
 Make sure your packet traffic keeps up.<br>
-<br>
-VPP 19.08 is here!!!!!
 """
-    btnText = "More about VPP 19.08"
-    url = "/news/announcements"
+####    btnText = "More about VPP 19.08"
+####    url = "/news/announcements"
 
   [params.wrapper]
     enable = true
