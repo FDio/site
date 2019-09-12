@@ -11,15 +11,15 @@
 	<div class="container">
 	    <div class="row">
 		{{ .Params.subtitle | markdownify }}
-		{{ range (.Paginator 6).Pages.ByDate }}
-		<div class="col-md-5">
+		{{ range (.Paginator 10).Pages.ByDate }}
+		<div class="col-md-10">
 		    {{ .Content | markdownify }}
 		    <br></br>
 		    <!--{{ partial "btn-dropdown" . }} - -->
 		</div>
 		{{ end }}
 	    </div>
-	    <div class="col-12 text-center">
+	    <div class="col-10 text-center">
 		{{ template "_internal/pagination.html" . }}
 	    </div>
 	</div>

@@ -2,8 +2,6 @@
 weight = "5"
 +++
 
-# Openstack
-<img src="/img/openstack.png" width=20% >
-<br></br>
-## Network Virtual Function
+# <img src="/img/openstack.png" width=5% > Openstack
+
 ### Cisco VIM
