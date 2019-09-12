@@ -9,7 +9,7 @@
 	    <div class="container">
 		<div class="row">
 		    {{ range (.Paginator 6).Pages.ByDate }}
-		    <div class="col-md-6">
+		    <div class="col-md-10">
 			{{ .Content | markdownify }}
 			<br></br>
 			{{ if .Params.versions }}
@@ -22,7 +22,7 @@
 		    </div>
 		    {{ end }}
 		</div>
-		<div class="col-12 text-center">
+		<div class="col-10 text-center">
 		    {{ template "_internal/pagination.html" . }}
 		</div>
 	    </div>
