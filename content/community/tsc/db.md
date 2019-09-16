@@ -1,12 +1,10 @@
 +++
-title = "Dave Barach"
 weight = "1"
 id = "community"
 +++
 
-<img src="/img/db.png" width=40% >
-
-## Cisco Fellow
+## <img src="/img/db.png" width=10% > Dave Barach
+### Cisco Fellow
 
 Dave Barach is a Cisco Fellow specializing in high-speed packet processing on
 commodity hardware. Dave has worked on the fd.io vpp stack for more than a

@@ -9,24 +9,21 @@
 
 	<section class="blog section eventsection">
 	    <div class="container">
-		<div class="row">
-		    {{ range (.Paginator 6).Pages.ByDate.Reverse }}
-		    <div class="col-md-8">
-			<article class="blog-post">
-			    <h1>{{ .Params.title }}</h1>
-			    <h2>By {{ .Params.author }} | {{ .Date.Format "Jan 2 2006" }}</h2>
-			    <h3>{{ .Params.location }}</h3>
-			    <p>{{ .Content | markdownify }}</p>
-			    {{ if isset .Params "newslink" }}
-			    <a href="{{ .Params.newslink }}" class="btn btn-main">{{ .Params.newsbuttontxt }}</a>
-			    {{ end }}
-			</article>
-		    </div>
-		    {{ end }}
+		{{ range (.Paginator 6).Pages.ByDate.Reverse }}
+		<div class="col-md-10">
+		    <article class="blog-post">
+			<h3>{{ .Params.title }}</h3>
+			<h4>By {{ .Params.author }} | {{ .Date.Format "Jan 2 2006" }}, {{ .Params.location }}</h4>
+			<p>{{ .Content | markdownify }}</p>
+			{{ if isset .Params "newslink" }}
+			<p href="{{ .Params.newslink }}" class="btn btn-main">{{ .Params.newsbuttontxt }}</p>
+			{{ end }}
+		    </article>
 		</div>
-		<div class="col-12 text-center">
-		    {{ template "_internal/pagination.html" . }}
-		</div>
+		{{ end }}
+	    </div>
+	    <div class="col-12 text-center">
+		{{ template "_internal/pagination.html" . }}
 	    </div>
 	</section>
 

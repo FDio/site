@@ -6,14 +6,14 @@ weight = "2"
 ## <img src="/img/universalcpe.png" width=5% >  Routers/Universal CPE etc. 
 
 **FD.io VPP supports entry hardware options from number of hardware vendors\
-for building Customer Premise Equipment devices. FD.io based commercial options are available from vendors such as Netgate, Cisco with the CSR, ASR 9000 and Carrier Grade Services Engine and many more.**
+for building Customer Premise Equipment devices. FD.io based commercial options are available from vendors such as Netgate with TSNR, Cisco with the CSR, ASR 9000 and Carrier Grade Services Engine and many more.**
 
 **Commercial implementations integrate Strong Swan for IKE.**
 
 **The implementations are accelerated with [DPDK](http://www.dpdk.org) Cryptodev for whole platform crypto.**
 
 **Featuring:**
-<table border = "3" width = "30%"> 
+<table border = "3" width = "30%" style="margin-left: 15px" style="margin-right: 15px"> 
     <thead>
       <tr>
       <th>Data Plane</th>

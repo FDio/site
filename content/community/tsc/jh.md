@@ -1,12 +1,10 @@
 +++
-title = "Joel Halpern"
 weight = "5"
 id = "community"
 +++
 
-<img src="/img/jh.jpg" width=40% >
-
-## Distinguished Engineer - Ericsson
+## <img src="/img/jh.jpg" width=10% > Joel Halpern
+### Distinguished Engineer - Ericsson
 
 Joel Halpern is a Distinguished Engineer with Ericsson. He has been involved
 with Router implementation, architecture, and design since the late 1980s. He

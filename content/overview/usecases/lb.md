@@ -8,7 +8,7 @@ weight = "4"
 **For example: Google Maglev Implementation,  Consistent Hashing, Stateful and stateless load balancing, Kube-proxy integration.**
 
 **Featuring:**
-<table border = "3" width = "30%"> 
+<table border = "3" width = "30%" style="margin-left: 15px" style="margin-right: 15px"> 
     <thead>
       <tr>
       <th>Data Plane</th>

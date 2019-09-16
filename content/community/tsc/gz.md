@@ -1,12 +1,11 @@
 +++
-title = "George Zhao"
 weight = "3"
 id = "community"
 +++
 
-<img src="/img/gz.jpg" width=30% >
+## <img src="/img/gz.jpg" width=10% > George Zhao
 
-## Director of Open Source and Ecosystem, Huawei Technologies Co., Ltd.
+### Director of Open Source and Ecosystem, Huawei Technologies Co., Ltd.
 
 George has 25 years of working experience in networking, software architecture
 and has been an open source evangelist for the past 4 years. He currently

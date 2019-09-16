@@ -1,12 +1,12 @@
 +++
-title = "Ed Warnicke"
 weight = "2"
 id = "community"
 +++
 
-<img src="/img/ew.jpg" width=40% >
+## <img src="/img/ew.jpg" width=10% > Ed Warnicke
 
-## Distinguished Consulting Engineer - Cisco Systems
+
+### Distinguished Consulting Engineer - Cisco Systems
 
 Ed Warnicke is a Distinguished Consulting Engineer in the Chief Technology
 and Architecture Office (CTAO) office at Cisco Systems. He has been working

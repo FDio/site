@@ -1,5 +1,5 @@
 +++
-title = "The FD.io Community"
+title = "Technical Steering Commitee"
 type = "community"
 subtitle = """
 <center> <h2> The Technical Steering Committee (the “TSC”) </h2> </center>

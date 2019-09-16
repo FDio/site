@@ -2,7 +2,7 @@
 weight = "2"
 +++
 
-<img src="/img/zte.png" width=20% >
+## <img src="/img/zte.png" width=10% > ZTE
 ### Binbin Xu, ZTE Software Engineer
 #### “VPP/DPDK is a fantastic development platform.”
 #### FD.io VPP, in deployment at ZTE since 2017.

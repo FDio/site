@@ -1,12 +1,12 @@
 +++
-title = "Venky Venkatesan"
 weight = "99"
 id = "community"
 +++
 
-<img src="/img/vv.png" width=40% >
+## <img src="/img/vv.png" width=10% > Venky Venkatesan
 
-## In Memoriam
+
+### In Memoriam
 
 It is with a heavy heart that we share news that the DPDK and FD.io communities
 have lost a key founding member of the communities: Venky Venkatesan has passed
