@@ -225,3 +225,7 @@ p {
 .blog-post p{
   margin: 15px 15px 20px;
 }
+
+.btn-main, .btn-transparent, .btn-small {
+    text-transform: none;
+}

@@ -16,7 +16,7 @@
 			<h4>By {{ .Params.author }} | {{ .Date.Format "Jan 2 2006" }}</h3>
 			<p>{{ .Content | markdownify }}</p>
 			{{ if isset .Params "newslink" }}
-			<p href="{{ .Params.newslink }}" class="btn btn-main">{{ .Params.newsbuttontxt }}</p>
+			<p><a href="{{ .Params.newslink }}" class="btn btn-main">{{ .Params.newsbuttontxt }}</a></p>
 			{{ end }}
 		    </article>
 		</div>
