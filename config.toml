@@ -19,6 +19,11 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 3
+    name = "VPP Documents"
+    url = "/docs/vpp/master/"
+
+  [[menu.header]]
+    weight = 4
     name = "The Latest News"
     url = "/news"
 
