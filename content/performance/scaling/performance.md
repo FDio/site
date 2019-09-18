@@ -8,8 +8,9 @@ subtitle="""
 btntxt="For All the CSIT Test Reports"
 # The first part of these strings are displayed in the dropdown.
 # The second is the url
-latest = "Latest Release (1904), https://docs.fd.io/csit/rls1904_2/report/"
+latest = "Latest Release (1908), https://docs.fd.io/csit/rls1908/report/"
 versions = ["Master, https://docs.fd.io/csit/master/report/",
+	 "1904, https://docs.fd.io/csit/rls1904_2/report/",
 	 "1901, https://docs.fd.io/csit/rls1901_3/report/"]
 +++
 

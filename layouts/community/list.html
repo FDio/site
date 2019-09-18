@@ -10,8 +10,7 @@
 	{{ .Params.subtitle | markdownify }}
 	<div class="container">
 		{{ range (.Paginator 8).Pages }}
-		<div class="col-md-6">
-		    <h2>{{ .Title }}</h2>
+		<div class="col-md-10">
 		    {{ .Content | markdownify }}
 		    <br></br>
 		</div>

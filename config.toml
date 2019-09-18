@@ -9,8 +9,8 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
-    name = "Why FD.io"
-    url = "/overview/usecases"
+    name = "Why FD.io?"
+    url = "/overview/fdiousecases"
 
   [[menu.header]]
     weight = 2
@@ -25,7 +25,7 @@ publishDir = "public"
   [[menu.header]]
     weight = 4
     name = "Get Involved"
-    url = "/community/tsc"
+    url = "/community/join"
 
 # The site's parameters
 [params]
@@ -41,8 +41,9 @@ publishDir = "public"
   [params.slider]
     enable = true
     bgImage = "img/fdio_bg.jpg"
-    title = "FD.io <br> An Open Source Terabit Software Packet Processor"
+    title = "FD.io <br> The World’s Secure Networking Data Plane"
     subtitle = """
+An Open Source Terabit Software Packet Processor <br>
 The world moves at light speed. <br>
 Make sure your packet traffic keeps up.<br>
 """
@@ -52,30 +53,28 @@ Make sure your packet traffic keeps up.<br>
   [params.wrapper]
     enable = true
     image = "img/universal-network-function.png"
-    title = "Why FD.io"
+    title = "Why FD.io?"
     content = """
-### Lower the Barrier to Entry
-#### Industry Standard, Cross Platform, Network Stack, supported by multiple hardware vendors
-### Increase Velocity
-#### Encourage industry disruption and foster innovation
+### Lowers the Barrier to Entry
+#### Industry-standard, cross-platform, network Stack - supported by multiple hardware vendors
+### Increases Velocity
+#### Encourages industry disruption and fosters innovation
 ### Platform optimized
 #### Built using same super-scalar optimizations as [DPDK](http://www.dpdk.org)
 ### Broad adoption
 #### Supported by a broad community of industry contributors
 """
-    wbtnText = "More about FD.io"
-    wurl = "/overview/usecases"
+    wbtnText = "More About FD.io"
+    wurl = "/overview/fdiousecases"
 
   [params.feature]
     enable = true
     bgImage = "img/fdio_bg.jpg"
     title = "What is Vector Packet Processing (VPP)?"
     content = """
-FD.io VPP is the swiss army knife of Networking toolchains, comprises packet,
-transport, session, and application layer protocols - enabling entire networking
-and security functions to be injected into software packet processing.
+FD.io VPP is the Swiss Army knife of networking toolchains - enabling astounding software packet processing
 <br></br>
-<b>Relentlessly speed and scale.</b>
+<b>Relentless speed and scale.</b>
 <br />
 Up to two orders of magnitude greater packet processing throughput.
 <br />
@@ -105,9 +104,9 @@ x86, ARM, and PowerPC architectures.<br /> <br />
   [params.prjcomnews]
     enable=true
     pimage = "img/prj.png"
-    title = "The Fd.io Community"
+    title = "The FD.io Community"
     content = """
-#### The Fast Data Project (FD.io) “The Universal Dataplane” is a collaborative open source project that aims to significantly establish a high-performance IO services framework for dynamic computing environments.
+#### The Fast Data Project (FD.io) is a collaborative open-source project aimed at establishing a high-performance IO services framework for dynamic compute environments
 #### For the latest news or how you can get involved please see the links below.
 """
     btnText1 = "The Latest News"

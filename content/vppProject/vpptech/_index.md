@@ -1,4 +1,4 @@
 +++
-title = "VPP Documents"
+title = "VPP Technology"
 type = "vppdocs"
 +++

@@ -1,12 +1,32 @@
 +++
-title = ""
 id = "community"
 +++
 
-### We encourage discussion on our mailing lists, IRC channels etc.
-### Some Pointers can be found here:
+<br>
+The Fast Data Project (FD.io) Universal Dataplane is a collaborative open source
+project that aims to significantly establish a high-performance IO services framework
+for dynamic computing environments. The FD.io community brings a relentless focus
+on data IO speed and efficiency in a modular environment. Industry-leading organizations
+have joined FD.io to support the development of a modular and extensible IO services
+framework. We invite you to collaborate with your industry peers to help build and shape
+this technology. Participation in the FD.io technical community is open to all.
+
+FD.io is a founding member of LF Networking (LFN), an entity that integrates the
+governance of participating projects in order to improve operational efficiencies and simplify
+member engagement. Each technical project retains its technical independence and project
+roadmaps. Learn more about the FD.io [TSC](/community/tscdocs).
+
+LFN software and projects provide platforms and building blocks for Network Infrastructure
+and Services across Service Providers, Cloud Providers, Enterprises, Vendors, and System
+Integrators that enable rapid interoperability, deployment, and adoption. LFN supports
+the largest set of networking projects with the broadest community in the industry that
+collaborate on this opportunity.
+
+Learn more about [LFN](https://www.lfnetworking.org) and [Join as a member](https://www.lfnetworking.org/membership/join/).
 
 <br>
+#### Some additional resources can be found here:
+
 #### VPP Developer Resources
 [![VPP Gerrit Repo](https://img.shields.io/badge/Code-Gerrit-brightgreen.svg?style=plastic)](https://gerrit.fd.io)
 [![VPP Jira issues](https://img.shields.io/badge/Jira-Issues-shields.svg?style=plastic)](https://jira.fd.io)

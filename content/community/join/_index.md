@@ -1,9 +1,6 @@
 +++
-title = "The FD.io Community"
+title = "Get Involved with FD.io"
 type = "community"
-subtitle = """
-<center> <h2> Get Involved with FD.io </h2> </center>
-<br>
-"""
+subtitle = ""
 +++
 
