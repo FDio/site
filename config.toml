@@ -19,11 +19,16 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 3
+    name = "Documentation"
+    url = "/projects"
+
+  [[menu.header]]
+    weight = 4
     name = "The Latest News"
     url = "/news"
 
   [[menu.header]]
-    weight = 4
+    weight = 5
     name = "Get Involved"
     url = "/community/join"
 
