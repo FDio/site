@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	{{ partial "head.html" . }}
+    </head>
+    <body>
+	{{ partial "header.html" . }}
+	{{ partial "community-header.html" . }}
+	<h1 align="center">{{ .Title }}</h1>
+	{{ .Params.subtitle | markdownify }}
+	<div class="container">
+		{{ range (.Paginator 8).Pages }}
+		<div class="col-md-10">
+		    {{ .Content | markdownify }}
+		    <br></br>
+		</div>
+		{{ end }}
+	</div>
+
+	{{ partial "footer.html" . }}
+    </body>
+</html>

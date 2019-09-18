@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                19.08
+                master
               </div>
             
           
@@ -99,6 +99,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Writing Documents</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Creating VPP Documents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#get-the-vpp-sources">Get the VPP sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-the-necessary-packages">Install the Necessary Packages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#create-a-virtual-environment-using-virtualenv">Create a Virtual Environment using virtualenv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#build-the-html-files">Build the html files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#clean-the-environment">Clean the environment</a></li>
@@ -199,6 +200,14 @@ or markdown (md). These files are then built using the Sphinx build system <a cl
 <p>Start with a clone of the vpp repository.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://gerrit.fd.io/r/vpp
 <span class="gp">$</span> <span class="nb">cd</span> vpp
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-the-necessary-packages">
+<h2>Install the Necessary Packages<a class="headerlink" href="#install-the-necessary-packages" title="Permalink to this headline">¶</a></h2>
+<p>Before building the docs there are some packages that are needed. To install
+these packages on ubuntu execute the following.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install python3-all python3-setuptools python3-pip
 </pre></div>
 </div>
 </div>

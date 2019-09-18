@@ -2,8 +2,5 @@
 weight = "3"
 +++
 
-# Netgate
-<img src="/img/netgate.png" width=30% >
-## Discrete Appliance
-### TSNR
-
+## <img src="/img/netgate.png" width=5% > Netgate
+#### TSNR
