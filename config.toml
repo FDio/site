@@ -48,7 +48,7 @@ publishDir = "public"
     bgImage = "img/fdio_bg.jpg"
     title = "FD.io <br> The World’s Secure Networking Data Plane"
     subtitle = """
-An Open Source Terabit Software Packet Processor <br>
+An Open Source Terabit Software Dataplane <br>
 The world moves at light speed. <br>
 Make sure your packet traffic keeps up.<br>
 """
