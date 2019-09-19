@@ -12,4 +12,4 @@ All of the user documentation can be found at [User Documents](/docs/vpp/master)
 The Developer Wiki is at [VPP Wiki](https://wiki.fd.io/view/VPP).
 <br>
 The source code  (Doxygen) documents are at [Doxygen](https://docs.fd.io/vpp/19.08/).
-Previous versions of the Doxygen documents are in the [Archive](https://docs.fd.io/vpp).
+Previous versions of the Doxygen documents are in the [VPP Doxygen Archive](https://docs.fd.io/vpp).
