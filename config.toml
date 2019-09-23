@@ -19,11 +19,16 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 3
-    name = "The Latest News"
-    url = "/news"
+    name = "Documentation"
+    url = "/projects"
 
   [[menu.header]]
     weight = 4
+    name = "The Latest"
+    url = "/news"
+
+  [[menu.header]]
+    weight = 5
     name = "Get Involved"
     url = "/community/join"
 
@@ -43,12 +48,16 @@ publishDir = "public"
     bgImage = "img/fdio_bg.jpg"
     title = "FD.io <br> The World’s Secure Networking Data Plane"
     subtitle = """
-An Open Source Terabit Software Packet Processor <br>
+An Open Source Terabit Software Dataplane <br>
 The world moves at light speed. <br>
-Make sure your packet traffic keeps up.<br>
+Make sure your packet traffic keeps up.
+<br><br>
+Enriching Data Plane Leadership and Deployment Efficiency.
+<br>
+The Fast Data Project's VPP Release 19.08 is here!
 """
-####    btnText = "More about VPP 19.08"
-####    url = "/news/announcements"
+    btnText = "More About FD.io VPP 19.08"
+    url = "https://www.lfnetworking.org/announcement/2019/09/18/fast-data-projects-release-19-08-enriches-data-plane-leadership-and-deployment-efficacy/"
 
   [params.wrapper]
     enable = true
@@ -72,7 +81,7 @@ Make sure your packet traffic keeps up.<br>
     bgImage = "img/fdio_bg.jpg"
     title = "What is Vector Packet Processing (VPP)?"
     content = """
-FD.io VPP is the Swiss Army knife of networking toolchains - enabling astounding software packet processing
+FD.io VPP is the Swiss Army knife of networking toolchains - enabling astounding software packet processing.
 <br></br>
 <b>Relentless speed and scale.</b>
 <br />
@@ -106,7 +115,7 @@ x86, ARM, and PowerPC architectures.<br /> <br />
     pimage = "img/prj.png"
     title = "The FD.io Community"
     content = """
-#### The Fast Data Project (FD.io) is a collaborative open-source project aimed at establishing a high-performance IO services framework for dynamic compute environments
+#### The Fast Data Project (FD.io) is a collaborative open-source project aimed at establishing a high-performance IO services framework for dynamic compute environments.
 #### For the latest news or how you can get involved please see the links below.
 """
     btnText1 = "The Latest News"
