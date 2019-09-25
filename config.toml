@@ -25,7 +25,7 @@ publishDir = "public"
   [[menu.header]]
     weight = 4
     name = "The Latest"
-    url = "/news"
+    url = "/latest/news"
 
   [[menu.header]]
     weight = 5
@@ -119,7 +119,7 @@ x86, ARM, and PowerPC architectures.<br /> <br />
 #### For the latest news or how you can get involved please see the links below.
 """
     btnText1 = "The Latest News"
-    url1 = "/news"
+    url1 = "/latest/news"
     btnText2 = "Get Involved"
-    url2 = "/community/tsc"
+    url2 = "/community/join"
 
