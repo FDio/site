@@ -204,6 +204,8 @@ origin	ssh://git@github.com/<username>/site (fetch)
 origin	ssh://git@github.com/<username>/site (push)
 upstream	ssh://git@github.com/FDio/site (fetch)
 upstream	ssh://git@github.com/FDio/site (push)
+$ git fetch upstream
+$ git merge upstream/master
 $
 $ # Make your changes
 $

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	{{ partial "head.html" . }}
+    </head>
+    <body>
+	{{ partial "header.html" . }}
+	{{ partial "latest-header.html" . }}
+
+	<div class="container">
+	    {{ range (.Paginator 6).Pages.ByDate.Reverse }}
+	    <div class="col-md-10">
+		<article class="blog-post">
+		    <h3>{{ .Params.title }}</h3>
+		    <h4>By {{ .Params.author }} | {{ .Date.Format "Jan 2 2006" }}, {{ .Params.location }}</h4>
+		    <p>{{ .Content | markdownify }}</p>
+		    {{ if isset .Params "newslink" }}
+		    <p><a href="{{ .Params.newslink }}" class="btn btn-main">{{ .Params.newsbuttontxt }}</a></p>
+		    {{ end }}
+		</article>
+	    </div>
+	    {{ end }}
+	</div>
+	<div class="col-10 text-center">
+	    {{ template "_internal/pagination.html" . }}
+	</div>
+	
+	{{ partial "footer.html" . }}
+
+</body>
+</html>
