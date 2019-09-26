@@ -1,3 +1,7 @@
++++
+title = "Huawei"
+type = "latestnews"
++++
 
 # Huawei Deepens Commitment to FD.io, the Universal DataPlane, as Newest Platinum Member
 
@@ -19,4 +23,4 @@ Huawei is a leading global information and communications technology (ICT) solut
 About FD.io
 The Fast Data Project (FD.io) “Fido” is a collaborative open source project that aims to establish a high-performance IO services framework for dynamic computing environments. The FD.io community includes Network IO, Packet Processing, and Dataplane Management Agents fostering innovations in software based packet processing towards the creation of high-throughput, low-latency, and resource-eﬃcient IO services suitable to many architectures (x86, Arm, and PowerPC) and deployment environments (bare metal, VM, container). FD.io is hosted by at The Linux Foundation. Linux Foundation projects are independently funded software projects that harness the power of collaborative development to fuel innovation across industries and ecosystems. www.linuxfoundation.org
 
-###The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our trademark usage page: https://www.linuxfoundation.org/trademark-usage. Linux is a registered trademark of Linus Torvalds.
+The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our trademark usage page: https://www.linuxfoundation.org/trademark-usage. Linux is a registered trademark of Linus Torvalds.
