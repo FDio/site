@@ -3,7 +3,7 @@ title = "FD.io Brings Improvements to Kubernetes Networking with Sixth Release"
 subtitle = "The Fast Data Project’s 18.01 release furthers performance, security, and efficiency to Kubernetes networking"
 author = "Jill Lovato"
 
-newslink="/docs/news/kubernetes.md"
+newslink="/latest/singles/kubernetes"
 newsbuttontxt="Read More About the Kubernetes Sixth Release"
 location = "San Francisco"
 date = "2018-04-03"

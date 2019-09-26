@@ -2,7 +2,7 @@
 title = "Huawei Deepens Commitment to FD.io, the Universal DataPlane, as Newest Platinum Member"
 author = "Jill Lovato"
 
-newslink="/docs/news/huawei.md"
+newslink="/latest/singles/huawei"
 newsbuttontxt="Read More About Huawei"
 location = "San Francisco"
 date = "2017-12-14"

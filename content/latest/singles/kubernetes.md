@@ -1,3 +1,7 @@
++++
+title = "Kubernetes Improvements"
+type = "latestnews"
++++
 
 # FD.io Brings Improvements to Kubernetes Networking with Sixth Release
 

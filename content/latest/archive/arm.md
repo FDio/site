@@ -2,7 +2,7 @@
 title = "FD.io, The Universal Dataplane, Taps Arm® Ecosystem, Adds To Growing List of New Members"
 author = "Jill Lovato"
 
-newslink="/docs/news/arm.md"
+newslink="/latest/singles/arm"
 newsbuttontxt="Read More"
 location = "San Francisco"
 date = "2017-09-07"

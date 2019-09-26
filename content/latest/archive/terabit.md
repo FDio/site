@@ -2,7 +2,7 @@
 title = "FD.io Doubles Packet Throughput Performance to Terabit Levels"
 author = "Jeska Duman"
 
-newslink="/docs/news/terabit.md"
+newslink="/latest/singles/terabit"
 newsbuttontxt="Read More"
 location = "San Francisco"
 date = "2017-07-11"
