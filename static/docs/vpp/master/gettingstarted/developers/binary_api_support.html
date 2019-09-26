@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                19.08
+                master
               </div>
             
           
@@ -115,6 +115,8 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Binary API Support</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#message-allocation">Message Allocation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#message-tracing-and-replay">Message Tracing and Replay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-trace-replay-caveats">API trace replay caveats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-trace-interface-issues">API trace interface issues</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#client-connection-details">Client connection details</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#client-disconnection-details">Client disconnection details</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sending-binary-api-messages-to-vpp">Sending binary API messages to VPP</a></li>
@@ -126,6 +128,8 @@
 <li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
@@ -362,6 +366,68 @@ circumstances. Without direct evidence, “it’s a data-plane problem!”</p>
 <a class="reference external" href="https://docs.fd.io/vpp/18.11/d0/d5b/vlib__api__cli_8c.html#a60194e3e91c0dc6a75906ea06f4ec113">vl_msg_api_process_file()</a>,
 and <a class="reference external" href="https://docs.fd.io/vpp/18.11/d6/dd1/api__shared_8c.html">src/vlibapi/api_shared.c</a>. See also
 the debug CLI command “api trace”</p>
+</div>
+<div class="section" id="api-trace-replay-caveats">
+<h2>API trace replay caveats<a class="headerlink" href="#api-trace-replay-caveats" title="Permalink to this headline">¶</a></h2>
+<p>The vpp instance which replays a binary API trace must have the same
+message-ID numbering space as the vpp instance which captured the
+trace. The replay instance <strong>must</strong> load the same set of plugins as
+the capture instance. Otherwise, API messages will be processed by the
+<strong>wrong</strong> API message handlers!</p>
+<p>Always start vpp with command-line arguments which include an
+“api-trace on” stanza, so vpp will start tracing binary API messages
+from the beginning:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">api-trace {</span>
+<span class="go">  on</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Given a binary api trace in /tmp/api_trace, do the following to work
+out the set of plugins:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">DBGvpp# api trace custom-dump /tmp/api_trace</span>
+<span class="go">vl_api_trace_plugin_msg_ids: abf_54307ba2 first 846 last 855</span>
+<span class="go">vl_api_trace_plugin_msg_ids: acl_0d7265b0 first 856 last 893</span>
+<span class="go">vl_api_trace_plugin_msg_ids: cdp_8f707b96 first 894 last 895</span>
+<span class="go">vl_api_trace_plugin_msg_ids: flowprobe_f2f0286c first 898 last 901</span>
+<span class="go">&lt;etc&gt;</span>
+</pre></div>
+</div>
+<p>Here, we see the “abf,” “acl,” “cdp,” and “flowprobe” plugins. Use the
+list of plugins to construct a matching “plugins” command-line argument
+stanza:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">plugins {</span>
+<span class="gp">    #</span><span class="c1"># Disable all plugins, selectively enable specific plugins</span>
+<span class="go">    plugin default { disable }</span>
+<span class="go">    plugin abf_plugin.so { enable }</span>
+<span class="go">    plugin acl_plugin.so { enable }</span>
+<span class="go">    plugin cdp_plugin.so { enable }</span>
+<span class="go">    plugin flowprobe_plugin.so { enable }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>To begin with, use the same vpp image that captured a trace to replay
+it. It’s perfectly fair to rebuild the vpp replay instance, to add
+scaffolding to facilitate setting gdb breakpoints on complex
+conditions or similar.</p>
+</div>
+<div class="section" id="api-trace-interface-issues">
+<h2>API trace interface issues<a class="headerlink" href="#api-trace-interface-issues" title="Permalink to this headline">¶</a></h2>
+<p>Along the same lines, it may be necessary to manufacture [simulated]
+physical interfaces so that an API trace will replay correctly. “show
+interface” on the trace origin system can help. An API trace
+“custom-dump” as shown above may make it obvious how many loopback
+interfaces to create. If you see vhost interfaces being created and
+then configured, the first such configuration message in the trace
+will tell you how many physical interfaces were involved.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">SCRIPT: create_vhost_user_if socket /tmp/foosock server</span>
+<span class="go">SCRIPT: sw_interface_set_flags sw_if_index 3 admin-up</span>
+</pre></div>
+</div>
+<p>In this case, it’s fair to guess that one needs to create two loopback
+interfaces to “help” the trace replay correctly.</p>
+<p>These issues can be mitigated to a certain extent by replaying the
+trace on the system which created it, but in a field debug case that’s
+not a realistic.</p>
 </div>
 <div class="section" id="client-connection-details">
 <h2>Client connection details<a class="headerlink" href="#client-connection-details" title="Permalink to this headline">¶</a></h2>

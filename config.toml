@@ -9,21 +9,28 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
-    name = "PROJECTS"
+    name = "Why FD.io?"
+    url = "/overview/fdiousecases"
+
+  [[menu.header]]
+    weight = 2
+    name = "Get Started"
+    url = "/vppproject/vppinstalling"
+
+  [[menu.header]]
+    weight = 3
+    name = "Documentation"
     url = "/projects"
 
   [[menu.header]]
     weight = 4
-    name = "COMMUNITY"
-    url = "/community"
+    name = "The Latest"
+    url = "/latest/news"
+
   [[menu.header]]
     weight = 5
-    name = "NEWS"
-    url = "/news"
-  [[menu.header]]
-    weight = 6
-    name = "EVENTS"
-    url = "/events"
+    name = "Get Involved"
+    url = "/community/join"
 
 # The site's parameters
 [params]
@@ -38,27 +45,81 @@ publishDir = "public"
 
   [params.slider]
     enable = true
-    bgImage = "img/fdio_bg_tech2.jpg"
-    title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project"
-    subtitle = "Relentlessly focused on data IO and efficiency for more flexable and scalable networks and storage<br/>"
-    btnText = "The FD.io Projects"
-    url = "/projects"
+    bgImage = "img/fdio_bg.jpg"
+    title = "FD.io <br> The World’s Secure Networking Data Plane"
+    subtitle = """
+An Open Source Terabit Software Dataplane <br>
+The world moves at light speed. <br>
+Make sure your packet traffic keeps up.
+<br><br>
+Enriching Data Plane Leadership and Deployment Efficiency.
+<br>
+The Fast Data Project's VPP Release 19.08 is here!
+"""
+    btnText = "More About FD.io VPP 19.08"
+    url = "https://www.lfnetworking.org/announcement/2019/09/18/fast-data-projects-release-19-08-enriches-data-plane-leadership-and-deployment-efficacy/"
 
   [params.wrapper]
     enable = true
-    image = "img/logo_fdio_header.png"
-    title = "The Fast Data Project"
-    italic = "FD.io is a collection of several projects and libraries"
-    paragraph = "FD.io offers the Software Defined Infrastructure developer community a landing site with multiple projects fostering innovations in software-based packet processing towards the creation of high-throughput, low-latency and resource-efficient IO services suitable to many architectures (x86, ARM, and PowerPC) and deployment environments (bare metal, VM, container)."
+    image = "img/universal-network-function.png"
+    title = "Why FD.io?"
+    content = """
+### Lowers the Barrier to Entry
+#### Industry-standard, cross-platform, network Stack - supported by multiple hardware vendors
+### Increases Velocity
+#### Encourages industry disruption and fosters innovation
+### Platform optimized
+#### Built using same super-scalar optimizations as [DPDK](http://www.dpdk.org)
+### Broad adoption
+#### Supported by a broad community of industry contributors
+"""
+    wbtnText = "More About FD.io"
+    wurl = "/overview/fdiousecases"
 
   [params.feature]
     enable = true
-    title = "What is the Vector Packet Processor (VPP)?"
+    bgImage = "img/fdio_bg.jpg"
+    title = "What is Vector Packet Processing (VPP)?"
     content = """
-VPP is the core technolgy behind the FD.io projects. It is a fast, scalable and multi-platform network stack built over the Data Plane Development Kit (DPDK).
-
-VPP is, at it’s core, it is a scalable layer 2-4 network stack. It supports integration into both Open Stack and Kubernetes environments. It supports network management features including configuration, counters and sampling. VPP supports extending with plugins, tracing and debugging. Use cases include vSwitch, vRouter, Gateways, Firewalls and Load Balancers, to name but a few. Finally it is useful both a software development kit or an appliance out of the box.
+FD.io VPP is the Swiss Army knife of networking toolchains - enabling astounding software packet processing.
+<br></br>
+<b>Relentless speed and scale.</b>
+<br />
+Up to two orders of magnitude greater packet processing throughput.
+<br />
+VPP's host stack comprises packet, transport, session, and application layer protocols enabling entire networking and security functions to be injected into software packet processing.
+<br /><br />
+<b>Easily programmable.</b>
+<br />
+FD.io is easily extensible through plugins or by building applications on top of
+the FD.io VPP API.
+<br /><br />
+<b>Deploy anywhere.</b>
+<br />
+Bare metal, VM or container.
+x86, ARM, and PowerPC architectures.<br /> <br />
+<b>The future of packet processing. Now.</b>
 """
     [params.feature.button]
-      caption = "Get Started With VPP"
+      caption = "VPP Technology"
       url = "/vppproject"
+    [params.feature.button2]
+      caption = "VPP Performance"
+      url = "/performance/scaling"
+    [params.feature.button3]
+      caption = "Get Started"
+      url = "/vppproject/vppinstalling"
+
+  [params.prjcomnews]
+    enable=true
+    pimage = "img/prj.png"
+    title = "The FD.io Community"
+    content = """
+#### The Fast Data Project (FD.io) is a collaborative open-source project aimed at establishing a high-performance IO services framework for dynamic compute environments.
+#### For the latest news or how you can get involved please see the links below.
+"""
+    btnText1 = "The Latest News"
+    url1 = "/latest/news"
+    btnText2 = "Get Involved"
+    url2 = "/community/join"
+

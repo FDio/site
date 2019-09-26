@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                19.08
+                master
               </div>
             
           
@@ -109,6 +109,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#syslog-output">Syslog Output</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#binary-api-trace">Binary API Trace</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#core-files">Core Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compressed-core-files">Compressed Core Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#core-file-summary">Core File Summary</a></li>
 </ul>
 </li>
 </ul>
@@ -349,6 +351,9 @@ will capture usable vpp core files in /tmp/dumps.</p>
 <span class="gp">#</span> <span class="nb">echo</span> <span class="m">2</span> &gt; /proc/sys/fs/suid_dumpable
 </pre></div>
 </div>
+<p>If you start VPP from systemd, you also need to edit
+/lib/systemd/system/vpp.service and uncomment the “LimitCORE=infinity”
+line before restarting VPP.</p>
 <p>Vpp core files often appear enormous. Gzip typically compresses them
 to manageable sizes. A multi-GByte corefile often compresses to 10-20
 Mbytes.</p>
@@ -380,6 +385,27 @@ workspace modifications, branching, or the git repo in question.</p>
 <p>Even given a byte-for-byte identical source tree, it’s easy to build
 dramatically different binary artifacts. All it takes is a different
 toolchain version.</p>
+</div>
+<div class="section" id="compressed-core-files">
+<h2>Compressed Core Files<a class="headerlink" href="#compressed-core-files" title="Permalink to this headline">¶</a></h2>
+<p>Depending on operational requirements, it’s possible to compress
+corefiles as they are generated. Please note that it takes several
+seconds’ worth of wall-clock time to compress a vpp core file on the
+fly, during which all packet processing activities are suspended.</p>
+<p>To create compressed core files on the fly, create the following
+script, e.g. in /usr/local/bin/compressed_corefiles, owned by root,
+executable:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>!/bin/sh
+<span class="go">exec /bin/gzip -f - &gt;&quot;/tmp/dumps/core-$1.$2.gz&quot;</span>
+</pre></div>
+</div>
+<p>Adjust the kernel core file pattern as shown:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sysctl -w kernel.core_pattern=&quot;|/usr/local/bin/compressed_corefiles %e %t&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="core-file-summary">
+<h2>Core File Summary<a class="headerlink" href="#core-file-summary" title="Permalink to this headline">¶</a></h2>
 <p>Bottom line: please follow core file handling instructions to the
 letter. It’s not complicated. Simply copy the exact Debian packages or
 RPMs which correspond to core files to accessible locations.</p>
