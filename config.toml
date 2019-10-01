@@ -9,13 +9,13 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
-    name = "Why FD.io?"
+    name = "Use Cases"
     url = "/overview/fdiousecases"
 
   [[menu.header]]
     weight = 2
     name = "Get Started"
-    url = "/vppproject/vppinstalling"
+    url = "/vppproject/vpptech"
 
   [[menu.header]]
     weight = 3
@@ -73,7 +73,7 @@ The Fast Data Project's VPP Release 19.08 is here!
 ### Broad adoption
 #### Supported by a broad community of industry contributors
 """
-    wbtnText = "More About FD.io"
+    wbtnText = "Some FD.io Use Cases"
     wurl = "/overview/fdiousecases"
 
   [params.feature]
