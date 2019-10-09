@@ -20,7 +20,7 @@ publishDir = "public"
   [[menu.header]]
     weight = 3
     name = "Documentation"
-    url = "/projects"
+    url = "/documentation"
 
   [[menu.header]]
     weight = 4
