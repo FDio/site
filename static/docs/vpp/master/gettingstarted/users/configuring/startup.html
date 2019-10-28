@@ -419,7 +419,7 @@ for example, emacs M-x gud-gdb.</p>
 </dl>
 </li>
 <li><dl>
-<dt><strong>cli-history-limit &lt;n&gt;</strong></dt><dd><p>Limit commmand history to &lt;n&gt; lines. A value of 0 disables command history.
+<dt><strong>cli-history-limit &lt;n&gt;</strong></dt><dd><p>Limit command history to &lt;n&gt; lines. A value of 0 disables command history.
 Default value: 50</p>
 <p><strong>Example:</strong> cli-history-limit 100</p>
 </dd>
@@ -539,7 +539,7 @@ by default.</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><strong>hqos</strong></dt><dd><p>Enable the Hierarchical Quaity-of-Service (HQoS) scheduler, default is
+<dt><strong>hqos</strong></dt><dd><p>Enable the Hierarchical Quality-of-Service (HQoS) scheduler, default is
 disabled. This enables HQoS on specific output interface.</p>
 </dd>
 </dl>
@@ -651,7 +651,7 @@ socket.</p>
 </dl>
 </li>
 <li><dl>
-<dt><strong>no-multi-seg</strong></dt><dd><p>Disable mutli-segment buffers, improves performance but disables Jumbo MTU
+<dt><strong>no-multi-seg</strong></dt><dd><p>Disable multi-segment buffers, improves performance but disables Jumbo MTU
 support.</p>
 <p><strong>Example:</strong> no-multi-seg</p>
 </dd>
@@ -677,7 +677,7 @@ vector PMDs (together with no-multi-seg).</p>
 </dl>
 </li>
 <li><dl>
-<dt><strong>dev default { .. }</strong></dt><dd><p>Change default settings for all intefaces. This sections supports the
+<dt><strong>dev default { .. }</strong></dt><dd><p>Change default settings for all interfaces. This sections supports the
 same set of custom parameters described in <em>‘dev &lt;pci-dev&gt; { .. }</em>’.</p>
 <p><strong>Example:</strong></p>
 <blockquote>
@@ -1581,8 +1581,8 @@ Default is 2.04 seconds.</p>
 <span id="plugins"></span><h3>“plugins” Parameters<a class="headerlink" href="#plugins-parameters" title="Permalink to this headline">¶</a></h3>
 <p>A plugin can be disabled by default. It may still be in an experimental phase
 or only be needed in special circumstances. If this is the case, the plugin can
-be explicitely enabled in <em>‘startup.conf’</em>. Also, a plugin that is enabled by
-default can be explicitely disabled in <em>‘startup.conf’</em>.</p>
+be explicitly enabled in <em>‘startup.conf’</em>. Also, a plugin that is enabled by
+default can be explicitly disabled in <em>‘startup.conf’</em>.</p>
 <p>Another useful use of this section is to disable all the plugins, then enable
 only the plugins that are desired.</p>
 <blockquote>

@@ -230,17 +230,17 @@ construct an object graph that fully describes all elements of the route. In Fig
 the route is resolved as the graph is complete from <em>fib_entry_t</em> to <em>ip_adjacency_t</em>.</p>
 <p>In some routing models a VRF will consist of a set of tables for IPv4 and IPv6, and
 unicast and multicast. In VPP there is no such grouping. Each table is distinct from
-each other. A table is indentified by its numerical ID. The ID range is separate for
+each other. A table is identified by its numerical ID. The ID range is separate for
 each address family.</p>
 <p>A table is comprised of two route data-bases; forwarding and non-forwarding. The
 forwarding data-base contains routes against which a packet will perform a longest
 prefix match (LPM) in the data-plane. The non-forwarding DB contains all the routes
-with which VPP has been programmed Рsome of these routes may be unresolved for reasons
+with which VPP has been programmed some of these routes may be unresolved for reasons
 that prevent their insertion into the forwarding DB
 (see section: Adjacency source FIB entries).</p>
 <p>The route data is decomposed into three parts; entry, path-list and paths;</p>
 <ul>
-<li><p>The <em>fib_entry_t</em>, which contains the routeճ prefix, is representation of that prefix’s entry in the FIB table.</p></li>
+<li><p>The <em>fib_entry_t</em>, which contains the routes prefix, is representation of that prefix’s entry in the FIB table.</p></li>
 <li><p>The <em>fib_path_t</em> is a description of where to send the packets destined to the route’s prefix. There are several types of path.</p>
 <blockquote>
 <div><ul class="simple">
@@ -256,9 +256,9 @@ that prevent their insertion into the forwarding DB
 <div class="figure align-center">
 <img alt="../../../_images/fib20fig2.png" src="../../../_images/fib20fig2.png" />
 </div>
-<p>Figure 2: Route data model Рclass diagram</p>
+<p>Figure 2: Route data model class diagram</p>
 <p>Figure 2 shows an example of a route with two attached-next-hop paths. Each of these
-paths will <em>resolve</em> by finding the adjacency that matches the pathճ attributes, which
+paths will <em>resolve</em> by finding the adjacency that matches the paths attributes, which
 are the same as the key for the adjacency data-base <a class="footnote-reference brackets" href="#f3" id="id3">2</a>. The <em>forwarding information (FI)</em>
 is the set of adjacencies that are available for load-balancing the traffic in the
 data-plane. A path <em>contributes</em> an adjacency to the route’s forwarding information, the
@@ -284,10 +284,10 @@ forwarding information of multiple sources to be combined. Instead the FIB must 
 to use the forwarding information from only one source. This choice is based on a static
 priority assignment <a class="footnote-reference brackets" href="#f4" id="id4">3</a>. The FIB must maintain the information each source has added
 so it can be restored should that source become the best source. VPP has two
-<em>control-plane</em> sources; the API and the CLI Рthe API has the higher priority.
+<em>control-plane</em> sources; the API and the CLI the API has the higher priority.
 Each <em>source</em> data is represented by a <em>fib_entry_src_t</em> object of which a
 <em>fib_entry_t</em> maintains a sorted vector.n A prefix is <em>connected</em> when it is
-applied to a routerճ interface.</p>
+applied to a routers interface.</p>
 <p>The following configuration:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">set</span> interface address <span class="m">192</span>.168.1.1/24 GigabitEthernet0/8/0
 </pre></div>
@@ -297,7 +297,7 @@ attached, and 192.168.1.1/32 which is connected and local (a.k.a receive or for-
 Both prefixes are <em>interface</em> sourced. The interface source has a high priority, so
 the accidental or nefarious addition of identical prefixes does not prevent the
 router from correctly forwarding. Packets matching a connected prefix will
-generate an ARP request for the packetճ destination address, this process is known
+generate an ARP request for the packets destination address, this process is known
 as a <em>glean</em>.</p>
 <p>An <em>attached</em> prefix also results in a glean, but the router does not have its own
 address in that sub-net. The following configuration will result in an attached
@@ -348,7 +348,7 @@ changes RF.</p>
 <span class="gp">$</span> <span class="nb">set</span> interface ip table GigabitEthernet0/8/0 <span class="m">2</span>
 </pre></div>
 </div>
-<p>it does not result in the desired behaviour, where the adj-fib and connecteds are
+<p>it does not result in the desired behaviour, where the adj-fib and connected adjacencies are
 moved to table 2.</p>
 </div>
 <div class="section" id="recursive-routes">

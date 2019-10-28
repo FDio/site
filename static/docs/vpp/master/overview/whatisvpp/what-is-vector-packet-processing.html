@@ -169,12 +169,12 @@
 scalar packet processing, these concepts are explained in the following sections.</p>
 <p>Vector packet processing is a common approach among high performance <a class="reference external" href="https://en.wikipedia.org/wiki/User_space">Userspace</a> packet processing applications such
 as developed with FD.io VPP and <a class="reference external" href="https://en.wikipedia.org/wiki/Data_Plane_Development_Kit">DPDK</a>. The scalar based
-aproach tends to be favoured by Operating System <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_(operating_system)">Kernel</a> Network Stacks and
+approach tends to be favoured by Operating System <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_(operating_system)">Kernel</a> Network Stacks and
 Userspace stacks that don’t have strict performance requirements.</p>
 <p><strong>Scalar Packet Processing</strong></p>
 <p>A scalar packet processing network stack typically processes one packet at a
 time: an interrupt handling function takes a single packet from a Network
-Inteface, and processes it through a set of functions: fooA calls fooB calls
+Interface, and processes it through a set of functions: fooA calls fooB calls
 fooC and so on.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+---&gt; fooA(packet1) +---&gt; fooB(packet1) +---&gt; fooC(packet1)
 +---&gt; fooA(packet2) +---&gt; fooB(packet2) +---&gt; fooC(packet2)
@@ -182,7 +182,7 @@ fooC and so on.</p>
 +---&gt; fooA(packet3) +---&gt; fooB(packet3) +---&gt; fooC(packet3)
 </pre></div>
 </div>
-<p>Scalar packet processing is simple, but inefficent in these ways:</p>
+<p>Scalar packet processing is simple, but inefficient in these ways:</p>
 <ul class="simple">
 <li><p>When the code path length exceeds the size of the Microprocessor’s instruction
 cache (I-cache), <a class="reference external" href="https://en.wikipedia.org/wiki/Thrashing_(computer_science)">thrashing</a> occurs as the
@@ -194,7 +194,7 @@ stack-locals fall out of the Microprocessor’s Layer 1 Data Cache (D-cache).</p
 <p><strong>Vector Packet Processing</strong></p>
 <p>In contrast, a vector packet processing network stack processes multiple packets
 at a time, called ‘vectors of packets’ or simply a ‘vector’. An interrupt
-handling function takes the vector of packets from a Network Inteface, and
+handling function takes the vector of packets from a Network Interface, and
 processes the vector through a set of functions: fooA calls fooB calls fooC and
 so on.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+---&gt; fooA([packet1, +---&gt; fooB([packet1, +---&gt; fooC([packet1, +---&gt;
@@ -205,9 +205,9 @@ so on.</p>
 </div>
 <p>This approach fixes:</p>
 <ul class="simple">
-<li><p>The I-cache thrashing problem described above, by ammoritizing the cost of
+<li><p>The I-cache thrashing problem described above, by amortizing the cost of
 I-cache loads across multiple packets.</p></li>
-<li><p>The ineffeciences associated with the deep call stack by recieving vectors
+<li><p>The inefficiencies associated with the deep call stack by receiving vectors
 of up to 256 packets at a time from the Network Interface, and processes them
 using a directed graph of node. The graph scheduler invokes one node dispatch
 function at a time, restricting stack depth to a few stack frames.</p></li>

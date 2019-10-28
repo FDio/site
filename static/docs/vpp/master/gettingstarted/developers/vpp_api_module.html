@@ -257,7 +257,7 @@
 <div class="section" id="c-usage">
 <h2>C Usage<a class="headerlink" href="#c-usage" title="Permalink to this headline">¶</a></h2>
 <p><strong>Low-level API</strong></p>
-<p>Refer to inline API documentation in doxygen format in vapi.h header for description of functions. It’s recommened to use the safer, high-level API provided by specialized headers (e.g. vpe.api.vapi.h or vpe.api.vapi.hpp).</p>
+<p>Refer to inline API documentation in doxygen format in vapi.h header for description of functions. It’s recommended to use the safer, high-level API provided by specialized headers (e.g. vpe.api.vapi.h or vpe.api.vapi.hpp).</p>
 <p><strong>C high-level API</strong></p>
 <p><em>Callbacks</em></p>
 <p>The C high-level API is strictly callback-based for maximum efficiency. Whenever an operation is initiated a callback with a callback context is part of that operation. The callback is then invoked when the response (or multiple responses) arrive which are tied to the request. Also, callbacks are invoked whenever an event arrives, if such callback is registered. All the pointers to responses/events point to shared memory and are immediately freed after callback finishes so the client needs to extract/copy any data in which it is interested in.</p>
@@ -302,7 +302,7 @@ In non-blocking mode, all the requests are only byte-swapped and the context inf
 <p><strong>Events</strong></p>
 <p><em>Create a Connection and execute the appropriate Request to subscribe to events (e.g. Want_stats)</em></p>
 <ol class="arabic simple">
-<li><p>Create an Event_registration with a template argument being the type of event you are insterested in.</p></li>
+<li><p>Create an Event_registration with a template argument being the type of event you are interested in.</p></li>
 <li><p>Call dispatch() or wait_for_response() to wait for the event. A callback will be called when an event occurs (if passed to Event_registration() constructor). Alternatively, read the result set.</p></li>
 </ol>
 <div class="admonition note">

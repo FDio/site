@@ -238,7 +238,7 @@ interface is termed a ԭid-chainՠthis it is now present in the middle of the
 graph/chain rather than its usual terminal location.</p>
 <p>The mid-chain adjacency is contributed by the gre_tunnel_t , which also becomes
 part of the FIB control-plane graph. Consequently it will be visited by a
-back-walk when the forwarding information for the tunnelճ destination changes.
+back-walk when the forwarding information for the tunnel’s destination changes.
 This will trigger it to restack the mid-chain adjacency on the new
 <em>load_balance_t</em> contributed by the parent <em>fib_entry_t</em>.</p>
 <p>If the back-walk indicates that there is no route to the tunnel, or that the
