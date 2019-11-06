@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Routes &mdash; Vector Packet Processor 01 documentation</title>
+  <title>Routes &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -52,7 +52,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Vector Packet Processor
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
           
 
           
@@ -90,7 +90,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
@@ -162,7 +162,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Vector Packet Processor</a>
+          <a href="../../../index.html">The Vector Packet Processor</a>
         
       </nav>
 
@@ -245,7 +245,7 @@ that prevent their insertion into the forwarding DB
 <blockquote>
 <div><ul class="simple">
 <li><p>Attached next-hop: the path is described with an interface and a next-hop. The next-hop is in the same sub-net as the router’s own address on that interface, hence the peer is considered to be <em>attached</em></p></li>
-<li><p>Attached: the path is described only by an interface. All address covered by the prefix are on the same L2 segment to which that router’s interface is attached. This means it is possible to ARP for any address covered by the prefix Рwhich is usually not the case (hence the proxy ARP debacle in IOS). An attached path is only appropriate for a point-to-point (P2P) interface where ARP is not required, i.e. a GRE tunnel.</p></li>
+<li><p>Attached: the path is described only by an interface. All address covered by the prefix are on the same L2 segment to which that router’s interface is attached. This means it is possible to ARP for any address covered by the prefix which is usually not the case (hence the proxy ARP debacle in IOS). An attached path is only appropriate for a point-to-point (P2P) interface where ARP is not required, i.e. a GRE tunnel.</p></li>
 <li><p>Recursive: The path is described only via the next-hop and table-id.</p></li>
 <li><p>De-aggregate: The path is described only via the special all zeros address and a table-id. This implies a subsequent lookup in the table should be performed.</p></li>
 </ul>
@@ -337,7 +337,7 @@ is attached are installed in forwarding. This requires the use of <em>cover trac
 where a route maintains a dependency relationship with the route that is its less
 specific cover. When this cover changes (i.e. there is a new covering route) or the
 forwarding information of the cover is updated, then the covered route is notified.
-Adj-fibs that fail this cover check are not installed in the fib_table_tճ forwarding
+Adj-fibs that fail this cover check are not installed in the fib_table_t’s forwarding
 table, there are only present in the non-forwarding table.</p>
 <p>Overlapping sub-nets are not supported, so no adj-fib has multiple paths. The control
 plane is expected to remove a prefix configured for an interface before the interface

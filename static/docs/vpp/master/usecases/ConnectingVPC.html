@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Interconnecting VPCs with Segment Routing &amp; Performance Evaluation &mdash; Vector Packet Processor 01 documentation</title>
+  <title>Interconnecting VPCs with Segment Routing &amp; Performance Evaluation &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -52,7 +52,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Vector Packet Processor
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
           
 
           
@@ -90,7 +90,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
@@ -132,7 +132,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Vector Packet Processor</a>
+          <a href="../index.html">The Vector Packet Processor</a>
         
       </nav>
 
@@ -200,7 +200,7 @@ In our VPC we will have two instances: one, in which we will install VPP and the
 <div class="figure align-center">
 <img alt="../_images/vpc_scheme.svg" src="../_images/vpc_scheme.svg" /></div>
 <p>Figure 2: Example of the resources present inside our VPC</p>
-<p>Notice that the following example works with two VPCs, where in each of them there are a VM with VPP and a VM. Hence,  you will have to execute the same commands also in the other VPC to make the connection between the two VPC possibile.</p>
+<p>Notice that the following example works with two VPCs, where in each of them there are a VM with VPP and a VM. Hence,  you will have to execute the same commands also in the other VPC to make the connection between the two VPC possible.</p>
 <p>Now, create a new VM instance (you can use same setting as before (Ubuntu Server 16.04 and m5 type)) and attach a NIC. Remember that the two Client/Server machine’s NICs should stay in two different IPv4 Subnet. Afterwards, on the VM’s terminal execute these commands:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /sbin/ip -4 addr add <span class="m">10</span>.1.2.113/24 dev ens6
 <span class="gp">$</span> sudo ifconfig ens6 up
