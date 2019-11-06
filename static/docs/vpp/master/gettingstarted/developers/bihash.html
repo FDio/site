@@ -124,6 +124,7 @@
 <li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
@@ -271,7 +272,7 @@ hashing in a bad way, the implementation will fall back to linear
 search across 2**log2_size backing pages on a per-bucket basis.</p>
 <p>To maintain <em>space</em> efficiency, we should configure the bucket array
 so that backing pages are effectively utilized. Lookup performance
-tends to change <em>very litte</em> if the bucket array is too small or too
+tends to change <em>very little</em> if the bucket array is too small or too
 large.</p>
 <p>Bihash depends on selecting an effective hash function. If one were to
 use a truly broken hash function such as “return 1ULL.” bihash would

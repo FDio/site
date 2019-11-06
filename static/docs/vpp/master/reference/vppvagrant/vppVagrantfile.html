@@ -250,7 +250,7 @@
 </span><span class="hll">    <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
 </span><span class="hll">  <span class="k">end</span>
 </span><span class="hll">
-</span><span class="hll">  <span class="c1"># use http proxy if avaiable</span>
+</span><span class="hll">  <span class="c1"># use http proxy if available</span>
 </span><span class="hll">  <span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;http_proxy&#39;</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="no">Vagrant</span><span class="o">.</span><span class="n">has_plugin?</span><span class="p">(</span><span class="s2">&quot;vagrant-proxyconf&quot;</span><span class="p">)</span>
 </span><span class="hll">   <span class="n">config</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">http</span>     <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;http_proxy&#39;</span><span class="o">]</span>
 </span><span class="hll">   <span class="n">config</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">https</span>    <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;https_proxy&#39;</span><span class="o">]</span>
