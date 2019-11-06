@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Buffer Metadata &mdash; Vector Packet Processor 01 documentation</title>
+  <title>Buffer Metadata &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -52,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Vector Packet Processor
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
           
 
           
@@ -90,7 +90,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../overview/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
@@ -108,9 +108,9 @@
 <li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Buffer Metadata</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#vlib-vector-library-primary-buffer-metatdata">Vlib (Vector library) primary buffer metatdata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vlib-vector-library-primary-buffer-metadata">Vlib (Vector library) primary buffer metadata</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#vnet-network-stack-primary-buffer-metadata">Vnet (network stack) primary buffer metadata</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#vnet-network-stack-secondary-buffer-metatdata">Vnet (network stack) secondary buffer metatdata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vnet-network-stack-secondary-buffer-metadata">Vnet (network stack) secondary buffer metadata</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
@@ -154,7 +154,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">Vector Packet Processor</a>
+          <a href="../../index.html">The Vector Packet Processor</a>
         
       </nav>
 
@@ -217,8 +217,8 @@ processing environments.</p>
 <p>We will examine vpp buffer metadata in some detail, but folks who need
 to manipulate and/or extend the scheme should expect to do a certain
 level of code inspection.</p>
-<div class="section" id="vlib-vector-library-primary-buffer-metatdata">
-<h2>Vlib (Vector library) primary buffer metatdata<a class="headerlink" href="#vlib-vector-library-primary-buffer-metatdata" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vlib-vector-library-primary-buffer-metadata">
+<h2>Vlib (Vector library) primary buffer metadata<a class="headerlink" href="#vlib-vector-library-primary-buffer-metadata" title="Permalink to this headline">¶</a></h2>
 <p>The first 64 octets of each vlib_buffer_t carries the primary buffer
 metadata. See …/src/vlib/buffer.h for full details.</p>
 <p>Important fields:</p>
@@ -348,8 +348,8 @@ from source ip lookup in [VLIB_RX], set to ~0 until source lookup done</p></li>
 </li>
 </ul>
 </div>
-<div class="section" id="vnet-network-stack-secondary-buffer-metatdata">
-<h2>Vnet (network stack) secondary buffer metatdata<a class="headerlink" href="#vnet-network-stack-secondary-buffer-metatdata" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vnet-network-stack-secondary-buffer-metadata">
+<h2>Vnet (network stack) secondary buffer metadata<a class="headerlink" href="#vnet-network-stack-secondary-buffer-metadata" title="Permalink to this headline">¶</a></h2>
 <p>Vnet primary buffer metadata occupies space reserved in the vlib
 opaque2 field shown above, and has the type name
 vnet_buffer_opaque2_t. Ordinarily accessed using the vnet_buffer2(b)

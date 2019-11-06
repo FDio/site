@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>FD.io VPP &mdash; Vector Packet Processor 01 documentation</title>
+  <title>What is the Vector Packet Processor (VPP) &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Overview" href="overview/index.html" /> 
+    <link rel="next" title="The Vector Packet Processor (VPP)" href="whatisvpp/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +51,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> Vector Packet Processor
+            <a href="#" class="icon icon-home"> The Vector Packet Processor
           
 
           
@@ -89,7 +89,7 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted/index.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usecases/index.html">Use Cases</a></li>
@@ -114,7 +114,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Vector Packet Processor</a>
+          <a href="#">The Vector Packet Processor</a>
         
       </nav>
 
@@ -145,7 +145,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>FD.io VPP</li>
+      <li>What is the Vector Packet Processor (VPP)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,24 +164,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="fd-io-vpp">
-<h1>FD.io VPP<a class="headerlink" href="#fd-io-vpp" title="Permalink to this headline">¶</a></h1>
-<p>FD.io Vector Packet Processing (VPP) is a fast, scalable layer 2-4
-multi-platform network stack. VPP supports integration with OpenStack
-and Kubernetes. Network management features include configuration,
-counters and sampling. Development tools include plugin extensibility,
-high-performance event-logging, multiple kinds of packet tracing;
-debug images include extensive consistency checking.</p>
-<p>Use-cases include vSwitch, vRouter, Gateways, Firewalls and Load
-Balancers, to name several. Out of the box, VPP works as a software
-development kit or an appliance.</p>
+  <div class="section" id="what-is-the-vector-packet-processor-vpp">
+<h1>What is the Vector Packet Processor (VPP)<a class="headerlink" href="#what-is-the-vector-packet-processor-vpp" title="Permalink to this headline">¶</a></h1>
+<p>FD.io’s Vector Packet Processor (VPP) is a fast, scalable layer 2-4
+multi-platform network stack. It runs in <a class="reference external" href="https://en.wikipedia.org/wiki/User_space">Linux Userspace</a>
+on multiple architectures including x86, ARM, and Power architectures.
+VPP is built using the <a class="reference external" href="https://en.wikipedia.org/wiki/Data_Plane_Development_Kit">Dataplane Development Kit (DPDK)</a>.</p>
+<p>VPP benefits include high performance, proven technology, modularity,
+and a rich feature set.</p>
+<p>VPP supports integration with OpenStack and Kubernetes. Network
+management features include configuration, counters, sampling and
+more. For developers, VPP includes plugin extensibility,
+high-performance event-logging, and multiple kinds of packet
+tracing. Development debug images include complete symbol tables, and
+extensive consistency checking.</p>
+<p>Some VPP Use-cases include vSwitches, vRouters, Gateways, Firewalls
+and Load Balancers, to name a few. Out of the box, VPP can work as a
+software development kit or an appliance.</p>
+<p>For more details click on the links below or press next.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview/index.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview/whatisvpp/index.html">What is VPP?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/features/index.html">Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/performance/index.html">Performance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview/supported.html">Architectures and Operating Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whatisvpp/index.html">The Vector Packet Processor (VPP)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="whatisvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whatisvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whatisvpp/networkstack.html">Network Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whatisvpp/hoststack.html">TCP Host Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whatisvpp/developer.html">Features for Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whatisvpp/supported.html">Architectures and Operating Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whatisvpp/performance.html">Performance</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted/index.html">Getting Started</a><ul>
@@ -272,7 +282,7 @@ development kit or an appliance.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview/index.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="whatisvpp/index.html" class="btn btn-neutral float-right" title="The Vector Packet Processor (VPP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
