@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Huge Pages &mdash; Vector Packet Processor 01 documentation</title>
+  <title>Huge Pages &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -52,7 +52,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Vector Packet Processor
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
           
 
           
@@ -90,7 +90,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
@@ -131,7 +131,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Vector Packet Processor</a>
+          <a href="../../../index.html">The Vector Packet Processor</a>
         
       </nav>
 
@@ -206,7 +206,7 @@ the hugepage settings, perform the following commands:</p>
 <span class="gp">#</span> All groups allowed to access hugepages
 <span class="go">vm.hugetlb_shm_group=0</span>
 
-<span class="gp">#</span> Shared Memory Max must be greator or equal to the total size of hugepages.
+<span class="gp">#</span> Shared Memory Max must be greater or equal to the total size of hugepages.
 <span class="gp">#</span> For 2MB pages, <span class="nv">TotalHugepageSize</span> <span class="o">=</span> vm.nr_hugepages * <span class="m">2</span> * <span class="m">1024</span> * <span class="m">1024</span>
 <span class="gp">#</span> If the existing kernel.shmmax setting  <span class="o">(</span>cat /sys/proc/kernel/shmmax<span class="o">)</span>
 <span class="gp">#</span> is greater than the calculated TotalHugepageSize <span class="k">then</span> <span class="nb">set</span> this parameter

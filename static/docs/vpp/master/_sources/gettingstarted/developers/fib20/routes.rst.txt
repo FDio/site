@@ -10,24 +10,24 @@ the route is resolved as the graph is complete from *fib_entry_t* to *ip_adjacen
 
 In some routing models a VRF will consist of a set of tables for IPv4 and IPv6, and
 unicast and multicast. In VPP there is no such grouping. Each table is distinct from
-each other. A table is indentified by its numerical ID. The ID range is separate for
+each other. A table is identified by its numerical ID. The ID range is separate for
 each address family.
 
 A table is comprised of two route data-bases; forwarding and non-forwarding. The
 forwarding data-base contains routes against which a packet will perform a longest
 prefix match (LPM) in the data-plane. The non-forwarding DB contains all the routes
-with which VPP has been programmed Рsome of these routes may be unresolved for reasons
+with which VPP has been programmed some of these routes may be unresolved for reasons
 that prevent their insertion into the forwarding DB
 (see section: Adjacency source FIB entries). 
 
 The route data is decomposed into three parts; entry, path-list and paths;
 
-* The *fib_entry_t*, which contains the routeճ prefix, is representation of that prefix's entry in the FIB table.
+* The *fib_entry_t*, which contains the routes prefix, is representation of that prefix's entry in the FIB table.
 * The *fib_path_t* is a description of where to send the packets destined to the route's prefix. There are several types of path.
 
     * Attached next-hop: the path is described with an interface and a next-hop. The next-hop is in the same sub-net as the router's own address on that interface, hence the peer is considered to be *attached*
 
-    * Attached: the path is described only by an interface. All address covered by the prefix are on the same L2 segment to which that router's interface is attached. This means it is possible to ARP for any address covered by the prefix Рwhich is usually not the case (hence the proxy ARP debacle in IOS). An attached path is only appropriate for a point-to-point (P2P) interface where ARP is not required, i.e. a GRE tunnel.
+    * Attached: the path is described only by an interface. All address covered by the prefix are on the same L2 segment to which that router's interface is attached. This means it is possible to ARP for any address covered by the prefix which is usually not the case (hence the proxy ARP debacle in IOS). An attached path is only appropriate for a point-to-point (P2P) interface where ARP is not required, i.e. a GRE tunnel.
 
     * Recursive: The path is described only via the next-hop and table-id. 
 
@@ -37,10 +37,10 @@ The route data is decomposed into three parts; entry, path-list and paths;
 
 .. figure:: /_images/fib20fig2.png
 
-Figure 2: Route data model Рclass diagram
+Figure 2: Route data model class diagram
 
 Figure 2 shows an example of a route with two attached-next-hop paths. Each of these
-paths will *resolve* by finding the adjacency that matches the pathճ attributes, which
+paths will *resolve* by finding the adjacency that matches the paths attributes, which
 are the same as the key for the adjacency data-base [#f3]_. The *forwarding information (FI)*
 is the set of adjacencies that are available for load-balancing the traffic in the
 data-plane. A path *contributes* an adjacency to the route's forwarding information, the
@@ -68,10 +68,10 @@ forwarding information of multiple sources to be combined. Instead the FIB must 
 to use the forwarding information from only one source. This choice is based on a static
 priority assignment [#f4]_. The FIB must maintain the information each source has added
 so it can be restored should that source become the best source. VPP has two
-*control-plane* sources; the API and the CLI Рthe API has the higher priority.
+*control-plane* sources; the API and the CLI the API has the higher priority.
 Each *source* data is represented by a *fib_entry_src_t* object of which a
 *fib_entry_t* maintains a sorted vector.n A prefix is *connected* when it is
-applied to a routerճ interface.
+applied to a routers interface.
 
 The following configuration:
 
@@ -84,7 +84,7 @@ attached, and 192.168.1.1/32 which is connected and local (a.k.a receive or for-
 Both prefixes are *interface* sourced. The interface source has a high priority, so
 the accidental or nefarious addition of identical prefixes does not prevent the
 router from correctly forwarding. Packets matching a connected prefix will
-generate an ARP request for the packetճ destination address, this process is known
+generate an ARP request for the packets destination address, this process is known
 as a *glean*. 
 
 An *attached* prefix also results in a glean, but the router does not have its own
@@ -132,7 +132,7 @@ is attached are installed in forwarding. This requires the use of *cover trackin
 where a route maintains a dependency relationship with the route that is its less
 specific cover. When this cover changes (i.e. there is a new covering route) or the
 forwarding information of the cover is updated, then the covered route is notified.
-Adj-fibs that fail this cover check are not installed in the fib_table_tճ forwarding
+Adj-fibs that fail this cover check are not installed in the fib_table_t's forwarding
 table, there are only present in the non-forwarding table.
 
 Overlapping sub-nets are not supported, so no adj-fib has multiple paths. The control
@@ -147,7 +147,7 @@ So while the following configuration is accepted:
    $ ip arp 192.168.1.2 GigabitEthernet0/8/0 dead.dead.dead
    $ set interface ip table GigabitEthernet0/8/0 2
 
-it does not result in the desired behaviour, where the adj-fib and connecteds are
+it does not result in the desired behaviour, where the adj-fib and connected adjacencies are
 moved to table 2.
 
 Recursive Routes

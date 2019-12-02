@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Create Interfaces Commands &mdash; Vector Packet Processor 01 documentation</title>
+  <title>Create Interfaces Commands &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -52,7 +52,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> Vector Packet Processor
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
           
 
           
@@ -90,7 +90,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../overview/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../gettingstarted/index.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
@@ -134,7 +134,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">Vector Packet Processor</a>
+          <a href="../../../index.html">The Vector Packet Processor</a>
         
       </nav>
 
@@ -312,14 +312,13 @@ sent to this subinterface.</p></li>
 <li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt;-&lt;<em>subId</em>&gt; - Create a
 range of subinterfaces to handle a range of VLAN IDs.</p></li>
 <li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt; dot1q|dot1ad &lt;<em>vlanId</em>&gt;|any
-[exact-match] - Use this command to specify the outer VLAN ID, to
-either be explicited or to make the VLAN ID different from the
-<em>subId</em>.</p></li>
+[exact-match] - Use this command to explicitly specify the outer VLAN ID,
+or to make the VLAN ID different from the <em>subId</em>.</p></li>
 <li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt; dot1q|dot1ad &lt;<em>vlanId</em>&gt;|any
 inner-dot1q &lt;<em>vlanId</em>&gt;|any [exact-match] - Use this command to
-specify the outer VLAN ID and the innner VLAN ID.</p></li>
+specify the outer VLAN ID and the inner VLAN ID.</p></li>
 </ul>
-<p>When <em>dot1q</em> or <em>dot1ad</em> is explictly entered, subinterfaces can be
+<p>When <em>dot1q</em> or <em>dot1ad</em> is explicitly entered, subinterfaces can be
 configured as either <em>exact-match</em> or <em>non-exact match</em>. <em>Non-exact match</em> is
 the CLI default. If <em>exact-match</em> is specified, packets must have the
 same number of VLAN tags as the configuration. For <em>non-exact-match</em>,
