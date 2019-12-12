@@ -285,10 +285,7 @@ usage. Do this with the following</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> Y <span class="p">|</span> sudo tee /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
 </pre></div>
 </div>
-<p>To bind interface to vfio-pci first install the <a class="reference internal" href="../gettingstarted/users/configutil/index.html#configutil"><span class="std std-ref">VPP Configuration Utility</span></a>. This will
-download the dpdk_devbind.py script. It is located in
-<em>/usr/vpp/vpp-config/scripts</em> with Centos and
-<em>/usr/local/vpp/vpp-config/scripts</em> with Ubuntu.</p>
+<p>To bind interface to vfio-pci first install get the dpdk_devbind.py script.</p>
 <p>Bind the driver with the following commands:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /usr/local/vpp/vpp-config/scripts/dpdk-devbind.py -s
 
