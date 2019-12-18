@@ -38,7 +38,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Huge Pages" href="hugepages.html" />
-    <link rel="prev" title="CPU" href="../configutil/sysinfo.html" /> 
+    <link rel="prev" title="For Users" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -95,10 +95,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Users</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../configutil/index.html">VPP Configuration Utility</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Configuring VPP</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="hugepages.html">Huge Pages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="startup.html">VPP Configuration File - ‘startup.conf’</a></li>
+<li class="toctree-l4"><a class="reference internal" href="startup.html">VPP Configuration - CLI and ‘startup.conf’</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../running/index.html">Running VPP</a></li>
@@ -192,13 +191,39 @@ FD.io VPP.  This section describes the configuration process:</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="hugepages.html">Huge Pages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="startup.html">VPP Configuration File - ‘startup.conf’</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="startup.html#introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="startup.html">VPP Configuration - CLI and ‘startup.conf’</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="startup.html#command-line-arguments">Command-line Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="startup.html#configuration-file">Configuration File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#startup-configuration-file-startup-conf">Startup Configuration File (startup.conf)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="startup.html#configuration-parameters">Configuration Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="startup.html#list-of-basic-parameters">List of Basic Parameters:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="startup.html#list-of-advanced-parameters">List of Advanced Parameters:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#the-unix-section">The unix section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#the-api-trace-section">The api-trace Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#the-api-segment-section">The api-segment Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#the-socksvr-section">The socksvr Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#the-cpu-section">The cpu Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#the-buffers-section">The buffers Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#the-dpdk-section">The dpdk Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#the-plugins-section">The plugins Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#some-advanced-parameters">Some Advanced Parameters:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#acl-plugin-section">acl-plugin Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#api-queue-section">api-queue Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#cj-section">cj Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#dns-section">dns Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#heapsize-section">heapsize Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#ip-section">ip Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#ip6-section">ip6 Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#l2learn-section">l2learn Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#l2tp-section">l2tp Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#logging-section">logging Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#mactime-section">mactime Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#map-parameters">“map” Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#nat-section">nat Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#oam-section">oam Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#tapcli-section">tapcli Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#tcp-section">tcp Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#tls-section">tls Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#tuntap-section">tuntap Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#vhost-user-section">vhost-user Section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="startup.html#vlib-section">vlib Section</a></li>
 </ul>
 </li>
 </ul>
@@ -216,7 +241,7 @@ FD.io VPP.  This section describes the configuration process:</p>
         <a href="hugepages.html" class="btn btn-neutral float-right" title="Huge Pages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../configutil/sysinfo.html" class="btn btn-neutral float-left" title="CPU" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="For Users" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

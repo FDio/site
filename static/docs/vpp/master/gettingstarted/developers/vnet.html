@@ -687,10 +687,10 @@ first.</p></li>
 </div>
 <div class="section" id="packet-trace-capture-filtering">
 <h2>packet trace capture filtering<a class="headerlink" href="#packet-trace-capture-filtering" title="Permalink to this headline">¶</a></h2>
-<p>The “classify filter pcap | <interface-name> “ debug CLI command
+<p>The “classify filter pcap | <interface-name> | trace” debug CLI command
 constructs an arbitrary set of packet classifier tables for use with
 “pcap rx | tx | drop trace,” and with the vpp packet tracer on a
-per-interface basis.</p>
+per-interface or system-wide basis.</p>
 <p>Packets which match a rule in the classifier table chain will be
 traced. The tables are automatically ordered so that matches in the
 most specific table are tried first.</p>
@@ -705,28 +705,42 @@ exists, the CLI command adds a match rule to the existing table.  If
 not, the CLI command add a new table and the indicated mask rule</p>
 <div class="section" id="configure-a-simple-pcap-classify-filter">
 <h3>Configure a simple pcap classify filter<a class="headerlink" href="#configure-a-simple-pcap-classify-filter" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="n">pcap</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.11</span><span class="s2">&quot;</span>
-    <span class="n">pcap</span> <span class="n">rx</span> <span class="n">trace</span> <span class="n">on</span> <span class="nb">max</span> <span class="mi">100</span> <span class="nb">filter</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="n">pcap</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.11</span>
+    <span class="n">pcap</span> <span class="n">trace</span> <span class="n">rx</span> <span class="nb">max</span> <span class="mi">100</span> <span class="nb">filter</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="configure-a-simple-interface-packet-tracer-filter">
-<h3>Configure a simple interface packet-tracer filter<a class="headerlink" href="#configure-a-simple-interface-packet-tracer-filter" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="configure-a-simple-per-interface-capture-filter">
+<h3>Configure a simple per-interface capture filter<a class="headerlink" href="#configure-a-simple-per-interface-capture-filter" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="n">GigabitEthernet3</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.11</span><span class="s2">&quot;</span>
-    <span class="p">[</span><span class="n">device</span><span class="o">-</span><span class="n">driver</span> <span class="n">debug</span> <span class="n">CLI</span> <span class="n">TBD</span><span class="p">]</span>
+    <span class="n">pcap</span> <span class="n">trace</span> <span class="n">rx</span> <span class="nb">max</span> <span class="mi">100</span> <span class="n">intfc</span> <span class="n">GigabitEthernet3</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Note that per-interface capture filters are <em>always</em> applied.</p>
+</div>
+<div class="section" id="clear-per-interface-capture-filters">
+<h3>Clear per-interface capture filters<a class="headerlink" href="#clear-per-interface-capture-filters" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="n">GigabitEthernet3</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="k">del</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="configure-another-fairly-simple-pcap-classify-filter">
 <h3>Configure another fairly simple pcap classify filter<a class="headerlink" href="#configure-another-fairly-simple-pcap-classify-filter" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">classify</span> <span class="nb">filter</span> <span class="n">pcap</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">dst</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.10</span> <span class="n">dst</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">2.10</span>
-   <span class="n">pcap</span> <span class="n">tx</span> <span class="n">trace</span> <span class="n">on</span> <span class="nb">max</span> <span class="mi">100</span> <span class="nb">filter</span>
+   <span class="n">pcap</span> <span class="n">trace</span> <span class="n">tx</span> <span class="nb">max</span> <span class="mi">100</span> <span class="nb">filter</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-a-vpp-packet-tracer-filter">
+<h3>Configure a vpp packet tracer filter<a class="headerlink" href="#configure-a-vpp-packet-tracer-filter" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">classify</span> <span class="nb">filter</span> <span class="n">trace</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">dst</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.10</span> <span class="n">dst</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">2.10</span>
+   <span class="n">trace</span> <span class="n">add</span> <span class="n">dpdk</span><span class="o">-</span><span class="nb">input</span> <span class="mi">100</span> <span class="nb">filter</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="clear-all-current-classifier-filters">
 <h3>Clear all current classifier filters<a class="headerlink" href="#clear-all-current-classifier-filters" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="k">del</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="p">[</span><span class="n">pcap</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">interface</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">trace</span><span class="p">]</span> <span class="k">del</span>
 </pre></div>
 </div>
 </div>
