@@ -1354,6 +1354,27 @@ Default is 2.04 seconds.</p>
 </div>
 </div>
 </div>
+<div class="section" id="physmem-section">
+<h2>physmem Section<a class="headerlink" href="#physmem-section" title="Permalink to this headline">¶</a></h2>
+<p>Configuration parameters used to specify base address and maximum size of
+the memory allocated for the pmalloc module in VPP. pmalloc is a NUMA-aware,
+growable physical memory allocator. pmalloc allocates memory for the DPDK
+memory pool.</p>
+<div class="section" id="base-addr-address">
+<h3>base-addr &lt;address&gt;<a class="headerlink" href="#base-addr-address" title="Permalink to this headline">¶</a></h3>
+<p>Specify the base address for pmalloc memory space.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">base-addr 0xfffe00000000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="max-size-n-g-n-m-n-k-n">
+<h3>max-size &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt;K | &lt;n&gt;<a class="headerlink" href="#max-size-n-g-n-m-n-k-n" title="Permalink to this headline">¶</a></h3>
+<p>Set the memory size for pmalloc memory space. The default is 16G.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">max-size 4G</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="tapcli-section">
 <h2>tapcli Section<a class="headerlink" href="#tapcli-section" title="Permalink to this headline">¶</a></h2>
 <p>Configuration parameters for TAPCLI (dynamic tap interface hookup.)</p>
