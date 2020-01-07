@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	{{ partial "head.html" . }}
+    </head>
+    <body>
+	{{ partial "header.html" . }}
+	{{ partial "vppproject-header.html" . }}
+	<h2 align="center">{{ .Params.subtitle }}</h2>
+	<div class="container">
+	    {{ range (.Paginator 1).Pages.ByDate }}
+	    {{ .Content | markdownify }}
+	    {{ end }}
+	    <div class="col-10 text-center">
+		{{ template "_internal/pagination.html" . }}
+	    </div>
+	</div>
+	<br>
+	{{ partial "footer.html" . }}
+    </body>
+</html>
