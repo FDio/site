@@ -1,5 +1,5 @@
 +++
 title = "VPP Technology"
-subtitle = "How it Works"
+subtitle "How VPP Works"
 type = "vpp"
 +++

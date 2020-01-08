@@ -5,7 +5,7 @@ btntxt="Get Started with VPP"
 btnurl="/vppproject/vppinstalling"
 +++
 
-### The Technology Behind FD.io
+## The Technology Behind FD.io
 
 At the heart of FD.io is Vector Packet Processing (VPP).
 
