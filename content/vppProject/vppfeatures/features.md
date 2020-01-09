@@ -3,14 +3,14 @@
 [ACLs for Security Groups](#acls-for-security-groups)  
 [Address Resolution Protocol](#address-resolution-protocol)  
 [Adjacency](#adjacency)  
-[Bidirectional Forwarding Detection (BFD)](#bidirectional-forwarding-detection-(bfd))  
+[Bidirectional Forwarding Detection](#bidirectional-forwarding-detection)  
 [Bit Indexed Explicit Replication](#bit-indexed-explicit-replication)  
 [Bonding](#bonding)  
-[Buffer Metadata Change Tracker (mdata)](#buffer-metadata-change-tracker-(mdata))  
-[Builtin URL support for the static http/https server (builtinurl)](#builtin-url-support-for-the-static-http/https-server-(builtinurl))  
+[Buffer Metadata Change Tracker](#buffer-metadata-change-tracker)  
+[Builtin URL support for the static http or https server](#builtin-url-support-for-the-static-http-or-https-server)  
 [Data-Plane Objects](#data-plane-objects)  
-[Dynamic Host Configuration Protocol (DHCP)](#dynamic-host-configuration-protocol-(dhcp))  
-[GTPU](#gtpu)  
+[Dynamic Host Configuration Protocol](#dynamic-host-configuration-protocol)  
+[GPRS Tunneling Protocol](#gprs-tunneling-protocol)  
 [Generic Routing Encapsulation](#generic-routing-encapsulation)  
 [IP Neighbour Database](#ip-neighbour-database)  
 [IP Security](#ip-security)  
@@ -19,20 +19,20 @@
 [IPSec crypto engine provided by Intel IPSecMB library](#ipsec-crypto-engine-provided-by-intel-ipsecmb-library)  
 [IPSec crypto engine provided by Openssl library](#ipsec-crypto-engine-provided-by-openssl-library)  
 [IPSec crypto engine provided by native implementation](#ipsec-crypto-engine-provided-by-native-implementation)  
-[IPv6 Neeighbour Discovery](#ipv6-neeighbour-discovery)  
+[IPv6 Neighbor Discovery](#ipv6-neighbor-discovery)  
 [Internet Group Management Protocol](#internet-group-management-protocol)  
-[LB](#lb)  
-[Layer 2 Forwarding (L2)](#layer-2-forwarding-(l2))  
+[Layer 2 Forwarding](#layer-2-forwarding)  
 [Layer 3 cross connect](#layer-3-cross-connect)  
-[Link Aggregation Control Protocol (LACP)](#link-aggregation-control-protocol-(lacp))  
-[Link Layer Discovery Protocol (LLDP)](#link-layer-discovery-protocol-(lldp))  
-[Locator/ID Separation Protocol (LISP) Control Plane](#locator/id-separation-protocol-(lisp)-control-plane)  
-[Locator/ID Separation Protocol Generic Protocol Extension (LISP-GPE)](#locator/id-separation-protocol-generic-protocol-extension-(lisp-gpe))  
-[Mapping of Address and Port (MAP)](#mapping-of-address-and-port-(map))  
+[Link Aggregation Control Protocol](#link-aggregation-control-protocol)  
+[Link Layer Discovery Protocol](#link-layer-discovery-protocol)  
+[Load Balancer](#load-balancer)  
+[Locator ID Separation Protocol Control Plane](#locator-id-separation-protocol-control-plane)  
+[Locator ID Separation Protocol Generic Protocol Extension](#locator-id-separation-protocol-generic-protocol-extension)  
+[Mapping of Address and Port](#mapping-of-address-and-port)  
 [Multi-Protocol Label Switching](#multi-protocol-label-switching)  
 [NSH](#nsh)  
 [Netmap Device](#netmap-device)  
-[Network Address Translation (NAT)](#network-address-translation-(nat))  
+[Network Address Translation](#network-address-translation)  
 [Network Delay Simulator](#network-delay-simulator)  
 [PPPoE](#pppoe)  
 [Pipe Device](#pipe-device)  
@@ -40,26 +40,26 @@
 [SRv6 Mobuile](#srv6-mobuile)  
 [Session Layer](#session-layer)  
 [Source VRF Select](#source-vrf-select)  
-[Static http/https server (http_static)](#static-http/https-server-(http_static))  
+[Static http https server](#static-http-https-server)  
 [Tap Device](#tap-device)  
-[Time-range-based MAC-address filter (mactime)](#time-range-based-mac-address-filter-(mactime))  
-[Transmission Control Protocol (TCP)](#transmission-control-protocol-(tcp))  
-[Transport Layer Security (TLS)](#transport-layer-security-(tls))  
-[User Datagram Protocol (UDP)](#user-datagram-protocol-(udp))  
-[VPP Comms Library (VCL)](#vpp-comms-library-(vcl))  
+[Time-range-based MAC-address filter](#time-range-based-mac-address-filter)  
+[Transmission Control Protocol](#transmission-control-protocol)  
+[Transport Layer Security](#transport-layer-security)  
+[User Datagram Protocol](#user-datagram-protocol)  
+[VPP Comms Library](#vpp-comms-library)  
 [Virtio PCI Device](#virtio-pci-device)  
-[Virtual eXtensible LAN (VXLAN)](#virtual-extensible-lan-(vxlan))  
+[Virtual eXtensible LAN](#virtual-extensible-lan)  
 [VxLAN-GPE](#vxlan-gpe)  
-[host-interface Device (AF_PACKET)](#host-interface-device-(af_packet))  
+[host-interface Device AF_PACKET](#host-interface-device-af_packet)  
 [rdma device driver](#rdma-device-driver)  
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v20.01-rc0-996-g5e583b65d
+VPP version: v20.01-rc0-1007-gbbff1439c
 
 ### ACL Based Forwarding
 
-ACL Based Forwarding
+
 
 - Policy Based Routing
 - ACLs match traffic to be forwarded
@@ -101,7 +101,7 @@ Supports: API CLI STATS MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/acl](https://git.fd.io/vpp/tree/src/plugins/acl) 
 ### Address Resolution Protocol
 
-ARP
+An implementation of the Address resolution protocol (ARP) as described in RFC826
 
 - ARP responder
 
@@ -110,7 +110,7 @@ Supports: API CLI MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/arp](https://git.fd.io/vpp/tree/src/vnet/arp) 
 ### Adjacency
 
-Adjacency
+Adjacencies represent the next-hop information required to reach a directly connected neighbour.
 
 - An adjacency represents how to send different traffic types to a peer
 - The principles properties of an adjacency are the interface and rewrite. The rewrite will be prepended to the packet as it is forward through the interface.
@@ -122,9 +122,9 @@ Adjacency
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/adj](https://git.fd.io/vpp/tree/src/vnet/adj) 
-### Bidirectional Forwarding Detection (BFD)
+### Bidirectional Forwarding Detection
 
-Bidirectional Forwarding Detection implementation
+An implementation of Bidirectional Forwarding Detection (BFD).
 
 - BFD protocol implementation
 
@@ -133,7 +133,7 @@ Supports: API CLI STATS MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/bfd](https://git.fd.io/vpp/tree/src/vnet/bfd) 
 ### Bit Indexed Explicit Replication
 
-BIER
+An implementation of Bit Indexed Explicit Replication (BIER)
 
 - Multicast Using Bit Index Explicit Replication (https://tools.ietf.org/html/rfc8279)
 - Encapsulation for Bit Index Explicit Replication (BIER) in MPLS and Non-MPLS Networks (https://tools.ietf.org/html/rfc8296)
@@ -150,10 +150,10 @@ Bonding implementation
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/bonding](https://git.fd.io/vpp/tree/src/vnet/bonding) 
-### Buffer Metadata Change Tracker (mdata)
+### Buffer Metadata Change Tracker
 
-Buffer Metadata Change Tracker
-Uses the before / after graph node main loop performance
+The Buffer Metadata Change Tracker (mdata)
+uses the before / after graph node main loop performance
 callback hooks to snapshoot buffer metadata, then
 compare and summarize results per-node.
 Answers the question "what buffer metadata does a particular
@@ -165,9 +165,9 @@ Zero performance impact until enabled.
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/mdata](https://git.fd.io/vpp/tree/src/plugins/mdata) 
-### Builtin URL support for the static http/https server (builtinurl)
+### Builtin URL support for the static http or https server
 
-Adds a set of URLs to the static http/https server. Current URLs, all of which return data in .json fmt: <root-url>/version.json - vpp version info <root-url>/interface_list.json - list of interfaces <root-url>/interface_stats - single interface via HTTP POST <root-url>/interface_stats - all intfcs via HTTP GET.
+The (builtinurl) plugin adds a set of URLs to the static http/https server. Current URLs, all of which return data in .json fmt: <root-url>/version.json - vpp version info <root-url>/interface_list.json - list of interfaces <root-url>/interface_stats - single interface via HTTP POST <root-url>/interface_stats - all intfcs via HTTP GET.
 
 - Builtin URLs for the static http/https server
 
@@ -176,7 +176,7 @@ Supports: API CLI MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/builtinurl](https://git.fd.io/vpp/tree/src/plugins/builtinurl) 
 ### Data-Plane Objects
 
-DPO
+Data-Plane Objects (DPO)
 
 - A DPO is a generic term (a.k.a abstract base class) for objects that perform [a set of] actions on packets in the data-plane
 - Concrete examples of DPO types are; adjacency, mpls-imposition, replication.
@@ -186,9 +186,9 @@ DPO
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/dpo](https://git.fd.io/vpp/tree/src/vnet/dpo) 
-### Dynamic Host Configuration Protocol (DHCP)
+### Dynamic Host Configuration Protocol
 
-DHCP client
+An implemenation of the Dynamic Host Configuration Protocol (DHCP) client
 
 - DHCP client (v4/v6)
 - DHCPv6 prefix delegation
@@ -197,9 +197,9 @@ DHCP client
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/dhcp](https://git.fd.io/vpp/tree/src/plugins/dhcp) 
-### GTPU
+### GPRS Tunneling Protocol
 
-GPRS Tunnelling Protocol
+An implementation of the GPRS Tunnelling Protocol
 
 - GTPU decapsulation
 - GTPU encapsulation
@@ -209,7 +209,7 @@ Supports: API CLI MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/gtpu](https://git.fd.io/vpp/tree/src/plugins/gtpu) 
 ### Generic Routing Encapsulation
 
-GRE
+An implementation of Generic Routing Encapsulation (GRE)
 
 - L3 tunnels, all combinations of IPv4 and IPv6
 - Encap/Decap flags to control the copying of DSCP, ECN, DF from overlay to underlay and vice-versa.
@@ -224,7 +224,7 @@ Not yet implemented:
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/gre](https://git.fd.io/vpp/tree/src/vnet/gre) 
 ### IP Neighbour Database
 
-IP-neighbor
+
 
 - IP protocol independent Database of Neighbours (aka peers)
 - limits on number of peers, recycling and aging
@@ -234,7 +234,7 @@ Supports: API CLI MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/ip-neighbor](https://git.fd.io/vpp/tree/src/vnet/ip-neighbor) 
 ### IP Security
 
-IPSec
+An implementation of IPSec
 
 - IPSec (https://tools.ietf.org/html/rfc4301)
 - Authetication Header (https://tools.ietf.org/html/rfc4302)
@@ -288,7 +288,7 @@ Not yet implemented:
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/flowprobe](https://git.fd.io/vpp/tree/src/plugins/flowprobe) 
 ### IPSec crypto engine provided by Intel IPSecMB library
 
-IPSecMB crypto-engine
+
 
 - SHA(1, 224, 256, 384, 512)
 - CBC(128, 192, 256)
@@ -299,7 +299,7 @@ Supports: API CLI MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/crypto_ipsecmb](https://git.fd.io/vpp/tree/src/plugins/crypto_ipsecmb) 
 ### IPSec crypto engine provided by Openssl library
 
-openssl crypto-engine
+
 
 - SHA(1, 224, 256, 384, 512)
 - CBC(128, 192, 256)
@@ -313,7 +313,7 @@ Supports: API CLI MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/crypto_openssl](https://git.fd.io/vpp/tree/src/plugins/crypto_openssl) 
 ### IPSec crypto engine provided by native implementation
 
-native crypto-engine
+An implentation of a native crypto-engine
 
 - CBC(128, 192, 256)
 - GCM(128, 192, 256)
@@ -321,11 +321,11 @@ native crypto-engine
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/crypto_ia32](https://git.fd.io/vpp/tree/src/plugins/crypto_ia32) 
-### IPv6 Neeighbour Discovery
+### IPv6 Neighbor Discovery
 
-IPv6-ND
+An implementation of the IPv6 Neighbor discovery protocol as described in RFC4861 and RFC4862.
 
-- Nieghbour discovery.
+- Neighbor discovery.
 - ND Auto address configuration
 - Multicast Listener Discovery - only as host role to send adverts
 - Router Advertisements
@@ -335,32 +335,19 @@ Supports: API CLI MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/ip6-nd](https://git.fd.io/vpp/tree/src/vnet/ip6-nd) 
 ### Internet Group Management Protocol
 
-IGMP
+An implementation of the Internet Group Management Protocol (IGMP)
 
 - IGMPv3 only.
 
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/igmp](https://git.fd.io/vpp/tree/src/plugins/igmp) 
-### LB
-
-Load Balancer
-
-- GRE tunnel mode
-- NAT mode
-- L3DSR mode
-- Consistent Hash
-- Connection Track
-
-Feature maturity level: production  
-Supports: API CLI MULTITHREAD  
-Source Code: [https://git.fd.io/vpp/tree/src/plugins/lb](https://git.fd.io/vpp/tree/src/plugins/lb) 
-### Layer 2 Forwarding (L2)
+### Layer 2 Forwarding
 
 Layer 2 Bridging and Cross-Connect Support
 
-- L2 Cross-connect (xconnect) of two interfaces
-- L2 Bridging of multiple interfaces in a bridge domain (BD)
+- Layer 2 (L2) Cross-connect (xconnect) of two interfaces
+- Layer 2 (L2) Bridging of multiple interfaces in a bridge domain (BD)
   - Forwarding via destination MAC address of packet
   - MAC learning enable/disable on BD or per interface
   - MAC aging with specified aging interval enable/disable
@@ -383,7 +370,7 @@ Supports: API CLI MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/l2](https://git.fd.io/vpp/tree/src/vnet/l2) 
 ### Layer 3 cross connect
 
-L3-xconnect
+
 
 - cross connect all ingress traffic on an L3 interface to an output FIB path.
 - the path can describe any output (with the exception of MPLS labels)
@@ -392,27 +379,40 @@ L3-xconnect
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/l3xc](https://git.fd.io/vpp/tree/src/plugins/l3xc) 
-### Link Aggregation Control Protocol (LACP)
+### Link Aggregation Control Protocol
 
-Link Aggregation Control Protocol implementation
+Link Aggregation Control Protocol implementation (LACP)
 
 - Support LACP version 1 specification including marker protocol
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/lacp](https://git.fd.io/vpp/tree/src/plugins/lacp) 
-### Link Layer Discovery Protocol (LLDP)
+### Link Layer Discovery Protocol
 
-Link Layer Discovery Protocol implementation
+Link Layer Discovery Protocol (LLDP) implementation
 
 - link layer discovery protocol implementation
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/lldp](https://git.fd.io/vpp/tree/src/vnet/lldp) 
-### Locator/ID Separation Protocol (LISP) Control Plane
+### Load Balancer
 
-LISP control plane implementation
+
+
+- GRE tunnel mode
+- NAT mode
+- L3DSR mode
+- Consistent Hash
+- Connection Track
+
+Feature maturity level: production  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/lb](https://git.fd.io/vpp/tree/src/plugins/lb) 
+### Locator ID Separation Protocol Control Plane
+
+Locator ID Separation Protocol control plane (LISP) implementation
 
 - ITR, ETR and RTR mode of operation
 - Multitenancy
@@ -425,9 +425,9 @@ LISP control plane implementation
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/lisp-cp](https://git.fd.io/vpp/tree/src/vnet/lisp-cp) 
-### Locator/ID Separation Protocol Generic Protocol Extension (LISP-GPE)
+### Locator ID Separation Protocol Generic Protocol Extension
 
-LISP-GPE implementation
+Locator ID Separation Protocol Generic Protocol Extension (LISP-GPE) implementation
 
 - ITR, ETR and RTR modes
 - Support for Ethernet, IPv4, IPv6 and NSH EIDs (payloads)
@@ -437,9 +437,9 @@ LISP-GPE implementation
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/lisp-gpe](https://git.fd.io/vpp/tree/src/vnet/lisp-gpe) 
-### Mapping of Address and Port (MAP)
+### Mapping of Address and Port
 
-IPv4 as a service mechanisms. Tunnel or translate an IPv4 address, an IPv4 subnet or a shared IPv4 address. In shared IPv4 address mode, only UDP, TCP and restricted ICMP is supported.
+Mapping of Address and Port (MAP): IPv4 as a service mechanisms. Tunnel or translate an IPv4 address, an IPv4 subnet or a shared IPv4 address. In shared IPv4 address mode, only UDP, TCP and restricted ICMP is supported.
 
 - LW46 BR (RFC7596)
   - Fragmentation and Reassembly
@@ -452,7 +452,7 @@ Supports: API CLI STATS MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/map](https://git.fd.io/vpp/tree/src/plugins/map) 
 ### Multi-Protocol Label Switching
 
-MPLS
+An implementation of Multi-Protocol Label Switching (MPLS)
 
 - Label imposition/disposition - pipe and uniform mode
 - Tunnels - unidirectional
@@ -487,9 +487,9 @@ Not yet implemented:
 - API dump
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/netmap](https://git.fd.io/vpp/tree/src/vnet/devices/netmap) 
-### Network Address Translation (NAT)
+### Network Address Translation
 
-The NAT plugin offers a multiple address translation functions. These can be used in a raft of different scenarios. CPE, CGN, etc.
+The Network Address Translation (NAT) plugin offers a multiple address translation functions. These can be used in a raft of different scenarios. CPE, CGN, etc.
 
 - NAT44
   - 1:1 NAT
@@ -549,7 +549,7 @@ Not yet implemented:
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/pipe](https://git.fd.io/vpp/tree/src/vnet/devices/pipe) 
 ### Quality of Service
 
-QoS
+An implentation of Quality of Service (QoS)
 
 - Record - extract QoS bits from packets headers and write in metadata
 - Mapp - defines simple transform of QoS bits from/to each packet layer
@@ -595,7 +595,7 @@ Supports: API CLI STATS MULTITHREAD
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/session](https://git.fd.io/vpp/tree/src/vnet/session) 
 ### Source VRF Select
 
-Source VRF Select
+
 
 - Determine the input VRF/table based on the source IP address
 - routes are added to tables.
@@ -607,7 +607,7 @@ Source VRF Select
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/svs](https://git.fd.io/vpp/tree/src/plugins/svs) 
-### Static http/https server (http_static)
+### Static http https server
 
 A simple caching static http / https server A built-in vpp host stack application. Supports HTTP GET and HTTP POST methods.
 
@@ -629,7 +629,7 @@ Not yet implemented:
 - API dump filtering by sw_if_index
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/tap](https://git.fd.io/vpp/tree/src/vnet/devices/tap) 
-### Time-range-based MAC-address filter (mactime)
+### Time-range-based MAC-address filter
 
 Device-input/output arc driver level MAC filter. Checks to see if traffic is allowed to/from the given MAC address, and takes the appropriate action. Intended for the home gateway use-case, where WAN traffic is billed per bit.
 
@@ -638,9 +638,9 @@ Device-input/output arc driver level MAC filter. Checks to see if traffic is all
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/mactime](https://git.fd.io/vpp/tree/src/plugins/mactime) 
-### Transmission Control Protocol (TCP)
+### Transmission Control Protocol
 
-High speed and scale TCP implementation
+High speed and scale Transmission Control Protocol (TCP) implementation
 
 - Core functionality (RFC793, RFC5681, RFC6691)
 - Extensions for high performance (RFC7323)
@@ -654,9 +654,9 @@ High speed and scale TCP implementation
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/tcp](https://git.fd.io/vpp/tree/src/vnet/tcp) 
-### Transport Layer Security (TLS)
+### Transport Layer Security
 
-TLS protocol implementation that consists of a set of engines that act as wrappers for existing TLS implementations, e.g., OpenSSL, Picotls and MbedTLS, and a framework that integrates the engines into VPP's host stack
+Transport Layer Security (TLS) protocol implementation that consists of a set of engines that act as wrappers for existing TLS implementations, e.g., OpenSSL, Picotls and MbedTLS, and a framework that integrates the engines into VPP's host stack
 
 - Framework that supports pluggable TLS engines
 - OpenSSL, Picotls and MbedTLS engines
@@ -664,9 +664,9 @@ TLS protocol implementation that consists of a set of engines that act as wrappe
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/tls](https://git.fd.io/vpp/tree/src/vnet/tls) 
-### User Datagram Protocol (UDP)
+### User Datagram Protocol
 
-UDP implementation
+User Datagram Protocol (UDP) implementation
 
 - host stack integration via session layer
 - standalone per port dispatcher for tunneling protocols
@@ -674,9 +674,9 @@ UDP implementation
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/udp](https://git.fd.io/vpp/tree/src/vnet/udp) 
-### VPP Comms Library (VCL)
+### VPP Comms Library
 
-VCL simplifies app interaction with session layer by exposing APIs that are similar to but not POSIX-compliant.
+VPP Comms Library (VCL) simplifies app interaction with session layer by exposing APIs that are similar to but not POSIX-compliant.
 
 - Abstracts vpp host stack sessions to integer session handles
 - Exposes its own async communication functions, i.e., epoll, select, poll
@@ -708,9 +708,9 @@ Not yet implemented:
 - API dump filtering by sw_if_index
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/virtio](https://git.fd.io/vpp/tree/src/vnet/devices/virtio) 
-### Virtual eXtensible LAN (VXLAN)
+### Virtual eXtensible LAN
 
-VXLAN tunnels support L2 overlay networks that span L3 networks
+Virtual eXtensible LAN (VXLAN) tunnels support L2 overlay networks that span L3 networks
 
 - VXLAN tunnel for support of L2 overlay/virtual networks (RFC-7348)
 - Support either IPv4 or IPv6 underlay network VTEPs
@@ -733,7 +733,7 @@ VxLAN-GPE tunnel handling
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/vxlan-gpe](https://git.fd.io/vpp/tree/src/vnet/vxlan-gpe) 
-### host-interface Device (AF_PACKET)
+### host-interface Device AF_PACKET
 
 Create a host interface that will attach to a linux AF_PACKET interface, one side of a veth pair. The veth pair must already exist. Once created, a new host interface will exist in VPP with the name 'host-<ifname>', where '<ifname>' is the name of the specified veth pair. Use the 'show interface' command to display host interface details.
 
