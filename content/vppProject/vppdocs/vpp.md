@@ -1,6 +1,5 @@
 +++
 title = "Vector Packet Processor (VPP)"
-type = "vppdocs"
 summary = "VPP is the core technology behind the FD.io project."
 weight = "1"
 
@@ -16,7 +15,7 @@ btnurl="/docs/vpp/master/index.html"
 
 +++
 
-# VPP Documentation
+## VPP Documentation
 
 For the complete set of VPP dcouments click on the button below and select the
 version needed. 

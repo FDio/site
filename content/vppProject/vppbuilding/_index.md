@@ -1,4 +1,5 @@
 +++
 title = "Building VPP"
-type = "vppdocs"
+subtitle = "Downloading and Building VPP"
+type = "vpp"
 +++
