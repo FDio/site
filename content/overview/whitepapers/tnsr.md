@@ -2,7 +2,7 @@
 title = "TNSR and VPP"
 whitepaperlink = "https://www.tnsr.com/vpp"
 whitepaperbuttontxt = "Visit TNSR"
-date = "2017-12-21"
+date = "2019-11-01"
 +++
 
 For decades, the only way to speed up packet processing - central to all security and

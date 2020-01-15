@@ -1,8 +1,8 @@
 +++
 title = "Yahoo! JAPAN Solutions brief"
-whitepaperlink = "/docs/whitepapers/l4lb.pdf"
+whitepaperlink = "https://www.lfnetworking.org/wp-content/uploads/sites/55/2019/08/FDio_SolutionBrief_YahooJapan_8.13.19.pdf"
 whitepaperbuttontxt = "Read the Brief"
-date = "2017-12-21"
+date = "2019-08-13"
 +++
 
 Yahoo! JAPAN addresses infrastructure scalability
