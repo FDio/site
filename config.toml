@@ -14,7 +14,7 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 2
-    name = "Get Started"
+    name = "Get Started With VPP"
     url = "/vppproject/vpptech"
 
   [[menu.header]]

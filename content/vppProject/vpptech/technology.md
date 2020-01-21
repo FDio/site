@@ -1,14 +1,11 @@
 +++
 title = "Technology"
-bgImage = "img/fdio_bg_tech2.jpg"
-id = "vppdocs"
-
+subtitle = "Technology"
 btntxt="Get Started with VPP"
 btnurl="/vppproject/vppinstalling"
-
 +++
 
-# Vector Packet Processing (VPP)
+## The Technology Behind FD.io
 
 At the heart of FD.io is Vector Packet Processing (VPP).
 
@@ -60,7 +57,7 @@ infrastructure code.
 <br><img src="/img/tech-03.png" width=50%>
 
 <br>
-# Hardware Acceleration
+### Hardware Acceleration
 
 This same graph node architecture also allows FD.io to dynamically take advantage of hardware acceleration
 when available, allowing vendors to continue to innovate in hardware without breaking the “run anywhere”
