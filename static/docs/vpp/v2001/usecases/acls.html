@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Access Control Lists (ACLs) with FD.io VPP &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="VPP inside the Cloud" href="vppcloud.html" />
+    <link rel="prev" title="VPP with VMware/Vmxnet3" href="vmxnet3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="containers.html">VPP with Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Access Control Lists (ACLs) with FD.io VPP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fd-io-vpp-acl-options">FD.io VPP ACL Options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-fd-io-vpp-acl-plugin">The FD.io VPP ACL Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#operational-data">Operational Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#input-stateless">Input/Stateless</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#input-stateful">Input/Stateful</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-stateless">Output/Stateless</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-stateful">Output/Stateful</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#performance">Performance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#input-acls-skx">Input ACLS (SKX)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-acls-hsw">Output ACLs (HSW)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#stateful">Stateful</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stateless">Stateless</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#links">Links</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fd-io-vpp-cop">FD.io VPP COP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#design-notes">Design notes:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Operational Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Links</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fd-io-vpp-flow">FD.io VPP Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#supports">Supports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Design Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Operational Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Performance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fd-io-vpp-classifiers">FD.io VPP Classifiers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Links</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homegateway.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networksim.html">Network Simulator Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Use Cases</a> &raquo;</li>
+        
+      <li>Access Control Lists (ACLs) with FD.io VPP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usecases/acls.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="access-control-lists-acls-with-fd-io-vpp">
+<span id="aclwithvpp"></span><h1>Access Control Lists (ACLs) with FD.io VPP<a class="headerlink" href="#access-control-lists-acls-with-fd-io-vpp" title="Permalink to this headline">¶</a></h1>
+<p>This section is overview of the options available to implement ACLs in
+FD.io VPP. As there are a number of way’s to address ACL-like functionality,
+it is worth a separate survey of these options with some commentary on
+features and performance</p>
+<p>All performance numbers and examples from this document are reused from
+the <a class="reference external" href="https://docs.fd.io/csit/rls1904/report/">FD.io CSIT v19.04 performance report</a>
+All information and performance is accurate for
+<a class="reference external" href="https://git.fd.io/vpp/tag/?h=v19.04">FD.io VPP 19.04</a> release. The
+sections <em>performance</em> &amp; <em>operational data</em> below correlate directly with
+those sections from the FD.io CSIT performance report.</p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 16%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Relative
+Performan
+ce</p></th>
+<th class="head"><p>Features &amp; Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#aclplugin"><span class="std std-ref">The FD.io VPP ACL Plugin</span></a></p></td>
+<td><p>Lowest</p></td>
+<td><p>Match on restricted L2-L4 fields,
+stateful &amp; stateless</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#vppcop"><span class="std std-ref">FD.io VPP COP</span></a></p></td>
+<td><p>Highest
+(software
+only)</p></td>
+<td><p>Match on Layer 3 IPs, stateless</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#vppflow"><span class="std std-ref">FD.io VPP Flow</span></a></p></td>
+<td><p>Highest
+(accelera
+ted)</p></td>
+<td><p>Match on restricted L2-L4 fields,
+stateless, limited number of
+flows</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#classifiers"><span class="std std-ref">FD.io VPP Classifiers</span></a></p></td>
+<td><p>TBD</p></td>
+<td><p>Match on any field in the first
+80 bytes, Not measured</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fd-io-vpp-acl-options">
+<h2>FD.io VPP ACL Options<a class="headerlink" href="#fd-io-vpp-acl-options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-fd-io-vpp-acl-plugin">
+<span id="aclplugin"></span><h3>The FD.io VPP ACL Plugin<a class="headerlink" href="#the-fd-io-vpp-acl-plugin" title="Permalink to this headline">¶</a></h3>
+<p>The plugin was originally developed as part of FD.io VPP and OpenStack
+integration. The plugin needs to be enabled on specific interfaces.</p>
+<div class="section" id="supports-stateful-and-stateless-acls-on">
+<h4>Supports stateful and stateless ACLs on …<a class="headerlink" href="#supports-stateful-and-stateless-acls-on" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>MACs</p></li>
+<li><p>IPS</p></li>
+<li><p>UDP Ports</p></li>
+<li><p>TCP Ports &amp; Flags</p></li>
+<li><p>ICMP Messages</p></li>
+</ul>
+</div>
+<div class="section" id="directional">
+<h4>Directional<a class="headerlink" href="#directional" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Input ACLs</p>
+<ul>
+<li><p>Run before the IP flow classification.</p></li>
+</ul>
+</li>
+<li><p>ACLs</p>
+<ul>
+<li><p>Run before interface output.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="actions">
+<h4>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Permit (sl)</p></li>
+<li><p>Drop (sf)</p></li>
+<li><p>Permit+Reflect (sf)</p></li>
+</ul>
+</div>
+<div class="section" id="stateful-sf">
+<h4>Stateful (sf)<a class="headerlink" href="#stateful-sf" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Actions: permit+reflect</p></li>
+<li><p>Most heavily optimized, as are the most common use case.</p></li>
+<li><p>Faster because stateful uses a flow cache, it means the ACL hit is only taken once, up front for the flow and then becomes just look-up.</p></li>
+<li><p>Uses more memory, less deterministic as the flow cache makes it
+more susceptible to the effects of the memory hierarchy and
+locality.</p></li>
+</ul>
+</div>
+<div class="section" id="stateless-sl">
+<h4>Stateless (sl)<a class="headerlink" href="#stateless-sl" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Actions : permit, drop</p></li>
+<li><p>Less optimized, less common use case.</p></li>
+<li><p>Slower as there is no flow-cache, every new packet incurs the same
+amount ACL processing.</p></li>
+<li><p>Uses less memory, and are more deterministic (compared to
+stateful).</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="operational-data">
+<h2>Operational Data<a class="headerlink" href="#operational-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="input-stateless">
+<h3>Input/Stateless<a class="headerlink" href="#input-stateless" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="test-case-10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-ndrpdr">
+<h4>Test Case: 10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-ndrpdr<a class="headerlink" href="#test-case-10ge2p1x520-ethip4udp-ip4base-iacl1sl-10kflows-ndrpdr" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">DUT1:</span>
+<span class="go">Thread 0 vpp_main (lcore 1)</span>
+<span class="go">Time 3.8, average vectors/node 0.00, last 128 main loops 0.00 per node 0.00</span>
+<span class="go">  vector rates in 0.0000e0, out 0.0000e0, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">             Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go">acl-plugin-fa-cleaner-process   any wait                 0               0              14          1.29e3            0.00</span>
+<span class="go">acl-plugin-fa-worker-cleaner-pinterrupt wa               7               0               0          9.18e2            0.00</span>
+<span class="go">api-rx-from-ring                 active                  0               0              52          8.96e4            0.00</span>
+<span class="go">dpdk-process                    any wait                 0               0               1          1.35e4            0.00</span>
+<span class="go">fib-walk                        any wait                 0               0               2          2.69e3            0.00</span>
+<span class="go">ip6-icmp-neighbor-discovery-ev  any wait                 0               0               4          1.32e3            0.00</span>
+<span class="go">lisp-retry-service              any wait                 0               0               2          2.90e3            0.00</span>
+<span class="go">unix-epoll-input                 polling              7037               0               0          1.25e6            0.00</span>
+<span class="go">vpe-oam-process                 any wait                 0               0               2          2.28e3            0.00</span>
+
+<span class="go">Thread 1 vpp_wk_0 (lcore 2)</span>
+<span class="go">Time 3.8, average vectors/node 249.02, last 128 main loops 32.00 per node 273.07</span>
+<span class="go">  vector rates in 6.1118e6, out 6.1118e6, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">             Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go">TenGigabitEtherneta/0/0-output   active              47106        11721472               0          9.47e0          248.83</span>
+<span class="go">TenGigabitEtherneta/0/0-tx       active              47106        11721472               0          4.22e1          248.83</span>
+<span class="go">TenGigabitEtherneta/0/1-output   active              47106        11721472               0          1.02e1          248.83</span>
+<span class="go">TenGigabitEtherneta/0/1-tx       active              47106        11721472               0          4.18e1          248.83</span>
+<span class="go">acl-plugin-fa-worker-cleaner-pinterrupt wa               7               0               0          1.39e3            0.00</span>
+<span class="go">acl-plugin-in-ip4-fa             active              94107        23442944               0          1.75e2          249.11</span>
+<span class="go">dpdk-input                       polling             47106        23442944               0          4.64e1          497.66</span>
+<span class="go">ethernet-input                   active              94212        23442944               0          1.55e1          248.83</span>
+<span class="go">ip4-input-no-checksum            active              94107        23442944               0          3.23e1          249.11</span>
+<span class="go">ip4-lookup                       active              94107        23442944               0          2.91e1          249.11</span>
+<span class="go">ip4-rewrite                      active              94107        23442944               0          2.48e1          249.11</span>
+<span class="go">unix-epoll-input                 polling                46               0               0          1.54e3            0.00</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="input-stateful">
+<h3>Input/Stateful<a class="headerlink" href="#input-stateful" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="test-case-64b-1t1c-ethip4udp-ip4base-iacl1sf-10kflows-ndrpdr">
+<h4>Test Case: 64b-1t1c-ethip4udp-ip4base-iacl1sf-10kflows-ndrpdr<a class="headerlink" href="#test-case-64b-1t1c-ethip4udp-ip4base-iacl1sf-10kflows-ndrpdr" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">DUT1:</span>
+<span class="go">Thread 0 vpp_main (lcore 1)</span>
+<span class="go">Time 3.9, average vectors/node 0.00, last 128 main loops 0.00 per node 0.00</span>
+<span class="go">  vector rates in 0.0000e0, out 0.0000e0, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">             Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go">acl-plugin-fa-cleaner-process   any wait                 0               0              16          1.40e3            0.00</span>
+<span class="go">acl-plugin-fa-worker-cleaner-pinterrupt wa               8               0               0          8.97e2            0.00</span>
+<span class="go">api-rx-from-ring                 active                  0               0              52          7.12e4            0.00</span>
+<span class="go">dpdk-process                    any wait                 0               0               1          1.69e4            0.00</span>
+<span class="go">fib-walk                        any wait                 0               0               2          2.55e3            0.00</span>
+<span class="go">ip4-reassembly-expire-walk      any wait                 0               0               1          1.27e4            0.00</span>
+<span class="go">ip6-icmp-neighbor-discovery-ev  any wait                 0               0               4          1.09e3            0.00</span>
+<span class="go">ip6-reassembly-expire-walk      any wait                 0               0               1          2.57e3            0.00</span>
+<span class="go">lisp-retry-service              any wait                 0               0               2          1.18e4            0.00</span>
+<span class="go">statseg-collector-process       time wait                0               0               1          6.38e3            0.00</span>
+<span class="go">unix-epoll-input                 polling              6320               0               0          1.41e6            0.00</span>
+<span class="go">vpe-oam-process                 any wait                 0               0               2          7.53e3            0.00</span>
+
+<span class="go">Thread 1 vpp_wk_0 (lcore 2)</span>
+<span class="go">Time 3.9, average vectors/node 252.74, last 128 main loops 32.00 per node 273.07</span>
+<span class="go">  vector rates in 7.5833e6, out 7.5833e6, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">             Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go">TenGigabitEtherneta/0/0-output   active              58325        14738944               0          9.41e0          252.70</span>
+<span class="go">TenGigabitEtherneta/0/0-tx       active              58325        14738944               0          4.32e1          252.70</span>
+<span class="go">TenGigabitEtherneta/0/1-output   active              58323        14738944               0          1.02e1          252.71</span>
+<span class="go">TenGigabitEtherneta/0/1-tx       active              58323        14738944               0          4.31e1          252.71</span>
+<span class="go">acl-plugin-fa-worker-cleaner-pinterrupt wa               8               0               0          1.62e3            0.00</span>
+<span class="go">acl-plugin-in-ip4-fa             active             116628        29477888               0          1.01e2          252.75</span>
+<span class="go">dpdk-input                       polling             58325        29477888               0          4.63e1          505.41</span>
+<span class="go">ethernet-input                   active             116648        29477888               0          1.53e1          252.71</span>
+<span class="go">ip4-input-no-checksum            active             116628        29477888               0          3.21e1          252.75</span>
+<span class="go">ip4-lookup                       active             116628        29477888               0          2.90e1          252.75</span>
+<span class="go">ip4-rewrite                      active             116628        29477888               0          2.48e1          252.75</span>
+<span class="go">unix-epoll-input                 polling                57               0               0          2.39e3            0.00</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="output-stateless">
+<h3>Output/Stateless<a class="headerlink" href="#output-stateless" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="test-case-64b-1t1c-ethip4udp-ip4base-oacl10sl-10kflows-ndrpdr">
+<h4>Test Case: 64b-1t1c-ethip4udp-ip4base-oacl10sl-10kflows-ndrpdr<a class="headerlink" href="#test-case-64b-1t1c-ethip4udp-ip4base-oacl10sl-10kflows-ndrpdr" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">DUT1:</span>
+<span class="go"> Thread 0 vpp_main (lcore 1)</span>
+<span class="go"> Time 3.8, average vectors/node 0.00, last 128 main loops 0.00 per node 0.00</span>
+<span class="go">   vector rates in 0.0000e0, out 0.0000e0, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">              Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go"> acl-plugin-fa-cleaner-process   any wait                 0               0              14          1.43e3            0.00</span>
+<span class="go"> acl-plugin-fa-worker-cleaner-pinterrupt wa               7               0               0          9.23e2            0.00</span>
+<span class="go"> api-rx-from-ring                 active                  0               0              52          8.01e4            0.00</span>
+<span class="go"> dpdk-process                    any wait                 0               0               1          1.59e6            0.00</span>
+<span class="go"> fib-walk                        any wait                 0               0               2          6.81e3            0.00</span>
+<span class="go"> ip6-icmp-neighbor-discovery-ev  any wait                 0               0               4          2.81e3            0.00</span>
+<span class="go"> lisp-retry-service              any wait                 0               0               2          3.64e3            0.00</span>
+<span class="go"> unix-epoll-input                 polling              4842               0               0          1.81e6            0.00</span>
+<span class="go"> vpe-oam-process                 any wait                 0               0               1          2.24e4            0.00</span>
+
+<span class="go"> Thread 1 vpp_wk_0 (lcore 2)</span>
+<span class="go"> Time 3.8, average vectors/node 249.29, last 128 main loops 36.00 per node 271.06</span>
+<span class="go">   vector rates in 5.9196e6, out 5.9196e6, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">              Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go"> TenGigabitEtherneta/0/0-output   active              45595        11363584               0          9.22e0          249.23</span>
+<span class="go"> TenGigabitEtherneta/0/0-tx       active              45595        11363584               0          4.25e1          249.23</span>
+<span class="go"> TenGigabitEtherneta/0/1-output   active              45594        11363584               0          9.75e0          249.23</span>
+<span class="go"> TenGigabitEtherneta/0/1-tx       active              45594        11363584               0          4.21e1          249.23</span>
+<span class="go"> acl-plugin-fa-worker-cleaner-pinterrupt wa               7               0               0          1.28e3            0.00</span>
+<span class="go"> acl-plugin-out-ip4-fa            active              91155        22727168               0          1.78e2          249.32</span>
+<span class="go"> dpdk-input                       polling             45595        22727168               0          4.64e1          498.46</span>
+<span class="go"> ethernet-input                   active              91189        22727168               0          1.56e1          249.23</span>
+<span class="go"> interface-output                 active              91155        22727168               0          1.13e1          249.32</span>
+<span class="go"> ip4-input-no-checksum            active              91155        22727168               0          1.95e1          249.32</span>
+<span class="go"> ip4-lookup                       active              91155        22727168               0          2.88e1          249.32</span>
+<span class="go"> ip4-rewrite                      active              91155        22727168               0          3.53e1          249.32</span>
+<span class="go"> unix-epoll-input                 polling                44               0               0          1.53e3            0.00</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="output-stateful">
+<h3>Output/Stateful<a class="headerlink" href="#output-stateful" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="test-case-64b-1t1c-ethip4udp-ip4base-oacl10sf-10kflows-ndrpdr">
+<h4>Test Case: 64b-1t1c-ethip4udp-ip4base-oacl10sf-10kflows-ndrpdr<a class="headerlink" href="#test-case-64b-1t1c-ethip4udp-ip4base-oacl10sf-10kflows-ndrpdr" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">DUT1:</span>
+<span class="go"> Thread 0 vpp_main (lcore 1)</span>
+<span class="go"> Time 3.8, average vectors/node 0.00, last 128 main loops 0.00 per node 0.00</span>
+<span class="go">   vector rates in 0.0000e0, out 0.0000e0, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">              Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go"> acl-plugin-fa-cleaner-process   any wait                 0               0              16          1.47e3            0.00</span>
+<span class="go"> acl-plugin-fa-worker-cleaner-pinterrupt wa               8               0               0          8.51e2            0.00</span>
+<span class="go"> api-rx-from-ring                 active                  0               0              50          7.24e4            0.00</span>
+<span class="go"> dpdk-process                    any wait                 0               0               2          1.93e4            0.00</span>
+<span class="go"> fib-walk                        any wait                 0               0               2          2.02e3            0.00</span>
+<span class="go"> ip4-reassembly-expire-walk      any wait                 0               0               1          3.96e3            0.00</span>
+<span class="go"> ip6-icmp-neighbor-discovery-ev  any wait                 0               0               4          9.84e2            0.00</span>
+<span class="go"> ip6-reassembly-expire-walk      any wait                 0               0               1          3.76e3            0.00</span>
+<span class="go"> lisp-retry-service              any wait                 0               0               2          1.49e4            0.00</span>
+<span class="go"> statseg-collector-process       time wait                0               0               1          4.98e3            0.00</span>
+<span class="go"> unix-epoll-input                 polling              5653               0               0          1.55e6            0.00</span>
+<span class="go"> vpe-oam-process                 any wait                 0               0               2          1.90e3            0.00</span>
+
+<span class="go"> Thread 1 vpp_wk_0 (lcore 2)</span>
+<span class="go"> Time 3.8, average vectors/node 250.85, last 128 main loops 36.00 per node 271.06</span>
+<span class="go">   vector rates in 7.2686e6, out 7.2686e6, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">              Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go"> TenGigabitEtherneta/0/0-output   active              55639        13930752               0          9.33e0          250.38</span>
+<span class="go"> TenGigabitEtherneta/0/0-tx       active              55639        13930752               0          4.27e1          250.38</span>
+<span class="go"> TenGigabitEtherneta/0/1-output   active              55636        13930758               0          9.81e0          250.39</span>
+<span class="go"> TenGigabitEtherneta/0/1-tx       active              55636        13930758               0          4.33e1          250.39</span>
+<span class="go"> acl-plugin-fa-worker-cleaner-pinterrupt wa               8               0               0          1.62e3            0.00</span>
+<span class="go"> acl-plugin-out-ip4-fa            active             110988        27861510               0          1.04e2          251.03</span>
+<span class="go"> dpdk-input                       polling             55639        27861510               0          4.62e1          500.76</span>
+<span class="go"> ethernet-input                   active             111275        27861510               0          1.55e1          250.38</span>
+<span class="go"> interface-output                 active             110988        27861510               0          1.21e1          251.03</span>
+<span class="go"> ip4-input-no-checksum            active             110988        27861510               0          1.95e1          251.03</span>
+<span class="go"> ip4-lookup                       active             110988        27861510               0          2.89e1          251.03</span>
+<span class="go"> ip4-rewrite                      active             110988        27861510               0          3.55e1          251.03</span>
+<span class="go"> unix-epoll-input                 polling                54               0               0          2.43e3            0.00</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 60%" />
+<col style="width: 11%" />
+<col style="width: 29%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Test Case</p></td>
+<td><p>MPPS</p></td>
+<td><p>Cycles per packet</p></td>
+</tr>
+<tr class="row-even"><td><p>ethip4-ip4base</p></td>
+<td><p>18.26</p></td>
+<td><p>136</p></td>
+</tr>
+<tr class="row-odd"><td><p>ethip4ip4udp-ip4base-iacl1sl-10kflows</p></td>
+<td><p>9.134</p></td>
+<td><p>273</p></td>
+</tr>
+<tr class="row-even"><td><p>ethip4ip4udp-ip4base-iacl1sf-10kflows</p></td>
+<td><p>11.06</p></td>
+<td><p>226</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="input-acls-skx">
+<h3>Input ACLS (SKX)<a class="headerlink" href="#input-acls-skx" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default">
+<img alt="../_images/ip4-2n-iacl.png" src="../_images/ip4-2n-iacl.png" />
+</div>
+</div>
+<div class="section" id="output-acls-hsw">
+<h3>Output ACLs (HSW)<a class="headerlink" href="#output-acls-hsw" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default">
+<img alt="../_images/ip4-3n-oacl.png" src="../_images/ip4-3n-oacl.png" />
+</div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="stateful">
+<h3>Stateful<a class="headerlink" href="#stateful" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl ip_add_del_route <span class="m">20</span>.20.20.0/24 via <span class="m">1</span>.1.1.2  sw_if_index <span class="m">1</span> resolve-attempts <span class="m">10</span> count <span class="m">1</span>
+<span class="gp">$</span> sudo vppctl acl_add_replace  ipv4 permit src <span class="m">30</span>.30.30.1/32 dst <span class="m">40</span>.40.40.1/32 sport <span class="m">1000</span> dport <span class="m">1000</span>, ipv4 permit+reflect src <span class="m">10</span>.10.10.0/24, ipv4 permit+reflect src <span class="m">20</span>.20.20.0/24
+<span class="gp">$</span> sudo vppctl acl_interface_set_acl_list sw_if_index <span class="m">2</span> input <span class="m">0</span>
+<span class="gp">$</span> sudo vppctl acl_interface_set_acl_list sw_if_index <span class="m">1</span> input <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stateless">
+<h3>Stateless<a class="headerlink" href="#stateless" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl ip_add_del_route <span class="m">20</span>.20.20.0/24 via <span class="m">1</span>.1.1.2  sw_if_index <span class="m">1</span> resolve-attempts <span class="m">10</span> count <span class="m">1</span>
+<span class="gp">$</span> sudo vppctl acl_add_replace  ipv4 permit src <span class="m">30</span>.30.30.1/32 dst <span class="m">40</span>.40.40.1/32 sport <span class="m">1000</span> dport <span class="m">1000</span>, ipv4 permit src <span class="m">10</span>.10.10.0/24, ipv4 permit src <span class="m">20</span>.20.20.0/24
+<span class="gp">$</span> sudo vppctl acl_interface_set_acl_list sw_if_index <span class="m">2</span> input <span class="m">0</span>
+<span class="gp">$</span> sudo vppctl acl_interface_set_acl_list sw_if_index <span class="m">1</span> input <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="links">
+<h3>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.fd.io/view/VPP/SecurityGroups">FD.io Security Groups overview</a></p></li>
+<li><p><a class="reference external" href="https://packetlife.net/blog/2008/nov/25/reflexive-access-lists/">Reflexive Access Control Lists</a></p></li>
+<li><p><a class="reference external" href="http://stdio.be/blog/2017-12-09-Debugging-VPP-MACIP-ACLs/">Andrew Yuort’s Blog on ACLs</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="fd-io-vpp-cop">
+<span id="vppcop"></span><h2>FD.io VPP COP<a class="headerlink" href="#fd-io-vpp-cop" title="Permalink to this headline">¶</a></h2>
+<p>IPv4/IPv6 white-lists using the FD.io VPP FIB, with support for multiple
+nested white-lists.</p>
+<div class="section" id="design-notes">
+<h3>Design notes:<a class="headerlink" href="#design-notes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The cop graph nodes (input &amp; white-list) make reuse of the FD.io VPP in FIB 2.0 implementation. Essentially
+a successful lookup in the FIB, indicates that a packet has been white-listed and may be forwarded.</p></li>
+<li><p>cop-input: Determines if the frame is IPv4 or IPv6, and forwards to ipN-copwhitelist graph node.</p></li>
+<li><p>ipN-copwhitelist: uses the ip4_fib_[mtrie,lookup] functions to confirm the packet’s ip matches a route in the white-list fib.</p></li>
+<li><p>Match: if it matches, it is then either sent to the next whitelist or to the ip layer.</p></li>
+<li><p>No Match: if it there is not match, it is sent to error-drop.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Operational Data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Note: the double-pass of the ip4-lookup and ip4-rewrite.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">DUT1:</span>
+<span class="go"> Thread 0 vpp_main (lcore 1)</span>
+<span class="go"> Time 3.9, average vectors/node 0.00, last 128 main loops 0.00 per node 0.00</span>
+<span class="go">   vector rates in 0.0000e0, out 0.0000e0, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">              Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go"> api-rx-from-ring                 active                  0               0              53          4.20e4            0.00</span>
+<span class="go"> dpdk-process                    any wait                 0               0               1          1.75e4            0.00</span>
+<span class="go"> fib-walk                        any wait                 0               0               2          1.59e3            0.00</span>
+<span class="go"> ip4-reassembly-expire-walk      any wait                 0               0               1          2.20e3            0.00</span>
+<span class="go"> ip6-icmp-neighbor-discovery-ev  any wait                 0               0               4          1.14e3            0.00</span>
+<span class="go"> ip6-reassembly-expire-walk      any wait                 0               0               1          1.50e3            0.00</span>
+<span class="go"> lisp-retry-service              any wait                 0               0               2          2.19e3            0.00</span>
+<span class="go"> statseg-collector-process       time wait                0               0               1          2.48e3            0.00</span>
+<span class="go"> unix-epoll-input                 polling              2800               0               0          3.15e6            0.00</span>
+<span class="go"> vpe-oam-process                 any wait                 0               0               2          7.00e2            0.00</span>
+
+<span class="go"> Thread 1 vpp_wk_0 (lcore 2)</span>
+<span class="go"> Time 3.9, average vectors/node 220.84, last 128 main loops 20.87 per node 190.86</span>
+<span class="go">   vector rates in 1.0724e7, out 1.0724e7, drop 0.0000e0, punt 0.0000e0</span>
+<span class="go">              Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call</span>
+<span class="go"> TenGigabitEtherneta/0/0-output   active              94960        20698112               0          1.03e1          217.97</span>
+<span class="go"> TenGigabitEtherneta/0/0-tx       active              94960        20698112               0          3.97e1          217.97</span>
+<span class="go"> TenGigabitEtherneta/0/1-output   active              92238        20698112               0          9.92e0          224.39</span>
+<span class="go"> TenGigabitEtherneta/0/1-tx       active              92238        20698112               0          4.26e1          224.39</span>
+<span class="go"> cop-input                        active              94960        20698112               0          1.98e1          217.97</span>
+<span class="go"> dpdk-input                       polling             95154        41396224               0          4.58e1          435.04</span>
+<span class="go"> ethernet-input                   active              92238        20698112               0          1.59e1          224.39</span>
+<span class="go"> ip4-cop-whitelist                active              94960        20698112               0          3.24e1          217.97</span>
+<span class="go"> ip4-input                        active              94960        20698112               0          3.13e1          217.97</span>
+<span class="go"> ip4-input-no-checksum            active              92238        20698112               0          2.23e1          224.39</span>
+<span class="go"> ip4-lookup                       active             187198        41396224               0          3.08e1          221.14</span>
+<span class="go"> ip4-rewrite                      active             187198        41396224               0          2.47e1          221.14</span>
+<span class="go"> unix-epoll-input                 polling                93               0               0          1.35e3            0.00</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Performance<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 54%" />
+<col style="width: 12%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Test Case</p></td>
+<td><p>MPPS</p></td>
+<td><p>Cycles per packet</p></td>
+</tr>
+<tr class="row-even"><td><p>ethip4-ip4base</p></td>
+<td><p>18.81</p></td>
+<td><p>132</p></td>
+</tr>
+<tr class="row-odd"><td><p>ethip4-ip4base-copwhtlistbase</p></td>
+<td><p>15.12</p></td>
+<td><p>165</p></td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-default">
+<img alt="../_images/ip4-acl-features-ndr.png" src="../_images/ip4-acl-features-ndr.png" />
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Configuration<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Note: a new VRF 1 is created which holds the whitelist, which then
+applied to the interface 1.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl ip_add_del_route <span class="m">10</span>.10.10.0/24 via <span class="m">1</span>.1.1.1  sw_if_index <span class="m">2</span> resolve-attempts <span class="m">10</span> count <span class="m">1</span>
+<span class="gp">$</span> sudo vppctl ip_table_add_del table <span class="m">1</span>
+<span class="gp">$</span> sudo vppctl ip_add_del_route <span class="m">20</span>.20.20.0/24  vrf <span class="m">1</span>  resolve-attempts <span class="m">10</span> count <span class="m">1</span>    <span class="nb">local</span>
+<span class="gp">$</span> sudo vppctl cop_whitelist_enable_disable sw_if_index <span class="m">1</span> ip4 fib-id <span class="m">1</span>
+<span class="gp">$</span> sudo vppctl cop_interface_enable_disable sw_if_index <span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Links<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.fd.io/images/7/71/FIB_2.0_-_Hierarchical,_Protocol_Independent..pdf">FIB 2.0: Hierarchical, Protocol Independent.</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="fd-io-vpp-flow">
+<span id="vppflow"></span><h2>FD.io VPP Flow<a class="headerlink" href="#fd-io-vpp-flow" title="Permalink to this headline">¶</a></h2>
+<p>FD.io VPP Flow adds the ability for FD.io VPP to support matching of
+flows and taking an associated action. This information is then used to
+program hardware accelerations such as those available on network cards,
+e.g. Intel® Ethernet Flow Director technology on the Intel® Ethernet
+Controller X710/XXV710/XL710.</p>
+<div class="section" id="supports">
+<h3>Supports<a class="headerlink" href="#supports" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h4>Actions<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Count: don’t now what this does, presume it count’s matches.</p></li>
+<li><p>Mark: Associate a matched flow with arbitrary data such as vxlan tunnel, for a lookup in the redirect graph node.</p></li>
+<li><p>Buffer Advance: Can be used advance to an encapsulated ethernet or ip header.</p></li>
+<li><p>Redirect to node: When you see a packet from flow xyz, the next node in FD.io VPP is the indicated graph node.</p></li>
+<li><p>Redirect to queue: When you see a packet from flow xyz, is to redirect to rx queue n.</p></li>
+<li><p>Drop: When you see a packet from flow xyz, drop the packet (next node is error drop).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Design Notes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Currently the only place in FD.io VPP that this is used, is to accelerate VXLAN bypassing the Ethernet and IP Layers.</p></li>
+<li><p>Flow uses DPDK rte_flow API under the hood for those network interfaces programmed through DPDK.</p></li>
+<li><p>Redirect to node: worth remember that if you are bypassing a graph, you are bypassing all the checks in the graph node, e.e time-to-live, crcs and the like.</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>Operational Data<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>FD.io CSIT numbers for VXLan do not use FD.io Flow support.</p>
+</div>
+<div class="section" id="id8">
+<h3>Performance<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>FD.io CSIT numbers for VXLan do not use FD.io Flow support.</p>
+</div>
+<div class="section" id="id9">
+<h3>Configuration<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://git.fd.io/vpp/tree/src/vnet/flow/flow.h">Flow API</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="fd-io-vpp-classifiers">
+<span id="classifiers"></span><h2>FD.io VPP Classifiers<a class="headerlink" href="#fd-io-vpp-classifiers" title="Permalink to this headline">¶</a></h2>
+<p>The most flexible form of ACLs in FD.io VPP enable the user to match anywhere in the first
+80 bytes of the packet header.</p>
+<div class="section" id="id10">
+<h3>Configuration<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Match an IPv6….</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl classify table mask l3 ip6 dst buckets <span class="m">64</span>
+<span class="gp">$</span> sudo vppctl classify session hit-next <span class="m">0</span> table-index <span class="m">0</span> match l3 ip6 dst <span class="m">2001</span>:db8:1::2 opaque-index <span class="m">42</span>
+<span class="gp">$</span> sudo vppctl <span class="nb">set</span> interface l2 input classify intfc host-s0_s1 ip6-table <span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>Links<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.fd.io/view/VPP/SecurityGroups#Existing_functionality">Overview of classifiers</a></p></li>
+<li><p><a class="reference external" href="https://wiki.fd.io/view/VPP/Introduction_To_N-tuple_Classifiers">FD.io VPP Classifiers Overview</a></p></li>
+<li><p><a class="reference external" href="https://docs.fd.io/vpp/19.04/clicmd_src_vnet_classify.html">FD.io VPP Classifiers CLI</a></p></li>
+<li><p><a class="reference external" href="http://stdio.be/vpp/t/aytest-bridge-tap-py.txt">Sample Code from Andrew Yourt</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vppcloud.html" class="btn btn-neutral float-right" title="VPP inside the Cloud" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vmxnet3.html" class="btn btn-neutral float-left" title="VPP with VMware/Vmxnet3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

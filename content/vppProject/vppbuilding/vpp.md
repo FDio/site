@@ -4,13 +4,13 @@ title = "The Vector Packet Processor (VPP)"
 summary = "VPP is the core technology behind the FD.io project."
 
 btntxt="Developing with VPP "
-btnurl="/docs/vpp/master/gettingstarted/developers"
+####btnurl="/docs/vpp/master/gettingstarted/developers"
 
 # The first part of these strings are displayed in the dropdown.
 # The second is the url
-####latest = "Latest Release (1904), https://fdio-sandbox.netlify.com/docs/vpp/v1904/gettingstarted/developers"
-####versions = ["Master, /docs/vpp/master/gettingstarted/developers",
-####	 "1901, https://fdio-sandbox.netlify.com/docs/vpp/v1901/gettingstarted/developers"]
+latest = "Latest Release (20.01), /docs/vpp/v2001/gettingstarted/developers"
+versions = ["Master, /docs/vpp/master/gettingstarted/developers",
+	 "version 20.01, /docs/vpp/v2001/gettingstarted/developers"]
 
 +++
 

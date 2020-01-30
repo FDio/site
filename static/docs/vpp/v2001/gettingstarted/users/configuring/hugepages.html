@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Huge Pages &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="VPP Configuration - CLI and ‘startup.conf’" href="startup.html" />
+    <link rel="prev" title="Configuring VPP" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Users</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Configuring VPP</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Huge Pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="startup.html">VPP Configuration - CLI and ‘startup.conf’</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../running/index.html">Running VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../developers/index.html">For Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Users</a> &raquo;</li>
+        
+          <li><a href="index.html">Configuring VPP</a> &raquo;</li>
+        
+      <li>Huge Pages</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/users/configuring/hugepages.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="huge-pages">
+<span id="hugepages"></span><h1>Huge Pages<a class="headerlink" href="#huge-pages" title="Permalink to this headline">¶</a></h1>
+<p>VPP requires <em>hugepages</em> to run during VPP operation, to manage large pages of memory.
+During VPP installation, VPP will overwrite the existing hugepage settings.
+By default, VPP sets the number of hugepages on a system to 1024 2M hugepages.
+This is the number of hugepages on the system, not just used by VPP.</p>
+<p>When VPP is installed, the following configuration file is copied to the system. The
+hugepage settings are applied in the VPP installation and on system reboots. To set
+the hugepage settings, perform the following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat /etc/sysctl.d/80-vpp.conf
+<span class="gp">#</span> Number of 2MB hugepages desired
+<span class="go">vm.nr_hugepages=1024</span>
+
+<span class="gp">#</span> Must be greater than or equal to <span class="o">(</span><span class="m">2</span> * vm.nr_hugepages<span class="o">)</span>.
+<span class="go">vm.max_map_count=3096</span>
+
+<span class="gp">#</span> All groups allowed to access hugepages
+<span class="go">vm.hugetlb_shm_group=0</span>
+
+<span class="gp">#</span> Shared Memory Max must be greater or equal to the total size of hugepages.
+<span class="gp">#</span> For 2MB pages, <span class="nv">TotalHugepageSize</span> <span class="o">=</span> vm.nr_hugepages * <span class="m">2</span> * <span class="m">1024</span> * <span class="m">1024</span>
+<span class="gp">#</span> If the existing kernel.shmmax setting  <span class="o">(</span>cat /sys/proc/kernel/shmmax<span class="o">)</span>
+<span class="gp">#</span> is greater than the calculated TotalHugepageSize <span class="k">then</span> <span class="nb">set</span> this parameter
+<span class="gp">#</span> to current shmmax value.
+<span class="go">kernel.shmmax=2147483648</span>
+</pre></div>
+</div>
+<p>Depending on how the system is being used, this configuration file can be updated to adjust
+the number of hugepages reserved on a system. Below are some examples of
+possible settings.</p>
+<p>For a small VM with minimal workload:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vm.nr_hugepages=512</span>
+<span class="go">vm.max_map_count=2048</span>
+<span class="go">kernel.shmmax=1073741824</span>
+</pre></div>
+</div>
+<p>For a large system running multiple VMs, each needing its own set of hugepages:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vm.nr_hugepages=32768</span>
+<span class="go">vm.max_map_count=66560</span>
+<span class="go">kernel.shmmax=68719476736</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If VPP is being run in a Virtual Machine (VM), the VM must have hugepage
+backing. When VPP is installed, it will attempt to overwrite existing the
+hugepage setting. If the VM does not have hugepage backing, the install will fail,
+but the failure may go unnoticed. When the VM is rebooted, on system startup,
+<em>‘vm.nr_hugepages’</em> will be reapplied, and will fail, and the VM will abort kernel
+boot, locking up the VM. To avoid this scenario, ensure the VM has enough
+hugepage backing.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="startup.html" class="btn btn-neutral float-right" title="VPP Configuration - CLI and ‘startup.conf’" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Configuring VPP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
