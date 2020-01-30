@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MPLS FIB &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="IP Multicast FIB" href="multicast.html" />
+    <link rel="prev" title="Tunnels" href="tunnels.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thedatamodel.html">The Data Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">MPLS FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scale.html#ip4-heap">IP4 Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scale.html#ip6-heap">IP6 Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Developers</a> &raquo;</li>
+        
+          <li><a href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a> &raquo;</li>
+        
+      <li>MPLS FIB</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/developers/fib20/mplsfib.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mpls-fib">
+<span id="mplsfib"></span><h1>MPLS FIB<a class="headerlink" href="#mpls-fib" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The MPLS FIB is implemented using exactly the same data structures as
+the IP FIB.  The only difference is the implementation of the
+table. Whereas for IPv4 this is an mtrie and for IPv6 a hash table,
+for MPLS it is a flat array indexed by a 21 bit key (label &amp; EOS
+bit). This implementation is chosen to favour packet forwarding speed.</p>
+</div>
+<div class="section" id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<p>MPLS is not enabled by default. There are two steps to get
+started. First, create the default MPLS FIB:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mpls table add <span class="m">0</span>
+</pre></div>
+</div>
+<p>With ‘0’ being the magic number for the ‘default’ table (just like it
+is for IPv[46]). One can create other MPLS tables, but, unlike IP
+tables, one cannot ‘bind’ non-default MPLS tables to interfaces, in
+other words all MPLS packets received on an interface will always
+result in a lookup in the default table. One has to be more inventive
+to use the non-default tables…</p>
+<p>Secondly, for <em>each</em> interface on which you wish to <em>receive</em> MPLS
+packets, that interface must be MPLS ‘enabled’</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">set</span> interface mpls GigEthernet0/0/0 <span class="nb">enable</span>
+</pre></div>
+</div>
+<p>there is no equivalent enable for transmit, all that is required is to
+use an interface as an egress path.</p>
+<p>Entries in the MPLS FIB can be displayed with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sh mpls fib <span class="o">[</span>table X<span class="o">]</span> <span class="o">[</span>label<span class="o">]</span>
+</pre></div>
+</div>
+<p>There is a tight coupling between IP and MPLS forwarding. MPLS
+forwarding equivalence classes (FECs) are often an IP prefix – that is
+to say that traffic matching a given IP prefix is routed into a MPLS
+label switch path (LSP). It is thus necessary to be able to associated
+a given prefix/route with an [out-going] MPLS label that will be
+imposed when the packet is forwarded. This is configured as:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip route add <span class="m">1</span>.1.1.1/32 via <span class="m">10</span>.10.10.10 GigEthernet0/0/0 out-labels <span class="m">33</span>
+</pre></div>
+</div>
+<p>packets matching 1.1.1.1/32 will be forwarded out GigEthernet0/0/0 and have
+MPLS label 33 imposed. More than one out-going label can be
+specified. Out-going MPLS labels can be applied to recursive and
+non-recursive routes, e.g;</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip route add <span class="m">2</span>.2.2.0/24 via <span class="m">1</span>.1.1.1 out-labels <span class="m">34</span>
+</pre></div>
+</div>
+<p>packets matching 2.2.2.0/24 will thus have two MPLS labels imposed; 34
+and 33. This is the realisation of, e,g, an MPLS BGP VPNv4.</p>
+<p>To associate/allocate a local-label for a prefix, and thus have
+packets to that local-label forwarded equivalently to the prefix do;</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mpls local-label <span class="m">99</span> <span class="m">2</span>.2.2.0/24
+</pre></div>
+</div>
+<p>In the API this action is called a ‘bind’.
+The router receiving the MPLS encapsulated packets needs to be
+programmed with actions associated which each label value – this is
+the role of the MPLS FIB. The MPLS FIB Is a table, whose key is the
+MPLS label value and end-of-stack (EOS) bit, which stores the action
+to perform on packets with matching encapsulation. Currently supported
+actions are:</p>
+<ol class="arabic simple">
+<li><p>Pop the label and perform an IPv[46] lookup in a specified table</p></li>
+<li><p>Pop the label and forward via a specified next-hop (this is penultimate-hop-pop, PHP)</p></li>
+<li><p>Swap the label and forward via a specified next-hop.</p></li>
+</ol>
+<p>These can be programmed respectively by:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mpls local-label <span class="m">33</span> eos ip4-lookup-in-table X
+<span class="gp">$</span> mpls local-label <span class="m">33</span> <span class="o">[</span>eos<span class="o">]</span> via <span class="m">10</span>.10.10.10 GigEthernet0/0/0
+<span class="gp">$</span> mpls local-label <span class="m">33</span> <span class="o">[</span>eos<span class="o">]</span> via <span class="m">10</span>.10.10.10 GigEthernet0/0/0 out-labels <span class="m">66</span>
+</pre></div>
+</div>
+<p>the latter is an example of an MPLS cross connect. Any description of
+a next-hop, recursive, non-recursive, labelled, non-labelled, etc,
+that is valid for an IP prefix, is also valid for an MPLS
+local-label. Note the use of the ‘eos’ keyword which indicates the
+programming is for the case when the label is end-of-stack. The last
+two operations can apply to both eos and non-eos packets, but the pop
+and IP lookup only to an eos packet.</p>
+</div>
+<div class="section" id="mpls-vpn">
+<h2>MPLS VPN<a class="headerlink" href="#mpls-vpn" title="Permalink to this headline">¶</a></h2>
+<p>To configure an MPLS VPN for a PE the follow example can be used.</p>
+<p>Step 1; Configure routes to the iBGP peers - note these route MUST
+have out-going labels;</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip route add <span class="m">10</span>.0.0.1/32 via <span class="m">192</span>.168.1.2 Eth0 out-labels <span class="m">33</span>
+<span class="gp">$</span> ip route add <span class="m">10</span>.0.0.2/32 via <span class="m">192</span>.168.2.2 Eth0 out-labels <span class="m">34</span>
+</pre></div>
+</div>
+<p>Step 2; Configure the customer ‘VRF’</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip table add <span class="m">2</span>
+</pre></div>
+</div>
+<p>Step 3; add a route via the iBGP peer[s] with the MPLS label
+advertised by that peer</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip route add table <span class="m">2</span> <span class="m">10</span>.10.10.0/24 via <span class="m">10</span>.0.0.2 next-hop-table <span class="m">0</span> out-label <span class="m">122</span>
+<span class="gp">$</span> ip route add table <span class="m">2</span> <span class="m">10</span>.10.10.0/24 via <span class="m">10</span>.0.0.1 next-hop-table <span class="m">0</span> out-label <span class="m">121</span>
+</pre></div>
+</div>
+<p>Step 4; add a route via the eBGP peer</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip route add table <span class="m">2</span> <span class="m">10</span>.10.20.0/24 via <span class="m">172</span>.16.0.1 next-hop-table <span class="m">2</span>
+</pre></div>
+</div>
+<p>Step 5; depending on the label allocation scheme used, add routes to
+the MPLS FIB to accept incoming labelled packets:</p>
+<ol class="arabic">
+<li><p>per-prefix label scheme - this command ‘binds’ the label to the same
+forwarding as the IP route</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mpls local-label <span class="m">99</span> <span class="m">10</span>.10.20.0/24
+</pre></div>
+</div>
+</li>
+<li><p>per-CE label scheme - this pops the incoming label and forwards via
+the next-hop provided. Append config for ‘out-labels’ if so desired.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mpls local-label <span class="m">99</span> via <span class="m">172</span>.16.0.1 next-hop-table <span class="m">2</span>
+</pre></div>
+</div>
+</li>
+<li><p>per-VRF label scheme</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mpls local-label <span class="m">99</span> via ip4-lookup-in-table <span class="m">2</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="mpls-tunnels">
+<h2>MPLS Tunnels<a class="headerlink" href="#mpls-tunnels" title="Permalink to this headline">¶</a></h2>
+<p>MPLS tunnels are unidirectional and can impose a stack of labels. They
+are ‘normal’ interfaces and thus can be used, for example, as the
+target for IP routes and L2 cross-connects. To construct a tunnel:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mpls tunnel add via <span class="m">10</span>.10.10.10 GigEthernet0/0/0 out-labels <span class="m">33</span> <span class="m">44</span> <span class="m">55</span>
+</pre></div>
+</div>
+<p>and to then have that created tunnel to perform ECMP:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mpls tunnel add mpls-tunnel0 via <span class="m">10</span>.10.10.11 GigEthernet0/0/0 out-labels <span class="m">66</span> <span class="m">77</span> <span class="m">88</span>
+</pre></div>
+</div>
+<p>use</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sh mpls tunnel <span class="o">[</span>X<span class="o">]</span>
+</pre></div>
+</div>
+<p>to see the monster you have created.</p>
+<p>An MPLS tunnel interface is an interface like any other and now ready
+for use with the usual set of interface commands, e.g.:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">set</span> interface state mpls-tunnel0 up
+<span class="gp">$</span> <span class="nb">set</span> interface ip address mpls-tunnel0 <span class="m">192</span>.168.1.1/30
+<span class="gp">$</span> ip route <span class="m">1</span>.1.1.1/32 via mpls-tunnel0
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="multicast.html" class="btn btn-neutral float-right" title="IP Multicast FIB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tunnels.html" class="btn btn-neutral float-left" title="Tunnels" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
