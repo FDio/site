@@ -32,7 +32,7 @@ Learn more about [LFN](https://www.lfnetworking.org) and [Join as a member](http
 [![VPP Jira issues](https://img.shields.io/badge/Jira-Issues-shields.svg?style=plastic)](https://jira.fd.io)
 
 #### Meetings
-[![VPP BI Weekly](https://img.shields.io/badge/VPP%20BI%20Weekly-Tue%208am%20PT-blue.svg?style=plastic)](https://wiki.fd.io/view/VPP/Meeting#Meeting_Details)
+[![VPP Monthly](https://img.shields.io/badge/VPP%20BI%20Weekly-Tue%208am%20PT-blue.svg?style=plastic)](https://wiki.fd.io/view/VPP/Meeting#Meeting_Details)
 [![CSIT Weekly](https://img.shields.io/badge/CSIT%20Weekly-Wed%2014:00%20UTC-blue.svg?style=plastic)](https://wiki.fd.io/view/CSIT/Meeting#Meeting_Details)
 
 #### Mailing Lists
