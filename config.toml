@@ -56,8 +56,9 @@ Enriching Data Plane Leadership and Deployment Efficiency.
 <br>
 The Fast Data Project's VPP Release 19.08 is here!
 """
-    btnText = "More About FD.io VPP 19.08"
-    url = "https://www.lfnetworking.org/announcement/2019/09/18/fast-data-projects-release-19-08-enriches-data-plane-leadership-and-deployment-efficacy/"
+    btnText = "More About FD.io VPP 20.01"
+    url = "/latest/singles/vpp2001"
+
 
   [params.wrapper]
     enable = true
