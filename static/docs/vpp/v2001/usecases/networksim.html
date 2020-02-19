@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Network Simulator Plugin &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Features by Release" href="../featuresbyrelease/index.html" />
+    <link rel="prev" title="Debugging and Reporting Bugs in Contiv-VPP" href="contiv/BUG_REPORTS.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="containers.html">VPP with Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homegateway.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Network Simulator Plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#packet-generator-configuration">Packet Generator Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Use Cases</a> &raquo;</li>
+        
+      <li>Network Simulator Plugin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usecases/networksim.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="network-simulator-plugin">
+<h1>Network Simulator Plugin<a class="headerlink" href="#network-simulator-plugin" title="Permalink to this headline">¶</a></h1>
+<p>Vpp includes a fairly capable network simulator plugin, which can
+simulate real-world round-trip times and a configurable network packet
+loss rate. It’s perfect for evaluating the performance of a TCP stack
+under specified delay/bandwidth/loss conditions.</p>
+<p>The “nsim” plugin cross-connects two physical interfaces at layer 2,
+introducing the specified delay and network loss
+parameters. Reconfiguration on the fly is OK, with the proviso that
+packets held in the network simulator scheduling wheel will be lost.</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Configuration by debug CLI is simple. First, specify the simulator
+configuration: unidirectional delay (half of the desired RTT), the
+link bandwidth, and the expected average packet size. These parameters
+allow the network simulator allocate the right amount of buffering to
+produce the requested delay/bandwidth product.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="nb">set</span> <span class="n">nsim</span> <span class="n">delay</span> <span class="mf">25.0</span> <span class="n">ms</span> <span class="n">bandwidth</span> <span class="mi">10</span> <span class="n">gbit</span> <span class="n">packet</span><span class="o">-</span><span class="n">size</span> <span class="mi">128</span> 
+</pre></div>
+</div>
+<p>To simulate network packet drops, add either “packets-per-drop <nnnnn>” or
+“drop-fraction [0.0 … 1.0]” parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="nb">set</span> <span class="n">nsim</span> <span class="n">delay</span> <span class="mf">25.0</span> <span class="n">ms</span> <span class="n">bandwidth</span> <span class="mi">10</span> <span class="n">gbit</span> <span class="n">packet</span><span class="o">-</span><span class="n">size</span> <span class="mi">128</span> <span class="n">packets</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">drop</span> <span class="mi">10000</span>
+</pre></div>
+</div>
+<p>Remember to configure the layer-2 cross-connect:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">nsim</span> <span class="n">enable</span><span class="o">-</span><span class="n">disable</span> <span class="o">&lt;</span><span class="n">interface</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">interface</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="packet-generator-configuration">
+<h2>Packet Generator Configuration<a class="headerlink" href="#packet-generator-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Here’s a unit-test configuration for the vpp packet generator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">loop</span> <span class="n">cre</span>
+  <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">loop0</span> <span class="mf">11.22</span><span class="o">.</span><span class="mf">33.1</span><span class="o">/</span><span class="mi">24</span>
+  <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">loop0</span> <span class="n">up</span>
+
+  <span class="n">loop</span> <span class="n">cre</span>
+  <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">loop1</span> <span class="mf">11.22</span><span class="o">.</span><span class="mf">34.1</span><span class="o">/</span><span class="mi">24</span>
+  <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">loop1</span> <span class="n">up</span>
+
+  <span class="nb">set</span> <span class="n">nsim</span> <span class="n">delay</span> <span class="mf">1.0</span> <span class="n">ms</span> <span class="n">bandwidth</span> <span class="mi">10</span> <span class="n">gbit</span> <span class="n">packet</span><span class="o">-</span><span class="n">size</span> <span class="mi">128</span> <span class="n">packets</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">drop</span> <span class="mi">1000</span>
+  <span class="n">nsim</span> <span class="n">enable</span><span class="o">-</span><span class="n">disable</span> <span class="n">loop0</span> <span class="n">loop1</span>
+
+  <span class="n">packet</span><span class="o">-</span><span class="n">generator</span> <span class="n">new</span> <span class="p">{</span>
+      <span class="n">name</span> <span class="n">s0</span>
+      <span class="n">limit</span> <span class="mi">10000</span>
+      <span class="n">size</span> <span class="mi">128</span><span class="o">-</span><span class="mi">128</span>
+      <span class="n">interface</span> <span class="n">loop0</span>
+      <span class="n">node</span> <span class="n">ethernet</span><span class="o">-</span><span class="nb">input</span>
+      <span class="n">data</span> <span class="p">{</span> <span class="n">IP4</span><span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">3</span> <span class="o">-&gt;</span> <span class="mf">4.5</span><span class="o">.</span><span class="mi">6</span> 
+             <span class="n">UDP</span><span class="p">:</span> <span class="mf">11.22</span><span class="o">.</span><span class="mf">33.44</span> <span class="o">-&gt;</span> <span class="mf">11.22</span><span class="o">.</span><span class="mf">34.44</span>
+             <span class="n">UDP</span><span class="p">:</span> <span class="mi">1234</span> <span class="o">-&gt;</span> <span class="mi">2345</span>
+             <span class="n">incrementing</span> <span class="mi">114</span> 
+      <span class="p">}</span>
+  <span class="p">}</span> 
+</pre></div>
+</div>
+<p>For extra realism, the network simulator drops any specific packet
+with the specified probability. In this example, we see that slight
+variation from run to run occurs as it should.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">DBGvpp</span><span class="c1"># pa en</span>
+    <span class="n">DBGvpp</span><span class="c1"># sh err</span>
+       <span class="n">Count</span>                    <span class="n">Node</span>                  <span class="n">Reason</span>
+          <span class="mi">9991</span>                  <span class="n">nsim</span>                  <span class="n">Packets</span> <span class="n">buffered</span>
+             <span class="mi">9</span>                  <span class="n">nsim</span>                  <span class="n">Network</span> <span class="n">loss</span> <span class="n">simulation</span> <span class="n">drop</span> <span class="n">packets</span>
+          <span class="mi">9991</span>             <span class="n">ethernet</span><span class="o">-</span><span class="nb">input</span>             <span class="n">l3</span> <span class="n">mac</span> <span class="n">mismatch</span>
+
+    <span class="n">DBGvpp</span><span class="c1"># clear err</span>
+    <span class="n">DBGvpp</span><span class="c1"># pa en</span>
+    <span class="n">DBGvpp</span><span class="c1"># sh err</span>
+    <span class="n">sh</span> <span class="n">err</span>
+       <span class="n">Count</span>                    <span class="n">Node</span>                  <span class="n">Reason</span>
+          <span class="mi">9993</span>                  <span class="n">nsim</span>                  <span class="n">Packets</span> <span class="n">buffered</span>
+             <span class="mi">7</span>                  <span class="n">nsim</span>                  <span class="n">Network</span> <span class="n">loss</span> <span class="n">simulation</span> <span class="n">drop</span> <span class="n">packets</span>
+          <span class="mi">9993</span>             <span class="n">ethernet</span><span class="o">-</span><span class="nb">input</span>             <span class="n">l3</span> <span class="n">mac</span> <span class="n">mismatch</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../featuresbyrelease/index.html" class="btn btn-neutral float-right" title="Features by Release" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="contiv/BUG_REPORTS.html" class="btn btn-neutral float-left" title="Debugging and Reporting Bugs in Contiv-VPP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

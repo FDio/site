@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using VPP with Iperf3 &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using VPP with TRex" href="trex.html" />
+    <link rel="prev" title="Introduction" href="iperf3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../containers.html">VPP with Containers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">VPP with Iperf3 and TRex</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="iperf3.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iperf3.html#using-kernel-packet-forwarding-with-iperf3">Using Kernel Packet Forwarding with Iperf3</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using VPP with Iperf3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex.html">Using VPP with TRex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex1.html">Using VPP with TRex Mixed Traffic Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex2.html">TRex Stateless Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex3.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex3.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homegateway.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contiv/index.html">Contiv/VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Use Cases</a> &raquo;</li>
+        
+          <li><a href="index.html">VPP with Iperf3 and TRex</a> &raquo;</li>
+        
+      <li>Using VPP with Iperf3</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usecases/simpleperf/iperf31.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-vpp-with-iperf3">
+<span id="iperf31"></span><h1>Using VPP with Iperf3<a class="headerlink" href="#using-vpp-with-iperf3" title="Permalink to this headline">¶</a></h1>
+<p>First, disable kernel IP forward in <em>csp2s22c03</em> to ensure the host cannot use
+kernel forwarding (all the settings in <em>net2s22c05</em> and <em>csp2s22c04</em> remain unchanged):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward</span>
+<span class="go">0</span>
+<span class="go">csp2s22c03$ sysctl net.ipv4.ip_forward</span>
+<span class="go">net.ipv4.ip_forward = 0</span>
+</pre></div>
+</div>
+<p>You can use DPDK’s device binding utility (./install-vpp-native/dpdk/sbin/dpdk-devbind)
+to list network devices and bind/unbind them from specific drivers. The flag “-s/–status”
+shows the status of devices; the flag “-b/–bind” selects the driver to bind. The
+status of devices in our system indicates that the two 40-GbE XL710 devices are located
+at 82:00.0 and 82:00.1. Use the device’s slots to bind them to the driver uio_pci_generic:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ ./install-vpp-native/dpdk/sbin/dpdk-devbind -s</span>
+
+<span class="go">Network devices using DPDK-compatible driver</span>
+<span class="go">============================================</span>
+<span class="go">&lt;none&gt;</span>
+
+<span class="go">Network devices using kernel driver</span>
+<span class="go">===================================</span>
+<span class="go">0000:03:00.0 &#39;Ethernet Controller 10-Gigabit X540-AT2&#39; if=enp3s0f0 drv=ixgbe unused=vfio-pci,uio_pci_generic *Active*</span>
+<span class="go">0000:03:00.1 &#39;Ethernet Controller 10-Gigabit X540-AT2&#39; if=enp3s0f1 drv=ixgbe unused=vfio-pci,uio_pci_generic *Active*</span>
+<span class="go">0000:82:00.0 &#39;Ethernet Controller XL710 for 40GbE QSFP+&#39; if=ens802f0d1,ens802f0 drv=i40e unused=uio_pci_generic</span>
+<span class="go">0000:82:00.1 &#39;Ethernet Controller XL710 for 40GbE QSFP+&#39; if=ens802f1d1,ens802f1 drv=i40e unused=uio_pci_generic</span>
+
+<span class="go">Other network devices</span>
+<span class="go">=====================</span>
+<span class="go">&lt;none&gt;</span>
+
+<span class="go">csp2s22c03$ sudo modprobe uio_pci_generic</span>
+<span class="go">csp2s22c03$ sudo ./install-vpp-native/dpdk/sbin/dpdk-devbind --bind uio_pci_generic 82:00.0</span>
+<span class="go">csp2s22c03$ sudo ./install-vpp-native/dpdk/sbin/dpdk-devbind --bind uio_pci_generic 82:00.1</span>
+
+<span class="go">csp2s22c03$ sudo ./install-vpp-native/dpdk/sbin/dpdk-devbind -s</span>
+
+<span class="go">Network devices using DPDK-compatible driver</span>
+<span class="go">============================================</span>
+<span class="go">0000:82:00.0 &#39;Ethernet Controller XL710 for 40GbE QSFP+&#39; drv=uio_pci_generic unused=i40e,vfio-pci</span>
+<span class="go">0000:82:00.1 &#39;Ethernet Controller XL710 for 40GbE QSFP+&#39; drv=uio_pci_generic unused=i40e,vfio-pci</span>
+
+<span class="go">Network devices using kernel driver</span>
+<span class="go">===================================</span>
+<span class="go">0000:03:00.0 &#39;Ethernet Controller 10-Gigabit X540-AT2&#39; if=enp3s0f0 drv=ixgbe unused=vfio-pci,uio_pci_generic *Active*</span>
+<span class="go">0000:03:00.1 &#39;Ethernet Controller 10-Gigabit X540-AT2&#39; if=enp3s0f1 drv=ixgbe unused=vfio-pci,uio_pci_generic *Active*</span>
+</pre></div>
+</div>
+<p>Start the VPP service, and verify that VPP is running:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ sudo service vpp start</span>
+<span class="go">csp2s22c03$ ps -ef | grep vpp</span>
+<span class="go">root     105655      1 98 17:34 ?        00:00:02 /usr/bin/vpp -c /etc/vpp/startup.conf</span>
+<span class="go">:w</span>
+<span class="go">         105675 105512  0 17:34 pts/4    00:00:00 grep --color=auto vpp</span>
+</pre></div>
+</div>
+<p>To access the VPP CLI, issue the command sudo vppctl . From the VPP interface, list
+all interfaces that are bound to DPDK using the command show interface:</p>
+<p>VPP shows that the two 40-Gbps ports located at 82:0:0 and 82:0:1 are bound. Next,
+you need to assign IP addresses to those interfaces, bring them up, and verify:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# set interface ip address FortyGigabitEthernet82/0/0 10.10.1.1/24</span>
+<span class="go">vpp# set interface ip address FortyGigabitEthernet82/0/1 10.10.2.1/24</span>
+<span class="go">vpp# set interface state FortyGigabitEthernet82/0/0 up</span>
+<span class="go">vpp# set interface state FortyGigabitEthernet82/0/1 up</span>
+<span class="go">vpp# show interface address</span>
+<span class="go">FortyGigabitEthernet82/0/0 (up):</span>
+<span class="go">  10.10.1.1/24</span>
+<span class="go">FortyGigabitEthernet82/0/1 (up):</span>
+<span class="go">  10.10.2.1/24</span>
+<span class="go">local0 (dn):</span>
+</pre></div>
+</div>
+<p>At this point VPP is operational. You can ping these interfaces either from <em>net2s22c05</em>
+or <em>csp2s22c04</em>. Moreover, VPP can forward packets whose IP address are 10.10.1.0/24 and
+10.10.2.0/24, so you can ping between <em>net2s22c05</em> and <em>csp2s22c04</em>. Also, you can
+run iperf3 as illustrated in the previous example, and the result from running iperf3
+between <em>net2s22c05</em> and <em>csp2s22c04</em> increases to 20.3 Gbits per second.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ET2S22C05$ iperf3 -c 10.10.1.2</span>
+<span class="go">Connecting to host 10.10.1.2, port 5201</span>
+<span class="go">[  4] local 10.10.2.2 port 54078 connected to 10.10.1.2 port 5201</span>
+<span class="go">[ ID] Interval           Transfer     Bandwidth       Retr  Cwnd</span>
+<span class="go">[  4]   0.00-1.00   sec  2.02 GBytes  17.4 Gbits/sec  460   1.01 MBytes</span>
+<span class="go">[  4]   1.00-2.00   sec  3.28 GBytes  28.2 Gbits/sec    0   1.53 MBytes</span>
+<span class="go">[  4]   2.00-3.00   sec  2.38 GBytes  20.4 Gbits/sec  486    693 KBytes</span>
+<span class="go">[  4]   3.00-4.00   sec  2.06 GBytes  17.7 Gbits/sec  1099   816 KBytes</span>
+<span class="go">[  4]   4.00-5.00   sec  2.07 GBytes  17.8 Gbits/sec  614   1.04 MBytes</span>
+<span class="go">[  4]   5.00-6.00   sec  2.25 GBytes  19.3 Gbits/sec  2869   716 KBytes</span>
+<span class="go">[  4]   6.00-7.00   sec  2.26 GBytes  19.4 Gbits/sec  3321   683 KBytes</span>
+<span class="go">[  4]   7.00-8.00   sec  2.33 GBytes  20.0 Gbits/sec  2322   594 KBytes</span>
+<span class="go">[  4]   8.00-9.00   sec  2.28 GBytes  19.6 Gbits/sec  1690  1.23 MBytes</span>
+<span class="go">[  4]   9.00-10.00  sec  2.73 GBytes  23.5 Gbits/sec  573    680 KBytes</span>
+<span class="go">- - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="go">[ ID] Interval           Transfer     Bandwidth       Retr</span>
+<span class="go">[  4]   0.00-10.00  sec  23.7 GBytes  20.3 Gbits/sec  13434             sender</span>
+<span class="go">[  4]   0.00-10.00  sec  23.7 GBytes  20.3 Gbits/sec                  receiver</span>
+
+<span class="go">iperf Done.</span>
+</pre></div>
+</div>
+<p>The <strong>show run</strong> command displays the graph runtime statistics. Observe that the
+average vector per node is 6.76, which means on average, a vector of 6.76 packets
+is handled in a graph node.</p>
+<div class="figure align-default">
+<img alt="../../_images/build-a-fast-network-stack-terminal.png" src="../../_images/build-a-fast-network-stack-terminal.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trex.html" class="btn btn-neutral float-right" title="Using VPP with TRex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="iperf3.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

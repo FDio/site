@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Building VPP &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Running VPP" href="running_vpp.html" />
+    <link rel="prev" title="For Developers" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Building VPP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#set-up-proxies">Set up Proxies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-the-vpp-sources">Get the VPP Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-vpp-dependencies">Build VPP Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-vpp-debug">Build VPP (Debug)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-vpp-release-version">Build VPP (Release Version)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-necessary-packages">Building Necessary Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>Building VPP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/building.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="building">
+</div>
+<div class="section" id="building-vpp">
+<h1>Building VPP<a class="headerlink" href="#building-vpp" title="Permalink to this headline">¶</a></h1>
+<p>To get started developing with VPP, you need to get the required VPP sources and then build the packages.
+For more detailed information on the build system please refer to <a class="reference internal" href="buildsystem/index.html#buildsystem"><span class="std std-ref">Build System</span></a>.</p>
+<div class="section" id="set-up-proxies">
+<span id="setupproxies"></span><h2>Set up Proxies<a class="headerlink" href="#set-up-proxies" title="Permalink to this headline">¶</a></h2>
+<p>Depending on the environment you are operating in, proxies may need to be set.
+Run these proxy commands to specify the <em>proxy-server-name</em> and corresponding <em>port-number</em>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span>http://&lt;proxy-server-name&gt;.com:&lt;port-number&gt;
+<span class="gp">$</span> <span class="nb">export</span> <span class="nv">https_proxy</span><span class="o">=</span>https://&lt;proxy-server-name&gt;.com:&lt;port-number&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-the-vpp-sources">
+<h2>Get the VPP Sources<a class="headerlink" href="#get-the-vpp-sources" title="Permalink to this headline">¶</a></h2>
+<p>To get the VPP sources that are used to create the build, run the following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://gerrit.fd.io/r/vpp
+<span class="gp">$</span> <span class="nb">cd</span> vpp
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-vpp-dependencies">
+<h2>Build VPP Dependencies<a class="headerlink" href="#build-vpp-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Before building a VPP image, make sure there are no FD.io VPP or DPDK packages
+installed, by entering the following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> dpkg -l <span class="p">|</span> grep vpp
+<span class="gp">$</span> dpkg -l <span class="p">|</span> grep DPDK
+</pre></div>
+</div>
+<p>There should be no output, or no packages shown after the above commands are run.</p>
+<p>Run the following <strong>make</strong> command to install the dependencies for FD.io VPP.</p>
+<p>If the download hangs at any point, then you may need to
+<a class="reference internal" href="#setupproxies"><span class="std std-ref">set up proxies</span></a> for the download to work.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> make install-dep
+<span class="go">Hit:1 http://us.archive.ubuntu.com/ubuntu xenial InRelease</span>
+<span class="go">Get:2 http://us.archive.ubuntu.com/ubuntu xenial-updates InRelease [109 kB]</span>
+<span class="go">Get:3 http://security.ubuntu.com/ubuntu xenial-security InRelease [107 kB]</span>
+<span class="go">Get:4 http://us.archive.ubuntu.com/ubuntu xenial-backports InRelease [107 kB]</span>
+<span class="go">Get:5 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [803 kB]</span>
+<span class="go">Get:6 http://us.archive.ubuntu.com/ubuntu xenial-updates/main i386 Packages [732 kB]</span>
+<span class="go">...</span>
+<span class="go">...</span>
+<span class="go">Update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/bin/jmap to provide /usr/bin/jmap (jmap) in auto mode</span>
+<span class="go">Setting up default-jdk-headless (2:1.8-56ubuntu2) ...</span>
+<span class="go">Processing triggers for libc-bin (2.23-0ubuntu3) ...</span>
+<span class="go">Processing triggers for systemd (229-4ubuntu6) ...</span>
+<span class="go">Processing triggers for ureadahead (0.100.0-19) ...</span>
+<span class="go">Processing triggers for ca-certificates (20160104ubuntu1) ...</span>
+<span class="go">Updating certificates in /etc/ssl/certs...</span>
+<span class="go">0 added, 0 removed; done.</span>
+<span class="go">Running hooks in /etc/ca-certificates/update.d...</span>
+
+<span class="go">done.</span>
+<span class="go">done.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-vpp-debug">
+<h2>Build VPP (Debug)<a class="headerlink" href="#build-vpp-debug" title="Permalink to this headline">¶</a></h2>
+<p>This build version contains debug symbols which are useful for modifying VPP. The
+<strong>make</strong> command below builds a debug version of VPP. The binaries, when building the
+debug images, can be found in /build-root/vpp_debug-native.</p>
+<p>The Debug build version contains debug symbols, which are useful for troubleshooting
+or modifying VPP. The <strong>make</strong> command below, builds a debug version of VPP. The
+binaries used for building the debug image can be found in <em>/build-root/vpp_debug-native</em>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> make build
+<span class="go">make[1]: Entering directory &#39;/home/vagrant/vpp-master/build-root&#39;</span>
+<span class="go">@@@@ Arch for platform &#39;vpp&#39; is native @@@@</span>
+<span class="go">@@@@ Finding source for dpdk @@@@</span>
+<span class="go">@@@@ Makefile fragment found in /home/vagrant/vpp-master/build-data/packages/dpdk.mk @@@@</span>
+<span class="go">@@@@ Source found in /home/vagrant/vpp-master/dpdk @@@@</span>
+<span class="go">@@@@ Arch for platform &#39;vpp&#39; is native @@@@</span>
+<span class="go">@@@@ Finding source for vpp @@@@</span>
+<span class="go">@@@@ Makefile fragment found in /home/vagrant/vpp-master/build-data/packages/vpp.mk @@@@</span>
+<span class="go">@@@@ Source found in /home/vagrant/vpp-master/src @@@@</span>
+<span class="go">...</span>
+<span class="go">...</span>
+<span class="go">make[5]: Leaving directory &#39;/home/vagrant/vpp-master/build-root/build-vpp_debug-native/vpp/vpp-api/java&#39;</span>
+<span class="go">make[4]: Leaving directory &#39;/home/vagrant/vpp-master/build-root/build-vpp_debug-native/vpp/vpp-api/java&#39;</span>
+<span class="go">make[3]: Leaving directory &#39;/home/vagrant/vpp-master/build-root/build-vpp_debug-native/vpp&#39;</span>
+<span class="go">make[2]: Leaving directory &#39;/home/vagrant/vpp-master/build-root/build-vpp_debug-native/vpp&#39;</span>
+<span class="go">@@@@ Installing vpp: nothing to do @@@@</span>
+<span class="go">make[1]: Leaving directory &#39;/home/vagrant/vpp-master/build-root&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-vpp-release-version">
+<h2>Build VPP (Release Version)<a class="headerlink" href="#build-vpp-release-version" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to build the regular release version of FD.io VPP. The
+release build is optimized and does not create any debug symbols.
+The binaries used in building the release images are found in <em>/build-root/vpp-native</em>.</p>
+<p>Use the following <strong>make</strong> command below to build the release version of FD.io VPP.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> make build-release
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-necessary-packages">
+<h2>Building Necessary Packages<a class="headerlink" href="#building-necessary-packages" title="Permalink to this headline">¶</a></h2>
+<p>The package that needs to be built depends on the type system VPP will be running on:</p>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="#debianpackages"><span class="std std-ref">Debian package</span></a> is built if VPP is going to run on Ubuntu</p></li>
+<li><p>The <a class="reference internal" href="#rpmpackages"><span class="std std-ref">RPM package</span></a> is built if VPP is going to run on Centos or Redhat</p></li>
+</ul>
+<div class="section" id="building-debian-packages">
+<span id="debianpackages"></span><h3>Building Debian Packages<a class="headerlink" href="#building-debian-packages" title="Permalink to this headline">¶</a></h3>
+<p>To build the debian packages, use the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> make pkg-deb
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-rpm-packages">
+<span id="rpmpackages"></span><h3>Building RPM Packages<a class="headerlink" href="#building-rpm-packages" title="Permalink to this headline">¶</a></h3>
+<p>To build the rpm packages, use one of the following commands below, depending on the system:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> make pkg-rpm
+</pre></div>
+</div>
+<p>Once the packages are built they can be found in the build-root directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls *.deb
+
+<span class="go">If the packages are built correctly, then this should be the corresponding output:</span>
+
+<span class="go">vpp_18.07-rc0~456-gb361076_amd64.deb             vpp-dbg_18.07-rc0~456-gb361076_amd64.deb</span>
+<span class="go">vpp-dev_18.07-rc0~456-gb361076_amd64.deb         vpp-api-lua_18.07-rc0~456-gb361076_amd64.deb</span>
+<span class="go">vpp-lib_18.07-rc0~456-gb361076_amd64.deb         vpp-api-python_18.07-rc0~456-gb361076_amd64.deb</span>
+<span class="go">vpp-plugins_18.07-rc0~456-gb361076_amd64.deb</span>
+</pre></div>
+</div>
+<p>Finally, the created packages can be installed using the following commands. Install
+the package that corresponds to OS that VPP will be running on:</p>
+<p>For Ubuntu:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo bash
+<span class="gp">#</span> dpkg -i *.deb
+</pre></div>
+</div>
+<p>For Centos or Redhat:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo bash
+<span class="gp">#</span> rpm -ivh *.rpm
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="running_vpp.html" class="btn btn-neutral float-right" title="Running VPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="For Developers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
