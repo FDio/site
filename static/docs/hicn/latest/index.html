@@ -160,6 +160,15 @@
             
   <div class="section" id="hybrid-information-centric-networking">
 <h1>Hybrid Information-Centric Networking<a class="headerlink" href="#hybrid-information-centric-networking" title="Permalink to this headline">¶</a></h1>
+<p>Hybrid Information-Centric Networking (hICN) is a network architecture that makes
+use of IPv6 or IPv4 to realize location-independent communications. It is largely
+inspired by the pioneer work of Van Jacobson on Content-Centric Networking, that was
+a clean-slate architecture whereas hICN is based on the Internet protocol and easy to
+deploy in today networks and applications. hICN brings many-to-many communications,
+multi-homing, multi-path, multi-source, group communications to the Internet protocol
+without replicated unicast. The project implements novel transport protocols, with a socket API,
+for real-time and capacity seeking applications. A scalable stack is available based
+on VPP and a client stack is provided to support any mobile and desktop operating system.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="started.html">Getting started</a><ul>
@@ -355,7 +364,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="apps.html#http-client-server-with-hicn-http-proxy">HTTP Client-Server with hicn-http-proxy</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="apps.html#docker">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apps.html#docker-vpp-hicn-proxy">Docker VPP hICN proxy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="apps.html#client-side">Client side</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="apps.html#host-vm">Host/VM</a></li>
 </ul>
 </li>

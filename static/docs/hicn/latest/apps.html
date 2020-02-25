@@ -101,7 +101,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#http-client-server-with-hicn-http-proxy">HTTP Client-Server with hicn-http-proxy</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-vpp-hicn-proxy">Docker VPP hICN proxy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#client-side">Client side</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#host-vm">Host/VM</a></li>
 </ul>
 </li>
@@ -176,7 +179,7 @@
 <p>The open source distribution provides a few application examples:
 one MPEG-DASH video player, and an HTTP reverse proxy a command line
 HTTP GET client.
-hICN sockets have been succesfully used to serve HTTP, RTP and
+hICN sockets have been successfully used to serve HTTP, RTP and
 RSockets application protocols.</p>
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
@@ -261,79 +264,83 @@ The server will use the hicn-plugin of vpp, which guarantees better performances
 <li><p>Use a docker container</p></li>
 <li><p>Run the hicn-plugin directly in a VM or Bare Metal Server</p></li>
 </ul>
-<div class="section" id="docker">
-<h3>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="docker-vpp-hicn-proxy">
+<h3>Docker VPP hICN proxy<a class="headerlink" href="#docker-vpp-hicn-proxy" title="Permalink to this headline">¶</a></h3>
 <p>Install docker in the server VM:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server$ curl get.docker.com <span class="p">|</span> bash
 </pre></div>
 </div>
-<p>Run the hicn-http-proxy container. Here we use a public server “example.com” as origin:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server$ docker run -e <span class="nv">ORIGIN_ADDRESS</span><span class="o">=</span>example.com    <span class="se">\</span>
-             -e <span class="nv">ORIGIN_PORT</span><span class="o">=</span><span class="m">80</span>                      <span class="se">\</span>
-             -e <span class="nv">CACHE_SIZE</span><span class="o">=</span><span class="m">10000</span>                    <span class="se">\</span>
-             -e <span class="nv">HICN_MTU</span><span class="o">=</span><span class="m">1200</span>                       <span class="se">\</span>
-             -e <span class="nv">FIRST_IPV6_WORD</span><span class="o">=</span>c001                <span class="se">\</span>
-             -e <span class="nv">HICN_PREFIX</span><span class="o">=</span>http://webserver        <span class="se">\</span>
-             --privileged                           <span class="se">\</span>
-             --name vhttpproxy                      <span class="se">\</span>
-             -d icnteam/vhttpproxy
+<p>Run the hicn-http-proxy container. Here we use a public server at “localhost” as origin and
+HTTP traffic is server with an IPv6 name prefix b001.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">#Http proxy options</span>
+<span class="nv">ORIGIN_ADDRESS</span><span class="o">=</span><span class="si">${</span><span class="nv">ORIGIN_ADDRESS</span><span class="k">:-</span><span class="s2">&quot;localhost&quot;</span><span class="si">}</span>
+<span class="nv">ORIGIN_PORT</span><span class="o">=</span><span class="si">${</span><span class="nv">ORIGIN_PORT</span><span class="k">:-</span><span class="s2">&quot;80&quot;</span><span class="si">}</span>
+<span class="nv">CACHE_SIZE</span><span class="o">=</span><span class="si">${</span><span class="nv">CACHE_SIZE</span><span class="k">:-</span><span class="s2">&quot;10000&quot;</span><span class="si">}</span>
+<span class="nv">DEFAULT_CONTENT_LIFETIME</span><span class="o">=</span><span class="si">${</span><span class="nv">DEFAULT_CONTENT_LIFETIME</span><span class="k">:-</span><span class="s2">&quot;7200&quot;</span><span class="si">}</span>
+<span class="nv">HICN_MTU</span><span class="o">=</span><span class="si">${</span><span class="nv">HICN_MTU</span><span class="k">:-</span><span class="s2">&quot;1300&quot;</span><span class="si">}</span>
+<span class="nv">FIRST_IPV6_WORD</span><span class="o">=</span><span class="si">${</span><span class="nv">FIRST_IPV6_WORD</span><span class="k">:-</span><span class="s2">&quot;b001&quot;</span><span class="si">}</span>
+<span class="nv">USE_MANIFEST</span><span class="o">=</span><span class="si">${</span><span class="nv">USE_MANIFEST</span><span class="k">:-</span><span class="s2">&quot;true&quot;</span><span class="si">}</span>
+<span class="nv">HICN_PREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">HICN_PREFIX</span><span class="k">:-</span><span class="s2">&quot;http://webserver&quot;</span><span class="si">}</span>
+
+<span class="c1"># UDP Punting</span>
+<span class="nv">HICN_LISTENER_PORT</span><span class="o">=</span><span class="si">${</span><span class="nv">HICN_LISTENER_PORT</span><span class="k">:-</span><span class="nv">33567</span><span class="si">}</span>
+<span class="nv">TAP_ADDRESS_VPP</span><span class="o">=</span><span class="m">192</span>.168.0.2
+<span class="nv">TAP_ADDRESS_KER</span><span class="o">=</span><span class="m">192</span>.168.0.1
+<span class="nv">TAP_ADDRESS_NET</span><span class="o">=</span><span class="m">192</span>.168.0.0/24
+<span class="nv">TAP_ID</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">TAP_NAME</span><span class="o">=</span>tap<span class="si">${</span><span class="nv">TAP_ID</span><span class="si">}</span>
+
+vppctl create tap id <span class="si">${</span><span class="nv">TAP_ID</span><span class="si">}</span>
+vppctl <span class="nb">set</span> int state <span class="si">${</span><span class="nv">TAP_NAME</span><span class="si">}</span> up
+vppctl <span class="nb">set</span> interface ip address tap0 <span class="si">${</span><span class="nv">TAP_ADDRESS_VPP</span><span class="si">}</span>/24
+ip addr add <span class="si">${</span><span class="nv">TAP_ADDRESS_KER</span><span class="si">}</span>/24 brd + dev <span class="si">${</span><span class="nv">TAP_NAME</span><span class="si">}</span>
+
+<span class="c1"># Redirect the udp traffic on port 33567 (The one used for hicn) to VPP</span>
+iptables -t nat -A PREROUTING -p udp --dport <span class="si">${</span><span class="nv">HICN_LISTENER_PORT</span><span class="si">}</span> -j DNAT <span class="se">\</span>
+                   --to-destination <span class="si">${</span><span class="nv">TAP_ADDRESS_VPP</span><span class="si">}</span>:<span class="si">${</span><span class="nv">HICN_LISTENER_PORT</span><span class="si">}</span>
+<span class="c1"># Masquerade all the traffic coming from VPP</span>
+iptables -t nat -A POSTROUTING -j MASQUERADE --src <span class="si">${</span><span class="nv">TAP_ADDRESS_NET</span><span class="si">}</span> ! <span class="se">\</span>
+                                 --dst <span class="si">${</span><span class="nv">TAP_ADDRESS_NET</span><span class="si">}</span> -o eth0
+<span class="c1"># Add default route to vpp</span>
+vppctl ip route add <span class="m">0</span>.0.0.0/0 via <span class="si">${</span><span class="nv">TAP_ADDRESS_KER</span><span class="si">}</span> <span class="si">${</span><span class="nv">TAP_NAME</span><span class="si">}</span>
+<span class="c1"># Set UDP punting</span>
+vppctl hicn punting add prefix <span class="si">${</span><span class="nv">FIRST_IPV6_WORD</span><span class="si">}</span>::/16 intfc <span class="si">${</span><span class="nv">TAP_NAME</span><span class="si">}</span><span class="se">\</span>
+                                <span class="nb">type</span> udp4 dst_port <span class="si">${</span><span class="nv">HICN_LISTENER_PORT</span><span class="si">}</span>
+
+<span class="c1"># Run the http proxy</span>
+<span class="nv">PARAMS</span><span class="o">=</span><span class="s2">&quot;-a </span><span class="si">${</span><span class="nv">ORIGIN_ADDRESS</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="nv">PARAMS</span><span class="o">+=</span><span class="s2">&quot;-p </span><span class="si">${</span><span class="nv">ORIGIN_PORT</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="nv">PARAMS</span><span class="o">+=</span><span class="s2">&quot;-c </span><span class="si">${</span><span class="nv">CACHE_SIZE</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="nv">PARAMS</span><span class="o">+=</span><span class="s2">&quot;-m </span><span class="si">${</span><span class="nv">HICN_MTU</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="nv">PARAMS</span><span class="o">+=</span><span class="s2">&quot;-P </span><span class="si">${</span><span class="nv">FIRST_IPV6_WORD</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="nv">PARAMS</span><span class="o">+=</span><span class="s2">&quot;-l </span><span class="si">${</span><span class="nv">DEFAULT_CONTENT_LIFETIME</span><span class="si">}</span><span class="s2"> &quot;</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">USE_MANIFEST</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;true&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nv">PARAMS</span><span class="o">+=</span><span class="s2">&quot;-M &quot;</span>
+<span class="k">fi</span>
+
+hicn-http-proxy <span class="si">${</span><span class="nv">PARAMS</span><span class="si">}</span> <span class="si">${</span><span class="nv">HICN_PREFIX</span><span class="si">}</span>
 </pre></div>
 </div>
-<p>Create a hicn private network:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server$ <span class="nv">GATEWAY</span><span class="o">=</span><span class="m">192</span>.168.0.254
-server$ docker network create --subnet <span class="m">192</span>.168.0.0/24 --gateway <span class="si">${</span><span class="nv">GATEWAY</span><span class="si">}</span> hicn-network
+<p>Docker images of the example above are available at
+<a class="reference external" href="https://hub.docker.com/r/icnteam/vhttpproxy">https://hub.docker.com/r/icnteam/vhttpproxy</a>.
+Images can be pulled using the following tags.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker pull icnteam/vhttpproxy:amd64
+docker pull icnteam/vhttpproxy:arm64
 </pre></div>
 </div>
-<p>Connect the proxy container to the hicn network:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server$ docker network connect hicn-network vhttpproxy
-</pre></div>
-</div>
-<p>Connect the hicn network to the vpp forwarder:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server$ <span class="nv">IP_ADDRESS</span><span class="o">=</span><span class="k">$(</span>docker inspect -f <span class="s2">&quot;{{with index .NetworkSettings.Networks \&quot;hicn-network\&quot;}}{{.IPAddress}}{{end}}&quot;</span> vhttpproxy<span class="k">)</span>
-server$ <span class="nv">INTERFACE</span><span class="o">=</span><span class="k">$(</span>docker <span class="nb">exec</span> -it vhttpproxy ifconfig <span class="p">|</span> grep -B <span class="m">1</span> <span class="si">${</span><span class="nv">IP_ADDRESS</span><span class="si">}</span> <span class="p">|</span> awk <span class="s1">&#39;NR==1 {gsub(&quot;:&quot;,&quot;&quot;,$1); print $1}&#39;</span><span class="k">)</span>
-server$ docker <span class="nb">exec</span> -it vhttpproxy ip addr flush dev <span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span>
-server$ docker <span class="nb">exec</span> -it vhttpproxy ethtool -K <span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span> tx off rx off ufo off gso off gro off tso off
-server$ docker <span class="nb">exec</span> -it vhttpproxy vppctl create host-interface name <span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span>
-server$ docker <span class="nb">exec</span> -it vhttpproxy vppctl <span class="nb">set</span> interface state host-<span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span> up
-server$ docker <span class="nb">exec</span> -it vhttpproxy vppctl <span class="nb">set</span> interface ip address host-<span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span> <span class="si">${</span><span class="nv">IP_ADDRESS</span><span class="si">}</span>/24
-server$ docker <span class="nb">exec</span> -it vhttpproxy vppctl ip route add <span class="m">10</span>.0.0.0/24 via <span class="si">${</span><span class="nv">GATEWAY</span><span class="si">}</span> host-eth1
-</pre></div>
-</div>
-<p>Set the punting:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server$ <span class="nv">PORT</span><span class="o">=</span><span class="m">12345</span>
-server$ docker <span class="nb">exec</span> -it vhttpproxy vppctl hicn punting add prefix c001::/16 intfc host-<span class="si">${</span><span class="nv">INTERFACE</span><span class="si">}</span> <span class="nb">type</span> udp4 src_port <span class="si">${</span><span class="nv">PORT</span><span class="si">}</span> dst_port <span class="si">${</span><span class="nv">PORT</span><span class="si">}</span>
-</pre></div>
-</div>
-<p>Docker containers are cool, but sometimes they do not allow you to do simple operations like expose ports while the container is already running. But we have a workaround for this :)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>server$ sudo iptables -t nat -A DOCKER -p udp --dport <span class="si">${</span><span class="nv">PORT</span><span class="si">}</span> -j DNAT --to-destination <span class="si">${</span><span class="nv">IP_ADDRESS</span><span class="si">}</span>:<span class="si">${</span><span class="nv">PORT</span><span class="si">}</span>
-server$ sudo iptables -t nat -A POSTROUTING -j MASQUERADE -p udp --source <span class="si">${</span><span class="nv">IP_ADDRESS</span><span class="si">}</span> --destination <span class="si">${</span><span class="nv">IP_ADDRESS</span><span class="si">}</span> --dport <span class="si">${</span><span class="nv">PORT</span><span class="si">}</span>
-server$ sudo iptables -A DOCKER -j ACCEPT -p udp --destination <span class="si">${</span><span class="nv">IP_ADDRESS</span><span class="si">}</span> --dport <span class="si">${</span><span class="nv">PORT</span><span class="si">}</span>
-</pre></div>
-</div>
-<p>In the client, install the hicn stack:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>client$ sudo apt-get install -y hicn-light hicn-apps
-</pre></div>
-</div>
-<p>Create a configuration file for the hicn-light forwarder. Here we are configuring UDP faces:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>client$ mkdir -p <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/etc
-client$ <span class="nv">LOCAL_IP</span><span class="o">=</span><span class="s2">&quot;10.0.0.2&quot;</span> <span class="c1"># Put here the actual IPv4 of the local interface</span>
-client$ <span class="nv">LOCAL_PORT</span><span class="o">=</span><span class="s2">&quot;12345&quot;</span>
-client$ <span class="nv">REMOTE_IP</span><span class="o">=</span><span class="s2">&quot;10.0.0.1&quot;</span> <span class="c1"># Put here the actual IPv4 of the remote interface</span>
-client$ <span class="nv">REMOTE_PORT</span><span class="o">=</span><span class="s2">&quot;12345&quot;</span>
-client$ cat <span class="s">&lt;&lt; EOF &gt; ${HOME}/etc/hicn-light.conf</span>
-<span class="s">add listener udp list0 ${LOCAL_IP} ${LOCAL_PORT}</span>
-<span class="s">add connection udp conn0 ${REMOTE_IP} ${REMOTE_PORT} ${LOCAL_IP} ${LOCAL_PORT}</span>
-<span class="s">add route conn0 c001::/16 1</span>
-<span class="s">EOF</span>
-</pre></div>
-</div>
+<div class="section" id="client-side">
+<h4>Client side<a class="headerlink" href="#client-side" title="Permalink to this headline">¶</a></h4>
 <p>Run the hicn-light forwarder</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>client$ sudo /usr/bin/hicn-light-daemon --daemon --capacity <span class="m">1000</span> --log-file <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hicn-light.log --config <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/etc/hicn-light.conf
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>client$ sudo /usr/bin/hicn-light-daemon --daemon --capacity <span class="m">1000</span> --log-file <span class="se">\</span>
+                   <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/hicn-light.log --config <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/etc/hicn-light.conf
 </pre></div>
 </div>
 <p>Run the http client <a class="reference external" href="#higet">higet</a> and print the http response on stdout:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>client$ /usr/bin/higet -O - http://webserver/index.html -P c001
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="host-vm">

@@ -242,44 +242,44 @@ The configuration can be achieved editing the file ‘/etc/collectd/collectd.con
 <div class="section" id="example-use-rrdtool-and-csv-plugin-to-store-statistics-from-vpp-and-vpp-hicn-plugins">
 <h3>Example: use rrdtool and csv plugin to store statistics from vpp and vpp-hicn plugins<a class="headerlink" href="#example-use-rrdtool-and-csv-plugin-to-store-statistics-from-vpp-and-vpp-hicn-plugins" title="Permalink to this headline">¶</a></h3>
 <p>Edit the configuration file as the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">######################################################################</span>
-<span class="c1"># Global                                                             #</span>
-<span class="c1">######################################################################</span>
-<span class="n">FQDNLookup</span> <span class="n">true</span>
-<span class="n">BaseDir</span> <span class="s2">&quot;/collectd&quot;</span>
-<span class="n">Interval</span> <span class="mi">2</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>######################################################################
+# Global                                                             #
+######################################################################
+FQDNLookup true
+BaseDir &quot;/collectd&quot;
+Interval 2
 
-<span class="c1">######################################################################</span>
-<span class="c1"># Logging                                                            #</span>
-<span class="c1">######################################################################</span>
-<span class="n">LoadPlugin</span> <span class="n">logfile</span>
+######################################################################
+# Logging                                                            #
+######################################################################
+LoadPlugin logfile
 
-<span class="o">&lt;</span><span class="n">Plugin</span> <span class="n">logfile</span><span class="o">&gt;</span>
-  <span class="n">LogLevel</span> <span class="s2">&quot;info&quot;</span>
-  <span class="n">File</span> <span class="s2">&quot;/var/log/collectd.log&quot;</span>
-  <span class="n">Timestamp</span> <span class="n">true</span>
-  <span class="n">PrintSeverity</span> <span class="n">true</span>
-<span class="o">&lt;/</span><span class="n">Plugin</span><span class="o">&gt;</span>
+<span class="p">&lt;</span><span class="nt">Plugin</span> <span class="na">logfile</span><span class="p">&gt;</span>
+  LogLevel &quot;info&quot;
+  File &quot;/var/log/collectd.log&quot;
+  Timestamp true
+  PrintSeverity true
+<span class="p">&lt;/</span><span class="nt">Plugin</span><span class="p">&gt;</span>
 
-<span class="c1">######################################################################</span>
-<span class="c1"># Plugins                                                            #</span>
-<span class="c1">######################################################################</span>
-<span class="n">LoadPlugin</span> <span class="n">csv</span>
-<span class="n">LoadPlugin</span> <span class="n">rrdtool</span>
-<span class="n">LoadPlugin</span> <span class="n">vpp</span>
-<span class="n">LoadPlugin</span> <span class="n">vpp_hicn</span>
+######################################################################
+# Plugins                                                            #
+######################################################################
+LoadPlugin csv
+LoadPlugin rrdtool
+LoadPlugin vpp
+LoadPlugin vpp_hicn
 
-<span class="c1">######################################################################</span>
-<span class="c1"># Plugin configuration                                               #</span>
-<span class="c1">######################################################################</span>
-<span class="o">&lt;</span><span class="n">Plugin</span> <span class="n">csv</span><span class="o">&gt;</span>
-  <span class="n">DataDir</span> <span class="s2">&quot;/collectd/csv&quot;</span> <span class="c1"># the folder under which statistics are written in csv</span>
-  <span class="n">StoreRates</span> <span class="n">true</span>
-<span class="o">&lt;/</span><span class="n">Plugin</span><span class="o">&gt;</span>
+######################################################################
+# Plugin configuration                                               #
+######################################################################
+<span class="p">&lt;</span><span class="nt">Plugin</span> <span class="na">csv</span><span class="p">&gt;</span>
+  DataDir &quot;/collectd/csv&quot; # the folder under which statistics are written in csv
+  StoreRates true
+<span class="p">&lt;/</span><span class="nt">Plugin</span><span class="p">&gt;</span>
 
-<span class="o">&lt;</span><span class="n">Plugin</span> <span class="n">rrdtool</span><span class="o">&gt;</span>
-  <span class="n">DataDir</span> <span class="s2">&quot;/collectd/rrd&quot;</span> <span class="c1"># the folder under which statistics are written in csv</span>
-<span class="o">&lt;/</span><span class="n">Plugin</span><span class="o">&gt;</span>
+<span class="p">&lt;</span><span class="nt">Plugin</span> <span class="na">rrdtool</span><span class="p">&gt;</span>
+  DataDir &quot;/collectd/rrd&quot; # the folder under which statistics are written in csv
+<span class="p">&lt;/</span><span class="nt">Plugin</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>Run vpp and collectd</p>

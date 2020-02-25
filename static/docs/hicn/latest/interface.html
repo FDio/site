@@ -269,19 +269,19 @@ to develop new faces. It can be found in <code class="docutils literal notransla
 include guard and specific interface functions are prefixed by a (short)
 identifier which acts as a namespace for interface specific code (in our case
 the string ‘dummy_’).</p>
-<p>Registration and instanciation of the different interfaces is currently done at
+<p>Registration and instantiation of the different interfaces is currently done at
 compile time in the file <code class="docutils literal notranslate"><span class="pre">src/api.c</span></code>, and the appropriate hooks to use the dummy
-interface are avaialble in the code between <code class="docutils literal notranslate"><span class="pre">#if</span> <span class="pre">0/#endif</span></code> tags.</p>
+interface are available in the code between <code class="docutils literal notranslate"><span class="pre">#if</span> <span class="pre">0/#endif</span></code> tags.</p>
 <div class="section" id="interface-template-header-configuration-parameters">
 <h4>Interface template header; configuration parameters<a class="headerlink" href="#interface-template-header-configuration-parameters" title="Permalink to this headline">¶</a></h4>
 <p>All interfaces have a standard interface defined in <code class="docutils literal notranslate"><span class="pre">src/interface.{h,c}</span></code>, and
 as such the header file is only used to specify the configuration parameters of
 the interface, if any.</p>
 <p>In the template, these configuration options are empty:</p>
-<div class="highlight-C# notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Configuration data</span>
 <span class="cm"> */</span>
-<span class="n">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
     <span class="cm">/* ... */</span>
 <span class="p">}</span> <span class="n">dummy_cfg_t</span><span class="p">;</span>
 </pre></div>
@@ -303,10 +303,10 @@ interface.
 </div>
 <p>Each interface can hold a pointer to an internal data structure, which is
 declared as follows:</p>
-<div class="highlight-C# notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Internal data</span>
 <span class="cm"> */</span>
-<span class="n">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
     <span class="cm">/* The configuration data will likely be allocated on the stack (or should</span>
 <span class="cm">     * be freed) by the caller, we recommend to make a copy of this data.</span>
 <span class="cm">     * This copy can further be altered with default values.</span>
@@ -320,37 +320,37 @@ declared as follows:</p>
 </pre></div>
 </div>
 <p>We find here a copy of the configuration settings (which allows the called to
-instanciate the structure on the stack), as well as a file descriptor
+instantiate the structure on the stack), as well as a file descriptor
 (assuming most interfaces will react on events on a file descriptor).</p>
 <p>The rest of the file consists in the implementation of the interface, in
 particular the different function required by the registration of a new
 interface to the system. They are grouped as part of the <code class="docutils literal notranslate"><span class="pre">interface_ops_t</span></code> data
 structure declared at the end of the file:</p>
-<div class="highlight-C# notranslate"><div class="highlight"><pre><span></span>interface\_ops\_t dummy\_ops = {
-    .type = &quot;dummy&quot;,
-    .initialize = dummy_initialize,
-    .finalize = dummy_finalize,
-    .callback = dummy_callback,
-    .on_event = dummy_on_event,
-};
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">interface_ops_t</span> <span class="n">dummy_ops</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="s">&quot;dummy&quot;</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">initialize</span> <span class="o">=</span> <span class="n">dummy_initialize</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">finalize</span> <span class="o">=</span> <span class="n">dummy_finalize</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">dummy_callback</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">on_event</span> <span class="o">=</span> <span class="n">dummy_on_event</span><span class="p">,</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>The structure itself is declared and documented in <code class="docutils literal notranslate"><span class="pre">src/interface.h</span></code></p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span>/**
- * \brief Interface operations
- */
-typedef struct {
-    /** The type given to the interfaces */
-    char * type;
-    /* Constructor */
-    int (*initialize)(struct interface\_s * interface, void * cfg);
-    /* Destructor */
-    int (*finalize)(struct interface_s * interface);
-    /* Callback upon file descriptor event (iif previously registered) */
-    int (*callback)(struct interface_s * interface);
-    /* Callback upon facelet events coming from the face manager */
-    int (*on_event)(struct interface_s * interface, const struct facelet_s * facelet);
-} interface\_ops\_t;
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * \brief Interface operations</span>
+<span class="cm"> */</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="cm">/** The type given to the interfaces */</span>
+    <span class="kt">char</span> <span class="o">*</span> <span class="n">type</span><span class="p">;</span>
+    <span class="cm">/* Constructor */</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">initialize</span><span class="p">)(</span><span class="k">struct</span> <span class="n">interface_s</span> <span class="o">*</span> <span class="n">interface</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">cfg</span><span class="p">);</span>
+    <span class="cm">/* Destructor */</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">finalize</span><span class="p">)(</span><span class="k">struct</span> <span class="n">interface_s</span> <span class="o">*</span> <span class="n">interface</span><span class="p">);</span>
+    <span class="cm">/* Callback upon file descriptor event (iif previously registered) */</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">callback</span><span class="p">)(</span><span class="k">struct</span> <span class="n">interface_s</span> <span class="o">*</span> <span class="n">interface</span><span class="p">);</span>
+    <span class="cm">/* Callback upon facelet events coming from the face manager */</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">on_event</span><span class="p">)(</span><span class="k">struct</span> <span class="n">interface_s</span> <span class="o">*</span> <span class="n">interface</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">facelet_s</span> <span class="o">*</span> <span class="n">facelet</span><span class="p">);</span>
+<span class="p">}</span> <span class="n">interface_ops_t</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Such an interface has to be registered first, then one (or multiple) instance(s)
@@ -369,9 +369,9 @@ if (rc &lt; 0)
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>interface instanciation:</p></li>
+<li><p>interface instantiation:</p></li>
 </ul>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;interfaces/dummy/dummy.h&quot;</span><span class="cp"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;interfaces/dummy/dummy.h&quot;</span><span class="cp"></span>
 
 <span class="cm">/* [...] */</span>
 
@@ -391,20 +391,20 @@ understood through the hands-on example treated in the following section.</p>
 <ul class="simple">
 <li><p>initialize the internal data structure:</p></li>
 </ul>
-<div class="highlight-C# notranslate"><div class="highlight"><pre><span></span>    <span class="n">dummy_data_t</span> <span class="p">*</span> <span class="n">data</span> <span class="p">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">dummy_data_t</span><span class="p">));</span>
-    <span class="k">if</span> <span class="p">(!</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span>    <span class="n">dummy_data_t</span> <span class="o">*</span> <span class="n">data</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">dummy_data_t</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">data</span><span class="p">)</span>
         <span class="k">goto</span> <span class="n">ERR_MALLOC</span><span class="p">;</span>
-    <span class="k">interface</span><span class="p">-&gt;</span><span class="n">data</span> <span class="p">=</span> <span class="n">data</span><span class="p">;</span>
+    <span class="n">interface</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>process configuration parameters, eventually setting some default values:</p></li>
 </ul>
-<div class="highlight-C# notranslate"><div class="highlight"><pre><span></span>    <span class="cm">/* Use default values for unspecified configuration parameters */</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span>    <span class="cm">/* Use default values for unspecified configuration parameters */</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">cfg</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">data</span><span class="p">-&gt;</span><span class="n">cfg</span> <span class="p">=</span> <span class="p">*(</span><span class="n">dummy_cfg_t</span> <span class="p">*)</span><span class="n">cfg</span><span class="p">;</span>
+        <span class="n">data</span><span class="o">-&gt;</span><span class="n">cfg</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">dummy_cfg_t</span> <span class="o">*</span><span class="p">)</span><span class="n">cfg</span><span class="p">;</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">memset</span><span class="p">(&amp;</span><span class="n">data</span><span class="p">-&gt;</span><span class="n">cfg</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">-&gt;</span><span class="n">cfg</span><span class="p">));</span>
+        <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">cfg</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="o">-&gt;</span><span class="n">cfg</span><span class="p">));</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -417,7 +417,7 @@ set as the return value so as to be registered by the system, and added to the
 event loop for read events. A return value of 0 means the interface does not
 require any file descriptor. As usual, a negative return value indicates an
 error.</p>
-<div class="highlight-C# notranslate"><div class="highlight"><pre><span></span>    <span class="n">data</span><span class="p">-&gt;</span><span class="n">fd</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span>    <span class="n">data</span><span class="o">-&gt;</span><span class="n">fd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="cm">/* ... */</span>
 
@@ -427,7 +427,7 @@ error.</p>
 <span class="cm">     *  - a file descriptor (&gt;0) will be added to the event loop; or</span>
 <span class="cm">     *  - 0 if we don&#39;t use any file descriptor</span>
 <span class="cm">     */</span>
-    <span class="k">return</span> <span class="n">data</span><span class="p">-&gt;</span><span class="n">fd</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>While support for multiple file descriptors might be added in the future, an
@@ -440,21 +440,21 @@ an eventual open file descriptor.</p>
 <p>In order to retrieve the internal data structure, that should in particular
 store such a file descriptor, all other function but the constructor can
 dereference it from the interface pointer they receive as parameter:</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span>dummy\_data\_t * data = (dummy\_data\_t*)interface-&gt;data;
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">dummy_data_t</span> <span class="o">*</span> <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">dummy_data_t</span><span class="o">*</span><span class="p">)</span><span class="n">interface</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="raising-and-receiving-events">
 <h4>Raising and Receiving Events<a class="headerlink" href="#raising-and-receiving-events" title="Permalink to this headline">¶</a></h4>
 <p>An interface will receive events in the form of a facelet through the <code class="docutils literal notranslate"><span class="pre">*_on_event</span></code>
-function. It can then use the facelet API we have describe above to read
+function. It can then use the facelet API we have described above to read
 information about the face.</p>
 <p>As this information is declared const, the interface can either create a new
 facelet (identified by the same netdevice and protocol family), or eventually
 clone it.</p>
 <p>The facelet event can then be defined and raised to the face maanger for further
 processing through the following code:</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span>    <span class="n">facelet_set_event</span><span class="p">(</span><span class="n">facelet</span><span class="p">,</span> <span class="n">EVENT_TYPE_CREATE</span><span class="p">);</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span>    <span class="n">facelet_set_event</span><span class="p">(</span><span class="n">facelet</span><span class="p">,</span> <span class="n">EVENT_TYPE_CREATE</span><span class="p">);</span>
     <span class="n">interface_raise_event</span><span class="p">(</span><span class="n">interface</span><span class="p">,</span> <span class="n">facelet</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -516,7 +516,7 @@ seconds display either “WiFi” or “LTE”.</p>
 <p>An example illustrating how to connect to the dummy service from <code class="docutils literal notranslate"><span class="pre">updownsrv</span></code> is
 provided as the <code class="docutils literal notranslate"><span class="pre">updown</span></code> interface in the facemgr source code.</p>
 <p>This interface periodically swaps the status of the LTE interface up and down.
-It is instanciated as part of the facemgr codebase when the code is compiled
+It is instantiated as part of the facemgr codebase when the code is compiled
 with the ``-DWITH_EXAMPLE_UPDOWN` cmake option.</p>
 </div>
 </div>
