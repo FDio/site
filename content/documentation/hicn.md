@@ -11,3 +11,5 @@ The project implements novel transport protocols, with a socket API, for real-ti
 To get started with hICN check out the [Blog post](/latest/singles/hicn).
 <br>
 The Developer Wiki is at [hICN Wiki](https://wiki.fd.io/view/HICN).
+<br>
+The hiCN User Docs are here -- [hICN Docs](/docs/hicn/latest).
