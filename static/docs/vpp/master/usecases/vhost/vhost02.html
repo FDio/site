@@ -115,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../homegateway.html">Using VPP as a Home Gateway</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../contiv/index.html">Contiv/VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../webapp.html">Building VPP web applications</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
@@ -243,7 +244,7 @@ FD.io VPP.</p>
 there are <strong>Memory Regions</strong>. At this point the VM and FD.io VPP are connected. Also
 notice <strong>qsz 1024</strong>. A queue size of 256 will affect vhost throughput. The qsz should
 be 1024. In QEMU 2.10.0 and libvirt 3.7.0 and later versions this is specified in the
-xml file with the line <strong>&lt;driver rx_queue_size=‘1024’ tx_queue_size=‘1024’/&gt;</strong> shown above
+xml file with the line <strong>&lt;driver rx_queue_size=’1024’ tx_queue_size=’1024’/&gt;</strong> shown above
 and in the example.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# show vhost</span>
 <span class="go">Virtio vhost-user interfaces</span>
