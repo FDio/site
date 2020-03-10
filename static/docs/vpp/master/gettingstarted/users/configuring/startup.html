@@ -215,7 +215,7 @@ own ELF-sections [primarily] to make lists of init, configuration, and exit
 handlers.</p>
 <p>When developing with VPP, in gdb it’s often sufficient to start an application
 like this:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">(gdb) run unix interactive</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(gdb)</span> <span class="go">run unix interactive</span>
 </pre></div>
 </div>
 </div>
@@ -1077,9 +1077,7 @@ configured very early in the boot sequence, before loading plug-ins or doing
 much of anything else.</p>
 <div class="section" id="heapsize-n-m-n-g">
 <h3>heapsize &lt;n&gt;M | &lt;n&gt;G<a class="headerlink" href="#heapsize-n-m-n-g" title="Permalink to this headline">¶</a></h3>
-<p>Specifies the size of the heap in MB or GB. The default is 1GB. Setting the
-main heap size to 4GB or more requires recompilation of the entire system
-with CLIB_VEC64 &gt; 0. See …/clib/clib/vec_bootstrap.h.</p>
+<p>Specifies the size of the heap in MB or GB. The default is 1GB.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">heapsize 2G</span>
 </pre></div>
 </div>

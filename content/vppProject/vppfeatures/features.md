@@ -8,6 +8,8 @@
 [Bonding](#bonding)  
 [Buffer Metadata Change Tracker](#buffer-metadata-change-tracker)  
 [Builtin URL support for the static http or https server](#builtin-url-support-for-the-static-http-or-https-server)  
+[COP](#cop)  
+[Classify](#classify)  
 [Data-Plane Objects](#data-plane-objects)  
 [Dynamic Host Configuration Protocol](#dynamic-host-configuration-protocol)  
 [GPRS Tunneling Protocol](#gprs-tunneling-protocol)  
@@ -21,6 +23,7 @@
 [IPSec crypto engine provided by native implementation](#ipsec-crypto-engine-provided-by-native-implementation)  
 [IPv6 Neighbor Discovery](#ipv6-neighbor-discovery)  
 [Internet Group Management Protocol](#internet-group-management-protocol)  
+[L2TPv3](#l2tpv3)  
 [Layer 2 Forwarding](#layer-2-forwarding)  
 [Layer 3 cross connect](#layer-3-cross-connect)  
 [Link Aggregation Control Protocol](#link-aggregation-control-protocol)  
@@ -34,30 +37,43 @@
 [Netmap Device](#netmap-device)  
 [Network Address Translation](#network-address-translation)  
 [Network Delay Simulator](#network-delay-simulator)  
+[PG](#pg)  
 [PPPoE](#pppoe)  
 [Pipe Device](#pipe-device)  
+[QUIC Protocol](#quic-protocol)  
 [Quality of Service](#quality-of-service)  
+[SRv6 - Service Chaining Dynamic Proxy](#srv6---service-chaining-dynamic-proxy)  
+[SRv6 - Service Chaining Masquerading Proxy](#srv6---service-chaining-masquerading-proxy)  
+[SRv6 - Service Chaining Static Proxy](#srv6---service-chaining-static-proxy)  
 [SRv6 Mobuile](#srv6-mobuile)  
+[Segment Routing for IPv6 (SRv6)](#segment-routing-for-ipv6-(srv6))  
+[Segment Routing for MPLS](#segment-routing-for-mpls)  
 [Session Layer](#session-layer)  
 [Source VRF Select](#source-vrf-select)  
 [Static http https server](#static-http-https-server)  
+[TLS OpenSSL](#tls-openssl)  
 [Tap Device](#tap-device)  
 [Time-range-based MAC-address filter](#time-range-based-mac-address-filter)  
 [Transmission Control Protocol](#transmission-control-protocol)  
 [Transport Layer Security](#transport-layer-security)  
+[Tunnel Infra](#tunnel-infra)  
 [User Datagram Protocol](#user-datagram-protocol)  
+[VNET GSO](#vnet-gso)  
 [VPP Comms Library](#vpp-comms-library)  
 [Virtio PCI Device](#virtio-pci-device)  
+[Virtual Router Redundancy Protocol](#virtual-router-redundancy-protocol)  
 [Virtual eXtensible LAN](#virtual-extensible-lan)  
 [VxLAN-GPE](#vxlan-gpe)  
 [host-interface Device AF_PACKET](#host-interface-device-af_packet)  
 [rdma device driver](#rdma-device-driver)  
+[vlib/unix](#vlib/unix)  
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v20.01-rc0-1007-gbbff1439c
+VPP version: v20.05-rc0-298-g5e0e0df9b
 
 ### ACL Based Forwarding
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 
 
@@ -73,6 +89,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/abf](https://git.fd.io/vpp/tree/src/plugins/abf) 
 ### ACLs for Security Groups
+Maintainer: Andrew Yourtchenko <ayourtch@gmail.com>  
 
 The ACL plugin allows to implement access control policies
 at the levels of IP address ownership (by locking down
@@ -100,6 +117,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/acl](https://git.fd.io/vpp/tree/src/plugins/acl) 
 ### Address Resolution Protocol
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 An implementation of the Address resolution protocol (ARP) as described in RFC826
 
@@ -109,6 +127,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/arp](https://git.fd.io/vpp/tree/src/vnet/arp) 
 ### Adjacency
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 Adjacencies represent the next-hop information required to reach a directly connected neighbour.
 
@@ -123,6 +142,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/adj](https://git.fd.io/vpp/tree/src/vnet/adj) 
 ### Bidirectional Forwarding Detection
+Maintainer: Klement Sekera <ksekera@cisco.com>  
 
 An implementation of Bidirectional Forwarding Detection (BFD).
 
@@ -132,6 +152,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/bfd](https://git.fd.io/vpp/tree/src/vnet/bfd) 
 ### Bit Indexed Explicit Replication
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 An implementation of Bit Indexed Explicit Replication (BIER)
 
@@ -142,6 +163,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/bier](https://git.fd.io/vpp/tree/src/vnet/bier) 
 ### Bonding
+Maintainer: Steven Luong <sluong@cisco.com>  
 
 Bonding implementation
 
@@ -151,6 +173,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/bonding](https://git.fd.io/vpp/tree/src/vnet/bonding) 
 ### Buffer Metadata Change Tracker
+Maintainer: Dave Barach <dave@barachs.net>  
 
 The Buffer Metadata Change Tracker (mdata)
 uses the before / after graph node main loop performance
@@ -166,6 +189,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/mdata](https://git.fd.io/vpp/tree/src/plugins/mdata) 
 ### Builtin URL support for the static http or https server
+Maintainer: Dave Barach <dave@barachs.net>  
 
 The (builtinurl) plugin adds a set of URLs to the static http/https server. Current URLs, all of which return data in .json fmt: <root-url>/version.json - vpp version info <root-url>/interface_list.json - list of interfaces <root-url>/interface_stats - single interface via HTTP POST <root-url>/interface_stats - all intfcs via HTTP GET.
 
@@ -174,7 +198,32 @@ The (builtinurl) plugin adds a set of URLs to the static http/https server. Curr
 Feature maturity level: development  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/builtinurl](https://git.fd.io/vpp/tree/src/plugins/builtinurl) 
+### COP
+Maintainer: Dave Barach <dbarach@cisco.com>  
+
+A very simple / fast source-address whitelist feature
+
+- v4, v6 non-default FIB src-address lookup
+- Drop packets which don't hit a receive adjacency
+- Not widely used
+
+Feature maturity level: experimental  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/cop](https://git.fd.io/vpp/tree/src/vnet/cop) 
+### Classify
+Maintainer: Dave Barach <dbarach@cisco.com>  
+
+Mask / match packet classifier
+
+- Swiss-army-knife mask-match engine for classifying packets
+- Uses 128-bit SIMD vector operations for performance
+- Many use-cases, including packet trace / pcap capture filtration
+
+Feature maturity level: production  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/classify](https://git.fd.io/vpp/tree/src/vnet/classify) 
 ### Data-Plane Objects
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 Data-Plane Objects (DPO)
 
@@ -187,6 +236,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/dpo](https://git.fd.io/vpp/tree/src/vnet/dpo) 
 ### Dynamic Host Configuration Protocol
+Maintainer: Dave Barach <dave@barachs.net>, Neale Ranns <nranns@cisco.com>  
 
 An implemenation of the Dynamic Host Configuration Protocol (DHCP) client
 
@@ -198,6 +248,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/dhcp](https://git.fd.io/vpp/tree/src/plugins/dhcp) 
 ### GPRS Tunneling Protocol
+Maintainer: Hongjun Ni <hongjun.ni@intel.com>  
 
 An implementation of the GPRS Tunnelling Protocol
 
@@ -208,6 +259,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/gtpu](https://git.fd.io/vpp/tree/src/plugins/gtpu) 
 ### Generic Routing Encapsulation
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 An implementation of Generic Routing Encapsulation (GRE)
 
@@ -223,6 +275,7 @@ Not yet implemented:
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/gre](https://git.fd.io/vpp/tree/src/vnet/gre) 
 ### IP Neighbour Database
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 
 
@@ -233,6 +286,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/ip-neighbor](https://git.fd.io/vpp/tree/src/vnet/ip-neighbor) 
 ### IP Security
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 An implementation of IPSec
 
@@ -244,6 +298,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/ipsec](https://git.fd.io/vpp/tree/src/vnet/ipsec) 
 ### IP in IP tunnelling
+Maintainer: Ole Troan <ot@cisco.com>  
 
 Implements IP{v4,v6} over IP{v4,v6} tunnelling as
 described in RFC2473. This module also implements the
@@ -270,6 +325,7 @@ Not yet implemented:
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/ipip](https://git.fd.io/vpp/tree/src/vnet/ipip) 
 ### IPFIX probe
+Maintainer: Ole Troan <ot@cisco.com>  
 
 IPFIX flow probe. Works in the L2, or IP input feature path.
 
@@ -287,6 +343,7 @@ Not yet implemented:
 
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/flowprobe](https://git.fd.io/vpp/tree/src/plugins/flowprobe) 
 ### IPSec crypto engine provided by Intel IPSecMB library
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 
 
@@ -298,6 +355,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/crypto_ipsecmb](https://git.fd.io/vpp/tree/src/plugins/crypto_ipsecmb) 
 ### IPSec crypto engine provided by Openssl library
+Maintainer: Damjan Marion <damarion@cisco.com>  
 
 
 
@@ -312,6 +370,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/crypto_openssl](https://git.fd.io/vpp/tree/src/plugins/crypto_openssl) 
 ### IPSec crypto engine provided by native implementation
+Maintainer: Damjan Marion <damarion@cisco.com>  
 
 An implentation of a native crypto-engine
 
@@ -320,8 +379,9 @@ An implentation of a native crypto-engine
 
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
-Source Code: [https://git.fd.io/vpp/tree/src/plugins/crypto_ia32](https://git.fd.io/vpp/tree/src/plugins/crypto_ia32) 
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/crypto_native](https://git.fd.io/vpp/tree/src/plugins/crypto_native) 
 ### IPv6 Neighbor Discovery
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 An implementation of the IPv6 Neighbor discovery protocol as described in RFC4861 and RFC4862.
 
@@ -334,6 +394,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/ip6-nd](https://git.fd.io/vpp/tree/src/vnet/ip6-nd) 
 ### Internet Group Management Protocol
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 An implementation of the Internet Group Management Protocol (IGMP)
 
@@ -342,7 +403,18 @@ An implementation of the Internet Group Management Protocol (IGMP)
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/igmp](https://git.fd.io/vpp/tree/src/plugins/igmp) 
+### L2TPv3
+Maintainer: unmaintained  
+
+An initial and incomplete implementation of L2TPv3 (RFC3931).
+
+- L2TPv3 over IPv6
+
+Feature maturity level: experimental  
+Supports: API CLI  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/l2tp](https://git.fd.io/vpp/tree/src/vnet/l2tp) 
 ### Layer 2 Forwarding
+Maintainer: John Lo <loj@cisco.com>  
 
 Layer 2 Bridging and Cross-Connect Support
 
@@ -369,6 +441,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/l2](https://git.fd.io/vpp/tree/src/vnet/l2) 
 ### Layer 3 cross connect
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 
 
@@ -380,6 +453,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/l3xc](https://git.fd.io/vpp/tree/src/plugins/l3xc) 
 ### Link Aggregation Control Protocol
+Maintainer: Steven Luong <sluong@cisco.com>  
 
 Link Aggregation Control Protocol implementation (LACP)
 
@@ -389,6 +463,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/lacp](https://git.fd.io/vpp/tree/src/plugins/lacp) 
 ### Link Layer Discovery Protocol
+Maintainer: Klement Sekera <ksekera@cisco.com>  
 
 Link Layer Discovery Protocol (LLDP) implementation
 
@@ -398,6 +473,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/lldp](https://git.fd.io/vpp/tree/src/vnet/lldp) 
 ### Load Balancer
+Maintainer: Pfister <ppfister@cisco.com>, Hongjun Ni <hongjun.ni@intel.com>  
 
 
 
@@ -411,6 +487,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/lb](https://git.fd.io/vpp/tree/src/plugins/lb) 
 ### Locator ID Separation Protocol Control Plane
+Maintainer: Florin Coras <fcoras@cisco.com>  
 
 Locator ID Separation Protocol control plane (LISP) implementation
 
@@ -426,6 +503,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/lisp-cp](https://git.fd.io/vpp/tree/src/vnet/lisp-cp) 
 ### Locator ID Separation Protocol Generic Protocol Extension
+Maintainer: Florin Coras <fcoras@cisco.com>  
 
 Locator ID Separation Protocol Generic Protocol Extension (LISP-GPE) implementation
 
@@ -438,6 +516,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/lisp-gpe](https://git.fd.io/vpp/tree/src/vnet/lisp-gpe) 
 ### Mapping of Address and Port
+Maintainer: Ole Troan <ot@cisco.com>  
 
 Mapping of Address and Port (MAP): IPv4 as a service mechanisms. Tunnel or translate an IPv4 address, an IPv4 subnet or a shared IPv4 address. In shared IPv4 address mode, only UDP, TCP and restricted ICMP is supported.
 
@@ -451,6 +530,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/map](https://git.fd.io/vpp/tree/src/plugins/map) 
 ### Multi-Protocol Label Switching
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 An implementation of Multi-Protocol Label Switching (MPLS)
 
@@ -461,6 +541,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/mpls](https://git.fd.io/vpp/tree/src/vnet/mpls) 
 ### NSH
+Maintainer: Hongjun Ni <hongjun.ni@intel.com>, Vengada <venggovi@cisco.com>  
 
 NSH for SFC
 
@@ -475,6 +556,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/nsh](https://git.fd.io/vpp/tree/src/plugins/nsh) 
 ### Netmap Device
+Maintainer: Damjan Marion <damarion@cisco.com>  
 
 Create a netmap interface, which is a high speed user-space interface that allows VPP to patch into a linux namespace, a linux container, or a physical NIC without the use of DPDK.
 
@@ -486,8 +568,9 @@ Supports: API CLI STATS MULTITHREAD
 Not yet implemented:  
 - API dump
 
-Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/netmap](https://git.fd.io/vpp/tree/src/vnet/devices/netmap) 
+Source Code: [https://git.fd.io/vpp/tree/src/deprecated/netmap](https://git.fd.io/vpp/tree/src/deprecated/netmap) 
 ### Network Address Translation
+Maintainers: Ole Troan <ot@cisco.com>, Filip Varga <fivarga@cisco.com>  
 
 The Network Address Translation (NAT) plugin offers a multiple address translation functions. These can be used in a raft of different scenarios. CPE, CGN, etc.
 
@@ -513,6 +596,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/nat](https://git.fd.io/vpp/tree/src/plugins/nat) 
 ### Network Delay Simulator
+Maintainer: Dave Barach <dave@barachs.net>  
 
 Introduces configurable network delay and loss
 
@@ -521,7 +605,23 @@ Introduces configurable network delay and loss
 Feature maturity level: production  
 Supports: CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/nsim](https://git.fd.io/vpp/tree/src/plugins/nsim) 
+### PG
+Maintainer: Dave Barach <dbarach@cisco.com>  
+
+High-speed packet generator
+
+- High-speed packet generation
+- Packet definition CLI
+- Support for pcap capture replay
+- Multi-thread packet generation
+- Packet injection into arbitrary graph nodes
+- Heavily used by "make test"
+
+Feature maturity level: production  
+Supports: CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/pg](https://git.fd.io/vpp/tree/src/vnet/pg) 
 ### PPPoE
+Maintainer: Hongjun Ni <hongjun.ni@intel.com>  
 
 PPP over Ethernet
 
@@ -533,6 +633,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/pppoe](https://git.fd.io/vpp/tree/src/plugins/pppoe) 
 ### Pipe Device
+Maintainer: Damjan Marion <damarion@cisco.com>  
 
 Create a pipe device interface, which can pass packets bidirectionally in one side of the pipe to the other side of the pipe. While similar in behavior to a unix pipe, it is not a host-based pipe.
 
@@ -547,7 +648,19 @@ Not yet implemented:
 - API dump filtering by sw_if_index
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/pipe](https://git.fd.io/vpp/tree/src/vnet/devices/pipe) 
+### QUIC Protocol
+Maintainer: Aloys Augustin <aloaugus@cisco.com>  
+
+IETF QUIC Protocol implementation
+
+- host stack integration via session layer
+- based on the Quicly library: https://github.com/h2o/quicly
+
+Feature maturity level: experimental  
+Supports: API CLI STATS MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/quic](https://git.fd.io/vpp/tree/src/plugins/quic) 
 ### Quality of Service
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 An implentation of Quality of Service (QoS)
 
@@ -559,7 +672,38 @@ An implentation of Quality of Service (QoS)
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/qos](https://git.fd.io/vpp/tree/src/vnet/qos) 
+### SRv6 - Service Chaining Dynamic Proxy
+Maintainer: Francois Clad <fclad@cisco.com>  
+
+SRv6 dynamic proxy
+
+- SRv6 - dynamic service chaining proxy (draft-ietf-spring-sr-service-programming-01)
+
+Feature maturity level: production  
+Supports: CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/srv6-ad](https://git.fd.io/vpp/tree/src/plugins/srv6-ad) 
+### SRv6 - Service Chaining Masquerading Proxy
+Maintainer: Francois Clad <fclad@cisco.com>  
+
+SRv6 masquerading proxy
+
+- SRv6 - masquerading service chaining proxy (draft-ietf-spring-sr-service-programming-01)
+
+Feature maturity level: production  
+Supports: CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/srv6-am](https://git.fd.io/vpp/tree/src/plugins/srv6-am) 
+### SRv6 - Service Chaining Static Proxy
+Maintainer: Francois Clad <fclad@cisco.com>  
+
+SRv6 static proxy
+
+- SRv6 - static service chaining proxy (draft-ietf-spring-sr-service-programming-01)
+
+Feature maturity level: production  
+Supports: CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/srv6-as](https://git.fd.io/vpp/tree/src/plugins/srv6-as) 
 ### SRv6 Mobuile
+Maintainer: Tetsuya Murakami <tetsuya.mrk@gmail.com>  
 
 SRv6 Mobile End Functions. GTP4.D, GTP4.E, GTP6.D, GTP6.D.Di and GTP6.E are supported.
 
@@ -572,7 +716,37 @@ SRv6 Mobile End Functions. GTP4.D, GTP4.E, GTP6.D, GTP6.D.Di and GTP6.E are supp
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/srv6-mobile](https://git.fd.io/vpp/tree/src/plugins/srv6-mobile) 
+### Segment Routing for IPv6 (SRv6)
+Maintainer: Pablo Camarillo <pcamaril@cisco.com>  
+
+Full SRv6 Network Programming implementation
+
+- Support for SRv6 Network Programming (draft-ietf-spring-srv6-network-programming-07)
+- SR Headend behaviors (H.Encaps, H.Encaps.Red, H.Encaps.L2, H.Encaps.L2.Red)
+- SR Endpoint behaviors (End, End.X, End.T) for intermediate TE with PSP support
+- SR Endpoint behaviors (End.DX4, End.DX6, End.DT4, End.DT6, End.DX2) for overlay creation
+- SR Endpoint behaviors (End.B6.Encaps.Red) for BindingSID instantiation
+- Support for SRH insertion (draft-filsfils-spring-srv6-net-pgm-insertion-01)
+- SR counters
+- SR policy implementation (draft-ietf-spring-segment-routing-policy-02)
+- SR steering based on IP prefix / L2 interface classification
+
+Feature maturity level: production  
+Supports: API CLI STATS MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/srv6](https://git.fd.io/vpp/tree/src/vnet/srv6) 
+### Segment Routing for MPLS
+Maintainer: Pablo Camarillo <pcamaril@cisco.com>  
+
+SR-MPLS
+
+- SR Policy support
+- Automated steering (SR steering based on NextHop/Color)
+
+Feature maturity level: production  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/srmpls](https://git.fd.io/vpp/tree/src/vnet/srmpls) 
 ### Session Layer
+Maintainer: Florin Coras <fcoras@cisco.com>  
 
 The session layer facilitates the interaction between northbound applications and southbound transport protocols. To this end, northbound, through the app-interface sub layer, the session layer exposes APIs for applications to interact with abstract units of communication, i.e., sessions. And southbound, through the transport protocol interface, it exposes APIs that allow transport protocols to exchange data and events (ctrl and io) with applications, without actually being aware of how that communication is carried out.
 
@@ -594,6 +768,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/session](https://git.fd.io/vpp/tree/src/vnet/session) 
 ### Source VRF Select
+Maintainer: Neale Ranns <nranns@cisco.com>  
 
 
 
@@ -608,6 +783,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/svs](https://git.fd.io/vpp/tree/src/plugins/svs) 
 ### Static http https server
+Maintainer: Dave Barach <dave@barachs.net>  
 
 A simple caching static http / https server A built-in vpp host stack application. Supports HTTP GET and HTTP POST methods.
 
@@ -616,11 +792,26 @@ A simple caching static http / https server A built-in vpp host stack applicatio
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/http_static](https://git.fd.io/vpp/tree/src/plugins/http_static) 
+### TLS OpenSSL
+Maintainer: Florin Coras <fcoras@cisco.com>, Ping Yu <ping.yu@intel.com>  
+
+TLS OpenSSL plugin for VPP host stack
+
+- OpenSSL engine for TLS
+- TLS Async framework
+- Enable QAT for crypto offload
+
+Feature maturity level: experimental  
+Supports: API CLI STATS MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/tlsopenssl](https://git.fd.io/vpp/tree/src/plugins/tlsopenssl) 
 ### Tap Device
+Maintainer: damarion@cisco.com sluong@cisco.com sykazmi@cisco.com  
 
 Create a tap v2 device interface, which connects to a tap interface on the host system.
 
 - Virtio
+- persistence
+- attach to existing tap at host
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
@@ -630,6 +821,7 @@ Not yet implemented:
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/tap](https://git.fd.io/vpp/tree/src/vnet/devices/tap) 
 ### Time-range-based MAC-address filter
+Maintainer: Dave Barach <dave@barachs.net>  
 
 Device-input/output arc driver level MAC filter. Checks to see if traffic is allowed to/from the given MAC address, and takes the appropriate action. Intended for the home gateway use-case, where WAN traffic is billed per bit.
 
@@ -639,6 +831,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/mactime](https://git.fd.io/vpp/tree/src/plugins/mactime) 
 ### Transmission Control Protocol
+Maintainer: Florin Coras <fcoras@cisco.com>  
 
 High speed and scale Transmission Control Protocol (TCP) implementation
 
@@ -655,6 +848,7 @@ Feature maturity level: production
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/tcp](https://git.fd.io/vpp/tree/src/vnet/tcp) 
 ### Transport Layer Security
+Maintainers: Florin Coras <fcoras@cisco.com>, Ping Yu <ping.yu@intel.com>  
 
 Transport Layer Security (TLS) protocol implementation that consists of a set of engines that act as wrappers for existing TLS implementations, e.g., OpenSSL, Picotls and MbedTLS, and a framework that integrates the engines into VPP's host stack
 
@@ -664,7 +858,18 @@ Transport Layer Security (TLS) protocol implementation that consists of a set of
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/tls](https://git.fd.io/vpp/tree/src/vnet/tls) 
+### Tunnel Infra
+Maintainer: Neale Ranns <nranns@cisco.com>  
+
+Tunnel Infrastructure
+
+- Common types and functions for IP tunnels
+
+Feature maturity level: production  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/tunnel](https://git.fd.io/vpp/tree/src/vnet/tunnel) 
 ### User Datagram Protocol
+Maintainer: Florin Coras <fcoras@cisco.com>  
 
 User Datagram Protocol (UDP) implementation
 
@@ -674,7 +879,24 @@ User Datagram Protocol (UDP) implementation
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/udp](https://git.fd.io/vpp/tree/src/vnet/udp) 
+### VNET GSO
+Maintainer: ayourtch@gmail.com sykazmi@cisco.com  
+
+Generic Segmentation Offload
+
+- Basic GSO support
+- GSO for VLAN tagged packets
+- Provide inline function to get header offsets
+
+Feature maturity level: experimental  
+Supports: API CLI  
+
+Not yet implemented:  
+- Tunnels i.e. VXLAN
+
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/gso](https://git.fd.io/vpp/tree/src/vnet/gso) 
 ### VPP Comms Library
+Maintainer: Florin Coras <fcoras@cisco.com>  
 
 VPP Comms Library (VCL) simplifies app interaction with session layer by exposing APIs that are similar to but not POSIX-compliant.
 
@@ -696,10 +918,13 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vcl](https://git.fd.io/vpp/tree/src/vcl) 
 ### Virtio PCI Device
+Maintainer: sykazmi@cisco.com sluong@cisco.com  
 
-Create a virtio-backed PCI device interface
+Virtio v1.0 implementation
 
-- connection to the emulated pci interface presented to vpp from the host interface.
+- driver mode to emulate PCI interface presented to VPP from the host interface.
+- device mode to emulate vhost-user interface presented to VPP from the guest VM.
+- support multi-queue, GSO, checksum offload, indirect descriptor, and jumbo frame.
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
@@ -708,7 +933,34 @@ Not yet implemented:
 - API dump filtering by sw_if_index
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/virtio](https://git.fd.io/vpp/tree/src/vnet/devices/virtio) 
+### Virtual Router Redundancy Protocol
+Maintainer: Matthew Smith <mgsmith@netgate.com>  
+
+Virtual Router Redundancy Protocol implementation (VRRPv3)
+
+- VRRPv3 (RFC 5798) for IPv4 and IPv6
+  - Signaling/advertisements and election of a master
+  - Replies to ARP, NS requests for virtual router addresses
+
+- VRRP virtual MAC address support
+  - DPDK interfaces with PMD support for multiple MAC addresses via the rte_eth_dev_mac_addr_add(), rte_eth_dev_mac_addr_del()
+  - Other interfaces which are set in promiscuous mode may work
+
+- Support interface types for VRRP virtual routers
+  - Hardware interfaces
+  - VLAN subinterfaces
+  - Bond interfaces
+
+- Additional features not specified in RFC 5798
+  - Allows sending advertisements to unicast peers instead of multicast
+  - Allows a virtual router's priority to be adjusted based on the state of an upstream interface. Mentioned as a configuration option to "track interfaces or networks" in RFC 8347.
+
+
+Feature maturity level: production  
+Supports: API CLI STATS MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/vrrp](https://git.fd.io/vpp/tree/src/plugins/vrrp) 
 ### Virtual eXtensible LAN
+Maintainer: John Lo <loj@cisco.com>  
 
 Virtual eXtensible LAN (VXLAN) tunnels support L2 overlay networks that span L3 networks
 
@@ -724,6 +976,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/vxlan](https://git.fd.io/vpp/tree/src/vnet/vxlan) 
 ### VxLAN-GPE
+Maintainer: Hongjun Ni <hongjun.ni@intel.com>  
 
 VxLAN-GPE tunnel handling
 
@@ -734,6 +987,7 @@ Feature maturity level: production
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/vxlan-gpe](https://git.fd.io/vpp/tree/src/vnet/vxlan-gpe) 
 ### host-interface Device AF_PACKET
+Maintainer: Damjan Marion <damarion@cisco.com>  
 
 Create a host interface that will attach to a linux AF_PACKET interface, one side of a veth pair. The veth pair must already exist. Once created, a new host interface will exist in VPP with the name 'host-<ifname>', where '<ifname>' is the name of the specified veth pair. Use the 'show interface' command to display host interface details.
 
@@ -747,6 +1001,7 @@ Not yet implemented:
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/af_packet](https://git.fd.io/vpp/tree/src/vnet/devices/af_packet) 
 ### rdma device driver
+Maintainer: Benoît Ganne <bganne@cisco.com>  
 
 rdma device driver support
 
@@ -755,7 +1010,23 @@ rdma device driver support
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/rdma](https://git.fd.io/vpp/tree/src/plugins/rdma) 
+### vlib/unix
+Maintainer: Dave Barach <dbarach@cisco.com>  
+
+Linux-specific support routines
+
+- epoll-based file I/O support
+- Linux signal handling
+- Syslog support
+- Startup configuration processing, logging
+- Configuration debug CLI pager, banner, main loop polling interval
+- Per-thread stack allocation, guard-page setup
+
+Feature maturity level: production  
+Supports: CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vlib/unix](https://git.fd.io/vpp/tree/src/vlib/unix) 
 ### vmxnet3 device driver
+Maintainer: Steven Luong <sluong@cisco.com>  
 
 vmxnet3 device driver support
 
