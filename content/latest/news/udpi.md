@@ -1,5 +1,5 @@
 +++
-title = "Introducing Universal Deep Packet Inspectiion (UDPI), a new FD.io Project"
+title = "Introducing Universal Deep Packet Inspection (UDPI), a new FD.io Project"
 author = "Ni, Hongjun"
 newslink = "https://wiki.fd.io/view/UDPI"
 newsbuttontxt = "Read More about UDPI"
