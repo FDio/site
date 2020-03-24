@@ -253,7 +253,7 @@ that prevent their insertion into the forwarding DB
 </li>
 <li><p>The <em>fib_path_list_t</em> represents the list of paths from which to choose one when forwarding. The path-list is a shared object, i.e. it is the parent to multiple fib_entry_t children. In order to share any object type it is necessary for a child to search for an existing object matching its requirements. For this there must be a data-base. The key to the path-list data-base is a combined description of all of the paths it contains <a class="footnote-reference brackets" href="#f2" id="id2">1</a>.  Searching the path-list database is required with each route addition, so it is populated only with path-lists for which sharing will bring convergence benefits (see Section: <a class="reference internal" href="fastconvergence.html#fastconvergence"><span class="std std-ref">Fast Convergence</span></a>).</p></li>
 </ul>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig2.png" src="../../../_images/fib20fig2.png" />
 </div>
 <p>Figure 2: Route data model class diagram</p>
@@ -263,7 +263,7 @@ are the same as the key for the adjacency data-base <a class="footnote-reference
 is the set of adjacencies that are available for load-balancing the traffic in the
 data-plane. A path <em>contributes</em> an adjacency to the route’s forwarding information, the
 path-list contributes the full forwarding information for IP packets.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig3.png" src="../../../_images/fib20fig3.png" />
 </div>
 <p>Figure 3: Route object diagram</p>
@@ -357,7 +357,7 @@ moved to table 2.</p>
 representation is almost identical to attached next-hop paths. The difference
 being that the <em>fib_path_t</em> has a parent that is another <em>fib_entry_t</em>, termed the
 <em>via-entry</em></p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig4.png" src="../../../_images/fib20fig4.png" />
 </div>
 <p>Figure 4: Recursive route class diagram.</p>
@@ -388,7 +388,7 @@ forwarding information to that path, so that the child’s FIB entry can constru
 forwarding information.</p>
 <p>Figure 5 shows the object instances created to represent the recursive route and
 its resolving route also shown.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig5.png" src="../../../_images/fib20fig5.png" />
 </div>
 <p>Figure 5: Recursive Routes object diagram</p>

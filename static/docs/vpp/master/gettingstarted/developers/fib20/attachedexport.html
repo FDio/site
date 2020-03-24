@@ -246,7 +246,7 @@ covers, and only the adj-fibs and locals, not any covered more specific
 (sourced e.g. by API). The imported FIB entries are sourced as <em>attached-export</em>
 this is a low priority source, so if those prefixes already exist in the import
 VRF, sourced by the API, then they will continue to forward with that information.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig6.png" src="../../../_images/fib20fig6.png" />
 </div>
 <p>Figure 6: Attached Export Class diagram.</p>
@@ -255,7 +255,7 @@ VRF, sourced by the API, then they will continue to forward with that informatio
 <li><p><em>fib_import_t</em>. A representation of the need to import covered prefixes. An instance is associated with the FIB entry in the import VRF. The need to import prefixes is recognised when an attached route is added to a table that is different to the table of the interface to which it t is attached. The creation of a <em>fib_import_t</em> will trigger the creation of a <em>fib_export_t</em>.</p></li>
 <li><p><em>fib_export_t</em>. A representation of the need to export prefixes. An instance is associated with the attached entry in the export VRF. A <em>fib_export_t</em> can have many associated <em>fib_import_t</em> objects representing multiple VRFs into which the prefix is exported.</p></li>
 </ul>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig6.png" src="../../../_images/fib20fig6.png" />
 </div>
 <p>Figure 7: Attached Export object diagram</p>

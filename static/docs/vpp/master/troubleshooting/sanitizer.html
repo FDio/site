@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The Packet Processing Graph &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>Google Sanitizers &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Network Stack" href="networkstack.html" />
-    <link rel="prev" title="Scalar vs Vector packet processing" href="scalar-vs-vector-packet-processing.html" /> 
+    <link rel="next" title="Events" href="../events/index.html" />
+    <link rel="prev" title="CPU Load/Usage" href="cpuusage.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,21 +90,20 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Vector Packet Processor (VPP)</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">The Packet Processing Graph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="networkstack.html">Network Stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hoststack.html">TCP Host Stack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developer.html">Features for Developers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supported.html">Architectures and Operating Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usecases/index.html">Use Cases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Troubleshooting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reportingissues/index.html">How to Report an Issue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpuusage.html">CPU Load/Usage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Google Sanitizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">AddressSanitizer</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
@@ -155,15 +154,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">The Vector Packet Processor (VPP)</a> &raquo;</li>
+          <li><a href="index.html">Troubleshooting</a> &raquo;</li>
         
-      <li>The Packet Processing Graph</li>
+      <li>Google Sanitizers</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/whatisvpp/extensible.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/troubleshooting/sanitizer.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,40 +175,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="the-packet-processing-graph">
-<span id="extensible"></span><h1>The Packet Processing Graph<a class="headerlink" href="#the-packet-processing-graph" title="Permalink to this headline">¶</a></h1>
-<p>At the core of the FD.io VPP design is the <strong>Packet Procerssing Graph</strong></p>
-<p>This makes the software:</p>
-<ul class="simple">
-<li><p>Pluggable, easy to understand &amp; extend</p></li>
-<li><p>Mature graph node architecture</p></li>
-<li><p>Full control to reorganize the pipeline</p></li>
-<li><p>Fast, plugins are equal citizens</p></li>
-</ul>
-<p>The FD.io VPP packet processing pipeline is decomposed into a ‘packet processing
-graph’.  This modular approach means that anyone can ‘plugin’ new graph
-nodes. This makes VPP easily extensible and means that plugins can be
-customized for specific purposes. VPP is also configurable through it’s
-Low-Level API.</p>
-<div class="figure align-default" id="id1">
-<img alt="Extensible, modular graph node architecture?" src="../_images/VPP_custom_application_packet_processing_graph.280.jpg" />
-<p class="caption"><span class="caption-text">Extensible and modular graph node architecture.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+  <div class="section" id="google-sanitizers">
+<span id="sanitizer"></span><h1>Google Sanitizers<a class="headerlink" href="#google-sanitizers" title="Permalink to this headline">¶</a></h1>
+<p>VPP is instrumented to support <a class="reference external" href="https://github.com/google/sanitizers">Google Sanitizers</a>.
+As of today, only <a class="reference external" href="https://github.com/google/sanitizers/wiki/AddressSanitizer">AddressSanitizer</a>
+is supported and only for the heap.</p>
+<div class="section" id="id2">
+<h2>AddressSanitizer<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/google/sanitizers/wiki/AddressSanitizer">AddressSanitizer</a>  (aka ASan) is a memory
+error detector for C/C++. Think Valgrind but much faster.</p>
+<p>In order to use it, VPP must be recompiled with ASan support. It is implemented as a cmake
+build option, so all VPP targets should be supported. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> build a debug image with ASan support:
+<span class="gp">$</span> make rebuild <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DENABLE_SANITIZE_ADDR<span class="o">=</span>ON
+<span class="go">....</span>
+
+<span class="gp">#</span> build a release image with ASan support:
+<span class="gp">$</span> make rebuild-release <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DENABLE_SANITIZE_ADDR<span class="o">=</span>ON
+<span class="go">....</span>
+
+<span class="gp">#</span> build packages in debug mode with ASan support:
+<span class="gp">$</span> make pkg-deb-debug <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DENABLE_SANITIZE_ADDR<span class="o">=</span>ON
+<span class="go">....</span>
+
+<span class="gp">#</span> run GBP plugin tests in debug mode with ASan
+<span class="gp">$</span> make test-debug <span class="nv">TEST</span><span class="o">=</span>test_gbp <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DENABLE_SANITIZE_ADDR<span class="o">=</span>ON
+<span class="go">....</span>
+</pre></div>
 </div>
-<p>At runtime, the FD.io VPP platform assembles a vector of packets from RX rings,
-typically up to 256 packets in a single vector. The packet processing graph is
-then applied, node by node (including plugins) to the entire packet vector. The
-received packets typically traverse the packet processing graph nodes in the
-vector, when the network processing represented by each graph node is applied to
-each packet in turn.  Graph nodes are small and modular, and loosely
-coupled. This makes it easy to introduce new graph nodes and rewire existing
-graph nodes.</p>
-<p>Plugins are <a class="reference external" href="https://en.wikipedia.org/wiki/Library_(computing)">shared libraries</a>
-and are loaded at runtime by VPP. VPP find plugins by searching the plugin path
-for libraries, and then dynamically loads each one in turn on startup.
-A plugin can introduce new graph nodes or rearrange the packet processing graph.
-You can build a plugin completely independently of the FD.io VPP source tree,
-which means you can treat it as an independent component.</p>
-<p>For more on the network stack press next.</p>
+<p>Once VPP has been built with ASan support, you can use it as usual. When
+running under a debugger it can be useful to disable LeakSanitizer which is
+not compatible with a debugger and displays spurious warnings at exit:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="nv">detect_leaks</span><span class="o">=</span><span class="m">0</span> gdb --args <span class="nv">$PWD</span>/build-root/install-vpp_debug-native/vpp/bin/vpp <span class="s2">&quot;unix { interactive }&quot;</span>
+<span class="go">....</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -220,10 +221,10 @@ which means you can treat it as an independent component.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="networkstack.html" class="btn btn-neutral float-right" title="Network Stack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../events/index.html" class="btn btn-neutral float-right" title="Events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="scalar-vs-vector-packet-processing.html" class="btn btn-neutral float-left" title="Scalar vs Vector packet processing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cpuusage.html" class="btn btn-neutral float-left" title="CPU Load/Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
