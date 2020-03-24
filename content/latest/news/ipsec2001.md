@@ -12,7 +12,7 @@ on encryption. This puts computational strain on VPN products, especially as the
 to 40 Gbps or more. Traditional router/VPN appliances buckle under the load, forcing the quest for higher performance
 solutions that won’t break the bank.
 
-GHigh-performance IPSec is an application where VPP clearly shines – especially when compared to traditional
+High-performance IPSec is an application where VPP clearly shines – especially when compared to traditional
 solutions underpinned by kernel-based, single packet at a time processing approaches.
 In fact, one vendor who has productized VPP reports observing the following performance numbers
 (based on AES-GCM-128 encrypted IMIX traffic being processed by a stock Intel® Xeon® Gold 6130 CPU @ 2.10GHz CPU):
