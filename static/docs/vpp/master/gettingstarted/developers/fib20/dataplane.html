@@ -250,7 +250,7 @@ the difference between a <em>fib_path_list_t</em> and a <em>load_balance_t</em> 
 expresses the control-plane’s desired state, the latter the data-plane available
 state. If some paths in the path-list are unresolved or down, then the
 load-balance will not include them in the forwarding choice.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig8.png" src="../../../_images/fib20fig8.png" />
 </div>
 <p>Figure 8: DPO contributions for a non-recursive route</p>
@@ -262,12 +262,12 @@ objects that contribute DPOs. Also shown are the VLIB node graphs at which the D
 <li><p>In order to collect per-route counters, the lookup result must in some way uniquely identify the <em>fib_entry_t</em>. A shared load-balance (contributed by the path-list) would not allow this.</p></li>
 <li><p>In the case the <em>fib_entry_t</em> has MPLS out labels, and hence a <em>fib_path_ext_t</em>, then the load-balance must be per-prefix, since the MPLS labels that are its parents are themselves per-fib_entry_t.</p></li>
 </ul>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig9.png" src="../../../_images/fib20fig9.png" />
 </div>
 <p>Figure 9: DPO contribution for a recursive route.</p>
 <p>Figure 9 shows the load-balance objects contributed for a recursive route.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../../_images/fib20fig10.png" src="../../../_images/fib20fig10.png" />
 </div>
 <p>Figure 10: DPO Contributions from labelled recursive routes.</p>
