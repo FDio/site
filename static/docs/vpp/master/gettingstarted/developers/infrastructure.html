@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -353,6 +353,79 @@ NTP time adjustments.</p>
 the rate adjustment algorithm. The code rejects frequency samples
 corresponding to the sort of adjustment which might occur if someone
 changes the gold standard kernel clock by several seconds.</p>
+<div class="section" id="monotonic-timebase-support">
+<h3>Monotonic timebase support<a class="headerlink" href="#monotonic-timebase-support" title="Permalink to this headline">¶</a></h3>
+<p>Particularly during system initialization, the “gold standard” system
+reference clock can change by a large amount, in an instant. It’s not
+a best practice to yank the reference clock - in either direction - by
+hours or days. In fact, some poorly-constructed use-cases do so.</p>
+<p>To deal with this reality, clib_time_now(…) returns the number of
+seconds since vpp started, <em>guaranteed to be monotonically
+increasing, no matter what happens to the system reference clock</em>.</p>
+<p>This is first-order important, to avoid breaking every active timer in
+the system. The vpp host stack alone may account for tens of millions
+of active timers. It’s utterly impractical to track down and fix
+timers, so we must deal with the issue at the timebase level.</p>
+<p>Here’s how it works. Prior to adjusting the clock rate, we collect the
+kernel reference clock and the cpu clock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">/*</span> <span class="n">Ask</span> <span class="n">the</span> <span class="n">kernel</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">CPU</span> <span class="n">what</span> <span class="n">time</span> <span class="n">it</span> <span class="ow">is</span><span class="o">...</span> <span class="o">*/</span>
+  <span class="n">now_reference</span> <span class="o">=</span> <span class="n">unix_time_now</span> <span class="p">();</span>
+  <span class="n">now_clock</span> <span class="o">=</span> <span class="n">clib_cpu_time_now</span> <span class="p">();</span>
+</pre></div>
+</div>
+<p>Compute changes for both clocks since the last rate adjustment,
+roughly 15 seconds ago:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">/*</span> <span class="n">Compute</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">reference</span> <span class="n">clock</span> <span class="o">*/</span>
+  <span class="n">delta_reference</span> <span class="o">=</span> <span class="n">now_reference</span> <span class="o">-</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">last_verify_reference_time</span><span class="p">;</span>
+
+  <span class="o">/*</span> <span class="n">And</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">CPU</span> <span class="n">clock</span> <span class="o">*/</span>
+  <span class="n">delta_clock_in_seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">f64</span><span class="p">)</span> <span class="p">(</span><span class="n">now_clock</span> <span class="o">-</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">last_verify_cpu_time</span><span class="p">)</span> <span class="o">*</span>
+    <span class="n">c</span><span class="o">-&gt;</span><span class="n">seconds_per_clock</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Delta_reference is key. Almost 100% of the time, delta_reference and
+delta_clock_in_seconds are identical modulo one system-call
+time. However, NTP or a privileged user can yank the system reference
+time - in either direction - by an hour, a day, or a decade.</p>
+<p>As described above, clib_time_now(…) must return monotonically
+increasing answers to the question “how long has it been since vpp
+started, in seconds.” To do that, the clock rate adjustment algorithm
+begins by recomputing the initial reference time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">c</span><span class="o">-&gt;</span><span class="n">init_reference_time</span> <span class="o">+=</span> <span class="p">(</span><span class="n">delta_reference</span> <span class="o">-</span> <span class="n">delta_clock_in_seconds</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>It’s easy to convince yourself that if the reference clock changes by
+15.000000 seconds and the cpu clock tick time changes by 15.000000
+seconds, the initial reference time won’t change.</p>
+<p>If, on the other hand, delta_reference is -86400.0 and delta clock is
+15.0 - reference time jumped backwards by exactly one day in a
+15-second rate update interval - we add -86415.0 to the initial
+reference time.</p>
+<p>Given the corrected initial reference time, we recompute the total
+number of cpu ticks which have occurred since the corrected initial
+reference time, at the current clock tick rate:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">c</span><span class="o">-&gt;</span><span class="n">total_cpu_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">now_reference</span> <span class="o">-</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">init_reference_time</span><span class="p">)</span>
+    <span class="o">*</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">clocks_per_second</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="timebase-precision">
+<h3>Timebase precision<a class="headerlink" href="#timebase-precision" title="Permalink to this headline">¶</a></h3>
+<p>Cognoscenti may notice that vlib/clib_time_now(…) return a 64-bit
+floating-point value; the number of seconds since vpp started.</p>
+<p>Please see <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">this Wikipedia
+article</a>
+for more information. C double-precision floating point numbers
+(called f64 in the vpp code base) have a 53-bit effective mantissa,
+and can accurately represent 15 decimal digits’ worth of precision.</p>
+<p>There are 315,360,000.000001 seconds in ten years plus one
+microsecond. That string has exactly 15 decimal digits. The vpp time
+base retains 1us precision for roughly 30 years.</p>
+<p>vlib/clib_time_now do <em>not</em> provide precision in excess of 1e-6
+seconds. If necessary, please use clib_cpu_time_now(…) for direct
+access to the CPU clock-cycle counter. Note that the number of CPU
+clock cycles per second varies significantly across CPU architectures.</p>
+</div>
 </div>
 <div class="section" id="format">
 <h2>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h2>
@@ -575,7 +648,7 @@ little-endian host and unserializing on a big-endian host.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Linux Foundation
+        &copy; Copyright 2018-2020, Linux Foundation
 
     </p>
   </div>

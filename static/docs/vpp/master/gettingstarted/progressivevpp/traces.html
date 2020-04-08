@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -233,6 +233,28 @@
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# trace add af-packet-input 10</span>
 </pre></div>
 </div>
+<p>The following list of nodes are supported under trace add:</p>
+<ul class="simple">
+<li><p>af-packet-input</p></li>
+<li><p>avf-input</p></li>
+<li><p>bond-process</p></li>
+<li><p>dpdk-crypto-input</p></li>
+<li><p>dpdk-input</p></li>
+<li><p>handoff-trace</p></li>
+<li><p>ixge-input</p></li>
+<li><p>memif-input</p></li>
+<li><p>mrvl-pp2-input</p></li>
+<li><p>netmap-input</p></li>
+<li><p>p2p-ethernet-input</p></li>
+<li><p>pg-input</p></li>
+<li><p>punt-socket-rx</p></li>
+<li><p>rdma-input</p></li>
+<li><p>session-queue</p></li>
+<li><p>tuntap-rx</p></li>
+<li><p>vhost-user-input</p></li>
+<li><p>virtio-input</p></li>
+<li><p>vmxnet3-input</p></li>
+</ul>
 </div>
 <div class="section" id="ping-from-host-to-vpp">
 <h2>Ping from Host to VPP<a class="headerlink" href="#ping-from-host-to-vpp" title="Permalink to this headline">¶</a></h2>
@@ -700,7 +722,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Linux Foundation
+        &copy; Copyright 2018-2020, Linux Foundation
 
     </p>
   </div>
