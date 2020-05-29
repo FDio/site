@@ -8,8 +8,9 @@ btntxt="More About Installing VPP "
 
 # The first part of these strings are displayed in the dropdown.
 # The second is the url
-latest = "Latest Release (2001), /docs/vpp/v2001/gettingstarted/installing"
+latest = "Latest Release (2005), /docs/vpp/v2005/gettingstarted/installing"
 versions = ["Master, /docs/vpp/master/gettingstarted/installing",
+	 "Version 20.05, /docs/vpp/v2005/gettingstarted/installing",
 	 "Version 20.01, /docs/vpp/v2001/gettingstarted/installing"]
 
 +++

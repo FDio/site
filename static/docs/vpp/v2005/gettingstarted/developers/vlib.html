@@ -1,0 +1,835 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VLIB (Vector Processing Library) &mdash; The Vector Packet Processor 20.05 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Plugins" href="plugins.html" />
+    <link rel="prev" title="VPPINFRA (Infrastructure)" href="infrastructure.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.05
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VLIB (Vector Processing Library)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#init-function-discovery">Init function discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#node-graph-initialization">Node Graph Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph-node-dispatcher">Graph node dispatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph-dispatcher-internals">Graph dispatcher internals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vector-data-structure">Vector Data Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scheduling-vectors">Scheduling Vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complications">Complications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-frames-next-frame-ownership">Next frames, next frame ownership</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dispatch-pending-node-actions">dispatch_pending_node actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#process-thread-model">Process / thread model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#process-events">Process events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#buffers">Buffers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shared-memory-message-api">Shared-memory message API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debug-cli">Debug CLI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#handing-off-buffers-between-threads">Handing off buffers between threads</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>VLIB (Vector Processing Library)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/vlib.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vlib-vector-processing-library">
+<h1>VLIB (Vector Processing Library)<a class="headerlink" href="#vlib-vector-processing-library" title="Permalink to this headline">¶</a></h1>
+<p>The files associated with vlib are located in the ./src/{vlib,
+vlibapi, vlibmemory} folders. These libraries provide vector
+processing support including graph-node scheduling, reliable multicast
+support, ultra-lightweight cooperative multi-tasking threads, a CLI,
+plug in .DLL support, physical memory and Linux epoll support. Parts of
+this library embody US Patent 7,961,636.</p>
+<div class="section" id="init-function-discovery">
+<h2>Init function discovery<a class="headerlink" href="#init-function-discovery" title="Permalink to this headline">¶</a></h2>
+<p>vlib applications register for various [initialization] events by
+placing structures and __attribute__((constructor)) functions into
+the image. At appropriate times, the vlib framework walks
+constructor-generated singly-linked structure lists, performs a
+topological sort based on specified constraints, and calls the
+indicated functions. Vlib applications create graph nodes, add CLI
+functions, start cooperative multi-tasking threads, etc. etc. using
+this mechanism.</p>
+<p>vlib applications invariably include a number of VLIB_INIT_FUNCTION
+(my_init_function) macros.</p>
+<p>Each init / configure / etc. function has the return type clib_error_t
+*. Make sure that the function returns 0 if all is well, otherwise the
+framework will announce an error and exit.</p>
+<p>vlib applications must link against vppinfra, and often link against
+other libraries such as VNET. In the latter case, it may be necessary to
+explicitly reference symbol(s) otherwise large portions of the library
+may be AWOL at runtime.</p>
+<div class="section" id="init-function-construction-and-constraint-specification">
+<h3>Init function construction and constraint specification<a class="headerlink" href="#init-function-construction-and-constraint-specification" title="Permalink to this headline">¶</a></h3>
+<p>It’s easy to add an init function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">static</span> <span class="n">clib_error_t</span> <span class="o">*</span><span class="n">my_init_function</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span><span class="n">vm</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="o">/*</span> <span class="o">...</span> <span class="n">initialize</span> <span class="n">things</span> <span class="o">...</span> <span class="o">*/</span>
+
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="o">//</span> <span class="ow">or</span> <span class="k">return</span> <span class="n">clib_error_return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;BROKEN!&quot;</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="n">VLIB_INIT_FUNCTION</span><span class="p">(</span><span class="n">my_init_function</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>As given, my_init_function will be executed “at some point,” but with
+no ordering guarantees.</p>
+<p>Specifying ordering constraints is easy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">VLIB_INIT_FUNCTION</span><span class="p">(</span><span class="n">my_init_function</span><span class="p">)</span> <span class="o">=</span>
+   <span class="p">{</span>
+      <span class="o">.</span><span class="n">runs_before</span> <span class="o">=</span> <span class="n">VLIB_INITS</span><span class="p">(</span><span class="s2">&quot;we_run_before_function_1&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;we_run_before_function_2&quot;</span><span class="p">),</span>
+      <span class="o">.</span><span class="n">runs_after</span> <span class="o">=</span> <span class="n">VLIB_INITS</span><span class="p">(</span><span class="s2">&quot;we_run_after_function_1&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;we_run_after_function_2),</span>
+    <span class="p">};</span>
+</pre></div>
+</div>
+<p>It’s also easy to specify bulk ordering constraints of the form “a
+then b then c then d”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">VLIB_INIT_FUNCTION</span><span class="p">(</span><span class="n">my_init_function</span><span class="p">)</span> <span class="o">=</span>
+   <span class="p">{</span>
+      <span class="o">.</span><span class="n">init_order</span> <span class="o">=</span> <span class="n">VLIB_INITS</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">),</span>
+   <span class="p">};</span>
+</pre></div>
+</div>
+<p>It’s OK to specify all three sorts of ordering constraints for a
+single init function, although it’s hard to imagine why it would be
+necessary.</p>
+</div>
+</div>
+<div class="section" id="node-graph-initialization">
+<h2>Node Graph Initialization<a class="headerlink" href="#node-graph-initialization" title="Permalink to this headline">¶</a></h2>
+<p>vlib packet-processing applications invariably define a set of graph
+nodes to process packets.</p>
+<p>One constructs a vlib_node_registration_t, most often via the
+VLIB_REGISTER_NODE macro. At runtime, the framework processes the set
+of such registrations into a directed graph. It is easy enough to add
+nodes to the graph at runtime. The framework does not support removing
+nodes.</p>
+<p>vlib provides several types of vector-processing graph nodes, primarily
+to control framework dispatch behaviors. The type member of the
+vlib_node_registration_t functions as follows:</p>
+<ul class="simple">
+<li><p>VLIB_NODE_TYPE_PRE_INPUT - run before all other node types</p></li>
+<li><p>VLIB_NODE_TYPE_INPUT - run as often as possible, after pre_input
+nodes</p></li>
+<li><p>VLIB_NODE_TYPE_INTERNAL - only when explicitly made runnable by
+adding pending frames for processing</p></li>
+<li><p>VLIB_NODE_TYPE_PROCESS - only when explicitly made runnable.
+“Process” nodes are actually cooperative multi-tasking threads. They
+<strong>must</strong> explicitly suspend after a reasonably short period of time.</p></li>
+</ul>
+<p>For a precise understanding of the graph node dispatcher, please read
+./src/vlib/main.c:vlib_main_loop.</p>
+</div>
+<div class="section" id="graph-node-dispatcher">
+<h2>Graph node dispatcher<a class="headerlink" href="#graph-node-dispatcher" title="Permalink to this headline">¶</a></h2>
+<p>Vlib_main_loop() dispatches graph nodes. The basic vector processing
+algorithm is diabolically simple, but may not be obvious from even a
+long stare at the code. Here’s how it works: some input node, or set of
+input nodes, produce a vector of work to process. The graph node
+dispatcher pushes the work vector through the directed graph,
+subdividing it as needed, until the original work vector has been
+completely processed. At that point, the process recurs.</p>
+<p>This scheme yields a stable equilibrium in frame size, by construction.
+Here’s why: as the frame size increases, the per-frame-element
+processing time decreases. There are several related forces at work; the
+simplest to describe is the effect of vector processing on the CPU L1
+I-cache. The first frame element [packet] processed by a given node
+warms up the node dispatch function in the L1 I-cache. All subsequent
+frame elements profit. As we increase the number of frame elements, the
+cost per element goes down.</p>
+<p>Under light load, it is a crazy waste of CPU cycles to run the graph
+node dispatcher flat-out. So, the graph node dispatcher arranges to wait
+for work by sitting in a timed epoll wait if the prevailing frame size
+is low. The scheme has a certain amount of hysteresis to avoid
+constantly toggling back and forth between interrupt and polling mode.
+Although the graph dispatcher supports interrupt and polling modes, our
+current default device drivers do not.</p>
+<p>The graph node scheduler uses a hierarchical timer wheel to reschedule
+process nodes upon timer expiration.</p>
+</div>
+<div class="section" id="graph-dispatcher-internals">
+<h2>Graph dispatcher internals<a class="headerlink" href="#graph-dispatcher-internals" title="Permalink to this headline">¶</a></h2>
+<p>This section may be safely skipped. It’s not necessary to understand
+graph dispatcher internals to create graph nodes.</p>
+</div>
+<div class="section" id="vector-data-structure">
+<h2>Vector Data Structure<a class="headerlink" href="#vector-data-structure" title="Permalink to this headline">¶</a></h2>
+<p>In vpp / vlib, we represent vectors as instances of the vlib_frame_t type:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">vlib_frame_t</span>
+    <span class="p">{</span>
+      <span class="cm">/* Frame flags. */</span>
+      <span class="n">u16</span> <span class="n">flags</span><span class="p">;</span>
+
+      <span class="cm">/* Number of scalar bytes in arguments. */</span>
+      <span class="n">u8</span> <span class="n">scalar_size</span><span class="p">;</span>
+
+      <span class="cm">/* Number of bytes per vector argument. */</span>
+      <span class="n">u8</span> <span class="n">vector_size</span><span class="p">;</span>
+
+      <span class="cm">/* Number of vector elements currently in frame. */</span>
+      <span class="n">u16</span> <span class="n">n_vectors</span><span class="p">;</span>
+
+      <span class="cm">/* Scalar and vector arguments to next node. */</span>
+      <span class="n">u8</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="p">}</span> <span class="n">vlib_frame_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that one <em>could</em> construct all kinds of vectors - including
+vectors with some associated scalar data - using this structure. In
+the vpp application, vectors typically use a 4-byte vector element
+size, and zero bytes’ worth of associated per-frame scalar data.</p>
+<p>Frames are always allocated on CLIB_CACHE_LINE_BYTES boundaries.
+Frames have u32 indices which make use of the alignment property, so
+the maximum feasible main heap offset of a frame is
+CLIB_CACHE_LINE_BYTES * 0xFFFFFFFF: 64*4 = 256 Gbytes.</p>
+</div>
+<div class="section" id="scheduling-vectors">
+<h2>Scheduling Vectors<a class="headerlink" href="#scheduling-vectors" title="Permalink to this headline">¶</a></h2>
+<p>As you can see, vectors are not directly associated with graph
+nodes. We represent that association in a couple of ways.  The
+simplest is the vlib_pending_frame_t:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="cm">/* A frame pending dispatch by main loop. */</span>
+    <span class="k">typedef</span> <span class="k">struct</span>
+    <span class="p">{</span>
+      <span class="cm">/* Node and runtime for this frame. */</span>
+      <span class="n">u32</span> <span class="n">node_runtime_index</span><span class="p">;</span>
+
+      <span class="cm">/* Frame index (in the heap). */</span>
+      <span class="n">u32</span> <span class="n">frame_index</span><span class="p">;</span>
+
+      <span class="cm">/* Start of next frames for this node. */</span>
+      <span class="n">u32</span> <span class="n">next_frame_index</span><span class="p">;</span>
+
+      <span class="cm">/* Special value for next_frame_index when there is no next frame. */</span>
+    <span class="cp">#define VLIB_PENDING_FRAME_NO_NEXT_FRAME ((u32) ~0)</span>
+    <span class="p">}</span> <span class="n">vlib_pending_frame_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here is the code in …/src/vlib/main.c:vlib_main_or_worker_loop()
+which processes frames:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>      <span class="cm">/*</span>
+<span class="cm">       * Input nodes may have added work to the pending vector.</span>
+<span class="cm">       * Process pending vector until there is nothing left.</span>
+<span class="cm">       * All pending vectors will be processed from input -&gt; output.</span>
+<span class="cm">       */</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">_vec_len</span> <span class="p">(</span><span class="n">nm</span><span class="o">-&gt;</span><span class="n">pending_frames</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="n">cpu_time_now</span> <span class="o">=</span> <span class="n">dispatch_pending_node</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cpu_time_now</span><span class="p">);</span>
+      <span class="cm">/* Reset pending vector for next iteration. */</span>
+</pre></div>
+</div>
+<p>The pending frame node_runtime_index associates the frame with the
+node which will process it.</p>
+</div>
+<div class="section" id="complications">
+<h2>Complications<a class="headerlink" href="#complications" title="Permalink to this headline">¶</a></h2>
+<p>Fasten your seatbelt. Here’s where the story - and the data structures
+- become quite complicated…</p>
+<p>At 100,000 feet: vpp uses a directed graph, not a directed <em>acyclic</em>
+graph. It’s really quite normal for a packet to visit ip[46]-lookup
+multiple times. The worst-case: a graph node which enqueues packets to
+itself.</p>
+<p>To deal with this issue, the graph dispatcher must force allocation of
+a new frame if the current graph node’s dispatch function happens to
+enqueue a packet back to itself.</p>
+<p>There are no guarantees that a pending frame will be processed
+immediately, which means that more packets may be added to the
+underlying vlib_frame_t after it has been attached to a
+vlib_pending_frame_t. Care must be taken to allocate new
+frames and pending frames if a (pending_frame, frame) pair fills.</p>
+</div>
+<div class="section" id="next-frames-next-frame-ownership">
+<h2>Next frames, next frame ownership<a class="headerlink" href="#next-frames-next-frame-ownership" title="Permalink to this headline">¶</a></h2>
+<p>The vlib_next_frame_t is the last key graph dispatcher data structure:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="k">typedef</span> <span class="k">struct</span>
+    <span class="p">{</span>
+      <span class="cm">/* Frame index. */</span>
+      <span class="n">u32</span> <span class="n">frame_index</span><span class="p">;</span>
+
+      <span class="cm">/* Node runtime for this next. */</span>
+      <span class="n">u32</span> <span class="n">node_runtime_index</span><span class="p">;</span>
+
+      <span class="cm">/* Next frame flags. */</span>
+      <span class="n">u32</span> <span class="n">flags</span><span class="p">;</span>
+
+      <span class="cm">/* Reflects node frame-used flag for this next. */</span>
+    <span class="cp">#define VLIB_FRAME_NO_FREE_AFTER_DISPATCH \</span>
+<span class="cp">      VLIB_NODE_FLAG_FRAME_NO_FREE_AFTER_DISPATCH</span>
+
+      <span class="cm">/* This next frame owns enqueue to node</span>
+<span class="cm">         corresponding to node_runtime_index. */</span>
+    <span class="cp">#define VLIB_FRAME_OWNER (1 &lt;&lt; 15)</span>
+
+      <span class="cm">/* Set when frame has been allocated for this next. */</span>
+    <span class="cp">#define VLIB_FRAME_IS_ALLOCATED	VLIB_NODE_FLAG_IS_OUTPUT</span>
+
+      <span class="cm">/* Set when frame has been added to pending vector. */</span>
+    <span class="cp">#define VLIB_FRAME_PENDING VLIB_NODE_FLAG_IS_DROP</span>
+
+      <span class="cm">/* Set when frame is to be freed after dispatch. */</span>
+    <span class="cp">#define VLIB_FRAME_FREE_AFTER_DISPATCH VLIB_NODE_FLAG_IS_PUNT</span>
+
+      <span class="cm">/* Set when frame has traced packets. */</span>
+    <span class="cp">#define VLIB_FRAME_TRACE VLIB_NODE_FLAG_TRACE</span>
+
+      <span class="cm">/* Number of vectors enqueue to this next since last overflow. */</span>
+      <span class="n">u32</span> <span class="n">vectors_since_last_overflow</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">vlib_next_frame_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Graph node dispatch functions call vlib_get_next_frame (…)  to
+set “(u32 *)to_next” to the right place in the vlib_frame_t
+corresponding to the ith arc (aka next0) from the current node to the
+indicated next node.</p>
+<p>After some scuffling around - two levels of macros - processing
+reaches vlib_get_next_frame_internal (…). Get-next-frame-internal
+digs up the vlib_next_frame_t corresponding to the desired graph
+arc.</p>
+<p>The next frame data structure amounts to a graph-arc-centric frame
+cache. Once a node finishes adding element to a frame, it will acquire
+a vlib_pending_frame_t and end up on the graph dispatcher’s
+run-queue. But there’s no guarantee that more vector elements won’t be
+added to the underlying frame from the same (source_node,
+next_index) arc or from a different (source_node, next_index) arc.</p>
+<p>Maintaining consistency of the arc-to-frame cache is necessary. The
+first step in maintaining consistency is to make sure that only one
+graph node at a time thinks it “owns” the target vlib_frame_t.</p>
+<p>Back to the graph node dispatch function. In the usual case, a certain
+number of packets will be added to the vlib_frame_t acquired by
+calling vlib_get_next_frame (…).</p>
+<p>Before a dispatch function returns, it’s required to call
+vlib_put_next_frame (…) for all of the graph arcs it actually
+used.  This action adds a vlib_pending_frame_t to the graph
+dispatcher’s pending frame vector.</p>
+<p>Vlib_put_next_frame makes a note in the pending frame of the frame
+index, and also of the vlib_next_frame_t index.</p>
+</div>
+<div class="section" id="dispatch-pending-node-actions">
+<h2>dispatch_pending_node actions<a class="headerlink" href="#dispatch-pending-node-actions" title="Permalink to this headline">¶</a></h2>
+<p>The main graph dispatch loop calls dispatch pending node as shown
+above.</p>
+<p>Dispatch_pending_node recovers the pending frame, and the graph node
+runtime / dispatch function. Further, it recovers the next_frame
+currently associated with the vlib_frame_t, and detaches the
+vlib_frame_t from the next_frame.</p>
+<p>In …/src/vlib/main.c:dispatch_pending_node(…), note this stanza:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>  <span class="cm">/* Force allocation of new frame while current frame is being</span>
+<span class="cm">     dispatched. */</span>
+  <span class="n">restore_frame_index</span> <span class="o">=</span> <span class="o">~</span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">nf</span><span class="o">-&gt;</span><span class="n">frame_index</span> <span class="o">==</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">frame_index</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">nf</span><span class="o">-&gt;</span><span class="n">frame_index</span> <span class="o">=</span> <span class="o">~</span><span class="mi">0</span><span class="p">;</span>
+      <span class="n">nf</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="n">VLIB_FRAME_IS_ALLOCATED</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">n</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">&amp;</span> <span class="n">VLIB_NODE_FLAG_FRAME_NO_FREE_AFTER_DISPATCH</span><span class="p">))</span>
+	<span class="n">restore_frame_index</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">frame_index</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>dispatch_pending_node is worth a hard stare due to the several
+second-order optimizations it implements. Almost as an afterthought,
+it calls dispatch_node which actually calls the graph node dispatch
+function.</p>
+</div>
+<div class="section" id="process-thread-model">
+<h2>Process / thread model<a class="headerlink" href="#process-thread-model" title="Permalink to this headline">¶</a></h2>
+<p>vlib provides an ultra-lightweight cooperative multi-tasking thread
+model. The graph node scheduler invokes these processes in much the same
+way as traditional vector-processing run-to-completion graph nodes;
+plus-or-minus a setjmp/longjmp pair required to switch stacks. Simply
+set the vlib_node_registration_t type field to
+vlib_NODE_TYPE_PROCESS. Yes, process is a misnomer. These are
+cooperative multi-tasking threads.</p>
+<p>As of this writing, the default stack size is 2&lt;&lt;15 = 32kb.
+Initialize the node registration’s process_log2_n_stack_bytes member
+as needed. The graph node dispatcher makes some effort to detect stack
+overrun, e.g. by mapping a no-access page below each thread stack.</p>
+<p>Process node dispatch functions are expected to be “while(1) { }” loops
+which suspend when not otherwise occupied, and which must not run for
+unreasonably long periods of time.</p>
+<p>“Unreasonably long” is an application-dependent concept. Over the years,
+we have constructed frame-size sensitive control-plane nodes which will
+use a much higher fraction of the available CPU bandwidth when the frame
+size is low. The classic example: modifying forwarding tables. So long
+as the table-builder leaves the forwarding tables in a valid state, one
+can suspend the table builder to avoid dropping packets as a result of
+control-plane activity.</p>
+<p>Process nodes can suspend for fixed amounts of time, or until another
+entity signals an event, or both. See the next section for a description
+of the vlib process event mechanism.</p>
+<p>When running in vlib process context, one must pay strict attention to
+loop invariant issues. If one walks a data structure and calls a
+function which may suspend, one had best know by construction that it
+cannot change. Often, it’s best to simply make a snapshot copy of a data
+structure, walk the copy at leisure, then free the copy.</p>
+</div>
+<div class="section" id="process-events">
+<h2>Process events<a class="headerlink" href="#process-events" title="Permalink to this headline">¶</a></h2>
+<p>The vlib process event mechanism API is extremely lightweight and easy
+to use. Here is a typical example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="n">vlib_main_t</span> <span class="o">*</span><span class="n">vm</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">vlib_global_main</span><span class="p">;</span>
+    <span class="n">uword</span> <span class="n">event_type</span><span class="p">,</span> <span class="o">*</span> <span class="n">event_data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+       <span class="n">vlib_process_wait_for_event_or_clock</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="mf">5.0</span> <span class="cm">/* seconds */</span><span class="p">);</span>
+
+       <span class="n">event_type</span> <span class="o">=</span> <span class="n">vlib_process_get_events</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">event_data</span><span class="p">);</span>
+
+       <span class="k">switch</span> <span class="p">(</span><span class="n">event_type</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">case</span> <span class="nl">EVENT1</span><span class="p">:</span>
+           <span class="n">handle_event1s</span> <span class="p">(</span><span class="n">event_data</span><span class="p">);</span>
+           <span class="k">break</span><span class="p">;</span>
+
+       <span class="k">case</span> <span class="nl">EVENT2</span><span class="p">:</span>
+           <span class="n">handle_event2s</span> <span class="p">(</span><span class="n">event_data</span><span class="p">);</span>
+           <span class="k">break</span><span class="p">;</span>
+
+       <span class="k">case</span> <span class="o">~</span><span class="mi">0</span><span class="o">:</span> <span class="cm">/* 5-second idle/periodic */</span>
+           <span class="n">handle_idle</span> <span class="p">();</span>
+           <span class="k">break</span><span class="p">;</span>
+
+       <span class="k">default</span><span class="o">:</span> <span class="cm">/* bug! */</span>
+           <span class="n">ASSERT</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+       <span class="p">}</span>
+
+       <span class="n">vec_reset_length</span><span class="p">(</span><span class="n">event_data</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, the VLIB process node waits for an event to occur, or
+for 5 seconds to elapse. The code demuxes on the event type, calling
+the appropriate handler function. Each call to
+vlib_process_get_events returns a vector of per-event-type data
+passed to successive vlib_process_signal_event calls; it is a
+serious error to process only event_data[0].</p>
+<p>Resetting the event_data vector-length to 0 [instead of calling
+vec_free] means that the event scheme doesn’t burn cycles continuously
+allocating and freeing the event data vector. This is a common vppinfra
+/ vlib coding pattern, well worth using when appropriate.</p>
+<p>Signaling an event is easy, for example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="n">vlib_process_signal_event</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">process_node_index</span><span class="p">,</span> <span class="n">EVENT1</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">uword</span><span class="p">)</span><span class="n">arbitrary_event1_data</span><span class="p">);</span> <span class="cm">/* and so forth */</span>
+</pre></div>
+</div>
+<p>One can either know the process node index by construction - dig it out
+of the appropriate vlib_node_registration_t - or by finding the
+vlib_node_t with vlib_get_node_by_name(…).</p>
+</div>
+<div class="section" id="buffers">
+<h2>Buffers<a class="headerlink" href="#buffers" title="Permalink to this headline">¶</a></h2>
+<p>vlib buffering solves the usual set of packet-processing problems,
+albeit at high performance. Key in terms of performance: one ordinarily
+allocates / frees N buffers at a time rather than one at a time. Except
+when operating directly on a specific buffer, one deals with buffers by
+index, not by pointer.</p>
+<p>Packet-processing frames are u32[] arrays, not
+vlib_buffer_t[] arrays.</p>
+<p>Packets comprise one or more vlib buffers, chained together as required.
+Multiple particle sizes are supported; hardware input nodes simply ask
+for the required size(s). Coalescing support is available. For obvious
+reasons one is discouraged from writing one’s own wild and wacky buffer
+chain traversal code.</p>
+<p>vlib buffer headers are allocated immediately prior to the buffer data
+area. In typical packet processing this saves a dependent read wait:
+given a buffer’s address, one can prefetch the buffer header
+[metadata] at the same time as the first cache line of buffer data.</p>
+<p>Buffer header metadata (vlib_buffer_t) includes the usual rewrite
+expansion space, a current_data offset, RX and TX interface indices,
+packet trace information, and a opaque areas.</p>
+<p>The opaque data is intended to control packet processing in arbitrary
+subgraph-dependent ways. The programmer shoulders responsibility for
+data lifetime analysis, type-checking, etc.</p>
+<p>Buffers have reference-counts in support of e.g. multicast replication.</p>
+</div>
+<div class="section" id="shared-memory-message-api">
+<h2>Shared-memory message API<a class="headerlink" href="#shared-memory-message-api" title="Permalink to this headline">¶</a></h2>
+<p>Local control-plane and application processes interact with the vpp
+dataplane via asynchronous message-passing in shared memory over
+unidirectional queues. The same application APIs are available via
+sockets.</p>
+<p>Capturing API traces and replaying them in a simulation environment
+requires a disciplined approach to the problem. This seems like a
+make-work task, but it is not. When something goes wrong in the
+control-plane after 300,000 or 3,000,000 operations, high-speed replay
+of the events leading up to the accident is a huge win.</p>
+<p>The shared-memory message API message allocator vl_api_msg_alloc uses
+a particularly cute trick. Since messages are processed in order, we try
+to allocate message buffering from a set of fixed-size, preallocated
+rings. Each ring item has a “busy” bit. Freeing one of the preallocated
+message buffers merely requires the message consumer to clear the busy
+bit. No locking required.</p>
+</div>
+<div class="section" id="debug-cli">
+<h2>Debug CLI<a class="headerlink" href="#debug-cli" title="Permalink to this headline">¶</a></h2>
+<p>Adding debug CLI commands to VLIB applications is very simple.</p>
+<p>Here is a complete example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="k">static</span> <span class="n">clib_error_t</span> <span class="o">*</span>
+    <span class="nf">show_ip_tuple_match</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span>
+                         <span class="n">unformat_input_t</span> <span class="o">*</span> <span class="n">input</span><span class="p">,</span>
+                         <span class="n">vlib_cli_command_t</span> <span class="o">*</span> <span class="n">cmd</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">vlib_cli_output</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="s">&quot;%U</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">format_ip_tuple_match_tables</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">routing_main</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* *INDENT-OFF* */</span>
+    <span class="k">static</span> <span class="nf">VLIB_CLI_COMMAND</span> <span class="p">(</span><span class="n">show_ip_tuple_command</span><span class="p">)</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="p">.</span><span class="n">path</span> <span class="o">=</span> <span class="s">&quot;show ip tuple match&quot;</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">short_help</span> <span class="o">=</span> <span class="s">&quot;Show ip 5-tuple match-and-broadcast tables&quot;</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">show_ip_tuple_match</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="cm">/* *INDENT-ON* */</span>
+</pre></div>
+</div>
+<p>This example implements the “show ip tuple match” debug cli
+command. In ordinary usage, the vlib cli is available via the “vppctl”
+application, which sends traffic to a named pipe. One can configure
+debug CLI telnet access on a configurable port.</p>
+<p>The cli implementation has an output redirection facility which makes it
+simple to deliver cli output via shared-memory API messaging,</p>
+<p>Particularly for debug or “show tech support” type commands, it would be
+wasteful to write vlib application code to pack binary data, write more
+code elsewhere to unpack the data and finally print the answer. If a
+certain cli command has the potential to hurt packet processing
+performance by running for too long, do the work incrementally in a
+process node. The client can wait.</p>
+</div>
+<div class="section" id="handing-off-buffers-between-threads">
+<h2>Handing off buffers between threads<a class="headerlink" href="#handing-off-buffers-between-threads" title="Permalink to this headline">¶</a></h2>
+<p>Vlib includes an easy-to-use mechanism for handing off buffers between
+worker threads. A typical use-case: software ingress flow hashing. At
+a high level, one creates a per-worker-thread queue which sends packets
+to a specific graph node in the indicated worker thread. With the
+queue in hand, enqueue packets to the worker thread of your choice.</p>
+<div class="section" id="initialize-a-handoff-queue">
+<h3>Initialize a handoff queue<a class="headerlink" href="#initialize-a-handoff-queue" title="Permalink to this headline">¶</a></h3>
+<p>Simple enough, call vlib_frame_queue_main_init:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>   <span class="n">main_ptr</span><span class="o">-&gt;</span><span class="n">frame_queue_index</span>
+       <span class="o">=</span> <span class="n">vlib_frame_queue_main_init</span> <span class="p">(</span><span class="n">dest_node</span><span class="p">.</span><span class="n">index</span><span class="p">,</span> <span class="n">frame_queue_size</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Frame_queue_size means what it says: the number of frames which may be
+queued. Since frames contain 1…256 packets, frame_queue_size should
+be a reasonably small number (32…64). If the frame queue producer(s)
+are faster than the frame queue consumer(s), congestion will
+occur. Suggest letting the enqueue operator deal with queue
+congestion, as shown in the enqueue example below.</p>
+<p>Under the floorboards, vlib_frame_queue_main_init creates an input queue
+for each worker thread.</p>
+<p>Please do NOT create frame queues until it’s clear that they will be
+used. Although the main dispatch loop is reasonably smart about how
+often it polls the (entire set of) frame queues, polling unused frame
+queues is a waste of clock cycles.</p>
+</div>
+<div class="section" id="hand-off-packets">
+<h3>Hand off packets<a class="headerlink" href="#hand-off-packets" title="Permalink to this headline">¶</a></h3>
+<p>The actual handoff mechanics are simple, and integrate nicely with
+a typical graph-node dispatch function:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="n">always_inline</span> <span class="n">uword</span>
+    <span class="nf">do_handoff_inline</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span>
+         	       <span class="n">vlib_node_runtime_t</span> <span class="o">*</span> <span class="n">node</span><span class="p">,</span> <span class="n">vlib_frame_t</span> <span class="o">*</span> <span class="n">frame</span><span class="p">,</span>
+    		       <span class="kt">int</span> <span class="n">is_ip4</span><span class="p">,</span> <span class="kt">int</span> <span class="n">is_trace</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">u32</span> <span class="n">n_left_from</span><span class="p">,</span> <span class="o">*</span><span class="n">from</span><span class="p">;</span>
+      <span class="n">vlib_buffer_t</span> <span class="o">*</span><span class="n">bufs</span><span class="p">[</span><span class="n">VLIB_FRAME_SIZE</span><span class="p">],</span> <span class="o">**</span><span class="n">b</span><span class="p">;</span>
+      <span class="n">u16</span> <span class="n">thread_indices</span> <span class="p">[</span><span class="n">VLIB_FRAME_SIZE</span><span class="p">];</span>
+      <span class="n">u16</span> <span class="n">nexts</span><span class="p">[</span><span class="n">VLIB_FRAME_SIZE</span><span class="p">],</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+      <span class="n">u32</span> <span class="n">n_enq</span><span class="p">;</span>
+      <span class="n">htest_main_t</span> <span class="o">*</span><span class="n">hmp</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">htest_main</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+      <span class="n">from</span> <span class="o">=</span> <span class="n">vlib_frame_vector_args</span> <span class="p">(</span><span class="n">frame</span><span class="p">);</span>
+      <span class="n">n_left_from</span> <span class="o">=</span> <span class="n">frame</span><span class="o">-&gt;</span><span class="n">n_vectors</span><span class="p">;</span>
+
+      <span class="n">vlib_get_buffers</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="n">bufs</span><span class="p">,</span> <span class="n">n_left_from</span><span class="p">);</span>
+      <span class="n">next</span> <span class="o">=</span> <span class="n">nexts</span><span class="p">;</span>
+      <span class="n">b</span> <span class="o">=</span> <span class="n">bufs</span><span class="p">;</span>
+
+      <span class="cm">/*</span>
+<span class="cm">       * Typical frame traversal loop, details vary with</span>
+<span class="cm">       * use case. Make sure to set thread_indices[i] with</span>
+<span class="cm">       * the desired destination thread index. You may</span>
+<span class="cm">       * or may not bother to set next[i].</span>
+<span class="cm">       */</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">frame</span><span class="o">-&gt;</span><span class="n">n_vectors</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="o">&lt;</span><span class="n">snip</span><span class="o">&gt;</span>
+          <span class="cm">/* Pick a thread to handle this packet */</span>
+          <span class="n">thread_indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span> <span class="p">(</span><span class="n">packet_data_or_whatever</span><span class="p">);</span>
+          <span class="o">&lt;</span><span class="n">snip</span><span class="o">&gt;</span>
+
+          <span class="n">b</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="n">next</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="n">n_left_from</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+       <span class="cm">/* Enqueue buffers to threads */</span>
+       <span class="n">n_enq</span> <span class="o">=</span>
+        <span class="n">vlib_buffer_enqueue_to_thread</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">hmp</span><span class="o">-&gt;</span><span class="n">frame_queue_index</span><span class="p">,</span>
+                                       <span class="n">from</span><span class="p">,</span> <span class="n">thread_indices</span><span class="p">,</span> <span class="n">frame</span><span class="o">-&gt;</span><span class="n">n_vectors</span><span class="p">,</span>
+                                       <span class="mi">1</span> <span class="cm">/* drop on congestion */</span><span class="p">);</span>
+       <span class="cm">/* Typical counters,</span>
+<span class="cm">      if (n_enq &lt; frame-&gt;n_vectors)</span>
+<span class="cm">        vlib_node_increment_counter (vm, node-&gt;node_index,</span>
+<span class="cm">    				 XXX_ERROR_CONGESTION_DROP,</span>
+<span class="cm">    				 frame-&gt;n_vectors - n_enq);</span>
+<span class="cm">      vlib_node_increment_counter (vm, node-&gt;node_index,</span>
+<span class="cm">    			         XXX_ERROR_HANDED_OFF, n_enq);</span>
+<span class="cm">      return frame-&gt;n_vectors;</span>
+<span class="cm">}</span>
+</pre></div>
+</div>
+<p>Notes about calling vlib_buffer_enqueue_to_thread(…):</p>
+<ul class="simple">
+<li><p>If you pass “drop on congestion” non-zero, all packets in the
+inbound frame will be consumed one way or the other. This is the
+recommended setting.</p></li>
+<li><p>In the drop-on-congestion case, please don’t try to “help” in the
+enqueue node by freeing dropped packets, or by pushing them to
+“error-drop.” Either of those actions would be a severe error.</p></li>
+<li><p>It’s perfectly OK to enqueue packets to the current thread.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="plugins.html" class="btn btn-neutral float-right" title="Plugins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="infrastructure.html" class="btn btn-neutral float-left" title="VPPINFRA (Infrastructure)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
