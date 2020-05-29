@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>For Developers &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Building VPP" href="building.html" />
+    <link rel="prev" title="Running VPP" href="../users/running/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">For Developers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+      <li>For Developers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="for-developers">
+<span id="gstarteddevel"></span><h1>For Developers<a class="headerlink" href="#for-developers" title="Permalink to this headline">¶</a></h1>
+<p>The Developers section covers the following areas:</p>
+<ul class="simple">
+<li><p>Describes how to build different types of VPP images</p></li>
+<li><p>Explains how to run VPP with and without GDB, with some GDB examples</p></li>
+<li><p>Describes the steps required to get a patch reviewed and merged</p></li>
+<li><p>Describes the VPP software architecture and identifies the associated four VPP layers</p></li>
+<li><p>Describes the different components that are associated with each VPP layer</p></li>
+<li><p>Explains how to Create, Add, Enable/Disable different ARC features</p></li>
+<li><p>Discusses different aspects of Bounded-index Extensible Hashing (bihash), and how it is used in database lookups</p></li>
+<li><p>Describes the different types of API support and how to integrate a plugin</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building VPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="building.html#set-up-proxies">Set up Proxies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#get-the-vpp-sources">Get the VPP Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#build-vpp-dependencies">Build VPP Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#build-vpp-debug">Build VPP (Debug)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#build-vpp-release-version">Build VPP (Release Version)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#building-necessary-packages">Building Necessary Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="running_vpp.html">Running VPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="running_vpp.html#running-without-gdb">Running Without GDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running_vpp.html#running-with-gdb">Running With GDB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gdb_examples.html">GDB Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gdb_examples.html#starting-gdb">Starting GDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdb_examples.html#backtrace">Backtrace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdb_examples.html#get-to-the-gdb-prompt">Get to the GDB prompt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdb_examples.html#breakpoints">Breakpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdb_examples.html#step-next-list">Step/Next/List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gdb_examples.html#examining-data-and-packets">Examining Data and packets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="add_plugin.html">Adding a plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="add_plugin.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_plugin.html#generated-files-in-detail">Generated Files in Detail</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gitreview.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitreview.html#clone-with-ssh">Clone with ssh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitreview.html#git-review">Git Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="softwarearchitecture.html#vpp-layers-implementation-taxonomy">VPP Layers - Implementation Taxonomy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#vectors">Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#bitmaps">Bitmaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#pools">Pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#hashes">Hashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#timekeeping">Timekeeping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#timer-wheels">Timer Wheels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#format">Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#unformat">Unformat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#vppinfra-errors-and-warnings">Vppinfra errors and warnings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html#serialization">Serialization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#init-function-discovery">Init function discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#node-graph-initialization">Node Graph Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#graph-node-dispatcher">Graph node dispatcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#graph-dispatcher-internals">Graph dispatcher internals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#vector-data-structure">Vector Data Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#scheduling-vectors">Scheduling Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#complications">Complications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#next-frames-next-frame-ownership">Next frames, next frame ownership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#dispatch-pending-node-actions">dispatch_pending_node actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#process-thread-model">Process / thread model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#process-events">Process events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#buffers">Buffers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#shared-memory-message-api">Shared-memory message API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#debug-cli">Debug CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html#handing-off-buffers-between-threads">Handing off buffers between threads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#effective-graph-dispatch-function-coding">Effective graph dispatch function coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#single-dual-loops">Single/dual loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#creating-packets-from-scratch">Creating Packets from Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#packet-tracer">Packet tracer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#graph-dispatcher-pcap-tracing">Graph Dispatcher Pcap Tracing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#pcap-rx-tx-and-drop-tracing">pcap rx, tx, and drop tracing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#packet-trace-capture-filtering">packet trace capture filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#vpp-packet-generator">VPP Packet Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#pg-setup-scripts">PG setup scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html#debug-cli">Debug CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="featurearcs.html">Feature Arcs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="featurearcs.html#adding-a-feature-to-an-existing-feature-arc">Adding a feature to an existing feature arc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featurearcs.html#creating-a-feature-arc">Creating a feature arc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featurearcs.html#enabling-disabling-features">Enabling / Disabling features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featurearcs.html#related-show-commands">Related “show” commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featurearcs.html#table-of-feature-arcs">Table of Feature Arcs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html">Buffer Metadata</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#vlib-vector-library-primary-buffer-metadata">Vlib (Vector library) primary buffer metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#vnet-network-stack-primary-buffer-metadata">Vnet (network stack) primary buffer metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html#vnet-network-stack-secondary-buffer-metadata">Vnet (network stack) secondary buffer metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="multiarch/nodefns.html">Multi-Architecture Graph Node Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiarch/arbfns.html">Multi-Architecture Arbitrary Function Cookbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bihash.html#discussion-of-the-algorithm">Discussion of the algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bihash.html#bihash-cookbook">Bihash Cookbook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vpp_api_module.html">VPP API module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vpp_api_module.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_api_module.html#common-code">Common code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_api_module.html#generated-code">Generated code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_api_module.html#code-generator">Code generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_api_module.html#c-usage">C Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_api_module.html#c-high-level-api">C++ high level API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_api_module.html#id2">C++ Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="binary_api_support.html">Binary API Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="binary_api_support.html#message-allocation">Message Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_api_support.html#message-tracing-and-replay">Message Tracing and Replay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_api_support.html#api-trace-replay-caveats">API trace replay caveats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_api_support.html#api-trace-interface-issues">API trace interface issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_api_support.html#client-connection-details">Client connection details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_api_support.html#client-disconnection-details">Client disconnection details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_api_support.html#sending-binary-api-messages-to-vpp">Sending binary API messages to VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="binary_api_support.html#receiving-binary-api-messages-from-vpp">Receiving binary API messages from VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="buildsystem/index.html">Build System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="buildsystem/mainmakefile.html">Introduction to the top-level Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="buildsystem/cmakeandninja.html">Introduction to cmake and ninja</a></li>
+<li class="toctree-l2"><a class="reference internal" href="buildsystem/buildrootmakefile.html">Introduction to build-root/Makefile</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#building-g2">Building G2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#setting-the-display-preferences">Setting the Display Preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#screen-taxonomy">Screen Taxonomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#mouse-gestures">Mouse Gestures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#time-ruler">Time Ruler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#event-selection">Event Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#snapshot-ring">Snapshot Ring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#chasing-events">Chasing Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#burying-boring-tracks">Burying Boring Tracks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#summary-mode">Summary Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html#hotkeys">Hotkeys</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fib20/prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/thedatamodel.html">The Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/tunnels.html">Tunnels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/mplsfib.html">MPLS FIB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/fastconvergence.html">Fast Convergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html">Scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html#ip4-heap">IP4 Heap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html#ip6-heap">IP6 Heap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html#main-heap">Main Heap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html#stats-heap">Stats Heap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="buildwireshark.html#download-wireshark-source-code">Download wireshark source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="buildwireshark.html#install-prerequisite-packages">Install prerequisite packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="buildwireshark.html#compile-wireshark">Compile Wireshark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="buildwireshark.html#make-a-pcap-dispatch-trace">Make a pcap dispatch trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="buildwireshark.html#display-in-wireshark">Display in Wireshark</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="punt.html">Punting Packets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="punt.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="punt.html#the-punt-infrastructure">The Punt Infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="punt.html#punting-to-the-control-plane">Punting to the Control Plane</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quic_plugin.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quic_plugin.html#internal-mechanics">Internal Mechanics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="building.html" class="btn btn-neutral float-right" title="Building VPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../users/running/index.html" class="btn btn-neutral float-left" title="Running VPP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
