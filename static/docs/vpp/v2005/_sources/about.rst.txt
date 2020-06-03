@@ -1,0 +1,9 @@
+.. _about:
+
+=====
+About
+=====
+
+**VPP Version:** 20.05-release
+
+**Built on:** Fri May 29 12:09:18 GMT 2020

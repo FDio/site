@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Punting Packets &mdash; The Vector Packet Processor 20.05 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QUIC HostStack" href="quic_plugin.html" />
+    <link rel="prev" title="How to build a vpp dispatch trace aware Wireshark" href="buildwireshark.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.05
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Punting Packets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-punt-infrastructure">The Punt Infrastructure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#punting-to-the-control-plane">Punting to the Control Plane</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>Punting Packets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/punt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="dev-punt">
+</div>
+<div class="section" id="punting-packets">
+<h1>Punting Packets<a class="headerlink" href="#punting-packets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>To ‘punt’ can mean different things to different people. In VPP the
+data-plane punts when a packet cannot be handled by any further
+nodes. Punt differs from drop, in that VPP is giving other elements of
+the system the opportunity to handle this packet.</p>
+<p>A popular meaning of punt is to send packets to the user/control-plane.
+This is specific option of the more general case above, where VPP is
+handing the packet to the control-plane for further processing.</p>
+</div>
+<div class="section" id="the-punt-infrastructure">
+<h2>The Punt Infrastructure<a class="headerlink" href="#the-punt-infrastructure" title="Permalink to this headline">¶</a></h2>
+<p>Exception packets are those that a given node cannot handle via normal
+mechanisms.
+Punting of exception packets is handled via the VLIB ‘punt
+infra’. There are two types of nodes; sources and sinks. Sources
+allocate a punt ‘reason’ from the infrastructure and load time. When
+they encounter an exception during switch time it will tag the packet
+with the reason and ship the packet of the the punt-dispatch node. A
+sink will register with the punt infra at load time so it can receive
+packets that were punted for that reason. If no sinks are registered
+for a given reason the packet is dropped, if multiple sinks register
+the packets are replicated.</p>
+<p>This mechanism allows us to extend the system to deal with packets
+that the source node would otherwise drop.</p>
+</div>
+<div class="section" id="punting-to-the-control-plane">
+<h2>Punting to the Control Plane<a class="headerlink" href="#punting-to-the-control-plane" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="active-punt">
+<h3>Active Punt<a class="headerlink" href="#active-punt" title="Permalink to this headline">¶</a></h3>
+<p>The user/control-plane specifies that this is the type of packet I
+want to receive and this is where I want it sent.</p>
+<p>Currently there exists 3 ways to describe how to match/classify the
+packets to be punted:</p>
+<ol class="arabic simple">
+<li><p>a matching UDP port</p></li>
+<li><p>a matching IP protocol (i.e. OSPF)</p></li>
+<li><p>a matching punt exception reason (see above)</p></li>
+</ol>
+<p>Depending on the type/classification of the packet to be punted, that
+active punt will register itself into the VLIB graph to receive those
+packets. For example, if it’s a packet matching a UDP port then it
+will hook into the UDP port dispatch functions; udp_register_port().</p>
+<p>There exists only one sink for passive punt, a unix domain socket. But
+more work is underway in this area.</p>
+<p>see the API in: vnet/ip/punt.api</p>
+</div>
+<div class="section" id="passive-punt">
+<h3>Passive Punt<a class="headerlink" href="#passive-punt" title="Permalink to this headline">¶</a></h3>
+<p>VPP input packet processing can be described as a series of
+classifiers. For example, a sequence of input classifications could
+be, is it IP? is it for-us? is it UDP? is it a known UDP-port? If at
+some point in this pipeline VPP has no further classifications to make,
+then the packet can be punted, which means sent to ipX-punt node. This
+is described as passive since the control-plane is thus receiving
+every packet that VPP does not itself handle.
+For passive punt the user can specify where the packets should be
+sent and whether/how they should be policed/rate-limited.</p>
+<p>see the API in: vnet/ip/ip.api</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="quic_plugin.html" class="btn btn-neutral float-right" title="QUIC HostStack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="buildwireshark.html" class="btn btn-neutral float-left" title="How to build a vpp dispatch trace aware Wireshark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

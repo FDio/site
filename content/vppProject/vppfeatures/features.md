@@ -70,7 +70,7 @@
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v20.05-rc0-457-ga26f54421
+VPP version: v20.09-rc0-77-g5bb3e81e7
 
 ### ACL Based Forwarding
 Maintainer: Neale Ranns <nranns@cisco.com>  
@@ -810,15 +810,12 @@ Maintainer: damarion@cisco.com sluong@cisco.com sykazmi@cisco.com
 Create a tap v2 device interface, which connects to a tap interface on the host system.
 
 - Virtio
-- persistence
-- attach to existing tap at host
+- Persistence
+- Attach to an existing tap at host
+- Filter packet dump output with SW if index
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
-
-Not yet implemented:  
-- API dump filtering by sw_if_index
-
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/tap](https://git.fd.io/vpp/tree/src/vnet/devices/tap) 
 ### Time-range-based MAC-address filter
 Maintainer: Dave Barach <dave@barachs.net>  
@@ -886,13 +883,16 @@ Generic Segmentation Offload
 
 - Basic GSO support
 - GSO for VLAN tagged packets
+- GSO for VXLAN tunnel
+- GSO for IP-IP tunnel
+- GSO for IPSec tunnel
 - Provide inline function to get header offsets
 
 Feature maturity level: experimental  
 Supports: API CLI  
 
 Not yet implemented:  
-- Tunnels i.e. VXLAN
+- Thorough Testing, GRE, Geneve
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/gso](https://git.fd.io/vpp/tree/src/vnet/gso) 
 ### VPP Comms Library
@@ -920,11 +920,12 @@ Source Code: [https://git.fd.io/vpp/tree/src/vcl](https://git.fd.io/vpp/tree/src
 ### Virtio PCI Device
 Maintainer: sykazmi@cisco.com sluong@cisco.com  
 
-Virtio v1.0 implementation
+Virtio implementation
 
-- driver mode to emulate PCI interface presented to VPP from the host interface.
-- device mode to emulate vhost-user interface presented to VPP from the guest VM.
-- support multi-queue, GSO, checksum offload, indirect descriptor, and jumbo frame.
+- Driver mode to emulate PCI interface presented to VPP from the host interface.
+- Device mode to emulate vhost-user interface presented to VPP from the guest VM.
+- Support multi-queue, GSO, checksum offload, indirect descriptor, jumbo frame, and packed ring.
+- Support virtio 1.1 packed ring in vhost
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  

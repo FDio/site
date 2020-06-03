@@ -104,44 +104,46 @@
 <li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="networksim.html">Network Simulator Plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="webapp.html">Building VPP web applications</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Container-based network simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#os-distro-test-results">OS / Distro test results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#proxy-server">Proxy Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-and-configure-lxd">Install and configure lxd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-three-network-segments">Create three network segments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-the-default-container-profile">Set up the default container profile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#set-up-the-network-configurations">Set up the network configurations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dora-network-configuration">dora network configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#swan-network-configuration">swan network configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Container-based network simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#os-distro-test-results">OS / Distro test results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proxy-server">Proxy Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-and-configure-lxd">Install and configure lxd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-three-network-segments">Create three network segments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-the-default-container-profile">Set up the default container profile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-the-network-configurations">Set up the network configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dora-network-configuration">dora network configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#swan-network-configuration">swan network configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#create-a-master-container-image">Create a “master” container image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#duplicate-the-master-container-image">Duplicate the “master” container image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-handy-script">Install handy script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#test-topology">Test topology</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#test-topology-discussion">Test topology discussion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-master-container-image">Create a “master” container image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#duplicate-the-master-container-image">Duplicate the “master” container image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-handy-script">Install handy script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-topology">Test topology</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#test-topology-discussion">Test topology discussion</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#end-station-configs">End station configs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dorahost-configuration">dorahost configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#swanhost-configuration">swanhost configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#end-station-configs">End station configs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dorahost-configuration">dorahost configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#swanhost-configuration">swanhost configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#vpp-configs">VPP configs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dora-configuration">dora configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#swan-configuration">swan configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vpp-configs">VPP configs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dora-configuration">dora configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#swan-configuration">swan configuration</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ikev2-certificate-setup">IKEv2 certificate setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dhcpv6-server-setup">DHCPv6 server setup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#etc-dhcp-dhcpd6-conf">/etc/dhcp/dhcpd6.conf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ikev2-certificate-setup">IKEv2 certificate setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dhcpv6-server-setup">DHCPv6 server setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#etc-dhcp-dhcpd6-conf">/etc/dhcp/dhcpd6.conf</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#container-host-interoperation">Container / Host Interoperation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-a-custom-root-filesystem-image">Create a custom root filesystem image</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-a-container-which-uses-the-customized-base-image">Create a container which uses the customized base image:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configure-container-networking">Configure container networking</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configure-apt">Configure apt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#container-host-interoperation">Container / Host Interoperation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-custom-root-filesystem-image">Create a custom root filesystem image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-container-which-uses-the-customized-base-image">Create a container which uses the customized base image:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-container-networking">Configure container networking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-apt">Configure apt</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -228,16 +230,15 @@ impossible to use the unit-test framework.</p>
 <p>This note explains how to set up lxc/lxd, and a 5-container testbed to
 test a split-tunnel nat + ikev2 + ipsec + ipv6 prefix-delegation
 scenario.</p>
-</div>
 <div class="section" id="os-distro-test-results">
-<h1>OS / Distro test results<a class="headerlink" href="#os-distro-test-results" title="Permalink to this headline">¶</a></h1>
+<h2>OS / Distro test results<a class="headerlink" href="#os-distro-test-results" title="Permalink to this headline">¶</a></h2>
 <p>This setup has been tested on an Ubuntu 18.04 LTS system. If you’re
 feeling adventurous, the same scenario also worked on a recent Ubuntu
 20.04 “preview” daily build.</p>
 <p>Other distros may work fine, or not at all.</p>
 </div>
 <div class="section" id="proxy-server">
-<h1>Proxy Server<a class="headerlink" href="#proxy-server" title="Permalink to this headline">¶</a></h1>
+<h2>Proxy Server<a class="headerlink" href="#proxy-server" title="Permalink to this headline">¶</a></h2>
 <p>If you need to use a proxy server e.g. from a lab system, you’ll
 probably need to set HTTP_PROXY, HTTPS_PROXY, http_proxy and
 https_proxy in /etc/environment. Directly setting variables in the
@@ -252,7 +253,7 @@ not the user interface.</p>
 </div>
 </div>
 <div class="section" id="install-and-configure-lxd">
-<h1>Install and configure lxd<a class="headerlink" href="#install-and-configure-lxd" title="Permalink to this headline">¶</a></h1>
+<h2>Install and configure lxd<a class="headerlink" href="#install-and-configure-lxd" title="Permalink to this headline">¶</a></h2>
 <p>Install the lxd snap. The lxd snap is up to date, as opposed to the
 results of “sudo apt-get install lxd”.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># snap install lxd</span>
@@ -269,7 +270,7 @@ it with a symbolic link, unless you want to rebuild all of your
 containers from scratch. Ask me how I know that.</p>
 </div>
 <div class="section" id="create-three-network-segments">
-<h1>Create three network segments<a class="headerlink" href="#create-three-network-segments" title="Permalink to this headline">¶</a></h1>
+<h2>Create three network segments<a class="headerlink" href="#create-three-network-segments" title="Permalink to this headline">¶</a></h2>
 <p>Aka, linux bridges.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># lxc network create dora</span>
     <span class="c1"># lxc network create internet</span>
@@ -279,7 +280,7 @@ containers from scratch. Ask me how I know that.</p>
 <p>We’ll explain the test topology in a bit. Stay tuned.</p>
 </div>
 <div class="section" id="set-up-the-default-container-profile">
-<h1>Set up the default container profile<a class="headerlink" href="#set-up-the-default-container-profile" title="Permalink to this headline">¶</a></h1>
+<h2>Set up the default container profile<a class="headerlink" href="#set-up-the-default-container-profile" title="Permalink to this headline">¶</a></h2>
 <p>Execute “lxc profile edit default”, and install the following
 configuration. Note that the “shared” directory should mount your vpp
 workspaces. With that trick, you can edit code from any of the
@@ -319,7 +320,7 @@ containers, run vpp without installing it, etc.</p>
 </div>
 </div>
 <div class="section" id="set-up-the-network-configurations">
-<h1>Set up the network configurations<a class="headerlink" href="#set-up-the-network-configurations" title="Permalink to this headline">¶</a></h1>
+<h2>Set up the network configurations<a class="headerlink" href="#set-up-the-network-configurations" title="Permalink to this headline">¶</a></h2>
 <p>Edit the fake “internet” backbone:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="c1"># lxc network edit internet</span>
 </pre></div>
@@ -345,7 +346,7 @@ and host configuration:</p>
 <p>Repeat the process with the “dora” and “swan” networks, using these
 configurations:</p>
 <div class="section" id="dora-network-configuration">
-<h2>dora network configuration<a class="headerlink" href="#dora-network-configuration" title="Permalink to this headline">¶</a></h2>
+<h3>dora network configuration<a class="headerlink" href="#dora-network-configuration" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">config</span><span class="p">:</span>
       <span class="n">ipv4</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.1</span><span class="o">/</span><span class="mi">24</span>
       <span class="n">ipv4</span><span class="o">.</span><span class="n">dhcp</span><span class="o">.</span><span class="n">ranges</span><span class="p">:</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.10</span><span class="o">-</span><span class="mf">10.166</span><span class="o">.</span><span class="mf">14.50</span>
@@ -364,7 +365,7 @@ configurations:</p>
 </div>
 </div>
 <div class="section" id="swan-network-configuration">
-<h2>swan network configuration<a class="headerlink" href="#swan-network-configuration" title="Permalink to this headline">¶</a></h2>
+<h3>swan network configuration<a class="headerlink" href="#swan-network-configuration" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">config</span><span class="p">:</span>
       <span class="n">ipv4</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.1</span><span class="o">/</span><span class="mi">24</span>
       <span class="n">ipv4</span><span class="o">.</span><span class="n">dhcp</span><span class="o">.</span><span class="n">ranges</span><span class="p">:</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.10</span><span class="o">-</span><span class="mf">10.219</span><span class="o">.</span><span class="mf">188.50</span>
@@ -384,7 +385,7 @@ configurations:</p>
 </div>
 </div>
 <div class="section" id="create-a-master-container-image">
-<h1>Create a “master” container image<a class="headerlink" href="#create-a-master-container-image" title="Permalink to this headline">¶</a></h1>
+<h2>Create a “master” container image<a class="headerlink" href="#create-a-master-container-image" title="Permalink to this headline">¶</a></h2>
 <p>The master container image should be set up so that you can
 build vpp, ssh into the container, edit source code, run gdb, etc.</p>
 <p>Make sure that e.g. public key auth ssh works.</p>
@@ -406,7 +407,7 @@ vpp configurations.</p>
 </div>
 </div>
 <div class="section" id="duplicate-the-master-container-image">
-<h1>Duplicate the “master” container image<a class="headerlink" href="#duplicate-the-master-container-image" title="Permalink to this headline">¶</a></h1>
+<h2>Duplicate the “master” container image<a class="headerlink" href="#duplicate-the-master-container-image" title="Permalink to this headline">¶</a></h2>
 <p>To avoid having to configure N containers, be sure that the master
 container image is fully set up before you help it have children:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># lxc copy dora dorahost</span>
@@ -417,7 +418,7 @@ container image is fully set up before you help it have children:</p>
 </div>
 </div>
 <div class="section" id="install-handy-script">
-<h1>Install handy script<a class="headerlink" href="#install-handy-script" title="Permalink to this headline">¶</a></h1>
+<h2>Install handy script<a class="headerlink" href="#install-handy-script" title="Permalink to this headline">¶</a></h2>
 <p>See below for a handly script which executes lxc commands across the
 current set of running containers. I call it “lxc-foreach,” feel free
 to call the script Ishmael if you like.</p>
@@ -467,7 +468,7 @@ displays container ip addresses.</p>
 </div>
 </div>
 <div class="section" id="test-topology">
-<h1>Test topology<a class="headerlink" href="#test-topology" title="Permalink to this headline">¶</a></h1>
+<h2>Test topology<a class="headerlink" href="#test-topology" title="Permalink to this headline">¶</a></h2>
 <p>Finally, we’re ready to describe a test topology. First, a picture:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">===+========</span> <span class="n">management</span> <span class="n">lan</span><span class="o">/</span><span class="n">bridge</span> <span class="n">lxdbr0</span> <span class="p">(</span><span class="n">dhcp</span><span class="p">)</span> <span class="o">===========+===</span>
        <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
@@ -491,7 +492,7 @@ displays container ip addresses.</p>
 </pre></div>
 </div>
 <div class="section" id="test-topology-discussion">
-<h2>Test topology discussion<a class="headerlink" href="#test-topology-discussion" title="Permalink to this headline">¶</a></h2>
+<h3>Test topology discussion<a class="headerlink" href="#test-topology-discussion" title="Permalink to this headline">¶</a></h3>
 <p>This topology is suitable for testing almost any tunnel encap/decap
 scenario.  The two containers “dorahost” and “swanhost” are end-stations
 connected to two vpp instances running on “dora” and “swan”.</p>
@@ -502,19 +503,19 @@ of all sorts.</p>
 </div>
 </div>
 <div class="section" id="end-station-configs">
-<h1>End station configs<a class="headerlink" href="#end-station-configs" title="Permalink to this headline">¶</a></h1>
+<h2>End station configs<a class="headerlink" href="#end-station-configs" title="Permalink to this headline">¶</a></h2>
 <p>The end-station Linux configurations set up the eth2 and eth3 ip
 addresses shown above, and add tunnel routes to the opposite
 end-station networks.</p>
 <div class="section" id="dorahost-configuration">
-<h2>dorahost configuration<a class="headerlink" href="#dorahost-configuration" title="Permalink to this headline">¶</a></h2>
+<h3>dorahost configuration<a class="headerlink" href="#dorahost-configuration" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">ifconfig</span> <span class="n">eth2</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.3</span><span class="o">/</span><span class="mi">24</span> <span class="n">up</span>
     <span class="n">route</span> <span class="n">add</span> <span class="o">-</span><span class="n">net</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">gw</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.2</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="swanhost-configuration">
-<h2>swanhost configuration<a class="headerlink" href="#swanhost-configuration" title="Permalink to this headline">¶</a></h2>
+<h3>swanhost configuration<a class="headerlink" href="#swanhost-configuration" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">ifconfig</span> <span class="n">eth3</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.3</span><span class="o">/</span><span class="mi">24</span> <span class="n">up</span>
     <span class="n">sudo</span> <span class="n">route</span> <span class="n">add</span> <span class="o">-</span><span class="n">net</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">gw</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.2</span>
 </pre></div>
@@ -522,11 +523,11 @@ end-station networks.</p>
 </div>
 </div>
 <div class="section" id="vpp-configs">
-<h1>VPP configs<a class="headerlink" href="#vpp-configs" title="Permalink to this headline">¶</a></h1>
+<h2>VPP configs<a class="headerlink" href="#vpp-configs" title="Permalink to this headline">¶</a></h2>
 <p>Split nat44 / ikev2 + ipsec tunneling, with ipv6 prefix delegation in
 the “dora” config.</p>
 <div class="section" id="dora-configuration">
-<h2>dora configuration<a class="headerlink" href="#dora-configuration" title="Permalink to this headline">¶</a></h2>
+<h3>dora configuration<a class="headerlink" href="#dora-configuration" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="nb">set</span> <span class="n">term</span> <span class="n">pag</span> <span class="n">off</span>
 
     <span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;internet&quot;</span> <span class="p">}</span>
@@ -581,7 +582,7 @@ the “dora” config.</p>
 </div>
 </div>
 <div class="section" id="swan-configuration">
-<h2>swan configuration<a class="headerlink" href="#swan-configuration" title="Permalink to this headline">¶</a></h2>
+<h3>swan configuration<a class="headerlink" href="#swan-configuration" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="nb">set</span> <span class="n">term</span> <span class="n">pag</span> <span class="n">off</span>
 
     <span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;internet&quot;</span> <span class="p">}</span>
@@ -636,7 +637,7 @@ the “dora” config.</p>
 </div>
 </div>
 <div class="section" id="ikev2-certificate-setup">
-<h1>IKEv2 certificate setup<a class="headerlink" href="#ikev2-certificate-setup" title="Permalink to this headline">¶</a></h1>
+<h2>IKEv2 certificate setup<a class="headerlink" href="#ikev2-certificate-setup" title="Permalink to this headline">¶</a></h2>
 <p>In both of the vpp configurations, you’ll see “/scratch/setups/xxx.pem”
 mentioned. These certificates are used in the ikev2 key exchange.</p>
 <p>Here’s how to generate the certificates:</p>
@@ -649,7 +650,7 @@ mentioned. These certificates are used in the ikev2 key exchange.</p>
 <p>Make sure that the “dora” and “swan” configurations point to the certificates.</p>
 </div>
 <div class="section" id="dhcpv6-server-setup">
-<h1>DHCPv6 server setup<a class="headerlink" href="#dhcpv6-server-setup" title="Permalink to this headline">¶</a></h1>
+<h2>DHCPv6 server setup<a class="headerlink" href="#dhcpv6-server-setup" title="Permalink to this headline">¶</a></h2>
 <p>If you need an ipv6 dhcp server to test ipv6 prefix delegation,
 create the “dhcpserver” container as shown above.</p>
 <p>Install the “isc-dhcp-server” Debian package:</p>
@@ -657,7 +658,7 @@ create the “dhcpserver” container as shown above.</p>
 </pre></div>
 </div>
 <div class="section" id="etc-dhcp-dhcpd6-conf">
-<h2>/etc/dhcp/dhcpd6.conf<a class="headerlink" href="#etc-dhcp-dhcpd6-conf" title="Permalink to this headline">¶</a></h2>
+<h3>/etc/dhcp/dhcpd6.conf<a class="headerlink" href="#etc-dhcp-dhcpd6-conf" title="Permalink to this headline">¶</a></h3>
 <p>Edit the dhcpv6 configuration and add an ipv6 subnet with prefix
 delegation. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">subnet6</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">64</span> <span class="p">{</span>
@@ -680,7 +681,7 @@ address.</p>
 </div>
 </div>
 <div class="section" id="container-host-interoperation">
-<h1>Container / Host Interoperation<a class="headerlink" href="#container-host-interoperation" title="Permalink to this headline">¶</a></h1>
+<h2>Container / Host Interoperation<a class="headerlink" href="#container-host-interoperation" title="Permalink to this headline">¶</a></h2>
 <p>Host / container interoperation is highly desirable. If the host and a
 set of containers don’t run the same distro <em>and distro version</em>, it’s
 reasonably likely that the glibc versions won’t match. That, in turn,
@@ -692,7 +693,7 @@ specific.</p>
 <p>Fortunately, it’s reasonable easy to build lxd container images based on
 specific Ubuntu or Debian versions.</p>
 <div class="section" id="create-a-custom-root-filesystem-image">
-<h2>Create a custom root filesystem image<a class="headerlink" href="#create-a-custom-root-filesystem-image" title="Permalink to this headline">¶</a></h2>
+<h3>Create a custom root filesystem image<a class="headerlink" href="#create-a-custom-root-filesystem-image" title="Permalink to this headline">¶</a></h3>
 <p>First, install the “debootstrap” tool:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">debootstrap</span>
 </pre></div>
@@ -734,7 +735,7 @@ example, we create an Ubuntu 20.04 (focal fossa) base image:</p>
 </div>
 </div>
 <div class="section" id="create-a-container-which-uses-the-customized-base-image">
-<h2>Create a container which uses the customized base image:<a class="headerlink" href="#create-a-container-which-uses-the-customized-base-image" title="Permalink to this headline">¶</a></h2>
+<h3>Create a container which uses the customized base image:<a class="headerlink" href="#create-a-container-which-uses-the-customized-base-image" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ lxc launch focal-base focaltest
     $ lxc exec focaltest bash
 </pre></div>
@@ -743,7 +744,7 @@ example, we create an Ubuntu 20.04 (focal fossa) base image:</p>
 bash shell spun up by “lxc exec…”</p>
 </div>
 <div class="section" id="configure-container-networking">
-<h2>Configure container networking<a class="headerlink" href="#configure-container-networking" title="Permalink to this headline">¶</a></h2>
+<h3>Configure container networking<a class="headerlink" href="#configure-container-networking" title="Permalink to this headline">¶</a></h3>
 <p>In the container, create /etc/netplan/50-cloud-init.yaml:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">network</span><span class="p">:</span>
         <span class="n">version</span><span class="p">:</span> <span class="mi">2</span>
@@ -762,7 +763,7 @@ favorite text editor is AWOL.</p>
 a default route with “route -n”.</p>
 </div>
 <div class="section" id="configure-apt">
-<h2>Configure apt<a class="headerlink" href="#configure-apt" title="Permalink to this headline">¶</a></h2>
+<h3>Configure apt<a class="headerlink" href="#configure-apt" title="Permalink to this headline">¶</a></h3>
 <p>Again, in the container, set up /etc/apt/sources.list via cut-‘n-paste
 from a recently update “focal fossa” host. Something like so:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span> <span class="n">main</span> <span class="n">restricted</span>
@@ -782,6 +783,7 @@ Suggest “apt-get install make git”.</p>
 <p>At this point, you can use the “/scratch” sharepoint (or similar) to
 execute “make install-dep install-ext-deps” to set up the container
 with the vpp toolchain; proceed as desired.</p>
+</div>
 </div>
 </div>
 
