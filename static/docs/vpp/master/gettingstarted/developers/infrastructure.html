@@ -108,6 +108,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#pools">Pools</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#hashes">Hashes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#timekeeping">Timekeeping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#timer-wheels">Timer Wheels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#format">Format</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#unformat">Unformat</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#vppinfra-errors-and-warnings">Vppinfra errors and warnings</a></li>
@@ -115,6 +116,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#sample-run">Sample Run</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
@@ -425,6 +430,111 @@ base retains 1us precision for roughly 30 years.</p>
 seconds. If necessary, please use clib_cpu_time_now(…) for direct
 access to the CPU clock-cycle counter. Note that the number of CPU
 clock cycles per second varies significantly across CPU architectures.</p>
+</div>
+</div>
+<div class="section" id="timer-wheels">
+<h2>Timer Wheels<a class="headerlink" href="#timer-wheels" title="Permalink to this headline">¶</a></h2>
+<p>Vppinfra includes configurable timer wheel support. See the source
+code in …/src/vppinfra/tw_timer_template.[ch], as well as a
+considerable number of template instances defined in
+…/src/vppinfra/tw_timer_<wheel-geometry-spec>.[ch].</p>
+<p>Instantiation of tw_timer_template.h generates named structures to
+implement specific timer wheel geometries. Choices include: number of
+timer wheels (currently, 1 or 2), number of slots per ring (a power of
+two), and the number of timers per “object handle”.</p>
+<p>Internally, user object/timer handles are 32-bit integers, so if one
+selects 16 timers/object (4 bits), the resulting timer wheel handle is
+limited to 2**28 objects.</p>
+<p>Here are the specific settings required to generate a single 2048 slot
+wheel which supports 2 timers per object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1">#define TW_TIMER_WHEELS 1</span>
+    <span class="c1">#define TW_SLOTS_PER_RING 2048</span>
+    <span class="c1">#define TW_RING_SHIFT 11</span>
+    <span class="c1">#define TW_RING_MASK (TW_SLOTS_PER_RING -1)</span>
+    <span class="c1">#define TW_TIMERS_PER_OBJECT 2</span>
+    <span class="c1">#define LOG2_TW_TIMERS_PER_OBJECT 1</span>
+    <span class="c1">#define TW_SUFFIX _2t_1w_2048sl</span>
+    <span class="c1">#define TW_FAST_WHEEL_BITMAP 0</span>
+    <span class="c1">#define TW_TIMER_ALLOW_DUPLICATE_STOP 0</span>
+</pre></div>
+</div>
+<p>See tw_timer_2t_1w_2048sl.h for a complete
+example.</p>
+<p>tw_timer_template.h is not intended to be #included directly. Client
+codes can include multiple timer geometry header files, although
+extreme caution would required to use the TW and TWT macros in such a
+case.</p>
+<div class="section" id="api-usage-examples">
+<h3>API usage examples<a class="headerlink" href="#api-usage-examples" title="Permalink to this headline">¶</a></h3>
+<p>The unit test code in …/src/vppinfra/test_tw_timer.c provides a
+concrete API usage example. It uses a synthetic clock to rapidly
+exercise the underlying tw_timer_expire_timers(…) template.</p>
+<p>There are not many API routines to call.</p>
+<div class="section" id="initialize-a-two-timer-single-2048-slot-wheel-w-a-1-second-timer-granularity">
+<h4>Initialize a two-timer, single 2048-slot wheel w/ a 1-second timer granularity<a class="headerlink" href="#initialize-a-two-timer-single-2048-slot-wheel-w-a-1-second-timer-granularity" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">tw_timer_wheel_init_2t_1w_2048sl</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">tm</span><span class="o">-&gt;</span><span class="n">single_wheel</span><span class="p">,</span>
+                                     <span class="n">expired_timer_single_callback</span><span class="p">,</span>
+				      <span class="mf">1.0</span> <span class="o">/</span> <span class="o">*</span> <span class="n">timer</span> <span class="n">interval</span> <span class="o">*</span> <span class="o">/</span> <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="start-a-timer">
+<h4>Start a timer<a class="headerlink" href="#start-a-timer" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">handle</span> <span class="o">=</span> <span class="n">tw_timer_start_2t_1w_2048sl</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">tm</span><span class="o">-&gt;</span><span class="n">single_wheel</span><span class="p">,</span> <span class="n">elt_index</span><span class="p">,</span>
+                                          <span class="p">[</span><span class="mi">0</span> <span class="o">|</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="o">*</span> <span class="n">timer</span> <span class="nb">id</span> <span class="o">*</span> <span class="o">/</span> <span class="p">,</span>
+                                          <span class="n">expiration_time_in_u32_ticks</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stop-a-timer">
+<h4>Stop a timer<a class="headerlink" href="#stop-a-timer" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">tw_timer_stop_2t_1w_2048sl</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">tm</span><span class="o">-&gt;</span><span class="n">single_wheel</span><span class="p">,</span> <span class="n">handle</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="an-expired-timer-callback">
+<h4>An expired timer callback<a class="headerlink" href="#an-expired-timer-callback" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">static</span> <span class="n">void</span>
+    <span class="n">expired_timer_single_callback</span> <span class="p">(</span><span class="n">u32</span> <span class="o">*</span> <span class="n">expired_timers</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
+        <span class="n">u32</span> <span class="n">pool_index</span><span class="p">,</span> <span class="n">timer_id</span><span class="p">;</span>
+        <span class="n">tw_timer_test_elt_t</span> <span class="o">*</span><span class="n">e</span><span class="p">;</span>
+        <span class="n">tw_timer_test_main_t</span> <span class="o">*</span><span class="n">tm</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">tw_timer_test_main</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">expired_timers</span><span class="p">);</span>
+            <span class="p">{</span>
+            <span class="n">pool_index</span> <span class="o">=</span> <span class="n">expired_timers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x7FFFFFFF</span><span class="p">;</span>
+            <span class="n">timer_id</span> <span class="o">=</span> <span class="n">expired_timers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">;</span>
+
+            <span class="n">ASSERT</span> <span class="p">(</span><span class="n">timer_id</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+
+            <span class="n">e</span> <span class="o">=</span> <span class="n">pool_elt_at_index</span> <span class="p">(</span><span class="n">tm</span><span class="o">-&gt;</span><span class="n">test_elts</span><span class="p">,</span> <span class="n">pool_index</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">expected_to_expire</span> <span class="o">!=</span> <span class="n">tm</span><span class="o">-&gt;</span><span class="n">single_wheel</span><span class="o">.</span><span class="n">current_tick</span><span class="p">)</span>
+              <span class="p">{</span>
+              	<span class="n">fformat</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s2">&quot;[</span><span class="si">%d</span><span class="s2">] expired at </span><span class="si">%d</span><span class="s2"> not </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                         <span class="n">e</span> <span class="o">-</span> <span class="n">tm</span><span class="o">-&gt;</span><span class="n">test_elts</span><span class="p">,</span> <span class="n">tm</span><span class="o">-&gt;</span><span class="n">single_wheel</span><span class="o">.</span><span class="n">current_tick</span><span class="p">,</span>
+                         <span class="n">e</span><span class="o">-&gt;</span><span class="n">expected_to_expire</span><span class="p">);</span>
+              <span class="p">}</span>
+         <span class="n">pool_put</span> <span class="p">(</span><span class="n">tm</span><span class="o">-&gt;</span><span class="n">test_elts</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+</pre></div>
+</div>
+<p>We use wheel timers extensively in the vpp host stack. Each TCP
+session needs 5 timers, so supporting 10 million flows requires up to
+50 million concurrent timers.</p>
+<p>Timers rarely expire, so it’s of utmost important that stopping and
+restarting a timer costs as few clock cycles as possible.</p>
+<p>Stopping a timer costs a doubly-linked list dequeue. Starting a timer
+involves modular arithmetic to determine the correct timer wheel and
+slot, and a list head enqueue.</p>
+<p>Expired timer processing generally involves bulk link-list retirement
+with user callback presentation. Some additional complexity at wheel
+wrap time, to relocate timers from slower-turning timer wheels into
+faster-turning wheels.</p>
+</div>
 </div>
 </div>
 <div class="section" id="format">
