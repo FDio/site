@@ -119,8 +119,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#shared-memory-message-api">Shared-memory message API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#debug-cli">Debug CLI</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#handing-off-buffers-between-threads">Handing off buffers between threads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#handoff-demo-plugin">Handoff Demo Plugin</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sample-run">Sample Run</a></li>
 <li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
@@ -682,6 +687,48 @@ code elsewhere to unpack the data and finally print the answer. If a
 certain cli command has the potential to hurt packet processing
 performance by running for too long, do the work incrementally in a
 process node. The client can wait.</p>
+<div class="section" id="macro-expansion">
+<h3>Macro expansion<a class="headerlink" href="#macro-expansion" title="Permalink to this headline">¶</a></h3>
+<p>The vpp debug CLI engine includes a recursive macro expander. This
+is quite useful for factoring out address and/or interface name
+specifics:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   define ip1 192.168.1.1/24
+   define ip2 192.168.2.1/24
+   define iface1 GigabitEthernet3/0/0
+   define iface2 loop1
+
+   set int ip address $iface1 $ip1
+   set int ip address $iface2 $(ip2)
+
+   undefine ip1
+   undefine ip2
+   undefine iface1
+   undefine iface2
+</pre></div>
+</div>
+<p>Each socket (or telnet) debug CLI session has its own macro
+tables. All debug CLI sessions which use CLI_INBAND binary API
+messages share a single table.</p>
+<p>The macro expander recognizes circular defintions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    define foo \$(bar)
+    define bar \$(mumble)
+    define mumble \$(foo)
+</pre></div>
+</div>
+<p>At 8 levels of recursion, the macro expander throws up its hands and
+replies “CIRCULAR.”</p>
+</div>
+<div class="section" id="macro-related-debug-cli-commands">
+<h3>Macro-related debug CLI commands<a class="headerlink" href="#macro-related-debug-cli-commands" title="Permalink to this headline">¶</a></h3>
+<p>In addition to the “define” and “undefine” debug CLI commands, use
+“show macro [noevaluate]” to dump the macro table. The “echo” debug
+CLI command will evaluate and print its argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vpp</span><span class="c1"># define foo This\ Is\ Foo</span>
+    <span class="n">vpp</span><span class="c1"># echo $foo</span>
+    <span class="n">This</span> <span class="n">Is</span> <span class="n">Foo</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="handing-off-buffers-between-threads">
 <h2>Handing off buffers between threads<a class="headerlink" href="#handing-off-buffers-between-threads" title="Permalink to this headline">¶</a></h2>
@@ -780,6 +827,198 @@ enqueue node by freeing dropped packets, or by pushing them to
 <li><p>It’s perfectly OK to enqueue packets to the current thread.</p></li>
 </ul>
 </div>
+</div>
+<div class="section" id="handoff-demo-plugin">
+<h2>Handoff Demo Plugin<a class="headerlink" href="#handoff-demo-plugin" title="Permalink to this headline">¶</a></h2>
+<p>Check out the sample (plugin) example in
+…/src/examples/handoffdemo. If you want to build the handoff demo plugin:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd .../src/plugins
+$ ln -s ../examples/handoffdemo
+</pre></div>
+</div>
+<p>This plugin provides a simple example of how to hand off packets
+between threads. We used it to debug packet-tracer handoff tracing
+support.</p>
+</div>
+</div>
+<div class="section" id="packet-generator-input-script">
+<h1>Packet generator input script<a class="headerlink" href="#packet-generator-input-script" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">packet</span><span class="o">-</span><span class="n">generator</span> <span class="n">new</span> <span class="p">{</span>
+    <span class="n">name</span> <span class="n">x</span>
+    <span class="n">limit</span> <span class="mi">5</span>
+    <span class="n">size</span> <span class="mi">128</span><span class="o">-</span><span class="mi">128</span>
+    <span class="n">interface</span> <span class="n">local0</span>
+    <span class="n">node</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">data</span> <span class="p">{</span>
+        <span class="n">incrementing</span> <span class="mi">30</span>
+    <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="start-vpp-with-2-worker-threads">
+<h1>Start vpp with 2 worker threads<a class="headerlink" href="#start-vpp-with-2-worker-threads" title="Permalink to this headline">¶</a></h1>
+<p>The demo plugin hands packets from worker 1 to worker 2.</p>
+</div>
+<div class="section" id="enable-tracing-and-start-the-packet-generator">
+<h1>Enable tracing, and start the packet generator<a class="headerlink" href="#enable-tracing-and-start-the-packet-generator" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">trace</span> <span class="n">add</span> <span class="n">pg</span><span class="o">-</span><span class="nb">input</span> <span class="mi">100</span>
+  <span class="n">packet</span><span class="o">-</span><span class="n">generator</span> <span class="n">enable</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sample-run">
+<h1>Sample Run<a class="headerlink" href="#sample-run" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">DBGvpp</span><span class="c1"># ex /tmp/pg_input_script</span>
+  <span class="n">DBGvpp</span><span class="c1"># pa en</span>
+  <span class="n">DBGvpp</span><span class="c1"># sh err</span>
+   <span class="n">Count</span>                    <span class="n">Node</span>                  <span class="n">Reason</span>
+         <span class="mi">5</span>              <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">1</span>             <span class="n">packets</span> <span class="n">handed</span> <span class="n">off</span> <span class="n">processed</span>
+         <span class="mi">5</span>              <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span>             <span class="n">completed</span> <span class="n">packets</span>
+  <span class="n">DBGvpp</span><span class="c1"># show run</span>
+  <span class="n">Thread</span> <span class="mi">1</span> <span class="n">vpp_wk_0</span> <span class="p">(</span><span class="n">lcore</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="n">Time</span> <span class="mf">133.9</span><span class="p">,</span> <span class="n">average</span> <span class="n">vectors</span><span class="o">/</span><span class="n">node</span> <span class="mf">5.00</span><span class="p">,</span> <span class="n">last</span> <span class="mi">128</span> <span class="n">main</span> <span class="n">loops</span> <span class="mf">0.00</span> <span class="n">per</span> <span class="n">node</span> <span class="mf">0.00</span>
+    <span class="n">vector</span> <span class="n">rates</span> <span class="ow">in</span> <span class="mf">3.7331e-2</span><span class="p">,</span> <span class="n">out</span> <span class="mf">0.0000e0</span><span class="p">,</span> <span class="n">drop</span> <span class="mf">0.0000e0</span><span class="p">,</span> <span class="n">punt</span> <span class="mf">0.0000e0</span>
+               <span class="n">Name</span>                 <span class="n">State</span>         <span class="n">Calls</span>          <span class="n">Vectors</span>        <span class="n">Suspends</span>         <span class="n">Clocks</span>       <span class="n">Vectors</span><span class="o">/</span><span class="n">Call</span>
+  <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">1</span>                    <span class="n">active</span>                  <span class="mi">1</span>               <span class="mi">5</span>               <span class="mi">0</span>          <span class="mf">4.76e3</span>            <span class="mf">5.00</span>
+  <span class="n">pg</span><span class="o">-</span><span class="nb">input</span>                        <span class="n">disabled</span>                 <span class="mi">2</span>               <span class="mi">5</span>               <span class="mi">0</span>          <span class="mf">5.58e4</span>            <span class="mf">2.50</span>
+  <span class="n">unix</span><span class="o">-</span><span class="n">epoll</span><span class="o">-</span><span class="nb">input</span>                 <span class="n">polling</span>             <span class="mi">22760</span>               <span class="mi">0</span>               <span class="mi">0</span>          <span class="mf">2.14e7</span>            <span class="mf">0.00</span>
+  <span class="o">---------------</span>
+  <span class="n">Thread</span> <span class="mi">2</span> <span class="n">vpp_wk_1</span> <span class="p">(</span><span class="n">lcore</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="n">Time</span> <span class="mf">133.9</span><span class="p">,</span> <span class="n">average</span> <span class="n">vectors</span><span class="o">/</span><span class="n">node</span> <span class="mf">5.00</span><span class="p">,</span> <span class="n">last</span> <span class="mi">128</span> <span class="n">main</span> <span class="n">loops</span> <span class="mf">0.00</span> <span class="n">per</span> <span class="n">node</span> <span class="mf">0.00</span>
+    <span class="n">vector</span> <span class="n">rates</span> <span class="ow">in</span> <span class="mf">0.0000e0</span><span class="p">,</span> <span class="n">out</span> <span class="mf">0.0000e0</span><span class="p">,</span> <span class="n">drop</span> <span class="mf">3.7331e-2</span><span class="p">,</span> <span class="n">punt</span> <span class="mf">0.0000e0</span>
+               <span class="n">Name</span>                 <span class="n">State</span>         <span class="n">Calls</span>          <span class="n">Vectors</span>        <span class="n">Suspends</span>         <span class="n">Clocks</span>       <span class="n">Vectors</span><span class="o">/</span><span class="n">Call</span>
+  <span class="n">drop</span>                             <span class="n">active</span>                  <span class="mi">1</span>               <span class="mi">5</span>               <span class="mi">0</span>          <span class="mf">1.35e4</span>            <span class="mf">5.00</span>
+  <span class="n">error</span><span class="o">-</span><span class="n">drop</span>                       <span class="n">active</span>                  <span class="mi">1</span>               <span class="mi">5</span>               <span class="mi">0</span>          <span class="mf">2.52e4</span>            <span class="mf">5.00</span>
+  <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span>                    <span class="n">active</span>                  <span class="mi">1</span>               <span class="mi">5</span>               <span class="mi">0</span>          <span class="mf">2.56e4</span>            <span class="mf">5.00</span>
+  <span class="n">unix</span><span class="o">-</span><span class="n">epoll</span><span class="o">-</span><span class="nb">input</span>                 <span class="n">polling</span>             <span class="mi">22406</span>               <span class="mi">0</span>               <span class="mi">0</span>          <span class="mf">2.18e7</span>            <span class="mf">0.00</span>
+</pre></div>
+</div>
+<p>Enable the packet tracer and run it again…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">DBGvpp</span><span class="c1"># trace add pg-input 100</span>
+  <span class="n">DBGvpp</span><span class="c1"># pa en</span>
+  <span class="n">DBGvpp</span><span class="c1"># sh trace</span>
+  <span class="n">sh</span> <span class="n">trace</span>
+  <span class="o">-------------------</span> <span class="n">Start</span> <span class="n">of</span> <span class="n">thread</span> <span class="mi">0</span> <span class="n">vpp_main</span> <span class="o">-------------------</span>
+  <span class="n">No</span> <span class="n">packets</span> <span class="ow">in</span> <span class="n">trace</span> <span class="n">buffer</span>
+  <span class="o">-------------------</span> <span class="n">Start</span> <span class="n">of</span> <span class="n">thread</span> <span class="mi">1</span> <span class="n">vpp_wk_0</span> <span class="o">-------------------</span>
+  <span class="n">Packet</span> <span class="mi">1</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520688</span><span class="p">:</span> <span class="n">pg</span><span class="o">-</span><span class="nb">input</span>
+    <span class="n">stream</span> <span class="n">x</span><span class="p">,</span> <span class="mi">128</span> <span class="nb">bytes</span><span class="p">,</span> <span class="mi">0</span> <span class="n">sw_if_index</span>
+    <span class="n">current</span> <span class="n">data</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="mi">128</span><span class="p">,</span> <span class="n">buffer</span><span class="o">-</span><span class="n">pool</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ref</span><span class="o">-</span><span class="n">count</span> <span class="mi">1</span><span class="p">,</span> <span class="n">trace</span> <span class="n">handle</span> <span class="mh">0x1000000</span>
+    <span class="mi">00000000</span><span class="p">:</span> <span class="mi">000102030405060708090</span><span class="n">a0b0c0d0e0f101112131415161718191a1b1c1d0000</span>
+    <span class="mi">00000020</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000040</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000060</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520762</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">1</span>
+
+  <span class="n">Packet</span> <span class="mi">2</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520688</span><span class="p">:</span> <span class="n">pg</span><span class="o">-</span><span class="nb">input</span>
+    <span class="n">stream</span> <span class="n">x</span><span class="p">,</span> <span class="mi">128</span> <span class="nb">bytes</span><span class="p">,</span> <span class="mi">0</span> <span class="n">sw_if_index</span>
+    <span class="n">current</span> <span class="n">data</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="mi">128</span><span class="p">,</span> <span class="n">buffer</span><span class="o">-</span><span class="n">pool</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ref</span><span class="o">-</span><span class="n">count</span> <span class="mi">1</span><span class="p">,</span> <span class="n">trace</span> <span class="n">handle</span> <span class="mh">0x1000001</span>
+    <span class="mi">00000000</span><span class="p">:</span> <span class="mi">000102030405060708090</span><span class="n">a0b0c0d0e0f101112131415161718191a1b1c1d0000</span>
+    <span class="mi">00000020</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000040</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000060</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520762</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">1</span>
+
+  <span class="n">Packet</span> <span class="mi">3</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520688</span><span class="p">:</span> <span class="n">pg</span><span class="o">-</span><span class="nb">input</span>
+    <span class="n">stream</span> <span class="n">x</span><span class="p">,</span> <span class="mi">128</span> <span class="nb">bytes</span><span class="p">,</span> <span class="mi">0</span> <span class="n">sw_if_index</span>
+    <span class="n">current</span> <span class="n">data</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="mi">128</span><span class="p">,</span> <span class="n">buffer</span><span class="o">-</span><span class="n">pool</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ref</span><span class="o">-</span><span class="n">count</span> <span class="mi">1</span><span class="p">,</span> <span class="n">trace</span> <span class="n">handle</span> <span class="mh">0x1000002</span>
+    <span class="mi">00000000</span><span class="p">:</span> <span class="mi">000102030405060708090</span><span class="n">a0b0c0d0e0f101112131415161718191a1b1c1d0000</span>
+    <span class="mi">00000020</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000040</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000060</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520762</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">1</span>
+
+  <span class="n">Packet</span> <span class="mi">4</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520688</span><span class="p">:</span> <span class="n">pg</span><span class="o">-</span><span class="nb">input</span>
+    <span class="n">stream</span> <span class="n">x</span><span class="p">,</span> <span class="mi">128</span> <span class="nb">bytes</span><span class="p">,</span> <span class="mi">0</span> <span class="n">sw_if_index</span>
+    <span class="n">current</span> <span class="n">data</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="mi">128</span><span class="p">,</span> <span class="n">buffer</span><span class="o">-</span><span class="n">pool</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ref</span><span class="o">-</span><span class="n">count</span> <span class="mi">1</span><span class="p">,</span> <span class="n">trace</span> <span class="n">handle</span> <span class="mh">0x1000003</span>
+    <span class="mi">00000000</span><span class="p">:</span> <span class="mi">000102030405060708090</span><span class="n">a0b0c0d0e0f101112131415161718191a1b1c1d0000</span>
+    <span class="mi">00000020</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000040</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000060</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520762</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">1</span>
+
+  <span class="n">Packet</span> <span class="mi">5</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520688</span><span class="p">:</span> <span class="n">pg</span><span class="o">-</span><span class="nb">input</span>
+    <span class="n">stream</span> <span class="n">x</span><span class="p">,</span> <span class="mi">128</span> <span class="nb">bytes</span><span class="p">,</span> <span class="mi">0</span> <span class="n">sw_if_index</span>
+    <span class="n">current</span> <span class="n">data</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="mi">128</span><span class="p">,</span> <span class="n">buffer</span><span class="o">-</span><span class="n">pool</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ref</span><span class="o">-</span><span class="n">count</span> <span class="mi">1</span><span class="p">,</span> <span class="n">trace</span> <span class="n">handle</span> <span class="mh">0x1000004</span>
+    <span class="mi">00000000</span><span class="p">:</span> <span class="mi">000102030405060708090</span><span class="n">a0b0c0d0e0f101112131415161718191a1b1c1d0000</span>
+    <span class="mi">00000020</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000040</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+    <span class="mi">00000060</span><span class="p">:</span> <span class="mi">0000000000000000000000000000000000000000000000000000000000000000</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520762</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">1</span>
+
+  <span class="o">-------------------</span> <span class="n">Start</span> <span class="n">of</span> <span class="n">thread</span> <span class="mi">2</span> <span class="n">vpp_wk_1</span> <span class="o">-------------------</span>
+  <span class="n">Packet</span> <span class="mi">1</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoff_trace</span>
+    <span class="n">HANDED</span><span class="o">-</span><span class="n">OFF</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">thread</span> <span class="mi">1</span> <span class="n">trace</span> <span class="n">index</span> <span class="mi">0</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">2</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520867</span><span class="p">:</span> <span class="n">error</span><span class="o">-</span><span class="n">drop</span>
+    <span class="n">rx</span><span class="p">:</span><span class="n">local0</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520914</span><span class="p">:</span> <span class="n">drop</span>
+    <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="n">completed</span> <span class="n">packets</span>
+
+  <span class="n">Packet</span> <span class="mi">2</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoff_trace</span>
+    <span class="n">HANDED</span><span class="o">-</span><span class="n">OFF</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">thread</span> <span class="mi">1</span> <span class="n">trace</span> <span class="n">index</span> <span class="mi">1</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">2</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520867</span><span class="p">:</span> <span class="n">error</span><span class="o">-</span><span class="n">drop</span>
+    <span class="n">rx</span><span class="p">:</span><span class="n">local0</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520914</span><span class="p">:</span> <span class="n">drop</span>
+    <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="n">completed</span> <span class="n">packets</span>
+
+  <span class="n">Packet</span> <span class="mi">3</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoff_trace</span>
+    <span class="n">HANDED</span><span class="o">-</span><span class="n">OFF</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">thread</span> <span class="mi">1</span> <span class="n">trace</span> <span class="n">index</span> <span class="mi">2</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">2</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520867</span><span class="p">:</span> <span class="n">error</span><span class="o">-</span><span class="n">drop</span>
+    <span class="n">rx</span><span class="p">:</span><span class="n">local0</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520914</span><span class="p">:</span> <span class="n">drop</span>
+    <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="n">completed</span> <span class="n">packets</span>
+
+  <span class="n">Packet</span> <span class="mi">4</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoff_trace</span>
+    <span class="n">HANDED</span><span class="o">-</span><span class="n">OFF</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">thread</span> <span class="mi">1</span> <span class="n">trace</span> <span class="n">index</span> <span class="mi">3</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">2</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520867</span><span class="p">:</span> <span class="n">error</span><span class="o">-</span><span class="n">drop</span>
+    <span class="n">rx</span><span class="p">:</span><span class="n">local0</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520914</span><span class="p">:</span> <span class="n">drop</span>
+    <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="n">completed</span> <span class="n">packets</span>
+
+  <span class="n">Packet</span> <span class="mi">5</span>
+
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoff_trace</span>
+    <span class="n">HANDED</span><span class="o">-</span><span class="n">OFF</span><span class="p">:</span> <span class="kn">from</span> <span class="nn">thread</span> <span class="mi">1</span> <span class="n">trace</span> <span class="n">index</span> <span class="mi">4</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520796</span><span class="p">:</span> <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span>
+    <span class="n">HANDOFFDEMO</span><span class="p">:</span> <span class="n">current</span> <span class="n">thread</span> <span class="mi">2</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520867</span><span class="p">:</span> <span class="n">error</span><span class="o">-</span><span class="n">drop</span>
+    <span class="n">rx</span><span class="p">:</span><span class="n">local0</span>
+  <span class="mi">00</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">520914</span><span class="p">:</span> <span class="n">drop</span>
+    <span class="n">handoffdemo</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="n">completed</span> <span class="n">packets</span>
+ <span class="n">DBGvpp</span><span class="c1">#</span>
+</pre></div>
 </div>
 </div>
 

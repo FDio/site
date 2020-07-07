@@ -4,14 +4,19 @@
 [Address Resolution Protocol](#address-resolution-protocol)  
 [Adjacency](#adjacency)  
 [Bidirectional Forwarding Detection](#bidirectional-forwarding-detection)  
+[Binary API library](#binary-api-library)  
+[Binary API shared memory / socket transport library](#binary-api-shared-memory-/-socket-transport-library)  
 [Bit Indexed Explicit Replication](#bit-indexed-explicit-replication)  
 [Bonding](#bonding)  
 [Buffer Metadata Change Tracker](#buffer-metadata-change-tracker)  
 [Builtin URL support for the static http or https server](#builtin-url-support-for-the-static-http-or-https-server)  
 [COP](#cop)  
+[Caching DNS name resolver](#caching-dns-name-resolver)  
 [Classify](#classify)  
 [Data-Plane Objects](#data-plane-objects)  
 [Dynamic Host Configuration Protocol](#dynamic-host-configuration-protocol)  
+[Feature Arc Support](#feature-arc-support)  
+[G2 graphical event log viewer](#g2-graphical-event-log-viewer)  
 [GPRS Tunneling Protocol](#gprs-tunneling-protocol)  
 [Generic Routing Encapsulation](#generic-routing-encapsulation)  
 [IP Neighbour Database](#ip-neighbour-database)  
@@ -60,17 +65,19 @@
 [User Datagram Protocol](#user-datagram-protocol)  
 [VNET GSO](#vnet-gso)  
 [VPP Comms Library](#vpp-comms-library)  
+[VPP infrastructure library](#vpp-infrastructure-library)  
 [Virtio PCI Device](#virtio-pci-device)  
 [Virtual Router Redundancy Protocol](#virtual-router-redundancy-protocol)  
 [Virtual eXtensible LAN](#virtual-extensible-lan)  
 [VxLAN-GPE](#vxlan-gpe)  
 [host-interface Device AF_PACKET](#host-interface-device-af_packet)  
+[ikev2 plugin](#ikev2-plugin)  
 [rdma device driver](#rdma-device-driver)  
 [vlib/unix](#vlib/unix)  
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v20.09-rc0-77-g5bb3e81e7
+VPP version: v20.09-rc0-189-g742000af2
 
 ### ACL Based Forwarding
 Maintainer: Neale Ranns <nranns@cisco.com>  
@@ -151,6 +158,35 @@ An implementation of Bidirectional Forwarding Detection (BFD).
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/bfd](https://git.fd.io/vpp/tree/src/vnet/bfd) 
+### Binary API library
+Maintainers: Dave Barach <dave@barachs.net>  
+
+Transport-independent binary API message handling library
+
+- Event logging
+- Message execution
+- Message handler registration
+- Message replay
+- Message tracing
+- Post-mortem message trace capture
+- Platform-dependent message handler invocation
+
+Feature maturity level: production  
+Source Code: [https://git.fd.io/vpp/tree/src/vlibapi](https://git.fd.io/vpp/tree/src/vlibapi) 
+### Binary API shared memory / socket transport library
+Maintainers: Dave Barach <dave@barachs.net>  
+
+Binary API message transport library
+
+- Transport connection setup and teardown binary API message definitions
+- Transport connection setup and teardown binary API message handlers
+- Remote procedure call binary API support
+- Debug CLI for binary api message trace dump and replay
+- Command-line configuration of binary api tracing
+
+Feature maturity level: production  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vlibmemory](https://git.fd.io/vpp/tree/src/vlibmemory) 
 ### Bit Indexed Explicit Replication
 Maintainer: Neale Ranns <nranns@cisco.com>  
 
@@ -210,6 +246,24 @@ A very simple / fast source-address whitelist feature
 Feature maturity level: experimental  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/cop](https://git.fd.io/vpp/tree/src/vnet/cop) 
+### Caching DNS name resolver
+Maintainer: Dave Barach <dave@barachs.net>  
+
+A caching DNS name resolver suitable for optimizing name resolution performance, and for overriding gethostbyname() in an LD_PRELOAD library.
+
+- Cache A and AAAA records from an upstream ipv4 DNS server
+- Respond to ipv4 and ipv6 name resolution requests
+- Supports cache sizes up to 64K concurrent entries
+- Supports CNAME indirection
+- Static cache entry creation, suitable for redirecting specific names
+- Round robin upstream name lookups
+- Binary API name lookup support
+- Missing ipv6 upstream server support
+- Perf/scale suitable for SOHO devices or other light-duty apps
+
+Feature maturity level: development  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/dns](https://git.fd.io/vpp/tree/src/plugins/dns) 
 ### Classify
 Maintainer: Dave Barach <dbarach@cisco.com>  
 
@@ -247,6 +301,32 @@ An implemenation of the Dynamic Host Configuration Protocol (DHCP) client
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/dhcp](https://git.fd.io/vpp/tree/src/plugins/dhcp) 
+### Feature Arc Support
+Maintainers: Dave Barach <dave@barachs.net>  
+
+Constraint-based feature arc configuration, internal APIs to dispatch packets to the next configured feature. A fundamental vpp forwarding graph extension mechanism.
+
+- Feature arc registration
+- Feature registration
+- Flexible feature order constraint specification
+- High-performance internal APIs to dispatch packets to the next feature node
+- Topological feature sorting
+
+Feature maturity level: production  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/feature](https://git.fd.io/vpp/tree/src/vnet/feature) 
+### G2 graphical event log viewer
+Maintainers: Dave Barach <dave@barachs.net>  
+
+A highly scalable graphical event log viewer, specifically tailored to displaying src/vppinfra/elog.[ch] log files
+
+- Vppinfra elog.[ch] log viewer
+- Scales to over 10e6 events, 10e4 tracks
+- Automated anomaly detector
+- View snapshots
+
+Feature maturity level: production  
+Source Code: [https://git.fd.io/vpp/tree/src/tools/g2](https://git.fd.io/vpp/tree/src/tools/g2) 
 ### GPRS Tunneling Protocol
 Maintainer: Hongjun Ni <hongjun.ni@intel.com>  
 
@@ -917,6 +997,62 @@ VPP Comms Library (VCL) simplifies app interaction with session layer by exposin
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vcl](https://git.fd.io/vpp/tree/src/vcl) 
+### VPP infrastructure library
+Maintainers: Dave Barach <dave@barachs.net>  
+
+VPP's foundation / infrastructure support library. The library dates from 2000 and hardly changes anymore. Heavily used across vpp, issues are not expected.
+
+- Abstract device driver ring support
+- Address sanitizer support
+- Altivec, Neon, MMX, AVX2, AVX512 SIMD vector unit support
+- Atomic op support
+- Backtrace support
+- Bitmaps
+- Bounded-index extensible hashing templates
+- C11 safe-string support
+- Cache control primitives, including prefetching
+- C-dynamic arrays (vectors)
+- Circular doubly-linked list support with a head sentinel
+- Contiguous N x fixed block allocator
+- CPU clock based timebase support
+- Doubly-linked list support
+- ELF file parser
+- Endian-order support
+- Error return / reporting support
+- FIFO support
+- Fundamental types, u8, u16, u32, and so on
+- High-performance event logger
+- High-performance memcpy support
+- High-performance mmap-based circular log support
+- High-performance timer-wheel templates
+- Linux socket support
+- Linux sysfs file parsing support
+- Low-level CPU support
+- Mapped pcap file support
+- Memory allocator, "Doug Lea" malloc with a few tweaks
+- Minimal overhead Linux system-call support
+- Multi-architecture setjmp / longjmp support
+- Numerous Unit tests
+- Physical memory allocator support
+- Pools, a high performance fixed block allocation scheme
+- Red/black trees.
+- Rigorously vetted linear congruential random numbers (32 and 64 bit)
+- Serialization / unserialization support
+- SHA256, SHA512 support
+- Simple first-fit virtual space allocator
+- Simple hashing support
+- Simple macro expander
+- Sparse vector support
+- Spinlock support
+- Time Range support
+- Unix / Linux errno support
+- Vector-based printf / scanf equivalents (format, unformat)
+- Warshall's algorithm (positive transitive closure of a relation)
+- XXhash support
+
+Feature maturity level: production  
+Supports: MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/vppinfra](https://git.fd.io/vpp/tree/src/vppinfra) 
 ### Virtio PCI Device
 Maintainer: sykazmi@cisco.com sluong@cisco.com  
 
@@ -1001,6 +1137,21 @@ Not yet implemented:
 - API dump details beyond sw_if_index and name
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/af_packet](https://git.fd.io/vpp/tree/src/vnet/devices/af_packet) 
+### ikev2 plugin
+Maintainers: Damjan Marion <damarion@cisco.com>, Neale Ranns <nranns@cisco.com>, Filip Tehlar <ftehlar@cisco.com>, Benoît Ganne <bganne@cisco.com>  
+
+Internet Key Exchange (IKEv2) Protocol plugin
+
+- RFC 7296 "Internet Key Exchange Protocol Version 2 (IKEv2)"
+- NAT-T, ESN, PSK and public key authentication
+- AES-CBC-128/192/256 and AES-GCM-16-128/192/256 encryption
+- HMAC-SHA2-256/384/512 and HMAC-SHA1 pseudo-random functions
+- HMAC-SHA2-256-128/384-192/512-256 integrity
+- MODP and ECP Diffie-Hellman
+
+Feature maturity level: experimental  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/ikev2](https://git.fd.io/vpp/tree/src/plugins/ikev2) 
 ### rdma device driver
 Maintainer: Benoît Ganne <bganne@cisco.com>  
 
