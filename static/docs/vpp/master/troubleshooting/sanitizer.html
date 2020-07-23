@@ -179,7 +179,7 @@
 <span id="sanitizer"></span><h1>Google Sanitizers<a class="headerlink" href="#google-sanitizers" title="Permalink to this headline">¶</a></h1>
 <p>VPP is instrumented to support <a class="reference external" href="https://github.com/google/sanitizers">Google Sanitizers</a>.
 As of today, only <a class="reference external" href="https://github.com/google/sanitizers/wiki/AddressSanitizer">AddressSanitizer</a>
-is supported and only for the heap.</p>
+is supported, both for GCC and clang.</p>
 <div class="section" id="id2">
 <h2>AddressSanitizer<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/google/sanitizers/wiki/AddressSanitizer">AddressSanitizer</a>  (aka ASan) is a memory
@@ -187,26 +187,25 @@ error detector for C/C++. Think Valgrind but much faster.</p>
 <p>In order to use it, VPP must be recompiled with ASan support. It is implemented as a cmake
 build option, so all VPP targets should be supported. For example:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> build a debug image with ASan support:
-<span class="gp">$</span> make rebuild <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DENABLE_SANITIZE_ADDR<span class="o">=</span>ON
+<span class="gp">$</span> make rebuild <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DVPP_ENABLE_SANITIZE_ADDR<span class="o">=</span>ON
 <span class="go">....</span>
 
 <span class="gp">#</span> build a release image with ASan support:
-<span class="gp">$</span> make rebuild-release <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DENABLE_SANITIZE_ADDR<span class="o">=</span>ON
+<span class="gp">$</span> make rebuild-release <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DVPP_ENABLE_SANITIZE_ADDR<span class="o">=</span>ON
 <span class="go">....</span>
 
 <span class="gp">#</span> build packages in debug mode with ASan support:
-<span class="gp">$</span> make pkg-deb-debug <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DENABLE_SANITIZE_ADDR<span class="o">=</span>ON
+<span class="gp">$</span> make pkg-deb-debug <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DVPP_ENABLE_SANITIZE_ADDR<span class="o">=</span>ON
 <span class="go">....</span>
 
 <span class="gp">#</span> run GBP plugin tests in debug mode with ASan
-<span class="gp">$</span> make test-debug <span class="nv">TEST</span><span class="o">=</span>test_gbp <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DENABLE_SANITIZE_ADDR<span class="o">=</span>ON
+<span class="gp">$</span> make test-debug <span class="nv">TEST</span><span class="o">=</span>test_gbp <span class="nv">VPP_EXTRA_CMAKE_ARGS</span><span class="o">=</span>-DVPP_ENABLE_SANITIZE_ADDR<span class="o">=</span>ON
 <span class="go">....</span>
 </pre></div>
 </div>
-<p>Once VPP has been built with ASan support, you can use it as usual. When
-running under a debugger it can be useful to disable LeakSanitizer which is
-not compatible with a debugger and displays spurious warnings at exit:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nv">ASAN_OPTIONS</span><span class="o">=</span><span class="nv">detect_leaks</span><span class="o">=</span><span class="m">0</span> gdb --args <span class="nv">$PWD</span>/build-root/install-vpp_debug-native/vpp/bin/vpp <span class="s2">&quot;unix { interactive }&quot;</span>
+<p>Once VPP has been built with ASan support you can use it as usual including
+under gdb:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> gdb --args <span class="nv">$PWD</span>/build-root/install-vpp_debug-native/vpp/bin/vpp <span class="s2">&quot;unix { interactive }&quot;</span>
 <span class="go">....</span>
 </pre></div>
 </div>
