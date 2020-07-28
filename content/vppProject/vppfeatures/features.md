@@ -1,6 +1,7 @@
 ## VPP Feature list:
 [ACL Based Forwarding](#acl-based-forwarding)  
 [ACLs for Security Groups](#acls-for-security-groups)  
+[ADL](#adl)  
 [Address Resolution Protocol](#address-resolution-protocol)  
 [Adjacency](#adjacency)  
 [Bidirectional Forwarding Detection](#bidirectional-forwarding-detection)  
@@ -10,7 +11,6 @@
 [Bonding](#bonding)  
 [Buffer Metadata Change Tracker](#buffer-metadata-change-tracker)  
 [Builtin URL support for the static http or https server](#builtin-url-support-for-the-static-http-or-https-server)  
-[COP](#cop)  
 [Caching DNS name resolver](#caching-dns-name-resolver)  
 [Classify](#classify)  
 [Data-Plane Objects](#data-plane-objects)  
@@ -77,7 +77,7 @@
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v20.09-rc0-189-g742000af2
+VPP version: v20.09-rc0-255-gb04648762
 
 ### ACL Based Forwarding
 Maintainer: Neale Ranns <nranns@cisco.com>  
@@ -123,6 +123,18 @@ and "transient" (all the other TCP states) sessions.
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/acl](https://git.fd.io/vpp/tree/src/plugins/acl) 
+### ADL
+Maintainer: Dave Barach <dave@barachs.net>  
+
+A very simple / fast source-address allow/deny list feature
+
+- v4, v6 non-default FIB src-address lookup
+- Drop packets which don't hit a receive adjacency
+- Not widely used
+
+Feature maturity level: experimental  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/adl](https://git.fd.io/vpp/tree/src/plugins/adl) 
 ### Address Resolution Protocol
 Maintainer: Neale Ranns <nranns@cisco.com>  
 
@@ -234,18 +246,6 @@ The (builtinurl) plugin adds a set of URLs to the static http/https server. Curr
 Feature maturity level: development  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/builtinurl](https://git.fd.io/vpp/tree/src/plugins/builtinurl) 
-### COP
-Maintainer: Dave Barach <dbarach@cisco.com>  
-
-A very simple / fast source-address whitelist feature
-
-- v4, v6 non-default FIB src-address lookup
-- Drop packets which don't hit a receive adjacency
-- Not widely used
-
-Feature maturity level: experimental  
-Supports: API CLI MULTITHREAD  
-Source Code: [https://git.fd.io/vpp/tree/src/vnet/cop](https://git.fd.io/vpp/tree/src/vnet/cop) 
 ### Caching DNS name resolver
 Maintainer: Dave Barach <dave@barachs.net>  
 

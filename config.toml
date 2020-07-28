@@ -57,7 +57,7 @@ Enriching Data Plane Leadership and Deployment Efficiency.
 The Fast Data Project's VPP Release 20.01 is here!
 """
     btnText = "Read about the Features and Perfomance of FD.io VPP Release 20.05"
-    url = "/docs/misc/VPP-Release-2005-PR.pdf"
+    url = "https://www.lfnetworking.org/blog/2020/07/27/fd-io-introduces-vpp-release-20-05/"
 
 
   [params.wrapper]
