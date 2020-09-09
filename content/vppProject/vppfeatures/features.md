@@ -2,6 +2,7 @@
 [ACL Based Forwarding](#acl-based-forwarding)  
 [ACLs for Security Groups](#acls-for-security-groups)  
 [ADL](#adl)  
+[AF_XDP device driver](#af_xdp-device-driver)  
 [Address Resolution Protocol](#address-resolution-protocol)  
 [Adjacency](#adjacency)  
 [Bidirectional Forwarding Detection](#bidirectional-forwarding-detection)  
@@ -13,9 +14,11 @@
 [Builtin URL support for the static http or https server](#builtin-url-support-for-the-static-http-or-https-server)  
 [Caching DNS name resolver](#caching-dns-name-resolver)  
 [Classify](#classify)  
+[Cloud NAT](#cloud-nat)  
 [Data-Plane Objects](#data-plane-objects)  
 [Dynamic Host Configuration Protocol](#dynamic-host-configuration-protocol)  
 [Feature Arc Support](#feature-arc-support)  
+[Flow infrastructure](#flow-infrastructure)  
 [G2 graphical event log viewer](#g2-graphical-event-log-viewer)  
 [GPRS Tunneling Protocol](#gprs-tunneling-protocol)  
 [Generic Routing Encapsulation](#generic-routing-encapsulation)  
@@ -70,6 +73,7 @@
 [Virtual Router Redundancy Protocol](#virtual-router-redundancy-protocol)  
 [Virtual eXtensible LAN](#virtual-extensible-lan)  
 [VxLAN-GPE](#vxlan-gpe)  
+[Wireguard protocol](#wireguard-protocol)  
 [host-interface Device AF_PACKET](#host-interface-device-af_packet)  
 [ikev2 plugin](#ikev2-plugin)  
 [rdma device driver](#rdma-device-driver)  
@@ -77,7 +81,7 @@
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v20.09-rc0-255-gb04648762
+VPP version: v20.09-rc0-402-gda5b4efba
 
 ### ACL Based Forwarding
 Maintainer: Neale Ranns <nranns@cisco.com>  
@@ -135,6 +139,16 @@ A very simple / fast source-address allow/deny list feature
 Feature maturity level: experimental  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/adl](https://git.fd.io/vpp/tree/src/plugins/adl) 
+### AF_XDP device driver
+Maintainer: Benoît Ganne <bganne@cisco.com>  
+
+AF_XDP device driver support
+
+- AF_XDP driver for Linux kernel 5.4+
+
+Feature maturity level: experimental  
+Supports: CLI STATS MULTITHREAD API  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/af_xdp](https://git.fd.io/vpp/tree/src/plugins/af_xdp) 
 ### Address Resolution Protocol
 Maintainer: Neale Ranns <nranns@cisco.com>  
 
@@ -276,6 +290,17 @@ Mask / match packet classifier
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/classify](https://git.fd.io/vpp/tree/src/vnet/classify) 
+### Cloud NAT
+Maintainer: Nathan Skrzypczak <nathan.skrzypczak@gmail.com>  
+
+This plugin is intended to complement the VPP's plugin_nat for Cloud use-cases. It allows for source/destination address/port translation based on multiple criterias. It is intended to be modular enough so that one could write a use-case optimised translation function without having to deal with actually re-writing packets or maintining sessions. This plugin supports multithreading. Workers share a unique bihash where sessions are stored.
+
+- Destination based address/port translation
+- Conditional sourceNATing based on prefix exclusions
+
+Feature maturity level: development  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/cnat](https://git.fd.io/vpp/tree/src/plugins/cnat) 
 ### Data-Plane Objects
 Maintainer: Neale Ranns <nranns@cisco.com>  
 
@@ -315,6 +340,35 @@ Constraint-based feature arc configuration, internal APIs to dispatch packets to
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/feature](https://git.fd.io/vpp/tree/src/vnet/feature) 
+### Flow infrastructure
+Maintainer: Damjan Marion <damarion@cisco.com>  
+
+Flow infrastructure to provide hardware offload capabilities
+
+- Four APIs are provided - flow_add, flow_del, flow_enable and flow_disable
+- The below flow types are currently supported
+  - FLOW_TYPE_IP4_N_TUPLE,
+  - FLOW_TYPE_IP6_N_TUPLE,
+  - FLOW_TYPE_IP4_N_TUPLE_TAGGED,
+  - FLOW_TYPE_IP6_N_TUPLE_TAGGED,
+  - FLOW_TYPE_IP4_L2TPV3OIP,
+  - FLOW_TYPE_IP4_IPSEC_ESP,
+  - FLOW_TYPE_IP4_IPSEC_AH,
+  - FLOW_TYPE_IP4_GTPC,
+  - FLOW_TYPE_IP4_GTPU
+
+- The below flow actions can be specified for the flows
+  - FLOW_ACTION_COUNT,
+  - FLOW_ACTION_MARK,
+  - FLOW_ACTION_BUFFER_ADVANCE,
+  - FLOW_ACTION_REDIRECT_TO_NODE,
+  - FLOW_ACTION_REDIRECT_TO_QUEUE,
+  - FLOW_ACTION_DROP
+
+
+Feature maturity level: development  
+Supports: API CLI  
+Source Code: [https://git.fd.io/vpp/tree/src/vnet/flow](https://git.fd.io/vpp/tree/src/vnet/flow) 
 ### G2 graphical event log viewer
 Maintainers: Dave Barach <dave@barachs.net>  
 
@@ -666,7 +720,7 @@ The Network Address Translation (NAT) plugin offers a multiple address translati
   - TCP MSS clamping
   - Local bypass (DHCP)
 
-- CGN - deterministic NAT
+- DET44 - deterministic NAT (CGN)
 - NAT64
 - NAT66
 - DS-lite
@@ -967,6 +1021,8 @@ Generic Segmentation Offload
 - GSO for IP-IP tunnel
 - GSO for IPSec tunnel
 - Provide inline function to get header offsets
+- Basic GRO support
+- Implements flow table support
 
 Feature maturity level: experimental  
 Supports: API CLI  
@@ -1060,6 +1116,7 @@ Virtio implementation
 
 - Driver mode to emulate PCI interface presented to VPP from the host interface.
 - Device mode to emulate vhost-user interface presented to VPP from the guest VM.
+- Support virtio 1.0 in virtio
 - Support multi-queue, GSO, checksum offload, indirect descriptor, jumbo frame, and packed ring.
 - Support virtio 1.1 packed ring in vhost
 
@@ -1123,6 +1180,22 @@ VxLAN-GPE tunnel handling
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/vxlan-gpe](https://git.fd.io/vpp/tree/src/vnet/vxlan-gpe) 
+### Wireguard protocol
+Maintainer: Artem Glazychev <artem.glazychev@xored.com>  
+
+Wireguard protocol implementation
+
+- based on wireguard-openbsd implementation: https://git.zx2c4.com/wireguard-openbsd
+- creating secure VPN-tunnel
+
+Feature maturity level: development  
+Supports: API CLI  
+
+Not yet implemented:  
+- IPv6 support
+- DoS protection as in the original protocol
+
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/wireguard](https://git.fd.io/vpp/tree/src/plugins/wireguard) 
 ### host-interface Device AF_PACKET
 Maintainer: Damjan Marion <damarion@cisco.com>  
 
