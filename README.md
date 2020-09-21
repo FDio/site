@@ -1,50 +1,53 @@
-# Repository for the FDio main site.
+# FD.io site
 
-Thos repository will be used for the FD.io main site. This site is created
-using the web site renderer Hugo. For more information on Hugo please visit
+[![Netlify Status](https://api.netlify.com/api/v1/badges/93544297-78c1-4b9f-a542-471427115751/deploy-status)](https://app.netlify.com/sites/fdio/deploys)
+
+This repository contains the [FD.io](https://fd.io/) main site. This site is 
+hosted on [site](https://app.netlify.com/sites/fdio/overview) and created 
+using the web site renderer Hugo. For more information on Hugo please visit 
 [Hugo](https://gohugo.io).
 
 # Site Governance
 
-The fd.io main site is maintained by the fd.io community.
+The FD.io main site is maintained by the FD.io community.
 
-Anyone can contribute.
+Anyone is welcome to contribute.
 
-If you feel comfortable working with [Hugo](https://gohugo.io), please push a [PR](https://github.com/FDio/site/pulls).
+If you feel comfortable working with [Hugo](https://gohugo.io), please create a [PR on GitHub](https://github.com/FDio/site/pulls).
 
-If you just have an idea for improvement, open an [issue](https://github.com/FDio/site/issues).
+If you just have an idea for improvement, open an [issue on GitHub](https://github.com/FDio/site/issues).
 
 ## Who can merge changes
 
-Each fd.io project can name up to two representatives to work on maintaining the website.  The FD.io marketing committee can also name up to two representatives.
+Each FD.io project can name up to two representatives to work on maintaining the website. The FD.io marketing committee can also name up to two representatives.
 
 Those representatives can merge changes to the site, and manage the [Netlify](https://www.netlify.com/) config for the site.
 
 | Name | Github ID | FD.io Project |
 | --- | --- | --- |
-| Luca Muscariello | @muscariello | [HICN](https://wiki.fd.io/view/HICN) |
-| Dave Barach | @dbarach | [VPP](https://wiki.fd.io/view/VPP) |
-| Mauro Sardara | @msardara | [HICN] (https://wiki.fd.io/view/HICN) |
-| Michal Cmarada | @mcmarada | [JVPP] (https://wiki.fd.io/view/JVPP), [honeycomb](https://wiki.fd.io/view/Honeycomb), [HC2VPP](https://wiki.fd.io/view/Hc2vpp) |
-| Rastislav Szabo| @rastislavszabo | |
-| Ondrej Fabry | @ondrej-fabry | |
-| John DeNisco | @jadenisco | [VPP](https://wiki.fd.io/view/VPP) |
-| Hongjun Ni | @HongjunNi | [Sweetcomb](https://wiki.fd.io/view/Sweetcomb) |
-| Peter Mikus | @pmikus | [CSIT](https://wiki.fd.io/view/CSIT) |
-| Tibor Frank | @tiborfrank | [CSIT](https://wiki.fd.io/view/CSIT) |
-| Ed Warnicke | @edwarnicke | [TSC](https://wiki.fd.io/view/TSC) |
-| John DiGiglio | @JDiGiglio | FD.io Marketing Committee |
-| Neal Hartsell | @nealtex01  | FD.io Marketing Committee | 
+| Luca Muscariello | [@muscariello](https://github.com/muscariello) | [HICN](https://wiki.fd.io/view/HICN) |
+| Dave Barach | [@dbarach](https://github.com/dbarach) | [VPP](https://wiki.fd.io/view/VPP) |
+| Mauro Sardara | [@msardara](https://github.com/msardara) | [HICN](https://wiki.fd.io/view/HICN) |
+| Michal Cmarada | [@mcmarada](https://github.com/mcmarada) | [JVPP](https://wiki.fd.io/view/JVPP), [Honeycomb](https://wiki.fd.io/view/Honeycomb), [HC2VPP](https://wiki.fd.io/view/Hc2vpp) |
+| Rastislav Szabo| [@rastislavszabo](https://github.com/rastislavszabo) | [GoVPP](https://wiki.fd.io/view/GoVPP) |
+| Ondrej Fabry | [@ondrej-fabry](https://github.com/ondrej-fabry) | [GoVPP](https://wiki.fd.io/view/GoVPP) |
+| John DeNisco | [@jadenisco](https://github.com/jadenisco) | [VPP](https://wiki.fd.io/view/VPP) |
+| Hongjun Ni | [@HongjunNi](https://github.com/HongjunNi) | [Sweetcomb](https://wiki.fd.io/view/Sweetcomb) |
+| Peter Mikus | [@pmikus](https://github.com/pmikus) | [CSIT](https://wiki.fd.io/view/CSIT) |
+| Tibor Frank | [@tiborfrank](https://github.com/tiborfrank) | [CSIT](https://wiki.fd.io/view/CSIT) |
+| Ed Warnicke | [@edwarnicke](https://github.com/edwarnicke) | [TSC](https://wiki.fd.io/view/TSC) |
+| John DiGiglio | [@JDiGiglio](https://github.com/JDiGiglio) | FD.io Marketing Committee |
+| Neal Hartsell | [@nealtex01](https://github.com/nealtex01)  | FD.io Marketing Committee | 
 
 ## Handling of frontpage, NEWs, etc
 
-The fd.io frontpage is how the world sees us.  We are fortunate enough to have an excellent marketing committee in FD.io.  Please make sure to include and get buy off from one of the reps of the marketing committee before merging substantive/stylistic changes to the frontpage, NEWs, etc.
+The FD.io frontpage is how the world sees us. We are fortunate enough to have an excellent marketing committee in FD.io.  Please make sure to include and get buy off from one of the reps of the marketing committee before merging substantive/stylistic changes to the frontpage, NEWs, etc.
 
 # DNS Governance
 
 ## Summary
 
-As part of the community control of the fd.io website, website reps will be given access to fd.io DNS records.
+As part of the community control of the FD.io website, website reps will be given access to fd.io DNS records.
 
 Any user with shared DNSimple access is able to add, modify and delete services and DNS records for the domain. Please be very careful to understand the power that you wield, as it truly can be used for good or evil. We prefer good.
 
@@ -91,19 +94,18 @@ Please contact the Linux Foundation for support when modifying any LF managed re
 * NS Records (@ and lists.fd.io)
 * TXT records: fd.io, 200608._domainkey.fd.io, _amazonses.fd.io, _domainkey.fd.io, k1._domainkey.fd.io required for incoming/outgoing mail
 
-
 # Mechanics
 
 ## Build and push changes
 
 ### First, Add your SSH Key
 
-We suggest that you use ssh to access Github. To do that, simply
-upload your public ssh key to your github account.
+We suggest that you use ssh to access GitHub. To do that, simply
+upload your public ssh key to your GitHub account.
 
-### Fork the FDIO/site repo
+### Fork the FDio/site repo
 
-Login to the github UI at https://github.com. Navigate to the
+Login to the GitHub UI at https://github.com. Navigate to the
 FDIO/site repo, at https://github.com/FDio/site.
 
 Click the fork button at the upper right. When this succeeds, you will
@@ -165,28 +167,26 @@ $
 You can then make your changes and preview them by pointing your browser to the URL
 displayed from the hugo server command. 
 
-### Push changes to your fork on Github
+### Push changes to your fork on GitHub
 
 Edit and commit work locally. You can create local topic branch(es) if
 you like, but it's not necessary.
 
 ``` console
-
 $ git add *
 $ git commit -s -m "Add a descriptive comment here"
 $
 ```
 
-
 Upload patches to your fork on Github:
 
 ```console
-  $ git push origin <branch-name>  # often <branch-name> == master
+$ git push origin <branch-name>  # often <branch-name> == master
 ```
 
 ### Create a pull request
 
-Jump back into the Gihub UI, login, and navigate to your fork of
+Jump back into the GitHub UI, login, and navigate to your fork of
 FDio/site. Find the "Compare & pull request" button.  Click on this
 button, follow the instructions and the pull request should be
 created.
@@ -250,5 +250,4 @@ remote:      https://github.com/<userid>/site/pull/new/add-to-readme
 remote:
 To ssh://github.com/<userid>/site
  * [new branch]      add-to-readme -> add-to-readme
-$
 ```

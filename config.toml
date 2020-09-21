@@ -56,8 +56,8 @@ Enriching Data Plane Leadership and Deployment Efficiency.
 <br>
 The Fast Data Project's VPP Release 20.01 is here!
 """
-    btnText = "Learn How FD.io 20.01 Improves Multicore IPSec"
-    url = "https://www.lfnetworking.org/blog/2020/03/23/how-fd-io-20-01-release-improves-multicore-ipsec/"
+    btnText = "Read about the Features and Perfomance of FD.io VPP Release 20.05"
+    url = "https://www.lfnetworking.org/blog/2020/07/27/fd-io-introduces-vpp-release-20-05/"
 
 
   [params.wrapper]

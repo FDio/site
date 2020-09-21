@@ -197,8 +197,8 @@
 <span id="settingupenvironment"></span><h1>Setting up your environment<a class="headerlink" href="#setting-up-your-environment" title="Permalink to this headline">¶</a></h1>
 <p>All of these exercises are designed to be performed on an Ubuntu 16.04 (Xenial) box.</p>
 <ul class="simple">
-<li><p>If you have an Ubuntu 16.04 box on which you have sudo or root access, you can feel free to use that.</p></li>
-<li><p>If you do not, a Vagrantfile is provided to setup a basic Ubuntu 16.04 box for you in the the steps below.</p></li>
+<li><p>If you have an Ubuntu 18.04 box on which you have sudo or root access, you can feel free to use that.</p></li>
+<li><p>If you do not, a Vagrantfile is provided to setup a basic Ubuntu 18.04 box for you in the the steps below.</p></li>
 </ul>
 <div class="section" id="install-virtual-box-and-vagrant">
 <h2>Install Virtual Box and Vagrant<a class="headerlink" href="#install-virtual-box-and-vagrant" title="Permalink to this headline">¶</a></h2>
@@ -218,7 +218,7 @@ refer to <a class="reference internal" href="../../reference/vppvagrant/installi
 
 <span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
 
-  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;puppetlabs/ubuntu-16.04-64-nocm&quot;</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;bento/ubuntu-18.04&quot;</span>
   <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_check_update</span> <span class="o">=</span> <span class="kp">false</span>
 
   <span class="n">vmcpu</span><span class="o">=</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;VPP_VAGRANT_VMCPU&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">2</span><span class="p">)</span>
@@ -256,8 +256,9 @@ on a file.</p>
 <p>After setting up Vagrant, use these commands on your Vagrant directory to boot the VM:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> vagrant up
 <span class="gp">$</span> vagrant ssh
-<span class="gp">$</span> sudo apt-get update
-<span class="gp">$</span> sudo reboot -n
+<span class="gp">$</span> sudo bash
+<span class="gp">#</span> apt-get update
+<span class="gp">#</span> reboot -n
 <span class="gp">$</span> <span class="c1"># Wait for the VM to reboot</span>
 <span class="gp">$</span> vagrant ssh
 </pre></div>
@@ -267,16 +268,22 @@ on a file.</p>
 <h2>Install VPP<a class="headerlink" href="#install-vpp" title="Permalink to this headline">¶</a></h2>
 <p>Now that the VM is updated, we will install the VPP packages.</p>
 <p>For more on installing VPP please refer to <a class="reference internal" href="../installing/index.html#installingvpp"><span class="std std-ref">Downloading and Installing VPP</span></a>.</p>
-<p>For this tutorial we need to install VPP by modifying the file
+<p>For this tutorial we will install VPP by modifying the file
 <strong>/etc/apt/sources.list.d/99fd.io.list</strong>.</p>
-<p>Write this file with the following contents:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">deb [trusted=yes] https://nexus.fd.io/content/repositories/fd.io.ubuntu.xenial.main/ ./</span>
+<p>We write this file with the following contents:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo bash
+<span class="gp">#</span> <span class="nb">echo</span> <span class="s2">&quot;deb [trusted=yes] https://packagecloud.io/fdio/release/ubuntu bionic main&quot;</span> &gt; /etc/apt/sources.list.d/99fd.io.list
+<span class="gp">#</span>
+</pre></div>
+</div>
+<p>Get the key.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> curl -L https://packagecloud.io/fdio/release/gpgkey <span class="p">|</span> sudo apt-key add -
+<span class="gp">#</span>
 </pre></div>
 </div>
 <p>Then execute the following commands.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo bash
-<span class="gp">#</span> apt-get update
-<span class="gp">#</span> apt-get install vpp-lib vpp vpp-plugins
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> apt-get update
+<span class="gp">#</span> apt-get install vpp vpp-plugin-core vpp-plugin-dpdk
 <span class="gp">#</span>
 </pre></div>
 </div>
