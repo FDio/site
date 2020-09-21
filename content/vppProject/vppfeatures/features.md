@@ -81,7 +81,7 @@
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v20.09-rc0-402-gda5b4efba
+VPP version: v21.01-rc0-73-g0978e607c
 
 ### ACL Based Forwarding
 Maintainer: Neale Ranns <nranns@cisco.com>  
@@ -1256,6 +1256,7 @@ Maintainer: Steven Luong <sluong@cisco.com>
 vmxnet3 device driver support
 
 - vmxnet3 device driver to connect to ESXi server, VMWare Fusion, and VMWare Workstation
+- Supports GSO. It was tested on ESXi 6.7
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
