@@ -271,11 +271,6 @@ on a file.</p>
 <p>For this tutorial we will install VPP by modifying the file
 <strong>/etc/apt/sources.list.d/99fd.io.list</strong>.</p>
 <p>We write this file with the following contents:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo bash
-<span class="gp">#</span> <span class="nb">echo</span> <span class="s2">&quot;deb [trusted=yes] https://packagecloud.io/fdio/release/ubuntu bionic main&quot;</span> &gt; /etc/apt/sources.list.d/99fd.io.list
-<span class="gp">#</span>
-</pre></div>
-</div>
 <p>Get the key.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> curl -L https://packagecloud.io/fdio/release/gpgkey <span class="p">|</span> sudo apt-key add -
 <span class="gp">#</span>

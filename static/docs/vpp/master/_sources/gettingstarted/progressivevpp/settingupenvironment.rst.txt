@@ -96,7 +96,6 @@ For this tutorial we will install VPP by modifying the file
 We write this file with the following contents:
 
 .. code-block:: console
-
    $ sudo bash
    # echo "deb [trusted=yes] https://packagecloud.io/fdio/release/ubuntu bionic main" > /etc/apt/sources.list.d/99fd.io.list
    #
