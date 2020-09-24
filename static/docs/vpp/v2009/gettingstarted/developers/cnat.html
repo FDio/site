@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cloud NAT &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VPP API Language {#api_lang_doc}" href="VPPAPI.html" />
+    <link rel="prev" title="Cross compilation on MacOS" href="cross_compile_macos.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#sample-run">Sample Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Cloud NAT</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#terminology-usage">Terminology &amp; Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#extending-the-nat">Extending the NAT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>Cloud NAT</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/cnat.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="dev-cnat">
+</div>
+<div class="section" id="cloud-nat">
+<h1>Cloud NAT<a class="headerlink" href="#cloud-nat" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This plugin covers specific NAT use-cases that come mostly
+from the container networking world. On the contraty of the
+NAT concepts used for e.g. a home gateway, there is no notion
+of ‘outside’ and ‘inside’. We handle Virtual (or Real) IPs and
+translations of the packets destined to them</p>
+</div>
+<div class="section" id="terminology-usage">
+<h2>Terminology &amp; Usage<a class="headerlink" href="#terminology-usage" title="Permalink to this headline">¶</a></h2>
+<p>Setting up the NAT will consist in the creation of a <code class="docutils literal notranslate"><span class="pre">translation</span></code>
+that has several backends. A <code class="docutils literal notranslate"><span class="pre">translation</span></code> is 3-tuple containing :
+a fully qualified IP address a port and a protocol. All packets
+destined to it (ip, port) will then choose one of the backends,
+and follow its rewrite rules.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">backend</span></code> consists of four rewrites components (source &amp; destination
+address, source &amp; destination port) that shall be applied to packets
+on the way in, and reverted on the way back.</p>
+<p>Backends are equally load-balanced with a flow hash. The choice
+of a <code class="docutils literal notranslate"><span class="pre">backend</span></code> for a flow will trigger the creation of a NAT <code class="docutils literal notranslate"><span class="pre">session</span></code>,
+that will store the packet rewrite to do and the one to undo
+until the flow is reset or a timeout is reached</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">session</span></code> is a fully resolved 9-tuple of <code class="docutils literal notranslate"><span class="pre">src_ip,</span> <span class="pre">src_port,</span> <span class="pre">dest_ip,</span> <span class="pre">dest_port,</span> <span class="pre">proto</span></code>
+to match incoming packets, and their new attributes <code class="docutils literal notranslate"><span class="pre">new_src_ip,</span> <span class="pre">new_src_port,</span> <span class="pre">new_dest_ip,</span> <span class="pre">new_dest_port</span></code>. It allows for <code class="docutils literal notranslate"><span class="pre">backend</span></code> stickyness and a fast-path for established connections.</p>
+<p>These <code class="docutils literal notranslate"><span class="pre">sessions</span></code> expire after 30s for regular <code class="docutils literal notranslate"><span class="pre">sessions</span></code> and 1h for estabished
+TCP connections. These can be changed in vpp’s configuration file</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cnat {</span>
+<span class="go">    session-max-age 60</span>
+<span class="go">    tcp-max-age 3600</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>Traffic is matched by inserting FIB entries, that are represented
+by a <code class="docutils literal notranslate"><span class="pre">client</span></code>. These maintain a refcount of the number of <code class="docutils literal notranslate"><span class="pre">sessions</span></code>
+and/or <code class="docutils literal notranslate"><span class="pre">translations</span></code> depending on them and be cleaned up when
+all have gone.</p>
+<div class="section" id="translating-addresses">
+<h3>Translating Addresses<a class="headerlink" href="#translating-addresses" title="Permalink to this headline">¶</a></h3>
+<p>In this example, all packets destined to <code class="docutils literal notranslate"><span class="pre">30.0.0.2:80</span></code> will be
+rewritten so that their destination IP is <code class="docutils literal notranslate"><span class="pre">20.0.0.1</span></code> and destination
+port <code class="docutils literal notranslate"><span class="pre">8080</span></code>. Here <code class="docutils literal notranslate"><span class="pre">30.0.0.2</span></code> has to be a virtual IP, it cannot be
+assigned to an interface</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cnat translation add proto TCP vip 30.0.0.2 80 to -&gt;20.0.0.1 8080</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">30.0.0.2</span></code> is the address of an interface, we can use the following
+to do the same translation, and additionnaly change the source.
+address with <code class="docutils literal notranslate"><span class="pre">1.2.3.4</span></code></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cnat translation add proto TCP real 30.0.0.2 80 to 1.2.3.4-&gt;20.0.0.1 8080</span>
+</pre></div>
+</div>
+<p>To show existing translations and sessions you can use</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cnat show session verbose</span>
+<span class="go">cant show translation</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sourcenating-outgoing-traffic">
+<h3>SourceNATing outgoing traffic<a class="headerlink" href="#sourcenating-outgoing-traffic" title="Permalink to this headline">¶</a></h3>
+<p>A independant part of the plugin allows changing the source address
+of outgoing traffic on a per-interface basis.</p>
+<p>In the following example, all traffic comming from <code class="docutils literal notranslate"><span class="pre">tap0</span></code> and NOT
+going to <code class="docutils literal notranslate"><span class="pre">20.0.0.0/24</span></code> will be source NAT-ed with <code class="docutils literal notranslate"><span class="pre">30.0.0.1</span></code>.
+On the way back the translation will be undone.</p>
+<p>NB: <code class="docutils literal notranslate"><span class="pre">30.0.0.1</span></code> should be and address known to the FIB (e.g. the
+address assigned to an interface)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cnat snat with 30.0.0.1</span>
+<span class="go">cnat snat exclude 20.0.0.0/24</span>
+<span class="go">set interface feature tap0 ip4-cnat-snat arc ip4-unicast</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-parameters">
+<h3>Other parameters<a class="headerlink" href="#other-parameters" title="Permalink to this headline">¶</a></h3>
+<p>In vpp’s startup file, you can also configure the bihash sizes for</p>
+<ul class="simple">
+<li><p>the translation bihash <code class="docutils literal notranslate"><span class="pre">(proto,</span> <span class="pre">port)</span> <span class="pre">-&gt;</span> <span class="pre">translation</span></code></p></li>
+<li><p>the session bihash <code class="docutils literal notranslate"><span class="pre">src_ip,</span> <span class="pre">src_port,</span> <span class="pre">dest_ip,</span> <span class="pre">dest_port,</span> <span class="pre">proto</span> <span class="pre">-&gt;</span> <span class="pre">new_src_ip,</span> <span class="pre">new_src_port,</span> <span class="pre">new_dest_ip,</span> <span class="pre">new_dest_port</span></code></p></li>
+<li><p>the snat bihash for searching <code class="docutils literal notranslate"><span class="pre">snat</span> <span class="pre">exclude</span></code> prefixes</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cnat {</span>
+<span class="go">    translation-db-memory 64K</span>
+<span class="go">    translation-db-buckets 1024</span>
+<span class="go">    session-db-memory 1M</span>
+<span class="go">    session-db-buckets 1024</span>
+<span class="go">    snat-db-memory 64M</span>
+<span class="go">    snat-db-buckets 1024</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="extending-the-nat">
+<h2>Extending the NAT<a class="headerlink" href="#extending-the-nat" title="Permalink to this headline">¶</a></h2>
+<p>This plugin is built to be extensible. For now two NAT types are defined, <code class="docutils literal notranslate"><span class="pre">cnat_node_vip.c</span></code> and <code class="docutils literal notranslate"><span class="pre">cnat_node_snat.c</span></code>. They both inherit from <code class="docutils literal notranslate"><span class="pre">cnat_node.h</span></code> which provides :</p>
+<ul class="simple">
+<li><p>Session lookup : <code class="docutils literal notranslate"><span class="pre">rv</span></code> will be set to <code class="docutils literal notranslate"><span class="pre">0</span></code> if a session was found</p></li>
+<li><p>Translation primitives <code class="docutils literal notranslate"><span class="pre">cnat_translation_ip4</span></code> based on sessions</p></li>
+<li><p>A session creation primitive <code class="docutils literal notranslate"><span class="pre">cnat_session_create</span></code></p></li>
+</ul>
+<p>Creating a session will also create a reverse session (for matching return traffic),
+and call a NAT node back that will perform the translation.</p>
+</div>
+<div class="section" id="known-limitations">
+<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline">¶</a></h2>
+<p>This plugin is still under developpment, it lacks the following features :
+* Load balancing doesn’t support parametric probabilities
+* VRFs aren’t supported. All rules apply to fib table 0 only
+* Programmatic session handling (deletion, lifetime updates) aren’t supported
+* ICMP is not yet supported
+* Traffic matching is only done based on <code class="docutils literal notranslate"><span class="pre">(proto,</span> <span class="pre">dst_addr,</span> <span class="pre">dst_port)</span></code> source matching isn’t supported
+* Statistics &amp; session tracking are still rudimentary.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VPPAPI.html" class="btn btn-neutral float-right" title="VPP API Language {#api_lang_doc}" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cross_compile_macos.html" class="btn btn-neutral float-left" title="Cross compilation on MacOS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
