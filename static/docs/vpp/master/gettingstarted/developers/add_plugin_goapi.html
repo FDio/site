@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Punting Packets &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>Add a plugin’s GO API &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="QUIC HostStack" href="quic_plugin.html" />
-    <link rel="prev" title="How to build a vpp dispatch trace aware Wireshark" href="buildwireshark.html" /> 
+    <link rel="next" title="Getting a Patch Reviewed" href="gitreview.html" />
+    <link rel="prev" title="Adding a plugin" href="add_plugin.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,7 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -123,12 +123,7 @@
 <li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
 <li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Punting Packets</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#the-punt-infrastructure">The Punt Infrastructure</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#punting-to-the-control-plane">Punting to the Control Plane</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
@@ -196,13 +191,13 @@
         
           <li><a href="index.html">For Developers</a> &raquo;</li>
         
-      <li>Punting Packets</li>
+      <li>Add a plugin’s GO API</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/gettingstarted/developers/punt.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/gettingstarted/developers/add_plugin_goapi.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -215,70 +210,76 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="toctree-wrapper compound" id="dev-punt">
+  <div class="section" id="add-a-plugin-s-go-api">
+<span id="add-plugin-goapi"></span><h1>Add a plugin’s GO API<a class="headerlink" href="#add-a-plugin-s-go-api" title="Permalink to this headline">¶</a></h1>
+<p>In order to use your plugin’s API with GO, you will need to use
+a GO client and GO definitions of the API messages that you defined
+in <code class="docutils literal notranslate"><span class="pre">myplugin.api</span></code> (go bindings).</p>
+<p>These two things can be found in <a class="reference external" href="https://github.com/FDio/govpp">govpp</a></p>
+<ul class="simple">
+<li><p>The API client lives in <cite>./core</cite></p></li>
+<li><p>The api-generator lives in <cite>./binapigen</cite></p></li>
+<li><p>A sample of its output (the go bindings) for VPP’s latest version lives in <cite>./binapi</cite></p></li>
+</ul>
+<p>To generate the go bindings for your plugin. Assuming :
+* <code class="docutils literal notranslate"><span class="pre">/home/vpp</span></code> is a VPP clone with your plugin in it.
+* <code class="docutils literal notranslate"><span class="pre">/home/controlplane</span></code> is a go controlplane repo</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir /home/controlplane/vpp-go-bindings
+<span class="gp">$</span> git clone https://github.com/FDio/govpp&gt;
+<span class="gp">$</span> <span class="nb">cd</span> govpp
+<span class="gp">$</span> <span class="nv">BINAPI_DIR</span><span class="o">=</span>/home/controlplane/vpp-go-bindings <span class="nv">VPP_DIR</span><span class="o">=</span>/home/vpp make gen-binapi-from-code
+</pre></div>
 </div>
-<div class="section" id="punting-packets">
-<h1>Punting Packets<a class="headerlink" href="#punting-packets" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>To ‘punt’ can mean different things to different people. In VPP the
-data-plane punts when a packet cannot be handled by any further
-nodes. Punt differs from drop, in that VPP is giving other elements of
-the system the opportunity to handle this packet.</p>
-<p>A popular meaning of punt is to send packets to the user/control-plane.
-This is specific option of the more general case above, where VPP is
-handing the packet to the control-plane for further processing.</p>
+<p>This will generate the go-bindings in <code class="docutils literal notranslate"><span class="pre">/home/controlplane/vpp-go-bindings</span></code>
+For example <code class="docutils literal notranslate"><span class="pre">vpp-go-bindings/myplugin/myplugin.ba.go</span></code> will contain :</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// MypluginEnableDisable defines message &#39;myplugin_enable_disable&#39;.</span>
+<span class="kd">type</span> <span class="nx">MypluginEnableDisable</span> <span class="kd">struct</span> <span class="p">{</span>
+        <span class="nx">EnableDisable</span> <span class="kt">bool</span>                           <span class="s">`binapi:&quot;bool,name=enable_disable&quot; json:&quot;enable_disable,omitempty&quot;`</span>
+        <span class="nx">SwIfIndex</span>     <span class="nx">interface_types</span><span class="p">.</span><span class="nx">InterfaceIndex</span> <span class="s">`binapi:&quot;interface_index,name=sw_if_index&quot; json:&quot;sw_if_index,omitempty&quot;`</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="the-punt-infrastructure">
-<h2>The Punt Infrastructure<a class="headerlink" href="#the-punt-infrastructure" title="Permalink to this headline">¶</a></h2>
-<p>Exception packets are those that a given node cannot handle via normal
-mechanisms.
-Punting of exception packets is handled via the VLIB ‘punt
-infra’. There are two types of nodes; sources and sinks. Sources
-allocate a punt ‘reason’ from the infrastructure and load time. When
-they encounter an exception during switch time it will tag the packet
-with the reason and ship the packet of the the punt-dispatch node. A
-sink will register with the punt infra at load time so it can receive
-packets that were punted for that reason. If no sinks are registered
-for a given reason the packet is dropped, if multiple sinks register
-the packets are replicated.</p>
-<p>This mechanism allows us to extend the system to deal with packets
-that the source node would otherwise drop.</p>
+<p>You can then use the generated go bindings in your go code like this :</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+        <span class="s">&quot;fmt&quot;</span>
+        <span class="s">&quot;git.fd.io/govpp.git&quot;</span>
+        <span class="s">&quot;git.fd.io/govpp.git/binapi/interfaces&quot;</span>
+        <span class="s">&quot;git.fd.io/govpp.git/binapi/vpe&quot;</span>
+
+        <span class="s">&quot;myplugin.io/controlplane/vpp-go-bindings/myplugin/myplugin&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Connect to VPP</span>
+        <span class="nx">conn</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">govpp</span><span class="p">.</span><span class="nx">Connect</span><span class="p">(</span><span class="s">&quot;/run/vpp/api.sock&quot;</span><span class="p">)</span>
+        <span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">Disconnect</span><span class="p">()</span>
+
+        <span class="c1">// Open channel</span>
+        <span class="nx">ch</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">NewAPIChannel</span><span class="p">()</span>
+        <span class="k">defer</span> <span class="nx">ch</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+
+        <span class="nx">request</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">vpe</span><span class="p">.</span><span class="nx">MypluginEnableDisable</span><span class="p">{</span>
+            <span class="nx">EnableDisable</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="nx">reply</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">vpe</span><span class="p">.</span><span class="nx">MypluginEnableDisableReply</span><span class="p">{}</span>
+
+        <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ch</span><span class="p">.</span><span class="nx">SendRequest</span><span class="p">(</span><span class="nx">request</span><span class="p">).</span><span class="nx">ReceiveReply</span><span class="p">(</span><span class="nx">reply</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;SendRequest: %w\n&quot;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="punting-to-the-control-plane">
-<h2>Punting to the Control Plane<a class="headerlink" href="#punting-to-the-control-plane" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="active-punt">
-<h3>Active Punt<a class="headerlink" href="#active-punt" title="Permalink to this headline">¶</a></h3>
-<p>The user/control-plane specifies that this is the type of packet I
-want to receive and this is where I want it sent.</p>
-<p>Currently there exists 3 ways to describe how to match/classify the
-packets to be punted:</p>
-<ol class="arabic simple">
-<li><p>a matching UDP port</p></li>
-<li><p>a matching IP protocol (i.e. OSPF)</p></li>
-<li><p>a matching punt exception reason (see above)</p></li>
-</ol>
-<p>Depending on the type/classification of the packet to be punted, that
-active punt will register itself into the VLIB graph to receive those
-packets. For example, if it’s a packet matching a UDP port then it
-will hook into the UDP port dispatch functions; udp_register_port().</p>
-<p>There exists only one sink for passive punt, a unix domain socket. But
-more work is underway in this area.</p>
-<p>see the API in: vnet/ip/punt.api</p>
-</div>
-<div class="section" id="passive-punt">
-<h3>Passive Punt<a class="headerlink" href="#passive-punt" title="Permalink to this headline">¶</a></h3>
-<p>VPP input packet processing can be described as a series of
-classifiers. For example, a sequence of input classifications could
-be, is it IP? is it for-us? is it UDP? is it a known UDP-port? If at
-some point in this pipeline VPP has no further classifications to make,
-then the packet can be punted, which means sent to ipX-punt node. This
-is described as passive since the control-plane is thus receiving
-every packet that VPP does not itself handle.
-For passive punt the user can specify where the packets should be
-sent and whether/how they should be policed/rate-limited.</p>
-<p>see the API in: vnet/ip/ip.api</p>
-</div>
+<p>As you will need to import (or <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">get</span> <span class="pre">&quot;git.fd.io/govpp.git&quot;</span></code>) to leverage the API
+client in your code, you might want to use the api-generator directly from the
+clone <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">build</span></code> fetches for you. You can do this with :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">GOVPP_DIR</span><span class="o">=</span><span class="k">$(</span>go list -f <span class="s1">&#39;{{.Dir}}&#39;</span> -m git.fd.io/govpp.git<span class="k">)</span>
+<span class="gp">$</span> <span class="nb">cd</span> <span class="nv">$GOVPP_DIR</span> <span class="o">&amp;&amp;</span> go build -o /some/bin/dir ./cmd/binapi-generator
+<span class="gp">$</span> <span class="c1"># instead of make gen-binapi-from-code you can rewrite the code to target</span>
+<span class="gp">$</span> <span class="c1"># your version ./binapi-generator</span>
+</pre></div>
 </div>
 </div>
 
@@ -290,10 +291,10 @@ sent and whether/how they should be policed/rate-limited.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="quic_plugin.html" class="btn btn-neutral float-right" title="QUIC HostStack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="gitreview.html" class="btn btn-neutral float-right" title="Getting a Patch Reviewed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="buildwireshark.html" class="btn btn-neutral float-left" title="How to build a vpp dispatch trace aware Wireshark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="add_plugin.html" class="btn btn-neutral float-left" title="Adding a plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
