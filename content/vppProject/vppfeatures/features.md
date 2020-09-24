@@ -81,7 +81,7 @@
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v20.09-rc0-402-gda5b4efba
+VPP version: v21.01-rc0-93-g1c0573da2
 
 ### ACL Based Forwarding
 Maintainer: Neale Ranns <nranns@cisco.com>  
@@ -546,7 +546,7 @@ An initial and incomplete implementation of L2TPv3 (RFC3931).
 
 Feature maturity level: experimental  
 Supports: API CLI  
-Source Code: [https://git.fd.io/vpp/tree/src/vnet/l2tp](https://git.fd.io/vpp/tree/src/vnet/l2tp) 
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/l2tp](https://git.fd.io/vpp/tree/src/plugins/l2tp) 
 ### Layer 2 Forwarding
 Maintainer: John Lo <loj@cisco.com>  
 
@@ -605,7 +605,7 @@ Link Layer Discovery Protocol (LLDP) implementation
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
-Source Code: [https://git.fd.io/vpp/tree/src/vnet/lldp](https://git.fd.io/vpp/tree/src/vnet/lldp) 
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/lldp](https://git.fd.io/vpp/tree/src/plugins/lldp) 
 ### Load Balancer
 Maintainer: Pfister <ppfister@cisco.com>, Hongjun Ni <hongjun.ni@intel.com>  
 
@@ -635,7 +635,7 @@ Locator ID Separation Protocol control plane (LISP) implementation
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
-Source Code: [https://git.fd.io/vpp/tree/src/vnet/lisp-cp](https://git.fd.io/vpp/tree/src/vnet/lisp-cp) 
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/lisp/lisp-cp](https://git.fd.io/vpp/tree/src/plugins/lisp/lisp-cp) 
 ### Locator ID Separation Protocol Generic Protocol Extension
 Maintainer: Florin Coras <fcoras@cisco.com>  
 
@@ -648,7 +648,7 @@ Locator ID Separation Protocol Generic Protocol Extension (LISP-GPE) implementat
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
-Source Code: [https://git.fd.io/vpp/tree/src/vnet/lisp-gpe](https://git.fd.io/vpp/tree/src/vnet/lisp-gpe) 
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/lisp/lisp-gpe](https://git.fd.io/vpp/tree/src/plugins/lisp/lisp-gpe) 
 ### Mapping of Address and Port
 Maintainer: Ole Troan <ot@cisco.com>  
 
@@ -1256,6 +1256,7 @@ Maintainer: Steven Luong <sluong@cisco.com>
 vmxnet3 device driver support
 
 - vmxnet3 device driver to connect to ESXi server, VMWare Fusion, and VMWare Workstation
+- Supports GSO. It was tested on ESXi 6.7
 
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  

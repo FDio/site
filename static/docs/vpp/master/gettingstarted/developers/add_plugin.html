@@ -37,7 +37,7 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Getting a Patch Reviewed" href="gitreview.html" />
+    <link rel="next" title="Add a plugin’s GO API" href="add_plugin_goapi.html" />
     <link rel="prev" title="GDB Examples" href="gdb_examples.html" /> 
 </head>
 
@@ -100,10 +100,12 @@
 <li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Adding a plugin</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#strategic-choices">Strategic Choices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-create-a-new-plugin">How to create a new plugin</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#generated-files-in-detail">Generated Files in Detail</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -130,6 +132,7 @@
 <li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
@@ -216,15 +219,58 @@
 <span id="add-plugin"></span><h1>Adding a plugin<a class="headerlink" href="#adding-a-plugin" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="strategic-choices">
+<h2>Strategic Choices<a class="headerlink" href="#strategic-choices" title="Permalink to this headline">¶</a></h2>
+<p>Plugins may implement lightly-used, experimental, or test
+functionality. In such cases, please disable the plugin by default:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">/* *INDENT-OFF* */</span>
+<span class="go">VLIB_PLUGIN_REGISTER () =</span>
+<span class="go">{</span>
+<span class="go">  .version = VPP_BUILD_VER,</span>
+<span class="go">  .description = &quot;Plugin Disabled by Default...&quot;,</span>
+<span class="go">  .default_disabled = 1,</span>
+<span class="go">};</span>
+<span class="go">/* *INDENT-ON* */</span>
+</pre></div>
+</div>
+<p>Please do not create processes, or other dynamic data structures
+unless the plugin is configured by API or debug CLI.</p>
+<p>Specifically, please don’t initialize bihash tables from
+VLIB_INIT_FUNCTIONS, <em>especially</em> if the bihash template involved
+doesn’t #define BIHASH_LAZY_INSTANTIATE 1.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">static clib_error_t * sample_init (vlib_main_t * vm)</span>
+<span class="go">{</span>
+<span class="go">  &lt;snip&gt;</span>
+<span class="go">  /* DONT DO THIS! */</span>
+<span class="go">  BV(clib_bihash_init (h, ...))</span>
+<span class="go">  &lt;snip&gt;</span>
+<span class="go">}</span>
+<span class="go">VLIB_INIT_FUNCTION (sample_init);</span>
+</pre></div>
+</div>
+<p>Instead, please add a feature_init function:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">static void</span>
+<span class="go">feature_init (my_main_t * mm)</span>
+<span class="go">{</span>
+<span class="go">  if (mm-&gt;feature_initialized == 0)</span>
+<span class="go">    {</span>
+<span class="go">      BV(clib_bihash_init)(mm-&gt;hash_table, ...)</span>
+<span class="go">      /* Create Other Things, e.g a periodic process */</span>
+<span class="go">      mm-&gt;feature_initialized = 1;</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>And call it from debug CLI and API message handlers any time the feature
+is enabled.</p>
+</div>
+<div class="section" id="how-to-create-a-new-plugin">
+<h2>How to create a new plugin<a class="headerlink" href="#how-to-create-a-new-plugin" title="Permalink to this headline">¶</a></h2>
 <p>This section shows how a VPP developer can create a new plugin, and
 add it to VPP. We assume that we are starting from the VPP &lt;top-of-workspace&gt;.</p>
 <p>As an example, we will use the <strong>make-plugin.sh</strong> tool found in
 <strong>./extras/emacs</strong>. make-plugin.sh is a simple wrapper for a comprehensive
 plugin generator constructed from a set of emacs-lisp skeletons.</p>
-<div class="section" id="create-your-new-plugin">
-<h3>Create your new plugin<a class="headerlink" href="#create-your-new-plugin" title="Permalink to this headline">¶</a></h3>
 <p>Change directory to <strong>./src/plugins</strong>, and run the plugin generator:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ./src/plugins
 <span class="gp">$</span> ../../extras/emacs/make-plugin.sh
@@ -258,15 +304,13 @@ vlib_get_buffers(…) and vlib_buffer_enqueue_to_next(…). These
 operators make excellent use of available SIMD vector unit
 operations. It’s very simple to change a quad-single loop-pair to a
 dual-single loop pair if you decide to do so later.</p>
-</div>
 <div class="section" id="generated-files">
 <h3>Generated Files<a class="headerlink" href="#generated-files" title="Permalink to this headline">¶</a></h3>
 <p>Here are the generated files. We’ll go through them in a moment.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ./myplugin
 <span class="gp">$</span> ls
-<span class="go">CMakeLists.txt        myplugin.c           myplugin_periodic.c  setup.pg</span>
-<span class="go">myplugin_all_api_h.h  myplugin.h           myplugin_test.c</span>
-<span class="go">myplugin.api          myplugin_msg_enum.h  node.c</span>
+<span class="go">CMakeLists.txt  myplugin.api  myplugin.c  myplugin.h</span>
+<span class="go">myplugin_periodic.c  myplugin_test.c  node.c  setup.pg</span>
 </pre></div>
 </div>
 <p>Due to recent build system improvements, you <strong>don’t</strong> need to touch
@@ -311,26 +355,22 @@ the copyright notice:</p>
 </pre></div>
 </div>
 <p>The rest of the build recipe is pretty simple:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_vpp_plugin (myplugin</span>
-<span class="go">SOURCES</span>
-<span class="go">myplugin.c</span>
-<span class="go">node.c</span>
-<span class="go">myplugin_periodic.c</span>
-<span class="go">myplugin.h</span>
+<div class="highlight-CMake notranslate"><div class="highlight"><pre><span></span><span class="nb">add_vpp_plugin</span> <span class="p">(</span><span class="s">myplugin</span>
+<span class="s">SOURCES</span>
+<span class="s">myplugin.c</span>
+<span class="s">node.c</span>
+<span class="s">myplugin_periodic.c</span>
+<span class="s">myplugin.h</span>
 
-<span class="go">MULTIARCH_SOURCES</span>
-<span class="go">node.c</span>
+<span class="s">MULTIARCH_SOURCES</span>
+<span class="s">node.c</span>
 
-<span class="go">API_FILES</span>
-<span class="go">myplugin.api</span>
+<span class="s">API_FILES</span>
+<span class="s">myplugin.api</span>
 
-<span class="go">INSTALL_HEADERS</span>
-<span class="go">myplugin_all_api_h.h</span>
-<span class="go">myplugin_msg_enum.h</span>
-
-<span class="go">API_TEST_SOURCES</span>
-<span class="go">myplugin_test.c</span>
-<span class="go">)</span>
+<span class="s">API_TEST_SOURCES</span>
+<span class="s">myplugin_test.c</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>As you can see, the build recipe consists of several lists of
@@ -360,11 +400,11 @@ binary API message dispatcher, and to add its messages to vpp’s global
 “message-name_crc” hash table. See “myplugin_init (…”)”</p>
 <p>Vpp itself uses dlsym(…) to track down the vlib_plugin_registration_t
 generated by the VLIB_PLUGIN_REGISTER macro:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">VLIB_PLUGIN_REGISTER () =</span>
-<span class="go">  {</span>
-<span class="go">    .version = VPP_BUILD_VER,</span>
-<span class="go">    .description = &quot;myplugin plugin description goes here&quot;,</span>
-<span class="go">  };</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">VLIB_PLUGIN_REGISTER</span> <span class="p">()</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="p">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">VPP_BUILD_VER</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&quot;myplugin plugin description goes here&quot;</span><span class="p">,</span>
+  <span class="p">};</span>
 </pre></div>
 </div>
 <p>Vpp only loads .so files from the plugin directory which contain an
@@ -372,22 +412,22 @@ instance of this data structure.</p>
 <p>You can enable or disable specific vpp plugins from the command
 line. By default, plugins are loaded. To change that behavior, set
 default_disabled in the macro VLIB_PLUGIN_REGISTER:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">VLIB_PLUGIN_REGISTER () =</span>
-<span class="go">  {</span>
-<span class="go">    .version = VPP_BUILD_VER,</span>
-<span class="go">    .default_disabled = 1</span>
-<span class="go">    .description = &quot;myplugin plugin description goes here&quot;,</span>
-<span class="go">  };</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">VLIB_PLUGIN_REGISTER</span> <span class="p">()</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="p">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">VPP_BUILD_VER</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">default_disabled</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&quot;myplugin plugin description goes here&quot;</span><span class="p">,</span>
+  <span class="p">};</span>
 </pre></div>
 </div>
 <p>The boilerplate generator places the graph node dispatch function
 onto the “device-input” feature arc. This may or may not be useful.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">VNET_FEATURE_INIT (myplugin, static) =</span>
-<span class="go">{</span>
-<span class="go">  .arc_name = &quot;device-input&quot;,</span>
-<span class="go">  .node_name = &quot;myplugin&quot;,</span>
-<span class="go">  .runs_before = VNET_FEATURES (&quot;ethernet-input&quot;),</span>
-<span class="go">};</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">VNET_FEATURE_INIT</span> <span class="p">(</span><span class="n">myplugin</span><span class="p">,</span> <span class="k">static</span><span class="p">)</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="p">.</span><span class="n">arc_name</span> <span class="o">=</span> <span class="s">&quot;device-input&quot;</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">node_name</span> <span class="o">=</span> <span class="s">&quot;myplugin&quot;</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">runs_before</span> <span class="o">=</span> <span class="n">VNET_FEATURES</span> <span class="p">(</span><span class="s">&quot;ethernet-input&quot;</span><span class="p">),</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>As given by the plugin generator, myplugin.c contains the binary API
@@ -421,24 +461,51 @@ structure</em>, enqueue patterns, and so forth. Simply tear out and
 replace the specimen 1x, 2x, 4x packet processing code with code
 relevant to the problem you’re trying to solve.</p>
 </div>
+<div class="section" id="myplugin-api">
+<h3>myplugin.api<a class="headerlink" href="#myplugin-api" title="Permalink to this headline">¶</a></h3>
+<p>This contains the API message definition. Here we only have defined
+a single one named <code class="docutils literal notranslate"><span class="pre">myplugin_enable_disable</span></code> and an implicit
+<code class="docutils literal notranslate"><span class="pre">myplugin_enable_disable_reply</span></code> containing only a return value due
+to the <code class="docutils literal notranslate"><span class="pre">autoreply</span></code> keyword.</p>
+<p>The syntax reference for <code class="docutils literal notranslate"><span class="pre">.api</span></code> files can be found at VPP API Language</p>
+<p>Addressing the binary API with this message will run the handler defined
+in <code class="docutils literal notranslate"><span class="pre">myplugin.c</span></code> as <code class="docutils literal notranslate"><span class="pre">vl_api_myplugin_enable_disable_t_handler</span></code>.
+It will receive a message pointer <code class="docutils literal notranslate"><span class="pre">*mp</span></code> which is the struct defined
+in <code class="docutils literal notranslate"><span class="pre">myplugin.api</span></code> and should return another message pointer <code class="docutils literal notranslate"><span class="pre">*rmp</span></code>,
+of the reply type. That’s what <code class="docutils literal notranslate"><span class="pre">REPLY_MACRO</span></code> does.</p>
+<p>To be noted, all API messages are in net-endian and vpp is host-endian,
+so you will need to use :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">u32</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">ntohl(mp-&gt;value);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rmp-&gt;value</span> <span class="pre">=</span> <span class="pre">htonl(value);</span></code></p></li>
+</ul>
+<p>You can now use this API with <a class="reference internal" href="add_plugin_goapi.html#add-plugin-goapi"><span class="std std-ref">GoLang bindings</span></a></p>
+</div>
+<div class="section" id="myplugin-periodic-c">
+<h3>myplugin_periodic.c<a class="headerlink" href="#myplugin-periodic-c" title="Permalink to this headline">¶</a></h3>
+<p>This defines a VPP process, a routine that will run indefinitely and
+be woken up intermittently, here to process plugin events.</p>
+<p>To be noted, vlib_processes aren’t thread-safe, and data structures
+should be locked when shared between workers.</p>
+</div>
 <div class="section" id="plugin-friends-with-benefits">
 <h3>Plugin “Friends with Benefits”<a class="headerlink" href="#plugin-friends-with-benefits" title="Permalink to this headline">¶</a></h3>
 <p>In vpp VLIB_INIT_FUNCTION functions, It’s reasonably common to see a
 specific init function invoke other init functions:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">if ((error = vlib_call_init_function (vm, some_other_init_function))</span>
-<span class="go">   return error;</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">((</span><span class="n">error</span> <span class="o">=</span> <span class="n">vlib_call_init_function</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">some_other_init_function</span><span class="p">))</span>
+   <span class="k">return</span> <span class="n">error</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>In the case where one plugin needs to call a init function in another
 plugin, use the vlib_call_plugin_init_function macro:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">if ((error = vlib_call_plugin_init_function (vm, &quot;otherpluginname&quot;, some_init_function))</span>
-<span class="go">   return error;</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">((</span><span class="n">error</span> <span class="o">=</span> <span class="n">vlib_call_plugin_init_function</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="s">&quot;otherpluginname&quot;</span><span class="p">,</span> <span class="n">some_init_function</span><span class="p">))</span>
+   <span class="k">return</span> <span class="n">error</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This allows sequencing between plugin init functions.</p>
 <p>If you wish to obtain a pointer to a symbol in another plugin, use the
 vlib_plugin_get_symbol(…) API:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">void *p = vlib_get_plugin_symbol (&quot;plugin_name&quot;, &quot;symbol&quot;);</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">vlib_get_plugin_symbol</span> <span class="p">(</span><span class="s">&quot;plugin_name&quot;</span><span class="p">,</span> <span class="s">&quot;symbol&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -457,7 +524,7 @@ vlib_plugin_get_symbol(…) API:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="gitreview.html" class="btn btn-neutral float-right" title="Getting a Patch Reviewed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="add_plugin_goapi.html" class="btn btn-neutral float-right" title="Add a plugin’s GO API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="gdb_examples.html" class="btn btn-neutral float-left" title="GDB Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
