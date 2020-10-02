@@ -10,6 +10,7 @@ btntxt="More About Installing VPP "
 # The second is the url
 latest = "Latest Release (2005), /docs/vpp/v2005/gettingstarted/installing"
 versions = ["Master, /docs/vpp/master/gettingstarted/installing",
+	 "Version 20.09, /docs/vpp/v2009/gettingstarted/installing",
 	 "Version 20.05, /docs/vpp/v2005/gettingstarted/installing",
 	 "Version 20.01, /docs/vpp/v2001/gettingstarted/installing"]
 

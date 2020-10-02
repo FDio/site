@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Debugging and Reporting Bugs in Contiv-VPP &mdash; The Vector Packet Processor 20.09 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Network Simulator Plugin" href="../networksim.html" />
+    <link rel="prev" title="Capturing VPP core dumps" href="CORE_FILES.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.09
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../containers.html">VPP with Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homegateway.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Contiv/VPP</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="K8s_Overview.html">Contiv/VPP Kubernetes Network Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SECURITY.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vagrant.html">Contiv-VPP Vagrant Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MANUAL_INSTALL.html">Manual Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPP_CONFIG.html">Creating VPP Startup Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VMWARE_FUSION_HOST.html">Preparing a VmWare Fusion Host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NETWORKING.html">Contiv/VPP Network Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SINGLE_NIC_SETUP.html">Setting up a Node with a Single NIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MULTI_NIC_SETUP.html">Setting Up a Node with Multiple NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUSTOM_MGMT_NETWORK.html">Setting Up a Custom Management Network on Multi-Homed Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Prometheus.html">Prometheus Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html">How to do VPP Packet Tracing in Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPTRACE.html">Using vpptrace.sh for VPP Packet Tracing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CORE_FILES.html">Capturing VPP core dumps</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Debugging and Reporting Bugs in Contiv-VPP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bug-report-structure">Bug Report Structure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container_test.html">Container-based network simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Use Cases</a> &raquo;</li>
+        
+          <li><a href="index.html">Contiv/VPP</a> &raquo;</li>
+        
+      <li>Debugging and Reporting Bugs in Contiv-VPP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usecases/contiv/BUG_REPORTS.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="debugging-and-reporting-bugs-in-contiv-vpp">
+<h1>Debugging and Reporting Bugs in Contiv-VPP<a class="headerlink" href="#debugging-and-reporting-bugs-in-contiv-vpp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="bug-report-structure">
+<h2>Bug Report Structure<a class="headerlink" href="#bug-report-structure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#describe-deployment">Deployment description</a>:
+Briefly describes the deployment, where an issue was spotted,
+number of k8s nodes, is DHCP/STN/TAP used.</p></li>
+<li><p><a class="reference external" href="#collecting-the-logs">Logs</a>:
+Attach corresponding logs, at least from the vswitch pods.</p></li>
+<li><p><a class="reference external" href="#inspect-vpp-config">VPP config</a>:
+Attach output of the show commands.</p></li>
+<li><p><a class="reference external" href="#basic-example">Basic Collection Example</a></p></li>
+</ul>
+<div class="section" id="describe-deployment">
+<h3>Describe Deployment<a class="headerlink" href="#describe-deployment" title="Permalink to this headline">¶</a></h3>
+<p>Since contiv-vpp can be used with different configurations, it is helpful
+to attach the config that was applied. Either attach <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> passed to the helm chart,
+or attach the <a class="reference external" href="https://github.com/contiv/vpp/blob/42b3bfbe8735508667b1e7f1928109a65dfd5261/k8s/contiv-vpp.yaml#L24-L38">corresponding part</a> from the deployment yaml file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">contiv</span><span class="o">.</span><span class="n">yaml</span><span class="p">:</span> <span class="o">|-</span>
+    <span class="n">TCPstackDisabled</span><span class="p">:</span> <span class="n">true</span>
+    <span class="n">UseTAPInterfaces</span><span class="p">:</span> <span class="n">true</span>
+    <span class="n">TAPInterfaceVersion</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="n">NatExternalTraffic</span><span class="p">:</span> <span class="n">true</span>
+    <span class="n">MTUSize</span><span class="p">:</span> <span class="mi">1500</span>
+    <span class="n">IPAMConfig</span><span class="p">:</span>
+      <span class="n">PodSubnetCIDR</span><span class="p">:</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">16</span>
+      <span class="n">PodNetworkPrefixLen</span><span class="p">:</span> <span class="mi">24</span>
+      <span class="n">PodIfIPCIDR</span><span class="p">:</span> <span class="mf">10.2</span><span class="o">.</span><span class="mf">1.0</span><span class="o">/</span><span class="mi">24</span>
+      <span class="n">VPPHostSubnetCIDR</span><span class="p">:</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">16</span>
+      <span class="n">VPPHostNetworkPrefixLen</span><span class="p">:</span> <span class="mi">24</span>
+      <span class="n">NodeInterconnectCIDR</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.0</span><span class="o">/</span><span class="mi">24</span>
+      <span class="n">VxlanCIDR</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.0</span><span class="o">/</span><span class="mi">24</span>
+      <span class="n">NodeInterconnectDHCP</span><span class="p">:</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Information that might be helpful:</p>
+<ul class="simple">
+<li><p>Whether node IPs are statically assigned, or if DHCP is used</p></li>
+<li><p>STN is enabled</p></li>
+<li><p>Version of TAP interfaces used</p></li>
+<li><p>Output of <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">get</span> <span class="pre">pods</span> <span class="pre">-o</span> <span class="pre">wide</span> <span class="pre">--all-namespaces</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="collecting-the-logs">
+<h3>Collecting the Logs<a class="headerlink" href="#collecting-the-logs" title="Permalink to this headline">¶</a></h3>
+<p>The most essential thing that needs to be done when debugging and <strong>reporting an issue</strong>
+in Contiv-VPP is <strong>collecting the logs from the contiv-vpp vswitch containers</strong>.</p>
+<div class="section" id="a-collecting-vswitch-logs-using-kubectl">
+<h4>a) Collecting Vswitch Logs Using kubectl<a class="headerlink" href="#a-collecting-vswitch-logs-using-kubectl" title="Permalink to this headline">¶</a></h4>
+<p>In order to collect the logs from individual vswitches in the cluster, connect to the master node
+and then find the POD names of the individual vswitch containers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl get pods --all-namespaces | grep vswitch
+kube-system   contiv-vswitch-lqxfp               2/2       Running   0          1h
+kube-system   contiv-vswitch-q6kwt               2/2       Running   0          1h
+</pre></div>
+</div>
+<p>Then run the following command, with <em>pod name</em> replaced by the actual POD name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl logs &lt;pod name&gt; -n kube-system -c contiv-vswitch
+</pre></div>
+</div>
+<p>Redirect the output to a file to save the logs, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">contiv</span><span class="o">-</span><span class="n">vswitch</span><span class="o">-</span><span class="n">lqxfp</span> <span class="o">-</span><span class="n">n</span> <span class="n">kube</span><span class="o">-</span><span class="n">system</span> <span class="o">-</span><span class="n">c</span> <span class="n">contiv</span><span class="o">-</span><span class="n">vswitch</span> <span class="o">&gt;</span> <span class="n">logs</span><span class="o">-</span><span class="n">master</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="b-collecting-vswitch-logs-using-docker">
+<h4>b) Collecting Vswitch Logs Using Docker<a class="headerlink" href="#b-collecting-vswitch-logs-using-docker" title="Permalink to this headline">¶</a></h4>
+<p>If option a) does not work, then you can still collect the same logs using the plain docker
+command. For that, you need to connect to each individual node in the k8s cluster, and find the container ID of the vswitch container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker ps | grep contivvpp/vswitch
+b682b5837e52        contivvpp/vswitch                                        &quot;/usr/bin/supervisor…&quot;   2 hours ago         Up 2 hours                              k8s_contiv-vswitch_contiv-vswitch-q6kwt_kube-system_d09b6210-2903-11e8-b6c9-08002723b076_0
+</pre></div>
+</div>
+<p>Now use the ID from the first column to dump the logs into the <code class="docutils literal notranslate"><span class="pre">logs-master.txt</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker logs b682b5837e52 &gt; logs-master.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="reviewing-the-vswitch-logs">
+<h4>Reviewing the Vswitch Logs<a class="headerlink" href="#reviewing-the-vswitch-logs" title="Permalink to this headline">¶</a></h4>
+<p>In order to debug an issue, it is good to start by grepping the logs for the <code class="docutils literal notranslate"><span class="pre">level=error</span></code> string, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat logs-master.txt | grep level=error
+</pre></div>
+</div>
+<p>Also, VPP or contiv-agent may crash with some bugs. To check if some process crashed, grep for the string <code class="docutils literal notranslate"><span class="pre">exit</span></code>, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat logs-master.txt | grep exit
+2018-03-20 06:03:45,948 INFO exited: vpp (terminated by SIGABRT (core dumped); not expected)
+2018-03-20 06:03:48,948 WARN received SIGTERM indicating exit request
+</pre></div>
+</div>
+</div>
+<div class="section" id="collecting-the-stn-daemon-logs">
+<h4>Collecting the STN Daemon Logs<a class="headerlink" href="#collecting-the-stn-daemon-logs" title="Permalink to this headline">¶</a></h4>
+<p>In STN (Steal The NIC) deployment scenarios, often need to collect and review the logs
+from the STN daemon. This needs to be done on each node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker logs contiv-stn &gt; logs-stn-master.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="collecting-logs-in-case-of-crash-loop">
+<h4>Collecting Logs in Case of Crash Loop<a class="headerlink" href="#collecting-logs-in-case-of-crash-loop" title="Permalink to this headline">¶</a></h4>
+<p>If the vswitch is crashing in a loop (which can be determined by increasing the number in the <code class="docutils literal notranslate"><span class="pre">RESTARTS</span></code>
+column of the <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">get</span> <span class="pre">pods</span> <span class="pre">--all-namespaces</span></code> output), the <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">logs</span></code> or <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span></code> would
+give us the logs of the latest incarnation of the vswitch. That might not be the original root cause
+of the very first crash, so in order to debug that, we need to disable k8s health check probes to not
+restart the vswitch after the very first crash. This can be done by commenting-out the <code class="docutils literal notranslate"><span class="pre">readinessProbe</span></code>
+and <code class="docutils literal notranslate"><span class="pre">livenessProbe</span></code> in the contiv-vpp deployment YAML:</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gh">diff --git a/k8s/contiv-vpp.yaml b/k8s/contiv-vpp.yaml</span>
+<span class="gh">index 3676047..ffa4473 100644</span>
+<span class="gd">--- a/k8s/contiv-vpp.yaml</span>
+<span class="gi">+++ b/k8s/contiv-vpp.yaml</span>
+<span class="gu">@@ -224,18 +224,18 @@ spec:</span>
+           ports:
+             # readiness + liveness probe
+             - containerPort: 9999
+<span class="gd">-          readinessProbe:</span>
+<span class="gd">-            httpGet:</span>
+<span class="gd">-              path: /readiness</span>
+<span class="gd">-              port: 9999</span>
+<span class="gd">-            periodSeconds: 1</span>
+<span class="gd">-            initialDelaySeconds: 15</span>
+<span class="gd">-          livenessProbe:</span>
+<span class="gd">-            httpGet:</span>
+<span class="gd">-              path: /liveness</span>
+<span class="gd">-              port: 9999</span>
+<span class="gd">-            periodSeconds: 1</span>
+<span class="gd">-            initialDelaySeconds: 60</span>
+<span class="gi">+ #         readinessProbe:</span>
+<span class="gi">+ #           httpGet:</span>
+<span class="gi">+ #             path: /readiness</span>
+<span class="gi">+ #             port: 9999</span>
+<span class="gi">+ #           periodSeconds: 1</span>
+<span class="gi">+ #           initialDelaySeconds: 15</span>
+<span class="gi">+ #         livenessProbe:</span>
+<span class="gi">+ #           httpGet:</span>
+<span class="gi">+ #             path: /liveness</span>
+<span class="gi">+ #             port: 9999</span>
+<span class="gi">+ #           periodSeconds: 1</span>
+<span class="gi">+ #           initialDelaySeconds: 60</span>
+           env:
+             - name: MICROSERVICE_LABEL
+               valueFrom:
+</pre></div>
+</div>
+<p>If VPP is the crashing process, please follow the [CORE_FILES](CORE_FILES.html) guide and provide the coredump file.</p>
+</div>
+</div>
+<div class="section" id="inspect-vpp-config">
+<h3>Inspect VPP Config<a class="headerlink" href="#inspect-vpp-config" title="Permalink to this headline">¶</a></h3>
+<p>Inspect the following areas:</p>
+<ul class="simple">
+<li><p>Configured interfaces (issues related basic node/pod connectivity issues):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh int addr</span>
+<span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.1</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">local0</span> <span class="p">(</span><span class="n">dn</span><span class="p">):</span>
+<span class="n">loop0</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="n">l2</span> <span class="n">bridge</span> <span class="n">bd_id</span> <span class="mi">1</span> <span class="n">bvi</span> <span class="n">shg</span> <span class="mi">0</span>
+  <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.1</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="mf">172.30</span><span class="o">.</span><span class="mf">1.1</span><span class="o">/</span><span class="mi">24</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>IP forwarding table:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh ip fib</span>
+<span class="n">ipv4</span><span class="o">-</span><span class="n">VRF</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">fib_index</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:[</span><span class="n">src</span> <span class="n">dst</span> <span class="n">sport</span> <span class="n">dport</span> <span class="n">proto</span> <span class="p">]</span> <span class="n">locks</span><span class="p">:[</span><span class="n">src</span><span class="p">:(</span><span class="n">nil</span><span class="p">):</span><span class="mi">2</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span><span class="n">adjacency</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span><span class="n">default</span><span class="o">-</span><span class="n">route</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="p">]</span>
+<span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">0</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">1</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">0</span> <span class="n">to</span><span class="p">:[</span><span class="mi">7</span><span class="p">:</span><span class="mi">552</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">2</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">1</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+
+<span class="o">...</span> 
+<span class="o">...</span>
+
+<span class="mf">255.255</span><span class="o">.</span><span class="mf">255.255</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">5</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">4</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ARP Table:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh ip arp</span>
+    <span class="n">Time</span>           <span class="n">IP4</span>       <span class="n">Flags</span>      <span class="n">Ethernet</span>              <span class="n">Interface</span>       
+    <span class="mf">728.6616</span>  <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.2</span>     <span class="n">D</span>    <span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="mi">0</span><span class="n">e</span><span class="p">:</span><span class="mi">9</span><span class="n">f</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span>
+    <span class="mf">542.7045</span>  <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.2</span>     <span class="n">S</span>    <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">02</span> <span class="n">loop0</span>
+      <span class="mf">1.4241</span>   <span class="mf">172.30</span><span class="o">.</span><span class="mf">1.2</span>      <span class="n">D</span>    <span class="mi">86</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="n">d5</span><span class="p">:</span><span class="mi">92</span><span class="p">:</span><span class="n">fd</span><span class="p">:</span><span class="mi">24</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span>
+     <span class="mf">15.2485</span>    <span class="mf">10.1</span><span class="o">.</span><span class="mf">1.2</span>      <span class="n">SN</span>    <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span>
+    <span class="mf">739.2339</span>    <span class="mf">10.1</span><span class="o">.</span><span class="mf">1.3</span>      <span class="n">SN</span>    <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span>
+    <span class="mf">739.4119</span>    <span class="mf">10.1</span><span class="o">.</span><span class="mf">1.4</span>      <span class="n">SN</span>    <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>NAT configuration (issues related to services):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DBGvpp</span><span class="c1"># sh nat44 addresses</span>
+<span class="n">NAT44</span> <span class="n">pool</span> <span class="n">addresses</span><span class="p">:</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">16.10</span>
+  <span class="n">tenant</span> <span class="n">VRF</span> <span class="n">independent</span>
+  <span class="mi">0</span> <span class="n">busy</span> <span class="n">udp</span> <span class="n">ports</span>
+  <span class="mi">0</span> <span class="n">busy</span> <span class="n">tcp</span> <span class="n">ports</span>
+  <span class="mi">0</span> <span class="n">busy</span> <span class="n">icmp</span> <span class="n">ports</span>
+<span class="n">NAT44</span> <span class="n">twice</span><span class="o">-</span><span class="n">nat</span> <span class="n">pool</span> <span class="n">addresses</span><span class="p">:</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh nat44 static mappings </span>
+<span class="n">NAT44</span> <span class="n">static</span> <span class="n">mappings</span><span class="p">:</span>
+ <span class="n">tcp</span> <span class="n">local</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">42.1</span><span class="p">:</span><span class="mi">6443</span> <span class="n">external</span> <span class="mf">10.96</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">443</span> <span class="n">vrf</span> <span class="mi">0</span>  <span class="n">out2in</span><span class="o">-</span><span class="n">only</span>
+ <span class="n">tcp</span> <span class="n">local</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">42.1</span><span class="p">:</span><span class="mi">12379</span> <span class="n">external</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">42.2</span><span class="p">:</span><span class="mi">32379</span> <span class="n">vrf</span> <span class="mi">0</span>  <span class="n">out2in</span><span class="o">-</span><span class="n">only</span>
+ <span class="n">tcp</span> <span class="n">local</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">42.1</span><span class="p">:</span><span class="mi">12379</span> <span class="n">external</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.2</span><span class="p">:</span><span class="mi">32379</span> <span class="n">vrf</span> <span class="mi">0</span>  <span class="n">out2in</span><span class="o">-</span><span class="n">only</span>
+ <span class="n">tcp</span> <span class="n">local</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">42.1</span><span class="p">:</span><span class="mi">12379</span> <span class="n">external</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">42.1</span><span class="p">:</span><span class="mi">32379</span> <span class="n">vrf</span> <span class="mi">0</span>  <span class="n">out2in</span><span class="o">-</span><span class="n">only</span>
+ <span class="n">tcp</span> <span class="n">local</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">42.1</span><span class="p">:</span><span class="mi">12379</span> <span class="n">external</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.1</span><span class="p">:</span><span class="mi">32379</span> <span class="n">vrf</span> <span class="mi">0</span>  <span class="n">out2in</span><span class="o">-</span><span class="n">only</span>
+ <span class="n">tcp</span> <span class="n">local</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">42.1</span><span class="p">:</span><span class="mi">12379</span> <span class="n">external</span> <span class="mf">10.109</span><span class="o">.</span><span class="mf">143.39</span><span class="p">:</span><span class="mi">12379</span> <span class="n">vrf</span> <span class="mi">0</span>  <span class="n">out2in</span><span class="o">-</span><span class="n">only</span>
+ <span class="n">udp</span> <span class="n">local</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.2</span><span class="p">:</span><span class="mi">53</span> <span class="n">external</span> <span class="mf">10.96</span><span class="o">.</span><span class="mf">0.10</span><span class="p">:</span><span class="mi">53</span> <span class="n">vrf</span> <span class="mi">0</span>  <span class="n">out2in</span><span class="o">-</span><span class="n">only</span>
+ <span class="n">tcp</span> <span class="n">local</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.2</span><span class="p">:</span><span class="mi">53</span> <span class="n">external</span> <span class="mf">10.96</span><span class="o">.</span><span class="mf">0.10</span><span class="p">:</span><span class="mi">53</span> <span class="n">vrf</span> <span class="mi">0</span>  <span class="n">out2in</span><span class="o">-</span><span class="n">only</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh nat44 interfaces</span>
+<span class="n">NAT44</span> <span class="n">interfaces</span><span class="p">:</span>
+ <span class="n">loop0</span> <span class="ow">in</span> <span class="n">out</span>
+ <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">0</span> <span class="n">out</span>
+ <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span> <span class="ow">in</span> <span class="n">out</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh nat44 sessions</span>
+<span class="n">NAT44</span> <span class="n">sessions</span><span class="p">:</span>
+  <span class="mf">192.168</span><span class="o">.</span><span class="mf">20.2</span><span class="p">:</span> <span class="mi">0</span> <span class="n">dynamic</span> <span class="n">translations</span><span class="p">,</span> <span class="mi">3</span> <span class="n">static</span> <span class="n">translations</span>
+  <span class="mf">10.1</span><span class="o">.</span><span class="mf">1.3</span><span class="p">:</span> <span class="mi">0</span> <span class="n">dynamic</span> <span class="n">translations</span><span class="p">,</span> <span class="mi">0</span> <span class="n">static</span> <span class="n">translations</span>
+  <span class="mf">10.1</span><span class="o">.</span><span class="mf">1.4</span><span class="p">:</span> <span class="mi">0</span> <span class="n">dynamic</span> <span class="n">translations</span><span class="p">,</span> <span class="mi">0</span> <span class="n">static</span> <span class="n">translations</span>
+  <span class="mf">10.1</span><span class="o">.</span><span class="mf">1.2</span><span class="p">:</span> <span class="mi">0</span> <span class="n">dynamic</span> <span class="n">translations</span><span class="p">,</span> <span class="mi">6</span> <span class="n">static</span> <span class="n">translations</span>
+  <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.18</span><span class="p">:</span> <span class="mi">0</span> <span class="n">dynamic</span> <span class="n">translations</span><span class="p">,</span> <span class="mi">2</span> <span class="n">static</span> <span class="n">translations</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>ACL config (issues related to policies):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh acl-plugin acl</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>“Steal the NIC (STN)” config (issues related to host connectivity when STN is active):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh stn rules </span>
+<span class="o">-</span> <span class="n">rule_index</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="n">address</span><span class="p">:</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">10.47</span>
+  <span class="n">iface</span><span class="p">:</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">next_node</span><span class="p">:</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="n">output</span> <span class="p">(</span><span class="mi">410</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Errors:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh errors</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Vxlan tunnels:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh vxlan tunnels</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Vxlan tunnels:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh vxlan tunnels</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Hardware interface information:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># sh hardware-interfaces</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="basic-example">
+<h3>Basic Example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/contiv/vpp/tree/master/scripts/contiv-vpp-bug-report.sh">contiv-vpp-bug-report.sh</a> is an example of a script that may be a useful starting point to gathering the above information using kubectl.</p>
+<p>Limitations:</p>
+<ul class="simple">
+<li><p>The script does not include STN daemon logs nor does it handle the special
+case of a crash loop</p></li>
+</ul>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p>The user specified in the script must have passwordless access to all nodes
+in the cluster; on each node in the cluster the user must have passwordless
+access to sudo.</p></li>
+</ul>
+<div class="section" id="setting-up-prerequisites">
+<h4>Setting up Prerequisites<a class="headerlink" href="#setting-up-prerequisites" title="Permalink to this headline">¶</a></h4>
+<p>To enable logging into a node without a password, copy your public key to the following
+node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;@&lt;</span><span class="n">node</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="ow">or</span><span class="o">-</span><span class="n">ip</span><span class="o">-</span><span class="n">address</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>To enable running sudo without a password for a given user, enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo visudo
+</pre></div>
+</div>
+<p>Append the following entry to run ALL command without a password for a given
+user:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">userid</span><span class="o">&gt;</span> <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="n">ALL</span><span class="p">)</span> <span class="n">NOPASSWD</span><span class="p">:</span><span class="n">ALL</span>
+</pre></div>
+</div>
+<p>You can also add user <code class="docutils literal notranslate"><span class="pre">&lt;user-id&gt;</span></code> to group <code class="docutils literal notranslate"><span class="pre">sudo</span></code> and edit the <code class="docutils literal notranslate"><span class="pre">sudo</span></code>
+entry as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Allow members of group sudo to execute any command</span>
+<span class="o">%</span><span class="n">sudo</span>	<span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="n">ALL</span><span class="p">:</span><span class="n">ALL</span><span class="p">)</span> <span class="n">NOPASSWD</span><span class="p">:</span><span class="n">ALL</span>
+</pre></div>
+</div>
+<p>Add user <code class="docutils literal notranslate"><span class="pre">&lt;user-id&gt;</span></code> to group <code class="docutils literal notranslate"><span class="pre">&lt;group-id&gt;</span></code> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">adduser</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">group</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usermod</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">G</span> <span class="o">&lt;</span><span class="n">group</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="working-with-the-contiv-vpp-vagrant-test-bed">
+<h4>Working with the Contiv-VPP Vagrant Test Bed<a class="headerlink" href="#working-with-the-contiv-vpp-vagrant-test-bed" title="Permalink to this headline">¶</a></h4>
+<p>The script can be used to collect data from the <a class="reference external" href="https://github.com/contiv/vpp/blob/master/vagrant/README">Contiv-VPP test bed created with Vagrant</a>.
+To collect debug information from this Contiv-VPP test bed, do the
+following steps:</p>
+<ul class="simple">
+<li><p>In the directory where you created your vagrant test bed, do:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">vagrant</span> <span class="n">ssh</span><span class="o">-</span><span class="n">config</span> <span class="o">&gt;</span> <span class="n">vagrant</span><span class="o">-</span><span class="n">ssh</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To collect the debug information do:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">./</span><span class="n">contiv</span><span class="o">-</span><span class="n">vpp</span><span class="o">-</span><span class="n">bug</span><span class="o">-</span><span class="n">report</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">u</span> <span class="n">vagrant</span> <span class="o">-</span><span class="n">m</span> <span class="n">k8s</span><span class="o">-</span><span class="n">master</span> <span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">your</span><span class="o">-</span><span class="n">vagrant</span><span class="o">-</span><span class="n">ssh</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">file</span><span class="o">&gt;/</span><span class="n">vagrant</span><span class="o">-</span><span class="n">ssh</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../networksim.html" class="btn btn-neutral float-right" title="Network Simulator Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CORE_FILES.html" class="btn btn-neutral float-left" title="Capturing VPP core dumps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

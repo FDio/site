@@ -8,7 +8,8 @@ The Vector Packet Packet Processor (VPP) is the core technology for FD.io.
 To get started with VPP check out [Installing VPP](/vppproject/vppinstalling).
 <br>
 To read the VPP User documents please visit the [VPP Latest Release](/docs/vpp/latest),
-[Master](/docs/vpp/master), [Versions 20.05](/docs/vpp/v2005) or [20.01](/docs/vpp/v2001).
+[Master](/docs/vpp/master), [Versions 20.09](/docs/vpp/v2009), [Versions 20.05](/docs/vpp/v2005)
+or [20.01](/docs/vpp/v2001).
 <br>
 The Developer Wiki is at [VPP Wiki](https://wiki.fd.io/view/VPP).
 <br>
