@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -126,12 +127,10 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Tunnels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
@@ -139,6 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
@@ -228,7 +228,7 @@
 <p>Tunnels share a similar property to recursive routes in that after applying the
 tunnel encapsulation, a new packet must be forwarded, i.e. forwarding is
 recursive. However, as with recursive routes the tunnel’s destination is known
-beforehand, so the recursive switch can be avoided if the packet can follow the
+beforehand, so the second lookup can be avoided if the packet can follow the
 already constructed data-plane graph for the tunnel’s destination. This process
 of joining to DP graphs together is termed <em>stacking</em>.</p>
 <div class="figure align-default">
@@ -239,17 +239,42 @@ of joining to DP graphs together is termed <em>stacking</em>.</p>
 sub-graphs for the route via the tunnel and the route for the tunnel’s
 destination are shown to the right and left respectively. The red line shows the
 relationship form by stacking the two sub-graphs. The adjacency on the tunnel
-interface is termed a ‘mid-chain’ this it is now present in the middle of the
+interface is termed a ‘mid-chain’ since it is now present in the middle of the
 graph/chain rather than its usual terminal location.</p>
 <p>The mid-chain adjacency is contributed by the gre_tunnel_t , which also becomes
 part of the FIB control-plane graph. Consequently it will be visited by a
 back-walk when the forwarding information for the tunnel’s destination changes.
 This will trigger it to restack the mid-chain adjacency on the new
 <em>load_balance_t</em> contributed by the parent <em>fib_entry_t</em>.</p>
-<p>If the back-walk indicates that there is no route to the tunnel, or that the
-route does not meet resolution constraints, then the tunnel can be marked as
-down, and fast convergence can be triggered in the same way as for physical
-interfaces (see section …).</p>
+<p>If the back-walk indicates that there is no route to the tunnel’s
+destination, or that the resolving route does not meet resolution
+constraints, then the tunnel can be marked as down, and fast
+convergence can be triggered in the same way as for physical interfaces (see section …).</p>
+<div class="section" id="multi-point-tunnels">
+<h2>Multi-Point Tunnels<a class="headerlink" href="#multi-point-tunnels" title="Permalink to this headline">¶</a></h2>
+<p>Multi-point tunnels are an example of a non-broadcast multi-access
+interface. In simple terms this means there are many peers on the link
+but it is not possible to broadcast a single message to all of them at
+once, and hence the usual peer discovery mechanism (as employed,
+e.g. by ARP) is not available. Although an <em>ip_neighbor_t</em> is a
+representation of an IP peer on a link, it is not valid in this
+context as it maps the peer’s identity to its MAC address. For a
+tunnel peer it is required to map the peer’s overlay address (the
+attached address, the one in the same subnet as the device) with the
+peer’s underlay address (probably on the other side of the
+internet). In the P2P case where there is only one peer on the link,
+the peer’s underlay address is the same as the tunnel’s destination
+address.
+The data structure that represents the mapping of the peer’s overlay
+with underlay address is an entry in the Tunnel Endpoint Information
+Base (TEIB); the <em>tieb_entry_t</em>. TEIB entries are created by the
+control plane (e.g. NHRP (RFC2332)).</p>
+<p>Each mid-chain adjacency on a multi-point tunnel is stacked on the
+<em>fib_entry_t</em> object that resolves the peer’s underlay address. The
+glean adjacency on the tunnel resolves via a drop, since broadcasts
+are not possible. A multicast adjacency on a multi-point tunnel is
+currently a work in progress.</p>
+</div>
 </div>
 
 

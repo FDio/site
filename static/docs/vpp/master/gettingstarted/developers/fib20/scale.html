@@ -37,7 +37,7 @@
     <link rel="author" title="About these documents" href="../../../about.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="How to build a vpp dispatch trace aware Wireshark" href="../buildwireshark.html" />
+    <link rel="next" title="Barnacles" href="barnacles.html" />
     <link rel="prev" title="Fast Convergence" href="fastconvergence.html" /> 
 </head>
 
@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -126,12 +127,10 @@
 <li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Scale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#main-heap">Main Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#stats-heap">Stats Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
@@ -139,6 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
@@ -226,19 +226,15 @@
   <div class="section" id="scale">
 <span id="id1"></span><h1>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">¶</a></h1>
 <p>The only limiting factor on FIB scale is the amount of memory
-allocated to each heap the FIB uses, and there are 4:</p>
+allocated to each heap the FIB uses, and there are 2:</p>
 <ul class="simple">
-<li><p>The IP4 heap</p></li>
-<li><p>The IP6 heap</p></li>
 <li><p>The main heap</p></li>
 <li><p>The stats heap</p></li>
 </ul>
-</div>
-<div class="section" id="ip4-heap">
-<h1>IP4 Heap<a class="headerlink" href="#ip4-heap" title="Permalink to this headline">¶</a></h1>
-<p>The IPv4 heap is used to allocate the memory needed for the
-data-structures within which the IPv4 prefixes are stored. Each
-table, created by the user, i.e. with;</p>
+<div class="section" id="main-heap">
+<h2>Main Heap<a class="headerlink" href="#main-heap" title="Permalink to this headline">¶</a></h2>
+<p>The main heap is used to allocate all memory needed for the FIB
+data-structures. Each table, created by the user, i.e. with;</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip table add <span class="m">1</span>
 </pre></div>
 </div>
@@ -295,16 +291,10 @@ heap usage statistics for the IP4 heap are shown at the end.</p>
 <span class="go">no traced allocations</span>
 </pre></div>
 </div>
-<p>VPP was started with a 1G IP4 heap.</p>
-</div>
-<div class="section" id="ip6-heap">
-<h1>IP6 Heap<a class="headerlink" href="#ip6-heap" title="Permalink to this headline">¶</a></h1>
-<p>The IPv6 heap is used to allocate the memory needed for the
-data-structure within which the IPv6 prefixes are stored. IPv6 also
-has the concept of forwarding and non-forwarding entries, however for
-IPv6 all the forwarding entries are stored in a single hash table
-(same goes for the non-forwarding). The key to the hash table includes
-the IPv6 table-id.</p>
+<p>IPv6 also has the concept of forwarding and non-forwarding entries,
+however for IPv6 all the forwarding entries are stored in a single
+hash table (same goes for the non-forwarding). The key to the hash
+table includes the IPv6 table-id.</p>
 <p>To see the amount of memory consumed by the IPv4 tables use:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip6 fib mem</span>
 <span class="go">IPv6 Non-Forwarding Hash Table:</span>
@@ -393,9 +383,6 @@ the IPv6 table-id.</p>
 </div>
 <p>as can be seen from the output the IPv6 heap in this case was scaled
 to 1GB and 1million prefixes has used 56MB of it.</p>
-</div>
-<div class="section" id="main-heap">
-<h1>Main Heap<a class="headerlink" href="#main-heap" title="Permalink to this headline">¶</a></h1>
 <p>The main heap is used to allocate objects that represent the FIB
 entries in the control and data plane (see <a class="reference internal" href="controlplane.html#controlplane"><span class="std std-ref">The Control Plane</span></a> and
 <a class="reference internal" href="dataplane.html#dataplane"><span class="std std-ref">The Data Plane</span></a>) such as <em>fib_entry_t</em> and <em>load_balance_t</em>. These come
@@ -455,7 +442,7 @@ different (sets of) next-hops, the number of path-lists and paths
 requires will increase.</p>
 </div>
 <div class="section" id="stats-heap">
-<h1>Stats Heap<a class="headerlink" href="#stats-heap" title="Permalink to this headline">¶</a></h1>
+<h2>Stats Heap<a class="headerlink" href="#stats-heap" title="Permalink to this headline">¶</a></h2>
 <p>VPP collects statistics for each route. For each route VPP collects
 byte and packet counters for packets sent to the prefix (i.e. the
 route was matched in the data-plane) and packets sent via the prefix (i.e. the
@@ -467,7 +454,7 @@ requires 4 counters per route in the stats segment.</p>
 <span class="go">total: 1023.99M, used: 456.83M, free: 567.17M, trimmable: 388.91M</span>
 </pre></div>
 </div>
-<p>VPP was started with a 1G stats heap.</p>
+</div>
 </div>
 
 
@@ -478,7 +465,7 @@ requires 4 counters per route in the stats segment.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../buildwireshark.html" class="btn btn-neutral float-right" title="How to build a vpp dispatch trace aware Wireshark" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="barnacles.html" class="btn btn-neutral float-right" title="Barnacles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="fastconvergence.html" class="btn btn-neutral float-left" title="Fast Convergence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

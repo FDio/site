@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -126,12 +127,10 @@
 <li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
@@ -139,6 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
@@ -229,8 +229,8 @@
             
   <div class="section" id="attached-export">
 <span id="attachedexport"></span><h1>Attached Export<a class="headerlink" href="#attached-export" title="Permalink to this headline">¶</a></h1>
-<p>Extranets make prefixes in VRF A also reachable from VRF B. VRF A is the export VRF,
-B the import. Consider this route in the export VRF;</p>
+<p>Extranets make prefixes in table A also reachable from table B. Table A is the export table,
+B the import. Consider this route in the export table;</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> ip route add table <span class="m">2</span> <span class="m">1</span>.1.1.0/24 via <span class="m">10</span>.10.10.0 GigabitEthernet0/8/0
 </pre></div>
 </div>
@@ -250,7 +250,7 @@ attached prefix is exported, so are the adj-fibs and local prefixes that it
 covers, and only the adj-fibs and locals, not any covered more specific
 (sourced e.g. by API). The imported FIB entries are sourced as <em>attached-export</em>
 this is a low priority source, so if those prefixes already exist in the import
-VRF, sourced by the API, then they will continue to forward with that information.</p>
+table, sourced by the API, then they will continue to forward with that information.</p>
 <div class="figure align-default">
 <img alt="../../../_images/fib20fig6.png" src="../../../_images/fib20fig6.png" />
 </div>

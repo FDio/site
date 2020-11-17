@@ -37,7 +37,7 @@
     <link rel="author" title="About these documents" href="../../../about.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="The Data Plane" href="dataplane.html" />
+    <link rel="next" title="Mark and Sweep" href="marknsweep.html" />
     <link rel="prev" title="Attached Export" href="attachedexport.html" /> 
 </head>
 
@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -126,12 +127,10 @@
 <li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
@@ -139,6 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
@@ -239,7 +239,7 @@ for the safe retrieval of any object type.</p>
 child to parent relationship is thus fully known to the child, and hence a forward
 walk of the graph (from child to parent) is trivial. However, a parent does not choose
 its children, it does not even choose the type. All object types that form part of the
-FIB control plane graph all inherit from a single base class14; <em>fib_node_t</em>. A <em>fib_node_t</em>
+FIB control plane graph all inherit from a single base class; <em>fib_node_t</em>. A <em>fib_node_t</em>
 identifies the object’s index and its associated virtual function table provides the
 parent a mechanism to visit that object during the walk. The reason for a back-walk
 is to inform all children that the state of the parent has changed in some way, and
@@ -256,7 +256,7 @@ contains a <em>fib_node_ptr_t</em>. The VPP pool memory model applies to the lis
 they are also identified by an index. When a child is added to a list it is returned the
 index of the element. Using this index the element can be removed in constant time.
 The list supports ‘push-front’ and ‘push-back’ semantics for ordering. To walk the children
-of a parent is then to iterate of this list.</p>
+of a parent is then to iterate this list.</p>
 <p>A back-walk of the graph is a depth first search where all children in all levels of the
 hierarchy are visited. Such walks can therefore encounter all object instances in the
 FIB control plane graph, numbering in the millions. A FIB control-plane graph is cyclic
@@ -280,10 +280,13 @@ same parent instance before the fib-walk process can run. FIB is a ‘final stat
 If a parent changes n times, it is not necessary for the children to also update n
 times, instead it is only necessary that this child updates to the latest, or final,
 state. Consequently when multiple walks on a parent (and hence potential updates to a
-child) are queued, these walks can be merged into a single walk.</p>
+child) are queued, these walks can be merged into a single walk. This
+is the main reason the walks are designed this way, to eliminate (as
+much as possible) redundant work and thus converge the system as fast
+as possible.</p>
 <p>Choosing between a synchronous and an asynchronous walk is therefore a trade-off between
 time it takes to propagate a change in the parent to all of its children, versus the
-time it takes to act on a single route update. For example, if a route update where to
+time it takes to act on a single route update. For example, if a route update were to
 affect millions of child recursive routes, then the rate at which such updates could be
 processed would be dependent on the number of child recursive route which would not be
 good. At the time of writing FIB2.0 uses synchronous walk in all locations except when
@@ -311,7 +314,7 @@ case mentioned above.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dataplane.html" class="btn btn-neutral float-right" title="The Data Plane" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="marknsweep.html" class="btn btn-neutral float-right" title="Mark and Sweep" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="attachedexport.html" class="btn btn-neutral float-left" title="Attached Export" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

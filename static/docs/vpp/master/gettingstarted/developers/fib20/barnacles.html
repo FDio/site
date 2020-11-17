@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Multi-Architecture Arbitrary Function Cookbook &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>Barnacles &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
     <link rel="author" title="About these documents" href="../../../about.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Bounded-index Extensible Hashing (bihash)" href="../bihash.html" />
-    <link rel="prev" title="Multi-Architecture Graph Node Cookbook" href="nodefns.html" /> 
+    <link rel="next" title="How to build a vpp dispatch trace aware Wireshark" href="../buildwireshark.html" />
+    <link rel="prev" title="Scale" href="scale.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -114,18 +114,25 @@
 <li class="toctree-l3"><a class="reference internal" href="../featurearcs.html">Feature Arcs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../metadata.html">Buffer Metadata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Multi-architecture support</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="nodefns.html">Multi-Architecture Graph Node Cookbook</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Multi-Architecture Arbitrary Function Cookbook</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../multiarch/index.html">Multi-architecture support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../vpp_api_module.html">VPP API module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../binary_api_support.html">Binary API Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../buildsystem/index.html">Build System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../eventviewer.html">Event-logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thedatamodel.html">The Data Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Barnacles</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../punt.html">Punting Packets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
@@ -195,15 +202,15 @@
         
           <li><a href="../index.html">For Developers</a> &raquo;</li>
         
-          <li><a href="index.html">Multi-architecture support</a> &raquo;</li>
+          <li><a href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a> &raquo;</li>
         
-      <li>Multi-Architecture Arbitrary Function Cookbook</li>
+      <li>Barnacles</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../_sources/gettingstarted/developers/multiarch/arbfns.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/gettingstarted/developers/fib20/barnacles.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -216,76 +223,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="multi-architecture-arbitrary-function-cookbook">
-<h1>Multi-Architecture Arbitrary Function Cookbook<a class="headerlink" href="#multi-architecture-arbitrary-function-cookbook" title="Permalink to this headline">¶</a></h1>
-<p>Optimizing arbitrary functions for multiple architectures is simple
-enough, and very similar to process used to produce multi-architecture
-graph node dispatch functions.</p>
-<p>As with multi-architecture graph nodes, we compile source files
-multiple times, generating multiple implementations of the original
-function, and a public selector function.</p>
-<div class="section" id="details">
-<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Decorate function definitions with CLIB_MARCH_FN macros. For example:</p>
-<p>Change the original function prototype…</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u32</span> <span class="n">vlib_frame_alloc_to_node</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span>
-                              <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
-</pre></div>
+  <p>x.. _barnacles:</p>
+<div class="section" id="barnacles">
+<h1>Barnacles<a class="headerlink" href="#barnacles" title="Permalink to this headline">¶</a></h1>
+<p>Features that are stuck on the side of the FIB. Those that directly use
+the services that the FIB provides.</p>
+<p>In the section on FIB fundamentals it was mentioned  that there is a
+separation between what to match and how to forward. In an IP FIB what
+to match is the packet’s destination address against a table of IP
+prefixes, and how to forward is described by a list of paths (the
+<strong>fib_path_list_t</strong>).</p>
+<div class="section" id="acl-based-forwarding">
+<h2>ACL Based Forwarding<a class="headerlink" href="#acl-based-forwarding" title="Permalink to this headline">¶</a></h2>
+<p>ACL Based Forwarding (ABF) is also know as policy based routing
+(PBR). In ABF what to match is described by an ACL.</p>
+<p>ABF uses two VPP services; ACL as a service, as provided by the ACL
+plugin and FIB path-lists. It just glues them together.</p>
+<p>an ABF policy is the combination of an ACL with the forwarding
+description of a FIB path-list. An ABF attachment is the association
+of [an ordered set of] ABF policies to an interface. The attachment is
+consulted on the ingress path of the IP DP (as an input
+feature). If the ACL matches then the associated forwarding is
+followed, if not, the packet continues along the DP. Simples.</p>
 </div>
-<p>…by recasting the function name and return type as the first two
-arguments to the CLIB_MARCH_FN macro:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLIB_MARCH_FN</span> <span class="p">(</span><span class="n">vlib_frame_alloc_to_node</span><span class="p">,</span> <span class="n">u32</span><span class="p">,</span> <span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span>
-               <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span> <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
-</pre></div>
+<div class="section" id="layer-3-cross-connect">
+<h2>Layer 3 Cross Connect<a class="headerlink" href="#layer-3-cross-connect" title="Permalink to this headline">¶</a></h2>
+<p>An L3 cross-connect (L3XC) matches all packets
+that ingress the interface and then forwards using the supplied FIB
+path-list. Naturally it runs as an input feature in the IP
+path. Super simples.</p>
 </div>
-<p>In the actual vpp image, several versions of vlib_frame_alloc_to_node
-will appear: vlib_frame_alloc_to_node_avx2,
-vlib_frame_alloc_to_node_avx512, and so forth.</p>
-<p>For each multi-architecture function, use the CLIB_MARCH_FN_SELECT
-macro to help generate the one-and-only multi-architecture selector
-function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifndef CLIB_MARCH_VARIANT</span>
-<span class="n">u32</span>
-<span class="n">vlib_frame_alloc_to_node</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span>
-                      <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">return</span> <span class="n">CLIB_MARCH_FN_SELECT</span> <span class="p">(</span><span class="n">vlib_frame_alloc_to_node</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">to_node_index</span><span class="p">,</span> <span class="n">frame_flags</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="c1">#endif /* CLIB_MARCH_VARIANT */</span>
-</pre></div>
+<div class="section" id="ip-punt">
+<h2>IP Punt<a class="headerlink" href="#ip-punt" title="Permalink to this headline">¶</a></h2>
+<p>Matches all IP packets that VPP has punted. Why they are punted is not
+relevant. All IP punted packets are sent by VPP to the punt feature
+arc. This feature ‘matches’ all packets that it receives and forwards
+using the FIB path-list.</p>
 </div>
-<p>Once bound, the multi-architecture selector function is about as
-expensive as an indirect function call; which is to say: not very
-expensive.</p>
-</div>
-<div class="section" id="modify-cmakelists-txt">
-<h2>Modify CMakeLists.txt<a class="headerlink" href="#modify-cmakelists-txt" title="Permalink to this headline">¶</a></h2>
-<p>If the component in question already lists “MULTIARCH_SOURCES”, simply
-add the indicated .c file to the list.  Otherwise, add as shown
-below. Note that the added file “new_multiarch_node.c” should appear in
-<em>both</em> SOURCES and MULTIARCH_SOURCES:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_vpp_plugin</span><span class="p">(</span><span class="n">myplugin</span>
-  <span class="n">SOURCES</span>
-  <span class="n">multiarch_code</span><span class="o">.</span><span class="n">c</span>
-  <span class="o">...</span>
-
-  <span class="n">MULTIARCH_SOURCES</span>
-  <span class="n">multiarch_code</span><span class="o">.</span><span class="n">c</span>
-  <span class="o">...</span>
- <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="a-word-to-the-wise">
-<h2>A Word to the Wise<a class="headerlink" href="#a-word-to-the-wise" title="Permalink to this headline">¶</a></h2>
-<p>A file which liberally mixes functions worth compiling for multiple
-architectures and functions which are not will end up full of
-#ifndef CLIB_MARCH_VARIANT conditionals. This won’t do a thing to make
-the code look any better.</p>
-<p>Depending on requirements, it may make sense to move functions to
-(new) files to reduce complexity and/or improve legibility of the
-resulting code.</p>
+<div class="section" id="unicast-reverse-path-forwarding">
+<h2>Unicast Reverse Path Forwarding<a class="headerlink" href="#unicast-reverse-path-forwarding" title="Permalink to this headline">¶</a></h2>
+<p>Unicast Reverse Path Forwarding (uRPF) is the process of ensuring that
+a packet has a conforming source address. It comes in two
+flavours:</p>
+<ul class="simple">
+<li><p>loose: The source address must be reachable, i.e. FIB must have a
+route that will forward to the source address. The default route
+counts as long as it does not drop.</p></li>
+<li><p>strict: The source address is reachable via the interface on which
+the packet arrived, i.e. the FIB’s route for the source address must
+include the input interface as an output interface.</p></li>
+</ul>
+<p>The uRPF feature can run on either the input or output IP feature
+arc. In both cases it serves as an anti-spoofing check, though the
+semantics are slightly different. On the input arc it enforces that
+peers on that link are only using source addresses that they should -
+a network admin should employ at the access edge. On the output
+arc it enforces that a packet is sourced from a prefix that belongs to
+the network, i.e. that is has originated from within an SP’s
+network, a network admin could use at its peering points.</p>
+<p>To perform a uRPF check, the DP performs an IP FIB lookup on the
+source address, this always results in a load-balance (LB) object. If
+the LB has only 1 bucket and that bucket stacks on a drop DPO, then
+both a loose and strict check will fail, otherwise a loose check
+will pass. Each LB object has an associated uRPF list object. This
+object holds the list of interfaces through which the prefix is
+reachable. To pass the strict check, the input/output interface must
+be in this list.</p>
 </div>
 </div>
 
@@ -297,10 +300,10 @@ resulting code.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../bihash.html" class="btn btn-neutral float-right" title="Bounded-index Extensible Hashing (bihash)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../buildwireshark.html" class="btn btn-neutral float-right" title="How to build a vpp dispatch trace aware Wireshark" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nodefns.html" class="btn btn-neutral float-left" title="Multi-Architecture Graph Node Cookbook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="scale.html" class="btn btn-neutral float-left" title="Scale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -37,7 +37,7 @@
     <link rel="author" title="About these documents" href="../../../about.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Fast Convergence" href="fastconvergence.html" />
+    <link rel="next" title="Debugging" href="debugging.html" />
     <link rel="prev" title="MPLS FIB" href="mplsfib.html" /> 
 </head>
 
@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -126,12 +127,10 @@
 <li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
@@ -139,6 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
@@ -225,18 +225,37 @@
             
   <div class="section" id="ip-multicast-fib">
 <span id="mfib"></span><h1>IP Multicast FIB<a class="headerlink" href="#ip-multicast-fib" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="basics">
-<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<p>The two principal differences between multicast and unicast forwarding
+are:</p>
+<ul class="simple">
+<li><p>there is no load-balancing among paths, there is only replication
+across paths.</p></li>
+<li><p>multicast forwarding has an explicit reverse path forwarding (RPF)
+check. It will only forward a packet if it arrives from a peer for
+which it has been explicitly configured to accept.</p></li>
+</ul>
+<p>The other factor that influences the design of the mFIB is that the
+match criteria (the prefix) is different. For multicast it is
+necessary to be able to match on source and destination/group
+addresses (termed an (S,G)) and only on a destination prefix (a (*,
+G/m)). This prefix is much bigger than a unicast prefix, and since
+unicast scale is almost always greater than multicast scale, it is not
+a good idea to have a single definition of a prefix. Therefore,
+there is a fib_prefix_t (and hence a fib_entry_t) and an
+mfib_prefix_t (and hence a mfib_entry_t).</p>
+<p>The fib_path_t and fib_path_list_t are reused. A path can represent
+either a peer from which to accept packets or a peer to which to send
+packets. A path-extension is added to the fib_path_t/mfib_entry_t to
+describe the role the path plays. Logically the path-list is split
+into two sets; an accepting set and a forwarding set. The forwarding set
+contributes a replicate DPO for forwarding and the accepting set
+contributes a list of interfaces (an mfib_itf_t) for the RPF check.</p>
 <p>An IP multicast FIB (mFIB) is a data-structure that holds entries that
-represent a (S,G) or a (*,G) multicast group. There is one IPv4 and
+represent a (S,G) or a (*,G/m) multicast group. There is one IPv4 and
 one IPv6 mFIB per IP table, i.e. each time the user calls ‘ip[6] table
 add X’ an mFIB is created.</p>
-<p>A path describes either where a packet is sent to or where a packet is
-received from. mFIB entries maintain two sets of ‘paths’; the
-forwarding set and the accepting set. Each path in the forwarding set
-will output a replica of a received packet. A received packet is only
-accepted for forwarding if it ingresses on a path that matches in the
-accepting set - this is the RPF check.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>To add an entry to the default mFIB for the group (1.1.1.1, 239.1.1.1)
 that will replicate packets to GigEthernet0/0/0 and GigEthernet0/0/1, do:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip mroute add <span class="m">1</span>.1.1.1 <span class="m">239</span>.1.1.1 via GigEthernet0/0/0 Forward
@@ -299,7 +318,7 @@ MPLS-tunnel or a BIER table disposition entry.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="fastconvergence.html" class="btn btn-neutral float-right" title="Fast Convergence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="debugging.html" class="btn btn-neutral float-right" title="Debugging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="mplsfib.html" class="btn btn-neutral float-left" title="MPLS FIB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

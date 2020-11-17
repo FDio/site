@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -126,12 +127,10 @@
 <li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">MPLS FIB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
@@ -139,6 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
@@ -232,6 +232,31 @@ the IP FIB.  The only difference is the implementation of the
 table. Whereas for IPv4 this is an mtrie and for IPv6 a hash table,
 for MPLS it is a flat array indexed by a 21 bit key (label &amp; EOS
 bit). This implementation is chosen to favour packet forwarding speed.</p>
+<p>It can be the case in MPLS forwarding that packets received with the
+EOS bit set in the MPLS label need to be forwarded differently from
+those without. The most common example of this is if the path set
+contains a path that does not have an output label. In this case the
+non-EOS packets cannot take this path, because to do so would expose
+the neighbouring router to a label that it did not allocate.</p>
+<p>The desgin choice to make with an MPLS FIB table is therefore:
+- 20 bit key: label only. When the EOS and non-EOS actions differ the result is a ‘EOS-choice’ object.
+- 21 bit key: label and EOS-bit. The result is then the specific action based on EOS-bit.</p>
+<dl class="simple">
+<dt>20 bit key</dt><dd><ul class="simple">
+<li><p>Advantages:lower memory overhead, since there are few DB entries.</p></li>
+<li><p>Disadvantages: slower DP performance in the case the path-lists
+differ, as more objects are encounterd in the switch path</p></li>
+</ul>
+</dd>
+<dt>21 bit key</dt><dd><ul class="simple">
+<li><p>Advantages: faster DP performance
+Disadvantages: increased memory footprint.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Switching between schemes based on observed/measured action similarity
+is not considered on the grounds of complexity and flip-flopping.</p>
+<p>VPP mantra - favour performance over memory. We choose a 21 bit key.</p>
 </div>
 <div class="section" id="basics">
 <h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
@@ -260,7 +285,7 @@ use an interface as an egress path.</p>
 <p>There is a tight coupling between IP and MPLS forwarding. MPLS
 forwarding equivalence classes (FECs) are often an IP prefix – that is
 to say that traffic matching a given IP prefix is routed into a MPLS
-label switch path (LSP). It is thus necessary to be able to associated
+label switch path (LSP). It is thus necessary to be able to associate
 a given prefix/route with an [out-going] MPLS label that will be
 imposed when the packet is forwarded. This is configured as:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip route add <span class="m">1</span>.1.1.1/32 via <span class="m">10</span>.10.10.10 GigEthernet0/0/0 out-labels <span class="m">33</span>
@@ -283,7 +308,7 @@ packets to that local-label forwarded equivalently to the prefix do;</p>
 <p>In the API this action is called a ‘bind’.
 The router receiving the MPLS encapsulated packets needs to be
 programmed with actions associated which each label value – this is
-the role of the MPLS FIB. The MPLS FIB Is a table, whose key is the
+the role of the MPLS FIB. The MPLS FIB is a table, whose key is the
 MPLS label value and end-of-stack (EOS) bit, which stores the action
 to perform on packets with matching encapsulation. Currently supported
 actions are:</p>
@@ -308,7 +333,7 @@ and IP lookup only to an eos packet.</p>
 </div>
 <div class="section" id="mpls-vpn">
 <h2>MPLS VPN<a class="headerlink" href="#mpls-vpn" title="Permalink to this headline">¶</a></h2>
-<p>To configure an MPLS VPN for a PE the follow example can be used.</p>
+<p>To configure an MPLS VPN for a PE the following example can be used.</p>
 <p>Step 1; Configure routes to the iBGP peers - note these route MUST
 have out-going labels;</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip route add <span class="m">10</span>.0.0.1/32 via <span class="m">192</span>.168.1.2 Eth0 out-labels <span class="m">33</span>

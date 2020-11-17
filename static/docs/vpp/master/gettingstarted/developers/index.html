@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -126,6 +127,7 @@
 <li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
@@ -245,10 +247,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="add_plugin.html">Adding a plugin</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="add_plugin.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_plugin.html#strategic-choices">Strategic Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_plugin.html#how-to-create-a-new-plugin">How to create a new plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_plugin.html#generated-files-in-detail">Generated Files in Detail</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gitreview.html#setup">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitreview.html#clone-with-ssh">Clone with ssh</a></li>
@@ -382,12 +386,10 @@
 <li class="toctree-l2"><a class="reference internal" href="fib20/tunnels.html">Tunnels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fib20/mplsfib.html">MPLS FIB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fib20/multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/debugging.html">Debugging</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fib20/fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fib20/scale.html">Scale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html#main-heap">Main Heap</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fib20/scale.html#stats-heap">Stats Heap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fib20/barnacles.html">Barnacles</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a><ul>
@@ -409,12 +411,21 @@
 <li class="toctree-l2"><a class="reference internal" href="quic_plugin.html#internal-mechanics">Internal Mechanics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cross_compile_macos.html#installing-indent-2-2-11">Installing indent 2.2.11</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="cnat.html">Cloud NAT</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cnat.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cnat.html#terminology-usage">Terminology &amp; Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cnat.html#extending-the-nat">Extending the NAT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cnat.html#known-limitations">Known limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VPPAPI.html">VPP API Language    {#api_lang_doc}</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VPPAPI.html#language-definition">Language definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPPAPI.html#types">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPPAPI.html#language-generators">Language generators</a></li>
 </ul>
 </li>
 </ul>

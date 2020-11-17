@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Multi-Architecture Arbitrary Function Cookbook &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>Debugging &mdash; The Vector Packet Processor 20.01 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
     <link rel="author" title="About these documents" href="../../../about.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Bounded-index Extensible Hashing (bihash)" href="../bihash.html" />
-    <link rel="prev" title="Multi-Architecture Graph Node Cookbook" href="nodefns.html" /> 
+    <link rel="next" title="Fast Convergence" href="fastconvergence.html" />
+    <link rel="prev" title="IP Multicast FIB" href="multicast.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -114,18 +114,25 @@
 <li class="toctree-l3"><a class="reference internal" href="../featurearcs.html">Feature Arcs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../metadata.html">Buffer Metadata</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Multi-architecture support</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="nodefns.html">Multi-Architecture Graph Node Cookbook</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Multi-Architecture Arbitrary Function Cookbook</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../multiarch/index.html">Multi-architecture support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../vpp_api_module.html">VPP API module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../binary_api_support.html">Binary API Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../buildsystem/index.html">Build System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../eventviewer.html">Event-logger</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thedatamodel.html">The Data Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../punt.html">Punting Packets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
@@ -195,15 +202,15 @@
         
           <li><a href="../index.html">For Developers</a> &raquo;</li>
         
-          <li><a href="index.html">Multi-architecture support</a> &raquo;</li>
+          <li><a href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a> &raquo;</li>
         
-      <li>Multi-Architecture Arbitrary Function Cookbook</li>
+      <li>Debugging</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../_sources/gettingstarted/developers/multiarch/arbfns.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/gettingstarted/developers/fib20/debugging.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -216,77 +223,90 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="multi-architecture-arbitrary-function-cookbook">
-<h1>Multi-Architecture Arbitrary Function Cookbook<a class="headerlink" href="#multi-architecture-arbitrary-function-cookbook" title="Permalink to this headline">¶</a></h1>
-<p>Optimizing arbitrary functions for multiple architectures is simple
-enough, and very similar to process used to produce multi-architecture
-graph node dispatch functions.</p>
-<p>As with multi-architecture graph nodes, we compile source files
-multiple times, generating multiple implementations of the original
-function, and a public selector function.</p>
-<div class="section" id="details">
-<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
-<p>Decorate function definitions with CLIB_MARCH_FN macros. For example:</p>
-<p>Change the original function prototype…</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u32</span> <span class="n">vlib_frame_alloc_to_node</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span>
-                              <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>…by recasting the function name and return type as the first two
-arguments to the CLIB_MARCH_FN macro:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLIB_MARCH_FN</span> <span class="p">(</span><span class="n">vlib_frame_alloc_to_node</span><span class="p">,</span> <span class="n">u32</span><span class="p">,</span> <span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span>
-               <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span> <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>In the actual vpp image, several versions of vlib_frame_alloc_to_node
-will appear: vlib_frame_alloc_to_node_avx2,
-vlib_frame_alloc_to_node_avx512, and so forth.</p>
-<p>For each multi-architecture function, use the CLIB_MARCH_FN_SELECT
-macro to help generate the one-and-only multi-architecture selector
-function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifndef CLIB_MARCH_VARIANT</span>
-<span class="n">u32</span>
-<span class="n">vlib_frame_alloc_to_node</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span>
-                      <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">return</span> <span class="n">CLIB_MARCH_FN_SELECT</span> <span class="p">(</span><span class="n">vlib_frame_alloc_to_node</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">to_node_index</span><span class="p">,</span> <span class="n">frame_flags</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="c1">#endif /* CLIB_MARCH_VARIANT */</span>
-</pre></div>
-</div>
-<p>Once bound, the multi-architecture selector function is about as
-expensive as an indirect function call; which is to say: not very
-expensive.</p>
-</div>
-<div class="section" id="modify-cmakelists-txt">
-<h2>Modify CMakeLists.txt<a class="headerlink" href="#modify-cmakelists-txt" title="Permalink to this headline">¶</a></h2>
-<p>If the component in question already lists “MULTIARCH_SOURCES”, simply
-add the indicated .c file to the list.  Otherwise, add as shown
-below. Note that the added file “new_multiarch_node.c” should appear in
-<em>both</em> SOURCES and MULTIARCH_SOURCES:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_vpp_plugin</span><span class="p">(</span><span class="n">myplugin</span>
-  <span class="n">SOURCES</span>
-  <span class="n">multiarch_code</span><span class="o">.</span><span class="n">c</span>
-  <span class="o">...</span>
+  <div class="section" id="debugging">
+<span id="id1"></span><h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h1>
+<p>the anatomy of a route:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">BGvpp# sh ip fib 1.1.1.3/32</span>
+<span class="go">ipv4-VRF:0, fib_index:0, flow hash:[src dst sport dport proto ] epoch:0 flags:none locks:[adjacency:1, recursive-resolution:4, default-route:1, ]</span>
+<span class="go">1.1.1.0/24 fib:0 index:9 locks:2</span>
+<span class="go">  CLI refs:1 src-flags:added,contributing,active,</span>
+<span class="go">    path-list:[24] locks:4 flags:shared, uPRF-list:11 len:1 itfs:[1, ]</span>
+<span class="go">      path:[26] pl-index:24 ip4 weight=1 pref=0 attached-nexthop:  oper-flags:resolved,</span>
+<span class="go">        10.0.0.1 loop0</span>
+<span class="go">      [@0]: arp-ipv4: via 10.0.0.1 loop0</span>
 
-  <span class="n">MULTIARCH_SOURCES</span>
-  <span class="n">multiarch_code</span><span class="o">.</span><span class="n">c</span>
-  <span class="o">...</span>
- <span class="p">)</span>
+<span class="go"> forwarding:   unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:11 buckets:1 uRPF:11 to:[0:0]]</span>
+<span class="go">    [0] [@3]: arp-ipv4: via 10.0.0.1 loop0</span>
 </pre></div>
 </div>
+<p>let’s go line by line.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ipv4-VRF:0, fib_index:0, flow hash:[src dst sport dport proto ] epoch:0 flags:none locks:[adjacency:1, recursive-resolution:4, default-route:1, ]</span>
+</pre></div>
 </div>
-<div class="section" id="a-word-to-the-wise">
-<h2>A Word to the Wise<a class="headerlink" href="#a-word-to-the-wise" title="Permalink to this headline">¶</a></h2>
-<p>A file which liberally mixes functions worth compiling for multiple
-architectures and functions which are not will end up full of
-#ifndef CLIB_MARCH_VARIANT conditionals. This won’t do a thing to make
-the code look any better.</p>
-<p>Depending on requirements, it may make sense to move functions to
-(new) files to reduce complexity and/or improve legibility of the
-resulting code.</p>
+<p>Each field in turn:</p>
+<ul class="simple">
+<li><p>ipv4-VRF:0: the name of the table (as given by the user, or
+automatically generated by VPP).</p></li>
+<li><p>fib-index:0; in the VPP pool of FIB objects, this is index 0</p></li>
+<li><p>flow hash:[src dst sport dport proto ]: When calculating the flow
+hash to use for load-balanacing, these are the fields in the packet
+that are used. There is an API to change this per-table.</p></li>
+<li><p>epoch:0; Used during mark-n-sweep.</p></li>
+<li><p>flags:none; use the force, to find the per-table flags.</p></li>
+<li><p>locks: per-source reference counting, a table can only be deleted
+when all sources no longer reference it.</p></li>
+</ul>
+<p>next line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">1.1.1.0/24 fib:0 index:9 locks:2</span>
+</pre></div>
 </div>
+<p>this shows the route that matched the show request. note that it is not
+an exact match, it’s an LPM. The route is in FIB index 0, its index
+(in the VPP pool of fib_entry_t objects) is nine and there are two
+references to the entry.
+You’ll get the same output if you type “sh fib entry 9”</p>
+<p>next line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">CLI refs:1 src-flags:added,contributing,active,</span>
+</pre></div>
+</div>
+<p>the ‘CLI’ has sourced this route (it was added via CLI). This source
+has been added (well duh) it is ‘active’, meaning it is the best
+source, and it is contributing a forwarding object. There are some
+scenarios where sources other than the active source contribute,
+namely interpose sources.</p>
+<p>next line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">path-list:[24] locks:4 flags:shared, uPRF-list:11 len:1 itfs:[1, ]</span>
+</pre></div>
+</div>
+<p>This is path-list inex 24 (see “sh fib path-list 24” this will also
+show the  children), it is ‘shared’,
+meaning that if other prefixes were to use the same set of paths,
+then they would also use this path-list object. It has uRPF list 11 of
+length 1 containing interface index 1 (which is loop0, see “sh int”).</p>
+<p>next line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">path:[26] pl-index:24 ip4 weight=1 pref=0 attached-nexthop:  oper-flags:resolved,</span>
+<span class="go">  10.0.0.1 loop0</span>
+<span class="go">[@0]: arp-ipv4: via 10.0.0.1 loop0</span>
+</pre></div>
+</div>
+<p>This is path 26 (see “sh fib path 26”). It’s a member of
+path-list 24. It’s ip4 has a weight of 1 and a preference of 0. It’s
+of type ‘attached-nexthop’ and currently resolved - woohoo.
+It is a path ‘via 10.0.0.1 loop0’. It is contributing an incomplete adjacency.</p>
+<p>next line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">forwarding:   unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:11 buckets:1 uRPF:11 to:[0:0]]</span>
+<span class="go">    [0] [@3]: arp-ipv4: via 10.0.0.1 loop0</span>
+</pre></div>
+</div>
+<p>This section describes how packets of type ‘unicast-ip4’ will be
+forwarded. It is the result of processing the path information from
+above.
+Here we see load-balance object 11, which has 1 bucket/choice. It is
+also linked to uRPF instance 11 (which it got from path-list 24).
+In bucket 0 there is the incomplete adjacnecy that was contributed by
+path 26.</p>
 </div>
 
 
@@ -297,10 +317,10 @@ resulting code.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../bihash.html" class="btn btn-neutral float-right" title="Bounded-index Extensible Hashing (bihash)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="fastconvergence.html" class="btn btn-neutral float-right" title="Fast Convergence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nodefns.html" class="btn btn-neutral float-left" title="Multi-Architecture Graph Node Cookbook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="multicast.html" class="btn btn-neutral float-left" title="IP Multicast FIB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

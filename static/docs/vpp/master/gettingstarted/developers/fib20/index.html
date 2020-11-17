@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -126,12 +127,10 @@
 <li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
@@ -139,6 +138,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
@@ -232,22 +232,34 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="thedatamodel.html">The Data Model</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="controlplane.html">The Control Plane</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="arpentries.html">ARP Entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="neighbors.html">Neighbours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="neighbors.html#adjacency">Adjacency</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="routes.html">Routes</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="routes.html#fib-sources">FIB sources</a></li>
-<li class="toctree-l4"><a class="reference internal" href="routes.html#adjacency-source-fib-entries">Adjacency source FIB entries</a></li>
-<li class="toctree-l4"><a class="reference internal" href="routes.html#recursive-routes">Recursive Routes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="routes.html#output-labels">Output labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="routes.html#basics">Basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="routes.html#tables">Tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="routes.html#model">Model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="routes.html#fib-sources">FIB sources</a></li>
+<li class="toctree-l5"><a class="reference internal" href="routes.html#adjacency-source-fib-entries">Adjacency source FIB entries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="routes.html#recursive-routes">Recursive Routes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="routes.html#output-labels">Output labels</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="attachedexport.html">Attached Export</a></li>
 <li class="toctree-l3"><a class="reference internal" href="graphwalks.html">Graph Walks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="marknsweep.html">Mark and Sweep</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dataplane.html">The Data Plane</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tunnels.html">Tunnels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tunnels.html#multi-point-tunnels">Multi-Point Tunnels</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="mplsfib.html">MPLS FIB</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mplsfib.html#implementation">Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mplsfib.html#basics">Basics</a></li>
@@ -256,16 +268,30 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="multicast.html">IP Multicast FIB</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="multicast.html#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicast.html#usage">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multicast.html#advanced">Advanced</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scale.html">Scale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scale.html#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scale.html#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fastconvergence.html#few-updates">Few Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastconvergence.html#pic-core">PIC Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastconvergence.html#ibgp-pic-edge">iBGP PIC Edge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fastconvergence.html#which-objects">Which Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scale.html">Scale</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scale.html#main-heap">Main Heap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scale.html#stats-heap">Stats Heap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="barnacles.html">Barnacles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="barnacles.html#acl-based-forwarding">ACL Based Forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="barnacles.html#layer-3-cross-connect">Layer 3 Cross Connect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="barnacles.html#ip-punt">IP Punt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="barnacles.html#unicast-reverse-path-forwarding">Unicast Reverse Path Forwarding</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
