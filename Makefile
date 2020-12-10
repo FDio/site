@@ -24,3 +24,9 @@ featurelist: check-VPP_DIR
 		(cd ${VPP_DIR} && ./src/scripts/fts.py --markdown) > \
 		./content/vppProject/vppfeatures/features.md ; \
 	)
+
+build:
+	git submodule update --init --recursive
+
+update-themes:
+	git submodule update --remote

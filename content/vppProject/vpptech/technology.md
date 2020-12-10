@@ -28,6 +28,7 @@ VPP reads the largest available vector of packets from the network IO layer.
 <br><img src="/img/tech-02.png" width=50%>
 
 <br>
+
 Rather than processing the first packet through the whole graph, and then the second
 packet through the whole graph, VPP instead processes the entire vector of packets through
 a graph node before moving on to the next graph node.
@@ -57,6 +58,7 @@ infrastructure code.
 <br><img src="/img/tech-03.png" width=50%>
 
 <br>
+
 ### Hardware Acceleration
 
 This same graph node architecture also allows FD.io to dynamically take advantage of hardware acceleration

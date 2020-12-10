@@ -8,8 +8,9 @@ subtitle="""
 btntxt="For All the CSIT Test Reports"
 # The first part of these strings are displayed in the dropdown.
 # The second is the url
-latest = "Latest Release (1908), https://docs.fd.io/csit/rls1908/report/"
+latest = "Latest Release (2009), https://docs.fd.io/csit/rls2009/report/"
 versions = ["Master, https://docs.fd.io/csit/master/report/",
+      "1908, https://docs.fd.io/csit/rls1908/report/",
 	 "1904, https://docs.fd.io/csit/rls1904_2/report/",
 	 "1901, https://docs.fd.io/csit/rls1901_3/report/"]
 +++
@@ -17,6 +18,7 @@ versions = ["Master, https://docs.fd.io/csit/master/report/",
 #### The [CSIT Trending Report](https://docs.fd.io/csit/master/trending) is a report that shows the FD.io performance over time. This report insures that over time FD.io will not have perfomance regressions.
 
 <br>
+
 ### A Small Subset of the CSIT Perfomance Results
 
 <img src="/img/performance.png" width=60% >
