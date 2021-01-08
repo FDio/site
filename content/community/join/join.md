@@ -3,6 +3,7 @@ id = "community"
 +++
 
 <br>
+
 The Fast Data Project (FD.io) Universal Dataplane is a collaborative open source
 project that aims to significantly establish a high-performance IO services framework
 for dynamic computing environments. The FD.io community brings a relentless focus
@@ -25,6 +26,7 @@ collaborate on this opportunity.
 Learn more about [LFN](https://www.lfnetworking.org) and [Join as a member](https://www.lfnetworking.org/membership/join/).
 
 <br>
+
 #### Some additional resources can be found here:
 
 #### VPP Developer Resources

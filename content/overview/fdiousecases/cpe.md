@@ -3,6 +3,7 @@ weight = "2"
 +++
 
 <br>
+
 ## <img src="/img/universalcpe.png" width=5% >  Routers/Universal CPE etc. 
 
 **FD.io VPP supports entry hardware options from number of hardware vendors\

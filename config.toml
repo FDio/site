@@ -32,6 +32,22 @@ publishDir = "public"
     name = "Get Involved"
     url = "/community/join"
 
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Enable user to embed HTML snippets in Markdown content.
+
+
+[module]
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+
+  [[module.mounts]]
+    source = "static/docs/vpp/v2009"
+    target = "static/docs/vpp/latest"
+
 # The site's parameters
 [params]
 

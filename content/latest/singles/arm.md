@@ -6,6 +6,7 @@ type = "latestnews"
 # FD.io, The Universal Dataplane, Taps Arm® Ecosystem, Adds To Growing List of New Members
 ## New Members include Arm®, CENGN, Linaro, and Netgate commit to support high-performing software-defined infrastructures
 <br>
+
 ### By Jill Lovato | San Francisco | September 7, 2017 
 
 FD.io (“Fido”), relentlessly focused on data IO speed and efficiency supporting the creation of high-performance, flexible, and scalable software defined infrastructures, today announced Arm®, Linaro, and Netgate have joined the project at the Silver level, and Canada’s Centre of Excellence in Next Generation Networking (CENGN) joins FD.io as the first Associate member. The newest members further diversify FD.io’s existing roster of chip vendors, integrators, network vendors, and service providers committed to accelerating high-performing, dynamic computing environments.
