@@ -119,7 +119,7 @@ x86, ARM, and PowerPC architectures.<br /> <br />
 """
     [params.feature.button]
       caption = "VPP Technology"
-      url = "/vppproject"
+      url = "/vppproject/vpptech"
     [params.feature.button2]
       caption = "VPP Performance"
       url = "/performance/scaling"
