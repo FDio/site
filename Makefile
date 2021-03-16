@@ -2,7 +2,7 @@
 VPPDOC_TARGET_DIR := ./static/docs/vpp/
 VPPDOC_SRC_DIR := ${VPP_DIR}/docs/_build/html/.
 
-VERSION ?= master
+VERSION ?= v2101
 
 check-%:
 	@: $(if $(value $*),,$(error $* is undefined))

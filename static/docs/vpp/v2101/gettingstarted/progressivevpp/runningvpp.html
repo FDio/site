@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running VPP &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Creating an Interface" href="interface.html" />
+    <link rel="prev" title="Setting up your environment" href="settingupenvironment.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Progressive VPP Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="settingupenvironment.html">Setting up your environment</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html">Creating an Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traces.html">Using the trace command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="twovppinstances.html">Connecting Two FD.io VPP Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switching.html">Switching</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers/index.html">For Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">Progressive VPP Tutorial</a> &raquo;</li>
+        
+      <li>Running VPP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/progressivevpp/runningvpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="running-vpp">
+<span id="runningvpp"></span><h1>Running VPP<a class="headerlink" href="#running-vpp" title="Permalink to this headline">¶</a></h1>
+<p>Using the files we create in :ref`settingupenvironment` we will now start and
+run VPP.</p>
+<p>VPP runs in userspace. In a production environment you will often run it
+with DPDK to connect to real NICs or vhost to connect to VMs. In those
+circumstances you usually run a single instance of VPP.</p>
+<p>For purposes of this tutorial, it is going to be extremely useful to run
+multiple instances of VPP, and connect them to each other to form a
+topology. Fortunately, VPP supports this.</p>
+<p>Using the files we created in setup we will start VPP.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /usr/bin/vpp -c startup1.conf
+<span class="go">vlib_plugin_early_init:361: plugin path /usr/lib/vpp_plugins:/usr/lib/vpp_plugins</span>
+<span class="go">load_one_plugin:189: Loaded plugin: abf_plugin.so (ACL based Forwarding)</span>
+<span class="go">load_one_plugin:189: Loaded plugin: acl_plugin.so (Access Control Lists)</span>
+<span class="go">load_one_plugin:189: Loaded plugin: avf_plugin.so (Intel Adaptive Virtual Function (AVF) Device Plugin)</span>
+<span class="go">.........</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+<p>If VPP does not start you can try adding <strong>nodaemon</strong> to the startup.conf file in the
+<strong>unix</strong> section. This should provide more information in the output.</p>
+<p>startup.conf example with nodaemon:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">unix {nodaemon cli-listen /run/vpp/cli-vpp1.sock}</span>
+<span class="go">api-segment { prefix vpp1 }</span>
+<span class="go">plugins { plugin dpdk_plugin.so { disable } }</span>
+</pre></div>
+</div>
+<p>The command <strong>vppctl</strong> will launch a VPP shell with which you can run
+VPP commands interactively.</p>
+<p>We should now be able to execute the VPP shell and show the version.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl -s /run/vpp/cli-vpp1.sock
+<span class="go">    _______    _        _   _____  ___</span>
+<span class="go"> __/ __/ _ \  (_)__    | | / / _ \/ _ \</span>
+<span class="go"> _/ _// // / / / _ \   | |/ / ___/ ___/</span>
+<span class="go"> /_/ /____(_)_/\___/   |___/_/  /_/</span>
+
+<span class="go">vpp# show version</span>
+<span class="go">vpp v18.07-release built by root on c469eba2a593 at Mon Jul 30 23:27:03 UTC 2018</span>
+<span class="go">vpp#</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use ctrl-d or q to exit from the VPP shell.</p>
+</div>
+<p>If you are going to run several instances of VPP this way be sure to kill them
+when you are finished.</p>
+<p>You can use something like the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ps -eaf <span class="p">|</span> grep vpp
+<span class="go">root      2067     1  2 05:12 ?        00:00:00 /usr/bin/vpp -c startup1.conf</span>
+<span class="go">vagrant   2070   903  0 05:12 pts/0    00:00:00 grep --color=auto vpp</span>
+<span class="gp">$</span> <span class="nb">kill</span> -9 <span class="m">2067</span>
+<span class="gp">$</span> ps -eaf <span class="p">|</span> grep vpp
+<span class="go">vagrant   2074   903  0 05:13 pts/0    00:00:00 grep --color=auto vpp</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="interface.html" class="btn btn-neutral float-right" title="Creating an Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="settingupenvironment.html" class="btn btn-neutral float-left" title="Setting up your environment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vpp Stateless Traffic Generation &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Features by Release" href="../featuresbyrelease/index.html" />
+    <link rel="prev" title="Container-based network simulation" href="container_test.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="containers.html">VPP with Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container_test.html">Container-based network simulation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Vpp Stateless Traffic Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#traffic-generator-setup-script">Traffic Generator Setup Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uut-setup-script">UUT Setup Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Use Cases</a> &raquo;</li>
+        
+      <li>Vpp Stateless Traffic Generation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usecases/trafficgen.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vpp-stateless-traffic-generation">
+<h1>Vpp Stateless Traffic Generation<a class="headerlink" href="#vpp-stateless-traffic-generation" title="Permalink to this headline">¶</a></h1>
+<p>It’s simple to configure vpp as a high-performance stateless traffic
+generator. A couple of vpp worker threads running on an older system
+can easily generate 20 MPPS’ worth of traffic.</p>
+<p>In the configurations shown below, we connect a vpp traffic generator
+and a vpp UUT using two 40 gigabit ethernet ports on each system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">+-------------------+</span>           <span class="o">+-------------------+</span>
+ <span class="o">|</span> <span class="n">traffic</span> <span class="n">generator</span> <span class="o">|</span>           <span class="o">|</span> <span class="n">UUT</span>               <span class="o">|</span>
+ <span class="o">|</span> <span class="n">port</span> <span class="mi">0</span>            <span class="o">|</span> <span class="o">&lt;=======&gt;</span> <span class="o">|</span> <span class="n">port</span> <span class="mi">0</span>            <span class="o">|</span>
+ <span class="o">|</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">40.2</span><span class="o">/</span><span class="mi">24</span>   <span class="o">|</span>           <span class="o">|</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">40.1</span><span class="o">/</span><span class="mi">24</span>   <span class="o">|</span>
+ <span class="o">+-------------------+</span>           <span class="o">+-------------------+</span>
+
+ <span class="o">+-------------------+</span>           <span class="o">+-------------------+</span>
+ <span class="o">|</span> <span class="n">traffic</span> <span class="n">generator</span> <span class="o">|</span>           <span class="o">|</span> <span class="n">UUT</span>               <span class="o">|</span>
+ <span class="o">|</span> <span class="n">port</span> <span class="mi">1</span>            <span class="o">|</span> <span class="o">&lt;=======&gt;</span> <span class="o">|</span> <span class="n">port</span> <span class="mi">1</span>            <span class="o">|</span>
+ <span class="o">|</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">41.2</span><span class="o">/</span><span class="mi">24</span>   <span class="o">|</span>           <span class="o">|</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">41.1</span><span class="o">/</span><span class="mi">24</span>   <span class="o">|</span>
+ <span class="o">+-------------------+</span>           <span class="o">+-------------------+</span>
+</pre></div>
+</div>
+<div class="section" id="traffic-generator-setup-script">
+<h2>Traffic Generator Setup Script<a class="headerlink" href="#traffic-generator-setup-script" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">40.2</span><span class="o">/</span><span class="mi">24</span>
+ <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">41.2</span><span class="o">/</span><span class="mi">24</span>
+ <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="n">up</span>
+ <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">up</span>
+
+ <span class="n">comment</span> <span class="p">{</span> <span class="n">send</span> <span class="n">traffic</span> <span class="n">to</span> <span class="n">the</span> <span class="n">VPP</span> <span class="n">UUT</span> <span class="p">}</span>
+
+ <span class="n">packet</span><span class="o">-</span><span class="n">generator</span> <span class="n">new</span> <span class="p">{</span>
+     <span class="n">name</span> <span class="n">worker0</span>
+     <span class="n">worker</span> <span class="mi">0</span>
+     <span class="n">limit</span> <span class="mi">0</span>
+     <span class="n">rate</span> <span class="mf">1.2e7</span>
+     <span class="n">size</span> <span class="mi">128</span><span class="o">-</span><span class="mi">128</span>
+     <span class="n">tx</span><span class="o">-</span><span class="n">interface</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+     <span class="n">node</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">-</span><span class="n">output</span>
+     <span class="n">data</span> <span class="p">{</span> <span class="n">IP4</span><span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">40</span> <span class="o">-&gt;</span> <span class="mi">3</span><span class="n">cfd</span><span class="o">.</span><span class="n">fed0</span><span class="o">.</span><span class="n">b6c8</span>
+            <span class="n">UDP</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">40.10</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">50.10</span>
+            <span class="n">UDP</span><span class="p">:</span> <span class="mi">1234</span> <span class="o">-&gt;</span> <span class="mi">2345</span>
+            <span class="n">incrementing</span> <span class="mi">114</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+ <span class="n">packet</span><span class="o">-</span><span class="n">generator</span> <span class="n">new</span> <span class="p">{</span>
+     <span class="n">name</span> <span class="n">worker1</span>
+     <span class="n">worker</span> <span class="mi">1</span>
+     <span class="n">limit</span> <span class="mi">0</span>
+     <span class="n">rate</span> <span class="mf">1.2e7</span>
+     <span class="n">size</span> <span class="mi">128</span><span class="o">-</span><span class="mi">128</span>
+     <span class="n">tx</span><span class="o">-</span><span class="n">interface</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span>
+     <span class="n">node</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="o">-</span><span class="n">output</span>
+     <span class="n">data</span> <span class="p">{</span> <span class="n">IP4</span><span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">4</span> <span class="o">-&gt;</span> <span class="mi">3</span><span class="n">cfd</span><span class="o">.</span><span class="n">fed0</span><span class="o">.</span><span class="n">b6c9</span>
+            <span class="n">UDP</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">41.10</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">51.10</span>
+            <span class="n">UDP</span><span class="p">:</span> <span class="mi">1234</span> <span class="o">-&gt;</span> <span class="mi">2345</span>
+            <span class="n">incrementing</span> <span class="mi">114</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+ <span class="n">comment</span> <span class="p">{</span> <span class="n">delete</span> <span class="k">return</span> <span class="n">traffic</span> <span class="n">on</span> <span class="n">sight</span> <span class="p">}</span>
+
+ <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">50.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">via</span> <span class="n">drop</span>
+ <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">51.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">via</span> <span class="n">drop</span>
+</pre></div>
+</div>
+<p>Note 1: the destination MAC addresses shown in the configuration (e.g.
+3cfd.fed0.b6c8 and 3cfd.fed0.b6c9) <strong>must</strong> match the vpp UUT port MAC
+addresses.</p>
+<p>Note 2: this script assumes that /etc/vpp/startup.conf and/or the
+command-line in use specifies (at least) two worker threads. Uncomment
+“workers 2” in the cpu configuration section of /etc/vpp/startup.conf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1">## Specify a number of workers to be created</span>
+ <span class="c1">## Workers are pinned to N consecutive CPU cores while skipping &quot;skip-cores&quot; CPU core(s)</span>
+ <span class="c1">## and main thread&#39;s CPU core</span>
+ <span class="n">workers</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Any plausible packet generator script - including one which replays
+pcap captures - can be used.</p>
+</div>
+<div class="section" id="uut-setup-script">
+<h2>UUT Setup Script<a class="headerlink" href="#uut-setup-script" title="Permalink to this headline">¶</a></h2>
+<p>The vpp UUT uses a couple of static routes to forward traffic back to
+the traffic generator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">40.1</span><span class="o">/</span><span class="mi">24</span>
+ <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">41.1</span><span class="o">/</span><span class="mi">24</span>
+ <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="n">up</span>
+ <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">FortyGigabitEthernet2</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">up</span>
+
+ <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">50.10</span><span class="o">/</span><span class="mi">32</span> <span class="n">via</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">41.2</span>
+ <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">51.10</span><span class="o">/</span><span class="mi">32</span> <span class="n">via</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">40.2</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../featuresbyrelease/index.html" class="btn btn-neutral float-right" title="Features by Release" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="container_test.html" class="btn btn-neutral float-left" title="Container-based network simulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
