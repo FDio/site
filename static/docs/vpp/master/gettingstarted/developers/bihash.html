@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
 <li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
@@ -130,6 +131,7 @@
 <li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
@@ -226,12 +228,12 @@ implementation:</p>
 <p>Bounded-index extensible hashing has been widely used in databases for
 decades.</p>
 <p>Bihash uses a two-level data structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">+-----------------+</span>                                              
-    <span class="o">|</span> <span class="n">bucket</span><span class="o">-</span><span class="mi">0</span>        <span class="o">|</span>                                             
-    <span class="o">|</span>  <span class="n">log2_size</span>      <span class="o">|</span>                                             
-    <span class="o">|</span>  <span class="n">backing</span> <span class="n">store</span>  <span class="o">|</span>                                             
-    <span class="o">+-----------------+</span>                                             
-    <span class="o">|</span> <span class="n">bucket</span><span class="o">-</span><span class="mi">1</span>        <span class="o">|</span>                                             
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">+-----------------+</span>
+    <span class="o">|</span> <span class="n">bucket</span><span class="o">-</span><span class="mi">0</span>        <span class="o">|</span>
+    <span class="o">|</span>  <span class="n">log2_size</span>      <span class="o">|</span>
+    <span class="o">|</span>  <span class="n">backing</span> <span class="n">store</span>  <span class="o">|</span>
+    <span class="o">+-----------------+</span>
+    <span class="o">|</span> <span class="n">bucket</span><span class="o">-</span><span class="mi">1</span>        <span class="o">|</span>
     <span class="o">|</span>  <span class="n">log2_size</span>      <span class="o">|</span>           <span class="o">+--------------------------------+</span>
     <span class="o">|</span>  <span class="n">backing</span> <span class="n">store</span>  <span class="o">|</span> <span class="o">--------&gt;</span> <span class="o">|</span> <span class="n">KVP_PER_PAGE</span> <span class="o">*</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span><span class="o">-</span><span class="n">pairs</span> <span class="o">|</span>
     <span class="o">+-----------------+</span>           <span class="o">|</span> <span class="n">page</span> <span class="mi">0</span>                         <span class="o">|</span>
@@ -239,7 +241,7 @@ decades.</p>
     <span class="o">+-----------------+</span>           <span class="o">|</span> <span class="n">KVP_PER_PAGE</span> <span class="o">*</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span><span class="o">-</span><span class="n">pairs</span> <span class="o">|</span>
     <span class="o">|</span> <span class="n">bucket</span><span class="o">-</span><span class="mi">2</span><span class="o">**</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span>   <span class="o">|</span>           <span class="o">|</span> <span class="n">page</span> <span class="mi">1</span>                         <span class="o">|</span>
     <span class="o">|</span>  <span class="n">log2_size</span>      <span class="o">|</span>           <span class="o">+--------------------------------+</span>
-    <span class="o">|</span>  <span class="n">backing</span> <span class="n">store</span>  <span class="o">|</span>                       <span class="o">---</span>                   
+    <span class="o">|</span>  <span class="n">backing</span> <span class="n">store</span>  <span class="o">|</span>                       <span class="o">---</span>
     <span class="o">+-----------------+</span>           <span class="o">+--------------------------------+</span>
                                   <span class="o">|</span> <span class="n">KVP_PER_PAGE</span> <span class="o">*</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span><span class="o">-</span><span class="n">pairs</span> <span class="o">|</span>
                                   <span class="o">|</span> <span class="n">page</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="n">size</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>       <span class="o">|</span>
@@ -313,9 +315,9 @@ implementation file.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="k">typedef</span> <span class="k">struct</span>
     <span class="p">{</span>
       <span class="p">...</span>
-      <span class="n">BVT</span> <span class="p">(</span><span class="n">clib_bihash</span><span class="p">)</span> <span class="n">hash</span><span class="p">;</span>
+      <span class="n">BVT</span> <span class="p">(</span><span class="n">clib_bihash</span><span class="p">)</span> <span class="n">hash_table</span><span class="p">;</span>
       <span class="n">or</span>
-      <span class="n">clib_bihash_8_8_t</span> <span class="n">hash</span><span class="p">;</span>
+      <span class="n">clib_bihash_8_8_t</span> <span class="n">hash_table</span><span class="p">;</span>
       <span class="p">...</span>
     <span class="p">}</span> <span class="n">my_main_t</span><span class="p">;</span>
 </pre></div>
@@ -344,10 +346,10 @@ generous.</p>
 <p>For example:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="n">my_main_t</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">my_main</span><span class="p">;</span>
     <span class="n">clib_bihash_8_8_t</span> <span class="o">*</span><span class="n">h</span><span class="p">;</span>
-        
+
     <span class="n">h</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">hash_table</span><span class="p">;</span>
 
-    <span class="n">clib_bihash_init_8_8</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="s">&quot;test&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">u32</span><span class="p">)</span> <span class="n">number_of_buckets</span><span class="p">,</span> 
+    <span class="n">clib_bihash_init_8_8</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="s">&quot;test&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">u32</span><span class="p">)</span> <span class="n">number_of_buckets</span><span class="p">,</span>
                            <span class="p">(</span><span class="n">uword</span><span class="p">)</span> <span class="n">memory_size</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -359,7 +361,7 @@ generous.</p>
    <span class="n">clib_bihash_8_8_t</span> <span class="o">*</span> <span class="n">h</span><span class="p">;</span>
    <span class="n">my_main_t</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">my_main</span><span class="p">;</span>
    <span class="n">clib_bihash_8_8_t</span> <span class="o">*</span><span class="n">h</span><span class="p">;</span>
-        
+
    <span class="n">h</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">hash_table</span><span class="p">;</span>
    <span class="n">kv</span><span class="p">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key_to_add_or_delete</span><span class="p">;</span>
    <span class="n">kv</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value_to_add_or_delete</span><span class="p">;</span>
@@ -377,14 +379,14 @@ with an existing (key,value) pair, simply re-add the [new] pair.</p>
    <span class="n">clib_bihash_8_8_t</span> <span class="o">*</span> <span class="n">h</span><span class="p">;</span>
    <span class="n">my_main_t</span> <span class="o">*</span><span class="n">mm</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">my_main</span><span class="p">;</span>
    <span class="n">clib_bihash_8_8_t</span> <span class="o">*</span><span class="n">h</span><span class="p">;</span>
-        
+
    <span class="n">h</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">hash_table</span><span class="p">;</span>
    <span class="n">search_kv</span><span class="p">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key_to_add_or_delete</span><span class="p">;</span>
 
    <span class="k">if</span> <span class="p">(</span><span class="n">clib_bihash_search_8_8</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">search_kv</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">return_kv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
-     <span class="n">key_not_found</span><span class="p">()</span>
-   <span class="k">else</span>
      <span class="n">key_not_found</span><span class="p">();</span>
+   <span class="k">else</span>
+     <span class="nf">key_found</span><span class="p">();</span>
 </pre></div>
 </div>
 <p>Note that it’s perfectly fine to collect the lookup result</p>

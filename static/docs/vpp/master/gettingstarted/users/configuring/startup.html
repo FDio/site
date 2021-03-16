@@ -691,6 +691,7 @@ and has to be in the range of priorities supported for a particular policy</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">buffers {</span>
 <span class="go">   buffers-per-numa 128000</span>
 <span class="go">   default data-size 2048</span>
+<span class="go">   page-size default-hugepage</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -707,6 +708,17 @@ Default is 16384 (8192 if running unpriviledged)</p>
 <h3>default data-size number<a class="headerlink" href="#default-data-size-number" title="Permalink to this headline">¶</a></h3>
 <p>Size of buffer data area, default is 2048</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">default data-size 2048</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="page-size-number">
+<h3>page-size number<a class="headerlink" href="#page-size-number" title="Permalink to this headline">¶</a></h3>
+<p>Set the page size for buffer allocation</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">page-size 4K</span>
+<span class="go">page-size 2M</span>
+<span class="go">page-size 1G</span>
+<span class="go">page-size default</span>
+<span class="go">page-size default-hugepage</span>
 </pre></div>
 </div>
 </div>

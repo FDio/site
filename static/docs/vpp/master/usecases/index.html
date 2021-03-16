@@ -100,11 +100,12 @@
 <li class="toctree-l2"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vppcloud.html">VPP inside the Cloud</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homegateway.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html">Using VPP as a Home Gateway</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="networksim.html">Network Simulator Plugin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="webapp.html">Building VPP web applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="container_test.html">Container-based network simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trafficgen.html">Vpp Stateless Traffic Generation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
@@ -308,14 +309,20 @@ extensive list, but should give a sampling of the many features contained in FD.
 <li class="toctree-l2"><a class="reference internal" href="automatingthedeployment.html">Automating VPP deployment</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="homegateway.html">Using VPP as a Home Gateway</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="homegateway.html#configuration-files">Configuration files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homegateway.html#systemd-configuration">Systemd configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homegateway.html#netplan-configuration">Netplan configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homegateway.html#installing-new-vpp-software">Installing new vpp software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homegateway.html#testing-new-software">Testing new software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homegateway.html#patches">Patches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homegateway.html#using-the-time-based-mac-filter-plugin">Using the time-based mac filter plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hgw.html">Using VPP as a Home Gateway</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#system-configuration-files">System configuration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#systemd-configuration">Systemd configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#netplan-configuration">Netplan configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#vpp-configuration-files">VPP Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#installing-new-vpp-software">Installing new vpp software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#reasonably-robust-remote-software-installation">Reasonably Robust Remote Software Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="hgw.html#build-host-script">Build-host script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hgw.html#target-script">Target script</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#testing-new-software">Testing new software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html#using-the-time-based-mac-filter-plugin">Using the time-based mac filter plugin</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a><ul>
@@ -552,6 +559,11 @@ extensive list, but should give a sampling of the many features contained in FD.
 <li class="toctree-l3"><a class="reference internal" href="container_test.html#configure-apt">Configure apt</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trafficgen.html">Vpp Stateless Traffic Generation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="trafficgen.html#traffic-generator-setup-script">Traffic Generator Setup Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trafficgen.html#uut-setup-script">UUT Setup Script</a></li>
 </ul>
 </li>
 </ul>

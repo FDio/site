@@ -38,7 +38,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Progressive VPP Tutorial" href="../progressivevpp/index.html" />
-    <link rel="prev" title="Installing" href="opensuse.html" /> 
+    <link rel="prev" title="Setup the FD.io Repository - Centos 7" href="centos.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -95,7 +95,6 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Downloading and Installing VPP</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="index.html#installing-on-ubuntu">Installing on Ubuntu</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#installing-on-centos">Installing on Centos</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#installing-on-opensuse">Installing on openSUSE</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#package-descriptions">Package Descriptions</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Packages</a></li>
 </ul>
@@ -217,19 +216,68 @@ libraries, including:</p>
 <h2>vpp-plugins<a class="headerlink" href="#vpp-plugins" title="Permalink to this headline">¶</a></h2>
 <p>Vector Packet Processing plugin modules.</p>
 <ul class="simple">
-<li><p>acl</p></li>
-<li><p>dpdk</p></li>
-<li><p>flowprobe</p></li>
-<li><p>gtpu</p></li>
-<li><p>ixge</p></li>
-<li><p>kubeproxy</p></li>
-<li><p>l2e</p></li>
-<li><p>lb</p></li>
-<li><p>memif</p></li>
-<li><p>nat</p></li>
-<li><p>pppoe</p></li>
-<li><p>sixrd</p></li>
-<li><p>stn</p></li>
+<li><p>abf - Access Control List (ACL) Based Forwarding</p></li>
+<li><p>acl - Access Control Lists (ACL)</p></li>
+<li><p>adl - Allow/deny list plugin</p></li>
+<li><p>af_xdp - AF_XDP Device Plugin</p></li>
+<li><p>avf - Intel Adaptive Virtual Function (AVF) Device Driver</p></li>
+<li><p>builtinurl - vpp built-in URL support</p></li>
+<li><p>cdp - Cisco Discovery Protocol (CDP)</p></li>
+<li><p>cnat - CNat Translate</p></li>
+<li><p>crypto_ipsecmb - Intel IPSEC Multi-buffer Crypto Engine</p></li>
+<li><p>crypto_native - Intel IA32 Software Crypto Engine</p></li>
+<li><p>crypto_openssl - OpenSSL Crypto Engine</p></li>
+<li><p>crypto_sw_scheduler - SW Scheduler Crypto Async Engine plugin</p></li>
+<li><p>ct6 - IPv6 Connection Tracker</p></li>
+<li><p>dhcp - Dynamic Host Configuration Protocol (DHCP)</p></li>
+<li><p>dns - Simple DNS name resolver</p></li>
+<li><p>dpdk - Data Plane Development Kit (DPDK)</p></li>
+<li><p>flowprobe - Flow per Packet</p></li>
+<li><p>gbp - Group Based Policy (GBP)</p></li>
+<li><p>geneve - GENEVE Tunnels</p></li>
+<li><p>gtpu - GPRS Tunnelling Protocol, User Data (GTPv1-U)</p></li>
+<li><p>hs_apps - Host Stack Applications</p></li>
+<li><p>http_static - HTTP Static Server</p></li>
+<li><p>igmp - Internet Group Management Protocol (IGMP)</p></li>
+<li><p>ikev2 - Internet Key Exchange (IKEv2) Protocol</p></li>
+<li><p>ila - Identifier Locator Addressing (ILA) for IPv6</p></li>
+<li><p>ioam - Inbound Operations, Administration, and Maintenance (OAM)</p></li>
+<li><p>l2e - Layer 2 (L2) Emulation</p></li>
+<li><p>l2tp - Layer 2 Tunneling Protocol v3 (L2TP)</p></li>
+<li><p>l3xc - L3 Cross-Connect (L3XC)</p></li>
+<li><p>lacp - Link Aggregation Control Protocol (LACP)</p></li>
+<li><p>lb - Load Balancer (LB)</p></li>
+<li><p>lisp - Locator ID Separation Protocol (LISP)</p></li>
+<li><p>lldp - Link Layer Discovery Protocol (LLDP)</p></li>
+<li><p>mactime - Time-based MAC Source Address Filter</p></li>
+<li><p>map - Mapping of Address and Port (MAP)</p></li>
+<li><p>marvell - Marvell PP2 Device Driver</p></li>
+<li><p>mdata - Buffer metadata change tracker.</p></li>
+<li><p>memif - Packet Memory Interface (memif) – Experimental</p></li>
+<li><p>nat - Deterministic NAT (CGN)</p></li>
+<li><p>nsh - Network Service Header (NSH)</p></li>
+<li><p>nsim - Network Delay Simulator</p></li>
+<li><p>oddbuf - Awkward chained buffer geometry generator</p></li>
+<li><p>perfmon - Performance Monitor</p></li>
+<li><p>ping - Ping (ping)</p></li>
+<li><p>pppoe - PPP over Ethernet (PPPoE)</p></li>
+<li><p>quic - Quic transport protocol</p></li>
+<li><p>rdma - RDMA IBverbs Device Driver</p></li>
+<li><p>srv6-ad - Dynamic Segment Routing for IPv6 (SRv6) Proxy</p></li>
+<li><p>srv6-am - Masquerading Segment Routing for IPv6 (SRv6) Proxy</p></li>
+<li><p>srv6-as - Static Segment Routing for IPv6 (SRv6) Proxy</p></li>
+<li><p>srv6-mobile - SRv6 GTP Endpoint Functions</p></li>
+<li><p>stn - VPP Steals the NIC (STN) for Container Integration</p></li>
+<li><p>svs - Source Virtual Routing and Fowarding (VRF) Select</p></li>
+<li><p>tlsmbedtls - Transport Layer Security (TLS) Engine, Mbedtls Based</p></li>
+<li><p>tlsopenssl - Transport Layer Security (TLS) Engine, OpenSSL Based</p></li>
+<li><p>tlspicotls - Transport Layer Security (TLS) Engine, Picotls Based</p></li>
+<li><p>tracedump - Streaming packet trace dump plugin</p></li>
+<li><p>unittest - C unit tests</p></li>
+<li><p>urpf - Unicast Reverse Path Forwarding (uRPF)</p></li>
+<li><p>vmxnet3 - VMWare Vmxnet3 Device Driver</p></li>
+<li><p>vrrp - VRRP v3 (RFC 5798)</p></li>
+<li><p>wireguard - Wireguard Protocol</p></li>
 </ul>
 </div>
 <div class="section" id="vpp-dbg">
@@ -270,7 +318,7 @@ SELinux is enabled at any time.</p>
         <a href="../progressivevpp/index.html" class="btn btn-neutral float-right" title="Progressive VPP Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="opensuse.html" class="btn btn-neutral float-left" title="Installing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="centos.html" class="btn btn-neutral float-left" title="Setup the FD.io Repository - Centos 7" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
