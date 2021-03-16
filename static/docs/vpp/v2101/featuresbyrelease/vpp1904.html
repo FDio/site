@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Features for Release VPP 19.04 &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Features for Release VPP 19.01" href="vpp1901.html" />
+    <link rel="prev" title="Features for Release VPP 19.08" href="vpp1908.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Features by Release</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vpp1908.html">Features for Release VPP 19.08</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Features for Release VPP 19.04</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#infrastructure">Infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vnet-plugins">VNET &amp; Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#host-stack">Host stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vpp1901.html">Features for Release VPP 19.01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp18.10.html">Features for Release VPP 18.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp18.07.html">Features for Release VPP 18.07</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp18.04.html">Features for Release VPP 18.04</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp18.01.html">Features for Release VPP 18.01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp17.10.html">Features for Release VPP 17.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp17.07.html">Features for Release VPP 17.07</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp17.04.html">Features for Release VPP 17.04</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp17.01.html">Features for Release VPP 17.01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp16.09.html">Features for Release VPP 16.09</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp16.06.html">Features for Release VPP 16.06</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Features by Release</a> &raquo;</li>
+        
+      <li>Features for Release VPP 19.04</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/featuresbyrelease/vpp1904.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="features-for-release-vpp-19-04">
+<h1>Features for Release VPP 19.04<a class="headerlink" href="#features-for-release-vpp-19-04" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="infrastructure">
+<h2>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>DPDK 19.02 integration</p></li>
+<li><p>Buffer manager rework and improvements</p></li>
+<li><p>Python3 migration (work in progress)</p>
+<ul>
+<li><p>vppapigen</p></li>
+<li><p>Python API wrappers</p></li>
+<li><p>Docs generation</p></li>
+<li><p>vpp_config</p></li>
+<li><p>“make test” python3 readiness and refactoring</p></li>
+</ul>
+</li>
+<li><p>Add “make test-gcov” target to main Makefile</p></li>
+<li><p>Refactor multiarch code</p></li>
+<li><p>vfctl script: bind VF to vfio-pci after VF is created</p></li>
+<li><p>cmake cross-compilation support</p></li>
+<li><p>CLI control of graph dispatch elogs</p></li>
+<li><p>AppImage packaging (disabled by default)</p></li>
+<li><p>Complete upstreaming of wireshark dissector</p></li>
+<li><p>Remove JVPP which is now an FD.io project</p></li>
+<li><p>Punt infra: manage dispatch of exception packets</p></li>
+</ul>
+</div>
+<div class="section" id="vnet-plugins">
+<h2>VNET &amp; Plugins<a class="headerlink" href="#vnet-plugins" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>BVI Interface</p></li>
+<li><p>Deprecate TAP cli</p></li>
+<li><p>Experimental TAP interface TCP segmentation offload</p></li>
+<li><p>Vmxnet3 driver plugin</p></li>
+<li><p>LACP passive mode</p></li>
+<li><p>ACL plugin refactoring</p></li>
+<li><p>RDMA (ibverb) driver plugin - MLX5 with multiqueue</p></li>
+<li><p>IPSEC</p>
+<ul>
+<li><p>Intel IPSEC-MB engine plugin</p></li>
+<li><p>Tunnel fragmentation</p></li>
+<li><p>CLI improvements</p></li>
+<li><p>Performance improvements</p></li>
+<li><p>API modernisation and improvements</p></li>
+<li><p>New Tests and test refactoring</p></li>
+</ul>
+</li>
+<li><p>Crypto</p>
+<ul>
+<li><p>Introduce crypto infra</p></li>
+<li><p>crypto_ia32 plugin</p></li>
+<li><p>Add support for AEAD and AES-GCM</p></li>
+<li><p>Implement rfc4231 test cases</p></li>
+<li><p>Implement crypto tests per RFC2202</p></li>
+</ul>
+</li>
+<li><p>Perfmon improvements</p>
+<ul>
+<li><p>Python to C parser for intel CPUs</p></li>
+<li><p>2-way parallel stat collection</p></li>
+<li><p>Collect data on selected thread(s)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="host-stack">
+<h2>Host stack<a class="headerlink" href="#host-stack" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Improve ldp/vls/vcl support for multi-process and multi-threaded applications</p></li>
+<li><p>Major refactor/cleanup of session layer</p></li>
+<li><p>Refactor cut-through sessions to use a custom transport</p></li>
+<li><p>Baseline QUIC transport support</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vpp1901.html" class="btn btn-neutral float-right" title="Features for Release VPP 19.01" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vpp1908.html" class="btn btn-neutral float-left" title="Features for Release VPP 19.08" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

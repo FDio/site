@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VPP API Language {#api_lang_doc} &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Writing Documents" href="../writingdocs/index.html" />
+    <link rel="prev" title="Cloud NAT" href="cnat.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#sample-run">Sample Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VPP API Language    {#api_lang_doc}</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#language-definition">Language definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#types">Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#language-generators">Language generators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>VPP API Language    {#api_lang_doc}</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/VPPAPI.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vpp-api-language-api-lang-doc">
+<h1>VPP API Language    {#api_lang_doc}<a class="headerlink" href="#vpp-api-language-api-lang-doc" title="Permalink to this headline">¶</a></h1>
+<p>The VPP binary API is a message passing API.
+The VPP API language is used to define a RPC interface between VPP and its
+control plane. The API messages supports shared memory transport and
+Unix domain sockets (SOCK_STREAM).</p>
+<p>The wire format is essentially that of a network formatted (big-endian) packed C struct.</p>
+<p>The VPP API compiler is located in <em>src/tools/vppapigen</em> and can currently
+compile to JSON or C (used by the VPP binary itself).</p>
+<div class="section" id="language-definition">
+<h2>Language definition<a class="headerlink" href="#language-definition" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="defining-a-messages">
+<h3>Defining a messages<a class="headerlink" href="#defining-a-messages" title="Permalink to this headline">¶</a></h3>
+<p>There are 3 types of message exchanges:</p>
+<ul class="simple">
+<li><p>Request/Reply
+The client sends a request message and the server replies with a
+single reply message. The convention is that the reply message is
+named as method_name + _reply.</p></li>
+<li><p>Dump/Detail
+The client sends a “bulk” request message to the server, and the
+server replies with a set of detail messages. These messages may be of
+different type. A dump/detail call must be enclosed in a control ping
+block (Otherwise the client will not know the end of the bulk
+transmission). The method name must end with method + “_dump”, the
+reply message should be named method + “_details”. The exception here
+is for the methods that return multiple message types
+(e.g. sw_interface_dump). The Dump/Detail methods are typically used
+for acquiring bulk information, like the complete FIB table.</p></li>
+<li><p>Events
+The client can register for getting asynchronous notifications from
+the server. This is useful for getting interface state changes, and so
+on. The method name for requesting notifications is conventionally
+prefixed with “want_”. E.g. “want_interface_events”. Which
+notification types results from an event registration is defined in
+the service definition.</p></li>
+</ul>
+<p>A message from a client must include the ‘client_index’, an opaque
+cookie identifying the sender, and a ‘context’ field to let the client
+match request with reply.</p>
+<p>An example of a message definition. The client sends the show_version request,
+the server replies with the show_version_reply.</p>
+<p>The <em>client_index</em> and <em>context</em> fields are required in all requests.
+The <em>context</em> is returned by the server and is used by the client to
+match up request and reply messages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">define</span> <span class="n">show_version</span>
+<span class="p">{</span>
+  <span class="n">u32</span> <span class="n">client_index</span><span class="p">;</span>
+  <span class="n">u32</span> <span class="n">context</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="n">define</span> <span class="n">show_version_reply</span>
+<span class="p">{</span>
+  <span class="n">u32</span> <span class="n">context</span><span class="p">;</span>
+  <span class="n">i32</span> <span class="n">retval</span><span class="p">;</span>
+  <span class="n">string</span> <span class="n">program</span> <span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+  <span class="n">string</span> <span class="n">version</span> <span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+  <span class="n">string</span> <span class="n">build_date</span> <span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+  <span class="o">/*</span> <span class="n">The</span> <span class="n">final</span> <span class="n">field</span> <span class="n">can</span> <span class="n">be</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">length</span> <span class="n">argument</span> <span class="o">*/</span>
+  <span class="n">string</span> <span class="n">build_directory</span> <span class="p">[];</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The flags are not used by the clients, but have special meaning
+for some of the tracing and debugging of the API.
+The <em>autoreply</em> flag is a shorthand for a reply message with just a
+<em>retval</em> field.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">define</span> <span class="p">:</span> <span class="n">DEFINE</span> <span class="n">ID</span> <span class="s1">&#39;{&#39;</span> <span class="n">block_statements_opt</span> <span class="s1">&#39;}&#39;</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">define</span> <span class="p">:</span> <span class="n">flist</span> <span class="n">DEFINE</span> <span class="n">ID</span> <span class="s1">&#39;{&#39;</span> <span class="n">block_statements_opt</span> <span class="s1">&#39;}&#39;</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">flist</span> <span class="p">:</span> <span class="n">flag</span>
+          <span class="o">|</span> <span class="n">flist</span> <span class="n">flag</span>
+    <span class="n">flag</span> <span class="p">:</span> <span class="n">MANUAL_PRINT</span>
+         <span class="o">|</span> <span class="n">MANUAL_ENDIAN</span>
+         <span class="o">|</span> <span class="n">DONT_TRACE</span>
+         <span class="o">|</span> <span class="n">AUTOREPLY</span>
+
+    <span class="n">block_statements_opt</span> <span class="p">:</span> <span class="n">block_statements</span>
+    <span class="n">block_statements</span> <span class="p">:</span> <span class="n">block_statement</span>
+                     <span class="o">|</span> <span class="n">block_statements</span> <span class="n">block_statement</span>
+    <span class="n">block_statement</span> <span class="p">:</span> <span class="n">declaration</span>
+                    <span class="o">|</span> <span class="n">option</span>
+    <span class="n">declaration</span> <span class="p">:</span> <span class="n">type_specifier</span> <span class="n">ID</span> <span class="s1">&#39;;&#39;</span>
+                <span class="o">|</span> <span class="n">type_specifier</span> <span class="n">ID</span> <span class="s1">&#39;[&#39;</span> <span class="n">ID</span> <span class="s1">&#39;=&#39;</span> <span class="n">assignee</span> <span class="s1">&#39;]&#39;</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">declaration</span> <span class="p">:</span> <span class="n">type_specifier</span> <span class="n">ID</span> <span class="s1">&#39;[&#39;</span> <span class="n">NUM</span> <span class="s1">&#39;]&#39;</span> <span class="s1">&#39;;&#39;</span>
+                <span class="o">|</span> <span class="n">type_specifier</span> <span class="n">ID</span> <span class="s1">&#39;[&#39;</span> <span class="n">ID</span> <span class="s1">&#39;]&#39;</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">type_specifier</span> <span class="p">:</span> <span class="n">U8</span>
+                   <span class="o">|</span> <span class="n">U16</span>
+                   <span class="o">|</span> <span class="n">U32</span>
+                   <span class="o">|</span> <span class="n">U64</span>
+                   <span class="o">|</span> <span class="n">I8</span>
+                   <span class="o">|</span> <span class="n">I16</span>
+                   <span class="o">|</span> <span class="n">I32</span>
+                   <span class="o">|</span> <span class="n">I64</span>
+                   <span class="o">|</span> <span class="n">F64</span>
+                   <span class="o">|</span> <span class="n">BOOL</span>
+                   <span class="o">|</span> <span class="n">STRING</span>
+    <span class="n">type_specifier</span> <span class="p">:</span> <span class="n">ID</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<p>The <em>option</em> word is used to specify meta information.
+The only current use is to specify a semantic version of the .api file itself.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">option</span> <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+    <span class="n">option</span> <span class="p">:</span> <span class="n">OPTION</span> <span class="n">ID</span> <span class="s1">&#39;=&#39;</span> <span class="n">assignee</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">assignee</span> <span class="p">:</span> <span class="n">NUM</span>
+             <span class="o">|</span> <span class="n">TRUE</span>
+             <span class="o">|</span> <span class="n">FALSE</span>
+             <span class="o">|</span> <span class="n">STRING_LITERAL</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-new-types">
+<h3>Defining new types<a class="headerlink" href="#defining-new-types" title="Permalink to this headline">¶</a></h3>
+<p>New user defined types are defined just like messages.
+A typedef has two forms. It can either define an alias for a
+different type (or array).</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">u8</span> <span class="n">ip4_address</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="n">typedef</span> <span class="n">u8</span> <span class="n">ip6_address</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>Where the above defines two new types <em>vl_api_ip4_address_t</em> and
+<em>vl_api_ip6_address_t</em>. These are aliases for the underlying
+u8 array.</p>
+<p>In the other form, it is used to specify an abstract data type.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="n">address_family</span> <span class="p">{</span>
+  <span class="n">ADDRESS_IP4</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="n">ADDRESS_IP6</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="n">union</span> <span class="n">address_union</span> <span class="p">{</span>
+  <span class="n">vl_api_ip4_address_t</span> <span class="n">ip4</span><span class="p">;</span>
+  <span class="n">vl_api_ip6_address_t</span> <span class="n">ip6</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">typedef</span> <span class="n">address</span> <span class="p">{</span>
+  <span class="n">vl_api_address_family_t</span> <span class="n">af</span><span class="p">;</span>
+  <span class="n">vl_api_address_union_t</span> <span class="n">un</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Where the new type <em>vl_api_address_t</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">typedef</span> <span class="p">:</span> <span class="n">TYPEDEF</span> <span class="n">ID</span> <span class="s1">&#39;{&#39;</span> <span class="n">block_statements_opt</span> <span class="s1">&#39;}&#39;</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">typedef</span> <span class="p">:</span> <span class="n">TYPEDEF</span> <span class="n">declaration</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="importing-definitions">
+<h3>Importing Definitions<a class="headerlink" href="#importing-definitions" title="Permalink to this headline">¶</a></h3>
+<p>You can use definitions from other .api files by importing them.
+To import another .api’s definitions, you add an import statement
+to the top of your file:</p>
+<p>import “vnet/ip/ip_types.api”;</p>
+<p>By default you can only use definitions from directly imported .api files.</p>
+<p>The API compiler searches for imported files in a set of directories
+specified on the API compiler command line using the –includedir flag.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">:</span> <span class="n">IMPORT</span> <span class="n">STRING_LITERAL</span> <span class="s1">&#39;;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comments">
+<h3>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h3>
+<p>The API language uses C style comments.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="o">*/</span>
+<span class="o">//</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enumerations">
+<h3>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h3>
+<p>Enums are similar to enums in C.</p>
+<p>Every enum definition must contain a constant that maps to zero
+as its first element. This is because:</p>
+<p>There must be a zero value, so that we can use 0 as a numeric default value.
+The zero value needs to be the first element.</p>
+<p>As in C, enums can be used as flags or just as numbers.
+The on-wire, and in memory representation size of an enum can be specified.
+Not all language bindings will support that. The default size is 4 (u32).</p>
+<p>Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="n">ip_neighbor_flags</span>
+<span class="p">{</span>
+  <span class="n">IP_API_NEIGHBOR_FLAG_NONE</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="n">IP_API_NEIGHBOR_FLAG_STATIC</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">,</span>
+  <span class="n">IP_API_NEIGHBOR_FLAG_NO_FIB_ENTRY</span> <span class="o">=</span> <span class="mh">0x2</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Which generates the vl_api_ip_neighbor_flags_t in the C binding.
+In Python that is represented as an IntFlag object
+VppEnum.vl_api_ip_neighbor_flags_t.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">enum</span> <span class="p">:</span> <span class="n">ENUM</span> <span class="n">ID</span> <span class="s1">&#39;{&#39;</span> <span class="n">enum_statements</span> <span class="s1">&#39;}&#39;</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">enum</span> <span class="p">:</span> <span class="n">ENUM</span> <span class="n">ID</span> <span class="s1">&#39;:&#39;</span> <span class="n">enum_size</span> <span class="s1">&#39;{&#39;</span> <span class="n">enum_statements</span> <span class="s1">&#39;}&#39;</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">enum_size</span> <span class="p">:</span> <span class="n">U8</span>
+              <span class="o">|</span> <span class="n">U16</span>
+              <span class="o">|</span> <span class="n">U32</span>
+    <span class="n">enum_statements</span> <span class="p">:</span> <span class="n">enum_statement</span>
+                    <span class="o">|</span> <span class="n">enum_statements</span> <span class="n">enum_statement</span>
+    <span class="n">enum_statement</span> <span class="p">:</span> <span class="n">ID</span> <span class="s1">&#39;=&#39;</span> <span class="n">NUM</span> <span class="s1">&#39;,&#39;</span>
+                   <span class="o">|</span> <span class="n">ID</span> <span class="s1">&#39;,&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="services">
+<h3>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h3>
+<p>The service statement defines the relationship between messages.
+For request/response and dump/details messages it ties the
+request with the reply. For events, it specifies which events
+that can be received for a given want_* call.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="p">{</span>
+  <span class="n">rpc</span> <span class="n">want_interface_events</span> <span class="n">returns</span> <span class="n">want_interface_events_reply</span>
+    <span class="n">events</span> <span class="n">sw_interface_event</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Which states that the request want_interface_events returns a
+want_interface_events_reply and if enabled the client will
+receive sw_interface_event messages whenever interface states changes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">service</span> <span class="p">:</span> <span class="n">SERVICE</span> <span class="s1">&#39;{&#39;</span> <span class="n">service_statements</span> <span class="s1">&#39;}&#39;</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">service_statements</span> <span class="p">:</span> <span class="n">service_statement</span>
+                    <span class="o">|</span> <span class="n">service_statements</span> <span class="n">service_statement</span>
+    <span class="n">service_statement</span> <span class="p">:</span> <span class="n">RPC</span> <span class="n">ID</span> <span class="n">RETURNS</span> <span class="n">NULL</span> <span class="s1">&#39;;&#39;</span>
+                         <span class="o">|</span> <span class="n">RPC</span> <span class="n">ID</span> <span class="n">RETURNS</span> <span class="n">ID</span> <span class="s1">&#39;;&#39;</span>
+                         <span class="o">|</span> <span class="n">RPC</span> <span class="n">ID</span> <span class="n">RETURNS</span> <span class="n">STREAM</span> <span class="n">ID</span> <span class="s1">&#39;;&#39;</span>
+                         <span class="o">|</span> <span class="n">RPC</span> <span class="n">ID</span> <span class="n">RETURNS</span> <span class="n">ID</span> <span class="n">EVENTS</span> <span class="n">event_list</span> <span class="s1">&#39;;&#39;</span>
+    <span class="n">event_list</span> <span class="p">:</span> <span class="n">events</span>
+               <span class="o">|</span> <span class="n">event_list</span> <span class="n">events</span>
+    <span class="n">events</span> <span class="p">:</span> <span class="n">ID</span>
+           <span class="o">|</span> <span class="n">ID</span> <span class="s1">&#39;,&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scalar-value-types">
+<h3>Scalar Value Types<a class="headerlink" href="#scalar-value-types" title="Permalink to this headline">¶</a></h3>
+<p>.api type|size|C type|Python type
+———|—-|——|———–
+i8       |   1|i8    |int
+u8       |   1|u8    |int
+i16      |   2|i16   |int
+u16      |   2|u16   |int
+i32      |   4|i32   |int
+u32      |   4|u32   |int
+i64      |   8|i64   |int
+u64      |   8|u64   |int
+f64      |   8|f64   |float
+bool     |   1|bool  |boolean
+string   |variable|vl_api_string_t|str</p>
+</div>
+<div class="section" id="user-defined-types">
+<h3>User Defined Types<a class="headerlink" href="#user-defined-types" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="vnet-ip-ip-types-api">
+<h4>vnet/ip/ip_types.api<a class="headerlink" href="#vnet-ip-ip-types-api" title="Permalink to this headline">¶</a></h4>
+<p>.api type|size|C type|Python type
+———|—-|——|———–
+vl_api_address_t|20|vl_api_address_t|<code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv4Address'&gt;</span> <span class="pre">or</span> <span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv6Address'&gt;</span></code>
+vl_api_ip4_address_t|4|vl_api_ip4_address_t|<code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv4Address'&gt;</span></code>
+vl_api_ip6_address_t|16|vl_api_ip6_address_t|<code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv6Address'&gt;</span></code>
+vl_api_prefix_t|21|vl_api_prefix_t|<code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv4Network'&gt;</span> <span class="pre">or</span> <span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv6Network'&gt;</span></code>
+vl_api_ip4_prefix_t|5|vl_api_ip4_prefix_t|<code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv4Network'&gt;</span></code>
+vl_api_ip6_prefix_t|17|vl_api_ip6_prefix_t|<code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv6Network'&gt;</span></code>
+vl_api_ip4_address_with_prefix_t|5|vl_api_ip4_address_with_prefix_t|<code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv4Interface'&gt;</span></code>
+vl_api_ip6_address_with_prefix_t|17|vl_api_ip6_address_with_prefix_t|<code class="docutils literal notranslate"><span class="pre">&lt;class</span> <span class="pre">'ipaddress.IPv6Interface'&gt;</span></code></p>
+</div>
+<div class="section" id="vnet-ethernet-ethernet-types-api">
+<h4>vnet/ethernet/ethernet_types.api<a class="headerlink" href="#vnet-ethernet-ethernet-types-api" title="Permalink to this headline">¶</a></h4>
+<p>.api type|size|C type|Python type
+———|—-|——|———–
+vl_api_mac_address_t|6|vl_api_mac_address_t|<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">'vpp_papi.MACAddress'&gt;</span></code></p>
+</div>
+<div class="section" id="vnet-interface-types-api">
+<h4>vnet/interface_types.api<a class="headerlink" href="#vnet-interface-types-api" title="Permalink to this headline">¶</a></h4>
+<p>.api type|size|C type|Python type
+———|—-|——|———–
+vl_api_interface_index_t|4|vl_api_interface_index_t|int</p>
+</div>
+</div>
+<div class="section" id="new-explicit-types">
+<h3>New explicit types<a class="headerlink" href="#new-explicit-types" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="string-versus-bytes">
+<h4>String versus bytes<a class="headerlink" href="#string-versus-bytes" title="Permalink to this headline">¶</a></h4>
+<p>A byte string with a maximum length of 64:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u8</span> <span class="n">name</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>Before the “string” type was added, text string were defined like this.
+The implications of that was the user would have to know if the field
+represented a \0 ended C-string or a fixed length byte string.
+The wire format of the ‘string’ type is a u32 length</p>
+<p>An IPv4 or IPv6 address was previously defined like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u8</span> <span class="n">is_ip6</span><span class="p">;</span>
+<span class="n">u8</span> <span class="n">address</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>Which made it hard for language bindings to represent the
+address as anything but a byte string.
+The new explicit address types are shown above.</p>
+</div>
+</div>
+</div>
+<div class="section" id="language-generators">
+<h2>Language generators<a class="headerlink" href="#language-generators" title="Permalink to this headline">¶</a></h2>
+<p>The VPP API compiler currently has two output modules. One generating JSON
+and one generating C header files that are directly used by the VPP
+infrastructure and plugins.</p>
+<p>The C/C++, Python, Go Lua, and Java language bindings are generated based
+on the JSON files.</p>
+<div class="section" id="future-considerations">
+<h3>Future considerations<a class="headerlink" href="#future-considerations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>[ ] Generate C/C++ (vapi) client code directly from vppapigen</p></li>
+<li><p>[ ] Embed JSON definitions into the API server, so dynamic languages
+can download them directly without going via the filesystem and JSON
+files.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../writingdocs/index.html" class="btn btn-neutral float-right" title="Writing Documents" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cnat.html" class="btn btn-neutral float-left" title="Cloud NAT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
