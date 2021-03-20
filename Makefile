@@ -30,3 +30,12 @@ build:
 
 update-themes:
 	git submodule update --remote
+
+yarn:
+	yarn
+
+serve: yarn
+	hugo server \
+		--buildDrafts \
+		--buildFuture \
+		--disableFastRender
