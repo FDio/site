@@ -1,0 +1,48 @@
+{{- $registrationIcon := (dict "iconClass" "fas fa-desktop" "text" "Register" "url" .Params.Registrationurl) }}
+{{- $youtubeIcon := (dict "iconClass" "fab fa-youtube" "text" "YouTube" "url" .Params.Youtubeurl) }}
+{{- $pdfIcon := (dict "iconClass" "far fa-file-pdf" "text" "PDF" "url" .Params.Pdfurl) }}
+{{- $pptIcon := (dict "iconClass" "fas fa-file-powerpoint" "text" "PPT" "url" .Params.Ppturl) }}
+{{- $icons := slice }}
+{{ if now.Before .Params.Date }}
+{{- $icons = $icons | append $registrationIcon }}
+{{ end }}
+{{- $icons = $icons | append $youtubeIcon }}
+{{- $icons = $icons | append $pdfIcon }}
+{{- $icons = $icons | append $pptIcon }}
+
+
+{{ if now.Before .Params.Date }}
+{{ end }}
+<article class="media">
+    <figure class="media-left">
+        <div class="image is-128x128 mt-0">
+            <img src="/img/webinars/fdio-webinar.svg">
+        </div>
+    </figure>
+    <div class="media-content">
+        <h2>{{.Params.title}}</h2>
+        <h4>
+            {{.Params.Date.Format "January 2, 2006" }} <span class="localtime">{{.Params.Date.Format "08:00:00-07"}}</span>
+        </h4>
+        <h5>
+            {{ range $index,$item := $icons }}
+            {{ if ne $index 0 }}
+            <span class="icon">
+                <i class="fas fa-grip-lines-vertical"></i>
+            </span>
+            {{ end }}
+            <a href="{{$item.url}}">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="{{$item.iconClass}}"></i>
+                    </span>
+                    <span class="divider is-vertical"></span>
+                    <span>
+                        {{$item.text}}
+                    </span>
+                </span>
+            </a>
+            {{end}}
+        </h5>
+    </div>
+</article>

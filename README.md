@@ -15,6 +15,14 @@ Anyone is welcome to contribute.
 
 If you feel comfortable working with [Hugo](https://gohugo.io), please create a [PR on GitHub](https://github.com/FDio/site/pulls).
 
+You will also need to install [Yarn](https://yarnpkg.com/en/).  Easy install instructions are [here](https://yarnpkg.com/en/docs/install)
+
+To run the site after cloning (with fast rendering disabled), run the following:
+
+```
+make server
+```
+
 If you just have an idea for improvement, open an [issue on GitHub](https://github.com/FDio/site/issues).
 
 ## Who can merge changes

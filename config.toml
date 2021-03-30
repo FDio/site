@@ -58,7 +58,7 @@ publishDir = "public"
   dateFormat = "6 January 2006"
 
   home = "Home"
-
+  fontawesomeversion = "5.8.1"
   [params.slider]
     enable = true
     bgImage = "img/fdio_bg.jpg"
@@ -140,3 +140,12 @@ x86, ARM, and PowerPC architectures.<br /> <br />
     btnText2 = "Get Involved"
     url2 = "/community/join"
 
+[[params.fonts]]
+name = "Nunito Sans"
+sizes = [300, 400, 600, 700]
+type = "sans_serif"
+
+[[params.fonts]]
+name = "Roboto Mono"
+sizes = [300, 400, 600, 700]
+type = "monospace"
