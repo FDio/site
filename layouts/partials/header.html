@@ -7,7 +7,7 @@
             <img class="img-responsive" src="{{ .Site.BaseURL }}img/fdio-color.svg" alt="{{ .Site.Title }} Logo">
         </a>
     </div>
-    <div class="col-md-10 fix-navbar-zindex">
+    <div class="col-md-8 fix-navbar-zindex">
       <!-- header Nav Start -->
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -31,6 +31,9 @@
           </div><!-- /.container-fluid -->
         </nav>
       </div>
+    <div class="col-md-1">
+      {{ partial "social-buttons.html" . }}
+    </div>
     </div>
   </div>
 </header><!-- header close -->

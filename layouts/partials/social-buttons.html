@@ -1,0 +1,17 @@
+{{ $github  := site.Params.social.github }}
+{{ $twitter := site.Params.social.twitter }}
+<div class="navbar-item">
+  <div class="buttons is-radiusless">
+    <a class="button is-twitter-blue" href="{{ $twitter }}" target="_blank">
+      <span class="icon">
+        <i class="fab fa-twitter"></i>
+      </span>
+    </a>
+
+    <a class="button is-black" href="{{ $github }}" target="_blank">
+      <span class="icon">
+        <i class="fab fa-github"></i>
+      </span>
+    </a>
+  </div>
+</div>

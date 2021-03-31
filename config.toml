@@ -149,3 +149,7 @@ type = "sans_serif"
 name = "Roboto Mono"
 sizes = [300, 400, 600, 700]
 type = "monospace"
+
+[params.social]
+github = "https://github.com/fdio"
+twitter = "https://twitter.com/FDioProject"
