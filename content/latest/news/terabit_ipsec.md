@@ -6,4 +6,4 @@ newsbuttontxt = "Read More"
 date = "2021-04-06T08:00:00-07:00"
 +++
 
-FD.io VPP breaks the 1Tbit/s IPSEC and 1B pkts/s barriers on new 3rd Gen Intel Xeon Scalable processors
+FD.io VPP breaks the 1 Tbit/s IPsec and 1 Billion pkts/s barriers on new 3rd Gen Intel Xeon Scalable processors
