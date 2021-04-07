@@ -14,7 +14,7 @@ FD.io (“Fido”), relentlessly focused on data IO speed and efficiency support
 flexible, and scalable software defined infrastructures, today announced support for terabit rates of IPsec, as well
 as a billion packets per second of IPv4 routing at scale.  Architectural improvements in 3rd Gen
 Intel Xeon Scalable processors including PCIe bandwidth increase and overall decrease in cycles-per-packet due to 
-CPU micro-architecture improvements allow FD.io to deliver significant price-performance gains for both cloud- and
+CPU micro-architecture improvements combined with FD.io software deliver significant price-performance gains for both cloud- and
 appliance-based software router and secure networking solutions.
 
 FD.io offers the software defined infrastructure developer community a landing site with multiple projects fostering 
