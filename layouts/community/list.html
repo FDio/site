@@ -9,12 +9,21 @@
 	<h1 align="center">{{ .Title }}</h1>
 	{{ .Params.subtitle | markdownify }}
 	<div class="container">
-		{{ range (.Paginator 8).Pages }}
+		{{ if eq .RelPermalink "/community/tscdocs/"}}
 		<div class="col-md-10">
+			{{with .Site.GetPage "/community/tscdocs/docs"}}
 		    {{ .Content | markdownify }}
+			{{end}}
 		    <br></br>
 		</div>
+		{{else}}
+		{{ range (.Paginator 8).Pages }}
+		<div class="col-md-10">
+			{{ .Content | markdownify }}
+			<br></br>
+		</div>
 		{{ end }}
+		{{end}}
 	</div>
 
 	{{ partial "footer.html" . }}
