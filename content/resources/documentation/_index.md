@@ -1,7 +1,7 @@
 +++
 title = "Project Documentation"
 subtitle = """
-FD.io is a collection of several projects.<br>
+FD.io is a collection of several projects.
 Documentation for some of the projects can be found here.
 """
 bgImage = "img/fdio_bg_tech2.jpg"

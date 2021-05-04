@@ -1,5 +1,5 @@
 +++
-id = "community"
+id = "overview"
 +++
 
 <br>
@@ -40,7 +40,6 @@ Learn more about [LFN](https://www.lfnetworking.org) and [Join as a member](http
 #### Mailing Lists
 [![Mailing List](https://img.shields.io/badge/Mailing%20List-vpp-blue.svg?style=plastic)](https://lists.fd.io/g/vpp-dev)
 
-#### FDio Communication Channels
+#### FD.io Communication Channels
 [![IRC](https://www.irccloud.com/invite-svg?channel=%23fdio&amp;hostname=irc.freenode.net&amp;port=6697&amp;ssl=1)](http://webchat.freenode.net/?channels=fdio)
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/FDioProject)
-

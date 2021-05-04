@@ -3,7 +3,7 @@ weight="2"
 title = "Continuous System Integration and Testing (CSIT)"
 +++
 
-The FD.io software is being continuosly be tested with the tools and
+The FD.io software is being continuously be tested with the tools and
 framework provided by the CSIT project.
 <br>
 The project description can be found here [CSIT Project](https://docs.fd.io/csit/master/doc/).
