@@ -350,7 +350,7 @@ No more than 50% of the TSC seats may be held by persons employed by the same co
 
 ### 4.1.2 TSC Chair
 
-* The TSC Member shall elect a TSC Chair.
+* The TSC Members shall elect a TSC Chair.
 * The TSC Chair shall have a term of one year.
 * The TSC Chair may stand for re-election.
 
