@@ -425,6 +425,7 @@ The TSC may itself appoint up to two members of the TSC.
 * Failure to accept within two weeks is considered declining the nomination.
 
 #### 4.2.4.3 TSC Appointed Member Voters
+
 * Existing TSC members may vote on admitting a candidate
   * In the event that there are more candidates under consideration than available TSC Appointed seats, a multiple-candidate method, e.g.:
     * [Condorcet](http://en.wikipedia.org/wiki/Condorcet_method) or
