@@ -432,6 +432,7 @@ The TSC may itself appoint up to two members of the TSC.
     * [Single Transferable Vote](http://en.wikipedia.org/wiki/Single_transferable_vote)
 
 #### 4.2.4.4 TSC Appointed Member Term
+
 TSC Appointed Members shall serve a one year term.
 
 ### 4.2.5 Legacy Members
