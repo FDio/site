@@ -1,7 +1,7 @@
 +++
-title = "The TSC Documents"
+title = "Key Documents"
 type = "community"
 subtitle = """
-<h2 style="text-indent: 1em;">The TSC Documents</h2>
+<h3 style="text-indent: 1em;">The TSC Documents:</h3>
 """
 +++

@@ -1,5 +1,5 @@
 +++
 title = "Installing VPP"
 subtitle = "Installing"
-type = "vpp"
+type = "resources"
 +++

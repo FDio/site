@@ -9,28 +9,44 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 1
-    name = "Use Cases"
-    url = "/overview/fdiousecases"
+    name = "What's FD.io?"
+    url = "/overview/whatsfdio"
 
   [[menu.header]]
     weight = 2
-    name = "Get Started With VPP"
+    name = "Technology"
     url = "/vppproject/vpptech"
 
   [[menu.header]]
     weight = 3
-    name = "Documentation"
-    url = "/documentation"
+    name = "Features"
+    url = "/vppproject/vppfeatures"
 
   [[menu.header]]
     weight = 4
-    name = "The Latest"
-    url = "/latest/news"
+    name = "Applications"
+    url = "/overview/fdiousecases"
 
   [[menu.header]]
     weight = 5
-    name = "Get Involved"
-    url = "/community/join"
+    name = "Solutions"
+    url = "/overview/solutions"
+
+  [[menu.header]]
+    weight = 6
+    name = "Resources"
+    url = "/resources/whitepapers"
+
+  [[menu.header]]
+    weight = 7
+    name = "News"
+    url = "/latest/news"
+
+  [[menu.header]]
+    weight = 8
+    name = "About"
+    url = "/community/tsc"
+
 
 [markup]
   defaultMarkdownHandler = "goldmark"
