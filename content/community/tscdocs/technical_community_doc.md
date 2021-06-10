@@ -351,7 +351,7 @@ No Member may be admitted to the TSC if their admission would cause the percenta
 ### 4.1.2 TSC Chair
 
 * The TSC Members shall elect a TSC Chair.
-* The TSC Chair shall have a term of one year.
+* The TSC Chair shall have a term of two-year.
 * The TSC Chair may stand for re-election.
 
 ## 4.2 TSC Operations
@@ -421,7 +421,7 @@ Election of a TSC Chair shall use a multiple-candidate method, e.g.:
 
 #### 4.2.4.4 Committer-at-large TSC Member Term
 
-* Committer-at-large TSC Members shall serve a one-year term.
+* Committer-at-large TSC Members shall serve a two-year term.
 * Committer-at-large TSC Members may stand for re-election.
 
 ### 4.2.5 TSC Appointed Members
@@ -448,7 +448,7 @@ The TSC may itself appoint up to two members of the TSC.
 
 #### 4.2.5.4 TSC Appointed Member Term
 
-TSC Appointed Members shall serve a one year term.
+TSC Appointed Members shall serve a two-year term.
 
 ### 4.2.6 Legacy Members
 
