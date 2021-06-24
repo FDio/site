@@ -26,6 +26,7 @@
         </h4>
         <h5>
             {{ range $index,$item := $icons }}
+            {{ if $item.url }}
             {{ if ne $index 0 }}
             <span class="icon">
                 <i class="fas fa-grip-lines-vertical"></i>
@@ -42,6 +43,7 @@
                     </span>
                 </span>
             </a>
+            {{end}}
             {{end}}
         </h5>
     </div>
