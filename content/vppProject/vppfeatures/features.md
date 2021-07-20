@@ -86,7 +86,7 @@
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v21.10-rc0-192-g05b5a5b3b
+VPP version: v21.06
 
 ### ACL Based Forwarding
 Maintainer: Neale Ranns <nranns@cisco.com>  
