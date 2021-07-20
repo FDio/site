@@ -36,6 +36,7 @@
 [Layer 3 cross connect](#layer-3-cross-connect)  
 [Link Aggregation Control Protocol](#link-aggregation-control-protocol)  
 [Link Layer Discovery Protocol](#link-layer-discovery-protocol)  
+[Linux Control Plane (integration)](#linux-control-plane-(integration))  
 [Load Balancer](#load-balancer)  
 [Locator ID Separation Protocol Control Plane](#locator-id-separation-protocol-control-plane)  
 [Locator ID Separation Protocol Generic Protocol Extension](#locator-id-separation-protocol-generic-protocol-extension)  
@@ -48,9 +49,12 @@
 [PG](#pg)  
 [PPPoE](#pppoe)  
 [Pipe Device](#pipe-device)  
+[Policy 1:1 NAT](#policy-1:1-nat)  
 [QUIC Protocol](#quic-protocol)  
 [Quality of Service](#quality-of-service)  
+[SRTP (Secure Real-time Transport Protocol)](#srtp-(secure-real-time-transport-protocol))  
 [SRv6 - Service Chaining Dynamic Proxy](#srv6---service-chaining-dynamic-proxy)  
+[SRv6 - Service Chaining Flow-based Dynamic Proxy](#srv6---service-chaining-flow-based-dynamic-proxy)  
 [SRv6 - Service Chaining Masquerading Proxy](#srv6---service-chaining-masquerading-proxy)  
 [SRv6 - Service Chaining Static Proxy](#srv6---service-chaining-static-proxy)  
 [SRv6 Mobuile](#srv6-mobuile)  
@@ -74,6 +78,7 @@
 [Virtual eXtensible LAN](#virtual-extensible-lan)  
 [VxLAN-GPE](#vxlan-gpe)  
 [Wireguard protocol](#wireguard-protocol)  
+[arping command](#arping-command)  
 [host-interface Device AF_PACKET](#host-interface-device-af_packet)  
 [ikev2 plugin](#ikev2-plugin)  
 [rdma device driver](#rdma-device-driver)  
@@ -81,7 +86,7 @@
 [vmxnet3 device driver](#vmxnet3-device-driver)  
 
 ## Feature Details:
-VPP version: v21.01
+VPP version: v21.10-rc0-192-g05b5a5b3b
 
 ### ACL Based Forwarding
 Maintainer: Neale Ranns <nranns@cisco.com>  
@@ -347,6 +352,8 @@ Flow infrastructure to provide hardware offload capabilities
 
 - Four APIs are provided - flow_add, flow_del, flow_enable and flow_disable
 - The below flow types are currently supported
+  - FLOW_TYPE_IP4,
+  - FLOW_TYPE_IP6,
   - FLOW_TYPE_IP4_N_TUPLE,
   - FLOW_TYPE_IP6_N_TUPLE,
   - FLOW_TYPE_IP4_N_TUPLE_TAGGED,
@@ -354,6 +361,8 @@ Flow infrastructure to provide hardware offload capabilities
   - FLOW_TYPE_IP4_L2TPV3OIP,
   - FLOW_TYPE_IP4_IPSEC_ESP,
   - FLOW_TYPE_IP4_IPSEC_AH,
+  - FLOW_TYPE_IP4_VXLAN,
+  - FLOW_TYPE_IP6_VXLAN,
   - FLOW_TYPE_IP4_GTPC,
   - FLOW_TYPE_IP4_GTPU
 
@@ -606,6 +615,30 @@ Link Layer Discovery Protocol (LLDP) implementation
 Feature maturity level: production  
 Supports: API CLI STATS MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/lldp](https://git.fd.io/vpp/tree/src/plugins/lldp) 
+### Linux Control Plane (integration)
+Maintainer: Neale Ranns <neale@grahpiant.com>  
+
+This plugin provides the beginnings of an integration with the
+Linux network stack.
+The plugin provides the capability to 'mirror' VPP interfaces in
+the Linux kernel. This means that for any interface in VPP the user
+can create a corresponding TAP or TUN device in the Linux kernel
+and have VPP plumb them together.
+The plumbing mechanics is different in each direction.
+In the RX direction, all packets received on a given VPP interface
+that are punted (i.e. are not dropped or forwarded) are transmitted
+on its mirror interface (this includes for example ARP, ND etc,
+so the recommendation is to disable ARP, ND, ping plugin).
+In the TX direction, packets received by VPP an the mirror Tap/Tun
+are cross-connected to the VPP interfaces. For IP packets, IP output
+features are applied.
+This is the beginnings of integration, because there needs to be
+an external agent that will configure (and synchronize) the IP
+configuration of the paired interfaces.
+
+Feature maturity level: experimental  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/linux-cp](https://git.fd.io/vpp/tree/src/plugins/linux-cp) 
 ### Load Balancer
 Maintainer: Pfister <ppfister@cisco.com>, Hongjun Ni <hongjun.ni@intel.com>  
 
@@ -708,22 +741,12 @@ Maintainers: Ole Troan <ot@cisco.com>, Filip Varga <fivarga@cisco.com>
 
 The Network Address Translation (NAT) plugin offers a multiple address translation functions. These can be used in a raft of different scenarios. CPE, CGN, etc.
 
-- NAT44
-  - 1:1 NAT
-  - 1:1 NAT with ports
-  - VRF awareness
-  - Multiple inside interfaces
-  - Hairpinning
-  - IPFIX
-  - Syslog
-  - Endpoint dependent NAT
-  - TCP MSS clamping
-  - Local bypass (DHCP)
-
+- NAT44-EI - IPv4 Endpoint Independent NAT - 1:1 NAT - 1:1 NAT with ports - VRF awareness - Multiple inside interfaces - Hairpinning - IPFIX - Syslog - TCP MSS clamping - Local bypass (DHCP)
+- NAT44-ED - IPv4 Endpoint Dependent NAT - 1:1 NAT - 1:1 NAT with ports - VRF awareness - Multiple inside interfaces - Hairpinning - IPFIX - Syslog - TCP MSS clamping - Local bypass (DHCP)
 - DET44 - deterministic NAT (CGN)
 - NAT64
 - NAT66
-- DS-lite
+- DSLITE
 - 464XLAT
 
 Feature maturity level: production  
@@ -782,6 +805,16 @@ Not yet implemented:
 - API dump filtering by sw_if_index
 
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/devices/pipe](https://git.fd.io/vpp/tree/src/vnet/devices/pipe) 
+### Policy 1:1 NAT
+Maintainer: Ole Troan <ot@cisco.com>  
+
+Match packet against rule and translate according to given instructions. Rules are kept in a flow cache bihash. Instructions in a pool of translation entries.
+For a given interface/direction all rules must use the same lookup mask. E.g. SA + SP.
+A dynamic NAT would punt to slow path on a miss in the flow cache, in this case the miss behaviour is configurable. Default behaviour is pass packet along unchanged.
+
+Feature maturity level: experimental  
+Supports: API CLI MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/nat/pnat](https://git.fd.io/vpp/tree/src/plugins/nat/pnat) 
 ### QUIC Protocol
 Maintainer: Aloys Augustin <aloaugus@cisco.com>  
 
@@ -806,6 +839,16 @@ An implentation of Quality of Service (QoS)
 Feature maturity level: production  
 Supports: API CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/vnet/qos](https://git.fd.io/vpp/tree/src/vnet/qos) 
+### SRTP (Secure Real-time Transport Protocol)
+Maintainer: Florin Coras <fcoras@cisco.com>  
+
+SRTP transport protocol implementation based on libsrtp2
+
+- SRTP transport protocol implementation
+
+Feature maturity level: experimental  
+Supports: MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/srtp](https://git.fd.io/vpp/tree/src/plugins/srtp) 
 ### SRv6 - Service Chaining Dynamic Proxy
 Maintainer: Francois Clad <fclad@cisco.com>  
 
@@ -816,6 +859,16 @@ SRv6 dynamic proxy
 Feature maturity level: production  
 Supports: CLI MULTITHREAD  
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/srv6-ad](https://git.fd.io/vpp/tree/src/plugins/srv6-ad) 
+### SRv6 - Service Chaining Flow-based Dynamic Proxy
+Maintainer: Francois Clad <fclad@cisco.com>  
+
+SRv6 flow-based dynamic proxy
+
+- SRv6 - flow-based dynamic service chaining proxy (draft-ietf-spring-sr-service-programming-01)
+
+Feature maturity level: production  
+Supports: CLI  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/srv6-ad-flow](https://git.fd.io/vpp/tree/src/plugins/srv6-ad-flow) 
 ### SRv6 - Service Chaining Masquerading Proxy
 Maintainer: Francois Clad <fclad@cisco.com>  
 
@@ -1197,6 +1250,17 @@ Not yet implemented:
 - DoS protection as in the original protocol
 
 Source Code: [https://git.fd.io/vpp/tree/src/plugins/wireguard](https://git.fd.io/vpp/tree/src/plugins/wireguard) 
+### arping command
+Maintainer: Steven Luong <sluong@cisco.com>  
+
+arping command
+
+- arping command to send either gratuitous or ARP request to the remote
+- support both IPv4 and IPv6
+
+Feature maturity level: production  
+Supports: API CLI STATS MULTITHREAD  
+Source Code: [https://git.fd.io/vpp/tree/src/plugins/arping](https://git.fd.io/vpp/tree/src/plugins/arping) 
 ### host-interface Device AF_PACKET
 Maintainer: Damjan Marion <damarion@cisco.com>  
 

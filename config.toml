@@ -45,7 +45,7 @@ publishDir = "public"
     target = "static"
 
   [[module.mounts]]
-    source = "static/docs/vpp/v2101"
+    source = "static/docs/vpp/v2106"
     target = "static/docs/vpp/latest"
 
 # The site's parameters

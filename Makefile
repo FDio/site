@@ -7,17 +7,20 @@ VERSION ?= v2101
 check-%:
 	@: $(if $(value $*),,$(error $* is undefined))
 
-.PHONY: vppdoc
-vppdoc: featurelist check-VERSION check-VPP_DIR
+.PHONY: init
+init: check-VPP_DIR
 	$(MAKE) -C ${VPP_DIR} docs-clean
 	$(MAKE) -C ${VPP_DIR} docs-venv
 	$(MAKE) -C ${VPP_DIR} docs
+
+.PHONY: vppdoc
+vppdoc: init featurelist check-VERSION check-VPP_DIR
 	@rm -rf ${VPPDOC_TARGET_DIR}/${VERSION}
 	@cp -r ${VPPDOC_SRC_DIR} ${VPPDOC_TARGET_DIR}/${VERSION}
 	@echo "Built docs for VPP $(shell ${VPP_DIR}/src/scripts/version)"
 
 .PHONY: featurelist
-featurelist: check-VPP_DIR
+featurelist: check-VPP_DIR init
 	( \
 	  source ${VPP_DIR}/sphinx_venv/bin/activate ; \
 	  (cd ${VPP_DIR} && find . -name FEATURE.yaml) | \

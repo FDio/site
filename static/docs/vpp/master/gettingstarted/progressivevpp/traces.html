@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using the trace command &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>Using the trace command &mdash; The Vector Packet Processor master documentation</title>
   
 
   
@@ -106,7 +106,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#clear-trace-buffer">Clear trace buffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ping-from-vpp-to-host">Ping from VPP to Host</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#examine-trace-of-ping-from-vpp-to-host">Examine Trace of ping from VPP to host</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#examine-arp-tables">Examine arp tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examine-arp-table-neighbors">Examine ARP table (neighbors)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#examine-routing-tables">Examine routing tables</a></li>
 </ul>
 </li>
@@ -122,12 +122,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related FD.IO Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
 </ul>
 
@@ -209,7 +206,7 @@
 <li><p>Clear a ‘trace’</p></li>
 <li><p>Verify using ping from host</p></li>
 <li><p>Ping from vpp</p></li>
-<li><p>Examine Arp Table</p></li>
+<li><p>Examine ARP table (neighbors)</p></li>
 <li><p>Examine ip fib</p></li>
 </ol>
 </div>
@@ -645,9 +642,9 @@
 </div>
 <p>After examining the trace, clear it again using vpp# clear trace.</p>
 </div>
-<div class="section" id="examine-arp-tables">
-<h2>Examine arp tables<a class="headerlink" href="#examine-arp-tables" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# show ip arp</span>
+<div class="section" id="examine-arp-table-neighbors">
+<h2>Examine ARP table (neighbors)<a class="headerlink" href="#examine-arp-table-neighbors" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# show ip neighbors</span>
 <span class="go">Time           IP4       Flags      Ethernet              Interface</span>
 <span class="go">1101.5636    10.10.1.1      D    e2:0f:1e:59:ec:f7 host-vpp1out</span>
 </pre></div>
@@ -722,7 +719,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018-2020, Linux Foundation
+        &copy; Copyright 2018-2021, Linux Foundation
 
     </p>
   </div>
