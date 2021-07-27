@@ -5,6 +5,9 @@ publishDate = "2021-06-22"
 date = "2021-07-22T09:00:00-08:00"
 type = "latestwebinar"
 registrationurl = "https://zoom.platform.linuxfoundation.org/webinar/register?project=lfn&id=AEltd2Ny5jXgn%2FUmQ%2FueI3%2BZXYuUOnbQN%2BFBn1eov9oSozG8JrdqqQ%3D%3D&logo=lfn.svg&zoomID=95927465619"
+youtubeurl = "https://www.youtube.com/watch?v=G67K28f5htg"
+pdfurl =  "https://drive.google.com/file/d/1pZh2BJlc5ZZYR6lnfH1KHQWKU4FgLti6/view?usp=sharing"
+ppturl = "https://drive.google.com/file/d/1c9KwZQFS98DX4q7JfXfjgi52P5nMgYtz/view?usp=sharing"
 summary = ""
 +++
 
