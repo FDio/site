@@ -8,14 +8,11 @@ subtitle="""
 btntxt="For All the CSIT Test Reports"
 # The first part of these strings are displayed in the dropdown.
 # The second is the url
-latest = "Latest Release (2009), https://docs.fd.io/csit/rls2009/report/"
-versions = ["Master, https://docs.fd.io/csit/master/report/",
-      "1908, https://docs.fd.io/csit/rls1908/report/",
-	 "1904, https://docs.fd.io/csit/rls1904_2/report/",
-	 "1901, https://docs.fd.io/csit/rls1901_3/report/"]
+latest = "Latest Release (2106), https://s3-docs.fd.io/csit/rls2106/report/"
+versions = ["Master, https://s3-docs.fd.io/csit/master/report/"]
 +++
 
-#### The [CSIT Trending Report](https://docs.fd.io/csit/master/trending) is a report that shows the FD.io performance over time. This report insures that over time FD.io will not have perfomance regressions.
+#### The [CSIT Trending Report](https://s3-docs.fd.io/csit/master/trending) is a report that shows the FD.io performance over time. This report insures that over time FD.io will not have perfomance regressions.
 
 <br>
 
@@ -29,7 +26,7 @@ versions = ["Master, https://docs.fd.io/csit/master/report/",
 #### Layer 2
 L2XC (Cross Connect) - Layer 2 switching between physical ports based on the VLAN tag.
 
-Bridge w/Mac Learning - Layer 2 switching between physical ports based on the learned MAC addresses. Scale: 1 to 1 million mac addresses. 
+Bridge w/Mac Learning - Layer 2 switching between physical ports based on the learned MAC addresses. Scale: 1 to 1 million mac addresses.
 
 #### Layer 3
 IPv4 Routing - Routing based on an IPv4 destination IP address, with standard IP protocol checks. Scaling from 1 to 2 million routes in the forwarding plane. Scale : 1 to 2 million routes
