@@ -1,15 +1,17 @@
 +++
 title = "CSIT Documentation"
+
 +++
 
 The FD.io software is being continuosly be tested with the tools and
+
 framework provided by the CSIT project (Continuous System Integration and Testing).
 
-The project description can be found here [CSIT Project](https://docs.fd.io/csit/master/doc/).
+The project description can be found here [CSIT Project](https://s3-docs.fd.io/csit/master/doc/).
 
-Reports are published on a nightly basis at [CSIT Report](https://docs.fd.io/csit/master/report/).
+Reports are published on a nightly basis at [CSIT Report](https://s3-docs.fd.io/csit/master/report/).
 
-Data on FD.io trending performance is found at [CSIT Trending](https://docs.fd.io/csit/master/trending/).
+Data on FD.io trending performance is found at [CSIT Trending](https://s3-docs.fd.io/csit/master/trending/).
 
 The archive of all the CSIT documents is at [CSIT Archive](https://docs.fd.io/csit/)
 
@@ -19,7 +21,7 @@ The archive of all the CSIT documents is at [CSIT Archive](https://docs.fd.io/cs
 
 FD.io Complete System Integration Testing (CSIT) is software written for fully automated FD.io VPP code testing, functionality, performance, regression and new functions.
 
-The [CSIT Trending Report](https://docs.fd.io/csit/master/trending) is a report that shows the FD.io performance over time. This report insures that over time FD.io will not have perfomance regressions.
+The [CSIT Trending Report](https://s3-docs.fd.io/csit/master/trending) is a report that shows the FD.io performance over time. This report insures that over time FD.io will not have perfomance regressions.
 
 
 ### A Small Subset of the CSIT Perfomance Results
@@ -56,10 +58,7 @@ SW - IPSEC tunnel termination, with standard protocol checks.
 
 
 {{% btn-dropdown "For All the CSIT Test Reports" %}}
-{{% btn-dropelem txt="Latest Release (2009)" link="https://docs.fd.io/csit/rls2009/report/" %}}
+{{% btn-dropelem txt="Latest Release (2106)" link="https://s3-docs.fd.io/csit/rls2106/report/" %}}
 {{% btn-dropdiv %}}
-{{% btn-dropelem txt="Master" link="https://docs.fd.io/csit/master/report/" %}}
-{{% btn-dropelem txt="1908" link="https://docs.fd.io/csit/rls1908/report/" %}}
-{{% btn-dropelem txt="1904" link="https://docs.fd.io/csit/rls1904_2/report/" %}}
-{{% btn-dropelem txt="1901" link="https://docs.fd.io/csit/rls1901_3/report/" %}}
+{{% btn-dropelem txt="Master" link="https://s3-docs.fd.io/csit/master/report/" %}}
 {{%/ btn-dropdown %}}
