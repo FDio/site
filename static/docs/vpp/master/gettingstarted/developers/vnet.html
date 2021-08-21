@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>VNET (VPP Network Stack) &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>VNET (VPP Network Stack) &mdash; The Vector Packet Processor master documentation</title>
   
 
   
@@ -98,6 +98,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing_vpp.html">Testing VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
@@ -147,12 +148,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related FD.IO Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
 </ul>
 
@@ -371,9 +369,6 @@ blindly cut-‘n-pasted.</p>
 
   <span class="n">b0</span> <span class="o">=</span> <span class="n">vlib_get_buffer</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">bi0</span><span class="p">);</span>
 
-  <span class="cm">/* Initialize the buffer */</span>
-  <span class="n">VLIB_BUFFER_TRACE_TRAJECTORY_INIT</span> <span class="p">(</span><span class="n">b0</span><span class="p">);</span>
-
   <span class="cm">/* At this point b0-&gt;current_data = 0, b0-&gt;current_length = 0 */</span>
 
   <span class="cm">/*</span>
@@ -415,7 +410,7 @@ blindly cut-‘n-pasted.</p>
                                    <span class="n">vec_len</span> <span class="p">(</span><span class="n">udp_data</span><span class="p">));</span>
 
     <span class="p">}</span>
-  <span class="n">b0</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">|=</span> <span class="p">(</span><span class="n">VLIB_BUFFER_TOTAL_LENGTH_VALID</span><span class="p">;</span>
+  <span class="n">b0</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">|=</span> <span class="n">VLIB_BUFFER_TOTAL_LENGTH_VALID</span><span class="p">;</span>
 
   <span class="cm">/* sw_if_index 0 is the &quot;local&quot; interface, which always exists */</span>
   <span class="n">vnet_buffer</span> <span class="p">(</span><span class="n">b0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sw_if_index</span><span class="p">[</span><span class="n">VLIB_RX</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -953,7 +948,7 @@ correctly recreate the named stream.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018-2020, Linux Foundation
+        &copy; Copyright 2018-2021, Linux Foundation
 
     </p>
   </div>

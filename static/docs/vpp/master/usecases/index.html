@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Use Cases &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>Use Cases &mdash; The Vector Packet Processor master documentation</title>
   
 
   
@@ -106,14 +106,12 @@
 <li class="toctree-l2"><a class="reference internal" href="webapp.html">Building VPP web applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="container_test.html">Container-based network simulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trafficgen.html">Vpp Stateless Traffic Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ikev2.html">IKEv2 in VPP</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related FD.IO Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -526,8 +524,8 @@ extensive list, but should give a sampling of the many features contained in FD.
 <li class="toctree-l2"><a class="reference internal" href="container_test.html#create-three-network-segments">Create three network segments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="container_test.html#set-up-the-default-container-profile">Set up the default container profile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="container_test.html#set-up-the-network-configurations">Set up the network configurations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="container_test.html#dora-network-configuration">dora network configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="container_test.html#swan-network-configuration">swan network configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container_test.html#respond-network-configuration">respond network configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container_test.html#initiate-network-configuration">initiate network configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="container_test.html#create-a-master-container-image">Create a “master” container image</a></li>
@@ -538,13 +536,13 @@ extensive list, but should give a sampling of the many features contained in FD.
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="container_test.html#end-station-configs">End station configs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="container_test.html#dorahost-configuration">dorahost configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="container_test.html#swanhost-configuration">swanhost configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container_test.html#respondhost-configuration">respondhost configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container_test.html#initiatehost-configuration">initiatehost configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="container_test.html#vpp-configs">VPP configs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="container_test.html#dora-configuration">dora configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="container_test.html#swan-configuration">swan configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container_test.html#respond-configuration">respond configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container_test.html#initiate-configuration">initiate configuration</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="container_test.html#ikev2-certificate-setup">IKEv2 certificate setup</a></li>
@@ -564,6 +562,20 @@ extensive list, but should give a sampling of the many features contained in FD.
 <li class="toctree-l1"><a class="reference internal" href="trafficgen.html">Vpp Stateless Traffic Generation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="trafficgen.html#traffic-generator-setup-script">Traffic Generator Setup Script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trafficgen.html#uut-setup-script">UUT Setup Script</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ikev2.html">IKEv2 in VPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vpp_resp_sswan_init.html">VPP as IKEv2 responder and strongSwan as initiator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vpp_resp_sswan_init.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_resp_sswan_init.html#setup">Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_init_sswan_resp.html">VPP as IKEv2 initiator and strongSwan as responder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vpp_init_sswan_resp.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_init_sswan_resp.html#setup">Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_vpp.html">How to connect VPP instances using IKEv2</a></li>
 </ul>
 </li>
 </ul>
@@ -590,7 +602,7 @@ extensive list, but should give a sampling of the many features contained in FD.
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018-2020, Linux Foundation
+        &copy; Copyright 2018-2021, Linux Foundation
 
     </p>
   </div>

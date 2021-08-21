@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cross compilation on MacOS &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>Cross compilation on MacOS &mdash; The Vector Packet Processor master documentation</title>
   
 
   
@@ -98,6 +98,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="testing_vpp.html">Testing VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
@@ -126,7 +127,7 @@
 <li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Cross compilation on MacOS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#installing-indent-2-2-11">Installing indent 2.2.11</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-clang-format-10-0-0">Installing clang-format 10.0.0</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
@@ -138,12 +139,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related FD.IO Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
 </ul>
 
@@ -221,16 +219,14 @@
 <li><p>You’ll need to install the following packages</p></li>
 </ul>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip3 install ply pyyaml jsonschema
-<span class="gp">$</span> brew install diffutils gnu-sed pkg-config ninja crosstool-ng
+<span class="gp">$</span> brew install gnu-sed pkg-config ninja crosstool-ng
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>You’ll also need to install <code class="docutils literal notranslate"><span class="pre">gnu-ident</span> <span class="pre">2.2.11</span></code> to be able to <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">checkstyle</span></code>. This can be done with <a class="reference internal" href="#install-indent-2-2-11"><span class="std std-ref">this doc</span></a></p></li>
+<li><p>You’ll also need to install <code class="docutils literal notranslate"><span class="pre">clang-format</span> <span class="pre">10.0.0</span></code> to be able to <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">checkstyle</span></code>. This can be done with <a class="reference internal" href="#install-clang-format-10-0-0"><span class="std std-ref">this doc</span></a></p></li>
 <li><p>You should link the binaries to make them available in your path with their original names e.g. :</p></li>
 </ul>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ln -s <span class="k">$(</span>which gsed<span class="k">)</span> /usr/local/bin/sed
-<span class="gp">$</span> ln -s <span class="k">$(</span>which gindent<span class="k">)</span> /usr/local/bin/indent
-<span class="gp">$</span> ln -s /usr/local/Cellar/diffutils/3.7/bin/diff /usr/local/bin/diff
 </pre></div>
 </div>
 <p><strong>Setup</strong></p>
@@ -251,17 +247,18 @@
 </div>
 <p>This should build vpp on MacOS</p>
 <p>Good luck :)</p>
-<div class="section" id="installing-indent-2-2-11">
-<span id="install-indent-2-2-11"></span><h2>Installing indent 2.2.11<a class="headerlink" href="#installing-indent-2-2-11" title="Permalink to this headline">¶</a></h2>
-<p>In order to install indent on macos :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget http://mirror.sergal.org/gnu/indent/indent-2.2.11.tar.gz
-$ tar -xzvf indent-2.2.11.tar.gz
-$ <span class="nb">cd</span> indent-2.2.11
-$ ./configure --disable-dependency-tracking --disable-debug --program-prefix<span class="o">=</span>g --prefix<span class="o">=</span>/usr/local/Cellar/gnu-indent/2.2.11
+<div class="section" id="installing-clang-format-10-0-0">
+<span id="install-clang-format-10-0-0"></span><h2>Installing clang-format 10.0.0<a class="headerlink" href="#installing-clang-format-10-0-0" title="Permalink to this headline">¶</a></h2>
+<p>In order to install clang-format on macos :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang-10.0.0.src.tar.xz
+$ tar -xvf clang+llvm-10.0.0-x86_64-apple-darwin.tar.xz
+$ mv clang+llvm-10.0.0-x86_64-apple-darwin /usr/local/Cellar/
+$ sudo ln -s ../Cellar/clang+llvm-10.0.0-x86_64-apple-darwin/bin/clang-format /usr/local/bin/clang-format
+$ sudo ln -s ../Cellar/clang+llvm-10.0.0-x86_64-apple-darwin/bin/clang-format /usr/local/bin/clang-format-10
+$ sudo ln -s ../Cellar/clang+llvm-10.0.0-x86_64-apple-darwin/share/clang/clang-format-diff.py /usr/local/bin/clang-format-diff-10
 </pre></div>
 </div>
-<p>Install will exit with an error code, but indent 2.2.11 will still be installed in <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/gindent</span></code>
-Other mirrors can be found on the <a class="reference external" href="https://www.gnu.org/prep/ftp.html">GNU website</a></p>
+<p>Source <a class="reference external" href="https://releases.llvm.org/download.html#git">Clang website</a></p>
 </div>
 </div>
 
@@ -285,7 +282,7 @@ Other mirrors can be found on the <a class="reference external" href="https://ww
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018-2020, Linux Foundation
+        &copy; Copyright 2018-2021, Linux Foundation
 
     </p>
   </div>

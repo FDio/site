@@ -9,11 +9,8 @@ btntxt="Developing with VPP "
 # The first part of these strings are displayed in the dropdown.
 # The second is the url
 latest = "Latest Release, /docs/vpp/latest/gettingstarted/developers"
-versions = ["Master, /docs/vpp/master/gettingstarted/developers",
-	 "version 21.01, /docs/vpp/v2101/gettingstarted/developers",
-	 "version 20.09, /docs/vpp/v2009/gettingstarted/developers",
-	 "version 20.05, /docs/vpp/v2005/gettingstarted/developers",
-	 "version 20.01, /docs/vpp/v2001/gettingstarted/developers"]
+versions = ["version 21.06, /docs/vpp/v2106/gettingstarted/developers",
+	"version 21.01, /docs/vpp/v2101/gettingstarted/developers"]
 
 +++
 

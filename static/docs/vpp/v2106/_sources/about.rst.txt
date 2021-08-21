@@ -1,0 +1,9 @@
+.. _about:
+
+=====
+About
+=====
+
+**VPP Version:** 21.06-release
+
+**Built on:** Tue Jul 20 11:44:02 GMT 2021

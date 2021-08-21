@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Barnacles &mdash; The Vector Packet Processor 21.06 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Get Hacking" href="hacking.html" />
+    <link rel="prev" title="Scale" href="scale.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                21.06
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../testing_vpp.html">Testing VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html#sample-run">Sample Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thedatamodel.html">The Data Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scale.html">Scale</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Barnacles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hacking.html">Get Hacking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="missing.html">Missing Functionality</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related FD.IO Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Developers</a> &raquo;</li>
+        
+          <li><a href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a> &raquo;</li>
+        
+      <li>Barnacles</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/developers/fib20/barnacles.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="barnacles">
+<span id="id1"></span><h1>Barnacles<a class="headerlink" href="#barnacles" title="Permalink to this headline">¶</a></h1>
+<p>Features that are stuck on the side of the FIB. Those that directly use
+the services that the FIB provides.</p>
+<p>In the section on FIB fundamentals it was mentioned  that there is a
+separation between what to match and how to forward. In an IP FIB what
+to match is the packet’s destination address against a table of IP
+prefixes, and how to forward is described by a list of paths (the
+<strong>fib_path_list_t</strong>).</p>
+<div class="section" id="acl-based-forwarding">
+<h2>ACL Based Forwarding<a class="headerlink" href="#acl-based-forwarding" title="Permalink to this headline">¶</a></h2>
+<p>ACL Based Forwarding (ABF) is also know as policy based routing
+(PBR). In ABF what to match is described by an ACL.</p>
+<p>ABF uses two VPP services; ACL as a service, as provided by the ACL
+plugin and FIB path-lists. It just glues them together.</p>
+<p>An ABF policy is the combination of an ACL with the forwarding
+description of a FIB path-list. An ABF attachment is the association
+of [an ordered set of] ABF policies to an interface. The attachment is
+consulted on the ingress path of the IP DP (as an input
+feature). If the ACL matches then the associated forwarding is
+followed, if not, the packet continues along the DP. Simples.</p>
+</div>
+<div class="section" id="layer-3-cross-connect">
+<h2>Layer 3 Cross Connect<a class="headerlink" href="#layer-3-cross-connect" title="Permalink to this headline">¶</a></h2>
+<p>An L3 cross-connect (L3XC) matches all packets
+that ingress the interface and then forwards using the supplied FIB
+path-list. Naturally it runs as an input feature in the IP
+path. Super simples.</p>
+</div>
+<div class="section" id="ip-punt">
+<h2>IP Punt<a class="headerlink" href="#ip-punt" title="Permalink to this headline">¶</a></h2>
+<p>Matches all IP packets that VPP has punted. Why they are punted is not
+relevant. All IP punted packets are sent by VPP to the punt feature
+arc. This feature ‘matches’ all packets that it receives and forwards
+using the FIB path-list.</p>
+</div>
+<div class="section" id="unicast-reverse-path-forwarding">
+<h2>Unicast Reverse Path Forwarding<a class="headerlink" href="#unicast-reverse-path-forwarding" title="Permalink to this headline">¶</a></h2>
+<p>Unicast Reverse Path Forwarding (uRPF) is the process of ensuring that
+a packet has a conforming source address. It comes in two
+flavours:</p>
+<ul class="simple">
+<li><p>loose: The source address must be reachable, i.e. FIB must have a
+route that will forward to the source address. The default route
+counts as long as it does not drop.</p></li>
+<li><p>strict: The source address is reachable via the interface on which
+the packet arrived, i.e. the FIB’s route for the source address must
+include the input interface as an output interface.</p></li>
+</ul>
+<p>The uRPF feature can run on either the input or output IP feature
+arc. In both cases it serves as an anti-spoofing check, though the
+semantics are slightly different. On the input arc it enforces that
+peers on that link are only using source addresses that they should -
+a network admin should employ at the access edge. On the output
+arc it enforces that a packet is sourced from a prefix that belongs to
+the network, i.e. that is has originated from within an SP’s
+network, a network admin could use at its peering points.</p>
+<p>To perform a uRPF check, the DP performs an IP FIB lookup on the
+source address, this always results in a load-balance (LB) object. If
+the LB has only 1 bucket and that bucket stacks on a drop DPO, then
+both a loose and strict check will fail, otherwise a loose check
+will pass. Each LB object has an associated uRPF list object. This
+object holds the list of interfaces through which the prefix is
+reachable. To pass the strict check, the input/output interface must
+be in this list.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hacking.html" class="btn btn-neutral float-right" title="Get Hacking" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="scale.html" class="btn btn-neutral float-left" title="Scale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2021, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

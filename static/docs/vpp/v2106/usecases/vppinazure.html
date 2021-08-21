@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VPP in Azure &mdash; The Vector Packet Processor 21.06 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Automating VPP deployment" href="automatingthedeployment.html" />
+    <link rel="prev" title="Interconnecting VPCs with Segment Routing &amp; Performance Evaluation" href="ConnectingVPC.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                21.06
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="containers.html">VPP with Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="vppcloud.html">VPP inside the Cloud</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="vppinaws.html">VPP in AWS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConnectingVPC.html">Interconnecting VPCs with Segment Routing &amp; Performance Evaluation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VPP in Azure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="automatingthedeployment.html">Automating VPP deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hgw.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container_test.html">Container-based network simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trafficgen.html">Vpp Stateless Traffic Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ikev2.html">IKEv2 in VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related FD.IO Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Use Cases</a> &raquo;</li>
+        
+          <li><a href="vppcloud.html">VPP inside the Cloud</a> &raquo;</li>
+        
+      <li>VPP in Azure</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usecases/vppinazure.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="vppinazure">
+</div>
+<div class="section" id="vpp-in-azure">
+<h1>VPP in Azure<a class="headerlink" href="#vpp-in-azure" title="Permalink to this headline">¶</a></h1>
+<p>Before starting, a few notes:</p>
+<ul class="simple">
+<li><p>in our configuration we use only DPDK 18.02, since with the newer versions, such as DPDK 18.05, we obtained several problems during VPP installation (mostly related with MLX4 PMD Drivers).</p></li>
+<li><p>Some of the commands are taken from <a class="reference external" href="https://docs.microsoft.com/en-us/azure/virtual-network/setup-dpdk">Azure’s DPDK page</a>.</p></li>
+</ul>
+<p>To bring DPDK inside Azure, we perform the following procedure:</p>
+<p>Firstly, we install the DPDK dependencies:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo add-apt-repository ppa:canonical-server/dpdk-azure –y
+<span class="gp">$</span> sudo apt-get update
+<span class="gp">$</span> sudo apt-get install -y librdmacm-dev librdmacm1 build-essential libnuma-dev libmnl-dev
+</pre></div>
+</div>
+<p>Then, we download DPDK 18.02:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo wget https://fast.dpdk.org/rel/dpdk-18.02.2.tar.xz
+<span class="gp">$</span> tar -xvf dpdk-18.02.2.tar.xz
+</pre></div>
+</div>
+<p>Finally, we build DPDK, modifying first its configuration files in order to make VPP compatible with MLX4 drivers:</p>
+<p>Inside config/common_base, modify:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">CONFIG_RTE_BUILD_SHARED_LIB=n</span>
+<span class="go">CONFIG_RTE_LIBRTE_MLX4_PMD=y</span>
+<span class="go">CONFIG_RTE_LIBRTE_MLX4_DLOPEN_DEPS=y</span>
+<span class="go">CONFIG_RTE_LIBRTE_TAP_PMD=y</span>
+<span class="go">CONFIG_RTE_LIBRTE_FAILSAFE_PMD=y</span>
+</pre></div>
+</div>
+<p>and then:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> make config <span class="nv">T</span><span class="o">=</span>x86_64-native-linuxapp-gcc
+<span class="gp">$</span> sed -ri <span class="s1">&#39;s,(MLX._PMD=)n,\1y,&#39;</span> build/.config
+<span class="gp">$</span> make
+</pre></div>
+</div>
+<p>Finally we build DPDK:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> make install <span class="nv">T</span><span class="o">=</span>x86_64-native-linuxapp-gcc <span class="nv">DESTDIR</span><span class="o">=</span>/home/ciscotest/test <span class="nv">EXTRA_CFLAGS</span><span class="o">=</span><span class="s1">&#39;-fPIC -pie&#39;</span>
+</pre></div>
+</div>
+<p>And we reboot the instance:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> reboot instance
+</pre></div>
+</div>
+<p>After the reboot, we type these commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> <span class="m">1024</span> <span class="p">|</span> sudo tee /sys/devices/system/node/node*/hugepages/hugepages-2048kB/nr_hugepages
+<span class="gp">$</span> mkdir /mnt/huge
+<span class="gp">$</span> sudo mount -t hugetlbfs nodev /mnt/huge
+<span class="gp">$</span> grep Huge /proc/meminfo
+<span class="gp">$</span> modprobe -a ib_uverbs
+<span class="gp">$</span> <span class="nb">cd</span> x86_64-native-linuxapp-gcc/
+<span class="gp">$</span> ls
+<span class="gp">$</span> <span class="nb">cd</span> lib/
+<span class="gp">$</span> ls
+<span class="gp">$</span> sudo cp librte_pmd_mlx4_glue.so.18.02.0 /usr/lib
+</pre></div>
+</div>
+<p><strong>Now we focus on VPP installation:</strong></p>
+<p>In our configuration we use VPP 18.07.</p>
+<p>We perform this procedure in order to install VPP 18.07 with an external DPDK configuration inside Azure.</p>
+<p>Firstly, we download VPP</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://gerrit.fd.io/r/vpp
+<span class="gp">$</span> git checkout v18.07
+</pre></div>
+</div>
+<p>Then, we build VPP, using the external DPDK configuration we previously made:</p>
+<p>We modify the path inside the vpp.mk file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> build-data/platforms/vpp.mk
+<span class="gp">$</span> <span class="nv">vpp_uses_external_dpdk</span> <span class="o">=</span> yes
+<span class="gp">$</span> <span class="nv">vpp_dpdk_inc_dir</span> <span class="o">=</span> &lt;PATH_TO_DESTDIR_NAME_FROM_ABOVE&gt;/include/dpdk/
+<span class="gp">$</span> <span class="nv">vpp_dpdk_lib_dir</span> <span class="o">=</span>&lt;PATH_TO_DESTDIR_NAME_FROM_ABOVE&gt;/lib
+</pre></div>
+</div>
+<p>&lt;PATH_TO_DESTDIR_NAME_FROM_ABOVE&gt; is whatever the path used when compiling DPDK above. These paths have to be absolute path in order for it to work.</p>
+<p>we modify build-data/platforms/vpp.mk to use</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp_uses_dpdk_mlx4_pmd = yes</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> make build
+<span class="gp">$</span> <span class="nb">cd</span> build-root/
+<span class="gp">$</span> make <span class="nv">V</span><span class="o">=</span><span class="m">0</span> <span class="nv">PLATFORM</span><span class="o">=</span>vpp <span class="nv">TAG</span><span class="o">=</span>vpp install-deb
+<span class="gp">$</span> sudo dpkg -i *.deb
+</pre></div>
+</div>
+<p>Finally, we modify the startup.conf file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /etc/vpp
+<span class="gp">$</span> sudo nano startup.conf
+</pre></div>
+</div>
+<p>Inside the DPDK block, the following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span><span class="c1"># Whitelist specific interface by specifying PCI address</span>
+<span class="go">dev 000X:00:0X.0</span>
+<span class="go">dev 000X:00:0X.0</span>
+
+<span class="gp">#</span> Running failsafe
+<span class="go">vdev net_vdev_netvsc0,iface=eth1</span>
+<span class="go">vdev net_vdev_netvsc1,iface=eth2</span>
+</pre></div>
+</div>
+<p><em>Please refer to Azure DPDK document to pick the right iface to use for failsafe vdev.</em></p>
+<p>and finally:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo service vpp stop
+<span class="gp">$</span> sudo service vpp start
+<span class="gp">$</span> sudo service vpp status
+<span class="gp">$</span> sudo vppctl
+</pre></div>
+</div>
+<p>Now VPP will work inside Azure!</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="automatingthedeployment.html" class="btn btn-neutral float-right" title="Automating VPP deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ConnectingVPC.html" class="btn btn-neutral float-left" title="Interconnecting VPCs with Segment Routing &amp; Performance Evaluation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2021, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

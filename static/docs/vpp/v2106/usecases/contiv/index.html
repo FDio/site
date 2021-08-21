@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contiv/VPP &mdash; The Vector Packet Processor 21.06 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Contiv/VPP Kubernetes Network Plugin" href="K8s_Overview.html" />
+    <link rel="prev" title="Using VPP as a Home Gateway" href="../hgw.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                21.06
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../containers.html">VPP with Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hgw.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Contiv/VPP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="K8s_Overview.html">Contiv/VPP Kubernetes Network Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SECURITY.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vagrant.html">Contiv-VPP Vagrant Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MANUAL_INSTALL.html">Manual Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPP_CONFIG.html">Creating VPP Startup Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VMWARE_FUSION_HOST.html">Preparing a VmWare Fusion Host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NETWORKING.html">Contiv/VPP Network Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SINGLE_NIC_SETUP.html">Setting up a Node with a Single NIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MULTI_NIC_SETUP.html">Setting Up a Node with Multiple NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUSTOM_MGMT_NETWORK.html">Setting Up a Custom Management Network on Multi-Homed Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Prometheus.html">Prometheus Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html">How to do VPP Packet Tracing in Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPTRACE.html">Using vpptrace.sh for VPP Packet Tracing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CORE_FILES.html">Capturing VPP core dumps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BUG_REPORTS.html">Debugging and Reporting Bugs in Contiv-VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container_test.html">Container-based network simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trafficgen.html">Vpp Stateless Traffic Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ikev2.html">IKEv2 in VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related FD.IO Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Use Cases</a> &raquo;</li>
+        
+      <li>Contiv/VPP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usecases/contiv/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contiv-vpp">
+<span id="contiv"></span><h1>Contiv/VPP<a class="headerlink" href="#contiv-vpp" title="Permalink to this headline">¶</a></h1>
+<p>This section provides the following information about the Contiv function:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="K8s_Overview.html">Contiv/VPP Kubernetes Network Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="K8s_Overview.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="K8s_Overview.html#architecture">Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SECURITY.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SECURITY.html#http-security">HTTP Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SECURITY.html#etcd-security">ETCD Security</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Vagrant.html">Contiv-VPP Vagrant Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Vagrant.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vagrant.html#creating-shutting-down-destroying-the-cluster">Creating / Shutting Down / Destroying the Cluster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vagrant.html#building-and-deploying-the-dev-contiv-vswitch-image">Building and Deploying the dev-contiv-vswitch Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vagrant.html#exploring-the-cluster">Exploring the Cluster</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MANUAL_INSTALL.html">Manual Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MANUAL_INSTALL.html#clone-the-contiv-repository">Clone the Contiv Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MANUAL_INSTALL.html#preparing-your-hosts">Preparing Your Hosts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MANUAL_INSTALL.html#installing-kubernetes-with-contiv-vpp-cni-plugin">Installing Kubernetes with Contiv-VPP CNI plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MANUAL_INSTALL.html#contiv-specific-kubeadm-installation-on-aarch64">Contiv-specific kubeadm installation on Aarch64</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VPP_CONFIG.html">Creating VPP Startup Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VPP_CONFIG.html#hardware-interface-configuration">Hardware Interface Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_CONFIG.html#power-saving-mode">Power-saving Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_CONFIG.html#vpp-api-trace">VPP API Trace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VMWARE_FUSION_HOST.html">Preparing a VmWare Fusion Host</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NETWORKING.html">Contiv/VPP Network Operation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="NETWORKING.html#contiv-vpp-ipam-ip-address-management">Contiv/VPP IPAM (IP Address Management)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NETWORKING.html#vpp-programming">VPP Programming</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SINGLE_NIC_SETUP.html">Setting up a Node with a Single NIC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SINGLE_NIC_SETUP.html#installing-the-stn-daemon">Installing the STN Daemon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SINGLE_NIC_SETUP.html#creating-a-vpp-interface-configuration">Creating a VPP Interface Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SINGLE_NIC_SETUP.html#configuring-stn-in-contiv-vpp-k8s-deployment-files">Configuring STN in Contiv-VPP K8s Deployment Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SINGLE_NIC_SETUP.html#uninstalling-the-stn-daemon">Uninstalling the STN Daemon</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MULTI_NIC_SETUP.html">Setting Up a Node with Multiple NICs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CUSTOM_MGMT_NETWORK.html">Setting Up a Custom Management Network on Multi-Homed Nodes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CUSTOM_MGMT_NETWORK.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Prometheus.html">Prometheus Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html">How to do VPP Packet Tracing in Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html#ssh-into-the-node">SSH into the Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html#check-the-vpp-graph-nodes-input-and-output-queues">Check the VPP Graph Nodes (Input and Output Queues)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html#clear-existing-vpp-packet-trace">Clear Existing VPP Packet Trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html#how-to-turn-on-vpp-packet-tracing">How to Turn on VPP Packet Tracing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html#send-traffic-to-the-pods">Send Traffic to the Pods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html#check-the-packets-captured-by-vpp">Check the Packets Captured by VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html#find-ip-addresses-of-gigabitethernet-and-the-tap-interfaces">Find IP Addresses of GigabitEthernet and the Tap Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html#other-useful-vpp-clis">Other Useful VPP CLIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VPPTRACE.html">Using vpptrace.sh for VPP Packet Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VPPTRACE.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPPTRACE.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CORE_FILES.html">Capturing VPP core dumps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CORE_FILES.html#disable-k8s-probes-to-prevent-k8s-from-restarting-the-pod-with-a-crashed-vpp">1. Disable k8s Probes to Prevent k8s from Restarting the POD with a Crashed VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CORE_FILES.html#modify-vpp-startup-config-file">2. Modify VPP Startup config file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CORE_FILES.html#turn-on-coredumps-in-the-vswitch-container">3. Turn on Coredumps in the Vswitch Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CORE_FILES.html#let-vpp-crash">4. Let VPP Crash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CORE_FILES.html#locate-and-inspect-the-core-file">5. Locate and Inspect the Core File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CORE_FILES.html#copy-the-core-file-out-of-the-container">6. Copy the Core File Out of the Container</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BUG_REPORTS.html">Debugging and Reporting Bugs in Contiv-VPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="BUG_REPORTS.html#bug-report-structure">Bug Report Structure</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="K8s_Overview.html" class="btn btn-neutral float-right" title="Contiv/VPP Kubernetes Network Plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../hgw.html" class="btn btn-neutral float-left" title="Using VPP as a Home Gateway" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2021, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

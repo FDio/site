@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Scale &mdash; The Vector Packet Processor 20.01 documentation</title>
+  <title>Scale &mdash; The Vector Packet Processor master documentation</title>
   
 
   
@@ -37,7 +37,7 @@
     <link rel="author" title="About these documents" href="../../../about.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="How to build a vpp dispatch trace aware Wireshark" href="../buildwireshark.html" />
+    <link rel="next" title="Barnacles" href="barnacles.html" />
     <link rel="prev" title="Fast Convergence" href="fastconvergence.html" /> 
 </head>
 
@@ -98,6 +98,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Developers</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../building.html">Building VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../testing_vpp.html">Testing VPP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
@@ -127,12 +128,12 @@
 <li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
 <li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
 <li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="debugging.html">Debugging</a></li>
 <li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Scale</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ip4-heap">IP4 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ip6-heap">IP6 Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#main-heap">Main Heap</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#stats-heap">Stats Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="barnacles.html">Barnacles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hacking.html">Get Hacking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="missing.html">Missing Functionality</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
@@ -148,12 +149,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related FD.IO Projects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
 </ul>
 
@@ -228,19 +226,15 @@
   <div class="section" id="scale">
 <span id="id1"></span><h1>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">¶</a></h1>
 <p>The only limiting factor on FIB scale is the amount of memory
-allocated to each heap the FIB uses, and there are 4:</p>
+allocated to each heap the FIB uses, and there are 2:</p>
 <ul class="simple">
-<li><p>The IP4 heap</p></li>
-<li><p>The IP6 heap</p></li>
 <li><p>The main heap</p></li>
 <li><p>The stats heap</p></li>
 </ul>
-</div>
-<div class="section" id="ip4-heap">
-<h1>IP4 Heap<a class="headerlink" href="#ip4-heap" title="Permalink to this headline">¶</a></h1>
-<p>The IPv4 heap is used to allocate the memory needed for the
-data-structures within which the IPv4 prefixes are stored. Each
-table, created by the user, i.e. with;</p>
+<div class="section" id="main-heap">
+<h2>Main Heap<a class="headerlink" href="#main-heap" title="Permalink to this headline">¶</a></h2>
+<p>The main heap is used to allocate all memory needed for the FIB
+data-structures. Each table, created by the user, i.e. with;</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip table add <span class="m">1</span>
 </pre></div>
 </div>
@@ -253,60 +247,33 @@ Each <em>ip4_fib_t</em> comprises an mtrie (for fast lookup in the data-plane)
 and a hash table per-prefix length (for lookup in the control plane).</p>
 <p>To see the amount of memory consumed by the IPv4 tables use:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip fib mem</span>
-<span class="go">ipv4-VRF:0 mtrie:333056 hash:3523</span>
-<span class="go">ipv4-VRF:1 mtrie:333056 hash:3523</span>
-<span class="go">totals: mtrie:666112 hash:7046 all:673158</span>
-
-<span class="go">Mtrie Mheap Usage: total: 32.06M, used: 662.44K, free: 31.42M, trimmable: 31.09M</span>
-<span class="go">    free chunks 3 free fastbin blks 0</span>
-<span class="go">    max total allocated 32.06M</span>
-<span class="go">no traced allocations</span>
+<span class="go">ipv4-VRF:0 mtrie:335744 hash:4663</span>
+<span class="go">ipv4-VRF:1 mtrie:333056 hash:3499</span>
+<span class="go">totals: mtrie:668800 hash:8162 all:676962</span>
 </pre></div>
 </div>
 <p>this output shows two ‘empty’ (i.e. no added routes) tables. Each
-mtrie uses about 150k of memory, so each table about 300k. the total
-heap usage statistics for the IP4 heap are shown at the end.</p>
+mtrie uses about 150k of memory, so each table about 300k.</p>
 <p>Below the output having added 1M, 2M and 4M routes respectively:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip fib mem</span>
 <span class="go">ipv4-VRF:0 mtrie:335744 hash:4695</span>
 <span class="go">totals: mtrie:335744 hash:4695 all:340439</span>
-
-<span class="go">Mtrie Mheap Usage: total: 1.00G, used: 335.20K, free: 1023.74M, trimmable: 1023.72M</span>
-<span class="go">    free chunks 3 free fastbin blks 0</span>
-<span class="go">    max total allocated 1.00G</span>
-<span class="go">no traced allocations</span>
 </pre></div>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip fib mem</span>
 <span class="go">ipv4-VRF:0 mtrie:5414720 hash:41177579</span>
 <span class="go">totals: mtrie:5414720 hash:41177579 all:46592299</span>
-
-<span class="go">Mtrie Mheap Usage: total: 1.00G, used: 46.87M, free: 977.19M, trimmable: 955.93M</span>
-<span class="go">    free chunks 61 free fastbin blks 0</span>
-<span class="go">    max total allocated 1.00G</span>
-<span class="go">no traced allocations</span>
 </pre></div>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip fib mem</span>
 <span class="go">ipv4-VRF:0 mtrie:22452608 hash:168544508</span>
 <span class="go">totals: mtrie:22452608 hash:168544508 all:190997116</span>
-
-<span class="go">Mtrie Mheap Usage: total: 1.00G, used: 198.37M, free: 825.69M, trimmable: 748.24M</span>
-<span class="go">    free chunks 219 free fastbin blks 0</span>
-<span class="go">    max total allocated 1.00G</span>
-<span class="go">no traced allocations</span>
 </pre></div>
 </div>
-<p>VPP was started with a 1G IP4 heap.</p>
-</div>
-<div class="section" id="ip6-heap">
-<h1>IP6 Heap<a class="headerlink" href="#ip6-heap" title="Permalink to this headline">¶</a></h1>
-<p>The IPv6 heap is used to allocate the memory needed for the
-data-structure within which the IPv6 prefixes are stored. IPv6 also
-has the concept of forwarding and non-forwarding entries, however for
-IPv6 all the forwarding entries are stored in a single hash table
-(same goes for the non-forwarding). The key to the hash table includes
-the IPv6 table-id.</p>
+<p>IPv6 also has the concept of forwarding and non-forwarding entries,
+however for IPv6 all the forwarding entries are stored in a single
+hash table (same goes for the non-forwarding). The key to the hash
+table includes the IPv6 table-id.</p>
 <p>To see the amount of memory consumed by the IPv4 tables use:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip6 fib mem</span>
 <span class="go">IPv6 Non-Forwarding Hash Table:</span>
@@ -393,12 +360,9 @@ the IPv6 table-id.</p>
 <span class="go">           used 59254592 b (56 Mbytes) of 1073741824 b (1024 Mbytes)</span>
 </pre></div>
 </div>
-<p>as can be seen from the output the IPv6 heap in this case was scaled
+<p>as can be seen from the output the IPv6 hash-table in this case was scaled
 to 1GB and 1million prefixes has used 56MB of it.</p>
-</div>
-<div class="section" id="main-heap">
-<h1>Main Heap<a class="headerlink" href="#main-heap" title="Permalink to this headline">¶</a></h1>
-<p>The main heap is used to allocate objects that represent the FIB
+<p>The main heap is also used to allocate objects that represent the FIB
 entries in the control and data plane (see <a class="reference internal" href="controlplane.html#controlplane"><span class="std std-ref">The Control Plane</span></a> and
 <a class="reference internal" href="dataplane.html#dataplane"><span class="std std-ref">The Data Plane</span></a>) such as <em>fib_entry_t</em> and <em>load_balance_t</em>. These come
 from the main heap because they are not protocol specific
@@ -457,7 +421,7 @@ different (sets of) next-hops, the number of path-lists and paths
 requires will increase.</p>
 </div>
 <div class="section" id="stats-heap">
-<h1>Stats Heap<a class="headerlink" href="#stats-heap" title="Permalink to this headline">¶</a></h1>
+<h2>Stats Heap<a class="headerlink" href="#stats-heap" title="Permalink to this headline">¶</a></h2>
 <p>VPP collects statistics for each route. For each route VPP collects
 byte and packet counters for packets sent to the prefix (i.e. the
 route was matched in the data-plane) and packets sent via the prefix (i.e. the
@@ -469,7 +433,7 @@ requires 4 counters per route in the stats segment.</p>
 <span class="go">total: 1023.99M, used: 456.83M, free: 567.17M, trimmable: 388.91M</span>
 </pre></div>
 </div>
-<p>VPP was started with a 1G stats heap.</p>
+</div>
 </div>
 
 
@@ -480,7 +444,7 @@ requires 4 counters per route in the stats segment.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../buildwireshark.html" class="btn btn-neutral float-right" title="How to build a vpp dispatch trace aware Wireshark" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="barnacles.html" class="btn btn-neutral float-right" title="Barnacles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="fastconvergence.html" class="btn btn-neutral float-left" title="Fast Convergence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -492,7 +456,7 @@ requires 4 counters per route in the stats segment.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018-2020, Linux Foundation
+        &copy; Copyright 2018-2021, Linux Foundation
 
     </p>
   </div>
