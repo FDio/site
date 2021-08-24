@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using VPP with TRex &mdash; The Vector Packet Processor 21.06 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using VPP with TRex Mixed Traffic Templates" href="trex1.html" />
+    <link rel="prev" title="Using VPP with Iperf3" href="iperf31.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                21.06
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../containers.html">VPP with Containers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">VPP with Iperf3 and TRex</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="iperf3.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iperf3.html#using-kernel-packet-forwarding-with-iperf3">Using Kernel Packet Forwarding with Iperf3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iperf31.html">Using VPP with Iperf3</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using VPP with TRex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex1.html">Using VPP with TRex Mixed Traffic Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex2.html">TRex Stateless Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex3.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex3.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hgw.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contiv/index.html">Contiv/VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container_test.html">Container-based network simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trafficgen.html">Vpp Stateless Traffic Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ikev2.html">IKEv2 in VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related FD.IO Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Use Cases</a> &raquo;</li>
+        
+          <li><a href="index.html">VPP with Iperf3 and TRex</a> &raquo;</li>
+        
+      <li>Using VPP with TRex</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usecases/simpleperf/trex.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-vpp-with-trex">
+<span id="trex"></span><h1>Using VPP with TRex<a class="headerlink" href="#using-vpp-with-trex" title="Permalink to this headline">¶</a></h1>
+<p>In this example we use only two systems, <em>csp2s22c03</em> and <em>net2s22c05</em>, to run
+<strong>TRex</strong> VPP is installed on <strong>csp2s22c03</strong> and run as a packet forwarding
+engine. On <em>net2s22c05</em>, TRex is used to generate both client and server-side
+traffic. <strong>TRex</strong> is a high-performance traffic generator. It leverages DPDK and
+run in user space. Figure 2 illustrates this configuration.</p>
+<p>VPP is set up on <em>csp2s22c03</em> exactly as it was in the previous example. Only
+the setup on <em>net2s22c05</em> is modified slightly to run TRex preconfigured traffic
+files.</p>
+<div class="figure align-default">
+<img alt="../../_images/trex.png" src="../../_images/trex.png" />
+</div>
+<p>Figure 2: The TRex traffic generator sends packages to the host that has VPP running.</p>
+<p>First we install <strong>TRex</strong>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">NET2S22C05$ wget --no-cache http://trex-tgn.cisco.com/trex/release/latest</span>
+<span class="go">NET2S22C05$ tar -xzvf latest</span>
+<span class="go">NET2S22C05$ cd v2.37</span>
+</pre></div>
+</div>
+<p>Then show the devices we have.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">NET2S22C05$ sudo ./dpdk_nic_bind.py -s</span>
+
+<span class="go">Network devices using DPDK-compatible driver</span>
+<span class="go">============================================</span>
+<span class="go">0000:87:00.0 &#39;Ethernet Controller XL710 for 40GbE QSFP+&#39; drv=vfio-pci unused=i40e</span>
+<span class="go">0000:87:00.1 &#39;Ethernet Controller XL710 for 40GbE QSFP+&#39; drv=vfio-pci unused=i40e</span>
+
+<span class="go">Network devices using kernel driver</span>
+<span class="go">===================================</span>
+<span class="go">0000:03:00.0 &#39;Ethernet Controller 10-Gigabit X540-AT2&#39; if=enp3s0f0 drv=ixgbe unused=vfio-pci *Active*</span>
+<span class="go">0000:03:00.1 &#39;Ethernet Controller 10-Gigabit X540-AT2&#39; if=enp3s0f1 drv=ixgbe unused=vfio-pci</span>
+<span class="go">0000:81:00.0 &#39;82599 10 Gigabit TN Network Connection&#39; if=ens787f0 drv=ixgbe unused=vfio-pci</span>
+<span class="go">0000:81:00.1 &#39;82599 10 Gigabit TN Network Connection&#39; if=ens787f1 drv=ixgbe unused=vfio-pci</span>
+
+<span class="go">Other network devices</span>
+<span class="go">=====================</span>
+<span class="go">&lt;none&gt;</span>
+</pre></div>
+</div>
+<p>Create the <em>/etc/trex_cfg.yaml</em> configuration file. In this configuration file,
+the port should match the interfaces available in the target system, which is
+<em>net2s22c05</em> in our example. The IP addresses correspond to Figure 2. For more
+information on the configuration file, please refer to the <a class="reference external" href="http://trex-tgn.cisco.com/trex/doc/index.html">TRex Manual</a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">NET2S22C05$ cat /etc/trex_cfg.yaml</span>
+<span class="go">- port_limit: 2</span>
+<span class="go">  version: 2</span>
+<span class="go">  interfaces: [&#39;87:00.0&#39;, &#39;87:00.1&#39;]</span>
+<span class="go">  port_bandwidth_gb: 40</span>
+<span class="go">  port_info:</span>
+<span class="go">      - ip: 10.10.2.2</span>
+<span class="go">        default_gw: 10.10.2.1</span>
+<span class="go">      - ip: 10.10.1.2</span>
+<span class="go">        default_gw: 10.10.1.1</span>
+</pre></div>
+</div>
+<p>Stop the previous VPP session and start it again in order to add a route for new
+IP addresses 16.0.0.0/8 and 48.0.0.0/8, according to Figure 2. Those IP addresses
+are needed because TRex generates packets that use these addresses. Refer to the
+<a class="reference external" href="http://trex-tgn.cisco.com/trex/doc/index.html">TRex Manual</a> for details on
+these traffic templates.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ sudo service vpp stop</span>
+<span class="go">csp2s22c03$ sudo service vpp start</span>
+<span class="go">csp2s22c03$ sudo vppctl</span>
+<span class="go">    _______    _        _   _____  ___</span>
+<span class="go"> __/ __/ _ \  (_)__    | | / / _ \/ _ \</span>
+<span class="go"> _/ _// // / / / _ \   | |/ / ___/ ___/</span>
+<span class="go"> /_/ /____(_)_/\___/   |___/_/  /_/</span>
+
+<span class="go">vpp# sho int</span>
+<span class="go">              Name               Idx       State          Counter          Count</span>
+<span class="go">FortyGigabitEthernet82/0/0        1        down</span>
+<span class="go">FortyGigabitEthernet82/0/1        2        down</span>
+<span class="go">local0                            0        down</span>
+
+<span class="go">vpp#</span>
+<span class="go">vpp# set interface ip address FortyGigabitEthernet82/0/0 10.10.1.1/24</span>
+<span class="go">vpp# set interface ip address FortyGigabitEthernet82/0/1 10.10.2.1/24</span>
+<span class="go">vpp# set interface state FortyGigabitEthernet82/0/0 up</span>
+<span class="go">vpp# set interface state FortyGigabitEthernet82/0/1 up</span>
+<span class="go">vpp# ip route add 16.0.0.0/8 via 10.10.1.2</span>
+<span class="go">vpp# ip route add 48.0.0.0/8 via 10.10.2.2</span>
+<span class="go">vpp# clear run</span>
+</pre></div>
+</div>
+<p>Now, you can generate a simple traffic flow from <em>net2s22c05</em> using the traffic
+configuration file “cap2/dns.yaml”.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">NET2S22C05$ sudo ./t-rex-64 -f cap2/dns.yaml -d 1 -l 1000</span>
+<span class="go"> summary stats</span>
+<span class="go"> --------------</span>
+<span class="go"> Total-pkt-drop       : 0 pkts</span>
+<span class="go"> Total-tx-bytes       : 166886 bytes</span>
+<span class="go"> Total-tx-sw-bytes    : 166716 bytes</span>
+<span class="go"> Total-rx-bytes       : 166886 byte</span>
+
+<span class="go"> Total-tx-pkt         : 2528 pkts</span>
+<span class="go"> Total-rx-pkt         : 2528 pkts</span>
+<span class="go"> Total-sw-tx-pkt      : 2526 pkts</span>
+<span class="go"> Total-sw-err         : 0 pkts</span>
+<span class="go"> Total ARP sent       : 4 pkts</span>
+<span class="go"> Total ARP received   : 2 pkts</span>
+<span class="go"> maximum-latency   : 35 usec</span>
+<span class="go"> average-latency   : 8 usec</span>
+<span class="go"> latency-any-error : OK</span>
+</pre></div>
+</div>
+<p>On <em>csp2s22c03</em>, the <em>show run</em> command displays the graph runtime statistics.</p>
+<div class="figure align-default">
+<img alt="../../_images/build-a-fast-network-stack-terminal-2.png" src="../../_images/build-a-fast-network-stack-terminal-2.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="trex1.html" class="btn btn-neutral float-right" title="Using VPP with TRex Mixed Traffic Templates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="iperf31.html" class="btn btn-neutral float-left" title="Using VPP with Iperf3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2021, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

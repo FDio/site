@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Multi-Architecture Graph Node Cookbook &mdash; The Vector Packet Processor 21.06 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Multi-Architecture Arbitrary Function Cookbook" href="arbfns.html" />
+    <link rel="prev" title="Multi-architecture support" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                21.06
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../testing_vpp.html">Testing VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin_goapi.html">Add a plugin’s GO API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html#sample-run">Sample Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Multi-architecture support</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Multi-Architecture Graph Node Cookbook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="arbfns.html">Multi-Architecture Arbitrary Function Cookbook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related FD.IO Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Developers</a> &raquo;</li>
+        
+          <li><a href="index.html">Multi-architecture support</a> &raquo;</li>
+        
+      <li>Multi-Architecture Graph Node Cookbook</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/developers/multiarch/nodefns.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="multi-architecture-graph-node-cookbook">
+<h1>Multi-Architecture Graph Node Cookbook<a class="headerlink" href="#multi-architecture-graph-node-cookbook" title="Permalink to this headline">¶</a></h1>
+<p>In the context of graph node dispatch functions, it’s easy enough to
+use the vpp multi-architecture support setup. The point of the scheme
+is simple: for performance-critical nodes, generate multiple CPU
+hardware-dependent versions of the node dispatch functions, and pick
+the best one at runtime.</p>
+<p>The vpp scheme is simple enough to use, but details matter.</p>
+<div class="section" id="foot-view">
+<h2>100,000 foot view<a class="headerlink" href="#foot-view" title="Permalink to this headline">¶</a></h2>
+<p>We compile entire graph node dispatch function implementation files
+multiple times. These compilations give rise to multiple versions of
+the graph node dispatch functions. Per-node constructor-functions
+interrogate CPU hardware, select the node dispatch function variant to
+use, and set the vlib_node_registration_t “.function” member to the
+address of the selected variant.</p>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Declare the node dispatch function as shown, using the VLIB_NODE_FN macro. The
+name of the node function <strong>MUST</strong> match the name of the graph node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VLIB_NODE_FN</span> <span class="p">(</span><span class="n">ip4_sdp_node</span><span class="p">)</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="n">vlib_node_runtime_t</span> <span class="o">*</span> <span class="n">node</span><span class="p">,</span>
+                             <span class="n">vlib_frame_t</span> <span class="o">*</span> <span class="n">frame</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">PREDICT_FALSE</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">&amp;</span> <span class="n">VLIB_NODE_FLAG_TRACE</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ip46_sdp_inline</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/*</span> <span class="n">is_ip4</span> <span class="o">*/</span> <span class="p">,</span>
+                        <span class="mi">1</span> <span class="o">/*</span> <span class="n">is_trace</span> <span class="o">*/</span> <span class="p">);</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="n">ip46_sdp_inline</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/*</span> <span class="n">is_ip4</span> <span class="o">*/</span> <span class="p">,</span>
+                        <span class="mi">0</span> <span class="o">/*</span> <span class="n">is_trace</span> <span class="o">*/</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We need to generate <em>precisely one copy</em> of the
+vlib_node_registration_t, error strings, and packet trace decode function.</p>
+<p>Simply bracket these items with “#ifndef CLIB_MARCH_VARIANT…#endif”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifndef CLIB_MARCH_VARIANT</span>
+<span class="n">static</span> <span class="n">u8</span> <span class="o">*</span>
+<span class="n">format_sdp_trace</span> <span class="p">(</span><span class="n">u8</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">va_list</span> <span class="o">*</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="o">&lt;</span><span class="n">snip</span><span class="o">&gt;</span>
+<span class="p">}</span>
+<span class="c1">#endif</span>
+
+<span class="o">...</span>
+
+<span class="c1">#ifndef CLIB_MARCH_VARIANT</span>
+<span class="n">static</span> <span class="n">char</span> <span class="o">*</span><span class="n">sdp_error_strings</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1">#define _(sym,string) string,</span>
+  <span class="n">foreach_sdp_error</span>
+<span class="c1">#undef _</span>
+<span class="p">};</span>
+<span class="c1">#endif</span>
+
+<span class="o">...</span>
+
+<span class="c1">#ifndef CLIB_MARCH_VARIANT</span>
+<span class="n">VLIB_REGISTER_NODE</span> <span class="p">(</span><span class="n">ip4_sdp_node</span><span class="p">)</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="o">//</span> <span class="n">DO</span> <span class="n">NOT</span> <span class="nb">set</span> <span class="n">the</span> <span class="o">.</span><span class="n">function</span> <span class="n">structure</span> <span class="n">member</span><span class="o">.</span>
+  <span class="o">//</span> <span class="n">The</span> <span class="n">multiarch</span> <span class="n">selection</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">constructor</span><span class="p">))</span> <span class="n">function</span>
+  <span class="o">//</span> <span class="n">takes</span> <span class="n">care</span> <span class="n">of</span> <span class="n">it</span> <span class="n">at</span> <span class="n">runtime</span>
+  <span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;ip4-sdp&quot;</span><span class="p">,</span>
+  <span class="o">.</span><span class="n">vector_size</span> <span class="o">=</span> <span class="n">sizeof</span> <span class="p">(</span><span class="n">u32</span><span class="p">),</span>
+  <span class="o">.</span><span class="n">format_trace</span> <span class="o">=</span> <span class="n">format_sdp_trace</span><span class="p">,</span>
+  <span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">VLIB_NODE_TYPE_INTERNAL</span><span class="p">,</span>
+
+  <span class="o">.</span><span class="n">n_errors</span> <span class="o">=</span> <span class="n">ARRAY_LEN</span><span class="p">(</span><span class="n">sdp_error_strings</span><span class="p">),</span>
+  <span class="o">.</span><span class="n">error_strings</span> <span class="o">=</span> <span class="n">sdp_error_strings</span><span class="p">,</span>
+
+  <span class="o">.</span><span class="n">n_next_nodes</span> <span class="o">=</span> <span class="n">SDP_N_NEXT</span><span class="p">,</span>
+
+  <span class="o">/*</span> <span class="n">edit</span> <span class="o">/</span> <span class="n">add</span> <span class="n">dispositions</span> <span class="n">here</span> <span class="o">*/</span>
+  <span class="o">.</span><span class="n">next_nodes</span> <span class="o">=</span>
+  <span class="p">{</span>
+    <span class="p">[</span><span class="n">SDP_NEXT_DROP</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ip4-drop&quot;</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+<p>To belabor the point: <em>do not</em> set the “.function” member! That’s the job of the multi-arch
+selection __attribute__((constructor)) function</p>
+</div>
+<div class="section" id="always-inline-node-dispatch-functions">
+<h2>Always inline node dispatch functions<a class="headerlink" href="#always-inline-node-dispatch-functions" title="Permalink to this headline">¶</a></h2>
+<p>It’s typical for a graph dispatch function to contain one or more
+calls to an inline function. See above. If your node dispatch function
+is structured that way, make <em>ABSOLUTELY CERTAIN</em> to use the
+“always_inline” macro:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">always_inline</span> <span class="n">uword</span>
+<span class="n">ip46_sdp_inline</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="n">vlib_node_runtime_t</span> <span class="o">*</span> <span class="n">node</span><span class="p">,</span>
+             <span class="n">vlib_frame_t</span> <span class="o">*</span> <span class="n">frame</span><span class="p">,</span>
+             <span class="nb">int</span> <span class="n">is_ip4</span><span class="p">,</span> <span class="nb">int</span> <span class="n">is_trace</span><span class="p">)</span>
+<span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Otherwise, the compiler is highly likely NOT to build multiple
+versions of the guts of your dispatch function.</p>
+<p>It’s fairly easy to spot this mistake in “perf top.” If you see, for
+example, a bunch of functions with names of the form
+“xxx_node_fn_avx2” in the profile, <em>BUT</em> your brand-new node function
+shows up with a name of the form “xxx_inline.isra.1”, it’s quite likely
+that the inline was declared “static inline” instead of “always_inline”.</p>
+</div>
+<div class="section" id="modify-cmakelists-txt">
+<h2>Modify CMakeLists.txt<a class="headerlink" href="#modify-cmakelists-txt" title="Permalink to this headline">¶</a></h2>
+<p>If the component in question already lists “MULTIARCH_SOURCES”, simply
+add the indicated .c file to the list.  Otherwise, add as shown
+below. Note that the added file “new_multiarch_node.c” should appear in
+<em>both</em> SOURCES and MULTIARCH_SOURCES:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_vpp_plugin</span><span class="p">(</span><span class="n">myplugin</span>
+  <span class="n">SOURCES</span>
+  <span class="n">new_multiarch_node</span><span class="o">.</span><span class="n">c</span>
+  <span class="o">...</span>
+
+  <span class="n">MULTIARCH_SOURCES</span>
+  <span class="n">new_</span> <span class="n">multiarch_node</span><span class="o">.</span><span class="n">c</span>
+  <span class="o">...</span>
+ <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="arbfns.html" class="btn btn-neutral float-right" title="Multi-Architecture Arbitrary Function Cookbook" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Multi-architecture support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2021, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
