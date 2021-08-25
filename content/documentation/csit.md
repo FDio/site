@@ -6,7 +6,7 @@ title = "Continuous System Integration and Testing (CSIT)"
 The FD.io software is being continuosly be tested with the tools and
 framework provided by the CSIT project.
 <br>
-The project description can be found here [CSIT Project](https://s3-docs.fd.io/csit/master/doc/).
+The project description can be found here [CSIT Project](https://s3-docs.fd.io/csit/master/docs/).
 <br>
 Reports are published on a release basis at [CSIT Report](https://s3-docs.fd.io/csit/master/report/).
 <br>
