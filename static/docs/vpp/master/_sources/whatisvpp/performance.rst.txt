@@ -37,7 +37,7 @@ are posted to `CSIT Test Report <https://s3-docs.fd.io/csit/master/report/>`_.
 
 For more about CSIT checkout the following links:
 
-* `CSIT Code Documentation <https://s3-docs.fd.io/csit/master/doc/overview.html>`_
+* `CSIT Code Documentation <https://s3-docs.fd.io/csit/master/docs/overview.html>`_
 * `CSIT Test Overview <https://s3-docs.fd.io/csit/master/report/introduction/overview.html>`_
 * `VPP Performance Dashboard <https://s3-docs.fd.io/csit/master/trending/introduction/index.html>`_
 
