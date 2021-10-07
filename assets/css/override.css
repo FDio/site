@@ -50,6 +50,7 @@
     background-size: cover;
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-bottom: 20px;
     position: relative;
     background-attachment: fixed;
 }
@@ -117,52 +118,8 @@
     text-align: center;
 }
 
-header .navbar-brand img {
-    height: 80px;
-    object-fit:contain;
-}
-
-header {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    height: 90px;
-}
-
-header .container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.container img.img-responsive {
-    padding-top: 10px;
-    max-height: 580px;
-    height: 128
-    width: 128
-    margin: auto;
-}
-
-#bs-example-navbar-collapse-1 {
-    background: white;
-}
-
-.fix-navbar-zindex {
-    z-index: 2;
-}
-
-.row-fluid {
-    display: flex;
-    flex-wrap: wrap;
-    max-height:80px;
-}
-.row-fluid > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.navbar-brand {
-    height: 80px;
-    width: 130px;
+.navbar-brand img {
+    height: 150%;
 }
 
 .eventsection {
@@ -204,6 +161,7 @@ header .container {
 
 .btn-main {
     background: #ED1C24;
+    margin-right: 10px;
 }
 
 h1,
@@ -213,19 +171,53 @@ h4,
 h5,
 h6 {
   font-family: 'Roboto', sans-serif;
-  margin-left: 15px;
-  margin-right: 15px;
 }
 
-p {
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-.blog-post p{
-  margin: 15px 15px 20px;
+.blog-post p {
+  text-align: justify;
 }
 
 .btn-main, .btn-transparent, .btn-small {
     text-transform: none;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+#docs-header h1 {
+    color: #fff;
+    font-family: 'open', sans-serif;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 767px) {
+        img.centered {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 25%;
+        width: 50%;
+    }
+}
+
+.img-widget img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.img-widget span {
+    font-size: large;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* this ensures the menu still fits on smaller
+ * screens e.g. tablets */
+@media (max-width: 900px) {
+    header .navbar-default .navbar-nav li a {
+        padding: 10px 15px;
+    }
 }

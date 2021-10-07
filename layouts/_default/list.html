@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	{{ partial "head.html" . }}
+    </head>
+    <body>
+	{{ partial "header.html" . }}
+	{{ partial "page_title.html" . }}
+
+	{{ $colsize := .Params.colsize | default 12  }}
+	{{ $truncate := .Params.truncate | default 0  }}
+	{{ $disable_readmore := .Params.disable_readmore | default false  }}
+	<div class="container">
+	    <div class="col-md-12">
+			{{ .Content | markdownify }}
+		</div>
+
+	    {{ range (.Paginator 6).Pages.ByDate.Reverse }}
+	    <div class="col-md-{{ $colsize }}">
+		<article class="blog-post">
+
+		    <h3>{{ .Params.title }}</h3>
+
+		    {{ if or (isset .Params "author") (isset .Params "date") }}
+		    <h4>By {{ .Params.author | default "The linux foundation" }} | {{ .Date.Format "Jan 2 2006" }}, {{ .Params.location }}</h4>
+		    {{ end }}
+
+		    <p>
+		    {{ if $truncate }}
+		    {{ .Plain | markdownify | truncate $truncate }}
+		    {{ else }}
+		    {{ .Content | markdownify }}
+		    {{ end }}
+			</p>
+
+			<p>
+			{{ if not $disable_readmore }}
+				<div class="btn-group" role="group">
+		    	{{ if isset .Params "link" }}
+					{{ $linkText := .Params.linkText | default "Read more..."  }}
+					{{ $length := .Plain | len  }}
+		    		<a href="{{ .Params.link }}" class="btn btn-main">{{ $linkText }}</a>
+		    		{{ if and (ge $length $truncate) (gt $truncate 0) }}
+		    			<a href="{{ .Page.Permalink }}" class="btn btn-main">Read full article</a>
+		    		{{ end }}
+		    	{{ else }}
+					{{ $linkText := .Params.linkText | default "Read more..."  }}
+		    		<a href="{{ .Page.Permalink }}" class="btn btn-main">{{ $linkText }}</a>
+		    	{{ end }}
+				</div>
+		    {{ end }}
+			</p>
+		</article>
+	    </div>
+	    {{ end }}
+	</div>
+	<div class="col-12 text-center">
+	    {{ template "_internal/pagination.html" . }}
+	</div>
+	{{ partial "footer.html" . }}
+</body>
+</html>

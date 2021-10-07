@@ -1,8 +1,8 @@
 +++
 title = "Create a 40G Encrypted Container Network with Calico/VPP on Commodity Hardware "
 author = "Aloys Augustin, Emran Chandry, Mohsin Kazmi, Nathan Skrzypczak, Jerome Tollet"
-newslink = "https://medium.com/fd-io-vpp/getting-to-40g-encrypted-container-networking-with-calico-vpp-on-commodity-hardware-d7144e52659a"
-newsbuttontxt = "Read More about FD.io VPP Calico"
+link = "https://medium.com/fd-io-vpp/getting-to-40g-encrypted-container-networking-with-calico-vpp-on-commodity-hardware-d7144e52659a"
+linkText = "Read More about FD.io VPP Calico"
 
 date = "2020-05-26"
 +++

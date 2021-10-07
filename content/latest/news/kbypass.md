@@ -1,8 +1,8 @@
 +++
 title = "Kernel bypass networking with FD.io VPP"
 author = "Andree Toonk"
-newslink = "https://medium.com/swlh/kernel-bypass-networking-with-fd-io-and-vpp-fc3a53a669f9?source=friends_link&sk=ab92fa42f7ffdfb6dca39ae9601f3d3e"
-newsbuttontxt = "Learn about Kernel Bypass and NAT with VPP"
+link = "https://medium.com/swlh/kernel-bypass-networking-with-fd-io-and-vpp-fc3a53a669f9?source=friends_link&sk=ab92fa42f7ffdfb6dca39ae9601f3d3e"
+linkText = "Learn about Kernel Bypass and NAT with VPP"
 
 date = "2020-04-05"
 +++
