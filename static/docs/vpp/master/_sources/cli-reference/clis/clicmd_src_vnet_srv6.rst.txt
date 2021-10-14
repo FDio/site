@@ -1,0 +1,225 @@
+.. _clicmd_src_vnet_srv6:
+
+===============================================================
+Srv6 cli reference
+===============================================================
+
+clear sr localsid-counters
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear sr localsid-counters
+
+
+Declaration: ``clear_sr_localsid_counters_command`` `src/vnet/srv6/sr_localsid.c line 704 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_localsid.c#L704>`_
+
+Implementation: ``clear_sr_localsid_counters_command_fn``
+
+
+set sr encaps hop-limit
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set sr encaps hop-limit <value>
+
+
+Declaration: ``set_sr_hop_limit_command`` `src/vnet/srv6/sr_policy_rewrite.c line 182 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_policy_rewrite.c#L182>`_
+
+Implementation: ``set_sr_hop_limit_command_fn``
+
+
+set sr encaps source
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set sr encaps source addr <ip6_addr>
+
+
+Declaration: ``set_sr_src_command`` `src/vnet/srv6/sr_policy_rewrite.c line 144 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_policy_rewrite.c#L144>`_
+
+Implementation: ``set_sr_src_command_fn``
+
+
+show sr encaps hop-limit
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr encaps hop-limit
+
+
+Declaration: ``show_sr_encaps_hop_limit_command`` `src/vnet/srv6/sr_policy_rewrite.c line 1214 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_policy_rewrite.c#L1214>`_
+
+Implementation: ``show_sr_encaps_hop_limit_command_fn``
+
+
+show sr encaps source addr
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr encaps source addr
+
+
+Declaration: ``show_sr_encaps_source_command`` `src/vnet/srv6/sr_policy_rewrite.c line 1193 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_policy_rewrite.c#L1193>`_
+
+Implementation: ``show_sr_encaps_source_command_fn``
+
+
+show sr localsids
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr localsids
+
+
+Declaration: ``show_sr_localsid_command`` `src/vnet/srv6/sr_localsid.c line 680 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_localsid.c#L680>`_
+
+Implementation: ``show_sr_localsid_command_fn``
+
+
+show sr localsids behaviors
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr localsids behaviors
+
+
+Declaration: ``show_sr_localsid_behaviors_command`` `src/vnet/srv6/sr_localsid.c line 2443 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_localsid.c#L2443>`_
+
+Implementation: ``show_sr_localsid_behaviors_command_fn``
+
+
+show sr policies
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr policies
+
+
+Declaration: ``show_sr_policies_command`` `src/vnet/srv6/sr_policy_rewrite.c line 1172 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_policy_rewrite.c#L1172>`_
+
+Implementation: ``show_sr_policies_command_fn``
+
+
+show sr policy behaviors
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr policy behaviors
+
+
+Declaration: ``show_sr_policy_behaviors_command`` `src/vnet/srv6/sr_policy_rewrite.c line 3483 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_policy_rewrite.c#L3483>`_
+
+Implementation: ``show_sr_policy_behaviors_command_fn``
+
+
+show sr steering-policies
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr steering-policies
+
+
+Declaration: ``show_sr_steering_policies_command`` `src/vnet/srv6/sr_steering.c line 530 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_steering.c#L530>`_
+
+Implementation: ``show_sr_steering_policies_command_fn``
+
+
+sr localsid
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    sr localsid (del) address XX:XX::YY:YY(fib-table 8) behavior STRING
+
+.. code-block:: console
+
+    Create SR LocalSID and binds it to a particular behavior
+    Arguments:
+    	localSID IPv6_addr(128b)   LocalSID IPv6 address
+    	(fib-table X)              Optional. VRF where to install SRv6 localsid
+    	behavior STRING            Specifies the behavior
+    
+    	Behaviors:
+    	End	-> Endpoint.
+    	End.uN	-> Endpoint with uSID.
+    	End.X	-> Endpoint with decapsulation and Layer-3 cross-connect.
+    		Parameters: '<iface> <ip6_next_hop>'
+    	End.DX2	-> Endpoint with decapsulation and Layer-2 cross-connect.
+    		Parameters: '<iface>'
+    	End.DX6	-> Endpoint with decapsulation and IPv6 cross-connect.
+    		Parameters: '<iface> <ip6_next_hop>'
+    	End.DX4	-> Endpoint with decapsulation and IPv4 cross-connect.
+    		Parameters: '<iface> <ip4_next_hop>'
+    	End.DT6	-> Endpoint with decapsulation and specific IPv6 table lookup.
+    		Parameters: '<ip6_fib_table>'
+    	End.DT4	-> Endpoint with decapsulation and specific IPv4 table lookup.
+    		Parameters: '<ip4_fib_table>'
+    
+
+
+Declaration: ``sr_localsid_command`` `src/vnet/srv6/sr_localsid.c line 510 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_localsid.c#L510>`_
+
+Implementation: ``sr_cli_localsid_command_fn``
+
+
+sr policy
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    sr policy [add||del||mod] [bsid 2001::1||index 5] next A:: next B:: next C:: (weight 1) (fib-table 2) (encap|insert)
+
+.. code-block:: console
+
+    Manipulation of SR policies.
+    A Segment Routing policy may contain several SID lists. Each SID list has
+    an associated weight (default 1), which will result in wECMP (uECMP).
+    Segment Routing policies might be of type encapsulation or srh insertion
+    Each SR policy will be associated with a unique BindingSID.
+    A BindingSID is a locally allocated SegmentID. For every packet that arrives
+    with IPv6_DA:BSID such traffic will be steered into the SR policy.
+    The add command will create a SR policy with its first segment list (sl)
+    The mod command allows you to add, remove, or modify the existing segment lists
+    within an SR policy.
+    The del command allows you to delete a SR policy along with all its associated
+    SID lists.
+    
+
+
+Declaration: ``sr_policy_command`` `src/vnet/srv6/sr_policy_rewrite.c line 1086 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_policy_rewrite.c#L1086>`_
+
+Implementation: ``sr_policy_command_fn``
+
+
+sr steer
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    sr steer (del) [l3 <ip_addr/mask>|l2 <sf_if>] via [index <sr_policy_index>|bsid <bsid_ip6_addr>] (fib-table <fib_table_index>)
+
+.. code-block:: console
+
+    	Steer a L2 or L3 traffic through an existing SR policy.
+    	Examples:
+    		sr steer l3 2001::/64 via sr_policy index 5
+    		sr steer l3 2001::/64 via sr_policy bsid 2010::9999:1
+    		sr steer l2 GigabitEthernet0/5/0 via sr_policy index 5
+    		sr steer del l3 2001::/64 via sr_policy index 5
+    
+
+
+Declaration: ``sr_steer_policy_command`` `src/vnet/srv6/sr_steering.c line 463 <https://github.com/FDio/vpp/blob/master//src/vnet/srv6/sr_steering.c#L463>`_
+
+Implementation: ``sr_steer_policy_command_fn``
+

@@ -1,0 +1,144 @@
+.. _clicmd_src_vnet_syslog:
+
+===============================================================
+Syslog cli reference
+===============================================================
+
+set syslog filter
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set syslog filter severity <severity>
+
+
+
+Set syslog severity filter, specified severity and greater match.
+
+Example of how to configure syslog severity filter:
+
+
+.. code-block:: console
+
+    set syslog filter severity warning
+
+
+
+
+Declaration: ``set_syslog_filter_command`` `src/vnet/syslog/syslog.c line 579 <https://github.com/FDio/vpp/blob/master//src/vnet/syslog/syslog.c#L579>`_
+
+Implementation: ``set_syslog_filter_command_fn``
+
+
+set syslog sender
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set syslog sender collector <ip4-address> [port <port>] src <ip4-address> [vrf-id <vrf-id>] [max-msg-size <max-msg-size>]
+
+
+
+Set syslog sender configuration.
+
+Example of how to configure syslog sender:
+
+
+.. code-block:: console
+
+    set syslog sender collector 10.10.10.10 port 514 src 172.16.2.2
+
+
+
+
+Declaration: ``set_syslog_sender_command`` `src/vnet/syslog/syslog.c line 520 <https://github.com/FDio/vpp/blob/master//src/vnet/syslog/syslog.c#L520>`_
+
+Implementation: ``set_syslog_sender_command_fn``
+
+
+show syslog filter
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show syslog filter
+
+
+
+Show syslog severity filter.
+
+Example of how to display syslog severity filter:
+
+
+.. code-block:: console
+
+    show syslog filter
+    
+    severity-filter: warning
+    
+
+
+
+
+Declaration: ``show_syslog_filter_command`` `src/vnet/syslog/syslog.c line 597 <https://github.com/FDio/vpp/blob/master//src/vnet/syslog/syslog.c#L597>`_
+
+Implementation: ``show_syslog_filter_command_fn``
+
+
+show syslog sender
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show syslog sender
+
+
+
+Show syslog sender configuration.
+
+Example of how to display syslog sender configuration:
+
+
+.. code-block:: console
+
+    show syslog sender
+    
+    collector 10.10.10.10:514, src address 172.16.2.2, VRF ID 0, max-msg-size 480
+    
+
+
+
+
+Declaration: ``show_syslog_sender_command`` `src/vnet/syslog/syslog.c line 541 <https://github.com/FDio/vpp/blob/master//src/vnet/syslog/syslog.c#L541>`_
+
+Implementation: ``show_syslog_sender_command_fn``
+
+
+test syslog
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test syslog <facility> <severity> <app-name> <msgid> [sd-id <sd-id> sd-param <name> <value>] [<message]
+
+
+
+This command generate test syslog message.
+
+Example of how to generate following syslog message
+``<180>1 2018-11-07T11:36:41.231759Z 172.16.1.1 test 10484 testMsg
+[exampleSDID@32473 eventID="1011" eventSource="App" iut="3"]
+this is message``
+
+
+.. code-block:: console
+
+    test syslog local6 warning test testMsg sd-id <!-- --> exampleSDID@32473 sd-param eventID 1011 sd-param eventSource App <!-- --> sd-param iut 3 this is message
+
+
+
+
+Declaration: ``test_syslog_command`` `src/vnet/syslog/syslog.c line 562 <https://github.com/FDio/vpp/blob/master//src/vnet/syslog/syslog.c#L562>`_
+
+Implementation: ``test_syslog_command_fn``
+

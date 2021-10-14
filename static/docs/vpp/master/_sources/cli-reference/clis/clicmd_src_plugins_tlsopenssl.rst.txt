@@ -1,0 +1,18 @@
+.. _clicmd_src_plugins_tlsopenssl:
+
+===============================================================
+Tlsopenssl cli reference
+===============================================================
+
+tls openssl set
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    tls openssl set [engine <engine name>] [alg [algorithm] [async]
+
+
+Declaration: ``tls_openssl_set_command`` `src/plugins/tlsopenssl/tls_openssl.c line 1149 <https://github.com/FDio/vpp/blob/master//src/plugins/tlsopenssl/tls_openssl.c#L1149>`_
+
+Implementation: ``tls_openssl_set_command_fn``
+

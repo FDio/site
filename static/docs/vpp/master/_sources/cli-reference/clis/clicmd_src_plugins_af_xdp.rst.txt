@@ -1,0 +1,31 @@
+.. _clicmd_src_plugins_af_xdp:
+
+===============================================================
+Af_xdp cli reference
+===============================================================
+
+create interface af_xdp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create interface af_xdp <host-if linux-ifname> [name ifname] [rx-queue-size size] [tx-queue-size size] [num-rx-queues <num|all>] [prog pathname] [zero-copy|no-zero-copy] [no-syscall-lock]
+
+
+Declaration: ``af_xdp_create_command`` `src/plugins/af_xdp/cli.c line 48 <https://github.com/FDio/vpp/blob/master//src/plugins/af_xdp/cli.c#L48>`_
+
+Implementation: ``af_xdp_create_command_fn``
+
+
+delete interface af_xdp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete interface af_xdp {<interface> | sw_if_index <sw_idx>}
+
+
+Declaration: ``af_xdp_delete_command`` `src/plugins/af_xdp/cli.c line 102 <https://github.com/FDio/vpp/blob/master//src/plugins/af_xdp/cli.c#L102>`_
+
+Implementation: ``af_xdp_delete_command_fn``
+

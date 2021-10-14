@@ -1,0 +1,44 @@
+.. _clicmd_src_plugins_ila:
+
+===============================================================
+Ila cli reference
+===============================================================
+
+ila entry
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ila entry [type <type>] [sir-address <address>] [locator <locator>] [vnid <hex-vnid>] [adj-index <adj-index>] [next-hop <next-hop>] [direction (bidir|sir2ila|ila2sir)] [csum-mode (no-action|neutral-map|transport-adjust)] [del]
+
+
+Declaration: ``ila_entry_command`` `src/plugins/ila/ila.c line 1022 <https://github.com/FDio/vpp/blob/master//src/plugins/ila/ila.c#L1022>`_
+
+Implementation: ``ila_entry_command_fn``
+
+
+ila interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ila interface <interface-name> [disable]
+
+
+Declaration: ``ila_interface_command`` `src/plugins/ila/ila.c line 1056 <https://github.com/FDio/vpp/blob/master//src/plugins/ila/ila.c#L1056>`_
+
+Implementation: ``ila_interface_command_fn``
+
+
+show ila entries
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ila entries
+
+
+Declaration: ``ila_show_entries_command`` `src/plugins/ila/ila.c line 1081 <https://github.com/FDio/vpp/blob/master//src/plugins/ila/ila.c#L1081>`_
+
+Implementation: ``ila_show_entries_command_fn``
+

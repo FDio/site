@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nat44-ei cli reference &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Nat64 cli reference" href="clicmd_src_plugins_nat_nat64.html" />
+    <link rel="prev" title="Nat44-ed cli reference" href="clicmd_src_plugins_nat_nat44-ed.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ethernet.html">ARP and Loopback CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_vlib_unix_cj_c.html">Circular Journal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix_cli_c.html">Command line session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_dpdk-ipsec.html">DPDK Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_device.html">DPDK and pcap tx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_af_packet.html">Host Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app_version_c.html">Image Version Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_init_c.html">Init functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet.html">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_l2.html">Layer 2 CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip.html">Layer 3 IP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsim_nsim_c.html">Network Delay Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_http_static_static_server_c.html">Static HTTP Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix.html">Unix Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib.html">VLIB application library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan.html">VXLAN CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gbp.html">VXLAN-GBP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_netmap.html">netmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_abf.html">Abf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_acl.html">Acl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_adl.html">Adl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_af_xdp.html">Af_xdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_arping.html">Arping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_avf.html">Avf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_bufmon.html">Bufmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_builtinurl.html">Builtinurl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cdp.html">Cdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cnat.html">Cnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_crypto_sw_scheduler.html">Crypto_sw_scheduler cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ct6.html">Ct6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dhcp.html">Dhcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dispatch-trace.html">Dispatch-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dns.html">Dns cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_cryptodev.html">Cryptodev cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_flowprobe.html">Flowprobe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gbp.html">Gbp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_geneve.html">Geneve cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gtpu.html">Gtpu cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_hs_apps.html">Hs_apps cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_igmp.html">Igmp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ikev2.html">Ikev2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ila.html">Ila cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_analyse_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_encap.html">Encap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export.html">Export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export-vxlan-gpe.html">Export-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-pot.html">Lib-pot cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-trace.html">Lib-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-vxlan-gpe.html">Lib-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_udp-ping.html">Udp-ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2e.html">L2e cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2tp.html">L2tp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l3xc.html">L3xc cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lacp.html">Lacp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lb.html">Lb cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp.html">Linux-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-cp.html">Lisp-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-gpe.html">Lisp-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lldp.html">Lldp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mactime.html">Mactime cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_map.html">Map cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_marvell_pp2.html">Pp2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mdata.html">Mdata cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_memif.html">Memif cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mss_clamp.html">Mss_clamp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_det44.html">Det44 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_dslite.html">Dslite cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ed.html">Nat44-ed cli reference</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Nat44-ei cli reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clear-nat44-ei-sessions">clear nat44 ei sessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei">nat44 ei</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-add-address">nat44 ei add address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-add-identity-mapping">nat44 ei add identity mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-add-interface-address">nat44 ei add interface address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-add-static-mapping">nat44 ei add static mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-addr-port-assignment-alg">nat44 ei addr-port-assignment-alg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-del-session">nat44 ei del session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-del-user">nat44 ei del user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-forwarding">nat44 ei forwarding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-ha-failover">nat44 ei ha failover</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-ha-flush">nat44 ei ha flush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-ha-listener">nat44 ei ha listener</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-ha-resync">nat44 ei ha resync</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-ipfix-logging">nat44 ei ipfix logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-mss-clamping">nat44 ei mss-clamping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nat44-ei-set-logging-level">nat44 ei set logging level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-nat44-ei">set interface nat44 ei</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-nat44-ei-timeout">set nat44 ei timeout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-nat44-ei-workers">set nat44 ei workers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-addr-port-assignment-alg">show nat44 ei addr-port-assignment-alg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-addresses">show nat44 ei addresses</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-ha">show nat44 ei ha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-hash-tables">show nat44 ei hash tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-interface-address">show nat44 ei interface address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-interfaces">show nat44 ei interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-mss-clamping">show nat44 ei mss-clamping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-sessions">show nat44 ei sessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-static-mappings">show nat44 ei static mappings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-timeouts">show nat44 ei timeouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-nat44-ei-workers">show nat44 ei workers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat64.html">Nat64 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat66.html">Nat66 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_pnat.html">Pnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh.html">Nsh cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam.html">Nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html">Export-nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_oddbuf.html">Oddbuf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ping.html">Ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_pppoe.html">Pppoe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_quic.html">Quic cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_rdma.html">Rdma cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_snort.html">Snort cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_stn.html">Stn cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_svs.html">Svs cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tlsopenssl.html">Tlsopenssl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tracedump.html">Tracedump cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_unittest.html">Unittest cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_urpf.html">Urpf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vmxnet3.html">Vmxnet3 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vrrp.html">Vrrp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_wireguard.html">Wireguard cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_pci.html">Pci cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibapi.html">Vlibapi cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibmemory.html">Vlibmemory cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_adj.html">Adj cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_arp.html">Arp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bfd.html">Bfd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bier.html">Bier cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bonding.html">Bonding cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_classify.html">Classify cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_crypto.html">Crypto cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_pipe.html">Pipe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_tap.html">Tap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_dpo.html">Dpo cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_feature.html">Feature cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_fib.html">Fib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_flow.html">Flow cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gre.html">Gre cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gso.html">Gso cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_hash.html">Hash cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip-neighbor.html">Ip-neighbor cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip_reass.html">Reass cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip6-nd.html">Ip6-nd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipfix-export.html">Ipfix-export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipip.html">Ipip cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipsec.html">Ipsec cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_lawful-intercept.html">Lawful-intercept cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mfib.html">Mfib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mpls.html">Mpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_pg.html">Pg cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_policer.html">Policer cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_qos.html">Qos cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_session.html">Session cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_span.html">Span cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srmpls.html">Srmpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srv6.html">Srv6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_syslog.html">Syslog cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_tcp.html">Tcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_teib.html">Teib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_udp.html">Udp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_unix.html">Unix cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gpe.html">Vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_api.html">Api cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app.html">App cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_stats.html">Stats cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_vnet.html">Vnet cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_virtio.html">vHost User</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+      <li>Nat44-ei cli reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cli-reference/clis/clicmd_src_plugins_nat_nat44-ei.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nat44-ei-cli-reference">
+<span id="clicmd-src-plugins-nat-nat44-ei"></span><h1>Nat44-ei cli reference<a class="headerlink" href="#nat44-ei-cli-reference" title="Permalink to this headline"></a></h1>
+<section id="clear-nat44-ei-sessions">
+<h2>clear nat44 ei sessions<a class="headerlink" href="#clear-nat44-ei-sessions" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">clear nat44 ei sessions</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">clear nat44 ei sessions</span>
+
+<span class="go">To clear all NAT44 sessions</span>
+<span class="go"> vpp# clear nat44 ei sessions</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_clear_sessions_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1964">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1964</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_clear_sessions_command_fn</span></code></p>
+</section>
+<section id="nat44-ei">
+<h2>nat44 ei<a class="headerlink" href="#nat44-ei" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei &lt;enable [sessions &lt;max-number&gt;] [users &lt;max-number&gt;] [static-mappig-only [connection-tracking]|out2in-dpo] [inside-vrf &lt;vrf-id&gt;] [outside-vrf &lt;vrf-id&gt;] [user-sessions &lt;max-number&gt;]&gt;|disable</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei</span>
+
+<span class="go">Enable nat44 ei plugin</span>
+<span class="go">To enable nat44-ei, use:</span>
+<span class="go"> vpp# nat44 ei enable</span>
+<span class="go">To disable nat44-ei, use:</span>
+<span class="go"> vpp# nat44 ei disable</span>
+<span class="go">To enable nat44 ei static mapping only, use:</span>
+<span class="go"> vpp# nat44 ei enable static-mapping</span>
+<span class="go">To enable nat44 ei static mapping with connection tracking, use:</span>
+<span class="go"> vpp# nat44 ei enable static-mapping connection-tracking</span>
+<span class="go">To enable nat44 ei out2in dpo, use:</span>
+<span class="go"> vpp# nat44 ei enable out2in-dpo</span>
+<span class="go">To set inside-vrf outside-vrf, use:</span>
+<span class="go"> vpp# nat44 ei enable inside-vrf &lt;id&gt; outside-vrf &lt;id&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_enable_disable_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1525">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1525</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_enable_disable_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-add-address">
+<h2>nat44 ei add address<a class="headerlink" href="#nat44-ei-add-address" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei add address &lt;ip4-range-start&gt; [- &lt;ip4-range-end&gt;] [tenant-vrf &lt;vrf-id&gt;] [del]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei add address</span>
+
+<span class="go">Add/delete NAT44 pool address.</span>
+<span class="go">To add NAT44 pool address use:</span>
+<span class="go"> vpp# nat44 ei add address 172.16.1.3</span>
+<span class="go"> vpp# nat44 ei add address 172.16.2.2 - 172.16.2.24</span>
+<span class="go">To add NAT44 pool address for specific tenant (identified by VRF id) use:</span>
+<span class="go"> vpp# nat44 ei add address 172.16.1.3 tenant-vrf 10</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">add_address_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1770">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1770</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">add_address_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-add-identity-mapping">
+<h2>nat44 ei add identity mapping<a class="headerlink" href="#nat44-ei-add-identity-mapping" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei add identity mapping &lt;ip4-addr&gt;|external &lt;interface&gt; [&lt;protocol&gt; &lt;port&gt;] [vrf &lt;table-id&gt;] [del]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei add identity mapping</span>
+
+<span class="go">Identity mapping translate an IP address to itself.</span>
+<span class="go">To create identity mapping for address 10.0.0.3 port 6303 for TCP protocol</span>
+<span class="go">use:</span>
+<span class="go"> vpp# nat44 ei add identity mapping 10.0.0.3 tcp 6303</span>
+<span class="go">To create identity mapping for address 10.0.0.3 use:</span>
+<span class="go"> vpp# nat44 ei add identity mapping 10.0.0.3</span>
+<span class="go">To create identity mapping for DHCP addressed interface use:</span>
+<span class="go"> vpp# nat44 ei add identity mapping external GigabitEthernet0/a/0 tcp 3606</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">add_identity_mapping_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1875">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1875</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">add_identity_mapping_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-add-interface-address">
+<h2>nat44 ei add interface address<a class="headerlink" href="#nat44-ei-add-interface-address" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei add interface address &lt;interface&gt; [del]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei add interface address</span>
+
+<span class="go">Use NAT44 pool address from specific interfce</span>
+<span class="go">To add NAT44 pool address from specific interface use:</span>
+<span class="go"> vpp# nat44 ei add interface address GigabitEthernet0/8/0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_add_interface_address_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1911">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1911</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_add_interface_address_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-add-static-mapping">
+<h2>nat44 ei add static mapping<a class="headerlink" href="#nat44-ei-add-static-mapping" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei add static mapping tcp|udp|icmp local &lt;addr&gt; [&lt;port|icmp-echo-id&gt;] external &lt;addr&gt; [&lt;port|icmp-echo-id&gt;] [vrf &lt;table-id&gt;] [del]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei add static mapping</span>
+
+<span class="go">Static mapping allows hosts on the external network to initiate connection</span>
+<span class="go">to to the local network host.</span>
+<span class="go">To create static mapping between local host address 10.0.0.3 port 6303 and</span>
+<span class="go">external address 4.4.4.4 port 3606 for TCP protocol use:</span>
+<span class="go"> vpp# nat44 ei add static mapping tcp local 10.0.0.3 6303 external 4.4.4.4</span>
+<span class="go">3606</span>
+<span class="go">If not runnig &quot;static mapping only&quot; NAT plugin mode use before:</span>
+<span class="go"> vpp# nat44 ei add address 4.4.4.4</span>
+<span class="go">To create address only static mapping between local and external address</span>
+<span class="go">use:</span>
+<span class="go"> vpp# nat44 ei add static mapping local 10.0.0.3 external 4.4.4.4</span>
+<span class="go">To create ICMP static mapping between local and external with ICMP echo</span>
+<span class="go">identifier 10 use:</span>
+<span class="go"> vpp# nat44 ei add static mapping icmp local 10.0.0.3 10 external 4.4.4.4 10</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">add_static_mapping_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1854">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1854</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">add_static_mapping_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-addr-port-assignment-alg">
+<h2>nat44 ei addr-port-assignment-alg<a class="headerlink" href="#nat44-ei-addr-port-assignment-alg" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei addr-port-assignment-alg &lt;alg-name&gt; [&lt;alg-params&gt;]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei addr-port-assignment-alg</span>
+
+<span class="go">Set address and port assignment algorithm</span>
+<span class="go">For the MAP-E CE limit port choice based on PSID use:</span>
+<span class="go"> vpp# nat44 ei addr-port-assignment-alg map-e psid 10 psid-offset 6 psid-len</span>
+<span class="go">6</span>
+<span class="go">For port range use:</span>
+<span class="go"> vpp# nat44 ei addr-port-assignment-alg port-range &lt;start-port&gt; - &lt;end-port&gt;</span>
+<span class="go">To set standard (default) address and port assignment algorithm use:</span>
+<span class="go"> vpp# nat44 ei addr-port-assignment-alg default</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_set_alloc_addr_and_port_alg_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1639">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1639</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_set_alloc_addr_and_port_alg_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-del-session">
+<h2>nat44 ei del session<a class="headerlink" href="#nat44-ei-del-session" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei del session in|out &lt;addr&gt;:&lt;port&gt; tcp|udp|icmp [vrf &lt;id&gt;] [external-host &lt;addr&gt;:&lt;port&gt;]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei del session</span>
+
+<span class="go">To administratively delete NAT44 session by inside address and port use:</span>
+<span class="go"> vpp# nat44 ei del session in 10.0.0.3:6303 tcp</span>
+<span class="go">To administratively delete NAT44 session by outside address and port use:</span>
+<span class="go"> vpp# nat44 ei del session out 1.0.0.3:6033 udp</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_del_session_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1979">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1979</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_del_session_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-del-user">
+<h2>nat44 ei del user<a class="headerlink" href="#nat44-ei-del-user" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei del user &lt;addr&gt; [fib &lt;index&gt;]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei del user</span>
+
+<span class="go">To delete all NAT44 user sessions:</span>
+<span class="go"> vpp# nat44 ei del user 10.0.0.3</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_del_user_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1951">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1951</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_del_user_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-forwarding">
+<h2>nat44 ei forwarding<a class="headerlink" href="#nat44-ei-forwarding" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei forwarding enable|disable</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei forwarding</span>
+
+<span class="go">Enable or disable forwarding</span>
+<span class="go">Forward packets which don&#39;t match existing translation</span>
+<span class="go">or static mapping instead of dropping them.</span>
+<span class="go">To enable forwarding, use:</span>
+<span class="go"> vpp# nat44 ei forwarding enable</span>
+<span class="go">To disable forwarding, use:</span>
+<span class="go"> vpp# nat44 ei forwarding disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_forwarding_set_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1998">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1998</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_forwarding_set_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-ha-failover">
+<h2>nat44 ei ha failover<a class="headerlink" href="#nat44-ei-ha-failover" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ha failover &lt;ip4-address&gt;:&lt;port&gt; [refresh-interval &lt;sec&gt;]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ha failover</span>
+
+<span class="go">Set HA failover (remote settings)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_ha_failover_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1691">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1691</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_ha_failover_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-ha-flush">
+<h2>nat44 ei ha flush<a class="headerlink" href="#nat44-ei-ha-flush" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ha flush</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ha flush</span>
+
+<span class="go">Flush the current HA data (for testing)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_ha_flush_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1729">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1729</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_ha_flush_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-ha-listener">
+<h2>nat44 ei ha listener<a class="headerlink" href="#nat44-ei-ha-listener" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ha listener &lt;ip4-address&gt;:&lt;port&gt; [path-mtu &lt;path-mtu&gt;]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ha listener</span>
+
+<span class="go">Set HA listener (local settings)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_ha_listener_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1704">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1704</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_ha_listener_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-ha-resync">
+<h2>nat44 ei ha resync<a class="headerlink" href="#nat44-ei-ha-resync" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ha resync</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ha resync</span>
+
+<span class="go">Resync HA (resend existing sessions to new failover)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_ha_resync_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1741">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1741</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_ha_resync_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-ipfix-logging">
+<h2>nat44 ei ipfix logging<a class="headerlink" href="#nat44-ei-ipfix-logging" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei ipfix logging &lt;enable [domain &lt;domain-id&gt;] [src-port &lt;port&gt;]&gt;|disable</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">snat44 ei ipfix logging</span>
+
+<span class="go">To enable NAT IPFIX logging use:</span>
+<span class="go"> vpp# nat44 ei ipfix logging</span>
+<span class="go">To set IPFIX exporter use:</span>
+<span class="go"> vpp# set ipfix exporter collector 10.10.10.3 src 10.10.10.1</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_ipfix_logging_enable_disable_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1619">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1619</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_ipfix_logging_enable_disable_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-mss-clamping">
+<h2>nat44 ei mss-clamping<a class="headerlink" href="#nat44-ei-mss-clamping" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei mss-clamping &lt;mss-value&gt;|disable</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei mss-clamping</span>
+
+<span class="go">Set TCP MSS rewriting configuration</span>
+<span class="go">To enable TCP MSS rewriting use:</span>
+<span class="go"> vpp# nat44 ei mss-clamping 1452</span>
+<span class="go">To disbale TCP MSS rewriting use:</span>
+<span class="go"> vpp# nat44 ei mss-clamping disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_set_mss_clamping_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1667">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1667</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_set_mss_clamping_command_fn</span></code></p>
+</section>
+<section id="nat44-ei-set-logging-level">
+<h2>nat44 ei set logging level<a class="headerlink" href="#nat44-ei-set-logging-level" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei set logging level &lt;level&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat44 ei set logging level</span>
+
+<span class="go">To set NAT logging level use:</span>
+<span class="go">Set nat44 ei logging level</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_set_log_level_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1604">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1604</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_set_log_level_command_fn</span></code></p>
+</section>
+<section id="set-interface-nat44-ei">
+<h2>set interface nat44 ei<a class="headerlink" href="#set-interface-nat44-ei" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface nat44 ei in &lt;intfc&gt; out &lt;intfc&gt; [output-feature] [del]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface nat44</span>
+
+<span class="go">Enable/disable NAT44 feature on the interface.</span>
+<span class="go">To enable NAT44 feature with local network interface use:</span>
+<span class="go"> vpp# set interface nat44 ei in GigabitEthernet0/8/0</span>
+<span class="go">To enable NAT44 feature with external network interface use:</span>
+<span class="go"> vpp# set interface nat44 ei out GigabitEthernet0/a/0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_interface_nat44_ei_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1811">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1811</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_feature_command_fn</span></code></p>
+</section>
+<section id="set-nat44-ei-timeout">
+<h2>set nat44 ei timeout<a class="headerlink" href="#set-nat44-ei-timeout" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set nat44 ei timeout [udp &lt;sec&gt; | tcp-established &lt;sec&gt; tcp-transitory &lt;sec&gt; | icmp &lt;sec&gt; | reset]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set nat44 ei timeout</span>
+
+<span class="go">Set values of timeouts for NAT sessions (in seconds), use:</span>
+<span class="go"> vpp# set nat44 ei timeout udp 120 tcp-established 7500 tcp-transitory 250</span>
+<span class="go">icmp 90</span>
+<span class="go">To reset default values use:</span>
+<span class="go"> vpp# set nat44 ei timeout reset</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_timeout_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1573">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1573</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_timeout_command_fn</span></code></p>
+</section>
+<section id="set-nat44-ei-workers">
+<h2>set nat44 ei workers<a class="headerlink" href="#set-nat44-ei-workers" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set nat44 ei workers &lt;workers-list&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set snat44 ei workers</span>
+
+<span class="go">Set NAT workers if 2 or more workers available, use:</span>
+<span class="go"> vpp# set snat44 ei workers 0-2,5</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_workers_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1541">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1541</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_workers_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-addr-port-assignment-alg">
+<h2>show nat44 ei addr-port-assignment-alg<a class="headerlink" href="#show-nat44-ei-addr-port-assignment-alg" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei addr-port-assignment-alg</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei addr-port-assignment-alg</span>
+
+<span class="go">Show address and port assignment algorithm</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_alloc_addr_and_port_alg_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1651">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1651</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_alloc_addr_and_port_alg_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-addresses">
+<h2>show nat44 ei addresses<a class="headerlink" href="#show-nat44-ei-addresses" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei addresses</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei addresses</span>
+
+<span class="go">Show NAT44 pool addresses.</span>
+<span class="go">vpp# show nat44 ei addresses</span>
+<span class="go">NAT44 pool addresses:</span>
+<span class="go">172.16.2.2</span>
+<span class="go">  tenant VRF independent</span>
+<span class="go">  10 busy udp ports</span>
+<span class="go">  0 busy tcp ports</span>
+<span class="go">  0 busy icmp ports</span>
+<span class="go">172.16.1.3</span>
+<span class="go">  tenant VRF: 10</span>
+<span class="go">  0 busy udp ports</span>
+<span class="go">  2 busy tcp ports</span>
+<span class="go">  0 busy icmp ports</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_addresses_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1795">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1795</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_addresses_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-ha">
+<h2>show nat44 ei ha<a class="headerlink" href="#show-nat44-ei-ha" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei ha</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei ha</span>
+
+<span class="go">Show HA configuration/status</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_show_ha_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1717">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1717</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_show_ha_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-hash-tables">
+<h2>show nat44 ei hash tables<a class="headerlink" href="#show-nat44-ei-hash-tables" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei hash tables [detail|verbose]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei hash tables</span>
+
+<span class="go">Show NAT44 hash tables</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_hash</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1753">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1753</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_hash_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-interface-address">
+<h2>show nat44 ei interface address<a class="headerlink" href="#show-nat44-ei-interface-address" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei interface address</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei interface address</span>
+
+<span class="go">Show NAT44 pool address interfaces</span>
+<span class="go">vpp# show nat44 ei interface address</span>
+<span class="go">NAT44 pool address interfaces:</span>
+<span class="go"> GigabitEthernet0/a/0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_interface_address_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1926">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1926</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_interface_address_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-interfaces">
+<h2>show nat44 ei interfaces<a class="headerlink" href="#show-nat44-ei-interfaces" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei interfaces</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei interfaces</span>
+
+<span class="go">Show interfaces with NAT44 feature.</span>
+<span class="go">vpp# show nat44 ei interfaces</span>
+<span class="go">NAT44 interfaces:</span>
+<span class="go"> GigabitEthernet0/8/0 in</span>
+<span class="go"> GigabitEthernet0/a/0 out</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_interfaces_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1829">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1829</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_interfaces_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-mss-clamping">
+<h2>show nat44 ei mss-clamping<a class="headerlink" href="#show-nat44-ei-mss-clamping" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei mss-clamping</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei mss-clamping</span>
+
+<span class="go">Show TCP MSS rewriting configuration</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_show_mss_clamping_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1679">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1679</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_show_mss_clamping_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-sessions">
+<h2>show nat44 ei sessions<a class="headerlink" href="#show-nat44-ei-sessions" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei sessions [detail] [filter saddr &lt;ip&gt;]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei sessions</span>
+
+<span class="go">Show NAT44 sessions.</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_sessions_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1938">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1938</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_sessions_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-static-mappings">
+<h2>show nat44 ei static mappings<a class="headerlink" href="#show-nat44-ei-static-mappings" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei static mappings</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei static mappings</span>
+
+<span class="go">Show NAT44 static mappings.</span>
+<span class="go">vpp# show nat44 ei static mappings</span>
+<span class="go">NAT44 static mappings:</span>
+<span class="go"> local 10.0.0.3 external 4.4.4.4 vrf 0</span>
+<span class="go"> tcp local 192.168.0.4:6303 external 4.4.4.3:3606 vrf 0</span>
+<span class="go"> tcp vrf 0 external 1.2.3.4:80</span>
+<span class="go">  local 10.100.10.10:8080 probability 80</span>
+<span class="go">  local 10.100.10.20:8080 probability 20</span>
+<span class="go"> tcp local 10.0.0.10:3603 external GigabitEthernet0/a/0:6306 vrf 10</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_static_mappings_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1897">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1897</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat44_ei_show_static_mappings_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-timeouts">
+<h2>show nat44 ei timeouts<a class="headerlink" href="#show-nat44-ei-timeouts" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei timeouts</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei timeouts</span>
+
+<span class="go">Show values of timeouts for NAT sessions.</span>
+<span class="go">vpp# show nat44 ei timeouts</span>
+<span class="go">udp timeout: 300sec</span>
+<span class="go">tcp-established timeout: 7440sec</span>
+<span class="go">tcp-transitory timeout: 240sec</span>
+<span class="go">icmp timeout: 60sec</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_show_timeouts_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1591">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1591</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_show_timeouts_command_fn</span></code></p>
+</section>
+<section id="show-nat44-ei-workers">
+<h2>show nat44 ei workers<a class="headerlink" href="#show-nat44-ei-workers" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei workers</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show nat44 ei workers</span>
+
+<span class="go">Show NAT workers.</span>
+<span class="go"> vpp# show nat44 ei workers:</span>
+<span class="go"> 2 workers</span>
+<span class="go">   vpp_wk_0</span>
+<span class="go">   vpp_wk_1</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">nat_show_workers_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat44-ei/nat44_ei_cli.c#L1557">src/plugins/nat/nat44-ei/nat44_ei_cli.c line 1557</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">nat_show_workers_command_fn</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clicmd_src_plugins_nat_nat44-ed.html" class="btn btn-neutral float-left" title="Nat44-ed cli reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clicmd_src_plugins_nat_nat64.html" class="btn btn-neutral float-right" title="Nat64 cli reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

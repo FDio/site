@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting a Patch Reviewed &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Writing VPP Documentation" href="writingdocs.html" />
+    <link rel="prev" title="Getting started" href="../interfacing/libmemif/gettingstarted_doc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting a Patch Reviewed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ssh-keys">ssh keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clone-with-ssh">Clone with ssh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-review">Git Review</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-patch">New patch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#existing-patch">Existing patch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#patch-conflict-resolution">Patch Conflict Resolution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Getting a Patch Reviewed</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/contributing/gitreview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-a-patch-reviewed">
+<span id="gitreview"></span><h1>Getting a Patch Reviewed<a class="headerlink" href="#getting-a-patch-reviewed" title="Permalink to this headline"></a></h1>
+<p>This section describes how to get FD.io VPP sources reviewed and merged.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline"></a></h2>
+<p>If you don’t have a Linux Foundation ID, <a class="reference external" href="https://identity.linuxfoundation.org/">create one here.</a></p>
+<p>With your Linux Foundation ID credentials sign into <a class="reference external" href="https://gerrit.fd.io/r/login/%23%2Fq%2Fstatus%3Aopen">Gerrit Code Review at gerrit.fd.io</a></p>
+<p><a class="reference external" href="https://www.mediawiki.org/wiki/Gerrit/git-review">Install git-review,</a> which is a “command-line tool for Git / Gerrit to submit a change or to fetch an existing one.”</p>
+<p>If you’re on Ubuntu, install keychain:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo apt-get install keychain
+</pre></div>
+</div>
+<section id="ssh-keys">
+<h3>ssh keys<a class="headerlink" href="#ssh-keys" title="Permalink to this headline"></a></h3>
+<p>To get FD.io VPP documents reviewed the VPP repository should be cloned with ssh. You should be logged into Gerrit Code Review as noted above.</p>
+<p>Create your public and private ssh key with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh-keygen -t rsa
+<span class="gp">$ </span>keychain
+<span class="gp">$ </span>cat ~/.ssh/id_rsa.pub
+</pre></div>
+</div>
+<p>Copy <strong>all</strong> the contents of the public key (id_rsa.pub) output by the above <strong>cat</strong> command. Then go to your <a class="reference external" href="https://gerrit.fd.io/r/#/settings/ssh-keys">SSH Public keys settings page</a>, click <strong>Add Key …</strong>, paste your public key, and finally click <strong>Add</strong>.</p>
+</section>
+</section>
+<section id="clone-with-ssh">
+<span id="clone-ssh"></span><h2>Clone with ssh<a class="headerlink" href="#clone-with-ssh" title="Permalink to this headline"></a></h2>
+<p>Clone the repo with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone ssh://gerrit.fd.io:29418/vpp
+<span class="gp">$ </span><span class="nb">cd</span> vpp
+</pre></div>
+</div>
+<p>This will only work if the name of the user on your system matches your Gerrit username.</p>
+<p>Otherwise, clone with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git clone ssh://&lt;YOUR_GERRIT_USERNAME&gt;@gerrit.fd.io:29418/vpp
+<span class="gp">$ </span><span class="nb">cd</span> vpp
+</pre></div>
+</div>
+<p>When attempting to clone the repo Git will prompt you asking if you want to add the Server Host Key to the list of known hosts. Enter <strong>yes</strong> and press the <strong>Enter</strong> key.</p>
+</section>
+<section id="git-review">
+<h2>Git Review<a class="headerlink" href="#git-review" title="Permalink to this headline"></a></h2>
+<p>The VPP documents use the gerrit server, and git review for submitting and fetching patches.</p>
+<section id="new-patch">
+<h3>New patch<a class="headerlink" href="#new-patch" title="Permalink to this headline"></a></h3>
+<p>When working with a new patch, use the following commands to get your patch reviewed.</p>
+<p>Make sure you have modified the correct files by issuing the following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git status
+<span class="gp">$ </span>git diff
+</pre></div>
+</div>
+<p>Then add and commit the patch. You may want to add a tag to the commit comments.
+For example for a document with only patches you should add the tag <strong>docs:</strong>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git add &lt;filename&gt;
+<span class="gp">$ </span>git commit -s
+</pre></div>
+</div>
+<p>The commit comment should have something like the following comment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docs: A brief description of the commit</span>
+
+<span class="go">Type: Improvement (The type of commit this could be: Improvement, Fix or Feature)</span>
+
+<span class="go">A detailed description of the commit could go here.</span>
+</pre></div>
+</div>
+<p>Push the patch for review.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git review
+</pre></div>
+</div>
+<p>If you are creating a draft, meaning you do not want your changes reviewed yet, do the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git review -D
+</pre></div>
+</div>
+<p>After submitting a review, reset where the HEAD is pointing to with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git reset --hard origin/master
+</pre></div>
+</div>
+</section>
+<section id="existing-patch">
+<h3>Existing patch<a class="headerlink" href="#existing-patch" title="Permalink to this headline"></a></h3>
+<p>The “change number” used below is in the URL of the review.</p>
+<p>After clicking an individual review, the change number can be found in the URL at “<a class="reference external" href="https://gerrit.fd.io/r/#/c">https://gerrit.fd.io/r/#/c</a>/&lt;<em>CHANGE_NUMBER</em>&gt;/”</p>
+<p>To view an existing patch:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git review -d &lt;change number&gt;
+<span class="gp">$ </span>git status
+<span class="gp">$ </span>git diff
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If you have made changes and do “git review -d &lt;change number&gt;”, your current
+changes will try to be stashed so that the working tree can change to the review branch
+you specified. If you want to make sure you don’t lose your changes, clone another Gerrit
+repo into a new directory using the cloning steps shown in <a class="reference internal" href="#clone-ssh"><span class="std std-ref">Clone with ssh</span></a>, and perform
+“git review -d &lt;change number&gt;” in this new directory.</p>
+</div>
+<p>To modify an existing patch, make sure you modified the correct files, and apply the patch with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git review -d &lt;change number&gt;
+<span class="gp">$ </span>git status
+<span class="gp">$ </span>git diff
+
+<span class="gp">$ </span>git add &lt;filename&gt;
+<span class="gp">$ </span>git commit --amend
+<span class="gp">$ </span>git review
+</pre></div>
+</div>
+<p>When you’re done viewing or modifying a branch, get back to the master branch by entering:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git reset --hard origin/master
+<span class="gp">$ </span>git checkout master
+</pre></div>
+</div>
+</section>
+<section id="patch-conflict-resolution">
+<h3>Patch Conflict Resolution<a class="headerlink" href="#patch-conflict-resolution" title="Permalink to this headline"></a></h3>
+<p>Two different patch conflict scenarios arise from time to
+time. Sometime after uploading a patch to <a class="reference external" href="https://gerrit.fd.io">https://gerrit.fd.io</a>, the
+gerrit UI may show a patch status of “Merge Conflict.”</p>
+<p>Or, you may attempt to upload a new patch-set via “git review,” only to
+discover that the gerrit server won’t allow the upload due to an upstream
+merge conflict.</p>
+<p>In both cases, it’s [usually] fairly simple to fix the problem. You
+need to rebase the patch onto master/latest. Details vary from case to
+case.</p>
+<p>Here’s how to rebase a patch previously uploaded to the Gerrit server
+which now has a merge conflict. In a fresh workspace cloned from
+master/latest, do the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git-review -d &lt;*Gerrit change <span class="c1">#*&gt;</span>
+<span class="gp">$ </span>git rebase origin/master
+<span class="go">   while (conflicts)</span>
+<span class="go">      &lt;fix conflicts&gt;</span>
+<span class="gp">      $ </span>git rebase --continue
+<span class="gp">$ </span>git review
+</pre></div>
+</div>
+<p>In the upload-failure case, use caution: carefully <strong>save your work</strong>
+before you do anything else!</p>
+<p>Rebase your patch and try again. Please <strong>do not</strong> re-download [“git
+review -d”] the patch from the gerrit server…:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git rebase origin/master
+<span class="go">   while (conflicts)</span>
+<span class="go">      &lt;fix conflicts&gt;</span>
+<span class="gp">      $ </span>git rebase --continue
+<span class="gp">$ </span>git review
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../interfacing/libmemif/gettingstarted_doc.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="writingdocs.html" class="btn btn-neutral float-right" title="Writing VPP Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

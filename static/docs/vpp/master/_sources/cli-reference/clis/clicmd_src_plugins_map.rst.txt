@@ -1,0 +1,369 @@
+.. _clicmd_src_plugins_map:
+
+===============================================================
+Map cli reference
+===============================================================
+
+map add domain
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map add domain [tag <tag>] ip4-pfx <ip4-pfx> ip6-pfx <ip6-pfx> ip6-src <ip6-pfx> ea-bits-len <n> psid-offset <n> psid-len <n> [map-t] [mtu <mtu>]
+
+
+
+Add MAP domain
+
+
+
+.. code-block:: console
+
+    map add domain
+    
+    
+
+
+
+Declaration: ``map_add_domain_command`` `src/plugins/map/map.c line 1396 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1396>`_
+
+Implementation: ``map_add_domain_command_fn``
+
+
+map add rule
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map add rule index <domain> psid <psid> ip6-dst <ip6-addr>
+
+
+
+Add MAP rule to a domain
+
+
+
+.. code-block:: console
+
+    map add rule
+    
+    
+
+
+
+Declaration: ``map_add_rule_command`` `src/plugins/map/map.c line 1412 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1412>`_
+
+Implementation: ``map_add_rule_command_fn``
+
+
+map del domain
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map del domain index <domain>
+
+
+
+Delete MAP domain
+
+
+
+.. code-block:: console
+
+    map del domain
+    
+    
+
+
+
+Declaration: ``map_del_command`` `src/plugins/map/map.c line 1425 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1425>`_
+
+Implementation: ``map_del_domain_command_fn``
+
+
+map interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map interface <interface-name> [map-t] [del]
+
+
+
+Enable MAP processing on interface (input feature)
+
+Declaration: ``map_if_command`` `src/plugins/map/map.c line 1461 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1461>`_
+
+Implementation: ``map_if_command_fn``
+
+
+map params fragment
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map params fragment inner|outer ignore-df|honor-df
+
+
+
+Configure MAP fragmentation behaviour
+
+
+
+.. code-block:: console
+
+    map params fragment
+    
+    
+    Allows fragmentation of the IPv4 packet even if the DF bit is
+    set. The choice between inner or outer fragmentation of tunnel
+    packets is complicated. The benefit of inner fragmentation is that
+    the ultimate endpoint must reassemble, instead of the tunnel
+    endpoint.
+    
+
+
+
+Declaration: ``map_fragment_command`` `src/plugins/map/map.c line 1382 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1382>`_
+
+Implementation: ``map_fragment_command_fn``
+
+
+map params icmp source-address
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map params icmp source-address <ip4-address>
+
+
+
+Specify the IPv4 source address used for relayed ICMP error messages
+
+
+
+.. code-block:: console
+
+    map params icmp source-address
+    
+    
+    This command specifies which IPv4 source address (must be local to
+    the system), that is used for relayed received IPv6 ICMP error
+    messages.
+    
+
+
+
+Declaration: ``map_icmp_relay_source_address_command`` `src/plugins/map/map.c line 1347 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1347>`_
+
+Implementation: ``map_icmp_relay_source_address_command_fn``
+
+
+map params icmp6 unreachables
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map params icmp6 unreachables {on|off}
+
+
+
+Send IPv6 ICMP unreachables
+
+
+
+.. code-block:: console
+
+    map params icmp6 unreachables
+    
+    
+    Send IPv6 ICMP unreachable messages back if security check fails or
+    no MAP domain exists.
+    
+
+
+
+Declaration: ``map_icmp_unreachables_command`` `src/plugins/map/map.c line 1363 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1363>`_
+
+Implementation: ``map_icmp_unreachables_command_fn``
+
+
+map params pre-resolve
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+     map params pre-resolve {ip4-nh <address>} | {ip6-nh <address>}
+
+
+
+Bypass IP4/IP6 lookup
+
+
+
+.. code-block:: console
+
+    map params pre-resolve
+    
+    
+    Bypass a second FIB lookup of the translated or encapsulated
+    packet, and forward the packet directly to the specified
+    next-hop. This optimization trades forwarding flexibility for
+    performance.
+    
+
+
+
+Declaration: ``map_pre_resolve_command`` `src/plugins/map/map.c line 1306 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1306>`_
+
+Implementation: ``map_pre_resolve_command_fn``
+
+
+map params security-check
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map params security-check enable|disable fragments on|off
+
+
+
+Enable or disable the MAP-E inbound security check
+Specify if the inbound security check should be done on fragments
+
+
+
+.. code-block:: console
+
+    map params security-check
+    
+    
+    By default, a decapsulated packet's IPv4 source address will be
+    verified against the outer header's IPv6 source address. Disabling
+    this feature will allow IPv4 source address spoofing.
+    
+    Typically the inbound on-decapsulation security check is only done
+    on the first packet. The packet that contains the L4
+    information. While a security check on every fragment is possible,
+    it has a cost. State must be created on the first fragment.
+    
+
+
+
+Declaration: ``map_security_check_command`` `src/plugins/map/map.c line 1330 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1330>`_
+
+Implementation: ``map_security_check_command_fn``
+
+
+map params tcp-mss
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map params tcp-mss <value>
+
+
+
+TCP MSS clamping
+
+
+
+.. code-block:: console
+
+    map params tcp-mss
+    
+    
+    This command is used to set the TCP MSS in translated
+    or encapsulated packets.
+    
+
+
+
+Declaration: ``map_tcp_mss_command`` `src/plugins/map/map.c line 1288 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1288>`_
+
+Implementation: ``map_tcp_mss_command_fn``
+
+
+map params traffic-class
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    map params traffic-class {0x0-0xff | copy}
+
+
+
+Set or copy the IP TOS/Traffic Class field
+
+
+
+.. code-block:: console
+
+    map params traffic-class
+    
+    
+    This command is used to set the traffic-class field in translated
+    or encapsulated packets. If copy is specifed (the default) then the
+    traffic-class/TOS field is copied from the original packet to the
+    translated / encapsulating header.
+    
+
+
+
+Declaration: ``map_traffic_class_command`` `src/plugins/map/map.c line 1272 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1272>`_
+
+Implementation: ``map_traffic_class_command_fn``
+
+
+show map domain
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show map domain index <n> [counters]
+
+
+
+Show MAP domains
+
+
+
+.. code-block:: console
+
+    show map domain
+    
+    
+
+
+
+Declaration: ``show_map_domain_command`` `src/plugins/map/map.c line 1438 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1438>`_
+
+Implementation: ``show_map_domain_command_fn``
+
+
+show map stats
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show map stats
+
+
+
+Show MAP statistics
+
+
+
+.. code-block:: console
+
+    show map stats
+    
+    
+
+
+
+Declaration: ``show_map_stats_command`` `src/plugins/map/map.c line 1451 <https://github.com/FDio/vpp/blob/master//src/plugins/map/map.c#L1451>`_
+
+Implementation: ``show_map_stats_command_fn``
+

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running VPP &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Progressive VPP Tutorial" href="../progressivevpp/index.html" />
+    <link rel="prev" title="Packages" href="../installing/packages.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running VPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usergroup">Usergroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#systemd-file-vpp-service">Systemd File vpp.service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#huge-pages">Huge Pages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Running VPP</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/gettingstarted/running/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-vpp">
+<span id="running"></span><h1>Running VPP<a class="headerlink" href="#running-vpp" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="usergroup">
+<h2>Usergroup<a class="headerlink" href="#usergroup" title="Permalink to this headline"></a></h2>
+<p>When VPP is installed, a new usergroup <em>‘vpp’</em> is created. To avoid running the
+VPP CLI (vppctl) as root, add any existing users to the new group that need to
+interact with VPP:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo usermod -a -G vpp user1
+</pre></div>
+</div>
+<p>Update your current session for the group change to take effect:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>newgrp vpp
+</pre></div>
+</div>
+</section>
+<section id="systemd-file-vpp-service">
+<h2>Systemd File vpp.service<a class="headerlink" href="#systemd-file-vpp-service" title="Permalink to this headline"></a></h2>
+<p>When the VPP is installed, a systemd service files is also installed. This
+file, vpp.service (Ubuntu: /lib/systemd/system/vpp.service and CentOS:
+/usr/lib/systemd/system/vpp.service), controls how VPP is run as a service. For
+example, whether or not to restart on failure and if so, with how much delay.
+Also, which UIO driver should be loaded and location of the <em>‘startup.conf’</em>
+file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cat /usr/lib/systemd/system/vpp.service
+<span class="go">[Unit]</span>
+<span class="go">Description=Vector Packet Processing Process</span>
+<span class="go">After=syslog.target network.target auditd.service</span>
+
+<span class="go">[Service]</span>
+<span class="go">ExecStartPre=-/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api</span>
+<span class="go">ExecStartPre=-/sbin/modprobe uio_pci_generic</span>
+<span class="go">ExecStart=/usr/bin/vpp -c /etc/vpp/startup.conf</span>
+<span class="go">Type=simple</span>
+<span class="go">Restart=on-failure</span>
+<span class="go">RestartSec=5s</span>
+
+<span class="go">[Install]</span>
+<span class="go">WantedBy=multi-user.target</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some older versions of the <em>‘uio_pci_generic’</em> driver don’t bind all
+the supported NICs properly, so the <em>‘igb_uio’</em> driver built from DPDK
+needs to be installed. This file controls which driver is loaded at boot.
+<em>‘startup.conf’</em> file controls which driver is used.</p>
+</div>
+</section>
+<section id="huge-pages">
+<h2>Huge Pages<a class="headerlink" href="#huge-pages" title="Permalink to this headline"></a></h2>
+<p>VPP requires <em>hugepages</em> to run during VPP operation, to manage large pages of memory.
+During VPP installation, VPP will overwrite the existing hugepage settings.
+By default, VPP sets the number of hugepages on a system to 1024 2M hugepages.
+This is the number of hugepages on the system, not just used by VPP.</p>
+<p>When VPP is installed, the following configuration file is copied to the system. The
+hugepage settings are applied in the VPP installation and on system reboots. To set
+the hugepage settings, perform the following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cat /etc/sysctl.d/80-vpp.conf
+<span class="gp"># </span>Number of 2MB hugepages desired
+<span class="go">vm.nr_hugepages=1024</span>
+
+<span class="gp"># </span>Must be greater than or equal to <span class="o">(</span><span class="m">2</span> * vm.nr_hugepages<span class="o">)</span>.
+<span class="go">vm.max_map_count=3096</span>
+
+<span class="gp"># </span>All groups allowed to access hugepages
+<span class="go">vm.hugetlb_shm_group=0</span>
+
+<span class="gp"># </span>Shared Memory Max must be greater or equal to the total size of hugepages.
+<span class="gp"># </span>For 2MB pages, <span class="nv">TotalHugepageSize</span> <span class="o">=</span> vm.nr_hugepages * <span class="m">2</span> * <span class="m">1024</span> * <span class="m">1024</span>
+<span class="gp"># </span>If the existing kernel.shmmax setting  <span class="o">(</span>cat /sys/proc/kernel/shmmax<span class="o">)</span>
+<span class="gp"># </span>is greater than the calculated TotalHugepageSize <span class="k">then</span> <span class="nb">set</span> this parameter
+<span class="gp"># </span>to current shmmax value.
+<span class="go">kernel.shmmax=2147483648</span>
+</pre></div>
+</div>
+<p>Depending on how the system is being used, this configuration file can be updated to adjust
+the number of hugepages reserved on a system. Below are some examples of
+possible settings.</p>
+<p>For a small VM with minimal workload:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vm.nr_hugepages=512</span>
+<span class="go">vm.max_map_count=2048</span>
+<span class="go">kernel.shmmax=1073741824</span>
+</pre></div>
+</div>
+<p>For a large system running multiple VMs, each needing its own set of hugepages:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vm.nr_hugepages=32768</span>
+<span class="go">vm.max_map_count=66560</span>
+<span class="go">kernel.shmmax=68719476736</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If VPP is being run in a Virtual Machine (VM), the VM must have hugepage
+backing. When VPP is installed, it will attempt to overwrite existing the
+hugepage setting. If the VM does not have hugepage backing, the install will fail,
+but the failure may go unnoticed. When the VM is rebooted, on system startup,
+<em>‘vm.nr_hugepages’</em> will be reapplied, and will fail, and the VM will abort kernel
+boot, locking up the VM. To avoid this scenario, ensure the VM has enough
+hugepage backing.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../installing/packages.html" class="btn btn-neutral float-left" title="Packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../progressivevpp/index.html" class="btn btn-neutral float-right" title="Progressive VPP Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

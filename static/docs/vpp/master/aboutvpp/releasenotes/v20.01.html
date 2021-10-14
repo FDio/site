@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release notes for VPP 20.01 &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Release notes for VPP 19.08.3" href="v19.08.3.html" />
+    <link rel="prev" title="Release notes for VPP 20.05" href="v20.05.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v21.10.html">Release notes for VPP 21.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v21.06.html">Release notes for VPP 21.06</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="past.html">Past releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="v21.01.html">Release notes for VPP 21.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.09.html">Release notes for VPP 20.09</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.05.1.html">Release notes for VPP 20.05.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.05.html">Release notes for VPP 20.05</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Release notes for VPP 20.01</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#issues-fixed">Issues fixed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-changes">API changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.3.html">Release notes for VPP 19.08.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.2.html">Release notes for VPP 19.08.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.1.html">Release notes for VPP 19.08.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.html">Release notes for VPP 19.08</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.3.html">Release notes for VPP 19.04.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.2.html">Release notes for VPP 19.04.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.1.html">Release notes for VPP 19.04.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.html">Release notes for VPP 19.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.3.html">Release notes for VPP 19.01.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.2.html">Release notes for VPP 19.01.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.1.html">Release notes for VPP 19.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.html">Release notes for VPP 19.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.10.html">Release notes for VPP 18.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.07.html">Release notes for VPP 18.07</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.04.html">Release notes for VPP 18.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.2.html">Release notes for VPP 18.01.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.1.html">Release notes for VPP 18.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.html">Release notes for VPP 18.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.10.html">Release notes for VPP 17.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.07.html">Release notes for VPP 17.07</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.04.html">Release notes for VPP 17.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.01.1.html">Release notes for VPP 17.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.01.html">Release notes for VPP 17.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v16.09.html">Release notes for VPP 16.09</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v16.06.html">Release notes for VPP 16.06</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Release notes</a> &raquo;</li>
+          <li><a href="past.html">Past releases</a> &raquo;</li>
+      <li>Release notes for VPP 20.01</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/aboutvpp/releasenotes/v20.01.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-notes-for-vpp-20-01">
+<h1>Release notes for VPP 20.01<a class="headerlink" href="#release-notes-for-vpp-20-01" title="Permalink to this headline"></a></h1>
+<p>More than 1039 commits since the 19.08 release.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>API trace tool</p>
+<ul>
+<li><p>Add text output (a2ac36c91)</p></li>
+</ul>
+</li>
+<li><p>Binary API Compiler for Python</p>
+<ul>
+<li><p>Raise ValueError when fieldname is python keyword (ff47fb645)</p></li>
+</ul>
+</li>
+<li><p>Binary API Libraries</p>
+<ul>
+<li><p>Add API support for marvell PP2 plugin (859b59133)</p></li>
+<li><p>Add bapi thread handle to api main structure. (8229580e8)</p></li>
+<li><p>Multiple connections per process (39d69112f)</p></li>
+<li><p>Multiple socket connections per single process (59cea1a9d)</p></li>
+</ul>
+</li>
+<li><p>Build System</p>
+<ul>
+<li><p>Add build types helpstring to cmake project (952a7b8b7)</p></li>
+<li><p>Add env variable to pass extra cmake args (297365403)</p></li>
+<li><p>Add yaml file linting to make checkstyle (6b0dd5502)</p></li>
+<li><p>Export vapi generation in vpp-dev (dc20371f8)</p></li>
+<li><p>Fix 3rd party CI systems. (86a9441c2)</p></li>
+<li><p>Pass ‘no-pci’ to autgenerated config (be7ef3b5c)</p></li>
+</ul>
+</li>
+<li><p>Crypto ipsecmb Plugin</p>
+<ul>
+<li><p>Bump to intel-ipsec-mb version 0.53 (d35fefe8b)</p></li>
+<li><p>Improve gcm performance using dedicated API. (76a36e83e)</p></li>
+</ul>
+</li>
+<li><p>Infrastructure Library</p>
+<ul>
+<li><p>Bihash walk cb typedef and continue/stop controls (f50bac1bb)</p></li>
+<li><p>Create unformat function for data size parsing (579b16506)</p></li>
+<li><p>Implement CLIB_PAUSE () for aarch64 platforms (18512b002)</p></li>
+</ul>
+</li>
+<li><p>libmemif</p>
+<ul>
+<li><p>Introduce ‘memif_per_thread_’ namespace (17f2a7bbf)</p></li>
+</ul>
+</li>
+<li><p>Link Bonding</p>
+<ul>
+<li><p>Add/del secondary mac address callback (e83aa456b)</p></li>
+<li><p>Add /if/lacp/bond-sw-if-index/slave-sw-if-index/partner-state
+(aa7257863)</p></li>
+<li><p>Add weight support for active-backup mode (a1876b84e)</p></li>
+<li><p>Fix interface deletion (cc3aac056)</p></li>
+</ul>
+</li>
+<li><p>Miscellaneous</p>
+<ul>
+<li><p>Add address sanitizer heap instrumentation (9fb6d40eb)</p></li>
+<li><p>Add CentOS 8 package support (c025329bb)</p></li>
+<li><p>Add gdb helpers for vlib buffers (2b65f9ca0)</p></li>
+<li><p>Add lcov scripts, README.md (8d74caa0a)</p></li>
+<li><p>Add “maxframe” and “rate” to packet-generator cli. (87d7bac5c)</p></li>
+<li><p>Add “show run summary” (ac78f8a90)</p></li>
+<li><p>Add vnet classify filter set support (f5667c305)</p></li>
+<li><p>Classifier-based packet trace filter (9137e5400)</p></li>
+<li><p>Improve pcap drop trace output (9382ad9b3)</p></li>
+<li><p>Update gitignore for /test/ext/.d (8161d73d7)</p></li>
+</ul>
+</li>
+<li><p>Physical Memory Allocator</p>
+<ul>
+<li><p>Always lock pages (801c7016a)</p></li>
+</ul>
+</li>
+<li><p>Plugins</p>
+<ul>
+<li><p>AVF Device driver</p></li>
+<li><p>Improve timeout handling (1a7bb281f)</p></li>
+<li><p>Print queue id in packet trace (c33eddebe)</p></li>
+<li><p>Buffer Metadata Modification Tracker</p></li>
+<li><p>Buffer metadata change tracker plugin (d7b306657)</p></li>
+<li><p>builtinurl</p></li>
+<li><p>New plugin (43765e2b4)</p></li>
+<li><p>DHCP</p></li>
+<li><p>Ipv6 prefix delegation improvements (d318a996b)</p></li>
+<li><p>Move to plugin (02bfd641b)</p></li>
+<li><p>DPDK</p></li>
+<li><p>Add devargs support (f2bde7ac5)</p></li>
+<li><p>Add function to add/del extra MAC addrs (153727743)</p></li>
+<li><p>Add TSO support in dpdk plugin. (de5ed58fd)</p></li>
+<li><p>Apply dual loop unrolling in DPDK TX (fe2523d1a)</p></li>
+<li><p>Bump DPDK version to 19.08 (b6103105f)</p></li>
+<li><p>Enable bnxt PMD (c3731ac89)</p></li>
+<li><p>Ipsec tunnel support for ip6-in-ip4 (5025d40a1)</p></li>
+<li><p>QAT devices update, add c4xxx and xeon d15xx (4d843b994)</p></li>
+<li><p>Group Based Policy (GBP)</p></li>
+<li><p>Add extended SFC unit tests (a3c8ca10e)</p></li>
+<li><p>Host Stack Applications</p></li>
+<li><p>Add ckpair &amp; crypto engine in vpp_echo (7c40a3837)</p></li>
+<li><p>Add option for multiple ips (f98e59b86)</p></li>
+<li><p>Add periodic timing (ff6cdcca2)</p></li>
+<li><p>Improve for mq-intensive (b2fce36c8)</p></li>
+<li><p>Less verbose logging for many sessions (08f26641f)</p></li>
+<li><p>Make APP_OPTIONS_PREALLOC_FIFO_PAIRS configurable (7028a0157)</p></li>
+<li><p>http_static</p></li>
+<li><p>Add dynamic GET / POST method hooks (5554c56a6)</p></li>
+<li><p>Add “http static cache clear” CLI (e0fd9ed11)</p></li>
+<li><p>Add .json content (71a5da0c8)</p></li>
+<li><p>Internet Key Exchange (IKEv2) Protocol</p></li>
+<li><p>Add support for GCM cipher (de2dd6c35)</p></li>
+<li><p>IPv6 Segment Routing Mobile</p></li>
+<li><p>(57584d99d)</p></li>
+<li><p>Load Balancer</p></li>
+<li><p>Add APIs for set interface nat4 and nat6 (33538a150)</p></li>
+<li><p>NAT</p></li>
+<li><p>Handoff traffic matching for dynamic NAT (22bb417e9)</p></li>
+<li><p>Ping</p></li>
+<li><p>Move the echo responder into the ping plugin (f6c8f5090)</p></li>
+<li><p>QUIC protocol</p></li>
+<li><p>Add aggregated quicly stats (deaf97f45)</p></li>
+<li><p>Add cli command for stats (922f0b211)</p></li>
+<li><p>Add conn-timeout config option (2f566c23f)</p></li>
+<li><p>Add more detailed statistics (1802fcc5f)</p></li>
+<li><p>Add support for ckpair &amp; crypto engine (dcbbf2833)</p></li>
+<li><p>Add support for unidirectional streams (c00f480ba)</p></li>
+<li><p>Add Tx, Rx and packet drop counters (ff1f6faaa)</p></li>
+<li><p>Create custom event logger (dd4d8ac29)</p></li>
+<li><p>Implement crypto contexts (d1b9e7068)</p></li>
+<li><p>Make quic fifo size configurable via cli (00078b991)</p></li>
+<li><p>Update quicly to v0.0.5 (72c159e64)</p></li>
+<li><p>Update quicly to v0.0.6-vpp (3afac8f81)</p></li>
+<li><p>Update quicly to v0.0.7-vpp (69885b72a)</p></li>
+<li><p>Update quicly to v0.0.8-vpp (ecb9d18c5)</p></li>
+<li><p>Update quicly to v0.0.9-vpp (84def7cb7)</p></li>
+<li><p>RDMA (ibverb) driver</p></li>
+<li><p>Add rdma API (812afe712)</p></li>
+<li><p>Add support for input feature arcs (74eba446b)</p></li>
+<li><p>Add support for MAC changes (0dcafcc50)</p></li>
+<li><p>API: prepare support for direct verb (d8c1ef925)</p></li>
+<li><p>Time-based MAC filter</p></li>
+<li><p>Add a “top” command to watch device stats (2c41a61d5)</p></li>
+<li><p>Add the “mactime.json” builtin URL (ef3c11ca9)</p></li>
+<li><p>vmxnet3 device driver</p></li>
+<li><p>Per interface gso support (2985e0af6)</p></li>
+</ul>
+</li>
+<li><p>Python binding for the VPP API</p>
+<ul>
+<li><p>Add a per-call _timeout option (e2ccdf031)</p></li>
+<li><p>Add call stats (fd574087e)</p></li>
+<li><p>Add repr to packer types for troubleshooting (14b0b4791)</p></li>
+<li><p>Add wrapper to validate crc manifest (c046d709e)</p></li>
+<li><p>Enhance MACAddress() equality (6af62565e)</p></li>
+<li><p>Introduce read_blocking (0938547ea)</p></li>
+<li><p>Let async calls return context (2f6e0c600)</p></li>
+<li><p>Support default for type alias decaying to basetype (418ebb711)</p></li>
+</ul>
+</li>
+<li><p>Sphinx Documents</p>
+<ul>
+<li><p>Add spellcheck to ‘make docs’ sphinx docs (340c15c6e)</p></li>
+</ul>
+</li>
+<li><p>Statistics Segment</p>
+<ul>
+<li><p>Add /if/&lt;n&gt;/&lt;n&gt;/state for lacp interface state (0f09a828a)</p></li>
+</ul>
+</li>
+<li><p>SVM Library</p>
+<ul>
+<li><p>Improve fifo segment verbose cli (f8461bfb4)</p></li>
+</ul>
+</li>
+<li><p>Test Infrastructure</p>
+<ul>
+<li><p>Add cli_return_response to vpp_papi_provider (5932ce17e)</p></li>
+<li><p>Add test run time. (0c6293230)</p></li>
+<li><p>Support setting random seed (45a95dd78)</p></li>
+<li><p>Support worker threads (4ecbf105a)</p></li>
+<li><p>Test tls case (419d31f81)</p></li>
+</ul>
+</li>
+<li><p>Vector Library</p>
+<ul>
+<li><p>Add flag to explicitelly mark nodes which can init per-node packet
+trace (7ca5aaac1)</p></li>
+<li><p>Add max-size configuration parameter for pmalloc (842506f3c)</p></li>
+<li><p>Add ‘wait’ cli command (bfd7d294d)</p></li>
+<li><p>Enhance the “show cli” debug CLI command (a1f5a956e)</p></li>
+</ul>
+</li>
+<li><p>VNET</p>
+<ul>
+<li><p>Classify</p>
+<ul>
+<li><p>Per-interface rx/tx pcap capture filters (d28437cdf)</p></li>
+<li><p>Use vector code even when data is not aligned (830493392)</p></li>
+<li><p>Vpp packet tracer support (87d24db65)</p></li>
+</ul>
+</li>
+<li><p>Ethernet</p>
+<ul>
+<li><p>All dmac checks include secondary addrs (42bde459b)</p></li>
+<li><p>Dmac filter checks secondary mac addrs (d459bf344)</p></li>
+</ul>
+</li>
+<li><p>FIB</p>
+<ul>
+<li><p>Adjacency creation notifications for dlegates (77cfc0171)</p></li>
+<li><p>Decouple source from priority and behaviour (3bab8f9c5)</p></li>
+<li><p>Table Replace (9db6ada77)</p></li>
+</ul>
+</li>
+<li><p>FLOW</p>
+<ul>
+<li><p>Add ‘drop’ and ‘redirect-to-queue’ actions support (e8c9f4f1c)</p></li>
+<li><p>Add ethernet flow (4ff8d615c)</p></li>
+<li><p>Add GTP support (bf85a98fb)</p></li>
+</ul>
+</li>
+<li><p>GRE</p>
+<ul>
+<li><p>Multi-point interfaces (5f8f61733)</p></li>
+</ul>
+</li>
+<li><p>GSO</p>
+<ul>
+<li><p>Add protocol header parser (72e7312af)</p></li>
+</ul>
+</li>
+<li><p>Interface Common</p>
+<ul>
+<li><p>Callback to manage extra MAC addresses (e0792fdff)</p></li>
+<li><p>Dump the interface device type (de312c2d5)</p></li>
+</ul>
+</li>
+<li><p>IPIP</p>
+<ul>
+<li><p>Tunnel flags controlling copying data to/from payload/encap
+(9534696b4)</p></li>
+</ul>
+</li>
+<li><p>IPSec</p>
+<ul>
+<li><p>Add ‘detail’ option to ‘sh ipsec sa’ (670027a50)</p></li>
+<li><p>Add insecure option for format of SA (01d61e788)</p></li>
+<li><p>Bind an SA to a worker (f62a8c013)</p></li>
+<li><p>Remove dedicated IPSec tunnels (12989b538)</p></li>
+<li><p>Support 4o6 and 6o4 for tunnel protect (b325983a4)</p></li>
+</ul>
+</li>
+<li><p>IPv4 LPM</p>
+<ul>
+<li><p>Add shallow virtual reassembly functionality (de34c35fc)</p></li>
+<li><p>Add tracing for ipv6 frag headers (0eb75d0e9)</p></li>
+<li><p>Allow addrs from the same prefix on intf (6c92f5bab)</p></li>
+<li><p>Apply dual loop unrolling in ip4_input (86b1871ba)</p></li>
+<li><p>Apply dual loop unrolling in ip4_rewrite (840f64b4b)</p></li>
+</ul>
+</li>
+<li><p>IPv4 LPM</p>
+<ul>
+<li><p>Protocol Independent IP Neighbors (cbe25aab3)</p></li>
+<li><p>Punt rather than drop unkown IPv6 ICMP packets (1afe95272)</p></li>
+<li><p>Reassembly: trace ip headers over worker handoffs (8563cb389)</p></li>
+</ul>
+</li>
+<li><p>Segment Routing (IPv6 and MPLS)</p>
+<ul>
+<li><p>Add “set sr encaps hop-limit” command (eeb5fb3a5)</p></li>
+</ul>
+</li>
+<li><p>Session Layer</p>
+<ul>
+<li><p>Add certificate store (79f89537c)</p></li>
+<li><p>Add crypto context (de6caf481)</p></li>
+<li><p>Add explicit reset api (dfb3b8771)</p></li>
+<li><p>Add mq debug cli (cfdb10918)</p></li>
+<li><p>Add session enable option in config file (1292d19c7)</p></li>
+<li><p>Builtin app rx notifications regardless of state (5c29029ef)</p></li>
+<li><p>Ckpair store &amp; crypto engine as mq params (45ec9f49b)</p></li>
+<li><p>Improve cli (5bb23ecd0)</p></li>
+<li><p>Increasing the Header lengthe size (93e060aee)</p></li>
+<li><p>Limit pacer bucket size (7c8f828ba)</p></li>
+<li><p>More show cli output (91f90d082)</p></li>
+<li><p>Reschedule asap when snd space constrained (dd97a48d9)</p></li>
+<li><p>Support registration of custom crypto engines (79ba25d40)</p></li>
+<li><p>Support for segments larger than 4GB (ef4f3e7fe)</p></li>
+<li><p>Add opaque data to show cli (d9035a409)</p></li>
+<li><p>Infra for transports to send buffers (2a7ea2ee9)</p></li>
+<li><p>Support pacer idle timeouts (11e9e3510)</p></li>
+</ul>
+</li>
+<li><p>TAP Drivers</p>
+<ul>
+<li><p>Add check for vhost-net backend (39807d02c)</p></li>
+<li><p>Multiqueue support (7c6102b1a)</p></li>
+</ul>
+</li>
+<li><p>TCP</p>
+<ul>
+<li><p>Add FEATURE.yaml (93e053ebe)</p></li>
+<li><p>Add no csum offload config option (f4ce6ba22)</p></li>
+<li><p>Add option for always on event logging (a436a4222)</p></li>
+<li><p>Allow cc algos to set pacing rate (d206724e7)</p></li>
+<li><p>Compute snd time for rate sample (7436b4367)</p></li>
+<li><p>Custom checksum calculations for Ipv4/Ipv6 (02833ff32)</p></li>
+<li><p>Enable gso in tcp hoststack (1146ff4bc)</p></li>
+<li><p>Enable TCP timewait port use (b092b77cf)</p></li>
+<li><p>Extend protocol configuration (9094b5c31)</p></li>
+<li><p>Force zero window on full rx fifo (182d21983)</p></li>
+<li><p>Handle sack reneging (558e3e095)</p></li>
+<li><p>Improve lost rxt heuristic (b3dce89a7)</p></li>
+<li><p>Improve pacing after idle send periods (c31dc31f8)</p></li>
+<li><p>Retry lost retransmits (be237bf02)</p></li>
+<li><p>Send rwnd update only if wnd is large enough (017dc4524)</p></li>
+<li><p>Set cc_algo on connection alloc (12f6936cd)</p></li>
+<li><p>Track lost rxt segments in byte tracker (46ec6e018)</p></li>
+<li><p>Track zero rwnd errors (a495a3ea1)</p></li>
+<li><p>Use rate sample rtt in recovery if possible (1dbda64b4)</p></li>
+<li><p>Use sacks for timer based recovery (36ebcfffb)</p></li>
+<li><p>Validate connections in output (78dae0088)</p></li>
+<li><p>Validate the IP address while checking TCP connection
+(cf4c2102d)</p></li>
+</ul>
+</li>
+<li><p>TLS and TLS engine plugins</p>
+<ul>
+<li><p>Add C API for TLS openssl to set engine (be4d1aa2c)</p></li>
+<li><p>Improve connection formating (0d74dd1f8)</p></li>
+<li><p>Picotls engine basic enabling for TLS (f83194c2f)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>VPP Comms Library</p>
+<ul>
+<li><p>Add api to set lcl ip (ef7cbf6ad)</p></li>
+<li><p>Add config option for preferred tls engine (d747c3c36)</p></li>
+<li><p>Allow non-blocking connects (57c88938f)</p></li>
+</ul>
+</li>
+<li><p>VPP Object Model</p>
+<ul>
+<li><p>Get interface type from vpp device type (3f4be92ce)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline"></a></h2>
+<p>For the full list of issues please refer to fd.io
+<a class="reference external" href="https://jira.fd.io">JIRA</a>.</p>
+</section>
+<section id="issues-fixed">
+<h2>Issues fixed<a class="headerlink" href="#issues-fixed" title="Permalink to this headline"></a></h2>
+<p>For the full list of fixed issues please refer to:</p>
+<ul class="simple">
+<li><p>fd.io <a class="reference external" href="https://jira.fd.io">JIRA</a></p></li>
+<li><p>git <a class="reference external" href="https://git.fd.io/vpp/log/?h=stable/2001">commit log</a></p></li>
+</ul>
+</section>
+<section id="api-changes">
+<h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline"></a></h2>
+<p>Description of results:</p>
+<ul class="simple">
+<li><p><em>Definition changed</em>: indicates that the API file was modified
+between releases.</p></li>
+<li><p><em>Only in image</em>: indicates the API is new for this release.</p></li>
+<li><p><em>Only in file</em>: indicates the API has been removed in this release.</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 73%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Message Name</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>abf_itf_attach_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>abf_itf_attach_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>abf_policy_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>abf_policy_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>af_packet_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>af_packet_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>af_packet_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>af_packet_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>af_packet_set_l4_cksum_offload</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>api_versions_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>app_add_cert_key_pair</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>app_add_cert_key_pair_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>app_attach</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>app_attach_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>app_del_cert_key_pair</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>app_del_cert_key_pair_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>avf_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>avf_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bd_ip_mac_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bd_ip_mac_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_auth_activate</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_auth_deactivate</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_get_echo_source_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_mod</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_session_set_flags</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_set_echo_source</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_disp_entry_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_disp_entry_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_disp_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_route_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bond_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bond_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bond_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bond_detach_slave</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bond_enslave</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>builtinurl_enable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>builtinurl_enable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>bvi_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cdp_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_add_del_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_add_del_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_set_interface_ip_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_set_interface_l2_tables</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_table_by_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_table_by_interface_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>cli_inband</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cli_inband_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>collect_detailed_interface_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>connect_sock</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>cop_interface_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cop_whitelist_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_loopback</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_loopback_instance</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_loopback_instance_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_loopback_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_subif</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_subif_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_vhost_user_if</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_vhost_user_if_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_vlan_subif</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_vlan_subif_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ct6_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>delete_loopback</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>delete_subif</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>delete_vhost_user_if</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp6_client_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp6_clients_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp6_pd_client_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp6_pd_reply_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp6_pd_send_client_message</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp6_reply_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp6_send_client_message</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_client_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_client_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_compl_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_plugin_control_ping</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_plugin_control_ping_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_plugin_get_version</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_plugin_get_version_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_proxy_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_proxy_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_proxy_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_proxy_set_vss</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dslite_add_del_pool_addr_range</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_address_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dslite_get_aftr_addr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_get_b4_addr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dslite_set_aftr_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_set_b4_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>feature_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>feature_gso_enable_disable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>feature_gso_enable_disable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>flow_classify_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>flow_classify_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>flow_classify_set_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>flowprobe_params</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>flowprobe_tx_interface_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_bridge_domain_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_bridge_domain_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_contract_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_contract_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_endpoint_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_endpoint_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_endpoint_group_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_endpoint_group_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_ext_itf_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_ext_itf_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_recirc_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_recirc_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_route_domain_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_route_domain_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_subnet_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_subnet_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_vxlan_tunnel_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_vxlan_tunnel_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_vxlan_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>geneve_add_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>geneve_add_del_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>geneve_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>geneve_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>get_first_msg_id</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gre_tunnel_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gre_tunnel_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gre_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gre_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gtpu_add_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gtpu_add_del_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gtpu_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gtpu_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>http_static_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>hw_interface_set_mtu</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_clear_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_group_prefix_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_group_prefix_set</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_listen</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_proxy_device_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_proxy_device_add_del_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_initiate_sa_init</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_profile_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_profile_set_auth</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_profile_set_id</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_profile_set_ts</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_set_esp_transforms</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_set_ike_transforms</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_set_responder</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_set_sa_lifetime</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>input_acl_set_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>interface_name_renumber</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ioam_cache_ip6_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ioam_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ioam_export_ip6_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip4_arp_event</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6_add_del_address_using_prefix</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6_nd_address_autoconfig</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6_nd_event</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6_ra_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6nd_proxy_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6nd_proxy_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6nd_send_router_solicitation</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_address_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_address_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_container_proxy_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_container_proxy_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_mroute_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_mroute_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_mroute_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_mtable_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_neighbor_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_neighbor_config</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_neighbor_config_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_neighbor_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_neighbor_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_neighbor_event</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_probe_neighbor</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_probe_neighbor_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_punt_police</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_punt_redirect</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_punt_redirect_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_punt_redirect_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_reassembly_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_reassembly_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_reassembly_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_reassembly_set</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_route_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_route_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_route_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_scan_neighbor_enable_disable</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_scan_neighbor_enable_disable_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_source_and_port_range_check_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_source_and_port_range_check_interface_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_source_check_interface_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_table_flush</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_table_flush_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_table_replace_begin</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_table_replace_begin_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_table_replace_end</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_table_replace_end_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_unnumbered_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_unnumbered_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipfix_classify_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipfix_classify_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipfix_exporter_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipip_6rd_add_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_6rd_add_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipip_6rd_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_add_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipip_add_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipip_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_spd_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_spd_entry_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_if_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_tunnel_protect_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_protect_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_tunnel_protect_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_protect_update</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_arp_term_event</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_emulation</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2tpv3_create_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2tpv3_create_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2tpv3_interface_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2tpv3_set_lookup_key</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2tpv3_set_tunnel_cookies</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l3xc_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l3xc_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l3xc_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l3xc_update</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_add_del_as</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_add_del_intf_nat4</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_add_del_intf_nat4_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_add_del_intf_nat6</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_add_del_intf_nat6_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_add_del_vip</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_as_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_as_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_conf</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_flush_vip</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_vip_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_vip_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>log_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>log_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mactime_add_del_range</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mactime_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>mactime_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>mactime_dump_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>mactime_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_add_del_rule</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_add_domain</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_domain_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_if_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_param_add_del_pre_resolve</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_param_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_param_set_icmp</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_param_set_reassembly</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_param_set_reassembly_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>map_param_set_traffic_class</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_rule_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mdata_enable_disable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>mdata_enable_disable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>memclnt_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memclnt_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memif_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memif_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memif_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memif_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memif_socket_filename_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memif_socket_filename_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mfib_signal_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>modify_vhost_user_if</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_ip_bind_unbind</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_route_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_route_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_route_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_tunnel_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_tunnel_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_address_range</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_identity_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_interface_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_lb_static_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_static_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_address_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_del_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_identity_mapping_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_add_del_feature</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_interface_add_del_output_feature</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_addr_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_interface_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_output_feature_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_lb_static_mapping_add_del_local</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_lb_static_mapping_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_static_mapping_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_user_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_user_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_user_session_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_interface_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_add_del_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_pool_addr_range</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_add_del_prefix</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_static_bib</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_bib_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_interface_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_pool_addr_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_prefix_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_st_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat66_add_del_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat66_add_del_static_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat66_interface_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat66_static_mapping_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_add_del_map</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_close_session_in</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_close_session_out</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_forward</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_forward_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_map_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_reverse</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_reverse_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_session_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_get_reass</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_get_reass_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_ha_get_failover_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_ha_get_listener_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_ha_set_failover</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_ha_set_listener</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_reass_details</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_reass_dump</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_set_reass</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_set_reass_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_worker_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nhrp_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nhrp_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nhrp_entry_add_del</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nhrp_entry_add_del_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nsh_add_del_entry</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nsh_add_del_map</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nsh_map_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nsim_cross_connect_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nsim_output_feature_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>output_acl_set_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>p2p_ethernet_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>p2p_ethernet_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>p2p_ethernet_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pipe_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pipe_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pipe_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pipe_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_classify_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>policer_classify_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_classify_set_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pot_profile_activate</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pot_profile_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pot_profile_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pppoe_add_del_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pppoe_add_del_session_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pppoe_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pppoe_session_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>proxy_arp_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>proxy_arp_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>proxy_arp_intfc_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>punt_reason_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>punt_reason_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>punt_socket_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>punt_socket_register</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>punt_socket_register_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos_mark_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>qos_mark_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos_record_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>qos_record_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos_store_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>qos_store_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>rdma_create</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>rdma_create_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>rdma_delete</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>rdma_delete_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>reset_fib</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>reset_fib_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_arp_neighbor_limit</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>set_arp_neighbor_limit_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_ip_flow_hash</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>set_ipfix_exporter</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_punt</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_version_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_vpe_system_time_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sockclnt_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sockclnt_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_set_encap_hop_limit</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_set_encap_hop_limit_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>stn_add_del_rule</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>stn_rules_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>svs_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>svs_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>svs_route_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>svs_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_if_l2tpv3_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_add_del_address</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_add_del_mac_address</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_add_del_mac_address_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_bond_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_clear_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_get_mac_address</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_get_mac_address_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_get_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_ip6_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_ip6_set_link_local_address</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_ip6nd_ra_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_ip6nd_ra_prefix</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_lacp_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_rx_placement_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_rx_placement_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_bond_weight</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_bond_weight_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_flags</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_geneve_bypass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_gtpu_bypass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_ip_directed_broadcast</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_mac_address</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_mpls_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_mtu</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_rx_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_rx_placement</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_unnumbered</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_vxlan_gbp_bypass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_slave_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_slave_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_tag_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_tap_v2_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_tap_v2_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_vhost_user_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_vhost_user_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_virtio_pci_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>syslog_get_sender_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>syslog_set_sender</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tap_create_v2</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>tap_create_v2_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tap_delete_v2</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>tcp_configure_src_addresses</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tls_openssl_set_engine</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>tls_openssl_set_engine_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>trace_plugin_msg_ids</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_encap_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>udp_encap_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_ping_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>udp_ping_export</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>virtio_pci_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>virtio_pci_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>virtio_pci_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmxnet3_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vmxnet3_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmxnet3_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vmxnet3_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gbp_tunnel_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gbp_tunnel_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gbp_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gbp_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_export_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_transit_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_transit_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_vni_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_vni_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_bfd_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_dhcp6_pd_reply_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip4_arp_events</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip4_arp_events_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip6_nd_events</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip6_nd_events_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip6_ra_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip_neighbor_events</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip_neighbor_events_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>want_l2_arp_term_events</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_l2_arp_term_events_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>want_l2_macs_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+</tbody>
+</table>
+<p>Found 493 api message signature differences</p>
+<section id="patches-that-changed-api-definitions">
+<h3>Patches that changed API definitions<a class="headerlink" href="#patches-that-changed-api-definitions" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">src/vlibmemory/memclnt.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=8e388390d">8e388390d</a> vlib: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=daa4bff16">daa4bff16</a> api: memclnt api use string type.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7adaa226e">7adaa226e</a> api: revert use string type for strings in memclnt.api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2959d42fe">2959d42fe</a> api: use string type for strings in memclnt.api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/examples/sample-plugin/sample/sample.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=33a58171e">33a58171e</a> api: autogenerate api trace print/endian</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=78d91cf9a">78d91cf9a</a> sample-plugin: refactor .api to use explicit types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/interface.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=418ebb711">418ebb711</a> papi: support default for type alias decaying to basetype</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9485d99bd">9485d99bd</a> interface: Allow VLAN tag-rewrite on non-sub-interfaces too.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c12eae73f">c12eae73f</a> interface: shmemioerror while getting name_filter arg</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=de312c2d5">de312c2d5</a> interface: dump the interface device type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e0792fdff">e0792fdff</a> interface: callback to manage extra MAC addresses</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75761b933">75761b933</a> api: split vl_api_prefix into two</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e5ff5a36d">e5ff5a36d</a> api: enforce vla is last and fixed string type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=053204ab0">053204ab0</a> api: Cleanup APIs interface.api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0ad4a439d">0ad4a439d</a> Fix vpp crash bug while deleting dhcp client</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9a29f795a">9a29f795a</a> vpp_papi_provider.py: update defautmapping.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b8591ac91">b8591ac91</a> API sw_interface_dump: Dump all if index is zero</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4a7240636">4a7240636</a> Make sw_interface_dump more compatible with 2.2.0</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6407ba56a">6407ba56a</a> api: Add to interface crud - read by sw_if_index.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/interface_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=053204ab0">053204ab0</a> api: Cleanup APIs interface.api</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/session/session.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c4c4cf506">c4c4cf506</a> session: move add/del segment msg to mq</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=79f89537c">79f89537c</a> session: Add certificate store</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e5ff5a36d">e5ff5a36d</a> api: enforce vla is last and fixed string type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=458089bba">458089bba</a> session: move ctrl messages from bapi to mq</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=8ac1d6d05">8ac1d6d05</a> session: Use parent_handle instead of transport_opts</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ba65ca496">ba65ca496</a> Add transport_opts to connect_sock bapi</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/classify/classify.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=692bfc85f">692bfc85f</a> classify: API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/l2tp/l2tp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3ae526271">3ae526271</a> l2: l2tp API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/gre/gre.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5f8f61733">5f8f61733</a> gre: Multi-point interfaces</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=814f15948">814f15948</a> gre: update gre.api with explicit types</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d0aed2eb3">d0aed2eb3</a> GRE: set gre_tunnel_type init value to zero in API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5a8844bdb">5a8844bdb</a> GRE: API update</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/fib/fib_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=1dbcf30b7">1dbcf30b7</a> fib: Support the POP of a Psuedo Wire Control Word</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=097fa66b9">097fa66b9</a> fib: fib api updates</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-cp/one.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-cp/lisp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/feature/feature.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bf6c5c158">bf6c5c158</a> feature: API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/nhrp/nhrp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5f8f61733">5f8f61733</a> gre: Multi-point interfaces</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/qos/qos.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4b76c58be">4b76c58be</a> qos: api clenup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=83832e7ce">83832e7ce</a> qos: Store function</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5281a9029">5281a9029</a> qos: QoS dump APIs</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipsec/ipsec.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=dbf68c9aa">dbf68c9aa</a> ipsec: Changes to make ipsec encoder/decoders reusable by the plugins</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=12989b538">12989b538</a> ipsec: remove dedicated IPSec tunnels</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c87b66c86">c87b66c86</a> ipsec: ipsec-tun protect</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f2922422d">f2922422d</a> ipsec: remove the set_key API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=80f6fd53f">80f6fd53f</a> IPSEC: Pass the algorithm salt (used in GCM) over the API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipsec/ipsec_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=dbf68c9aa">dbf68c9aa</a> ipsec: Changes to make ipsec encoder/decoders reusable by the plugins</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-gpe/lisp_gpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/pci/pci_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2c504f89c">2c504f89c</a> devices: virtio API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bonding/bond.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3d1ef873d">3d1ef873d</a> bonding: API cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a1876b84e">a1876b84e</a> bonding: add weight support for active-backup mode</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=751e3f382">751e3f382</a> bonding: add support for numa-only in lacp mode</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/tcp/tcp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=956819afa">956819afa</a> tcp: api clenup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/cop/cop.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=aa4438a31">aa4438a31</a> cop: API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip-neighbor/ip_neighbor.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cbe25aab3">cbe25aab3</a> ip: Protocol Independent IP Neighbors</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ethernet/p2p_ethernet.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=8edca1361">8edca1361</a> p2p ethernet: update p2p_ethernet.api with explicit types.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ethernet/ethernet_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=33a58171e">33a58171e</a> api: autogenerate api trace print/endian</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/vxlan-gbp/vxlan_gbp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=fb27096ee">fb27096ee</a> vxlan-gbp: api cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/arp/arp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cbe25aab3">cbe25aab3</a> ip: Protocol Independent IP Neighbors</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipip/ipip.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9534696b4">9534696b4</a> ipip: Tunnel flags controlling copying data to/from payload/encap</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=288e09362">288e09362</a> ipip: refactor ipip.api with explicit types</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cbd0824d6">cbd0824d6</a> IPIP tunnel: use address types on API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipip/ipip_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9534696b4">9534696b4</a> ipip: Tunnel flags controlling copying data to/from payload/encap</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bfd/bfd.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4682feb1f">4682feb1f</a> bfd: API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/l2/l2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cbe25aab3">cbe25aab3</a> ip: Protocol Independent IP Neighbors</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bc764c8bc">bc764c8bc</a> l2: BD ARP termination entry API update</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=54bc5e40c">54bc5e40c</a> Update API description</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5e6f7348c">5e6f7348c</a> l2: Add support for arp unicast forwarding</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip6-nd/ip6_nd.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cbe25aab3">cbe25aab3</a> ip: Protocol Independent IP Neighbors</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip6-nd/rd_cp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cbe25aab3">cbe25aab3</a> ip: Protocol Independent IP Neighbors</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/udp/udp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=10dc2eabd">10dc2eabd</a> udp: fix copyright typo</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/mpls/mpls.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3eb8f207b">3eb8f207b</a> mpls: api cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75761b933">75761b933</a> api: split vl_api_prefix into two</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=097fa66b9">097fa66b9</a> fib: fib api updates</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/mfib/mfib_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=097fa66b9">097fa66b9</a> fib: fib api updates</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/ip_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75761b933">75761b933</a> api: split vl_api_prefix into two</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=33a58171e">33a58171e</a> api: autogenerate api trace print/endian</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=515eed425">515eed425</a> api: add prefix matcher typedef</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=038e1dfbd">038e1dfbd</a> dhcp ip: DSCP settings for transmitted DHCP packets</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=53c501512">53c501512</a> api: add DSCP definitions to ip_types.api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ab05508e1">ab05508e1</a> api: refactor format_vl_api_prefix_t return keys</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b538dd868">b538dd868</a> Punt: specify packets by IP protocol Type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=50f0ac0f0">50f0ac0f0</a> Punt: socket register for exception dispatched/punted packets based on reason</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/punt.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f158944cc">f158944cc</a> ip: trivial typos in docs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f72ad93d6">f72ad93d6</a> ip: punt API cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e5ff5a36d">e5ff5a36d</a> api: enforce vla is last and fixed string type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=719beb709">719beb709</a> ip ipsec: Remove IPSec SPI-0 punt reason</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b538dd868">b538dd868</a> Punt: specify packets by IP protocol Type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=50f0ac0f0">50f0ac0f0</a> Punt: socket register for exception dispatched/punted packets based on reason</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/ip.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=58989a37d">58989a37d</a> ip: API cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cbe25aab3">cbe25aab3</a> ip: Protocol Independent IP Neighbors</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=668605fc8">668605fc8</a> ip: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9db6ada77">9db6ada77</a> fib: Table Replace</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=de34c35fc">de34c35fc</a> ip: add shallow virtual reassembly functionality</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75761b933">75761b933</a> api: split vl_api_prefix into two</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=097fa66b9">097fa66b9</a> fib: fib api updates</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3a343d42d">3a343d42d</a> reassembly: prevent long chain attack</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/pg/pg.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=22e9cfd76">22e9cfd76</a> pg: add GSO support</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bier/bier.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f1f5a8a1a">f1f5a8a1a</a> bier: API cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=097fa66b9">097fa66b9</a> fib: fib api updates</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e6eefb6e3">e6eefb6e3</a> Trivial Typo’s in bier comments/docs.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipfix-export/ipfix_export.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2f71a8889">2f71a8889</a> ip: ipfix-export API update</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=21b83e96d">21b83e96d</a> api: implement ipfix_flush</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/gso/gso.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=29467b534">29467b534</a> gso: Add gso feature arc</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/af_packet/af_packet.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=97c998c28">97c998c28</a> docs: devices– add FEATURES.yaml</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3b2db9002">3b2db9002</a> devices: af_packet API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/virtio/vhost_user.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5d4c99f27">5d4c99f27</a> devices: vhost API cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4208a4ce8">4208a4ce8</a> devices interface tests: vhosst GSO support</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/virtio/virtio_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5d4c99f27">5d4c99f27</a> devices: vhost API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/virtio/virtio.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6d4af8918">6d4af8918</a> virtio: split gso and checksum offload functionality</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2c504f89c">2c504f89c</a> devices: virtio API cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=97c998c28">97c998c28</a> docs: devices– add FEATURES.yaml</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bbd6b746e">bbd6b746e</a> virtio: Add gso support for native virtio driver</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=43b512cac">43b512cac</a> virtio: remove configurable queue size support</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/pipe/pipe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=97c998c28">97c998c28</a> docs: devices– add FEATURES.yaml</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=df40cb5b5">df40cb5b5</a> devices: pipe API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/tap/tapv2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ba0061feb">ba0061feb</a> tap: split gso and checksum offload functionality</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5de4fb707">5de4fb707</a> devices: tap API cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=44d06916b">44d06916b</a> tap: Move client registration check to top</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=97c998c28">97c998c28</a> docs: devices– add FEATURES.yaml</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=97d54ed43">97d54ed43</a> tap: add support to configure tap interface host MTU size</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/srv6/sr.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=eeb5fb3a5">eeb5fb3a5</a> sr: add “set sr encaps hop-limit” command</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/geneve/geneve.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2d3282e17">2d3282e17</a> geneve: API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/marvell/pp2/pp2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4a65b910a">4a65b910a</a> marvell: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=859b59133">859b59133</a> api: Add API support for marvell PP2 plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/svs/svs.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5e913f374">5e913f374</a> svs: use explicit types in api</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/acl/acl_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bb2e5221a">bb2e5221a</a> api acl: breakout acl_types.api for reuse by others</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/acl/acl.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b5076cbe1">b5076cbe1</a> acl: add missing square brackets to vat_help option in acl api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=709dad304">709dad304</a> acl: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bb2e5221a">bb2e5221a</a> api acl: breakout acl_types.api for reuse by others</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f995c7122">f995c7122</a> acl: implement counters</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/memif/memif.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3ae9f5a90">3ae9f5a90</a> memif: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=546f955b3">546f955b3</a> memif: API cleanup</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/cdp/cdp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=07e557a73">07e557a73</a> cdp: use explicit types in api</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/dhcp/dhcp6_ia_na_client_cp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=02bfd641b">02bfd641b</a> dhcp: Move to plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/dhcp/dhcp6_pd_client_cp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d5262831a">d5262831a</a> dhcp: dhcp6_pd_client_cp API cleanup</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=02bfd641b">02bfd641b</a> dhcp: Move to plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/dhcp/dhcp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bcc6a455">6bcc6a455</a> dhcp: fix crash on unicast renewal send</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=02bfd641b">02bfd641b</a> dhcp: Move to plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/avf/avf.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a0bf06d74">a0bf06d74</a> avf: explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=74af6f081">74af6f081</a> avf: remote api boilerplate</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/dpdk/api/dpdk.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6d75c20a6">6d75c20a6</a> dpdk: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=025166dc7">025166dc7</a> dpdk: remove api boilerplate</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/builtinurl/builtinurl.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=43765e2b4">43765e2b4</a> builtinurl: initial working attempt</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/mactime/mactime.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7b22df06f">7b22df06f</a> mactime: update api to use explicit types</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2c41a61d5">2c41a61d5</a> mactime: add a “top” command to watch device stats</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7071952df">7071952df</a> mactime: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7681b1c46">7681b1c46</a> mactime: add per-mac allow-with-quota feature</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0c6ac791d">0c6ac791d</a> mactime: upstream new features</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ikev2/ikev2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6aaee8c7c">6aaee8c7c</a> ikev2: use explicit api types</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=fc7b77db7">fc7b77db7</a> ikev2: remove api boilerplate</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/http_static/http_static.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e5ff5a36d">e5ff5a36d</a> api: enforce vla is last and fixed string type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=68b24e2c9">68b24e2c9</a> plugins: http_static. Migrate to use api string type.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=22bc2c46e">22bc2c46e</a> Static http server</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/gbp/gbp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=38277e407">38277e407</a> gbp: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3918bdbcb">3918bdbcb</a> gbp: update gbp-ext-itf API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3c0d84c98">3c0d84c98</a> gbp: add anonymous l3-out subnets</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cfc7a107e">cfc7a107e</a> gbp: add anonymous l3-out external interfaces</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=160c923f9">160c923f9</a> gbp: VRF scoped contracts</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/l2e/l2e.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b2e463a10">b2e463a10</a> l2e: use explicit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/gtpu/gtpu.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=55636cb62">55636cb62</a> gtpu: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=49228efce">49228efce</a> gtpu: remove api boilerplate</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/igmp/igmp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4a7fc4cf1">4a7fc4cf1</a> igmp: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4ff09ae34">4ff09ae34</a> API: Python and Unix domain socket improvement</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/lib-vxlan-gpe/ioam_vxlan_gpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0fa66d618">0fa66d618</a> ioam: use explicit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/udp-ping/udp_ping.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0fa66d618">0fa66d618</a> ioam: use explicit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/export/ioam_export.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0fa66d618">0fa66d618</a> ioam: use explicit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/ip6/ioam_cache.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0fa66d618">0fa66d618</a> ioam: use explicit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/lib-pot/pot.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0fa66d618">0fa66d618</a> ioam: use explicit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/export-vxlan-gpe/vxlan_gpe_ioam_export.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0fa66d618">0fa66d618</a> ioam: use explicit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/stn/stn.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7929f9f5c">7929f9f5c</a> stn: use explicit types in api</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/map/map.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=be31c2a25">be31c2a25</a> map: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7b2e9fb1a">7b2e9fb1a</a> map: use ip6-full-reassembly instead of own code</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=640edcd90">640edcd90</a> map: use SVR for MAP-T</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e5ff5a36d">e5ff5a36d</a> api: enforce vla is last and fixed string type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ff47fb645">ff47fb645</a> vppapigen map: raise ValueError when fieldname is python keyword</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4d376f67a">4d376f67a</a> map: Use vl_api_string macros.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/oddbuf/oddbuf.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7ff64fb97">7ff64fb97</a> oddbuf: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a287a30dd">a287a30dd</a> misc: fix coverity warning in the oddbuf plugin</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c4abafd83">c4abafd83</a> ip: fix udp/tcp checksum corner cases</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/l3xc/l3xc.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=60f5108a9">60f5108a9</a> l3xc: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=59fa121f8">59fa121f8</a> L3 cross connect</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/pppoe/pppoe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=04338e85a">04338e85a</a> pppoe: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=25fe57821">25fe57821</a> pppoe: remove api boilerplate</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/mdata/mdata.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d7b306657">d7b306657</a> mdata: buffer metadata change tracker plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/lb/lb.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ae0724034">ae0724034</a> lb: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=33538a150">33538a150</a> lb: add APIs for set interface nat4 and nat6</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75761b933">75761b933</a> api: split vl_api_prefix into two</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3efcd0d7c">3efcd0d7c</a> lb: vip and as dump/detail api’s</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a0cb32cb9">a0cb32cb9</a> lb: update api.c to use scaffolding from latest skel</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/lb/lb_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75761b933">75761b933</a> api: split vl_api_prefix into two</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3efcd0d7c">3efcd0d7c</a> lb: vip and as dump/detail api’s</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nsim/nsim.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e06e7c672">e06e7c672</a> nsim: use explicit api types</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2e7a43ca4">2e7a43ca4</a> nsim: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7c91007e1">7c91007e1</a> Make the loss / delay sim available as an output feature</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/vmxnet3/vmxnet3.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=277f03f06">277f03f06</a> vmxnet3: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=10bbfce02">10bbfce02</a> vmxnet3: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2985e0af6">2985e0af6</a> vmxnet3: per interface gso support</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/tlsopenssl/tls_openssl.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=1e582206a">1e582206a</a> tls: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=dd0cc9ec3">dd0cc9ec3</a> tls: some rework based on TLS openssl C API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=be4d1aa2c">be4d1aa2c</a> tls: Add C API for TLS openssl to set engine</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/abf/abf.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdde58534">bdde58534</a> abf: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=097fa66b9">097fa66b9</a> fib: fib api updates</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/nat.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f126e746f">f126e746f</a> nat: use SVR</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e5ff5a36d">e5ff5a36d</a> api: enforce vla is last and fixed string type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e6e09a4ac">e6e09a4ac</a> nat: elog rewrite for multi-worker support</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c1f93067e">c1f93067e</a> Add default value for API Nat flags</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=dd1e3e780">dd1e3e780</a> NAT: VPP-1531 api cleanup &amp; update</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=89fec713f">89fec713f</a> Revert “NAT: VPP-1531 api cleanup &amp; update”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bed1421b9">bed1421b9</a> NAT: VPP-1531 api cleanup &amp; update</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/rdma/rdma.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d8c1ef925">d8c1ef925</a> rdma: api: prepare support for direct verb</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b644eb54f">b644eb54f</a> rdma: add explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=812afe712">812afe712</a> rdma: add rdma API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/sctp/sctp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3ffe6cadf">3ffe6cadf</a> sctp: move to plugins, disabled by default</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ct6/ct6.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d4efce2e0">d4efce2e0</a> ct6: use explicit type in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ee98904e0">ee98904e0</a> ct6: remove api boilerplate</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nsh/nsh.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d3f0a4869">d3f0a4869</a> nsh: use explicit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/flowprobe/flowprobe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3013e6988">3013e6988</a> flowprobe: use explicit types in api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2a1ca787b">2a1ca787b</a> api: split api generated files</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/lacp/lacp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ebef4a9e5">ebef4a9e5</a> lacp: use explit api types</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/dns/dns.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b922f16ba">b922f16ba</a> dns: remove api boilerplate</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=34af0ccf5">34af0ccf5</a> dns: make the dns name resolver a plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vpp/api/vpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e5ff5a36d">e5ff5a36d</a> api: enforce vla is last and fixed string type</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a47a5f20a">a47a5f20a</a> api papi: add alias for timestamp(datetime)/timedelta</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=888640a39">888640a39</a> map gbp papi: match endianess of f64</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=03f1af23b">03f1af23b</a> api: Implement log_dump/log_details</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c87b66c86">c87b66c86</a> ipsec: ipsec-tun protect</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9ac113815">9ac113815</a> API: Add support for limits to language.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vpp/api/vpe_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e71748291">e71748291</a> vppapigen: remove support for legacy typedefs</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a47a5f20a">a47a5f20a</a> api papi: add alias for timestamp(datetime)/timedelta</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3cf9e67f5">3cf9e67f5</a> api: add vl_api_version_t type</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="v20.05.html" class="btn btn-neutral float-left" title="Release notes for VPP 20.05" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="v19.08.3.html" class="btn btn-neutral float-right" title="Release notes for VPP 19.08.3" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

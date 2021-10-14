@@ -1,0 +1,79 @@
+.. _clicmd_src_vnet_dpo:
+
+===============================================================
+Dpo cli reference
+===============================================================
+
+show dpo memory
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dpo memory
+
+
+
+The ``sh dpo memory`` command displays the memory usage for each
+data-plane object type.
+
+
+
+.. code-block:: console
+
+    show dpo memory
+    
+    DPO memory
+                Name               Size  in-use /allocated   totals
+            load-balance            64     12   /    12      768/768
+              Adjacency            256      1   /    1       256/256
+               Receive              24      5   /    5       120/120
+               Lookup               12      0   /    0       0/0
+              Classify              12      0   /    0       0/0
+             MPLS label             24      0   /    0       0/0
+    
+
+
+
+Declaration: ``show_fib_memory`` `src/vnet/dpo/dpo.c line 660 <https://github.com/FDio/vpp/blob/master//src/vnet/dpo/dpo.c#L660>`_
+
+Implementation: ``dpo_memory_show``
+
+
+show load-balance
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show load-balance [<index>]
+
+
+Declaration: ``load_balance_show_command`` `src/vnet/dpo/load_balance.c line 1064 <https://github.com/FDio/vpp/blob/master//src/vnet/dpo/load_balance.c#L1064>`_
+
+Implementation: ``load_balance_show``
+
+
+show load-balance-map
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show load-balance-map [<index>]
+
+
+Declaration: ``load_balance_map_show_command`` `src/vnet/dpo/load_balance_map.c line 588 <https://github.com/FDio/vpp/blob/master//src/vnet/dpo/load_balance_map.c#L588>`_
+
+Implementation: ``load_balance_map_show``
+
+
+show lookup-dpo
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show lookup-dpo [<index>]
+
+
+Declaration: ``replicate_show_command`` `src/vnet/dpo/lookup_dpo.c line 1450 <https://github.com/FDio/vpp/blob/master//src/vnet/dpo/lookup_dpo.c#L1450>`_
+
+Implementation: ``lookup_dpo_show``
+

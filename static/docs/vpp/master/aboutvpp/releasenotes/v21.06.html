@@ -1,0 +1,2628 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release notes for VPP 21.06 &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Past releases" href="past.html" />
+    <link rel="prev" title="Release notes for VPP 21.10" href="v21.10.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v21.10.html">Release notes for VPP 21.10</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Release notes for VPP 21.06</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#release-highlights">Release Highlights</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#linux-control-plane-plugin-linux-cp">Linux Control Plane Plugin (linux-cp)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-monitor-plugin-perfmon">Performance Monitor Plugin (perfmon)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-crc-substitution-table-removal">API CRC Substitution Table Removal</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-issues">Known issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#coverity-issues">Coverity Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jira-issues">Jira Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed-issues">Fixed issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-changes">API changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#newly-deprecated-api-messages">Newly deprecated API messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#in-progress-api-messages">In-progress API messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#patches-that-changed-api-definitions">Patches that changed API definitions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="past.html">Past releases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Release notes</a> &raquo;</li>
+      <li>Release notes for VPP 21.06</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/aboutvpp/releasenotes/v21.06.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-notes-for-vpp-21-06">
+<h1>Release notes for VPP 21.06<a class="headerlink" href="#release-notes-for-vpp-21-06" title="Permalink to this headline"></a></h1>
+<p>More than 787 commits since the previous release, including 364 fixes.</p>
+<section id="release-highlights">
+<h2>Release Highlights<a class="headerlink" href="#release-highlights" title="Permalink to this headline"></a></h2>
+<p>There are many excellent new features in this release, however a few of
+them deserve a special mention.</p>
+<section id="linux-control-plane-plugin-linux-cp">
+<h3>Linux Control Plane Plugin (linux-cp)<a class="headerlink" href="#linux-control-plane-plugin-linux-cp" title="Permalink to this headline"></a></h3>
+<p>One of the more significant new features included in this release is a
+linux control plane (linux-cp) plugin. It enables the near-seamless
+integration of VPP with the host control plane, by mirroring the VPP
+interfaces into a TUN or TAP device created in the linux kernel. All of
+the punted packets received on the VPP interface will be sent to the
+linux counterpart, and in the reverse direction, packets sent by linux
+kernel will be transmitted out the VPP interface. This plugin lays the
+foundation for the much easier integration of external software with
+VPP.</p>
+</section>
+<section id="performance-monitor-plugin-perfmon">
+<h3>Performance Monitor Plugin (perfmon)<a class="headerlink" href="#performance-monitor-plugin-perfmon" title="Permalink to this headline"></a></h3>
+<p>Another interesting feature is the performance monitor (perfmon) plugin.
+It allows collection of detailed low-level CPU statistics on a per-node
+basis. It provides a useful advanced troubleshooting tool, should you
+encounter that a specific node’s performance is not on par with what it
+should be. Note, that the correct functioning of this plugin may require
+changing the /proc/sys/kernel/perf_event_paranoid setting to enable
+access to the performance counters.</p>
+</section>
+<section id="api-crc-substitution-table-removal">
+<h3>API CRC Substitution Table Removal<a class="headerlink" href="#api-crc-substitution-table-removal" title="Permalink to this headline"></a></h3>
+<p>And finally a clarification, not a feature per se. Some messages in the
+API changes table for this release have a new marking: “message CRC32
+fix”. The history of this issue goes back to summer of 2020, when it was
+discovered that for a considerable amount of time (several months) the
+calculation of the CRC of API messages was incorrect. Specifically, all
+but the first user-defined types in the message failed to be included in
+the CRC calculation. In plain words, this means that one might end up
+with a situation where client and VPP layout of message in memory could
+be quite different.</p>
+<p>At the time of discovery, there were no API changes that were affected
+by that bug. However, simply fixing it meant the CRC of about half of
+the VPP API messages would be altered for no reason which would result
+in a significant amount of pain to the consumers of VPP. A message CRC
+is just an opague number for anyone using it, and the only property of
+it for the user is that the messages with the same value of CRC have the
+same layout on the wire with a sufficiently high certainty.</p>
+<p>Therefore a fix
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9f84e70c6">9f84e70c6</a>)
+was merged that also contained a “band-aid” to avoid this pain. In
+addition to fixing the CRC generation algorithm, the fix captured the
+“new” CRC values for those messages that had their CRCs arbitrarily
+changed by this fix and created a substituion table with [message name,
+new CRC, old CRC] triplets. For a given message, if the CRC matched the
+recorded new value, the code would substitute it with the old value,
+thus trading in a reduction in collision resistance (two values of CRC
+out of 2^32 space) for not forcing users to adapt to several hundred of
+messages which changed the CRCs.</p>
+<p>This band-aid also had the property that whenever a message did change
+the definition, it would automatically get a “correct” calculation of
+CRC32 and no longer use the slot in the table. The table naturally
+shrinks over time, thus allowing a painless transition, while also
+preserving the integrity check for the affected messages. If any fields
+changed, the CRC would no longer match the “new” value thus no
+substitution would be made. Since the choice of CRC32 is just an
+implementation detail which is supposed to be opaque to the user, the
+band-aid was deemed a reasonable approach to avoid a major burden on VPP
+consumers.</p>
+<p>However, in practice this solution was not accepted well. After a
+notification period, the API CRC Substitution table was removed by the
+patch
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=da1b76aa8">da1b76aa8</a>).
+Thus all of the API CRC changes that did not happen in 9f84e70c6,
+happened in da1b76aa8. Hopefully the notification of these changes has
+reduced the inconvenience. VPP users are asked to not rely on any other
+property of the message CRC other than changes to its value when the
+message layout changes.</p>
+</section>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Binary API Compiler for Python</p>
+<ul>
+<li><p>Support an ‘autoendian’ keyword for message definitions in .api
+files
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9302cfea9">9302cfea9</a>)</p></li>
+</ul>
+</li>
+<li><p>Build System</p>
+<ul>
+<li><p>Make rpath optional
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2c91922eb">2c91922eb</a>)</p></li>
+</ul>
+</li>
+<li><p>Infrastructure Library</p>
+<ul>
+<li><p>Add option to use libexecinfo
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=67d7acd05">67d7acd05</a>)</p></li>
+<li><p>Add bihash with 32 byte key
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f613a4402">f613a4402</a>)</p></li>
+<li><p>Add missing %o
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=04a14133c">04a14133c</a>)</p></li>
+</ul>
+</li>
+<li><p>Plugins</p>
+<ul>
+<li><p>ARPing CLI</p>
+<ul>
+<li><p>Add arping command
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a77ae4708">a77ae4708</a>)</p></li>
+</ul>
+</li>
+<li><p>AVF Device driver</p>
+<ul>
+<li><p>Add avf flow framework
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ffe9a5489">ffe9a5489</a>)</p></li>
+</ul>
+</li>
+<li><p>CNat</p>
+<ul>
+<li><p>Add maglev support
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4d237874e">4d237874e</a>)</p></li>
+<li><p>Add input feature node
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cc9a1a0d3">cc9a1a0d3</a>)</p></li>
+<li><p>Add calico/k8s src policy
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=516b0adf6">516b0adf6</a>)</p></li>
+</ul>
+</li>
+<li><p>Crypto - ipsecmb</p>
+<ul>
+<li><p>Add support for AES CTR
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=fe7ff320b">fe7ff320b</a>)</p></li>
+</ul>
+</li>
+<li><p>DPDK</p>
+<ul>
+<li><p>Rebase cryptodev engine for DPDK 20.11
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=25f371ee0">25f371ee0</a>)</p></li>
+<li><p>Allow configure individual VMBUS devices
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=982272974">982272974</a>)</p></li>
+<li><p>Implement interrupt mode
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=19ff0c369">19ff0c369</a>)</p></li>
+</ul>
+</li>
+<li><p>IPv6 Segment Routing Flow-Based Dynamic Proxy</p>
+<ul>
+<li><p>SRv6 Per-Flow Dynamic Proxy
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ed7c62a30">ed7c62a30</a>)</p></li>
+</ul>
+</li>
+<li><p>Internet Key Exchange (IKEv2) Protocol</p>
+<ul>
+<li><p>Use new counters data model &amp; add more counters
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=fab5e7f39">fab5e7f39</a>)</p></li>
+<li><p>Add per SA stats
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=68d275356">68d275356</a>)</p></li>
+<li><p>Support responder hostname
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=af2cc6425">af2cc6425</a>)</p></li>
+</ul>
+</li>
+<li><p>NAT</p>
+<ul>
+<li><p>1:1 policy NAT
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=18327be5d">18327be5d</a>)</p></li>
+<li><p>Pnat copy and clear byte instructions
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ab3151c52">ab3151c52</a>)</p></li>
+</ul>
+</li>
+<li><p>QUIC protocol</p>
+<ul>
+<li><p>Quicly v0.1.2 update
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2e4523816">2e4523816</a>)</p></li>
+<li><p>Update quicly to v0.1.3
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=db36fda74">db36fda74</a>)</p></li>
+</ul>
+</li>
+<li><p>RDMA (ibverb) driver</p>
+<ul>
+<li><p>Add support for RSS configuration
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f5a45680e">f5a45680e</a>)</p></li>
+</ul>
+</li>
+<li><p>SRTP</p>
+<ul>
+<li><p>Basic implementation based on libsrtp2
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6621abf49">6621abf49</a>)</p></li>
+</ul>
+</li>
+<li><p>TCP MSS Clamping</p>
+<ul>
+<li><p>TCP MSS clamping plugin
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bf55e9931">bf55e9931</a>)</p></li>
+</ul>
+</li>
+<li><p>Linux-cp</p>
+<ul>
+<li><p>Linux Interface Mirroring for Control Plane Integration
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=44db1caef">44db1caef</a>)</p></li>
+</ul>
+</li>
+<li><p>Memif device driver</p>
+<ul>
+<li><p>Adapt to new rxq framework
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=755941865">755941865</a>)</p></li>
+</ul>
+</li>
+<li><p>Performance counter</p>
+<ul>
+<li><p>New perfmon plugin
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=8b60fb0fe">8b60fb0fe</a>)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Python binding for the VPP API</p>
+<ul>
+<li><p>Expose vpp_papi version to client
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b552ff2e9">b552ff2e9</a>)</p></li>
+</ul>
+</li>
+<li><p>SVM Library</p>
+<ul>
+<li><p>Allow mq attachments at random offsets
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b46241889">b46241889</a>)</p></li>
+<li><p>Per app rx message queues
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=41d5f541d">41d5f541d</a>)</p></li>
+</ul>
+</li>
+<li><p>Statistics Segment</p>
+<ul>
+<li><p>Adding symlinks for nodes and interfaces in the stat segment
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=db0238090">db0238090</a>)</p></li>
+<li><p>Memory heap counters
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a606d9210">a606d9210</a>)</p></li>
+</ul>
+</li>
+<li><p>VNET</p>
+<ul>
+<li><p>Crypto Infra</p>
+<ul>
+<li><p>Add support for aes-ctr+sha-1 chains
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=40ee2003b">40ee2003b</a>)</p></li>
+<li><p>Support hashing operations
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=06111a837">06111a837</a>)</p></li>
+<li><p>Add chacha20-poly1305 support to ipsecmb
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=106e24bd9">106e24bd9</a>)</p></li>
+</ul>
+</li>
+<li><p>FIB</p>
+<ul>
+<li><p>Allow the creation of new source on the API
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=976b259be">976b259be</a>)</p></li>
+</ul>
+</li>
+<li><p>FLOW</p>
+<ul>
+<li><p>Add API implementation of IP4/IP6, IP4_VXLAN/IP6_VXLAN
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c7e7819ad">c7e7819ad</a>)</p></li>
+</ul>
+</li>
+<li><p>IPIP</p>
+<ul>
+<li><p>Support MPLS over IP
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e294de6f8">e294de6f8</a>)</p></li>
+</ul>
+</li>
+<li><p>IPSec</p>
+<ul>
+<li><p>Support MPLS over IPSec[46] interface
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4a58e49cf">4a58e49cf</a>)</p></li>
+<li><p>Add support for AES CTR
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=490b92738">490b92738</a>)</p></li>
+<li><p>CLI improvement for udp port encap
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=048189e7a">048189e7a</a>)</p></li>
+<li><p>Use the new tunnel API types to add flow label and TTL copy
+support
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c7eaa711f">c7eaa711f</a>)</p></li>
+<li><p>Use the new tunnel API types to add flow label and TTL copy
+support
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9ec846c26">9ec846c26</a>)</p></li>
+<li><p>Support async mode per-SA
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f16e9a550">f16e9a550</a>)</p></li>
+</ul>
+</li>
+<li><p>IPv4 LPM</p>
+<ul>
+<li><p>Add API to retrieve IPv6 link-layer address
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=58a1915b5">58a1915b5</a>)</p></li>
+<li><p>Router ID included in flow hash
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3d5f08a82">3d5f08a82</a>)</p></li>
+<li><p>Path MTU
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=8f5fef2c7">8f5fef2c7</a>)</p></li>
+<li><p>Extend punt CLI for exception packets
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=45723b8d3">45723b8d3</a>)</p></li>
+<li><p>Extend show cmd of ip reassembly configuration
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=74a4a70ef">74a4a70ef</a>)</p></li>
+</ul>
+</li>
+<li><p>Interface Common</p>
+<ul>
+<li><p>RX/TX direction type in API
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6a999d67d">6a999d67d</a>)</p></li>
+<li><p>Add promisc on/off in api
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=fd0b399ff">fd0b399ff</a>)</p></li>
+</ul>
+</li>
+<li><p>L2</p>
+<ul>
+<li><p>Add per bridge domain learn limit
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5f93e3b7f">5f93e3b7f</a>)</p></li>
+<li><p>Separating scan-delay and learn-limit into a separate API from
+want_l2_macs_events
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0f8d10035">0f8d10035</a>)</p></li>
+</ul>
+</li>
+<li><p>Session Layer</p>
+<ul>
+<li><p>Basic support for interrupt mode
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7da8829d8">7da8829d8</a>)</p></li>
+<li><p>Api to update connection attributes
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=04ae8273f">04ae8273f</a>)</p></li>
+</ul>
+</li>
+<li><p>TLS and TLS engine plugins</p>
+<ul>
+<li><p>Dtls initial implementation
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4b47ee26c">4b47ee26c</a>)</p></li>
+</ul>
+</li>
+<li><p>Vhost User Driver</p>
+<ul>
+<li><p>Add event index for interrupt notification to driver
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=27ba5008a">27ba5008a</a>)</p></li>
+</ul>
+</li>
+<li><p>Tunnel</p>
+<ul>
+<li><p>Support copying TTL and flow label from inner to outer
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a91cb4590">a91cb4590</a>)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>VPP Comms Library</p>
+<ul>
+<li><p>Extended connect/listen configuration
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4ac258497">4ac258497</a>)</p></li>
+</ul>
+</li>
+<li><p>Libmemif</p>
+<ul>
+<li><p>Set next free buffer
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=47e68de22">47e68de22</a>)</p></li>
+<li><p>Set data offset for memif buffer
+(<a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=1421748e3">1421748e3</a>)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline"></a></h2>
+<section id="coverity-issues">
+<h3>Coverity Issues<a class="headerlink" href="#coverity-issues" title="Permalink to this headline"></a></h3>
+<p>Starting with this release, we add the section about the section with
+the unresolved Coverity Issues into the Release Notes. In order to view
+the issues, visit <a class="reference external" href="https://scan.coverity.com/">https://scan.coverity.com/</a>, add yourself to fd.io VPP
+project and click on the matching IDs.</p>
+<section id="plugin-pppoe">
+<h4>Plugin - PPPoE:<a class="headerlink" href="#plugin-pppoe" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>BUG 218437 in function: pppoe_input_node_fn, file:
+/src/plugins/pppoe/pppoe_decap.c</p></li>
+<li><p>BUG 218401 in function: pppoe_input_node_fn, file:
+/src/plugins/pppoe/pppoe_decap.c #### VNET - IP6 Neighbor Discovery:</p></li>
+<li><p>BUG 218382 in function: set_ip6_nd_proxy_cmd, file:
+/src/vnet/ip6-nd/ip6_nd_proxy.c #### Plugin - TCP MSS Clamping:</p></li>
+<li><p>BUG 219550 in function: vl_api_mss_clamp_enable_disable_t_handler,
+file: /src/plugins/mss_clamp/mss_clamp_api.c #### Plugin -
+performance counter:</p></li>
+<li><p>BUG 216295 in function: format_text_cell, file:
+/src/plugins/perfmon/table.c</p></li>
+<li><p>BUG 218459 in function: intel_uncore_init, file:
+/src/plugins/perfmon/intel/uncore.c</p></li>
+<li><p>BUG 216249 in function: perfmon_reset, file:
+/src/plugins/perfmon/perfmon.c #### Plugin - DPDK:</p></li>
+<li><p>BUG 220290 in function: dpdk_lib_init, file:
+/src/plugins/dpdk/device/init.c</p></li>
+<li><p>BUG 220289 in function: dpdk_lib_init, file:
+/src/plugins/dpdk/device/init.c</p></li>
+<li><p>BUG 220105 in function: cryptodev_get_common_capabilities, file:
+/src/plugins/dpdk/cryptodev/cryptodev.c #### VNET IPv4 LPM:</p></li>
+<li><p>BUG 216981 in function: icmp_to_icmp6, file:
+/src/vnet/ip/ip4_to_ip6.h</p></li>
+<li><p>BUG 214755 in function: ip_in_out_acl_inline, file:
+/src/vnet/ip/ip_in_out_acl.c</p></li>
+<li><p>BUG 220099 in function: vl_api_ip_route_lookup_v2_t_handler, file:
+/src/vnet/ip/ip_api.c #### Plugin - Unit Tests:</p></li>
+<li><p>BUG 218446 in function: test_crypto_perf, file:
+/src/plugins/unittest/crypto_test.c #### Plugin - NSH:</p></li>
+<li><p>BUG 218432 in function: nsh_add_del_entry, file:
+/src/plugins/nsh/nsh_api.c #### Vector Library - PCI:</p></li>
+<li><p>BUG 218391 in function: vlib_pci_device_open, file:
+/src/vlib/linux/pci.c</p></li>
+<li><p>BUG 218396 in function: linux_pci_init, file: /src/vlib/linux/pci.c
+#### VNET Segment Routing (IPv6 and MPLS):</p></li>
+<li><p>BUG 218375 in function: sr_policy_del, file:
+/src/vnet/srv6/sr_policy_rewrite.c</p></li>
+<li><p>BUG 218409 in function: sr_steering_policy, file:
+/src/vnet/srv6/sr_steering.c</p></li>
+<li><p>BUG 218427 in function: sr_policy_mod, file:
+/src/vnet/srv6/sr_policy_rewrite.c</p></li>
+<li><p>BUG 180995 in function: sr_mpls_policy_assign_endpoint_color, file:
+/src/vnet/srmpls/sr_mpls_policy.c #### Vector Library:</p></li>
+<li><p>BUG 218552 in function: add_sub_command, file: /src/vlib/cli.c ####
+VNET FIB:</p></li>
+<li><p>BUG 216057 in function: fib_sas6_get, file: /src/vnet/fib/fib_sas.c
+#### VNET Ethernet:</p></li>
+<li><p>BUG 214973 in function: ethernet_input_inline, file:
+/src/vnet/ethernet/node.c</p></li>
+<li><p>BUG 218549 in function: identify_subint, file:
+/src/vnet/ethernet/node.c #### Infrastructure Library:</p></li>
+<li><p>BUG 236112 in function: extract_bits, file: /src/vppinfra/clib.h ####
+Binary API Compiler for C and C++:</p></li>
+<li><p>BUG 236138 in function: test_loopbacks_2, file:
+/src/vpp-api/vapi/vapi_cpp_test.cpp</p></li>
+<li><p>BUG 236140 in function: test_loopbacks_1, file:
+/src/vpp-api/vapi/vapi_cpp_test.cpp</p></li>
+<li><p>BUG 236139 in function: Create_loopback_cb, file:
+/src/vpp-api/vapi/vapi_cpp_test.cpp</p></li>
+<li><p>BUG 236136 in function: test_api_strings, file:
+/src/vpp-api/vapi/vapi_c_test.c</p></li>
+<li><p>BUG 236137 in function: Delete_loopback_cb, file:
+/src/vpp-api/vapi/vapi_cpp_test.cpp #### Plugin - IPv6 Segment
+Routing Masquerading Proxy:</p></li>
+<li><p>BUG 218441 in function: srv6_am_localsid_removal_fn, file:
+/src/plugins/srv6-am/am.c #### VNET Policer:</p></li>
+<li><p>BUG 218398 in function: show_policer_command_fn, file:
+/src/vnet/policer/policer.c #### Plugin - DHCP:</p></li>
+<li><p>BUG 218381 in function: dhcpv6_proxy_to_client_input, file:
+/src/plugins/dhcp/dhcp6_proxy_node.c #### Plugin - IOAM:</p></li>
+<li><p>BUG 216232 in function: ioam_cache_ts_table_destroy, file:
+/src/plugins/ioam/ip6/ioam_cache.h #### VNET IPv6 LPM:</p></li>
+<li><p>BUG 216981 in function: icmp_to_icmp6, file:
+/src/vnet/ip/ip4_to_ip6.h</p></li>
+<li><p>BUG 214755 in function: ip_in_out_acl_inline, file:
+/src/vnet/ip/ip_in_out_acl.c</p></li>
+<li><p>BUG 220099 in function: vl_api_ip_route_lookup_v2_t_handler, file:
+/src/vnet/ip/ip_api.c</p></li>
+</ul>
+</section>
+</section>
+<section id="jira-issues">
+<h3>Jira Issues<a class="headerlink" href="#jira-issues" title="Permalink to this headline"></a></h3>
+<p>For the full list of issues please refer to fd.io
+<a class="reference external" href="https://jira.fd.io">JIRA</a>.</p>
+</section>
+</section>
+<section id="fixed-issues">
+<h2>Fixed issues<a class="headerlink" href="#fixed-issues" title="Permalink to this headline"></a></h2>
+<p>For the full list of fixed issues please refer to:</p>
+<ul class="simple">
+<li><p>fd.io <a class="reference external" href="https://jira.fd.io">JIRA</a></p></li>
+<li><p>git <a class="reference external" href="https://git.fd.io/vpp/log/?h=stable/2106">commit log</a></p></li>
+</ul>
+</section>
+<section id="api-changes">
+<h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline"></a></h2>
+<p>Description of results:</p>
+<ul class="simple">
+<li><p><em>Definition changed</em>: indicates that the API file was modified
+between releases.</p></li>
+<li><p><em>Only in image</em>: indicates the API is new for this release.</p></li>
+<li><p><em>Only in file</em>: indicates the API has been removed in this release.</p></li>
+<li><p><em>Message CRC32 fix</em>: please refer to release highlights for
+description.</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 72%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Message Name</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>abf_policy_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>abf_policy_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_add_replace</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>af_xdp_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>arping</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>arping_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>bd_ip_mac_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bd_ip_mac_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_auth_activate</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_auth_deactivate</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_get_echo_source_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_mod</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_session_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_session_event</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_session_set_flags</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_disp_entry_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_disp_entry_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_route_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_route_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bond_create</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>bond_enslave</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>bridge_domain_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>bridge_domain_set_default_learn_limit</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>bridge_domain_set_default_learn_limit_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>bridge_domain_set_learn_limit</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>bridge_domain_set_learn_limit_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>cnat_add_del_snat_prefix</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>cnat_add_del_snat_prefix_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>cnat_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cnat_set_snat_policy</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>cnat_set_snat_policy_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>cnat_snat_policy_add_del_exclude_pfx</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>cnat_snat_policy_add_del_exclude_pfx_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>cnat_snat_policy_add_del_if</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>cnat_snat_policy_add_del_if_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>cnat_translation_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>cnat_translation_update</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cop_interface_enable_disable</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>cop_interface_enable_disable_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>cop_whitelist_enable_disable</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>cop_whitelist_enable_disable_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>create_subif</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_vhost_user_if_v2</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>create_vhost_user_if_v2_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp6_pd_reply_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp6_pd_send_client_message</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp6_reply_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp6_send_client_message</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_client_config</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_client_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_compl_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_proxy_config</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_proxy_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_add_del_pool_addr_range</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>dslite_get_aftr_addr_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_get_b4_addr_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>dslite_set_aftr_addr</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_set_b4_addr</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>fib_source_add</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>fib_source_add_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>fib_source_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>fib_source_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>flow_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_bridge_domain_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_bridge_domain_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_contract_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_contract_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_endpoint_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_endpoint_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_endpoint_group_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_endpoint_group_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_ext_itf_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_ext_itf_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_route_domain_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_route_domain_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_subnet_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_subnet_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>geneve_add_del_tunnel</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>geneve_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_add_del_fwd_entry</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_add_del_native_fwd_rpath</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_fwd_entries_get_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_fwd_entry_path_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_native_fwd_rpaths_get_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gre_tunnel_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gre_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gtpu_add_del_tunnel</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>gtpu_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>gtpu_tunnel_update_tteid</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_group_prefix_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_group_prefix_set</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_listen</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_sa_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_set_responder_hostname</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_set_responder_hostname_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ioam_export_ip6_enable_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6_add_del_address_using_prefix</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6_ra_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6nd_proxy_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6nd_proxy_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_address_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_container_proxy_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_container_proxy_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_neighbor_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_neighbor_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_neighbor_dump</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_neighbor_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_path_mtu_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_path_mtu_get</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_path_mtu_get_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_path_mtu_replace_begin</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_path_mtu_replace_begin_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_path_mtu_replace_end</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_path_mtu_replace_end_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_path_mtu_update</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_path_mtu_update_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_punt_redirect</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_punt_redirect_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_reassembly_enable_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_route_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_route_add_del_v2</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_route_add_del_v2_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_route_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_route_lookup</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_route_lookup_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_route_lookup_v2</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_route_lookup_v2_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_route_v2_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_route_v2_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_source_and_port_range_check_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_unnumbered_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ipfix_exporter_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_6rd_add_tunnel</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ipip_add_tunnel</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_sa_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_sa_v3_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_sa_v3_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_sad_entry_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_sad_entry_add_del_v3</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_sad_entry_add_del_v3_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_spd_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_spd_entry_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_if_add_del</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_tunnel_if_add_del_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_if_set_sa</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_tunnel_if_set_sa_reply</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_protect_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_tunnel_protect_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_protect_update</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_arp_term_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_fib_table_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_interface_pbb_tag_rewrite</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_macs_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_patch_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_xconnect_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2fib_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>l2fib_set_scan_delay</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2fib_set_scan_delay_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>l2tpv3_create_tunnel</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>l3xc_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>l3xc_update</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_add_del_as</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_add_del_vip</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_as_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_conf</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_vip_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_vip_dump</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_adjacency</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_local_eid</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_map_resolver</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_map_server</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_remote_mapping</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_adjacencies_get_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_eid_table_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_eid_table_dump</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_locator_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_map_resolver_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_map_server_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_use_petr</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>log_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>macip_acl_add_replace</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>mactime_add_del_range</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>mactime_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_add_domain</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>map_domain_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_param_add_del_pre_resolve</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>map_param_get_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>memif_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>mfib_signal_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>modify_vhost_user_if_v2</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>modify_vhost_user_if_v2_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_ip_bind_unbind</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_route_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_route_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_tunnel_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>mss_clamp_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>mss_clamp_enable_disable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>mss_clamp_enable_disable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>mss_clamp_get</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>mss_clamp_get_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_address_range</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_identity_mapping</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_interface_addr</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_lb_static_mapping</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_static_mapping</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_address_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_del_session</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ed_plugin_enable_disable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ed_plugin_enable_disable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ed_set_fq_options</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ed_set_fq_options_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ed_show_fq_options</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ed_show_fq_options_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_add_del_address_range</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_add_del_address_range_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_add_del_identity_mapping</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_add_del_identity_mapping_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_add_del_interface_addr</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_add_del_interface_addr_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_add_del_static_mapping</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_add_del_static_mapping_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_address_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_address_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_del_session</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_del_session_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_del_user</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_del_user_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_forwarding_enable_disable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_forwarding_enable_disable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_get_addr_and_port_alloc_alg</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_get_addr_and_port_alloc_alg_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_get_mss_clamping</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_get_mss_clamping_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_ha_flush</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_ha_flush_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_ha_get_failover</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_ha_get_failover_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_ha_get_listener</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_ha_get_listener_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_ha_resync</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_ha_resync_completed_event</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_ha_resync_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_ha_set_failover</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_ha_set_failover_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_ha_set_listener</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_ha_set_listener_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_identity_mapping_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_identity_mapping_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_interface_add_del_feature</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_interface_add_del_feature_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_interface_add_del_output_feature</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_interface_add_del_output_feature_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_interface_addr_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_interface_addr_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_interface_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_interface_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_interface_output_feature_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_interface_output_feature_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_ipfix_enable_disable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_ipfix_enable_disable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_plugin_enable_disable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_plugin_enable_disable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_set_addr_and_port_alloc_alg</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_set_addr_and_port_alloc_alg_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_set_fq_options</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_set_fq_options_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_set_log_level</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_set_log_level_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_set_mss_clamping</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_set_mss_clamping_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_set_timeouts</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_set_timeouts_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_set_workers</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_set_workers_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_show_fq_options</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_show_fq_options_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_show_running_config</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_show_running_config_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_static_mapping_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_static_mapping_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_user_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_user_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_user_session_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_user_session_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_ei_worker_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_ei_worker_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_identity_mapping_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_addr_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_lb_static_mapping_add_del_local</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_lb_static_mapping_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_static_mapping_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_user_session_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_pool_addr_range</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_add_del_static_bib</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_bib_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_st_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat66_add_del_static_mapping</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat66_plugin_enable_disable</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat66_plugin_enable_disable_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat66_static_mapping_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_add_del_map</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_close_session_in</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_close_session_out</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_map_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nsh_add_del_map</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>nsh_map_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>nsim_cross_connect_enable_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_adjacency</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_l2_arp_entry</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_local_eid</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_map_resolver</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_map_server</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_ndp_entry</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_remote_mapping</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_adjacencies_get_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_eid_table_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_eid_table_dump</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_l2_arp_entries_get_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_locator_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_map_resolver_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_map_server_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_ndp_entries_get_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_stats_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>one_use_petr</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>p2p_ethernet_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>p2p_ethernet_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>pipe_create_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>pipe_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>pnat_binding_add</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>pnat_binding_add_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>pnat_binding_attach</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>pnat_binding_attach_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>pnat_binding_del</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>pnat_binding_del_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>pnat_binding_detach</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>pnat_binding_detach_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>pnat_bindings_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>pnat_bindings_get</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>pnat_bindings_get_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>pnat_interfaces_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>pnat_interfaces_get</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>pnat_interfaces_get_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>policer_bind</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_bind_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>policer_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_input</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>policer_input_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>pppoe_add_del_session</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>pppoe_session_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>proxy_arp_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>proxy_arp_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>punt_socket_deregister</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>punt_socket_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>punt_socket_register</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>qos_record_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos_record_enable_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>qos_store_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos_store_enable_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>rdma_create_v3</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>rdma_create_v3_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>session_rule_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>session_rules_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>set_ip_flow_hash_router_id</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_ip_flow_hash_router_id_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>set_ip_flow_hash_v2</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_ip_flow_hash_v2_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>set_ipfix_exporter</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_punt</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>show_lisp_use_petr_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_use_petr_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_localsid_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_localsids_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_mpls_policy_assign_endpoint_color</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_mpls_steering_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_policies_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_policy_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_policy_mod</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_steering_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_steering_pol_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>stn_add_del_rule</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>stn_rules_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>svs_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>svs_route_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_if_l2tpv3_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_add_del_address</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_bond_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_event</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_ip6_get_link_local_address</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_ip6_get_link_local_address_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_ip6_set_link_local_address</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_ip6nd_ra_prefix</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_lacp_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_rx_placement_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_flags</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_l2_bridge</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_l2_xconnect</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_lldp</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_mac_address</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_promisc</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_promisc_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_rx_mode</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_unnumbered</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_span_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_span_enable_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_tap_v2_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_vhost_user_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_virtio_pci_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>syslog_get_sender_reply</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>syslog_set_sender</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>tap_create_v2</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>tcp_configure_src_addresses</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>teib_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>teib_entry_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_encap_add</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>udp_encap_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_ping_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>virtio_pci_create</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vmxnet3_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vrrp_vr_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vrrp_vr_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vrrp_vr_peer_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vrrp_vr_set_peers</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vrrp_vr_track_if_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vrrp_vr_track_if_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_add_del_tunnel</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_add_del_tunnel_v2</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_add_del_tunnel_v2_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_add_del_tunnel_v3</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_add_del_tunnel_v3_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gbp_tunnel_add_del</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gbp_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_add_del_tunnel</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_export_enable_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_transit_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_transit_enable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_vni_disable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_vni_enable</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_offload_rx</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_tunnel_details</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_tunnel_v2_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_tunnel_v2_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip_neighbor_events</p></td>
+<td><p>message CRC32 fix</p></td>
+</tr>
+<tr class="row-even"><td><p>want_l2_macs_events2</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_l2_macs_events2_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+</tbody>
+</table>
+<p>Found 456 api message signature differences</p>
+<section id="newly-deprecated-api-messages">
+<h3>Newly deprecated API messages<a class="headerlink" href="#newly-deprecated-api-messages" title="Permalink to this headline"></a></h3>
+<p>These messages are still there in the API, but can and probably will
+disappear in the next release.</p>
+<ul class="simple">
+<li><p>application_tls_cert_add</p></li>
+<li><p>application_tls_cert_add_reply</p></li>
+<li><p>application_tls_key_add</p></li>
+<li><p>application_tls_key_add_reply</p></li>
+<li><p>create_vhost_user_if</p></li>
+<li><p>create_vhost_user_if_reply</p></li>
+<li><p>ipsec_sa_details</p></li>
+<li><p>ipsec_sa_dump</p></li>
+<li><p>ipsec_sad_entry_add_del</p></li>
+<li><p>ipsec_sad_entry_add_del_reply</p></li>
+<li><p>modify_vhost_user_if</p></li>
+<li><p>modify_vhost_user_if_reply</p></li>
+<li><p>nat44_ei_add_del_identity_mapping</p></li>
+<li><p>nat44_ei_add_del_identity_mapping_reply</p></li>
+<li><p>nat44_ei_add_del_interface_addr</p></li>
+<li><p>nat44_ei_add_del_interface_addr_reply</p></li>
+<li><p>nat44_ei_get_addr_and_port_alloc_alg</p></li>
+<li><p>nat44_ei_get_addr_and_port_alloc_alg_reply</p></li>
+<li><p>nat44_ei_get_mss_clamping</p></li>
+<li><p>nat44_ei_get_mss_clamping_reply</p></li>
+<li><p>nat44_ei_ha_get_failover</p></li>
+<li><p>nat44_ei_ha_get_failover_reply</p></li>
+<li><p>nat44_ei_ha_get_listener</p></li>
+<li><p>nat44_ei_ha_get_listener_reply</p></li>
+<li><p>nat44_ei_identity_mapping_details</p></li>
+<li><p>nat44_ei_identity_mapping_dump</p></li>
+<li><p>nat44_ei_interface_add_del_output_feature</p></li>
+<li><p>nat44_ei_interface_add_del_output_feature_reply</p></li>
+<li><p>nat44_ei_interface_addr_details</p></li>
+<li><p>nat44_ei_interface_addr_dump</p></li>
+<li><p>nat44_ei_interface_output_feature_details</p></li>
+<li><p>nat44_ei_interface_output_feature_dump</p></li>
+<li><p>nat44_ei_set_log_level</p></li>
+<li><p>nat44_ei_set_log_level_reply</p></li>
+<li><p>nat44_forwarding_enable_disable</p></li>
+<li><p>nat44_forwarding_enable_disable_reply</p></li>
+<li><p>nat44_forwarding_is_enabled</p></li>
+<li><p>nat44_forwarding_is_enabled_reply</p></li>
+<li><p>nat44_plugin_enable_disable</p></li>
+<li><p>nat44_plugin_enable_disable_reply</p></li>
+<li><p>nat44_session_cleanup</p></li>
+<li><p>nat44_session_cleanup_reply</p></li>
+<li><p>nat_control_ping</p></li>
+<li><p>nat_control_ping_reply</p></li>
+<li><p>nat_get_timeouts</p></li>
+<li><p>nat_get_timeouts_reply</p></li>
+<li><p>nat_ipfix_enable_disable</p></li>
+<li><p>nat_ipfix_enable_disable_reply</p></li>
+<li><p>nat_set_log_level</p></li>
+<li><p>nat_set_log_level_reply</p></li>
+<li><p>nat_set_timeouts</p></li>
+<li><p>nat_set_timeouts_reply</p></li>
+<li><p>nat_show_config</p></li>
+<li><p>nat_show_config_2</p></li>
+<li><p>nat_show_config_2_reply</p></li>
+<li><p>nat_show_config_reply</p></li>
+<li><p>rdma_create_v2</p></li>
+<li><p>set_ip_flow_hash</p></li>
+<li><p>set_ip_flow_hash_reply</p></li>
+<li><p>want_l2_macs_events</p></li>
+<li><p>want_l2_macs_events_reply</p></li>
+</ul>
+</section>
+<section id="in-progress-api-messages">
+<h3>In-progress API messages<a class="headerlink" href="#in-progress-api-messages" title="Permalink to this headline"></a></h3>
+<p>These messages are provided for testing and experimentation only. They
+are <em>not</em> subject to any compatibility process, and therefore can
+arbitrarily change or disappear at <em>any</em> moment. Also they may have less
+than satisfactory testing, making them unsuitable for other use than the
+technology preview. If you are intending to use these messages in
+production projects, please collaborate with the feature maintainer on
+their productization.</p>
+<ul class="simple">
+<li><p>abf_itf_attach_add_del</p></li>
+<li><p>abf_itf_attach_add_del_reply</p></li>
+<li><p>abf_itf_attach_details</p></li>
+<li><p>abf_itf_attach_dump</p></li>
+<li><p>abf_plugin_get_version</p></li>
+<li><p>abf_plugin_get_version_reply</p></li>
+<li><p>abf_policy_add_del</p></li>
+<li><p>abf_policy_add_del_reply</p></li>
+<li><p>abf_policy_details</p></li>
+<li><p>abf_policy_dump</p></li>
+<li><p>adl_allowlist_enable_disable</p></li>
+<li><p>adl_allowlist_enable_disable_reply</p></li>
+<li><p>adl_interface_enable_disable</p></li>
+<li><p>adl_interface_enable_disable_reply</p></li>
+<li><p>af_xdp_create</p></li>
+<li><p>af_xdp_create_reply</p></li>
+<li><p>af_xdp_delete</p></li>
+<li><p>af_xdp_delete_reply</p></li>
+<li><p>cnat_get_snat_addresses</p></li>
+<li><p>cnat_get_snat_addresses_reply</p></li>
+<li><p>cnat_session_details</p></li>
+<li><p>cnat_session_dump</p></li>
+<li><p>cnat_session_purge</p></li>
+<li><p>cnat_session_purge_reply</p></li>
+<li><p>cnat_set_snat_addresses</p></li>
+<li><p>cnat_set_snat_addresses_reply</p></li>
+<li><p>cnat_set_snat_policy</p></li>
+<li><p>cnat_set_snat_policy_reply</p></li>
+<li><p>cnat_snat_policy_add_del_exclude_pfx</p></li>
+<li><p>cnat_snat_policy_add_del_exclude_pfx_reply</p></li>
+<li><p>cnat_snat_policy_add_del_if</p></li>
+<li><p>cnat_snat_policy_add_del_if_reply</p></li>
+<li><p>cnat_translation_del</p></li>
+<li><p>cnat_translation_del_reply</p></li>
+<li><p>cnat_translation_details</p></li>
+<li><p>cnat_translation_dump</p></li>
+<li><p>cnat_translation_update</p></li>
+<li><p>cnat_translation_update_reply</p></li>
+<li><p>crypto_sw_scheduler_set_worker</p></li>
+<li><p>crypto_sw_scheduler_set_worker_reply</p></li>
+<li><p>det44_get_timeouts_reply</p></li>
+<li><p>det44_interface_add_del_feature</p></li>
+<li><p>det44_interface_add_del_feature_reply</p></li>
+<li><p>det44_interface_details</p></li>
+<li><p>det44_interface_dump</p></li>
+<li><p>det44_plugin_enable_disable</p></li>
+<li><p>det44_plugin_enable_disable_reply</p></li>
+<li><p>det44_set_timeouts</p></li>
+<li><p>det44_set_timeouts_reply</p></li>
+<li><p>flow_add</p></li>
+<li><p>flow_add_reply</p></li>
+<li><p>flow_del</p></li>
+<li><p>flow_del_reply</p></li>
+<li><p>flow_disable</p></li>
+<li><p>flow_disable_reply</p></li>
+<li><p>flow_enable</p></li>
+<li><p>flow_enable_reply</p></li>
+<li><p>gbp_bridge_domain_add</p></li>
+<li><p>gbp_bridge_domain_add_reply</p></li>
+<li><p>gbp_bridge_domain_del</p></li>
+<li><p>gbp_bridge_domain_del_reply</p></li>
+<li><p>gbp_bridge_domain_details</p></li>
+<li><p>gbp_bridge_domain_dump</p></li>
+<li><p>gbp_bridge_domain_dump_reply</p></li>
+<li><p>gbp_contract_add_del</p></li>
+<li><p>gbp_contract_add_del_reply</p></li>
+<li><p>gbp_contract_details</p></li>
+<li><p>gbp_contract_dump</p></li>
+<li><p>gbp_endpoint_add</p></li>
+<li><p>gbp_endpoint_add_reply</p></li>
+<li><p>gbp_endpoint_del</p></li>
+<li><p>gbp_endpoint_del_reply</p></li>
+<li><p>gbp_endpoint_details</p></li>
+<li><p>gbp_endpoint_dump</p></li>
+<li><p>gbp_endpoint_group_add</p></li>
+<li><p>gbp_endpoint_group_add_reply</p></li>
+<li><p>gbp_endpoint_group_del</p></li>
+<li><p>gbp_endpoint_group_del_reply</p></li>
+<li><p>gbp_endpoint_group_details</p></li>
+<li><p>gbp_endpoint_group_dump</p></li>
+<li><p>gbp_ext_itf_add_del</p></li>
+<li><p>gbp_ext_itf_add_del_reply</p></li>
+<li><p>gbp_ext_itf_details</p></li>
+<li><p>gbp_ext_itf_dump</p></li>
+<li><p>gbp_recirc_add_del</p></li>
+<li><p>gbp_recirc_add_del_reply</p></li>
+<li><p>gbp_recirc_details</p></li>
+<li><p>gbp_recirc_dump</p></li>
+<li><p>gbp_route_domain_add</p></li>
+<li><p>gbp_route_domain_add_reply</p></li>
+<li><p>gbp_route_domain_del</p></li>
+<li><p>gbp_route_domain_del_reply</p></li>
+<li><p>gbp_route_domain_details</p></li>
+<li><p>gbp_route_domain_dump</p></li>
+<li><p>gbp_route_domain_dump_reply</p></li>
+<li><p>gbp_subnet_add_del</p></li>
+<li><p>gbp_subnet_add_del_reply</p></li>
+<li><p>gbp_subnet_details</p></li>
+<li><p>gbp_subnet_dump</p></li>
+<li><p>gbp_vxlan_tunnel_add</p></li>
+<li><p>gbp_vxlan_tunnel_add_reply</p></li>
+<li><p>gbp_vxlan_tunnel_del</p></li>
+<li><p>gbp_vxlan_tunnel_del_reply</p></li>
+<li><p>gbp_vxlan_tunnel_details</p></li>
+<li><p>gbp_vxlan_tunnel_dump</p></li>
+<li><p>ikev2_child_sa_details</p></li>
+<li><p>ikev2_child_sa_dump</p></li>
+<li><p>ikev2_initiate_del_child_sa</p></li>
+<li><p>ikev2_initiate_del_child_sa_reply</p></li>
+<li><p>ikev2_initiate_del_ike_sa</p></li>
+<li><p>ikev2_initiate_del_ike_sa_reply</p></li>
+<li><p>ikev2_initiate_rekey_child_sa</p></li>
+<li><p>ikev2_initiate_rekey_child_sa_reply</p></li>
+<li><p>ikev2_initiate_sa_init</p></li>
+<li><p>ikev2_initiate_sa_init_reply</p></li>
+<li><p>ikev2_nonce_get</p></li>
+<li><p>ikev2_nonce_get_reply</p></li>
+<li><p>ikev2_profile_add_del</p></li>
+<li><p>ikev2_profile_add_del_reply</p></li>
+<li><p>ikev2_profile_details</p></li>
+<li><p>ikev2_profile_disable_natt</p></li>
+<li><p>ikev2_profile_disable_natt_reply</p></li>
+<li><p>ikev2_profile_dump</p></li>
+<li><p>ikev2_profile_set_auth</p></li>
+<li><p>ikev2_profile_set_auth_reply</p></li>
+<li><p>ikev2_profile_set_id</p></li>
+<li><p>ikev2_profile_set_id_reply</p></li>
+<li><p>ikev2_profile_set_ipsec_udp_port</p></li>
+<li><p>ikev2_profile_set_ipsec_udp_port_reply</p></li>
+<li><p>ikev2_profile_set_liveness</p></li>
+<li><p>ikev2_profile_set_liveness_reply</p></li>
+<li><p>ikev2_profile_set_ts</p></li>
+<li><p>ikev2_profile_set_ts_reply</p></li>
+<li><p>ikev2_profile_set_udp_encap</p></li>
+<li><p>ikev2_profile_set_udp_encap_reply</p></li>
+<li><p>ikev2_sa_details</p></li>
+<li><p>ikev2_sa_dump</p></li>
+<li><p>ikev2_set_esp_transforms</p></li>
+<li><p>ikev2_set_esp_transforms_reply</p></li>
+<li><p>ikev2_set_ike_transforms</p></li>
+<li><p>ikev2_set_ike_transforms_reply</p></li>
+<li><p>ikev2_set_local_key</p></li>
+<li><p>ikev2_set_local_key_reply</p></li>
+<li><p>ikev2_set_responder</p></li>
+<li><p>ikev2_set_responder_hostname</p></li>
+<li><p>ikev2_set_responder_hostname_reply</p></li>
+<li><p>ikev2_set_responder_reply</p></li>
+<li><p>ikev2_set_sa_lifetime</p></li>
+<li><p>ikev2_set_sa_lifetime_reply</p></li>
+<li><p>ikev2_set_tunnel_interface</p></li>
+<li><p>ikev2_set_tunnel_interface_reply</p></li>
+<li><p>ikev2_traffic_selector_details</p></li>
+<li><p>ikev2_traffic_selector_dump</p></li>
+<li><p>ip_route_add_del_v2</p></li>
+<li><p>ip_route_add_del_v2_reply</p></li>
+<li><p>ip_route_lookup_v2</p></li>
+<li><p>ip_route_lookup_v2_reply</p></li>
+<li><p>ip_route_v2_details</p></li>
+<li><p>ip_route_v2_dump</p></li>
+<li><p>l2_emulation</p></li>
+<li><p>l2_emulation_reply</p></li>
+<li><p>mdata_enable_disable</p></li>
+<li><p>mdata_enable_disable_reply</p></li>
+<li><p>nat44_add_del_static_mapping_v2</p></li>
+<li><p>nat44_add_del_static_mapping_v2_reply</p></li>
+<li><p>nat44_ed_plugin_enable_disable</p></li>
+<li><p>nat44_ed_plugin_enable_disable_reply</p></li>
+<li><p>nat44_ed_set_fq_options</p></li>
+<li><p>nat44_ed_set_fq_options_reply</p></li>
+<li><p>nat44_ed_show_fq_options</p></li>
+<li><p>nat44_ed_show_fq_options_reply</p></li>
+<li><p>nat44_ei_add_del_address_range</p></li>
+<li><p>nat44_ei_add_del_address_range_reply</p></li>
+<li><p>nat44_ei_add_del_static_mapping</p></li>
+<li><p>nat44_ei_add_del_static_mapping_reply</p></li>
+<li><p>nat44_ei_address_details</p></li>
+<li><p>nat44_ei_address_dump</p></li>
+<li><p>nat44_ei_del_session</p></li>
+<li><p>nat44_ei_del_session_reply</p></li>
+<li><p>nat44_ei_del_user</p></li>
+<li><p>nat44_ei_del_user_reply</p></li>
+<li><p>nat44_ei_forwarding_enable_disable</p></li>
+<li><p>nat44_ei_forwarding_enable_disable_reply</p></li>
+<li><p>nat44_ei_ha_flush</p></li>
+<li><p>nat44_ei_ha_flush_reply</p></li>
+<li><p>nat44_ei_ha_resync</p></li>
+<li><p>nat44_ei_ha_resync_completed_event</p></li>
+<li><p>nat44_ei_ha_resync_reply</p></li>
+<li><p>nat44_ei_ha_set_failover</p></li>
+<li><p>nat44_ei_ha_set_failover_reply</p></li>
+<li><p>nat44_ei_ha_set_listener</p></li>
+<li><p>nat44_ei_ha_set_listener_reply</p></li>
+<li><p>nat44_ei_interface_add_del_feature</p></li>
+<li><p>nat44_ei_interface_add_del_feature_reply</p></li>
+<li><p>nat44_ei_interface_details</p></li>
+<li><p>nat44_ei_interface_dump</p></li>
+<li><p>nat44_ei_ipfix_enable_disable</p></li>
+<li><p>nat44_ei_ipfix_enable_disable_reply</p></li>
+<li><p>nat44_ei_plugin_enable_disable</p></li>
+<li><p>nat44_ei_plugin_enable_disable_reply</p></li>
+<li><p>nat44_ei_set_addr_and_port_alloc_alg</p></li>
+<li><p>nat44_ei_set_addr_and_port_alloc_alg_reply</p></li>
+<li><p>nat44_ei_set_fq_options</p></li>
+<li><p>nat44_ei_set_fq_options_reply</p></li>
+<li><p>nat44_ei_set_mss_clamping</p></li>
+<li><p>nat44_ei_set_mss_clamping_reply</p></li>
+<li><p>nat44_ei_set_timeouts</p></li>
+<li><p>nat44_ei_set_timeouts_reply</p></li>
+<li><p>nat44_ei_set_workers</p></li>
+<li><p>nat44_ei_set_workers_reply</p></li>
+<li><p>nat44_ei_show_fq_options</p></li>
+<li><p>nat44_ei_show_fq_options_reply</p></li>
+<li><p>nat44_ei_show_running_config</p></li>
+<li><p>nat44_ei_show_running_config_reply</p></li>
+<li><p>nat44_ei_static_mapping_details</p></li>
+<li><p>nat44_ei_static_mapping_dump</p></li>
+<li><p>nat44_ei_user_details</p></li>
+<li><p>nat44_ei_user_dump</p></li>
+<li><p>nat44_ei_user_session_details</p></li>
+<li><p>nat44_ei_user_session_dump</p></li>
+<li><p>nat44_ei_worker_details</p></li>
+<li><p>nat44_ei_worker_dump</p></li>
+<li><p>nat44_show_running_config</p></li>
+<li><p>nat44_show_running_config_reply</p></li>
+<li><p>nat64_plugin_enable_disable</p></li>
+<li><p>nat64_plugin_enable_disable_reply</p></li>
+<li><p>oddbuf_enable_disable</p></li>
+<li><p>oddbuf_enable_disable_reply</p></li>
+<li><p>pg_interface_enable_disable_coalesce</p></li>
+<li><p>pg_interface_enable_disable_coalesce_reply</p></li>
+<li><p>pnat_binding_add</p></li>
+<li><p>pnat_binding_add_reply</p></li>
+<li><p>pnat_binding_attach</p></li>
+<li><p>pnat_binding_attach_reply</p></li>
+<li><p>pnat_binding_del</p></li>
+<li><p>pnat_binding_del_reply</p></li>
+<li><p>pnat_binding_detach</p></li>
+<li><p>pnat_binding_detach_reply</p></li>
+<li><p>pnat_bindings_details</p></li>
+<li><p>pnat_bindings_get</p></li>
+<li><p>pnat_bindings_get_reply</p></li>
+<li><p>pnat_interfaces_details</p></li>
+<li><p>pnat_interfaces_get</p></li>
+<li><p>pnat_interfaces_get_reply</p></li>
+<li><p>sample_macswap_enable_disable</p></li>
+<li><p>sample_macswap_enable_disable_reply</p></li>
+<li><p>sr_policies_with_sl_index_details</p></li>
+<li><p>sr_policies_with_sl_index_dump</p></li>
+<li><p>sw_interface_set_vxlan_gbp_bypass</p></li>
+<li><p>sw_interface_set_vxlan_gbp_bypass_reply</p></li>
+<li><p>test_addresses</p></li>
+<li><p>test_addresses2</p></li>
+<li><p>test_addresses2_reply</p></li>
+<li><p>test_addresses3</p></li>
+<li><p>test_addresses3_reply</p></li>
+<li><p>test_addresses_reply</p></li>
+<li><p>test_empty</p></li>
+<li><p>test_empty_reply</p></li>
+<li><p>test_enum</p></li>
+<li><p>test_enum_reply</p></li>
+<li><p>test_interface</p></li>
+<li><p>test_interface_reply</p></li>
+<li><p>test_prefix</p></li>
+<li><p>test_prefix_reply</p></li>
+<li><p>test_string</p></li>
+<li><p>test_string2</p></li>
+<li><p>test_string2_reply</p></li>
+<li><p>test_string_reply</p></li>
+<li><p>test_vla</p></li>
+<li><p>test_vla2</p></li>
+<li><p>test_vla2_reply</p></li>
+<li><p>test_vla3</p></li>
+<li><p>test_vla3_reply</p></li>
+<li><p>test_vla4</p></li>
+<li><p>test_vla4_reply</p></li>
+<li><p>test_vla5</p></li>
+<li><p>test_vla5_reply</p></li>
+<li><p>test_vla_reply</p></li>
+<li><p>trace_capture_packets</p></li>
+<li><p>trace_capture_packets_reply</p></li>
+<li><p>trace_clear_capture</p></li>
+<li><p>trace_clear_capture_reply</p></li>
+<li><p>trace_details</p></li>
+<li><p>trace_dump</p></li>
+<li><p>trace_dump_reply</p></li>
+<li><p>trace_set_filters</p></li>
+<li><p>trace_set_filters_reply</p></li>
+<li><p>vxlan_gbp_tunnel_add_del</p></li>
+<li><p>vxlan_gbp_tunnel_add_del_reply</p></li>
+<li><p>vxlan_gbp_tunnel_details</p></li>
+<li><p>vxlan_gbp_tunnel_dump</p></li>
+<li><p>wireguard_interface_create</p></li>
+<li><p>wireguard_interface_create_reply</p></li>
+<li><p>wireguard_interface_delete</p></li>
+<li><p>wireguard_interface_delete_reply</p></li>
+<li><p>wireguard_interface_details</p></li>
+<li><p>wireguard_interface_dump</p></li>
+<li><p>wireguard_peer_add</p></li>
+<li><p>wireguard_peer_add_reply</p></li>
+<li><p>wireguard_peer_remove</p></li>
+<li><p>wireguard_peer_remove_reply</p></li>
+<li><p>wireguard_peers_details</p></li>
+<li><p>wireguard_peers_dump</p></li>
+</ul>
+</section>
+<section id="patches-that-changed-api-definitions">
+<h3>Patches that changed API definitions<a class="headerlink" href="#patches-that-changed-api-definitions" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/policer/policer_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c5299ff30">c5299ff30</a>  policer: remove SSE2 prefix</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/policer/policer.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b04683017">b04683017</a>  policer: add api to configure input policing</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=48e26367c">48e26367c</a>  policer: add api to bind policer to worker</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/session/session.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a5a9efd4d">a5a9efd4d</a>  vcl session: switch to generic cert key apis</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipfix-export/ipfix_export.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=baa18701b">baa18701b</a>  misc: ipfix process node wait time adjustment</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipsec/ipsec_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f16e9a550">f16e9a550</a>  ipsec: Support async mode per-SA</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9ec846c26">9ec846c26</a>  ipsec: Use the new tunnel API types to add flow label and TTL copy support</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=751bb131e">751bb131e</a>  Revert “ipsec: Use the new tunnel API types to add flow label and TTL copy”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c7eaa711f">c7eaa711f</a>  ipsec: Use the new tunnel API types to add flow label and TTL copsupport</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipsec/ipsec.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9ec846c26">9ec846c26</a>  ipsec: Use the new tunnel API types to add flow label and TTL copsupport</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=751bb131e">751bb131e</a>  Revert “ipsec: Use the new tunnel API types to add flow label and TTL copy”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c7eaa711f">c7eaa711f</a>  ipsec: Use the new tunnel API types to add flow label and TTL copy support</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a9e2774f5">a9e2774f5</a>  ipsec: Deprecated the old IPsec Tunnel interface</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=95f59f380">95f59f380</a>  ipsec: Mark the interface create reply deprecated</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/virtio/vhost_user.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=27ba5008a">27ba5008a</a>  vhost: Add event index for interrupt notification to driver</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/ip.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=976b259be">976b259be</a>  fib: Allow the creation of new source on the API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=8f5fef2c7">8f5fef2c7</a>  ip: Path MTU</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3d5f08a82">3d5f08a82</a>  ip: Router ID included in flow hash</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f2984bbb0">f2984bbb0</a>  ip: use IPv6 flowlabel in flow hash computation</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=58a1915b5">58a1915b5</a>  ip: add API to retrieve IPv6 link-layer address</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/l2/l2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0f8d10035">0f8d10035</a>  l2: Separating scan-delay and learn-limit into a separate API from want_l2_macs_events</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5f93e3b7f">5f93e3b7f</a>  l2: add per bridge domain learn limit</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/flow/flow_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=91f102ed8">91f102ed8</a>  flow: The type of vni in VxLAN flow should be u32</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/flow/flow.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c7e7819ad">c7e7819ad</a>  flow: Add API implementation of IP4/IP6, IP4_VXLAN/IP6_VXLAN</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/fib/fib_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=976b259be">976b259be</a>  fib: Allow the creation of new source on the API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/fib/fib.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=976b259be">976b259be</a>  fib: Allow the creation of new source on the API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/vxlan/vxlan.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3e38422ab">3e38422ab</a>  vxlan: Fix L3 mode</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=839dcc0fb">839dcc0fb</a>  vxlan: add udp-port configuration support</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bfd/bfd.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4376ab2a9">4376ab2a9</a>  tests: use socket transport instead of shared memory</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/interface.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=fd0b399ff">fd0b399ff</a>  interface: Add promisc on/off in api</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/tunnel/tunnel_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a91cb4590">a91cb4590</a>  tunnel: support copying TTL and flow label from inner to outer</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/interface_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6a999d67d">6a999d67d</a>  interface: RX/TX direction type in API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vat2/test/vat2_test.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ab9f57355">ab9f57355</a>  api: crchcecker ignore version &lt; 1.0.0 and outside of src directory</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=71134f26a">71134f26a</a>  vat2: jsonconvert return checking - coverity</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=93c4b1bb3">93c4b1bb3</a>  vppapigen: more _fromjson autogeneration coverity fixes</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=316967cfa">316967cfa</a>  vppapigen: fix coverity issues in jsonconvert</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cf0102b3b">cf0102b3b</a>  vppapigen: coverity issues in autogenerated code pass 3.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=fb0afab7f">fb0afab7f</a>  vppapigen: fix fromjson coverity errors in generation</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/gbp/gbp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=dc22c839f">dc22c839f</a>  tests: clean up gbp calls from vpp_papi_provider</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/map/map.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9302cfea9">9302cfea9</a>  vppapigen: Support an ‘autoendian’ keyword for message definitions i.api files |</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/arping/arping.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a77ae4708">a77ae4708</a>  arping: add arping command</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/linux-cp/lcp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bb77dec7">6bb77dec7</a>  linux-cp: A V2 variant of pair create API that returns the hosinterface created |</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4376ab2a9">4376ab2a9</a>  tests: use socket transport instead of shared memory</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=44db1caef">44db1caef</a>  linux-cp: Linux Interface Mirroring for Control Plane Integration</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ikev2/ikev2_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=68d275356">68d275356</a>  ikev2: add per SA stats</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ikev2/ikev2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=af2cc6425">af2cc6425</a>  ikev2: support responder hostname</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=68d275356">68d275356</a>  ikev2: add per SA stats</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=fab5e7f39">fab5e7f39</a>  ikev2: use new counters data model &amp; add more counters</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/det44/det44.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0eaf4e678">0eaf4e678</a>  nat: Final NAT44 EI/ED split patch</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/nat44-ed/nat44_ed.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e3f078fcf">e3f078fcf</a>  nat: fix byte order on ipfix message fields</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e7a80a98b">e7a80a98b</a>  nat: NAT44ED fail if using old plugin option</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0eaf4e678">0eaf4e678</a>  nat: Final NAT44 EI/ED split patch</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/nat64/nat64.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0eaf4e678">0eaf4e678</a>  nat: Final NAT44 EI/ED split patch</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/nat66/nat66.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ed2ee5e57">ed2ee5e57</a>  nat: NAT66 plugin enable&amp;disable calls update</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0eaf4e678">0eaf4e678</a>  nat: Final NAT44 EI/ED split patch</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/pnat/pnat.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ec34fb772">ec34fb772</a>  pnat: coverity errors</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ab3151c52">ab3151c52</a>  nat: pnat copy and clear byte instructions</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=18327be5d">18327be5d</a>  nat: 1:1 policy NAT</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/lib/nat_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0eaf4e678">0eaf4e678</a>  nat: Final NAT44 EI/ED split patch</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/nat44-ei/nat44_ei.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=01930f568">01930f568</a>  nat: report correct EI per-user session limit</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e3f078fcf">e3f078fcf</a>  nat: fix byte order on ipfix message fields</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0eaf4e678">0eaf4e678</a>  nat: Final NAT44 EI/ED split patch</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/af_xdp/af_xdp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a42c41be4">a42c41be4</a>  af_xdp: workaround kernel race between poll() and sendmsg()</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/mss_clamp/mss_clamp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bf55e9931">bf55e9931</a>  mss_clamp: TCP MSS clamping plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/rdma/rdma.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f5a45680e">f5a45680e</a>  rdma: add support for RSS configuration</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/cnat/cnat.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=516b0adf6">516b0adf6</a>  cnat: Add calico/k8s src policy</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3fd77f7de">3fd77f7de</a>  cnat: Prepare extended snat policies</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=cc9a1a0d3">cc9a1a0d3</a>  cnat: add input feature node</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4d237874e">4d237874e</a>  cnat: Add maglev support</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=27647a27c">27647a27c</a>  cnat: fixes &amp; prepare maglev</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="v21.10.html" class="btn btn-neutral float-left" title="Release notes for VPP 21.10" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="past.html" class="btn btn-neutral float-right" title="Past releases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

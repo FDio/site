@@ -1,0 +1,44 @@
+.. _clicmd_src_plugins_rdma:
+
+===============================================================
+Rdma cli reference
+===============================================================
+
+create interface rdma
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create interface rdma <host-if ifname> [name <name>] [rx-queue-size <size>] [tx-queue-size <size>] [num-rx-queues <size>] [mode <auto|ibv|dv] [no-multi-seg] [no-striding] [max-pktlen <size>]
+
+
+Declaration: ``rdma_create_command`` `src/plugins/rdma/cli.c line 48 <https://github.com/FDio/vpp/blob/master//src/plugins/rdma/cli.c#L48>`_
+
+Implementation: ``rdma_create_command_fn``
+
+
+delete interface rdma
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete interface rdma {<interface> | sw_if_index <sw_idx>}
+
+
+Declaration: ``rdma_delete_command`` `src/plugins/rdma/cli.c line 103 <https://github.com/FDio/vpp/blob/master//src/plugins/rdma/cli.c#L103>`_
+
+Implementation: ``rdma_delete_command_fn``
+
+
+test rdma dump
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test rdma dump {<interface> | sw_if_index <sw_idx>}
+
+
+Declaration: ``test_rdma_mlx5dv_dump_command`` `src/plugins/rdma/cli.c line 166 <https://github.com/FDio/vpp/blob/master//src/plugins/rdma/cli.c#L166>`_
+
+Implementation: ``test_rdma_dump_command_fn``
+

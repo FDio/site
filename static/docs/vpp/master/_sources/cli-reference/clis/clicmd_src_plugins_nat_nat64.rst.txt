@@ -1,0 +1,350 @@
+.. _clicmd_src_plugins_nat_nat64:
+
+===============================================================
+Nat64 cli reference
+===============================================================
+
+nat64 add interface address
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    nat64 add interface address <interface> [del]
+
+
+
+
+
+.. code-block:: console
+
+    nat64 add interface address
+    
+    Add/delete NAT64 pool address from specific (DHCP addressed) interface.
+    To add NAT64 pool address from specific interface use:
+     vpp# nat64 add interface address GigabitEthernet0/8/0
+    
+
+
+
+Declaration: ``nat64_add_interface_address_command`` `src/plugins/nat/nat64/nat64_cli.c line 981 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L981>`_
+
+Implementation: ``nat64_add_interface_address_command_fn``
+
+
+nat64 add pool address
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    nat64 add pool address <ip4-range-start> [- <ip4-range-end>] [tenant-vrf <vrf-id>] [del]
+
+
+
+
+
+.. code-block:: console
+
+    nat64 add pool address
+    
+    Add/delete NAT64 pool address.
+    To add single NAT64 pool address use:
+     vpp# nat64 add pool address 10.1.1.10
+    To add NAT64 pool address range use:
+     vpp# nat64 add pool address 10.1.1.2 - 10.1.1.5
+    To add NAT64 pool address for specific tenant use:
+     vpp# nat64 add pool address 10.1.1.100 tenant-vrf 100
+    
+
+
+
+Declaration: ``nat64_add_pool_address_command`` `src/plugins/nat/nat64/nat64_cli.c line 813 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L813>`_
+
+Implementation: ``nat64_add_del_pool_addr_command_fn``
+
+
+nat64 add prefix
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    nat64 add prefix <ip6-prefix>/<plen> [tenant-vrf <vrf-id>] [del] [interface <interface]
+
+
+
+
+
+.. code-block:: console
+
+    nat64 add prefix
+    
+    Set NAT64 prefix for generating IPv6 representations of IPv4 addresses.
+    To set NAT64 global prefix use:
+     vpp# nat64 add prefix 2001:db8::/32
+    To set NAT64 prefix for specific tenant use:
+     vpp# nat64 add prefix 2001:db8:122:300::/56 tenant-vrf 10
+    
+
+
+
+Declaration: ``nat64_add_del_prefix_command`` `src/plugins/nat/nat64/nat64_cli.c line 949 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L949>`_
+
+Implementation: ``nat64_add_del_prefix_command_fn``
+
+
+nat64 add static bib
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    nat64 add static bib <ip6-addr> <port> <ip4-addr> <port> tcp|udp|icmp [vfr <table-id>] [del]
+
+
+
+
+
+.. code-block:: console
+
+    nat64 add static bib
+    
+    Add/delete NAT64 static BIB entry.
+    To create NAT64 satatic BIB entry use:
+     vpp# nat64 add static bib 2001:db8:c000:221:: 1234 10.1.1.3 5678 tcp
+     vpp# nat64 add static bib 2001:db8:c000:221:: 1234 10.1.1.3 5678 udp vrf 10
+    
+
+
+
+Declaration: ``nat64_add_del_static_bib_command`` `src/plugins/nat/nat64/nat64_cli.c line 878 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L878>`_
+
+Implementation: ``nat64_add_del_static_bib_command_fn``
+
+
+nat64 plugin
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    nat64 plugin <enable [bib-buckets <count>] [bib-memory <size>] [st-buckets <count>] [st-memory <size>] | disable>
+
+
+
+
+
+.. code-block:: console
+
+    nat64 plugin
+    
+    Enable/disable NAT64 plugin.
+    To enable NAT64 plugin use:
+     vpp# nat64 plugin enable
+    To enable NAT64 plugin and configure buckets/memory:
+     vpp# nat64 plugin enable bib-buckets <n> bib-memory <s> \
+       st-buckets <n> st-memory <s>
+    To disable NAT64 plugin:
+     vpp# nat64 plugin disable
+    
+
+
+
+Declaration: ``nat64_plugin_enable_disable_command`` `src/plugins/nat/nat64/nat64_cli.c line 792 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L792>`_
+
+Implementation: ``nat64_plugin_enable_disable_command_fn``
+
+
+set interface nat64
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface nat64 in|out <intfc> [del]
+
+
+
+
+
+.. code-block:: console
+
+    set interface nat64
+    
+    Enable/disable NAT64 feature on the interface.
+    To enable NAT64 feature with local (IPv6) network interface
+    GigabitEthernet0/8/0 and external (IPv4) network interface
+    GigabitEthernet0/a/0 use:
+     vpp# set interface nat64 in GigabitEthernet0/8/0 out GigabitEthernet0/a/0
+    
+
+
+
+Declaration: ``set_interface_nat64_command`` `src/plugins/nat/nat64/nat64_cli.c line 846 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L846>`_
+
+Implementation: ``nat64_interface_feature_command_fn``
+
+
+show nat64 bib
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show nat64 bib all|tcp|udp|icmp|unknown
+
+
+
+
+
+.. code-block:: console
+
+    show nat64 bib
+    
+    Show NAT64 BIB entries.
+    To show NAT64 TCP BIB entries use:
+     vpp# show nat64 bib tcp
+     NAT64 tcp BIB:
+      fd01:1::2 6303 10.0.0.3 62303 tcp vrf 0 dynamic 1 sessions
+      2001:db8:c000:221:: 1234 10.1.1.3 5678 tcp vrf 0 static 2 sessions
+    To show NAT64 UDP BIB entries use:
+     vpp# show nat64 bib udp
+     NAT64 udp BIB:
+      fd01:1::2 6304 10.0.0.3 10546 udp vrf 0 dynamic 10 sessions
+      2001:db8:c000:221:: 1234 10.1.1.3 5678 udp vrf 10 static 0 sessions
+    To show NAT64 ICMP BIB entries use:
+     vpp# show nat64 bib icmp
+     NAT64 icmp BIB:
+      fd01:1::2 6305 10.0.0.3 63209 icmp vrf 10 dynamic 1 sessions
+    
+
+
+
+Declaration: ``show_nat64_bib_command`` `src/plugins/nat/nat64/nat64_cli.c line 905 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L905>`_
+
+Implementation: ``nat64_show_bib_command_fn``
+
+
+show nat64 interfaces
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show nat64 interfaces
+
+
+
+
+
+.. code-block:: console
+
+    show nat64 interfaces
+    
+    Show interfaces with NAT64 feature.
+    To show interfaces with NAT64 feature use:
+     vpp# show nat64 interfaces
+     NAT64 interfaces:
+      GigabitEthernet0/8/0 in
+      GigabitEthernet0/a/0 out
+    
+
+
+
+Declaration: ``show_nat64_interfaces_command`` `src/plugins/nat/nat64/nat64_cli.c line 863 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L863>`_
+
+Implementation: ``nat64_show_interfaces_command_fn``
+
+
+show nat64 pool
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show nat64 pool
+
+
+
+
+
+.. code-block:: console
+
+    show nat64 pool
+    
+    Show NAT64 pool.
+     vpp# show nat64 pool
+     NAT64 pool:
+      10.1.1.3 tenant VRF: 0
+      10.1.1.10 tenant VRF: 10
+    
+
+
+
+Declaration: ``show_nat64_pool_command`` `src/plugins/nat/nat64/nat64_cli.c line 830 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L830>`_
+
+Implementation: ``nat64_show_pool_command_fn``
+
+
+show nat64 prefix
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show nat64 prefix
+
+
+
+
+
+.. code-block:: console
+
+    show nat64 prefix
+    
+    Show NAT64 prefix.
+    To show NAT64 prefix use:
+     vpp# show nat64 prefix
+     NAT64 prefix:
+      2001:db8::/32 tenant-vrf 0
+      2001:db8:122:300::/56 tenant-vrf 10
+    
+
+
+
+Declaration: ``show_nat64_prefix_command`` `src/plugins/nat/nat64/nat64_cli.c line 967 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L967>`_
+
+Implementation: ``nat64_show_prefix_command_fn``
+
+
+show nat64 session table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show nat64 session table all|tcp|udp|icmp|unknown
+
+
+
+
+
+.. code-block:: console
+
+    show nat64 session table
+    
+    Show NAT64 session table.
+    To show NAT64 TCP session table use:
+     vpp# show nat64 session table tcp
+     NAT64 tcp session table:
+      fd01:1::2 6303 64:ff9b::ac10:202 20 10.0.0.3 62303 172.16.2.2 20 tcp vrf 0
+      fd01:3::2 6303 64:ff9b::ac10:202 20 10.0.10.3 21300 172.16.2.2 20 tcp vrf 10
+    To show NAT64 UDP session table use:
+    #vpp show nat64 session table udp
+    NAT64 udp session table:
+     fd01:1::2 6304 64:ff9b::ac10:202 20 10.0.0.3 10546 172.16.2.2 20 udp vrf 0
+     fd01:3::2 6304 64:ff9b::ac10:202 20 10.0.10.3 58627 172.16.2.2 20 udp vrf 10
+     fd01:1::2 1235 64:ff9b::a00:3 4023 10.0.0.3 24488 10.0.0.3 4023 udp vrf 0
+     fd01:1::3 23 64:ff9b::a00:3 24488 10.0.0.3 4023 10.0.0.3 24488 udp vrf 0
+    To show NAT64 ICMP session table use:
+    #vpp show nat64 session table icmp
+    NAT64 icmp session table:
+     fd01:1::2 64:ff9b::ac10:202 6305 10.0.0.3 172.16.2.2 63209 icmp vrf 0
+    
+
+
+
+Declaration: ``show_nat64_st_command`` `src/plugins/nat/nat64/nat64_cli.c line 933 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat64/nat64_cli.c#L933>`_
+
+Implementation: ``nat64_show_st_command_fn``
+

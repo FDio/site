@@ -1,0 +1,187 @@
+.. _clicmd_src_vnet_session:
+
+===============================================================
+Session cli reference
+===============================================================
+
+app ns
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    app ns [add|del] id <namespace-id> secret <secret> sw_if_index <sw_if_index> if <interface> [netns <ns>]
+
+
+Declaration: ``app_ns_command`` `src/vnet/session/application_namespace.c line 355 <https://github.com/FDio/vpp/blob/master//src/vnet/session/application_namespace.c#L355>`_
+
+Implementation: ``app_ns_fn``
+
+
+clear session
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear session thread <thread> session <index>
+
+
+Declaration: ``clear_session_command`` `src/vnet/session/session_cli.c line 745 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_cli.c#L745>`_
+
+Implementation: ``clear_session_command_fn``
+
+
+clear session dbg clock_cycles
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear session dbg clock_cycles
+
+
+Declaration: ``clear_session_clock_cycles_command`` `src/vnet/session/session_debug.c line 89 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_debug.c#L89>`_
+
+Implementation: ``clear_session_dbg_clock_cycles_fn``
+
+
+session
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    session [enable|disable]
+
+
+Declaration: ``session_enable_disable_command`` `src/vnet/session/session_cli.c line 881 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_cli.c#L881>`_
+
+Implementation: ``session_enable_disable_fn``
+
+
+session replay fifo
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    session replay fifo <session>
+
+
+Declaration: ``session_replay_fifo_trace_command`` `src/vnet/session/session_cli.c line 842 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_cli.c#L842>`_
+
+Implementation: ``session_replay_fifo_command_fn``
+
+
+session rule
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    session rule [add|del] appns <ns_id> proto <proto> <lcl-ip/plen> <lcl-port> <rmt-ip/plen> <rmt-port> action <action>
+
+
+Declaration: ``session_rule_command`` `src/vnet/session/session_lookup.c line 1575 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_lookup.c#L1575>`_
+
+Implementation: ``session_rule_command_fn``
+
+
+show app
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show app [app_id] [server|client] [mq] [verbose]
+
+
+Declaration: ``show_app_command`` `src/vnet/session/application.c line 2103 <https://github.com/FDio/vpp/blob/master//src/vnet/session/application.c#L2103>`_
+
+Implementation: ``show_app_command_fn``
+
+
+show app certificate
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    list app certs and keys present in store
+
+
+Declaration: ``show_certificate_command`` `src/vnet/session/application.c line 2110 <https://github.com/FDio/vpp/blob/master//src/vnet/session/application.c#L2110>`_
+
+Implementation: ``show_certificate_command_fn``
+
+
+show app ns
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show app ns [id <id> [api-clients]]
+
+
+Declaration: ``show_app_ns_command`` `src/vnet/session/application_namespace.c line 514 <https://github.com/FDio/vpp/blob/master//src/vnet/session/application_namespace.c#L514>`_
+
+Implementation: ``show_app_ns_fn``
+
+
+show segment-manager
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show segment-manager [segments][verbose]
+
+
+Declaration: ``segment_manager_show_command`` `src/vnet/session/segment_manager.c line 1053 <https://github.com/FDio/vpp/blob/master//src/vnet/session/segment_manager.c#L1053>`_
+
+Implementation: ``segment_manager_show_fn``
+
+
+show session
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show session [verbose [n]] [listeners <proto>] [<session-id> [elog]] [thread <n> [index <n>] [proto <proto>] [state <state>] [range <min> [<max>]] [protos] [states] 
+
+
+Declaration: ``vlib_cli_show_session_command`` `src/vnet/session/session_cli.c line 670 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_cli.c#L670>`_
+
+Implementation: ``show_session_command_fn``
+
+
+show session dbg clock_cycles
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show session dbg clock_cycles
+
+
+Declaration: ``show_session_dbg_clock_cycles_command`` `src/vnet/session/session_debug.c line 56 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_debug.c#L56>`_
+
+Implementation: ``show_session_dbg_clock_cycles_fn``
+
+
+show session fifo trace
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show session fifo trace <session>
+
+
+Declaration: ``show_session_fifo_trace_command`` `src/vnet/session/session_cli.c line 795 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_cli.c#L795>`_
+
+Implementation: ``show_session_fifo_trace_command_fn``
+
+
+show session rules
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show session rules [<proto> appns <id> <lcl-ip/plen> <lcl-port> <rmt-ip/plen> <rmt-port> scope <scope>]
+
+
+Declaration: ``show_session_rules_command`` `src/vnet/session/session_lookup.c line 1706 <https://github.com/FDio/vpp/blob/master//src/vnet/session/session_lookup.c#L1706>`_
+
+Implementation: ``show_session_rules_command_fn``
+

@@ -1,0 +1,346 @@
+.. _clicmd_src_vlib_unix_cli_c:
+
+===============================================================
+Command line session
+===============================================================
+
+define
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    define <variable-name> <value>
+
+
+Declaration: ``define_cmd`` `src/vlib/unix/cli.c line 4067 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4067>`_
+
+Implementation: ``define_cmd_fn``
+
+
+echo
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    echo <rest-of-line>
+
+
+Declaration: ``cli_unix_echo_cmd`` `src/vlib/unix/cli.c line 4029 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4029>`_
+
+Implementation: ``echo_cmd``
+
+
+exec
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    exec <filename>
+
+
+
+Executes a sequence of CLI commands which are read from a file. If
+a command is unrecognized or otherwise invalid then the usual CLI
+feedback will be generated, however execution of subsequent commands
+from the file will continue.
+
+The VPP code is indifferent to the file location. However, if SELinux
+is enabled, then the file needs to have an SELinux label the VPP
+process is allowed to access. For example, if a file is created in
+``/usr/share/vpp/``, it will be allowed. However, files manually
+created in '/tmp/' or '/home/<user>/' will not be accessible by the VPP
+process when SELinux is enabled.
+
+Sample file:
+
+
+.. code-block:: console
+
+    
+    ``$ cat /usr/share/vpp/scripts/gigup.txt``
+    set interface state GigabitEthernet0/8/0 up
+    set interface state GigabitEthernet0/9/0 up
+    
+
+
+Example of how to execute a set of CLI commands from a file:
+
+
+.. code-block:: console
+
+    exec /usr/share/vpp/scripts/gigup.txt
+
+
+
+Declaration: ``cli_exec`` `src/vlib/unix/cli.c line 3487 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3487>`_
+
+Implementation: ``unix_cli_exec``
+
+
+history
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Show current session command history
+
+
+
+Displays the command history for the current session, if any.
+
+Declaration: ``cli_unix_cli_show_history`` `src/vlib/unix/cli.c line 3643 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3643>`_
+
+Implementation: ``unix_cli_show_history``
+
+
+q
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Exit CLI
+
+
+Declaration: ``unix_cli_q_command`` `src/vlib/unix/cli.c line 3354 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3354>`_
+
+Implementation: ``unix_cli_quit``
+
+
+quit
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Exit CLI
+
+
+
+Terminates the current CLI session.
+
+If VPP is running in @em interactive mode and this is the console session
+(that is, the session on ``stdin)`` then this will also terminate VPP.
+
+Declaration: ``unix_cli_quit_command`` `src/vlib/unix/cli.c line 3346 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3346>`_
+
+Implementation: ``unix_cli_quit``
+
+
+set terminal ansi
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set terminal ansi [on|off]
+
+
+
+Enables or disables the use of ANSI control sequences by this terminal.
+The default will vary based on terminal detection at the start of the
+session.
+
+ANSI control sequences are used in a small number of places to provide,
+for example, color text output and to control the cursor in the pager.
+
+Declaration: ``cli_unix_cli_set_terminal_ansi`` `src/vlib/unix/cli.c line 3962 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3962>`_
+
+Implementation: ``unix_cli_set_terminal_ansi``
+
+
+set terminal history
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set terminal history [on|off] [limit <lines>]
+
+
+
+Enables or disables the command history function of the current
+terminal. Generally this defaults to enabled.
+
+This command also allows the maximum size of the history buffer for
+this session to be altered.
+
+Declaration: ``cli_unix_cli_set_terminal_history`` `src/vlib/unix/cli.c line 3923 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3923>`_
+
+Implementation: ``unix_cli_set_terminal_history``
+
+
+set terminal pager
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set terminal pager [on|off] [limit <lines>]
+
+
+
+Enables or disables the terminal pager for this session. Generally
+this defaults to enabled.
+
+Additionally allows the pager buffer size to be set; though note that
+this value is set globally and not per session.
+
+Declaration: ``cli_unix_cli_set_terminal_pager`` `src/vlib/unix/cli.c line 3852 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3852>`_
+
+Implementation: ``unix_cli_set_terminal_pager``
+
+
+show cli-sessions
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Show current CLI sessions
+
+
+
+Displays a summary of all the current CLI sessions.
+
+Typically used to diagnose connection issues with the CLI
+socket.
+
+
+
+.. code-block:: console
+
+    show cli-sessions
+    
+    PNI   FD    Name                 Flags
+    343   0     unix-cli-stdin       IslpA
+    344   7     unix-cli-local:20    ISlpA
+    346   8     unix-cli-local:21    iSLpa
+    
+
+
+
+In this example we have the debug console of the running process
+on stdin/out, we have an interactive socket session and we also
+have a non-interactive socket session.
+
+Fields:
+
+- @em PNI: Process node index.
+- @em FD: Unix file descriptor.
+- @em Name: Name of the session.
+- @em Flags: Various flags that describe the state of the session.
+
+
+@em Flags have the following meanings; lower-case typically negates
+upper-case:
+
+- @em I Interactive session.
+- @em S Connected by socket.
+- @em s Not a socket, likely stdin.
+- @em L Line-by-line mode.
+- @em l Char-by-char mode.
+- @em P EPIPE detected on connection; it will close soon.
+- @em A ANSI-capable terminal.
+
+Declaration: ``cli_unix_cli_show_cli_sessions`` `src/vlib/unix/cli.c line 3795 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3795>`_
+
+Implementation: ``unix_cli_show_cli_sessions``
+
+
+show macro
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show macro [noevaluate]
+
+
+Declaration: ``show_macro`` `src/vlib/unix/cli.c line 4117 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4117>`_
+
+Implementation: ``show_macro_cmd_fn``
+
+
+show terminal
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Show current session terminal settings
+
+
+
+Displays various information about the state of the current terminal
+session.
+
+
+
+.. code-block:: console
+
+    show terminal
+    
+    Terminal name:   unix-cli-stdin
+    Terminal mode:   char-by-char
+    Terminal width:  123
+    Terminal height: 48
+    ANSI capable:    yes
+    Interactive:     yes
+    History enabled: yes
+    History limit:   50
+    Pager enabled:   yes
+    Pager limit:     100000
+    CRLF mode:       LF
+    
+
+
+
+Declaration: ``cli_unix_cli_show_terminal`` `src/vlib/unix/cli.c line 3715 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3715>`_
+
+Implementation: ``unix_cli_show_terminal``
+
+
+show unix errors
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Show Unix system call error history
+
+
+Declaration: ``cli_unix_show_errors`` `src/vlib/unix/cli.c line 3563 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3563>`_
+
+Implementation: ``unix_show_errors``
+
+
+show unix files
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Show Unix files in use
+
+
+Declaration: ``cli_unix_show_files`` `src/vlib/unix/cli.c line 3606 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3606>`_
+
+Implementation: ``unix_show_files``
+
+
+undefine
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    undefine <variable-name>
+
+
+Declaration: ``undefine_cmd`` `src/vlib/unix/cli.c line 4093 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4093>`_
+
+Implementation: ``undefine_cmd_fn``
+
+
+wait
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    wait <sec>
+
+
+Declaration: ``cli_unix_wait_cmd`` `src/vlib/unix/cli.c line 4002 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4002>`_
+
+Implementation: ``unix_wait_cmd``
+

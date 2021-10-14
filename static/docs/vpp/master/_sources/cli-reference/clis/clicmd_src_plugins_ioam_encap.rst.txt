@@ -1,0 +1,44 @@
+.. _clicmd_src_plugins_ioam_encap:
+
+===============================================================
+Encap cli reference
+===============================================================
+
+show ioam e2e 
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ioam e2e information
+
+
+Declaration: ``ioam_show_e2e_cmd`` `src/plugins/ioam/encap/ip6_ioam_e2e.c line 160 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/encap/ip6_ioam_e2e.c#L160>`_
+
+Implementation: ``ioam_show_e2e_cmd_fn``
+
+
+show ioam pot
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    iOAM pot statistics
+
+
+Declaration: ``ip6_show_ioam_pot_cmd`` `src/plugins/ioam/encap/ip6_ioam_pot.c line 226 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/encap/ip6_ioam_pot.c#L226>`_
+
+Implementation: ``ip6_show_ioam_pot_cmd_fn``
+
+
+show ioam trace
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    iOAM trace statistics
+
+
+Declaration: ``ip6_show_ioam_trace_cmd`` `src/plugins/ioam/encap/ip6_ioam_trace.c line 403 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/encap/ip6_ioam_trace.c#L403>`_
+
+Implementation: ``ip6_show_ioam_trace_cmd_fn``
+

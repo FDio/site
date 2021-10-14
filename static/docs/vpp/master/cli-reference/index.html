@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ARP and Loopback CLI" href="clis/clicmd_src_vnet_ethernet.html" />
+    <link rel="prev" title="Set Interface Commands" href="interface/setinterface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ethernet.html">ARP and Loopback CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_vlib_unix_cj_c.html">Circular Journal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html">Command line session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html">DPDK Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_device.html">DPDK and pcap tx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_af_packet.html">Host Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_app_version_c.html">Image Version Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_init_c.html">Init functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html">Layer 2 CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html">Layer 3 IP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsim_nsim_c.html">Network Delay Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_http_static_static_server_c.html">Static HTTP Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix.html">Unix Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html">VLIB application library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan.html">VXLAN CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gbp.html">VXLAN-GBP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_netmap.html">netmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_abf.html">Abf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html">Acl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_adl.html">Adl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_af_xdp.html">Af_xdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_arping.html">Arping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_avf.html">Avf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_bufmon.html">Bufmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_builtinurl.html">Builtinurl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cdp.html">Cdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html">Cnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_crypto_sw_scheduler.html">Crypto_sw_scheduler cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ct6.html">Ct6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html">Dhcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dispatch-trace.html">Dispatch-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dns.html">Dns cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_cryptodev.html">Cryptodev cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_flowprobe.html">Flowprobe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html">Gbp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_geneve.html">Geneve cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gtpu.html">Gtpu cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_hs_apps.html">Hs_apps cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html">Igmp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html">Ikev2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ila.html">Ila cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_analyse_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_encap.html">Encap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_export.html">Export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_export-vxlan-gpe.html">Export-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-pot.html">Lib-pot cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-trace.html">Lib-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-vxlan-gpe.html">Lib-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_udp-ping.html">Udp-ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2e.html">L2e cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2tp.html">L2tp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l3xc.html">L3xc cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lacp.html">Lacp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html">Lb cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp.html">Linux-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html">Lisp-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html">Lisp-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lldp.html">Lldp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mactime.html">Mactime cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html">Map cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_marvell_pp2.html">Pp2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mdata.html">Mdata cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_memif.html">Memif cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mss_clamp.html">Mss_clamp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html">Det44 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html">Dslite cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html">Nat44-ed cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html">Nat44-ei cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html">Nat64 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat66.html">Nat66 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_pnat.html">Pnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsh.html">Nsh cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsh_nsh-md2-ioam.html">Nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html">Export-nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_oddbuf.html">Oddbuf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ping.html">Ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_pppoe.html">Pppoe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_quic.html">Quic cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_rdma.html">Rdma cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html">Snort cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_stn.html">Stn cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_svs.html">Svs cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_tlsopenssl.html">Tlsopenssl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_tracedump.html">Tracedump cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html">Unittest cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_urpf.html">Urpf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vmxnet3.html">Vmxnet3 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vrrp.html">Vrrp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_wireguard.html">Wireguard cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_pci.html">Pci cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibapi.html">Vlibapi cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html">Vlibmemory cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_adj.html">Adj cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_arp.html">Arp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html">Bfd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html">Bier cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bonding.html">Bonding cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html">Classify cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html">Crypto cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_pipe.html">Pipe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_tap.html">Tap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_dpo.html">Dpo cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_feature.html">Feature cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html">Fib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_flow.html">Flow cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_gre.html">Gre cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_gso.html">Gso cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_hash.html">Hash cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html">Ip-neighbor cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip_reass.html">Reass cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip6-nd.html">Ip6-nd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipfix-export.html">Ipfix-export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipip.html">Ipip cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html">Ipsec cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_lawful-intercept.html">Lawful-intercept cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mfib.html">Mfib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mpls.html">Mpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html">Pg cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html">Policer cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html">Qos cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html">Session cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_span.html">Span cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srmpls.html">Srmpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html">Srv6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_syslog.html">Syslog cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html">Tcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_teib.html">Teib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_udp.html">Udp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_unix.html">Unix cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gpe.html">Vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_api.html">Api cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_app.html">App cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_stats.html">Stats cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_vnet.html">Vnet cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html">vHost User</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cli-reference/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reference">
+<span id="cmdreference"></span><h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_ethernet.html">ARP and Loopback CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ethernet.html#create-loopback-interface">create loopback interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ethernet.html#delete-loopback-interface">delete loopback interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ethernet.html#delete-sub-interface">delete sub-interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ethernet.html#loopback-create-interface">loopback create-interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ethernet.html#loopback-delete-interface">loopback delete-interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ethernet.html#p2p-ethernet">p2p_ethernet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_extras_deprecated_vlib_unix_cj_c.html">Circular Journal</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_vlib_unix_cj_c.html#cj">cj</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html">Command line session</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#define">define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#echo">echo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#exec">exec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#history">history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#q">q</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#quit">quit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#set-terminal-ansi">set terminal ansi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#set-terminal-history">set terminal history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#set-terminal-pager">set terminal pager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#show-cli-sessions">show cli-sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#show-macro">show macro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#show-terminal">show terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#show-unix-errors">show unix errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#show-unix-files">show unix files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#undefine">undefine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix_cli_c.html#wait">wait</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html">DPDK Crypto</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html#clear-dpdk-crypto-devices-statistics">clear dpdk crypto devices statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html#clear-dpdk-crypto-placement">clear dpdk crypto placement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html#set-dpdk-crypto-placement">set dpdk crypto placement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html#show-dpdk-crypto-devices">show dpdk crypto devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html#show-dpdk-crypto-placement">show dpdk crypto placement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html#show-dpdk-crypto-placement-verbose">show dpdk crypto placement verbose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_dpdk-ipsec.html#show-dpdk-crypto-pools">show dpdk crypto pools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_device.html">DPDK and pcap tx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_device.html#set-dpdk-interface-descriptors">set dpdk interface descriptors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_device.html#show-dpdk-buffer">show dpdk buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_device.html#show-dpdk-physmem">show dpdk physmem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_device.html#show-dpdk-version">show dpdk version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_device.html#test-dpdk-buffer">test dpdk buffer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_devices_af_packet.html">Host Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_af_packet.html#create-host-interface">create host-interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_af_packet.html#delete-host-interface">delete host-interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_af_packet.html#set-host-interface-l4-cksum-offload">set host-interface l4-cksum-offload</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vpp_app_version_c.html">Image Version Information</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_app_version_c.html#show-version">show version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vlib_init_c.html">Init functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_init_c.html#show-init-function">show init-function</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet.html">Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#clear-hardware-interfaces">clear hardware-interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#clear-interface-tag">clear interface tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#clear-interfaces">clear interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#create-sub-interfaces">create sub-interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#id1">interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#interface-collect-detailed-stats">interface collect detailed-stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#pcap-trace">pcap trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#renumber-interface">renumber interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface">set interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-handoff">set interface handoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-hw-class">set interface hw-class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-ip-directed-broadcast">set interface ip directed-broadcast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-mac-address">set interface mac address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-mtu">set interface mtu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-name">set interface name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-promiscuous">set interface promiscuous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-rss-queues">set interface rss queues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-rx-mode">set interface rx-mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-rx-placement">set interface rx-placement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-secondary-mac-address">set interface secondary-mac-address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-state">set interface state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-tag">set interface tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-tx-queue">set interface tx-queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#set-interface-unnumbered">set interface unnumbered</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#show-hardware-interfaces">show hardware-interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#show-interface">show interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#show-interface-rx-placement">show interface rx-placement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet.html#show-interface-secondary-mac-address">show interface secondary-mac-address</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html">Layer 2 CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#bvi-create">bvi create</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#bvi-delete">bvi delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#clear-l2fib">clear l2fib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#create-bridge-domain">create bridge-domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#l2-rewrite-entry">l2 rewrite entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#l2fib-add">l2fib add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#l2fib-del">l2fib del</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#l2fib-flush-mac-all">l2fib flush-mac all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#l2fib-flush-mac-bridge-domain">l2fib flush-mac bridge-domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#l2fib-flush-mac-interface">l2fib flush-mac interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-arp-entry">set bridge-domain arp entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-arp-term">set bridge-domain arp term</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-arp-ufwd">set bridge-domain arp-ufwd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-default-learn-limit">set bridge-domain default-learn-limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-flood">set bridge-domain flood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-forward">set bridge-domain forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-learn">set bridge-domain learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-learn-limit">set bridge-domain learn-limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-mac-age">set bridge-domain mac-age</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-rewrite">set bridge-domain rewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-bridge-domain-uu-flood">set bridge-domain uu-flood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-bridge">set interface l2 bridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-efp-filter">set interface l2 efp-filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-flood">set interface l2 flood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-forward">set interface l2 forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-input-classify">set interface l2 input classify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-learn">set interface l2 learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-output-classify">set interface l2 output classify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-pbb-tag-rewrite">set interface l2 pbb-tag-rewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-rewrite">set interface l2 rewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-tag-rewrite">set interface l2 tag-rewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-xconnect">set interface l2 xconnect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-interface-l2-xcrw">set interface l2 xcrw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#set-l2fib-scan-delay">set l2fib scan-delay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#show-bridge-domain">show bridge-domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#show-l2-rewrite-entries">show l2 rewrite entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#show-l2-rewrite-interfaces">show l2 rewrite interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#show-l2fib">show l2fib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#show-l2patch">show l2patch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#show-l2xcrw">show l2xcrw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#show-mode">show mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#test-l2fib">test l2fib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_l2.html#test-l2patch">test l2patch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html">Layer 3 IP CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#clear-ioam-rewrite">clear ioam rewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#disable-ip6-interface">disable ip6 interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#enable-ip6-interface">enable ip6 interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip">ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip-container">ip container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip-mroute">ip mroute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip-punt-policer">ip punt policer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip-punt-redirect">ip punt redirect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip-route">ip route</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip-table">ip table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip6">ip6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip6-punt-policer">ip6 punt policer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip6-punt-redirect">ip6 punt redirect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#ip6-table">ip6 table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#punt-socket-deregister">punt socket deregister</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#punt-socket-register">punt socket register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-interface-ip">set interface ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-interface-ip-address">set interface ip address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-interface-ip-source-and-port-range-check">set interface ip source-and-port-range-check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-interface-ip-table">set interface ip table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-interface-ip6-table">set interface ip6 table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-interface-reassembly">set interface reassembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-ioam-rewrite">set ioam rewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-ip-classify">set ip classify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-ip-flow-hash">set ip flow-hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-ip-source-and-port-range-check">set ip source-and-port-range-check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-ip6-classify">set ip6 classify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-ip6-flow-hash">set ip6 flow-hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#set-punt">set punt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ioam-summary">show ioam summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip">show ip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip-container">show ip container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip-local">show ip local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip-pmtu">show ip pmtu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip-punt-redirect">show ip punt redirect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip-source-and-port-range-check">show ip source-and-port-range-check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip-table">show ip table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip6">show ip6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip6-hbh">show ip6 hbh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip6-interface">show ip6 interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip6-local">show ip6 local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip6-punt-redirect">show ip6 punt redirect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip6-table">show ip6 table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-ip6-ll">show ip6-ll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#show-punt-socket-registrations">show punt socket registrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#test-ip-checksum">test ip checksum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip.html#test-ip6-link">test ip6 link</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nsim_nsim_c.html">Network Delay Simulator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsim_nsim_c.html#nsim-cross-connect-enable-disable">nsim cross-connect enable-disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsim_nsim_c.html#nsim-output-feature-enable-disable">nsim output-feature enable-disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsim_nsim_c.html#set-nsim">set nsim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsim_nsim_c.html#show-nsim">show nsim</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_http_static_static_server_c.html">Static HTTP Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_http_static_static_server_c.html#clear-http-static-cache">clear http static cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_http_static_static_server_c.html#http-static-server">http static server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_http_static_static_server_c.html#show-http-static-server">show http static server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vlib_unix.html">Unix Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_unix.html#show-plugins">show plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vlib.html">VLIB application library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#clear">clear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#clear-errors">clear errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#clear-logging">clear logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#clear-node-counters">clear node counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#clear-runtime">clear runtime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#clear-trace">clear trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#event-logger-clear">event-logger clear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#event-logger-resize">event-logger resize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#event-logger-restart">event-logger restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#event-logger-save">event-logger save</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#event-logger-stop">event-logger stop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#event-logger-trace">event-logger trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#memory-trace">memory-trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#restart">restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#set">set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#set-logging-class">set logging class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#set-logging-size">set logging size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#set-logging-unthrottle-time">set logging unthrottle-time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#set-node-function">set node function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show">show</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-buffers">show buffers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-cli">show cli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-clock">show clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-cpu">show cpu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-errors">show errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-event-logger">show event-logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-frame-queue">show frame-queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-frame-queue-histogram">show frame-queue histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-logging">show logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-logging-configuration">show logging configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-memory">show memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-node">show node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-node-counters">show node counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-physmem">show physmem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-punt-client">show punt client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-punt-db">show punt db</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-punt-reasons">show punt reasons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-punt-stats">show punt stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-runtime">show runtime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-threads">show threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-trace">show trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-vlib-frame-allocation">show vlib frame-allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-vlib-graph">show vlib graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#show-vlib-graphviz">show vlib graphviz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#suspend">suspend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#test">test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#test-frame-queue-nelts">test frame-queue nelts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#test-frame-queue-threshold">test frame-queue threshold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#test-log">test log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#test-sleep">test sleep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#trace">trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#trace-add">trace add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#trace-filter">trace filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib.html#trace-frame-queue">trace frame-queue</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan.html">VXLAN CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan.html#create-vxlan-tunnel">create vxlan tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan.html#set-flow-offload-vxlan">set flow-offload vxlan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan.html#set-interface-ip-vxlan-bypass">set interface ip vxlan-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan.html#set-interface-ip6-vxlan-bypass">set interface ip6 vxlan-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan.html#show-vxlan-tunnel">show vxlan tunnel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gbp.html">VXLAN-GBP CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gbp.html#create-vxlan-gbp-tunnel">create vxlan-gbp tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gbp.html#set-interface-ip-vxlan-gbp-bypass">set interface ip vxlan-gbp-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gbp.html#set-interface-ip6-vxlan-gbp-bypass">set interface ip6 vxlan-gbp-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gbp.html#show-vxlan-gbp-tunnel">show vxlan-gbp tunnel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_extras_deprecated_perfmon.html">Perfmon cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_perfmon.html#clear-pmc">clear pmc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_perfmon.html#set-pmc">set pmc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_perfmon.html#show-pmc">show pmc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_extras_deprecated_netmap.html">netmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_netmap.html#create-netmap">create netmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_extras_deprecated_netmap.html#delete-netmap">delete netmap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_abf.html">Abf cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_abf.html#abf-attach">abf attach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_abf.html#abf-policy">abf policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_abf.html#show-abf-attach">show abf attach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_abf.html#show-abf-policy">show abf policy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html">Acl cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#clear-acl-plugin-sessions">clear acl-plugin sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#set-acl-plugin">set acl-plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#set-acl-plugin-acl">set acl-plugin acl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#set-acl-plugin-interface">set acl-plugin interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-acl">show acl-plugin acl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-decode-5tuple">show acl-plugin decode 5tuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-interface">show acl-plugin interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-lookup-context">show acl-plugin lookup context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-lookup-user">show acl-plugin lookup user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-macip-acl">show acl-plugin macip acl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-macip-interface">show acl-plugin macip interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-memory">show acl-plugin memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-sessions">show acl-plugin sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_acl.html#show-acl-plugin-tables">show acl-plugin tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_adl.html">Adl cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_adl.html#adl-allowlist">adl allowlist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_adl.html#adl-interface">adl interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_af_xdp.html">Af_xdp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_af_xdp.html#create-interface-af-xdp">create interface af_xdp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_af_xdp.html#delete-interface-af-xdp">delete interface af_xdp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_arping.html">Arping cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_arping.html#arping">arping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_avf.html">Avf cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_avf.html#create-interface-avf">create interface avf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_avf.html#delete-interface-avf">delete interface avf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_avf.html#test-avf">test avf</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_bufmon.html">Bufmon cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_bufmon.html#clear-buffer-traces">clear buffer traces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_bufmon.html#set-buffer-traces">set buffer traces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_bufmon.html#show-buffer-traces">show buffer traces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_builtinurl.html">Builtinurl cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_builtinurl.html#builtinurl-enable">builtinurl enable</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_cdp.html">Cdp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cdp.html#cdp">cdp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cdp.html#show-cdp">show cdp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html">Cnat cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#cnat-translation">cnat translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#set-cnat-snat-policy">set cnat snat-policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#set-cnat-snat-policy-addr">set cnat snat-policy addr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#set-cnat-snat-policy-if">set cnat snat-policy if</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#set-cnat-snat-policy-prefix">set cnat snat-policy prefix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#show-cnat-client">show cnat client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#show-cnat-session">show cnat session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#show-cnat-snat-policy">show cnat snat-policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#show-cnat-timestamp">show cnat timestamp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#show-cnat-translation">show cnat translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_cnat.html#test-cnat-scanner">test cnat scanner</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_crypto_sw_scheduler.html">Crypto_sw_scheduler cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_crypto_sw_scheduler.html#set-sw-scheduler">set sw_scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_crypto_sw_scheduler.html#show-sw-scheduler-workers">show sw_scheduler workers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ct6.html">Ct6 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ct6.html#set-ct6">set ct6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ct6.html#show-ip6-connection-tracker">show ip6 connection-tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ct6.html#test-ip6-connection-tracker">test ip6 connection-tracker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html">Dhcp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#dhcp6-client">dhcp6 client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#dhcp6-pd-client">dhcp6 pd client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#set-dhcp-client">set dhcp client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#set-dhcp-option-82-vss">set dhcp option-82 vss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#set-dhcp-proxy">set dhcp proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#set-dhcpv6-proxy">set dhcpv6 proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#set-dhcpv6-vss">set dhcpv6 vss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#set-ip6-address">set ip6 address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcp-client">show dhcp client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcp-option-82-address-interface">show dhcp option-82-address interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcp-proxy">show dhcp proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcp-vss">show dhcp vss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcp6-addresses">show dhcp6 addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcp6-clients">show dhcp6 clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcpv6-link-address-interface">show dhcpv6 link-address interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcpv6-proxy">show dhcpv6 proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-dhcpv6-vss">show dhcpv6 vss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-ip6-addresses">show ip6 addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-ip6-pd-clients">show ip6 pd clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dhcp.html#show-ip6-prefixes">show ip6 prefixes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_dispatch-trace.html">Dispatch-trace cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dispatch-trace.html#pcap-dispatch-trace">pcap dispatch trace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_dns.html">Dns cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dns.html#dns-cache">dns cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dns.html#show-dns-cache">show dns cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dns.html#show-dns-servers">show dns servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dns.html#test-dns-expire">test dns expire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dns.html#test-dns-format">test dns format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dns.html#test-dns-unformat">test dns unformat</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_cryptodev.html">Cryptodev cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_cryptodev.html#set-cryptodev-assignment">set cryptodev assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_dpdk_cryptodev.html#show-cryptodev-assignment">show cryptodev assignment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_flowprobe.html">Flowprobe cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_flowprobe.html#flowprobe-feature-add-del">flowprobe feature add-del</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_flowprobe.html#flowprobe-params">flowprobe params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_flowprobe.html#show-flowprobe-feature">show flowprobe feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_flowprobe.html#show-flowprobe-params">show flowprobe params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_flowprobe.html#show-flowprobe-statistics">show flowprobe statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_flowprobe.html#show-flowprobe-table">show flowprobe table</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html">Gbp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#gbp-bridge-domain">gbp bridge-domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#gbp-contract">gbp contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#gbp-endpoint">gbp endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#gbp-endpoint-group">gbp endpoint-group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#gbp-ext-itf">gbp ext-itf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#gbp-route-domain">gbp route-domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#gbp-subnet">gbp subnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-bridge-domain">show gbp bridge-domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-contract">show gbp contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-endpoint">show gbp endpoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-endpoint-group">show gbp endpoint-group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-ext-itf">show gbp ext-itf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-recirc">show gbp recirc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-route-domain">show gbp route-domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-scanner">show gbp scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-subnet">show gbp subnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gbp.html#show-gbp-vxlan">show gbp vxlan</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_geneve.html">Geneve cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_geneve.html#create-geneve-tunnel">create geneve tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_geneve.html#set-interface-ip-geneve-bypass">set interface ip geneve-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_geneve.html#set-interface-ip6-geneve-bypass">set interface ip6 geneve-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_geneve.html#show-geneve-tunnel">show geneve tunnel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_gtpu.html">Gtpu cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gtpu.html#create-gtpu-tunnel">create gtpu tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gtpu.html#set-flow-offload-gtpu">set flow-offload gtpu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gtpu.html#set-interface-ip-gtpu-bypass">set interface ip gtpu-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gtpu.html#set-interface-ip6-gtpu-bypass">set interface ip6 gtpu-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_gtpu.html#show-gtpu-tunnel">show gtpu tunnel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_hs_apps.html">Hs_apps cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_hs_apps.html#test-echo-clients">test echo clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_hs_apps.html#test-echo-server">test echo server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_hs_apps.html#test-http-server">test http server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_hs_apps.html#test-proxy-server">test proxy server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html">Igmp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html#clear-igmp">clear igmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html#igmp">igmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html#igmp-listen">igmp listen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html#igmp-proxy-dev">igmp proxy-dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html#igmp-proxy-dev-itf">igmp proxy-dev itf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html#show-igmp-config">show igmp config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html#show-igmp-ssm-ranges">show igmp ssm-ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_igmp.html#test-igmp-timers">test igmp timers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html">Ikev2 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html#ikev2-dpd-disable">ikev2 dpd disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html#ikev2-initiate">ikev2 initiate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html#ikev2-profile">ikev2 profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html#ikev2-set-liveness">ikev2 set liveness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html#ikev2-set-logging-level">ikev2 set logging level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html#set-ikev2-local-key">set ikev2 local key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html#show-ikev2-profile">show ikev2 profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ikev2.html#show-ikev2-sa">show ikev2 sa</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ila.html">Ila cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ila.html#ila-entry">ila entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ila.html#ila-interface">ila interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ila.html#show-ila-entries">show ila entries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_analyse_ip6.html">Ip6 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_analyse_ip6.html#set-ioam-analyse">set ioam analyse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_analyse_ip6.html#show-ioam-analyse">show ioam analyse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_encap.html">Encap cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_encap.html#show-ioam-e2e">show ioam e2e</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_encap.html#show-ioam-pot">show ioam pot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_encap.html#show-ioam-trace">show ioam trace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_export.html">Export cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_export.html#set-ioam-export-ipfix">set ioam export ipfix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_export-vxlan-gpe.html">Export-vxlan-gpe cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_export-vxlan-gpe.html#set-vxlan-gpe-ioam-export-ipfix">set vxlan-gpe-ioam export ipfix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_ip6.html">Ip6 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_ip6.html#set-ioam-ip6-cache">set ioam ip6 cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_ip6.html#set-ioam-ip6-sr-tunnel-select">set ioam ip6 sr-tunnel-select</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_ip6.html#show-ioam-ip6-cache">show ioam ip6 cache</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-pot.html">Lib-pot cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-pot.html#clear-pot-profile">clear pot profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-pot.html#set-pot-profile">set pot profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-pot.html#set-pot-profile-active">set pot profile-active</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-pot.html#show-pot-profile">show pot profile</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-trace.html">Lib-trace cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-trace.html#clear-ioam-trace-profile">clear ioam-trace profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-trace.html#set-ioam-trace-profile">set ioam-trace profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-trace.html#show-ioam-trace-profile">show ioam-trace profile</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-vxlan-gpe.html">Lib-vxlan-gpe cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-vxlan-gpe.html#clear-vxlan-gpe-ioam-rewrite">clear vxlan-gpe-ioam rewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-vxlan-gpe.html#set-vxlan-gpe-ioam">set vxlan-gpe-ioam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-vxlan-gpe.html#set-vxlan-gpe-ioam-rewrite">set vxlan-gpe-ioam rewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-vxlan-gpe.html#set-vxlan-gpe-ioam-transit">set vxlan-gpe-ioam-transit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_lib-vxlan-gpe.html#show-ioam-vxlan-gpe-trace">show ioam vxlan-gpe trace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_udp-ping.html">Udp-ping cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_udp-ping.html#set-udp-ping">set udp-ping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_udp-ping.html#set-udp-ping-export-ipfix">set udp-ping export-ipfix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ioam_udp-ping.html#show-udp-ping-summary">show udp-ping summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_l2e.html">L2e cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2e.html#set-interface-l2-l2-emulation">set interface l2 l2-emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2e.html#show-interface-l2-l2-emulation">show interface l2 l2-emulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_l2tp.html">L2tp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2tp.html#clear-l2tp-counters">clear l2tp counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2tp.html#create-l2tpv3-tunnel">create l2tpv3 tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2tp.html#set-interface-ip6-l2tpv3">set interface ip6 l2tpv3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2tp.html#set-l2tpv3-tunnel-cookie">set l2tpv3 tunnel cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2tp.html#show-l2tpv3">show l2tpv3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l2tp.html#test-lt2p-counters">test lt2p counters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_l3xc.html">L3xc cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l3xc.html#l3xc">l3xc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_l3xc.html#show-l3xc">show l3xc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_lacp.html">Lacp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lacp.html#debug-lacp">debug lacp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lacp.html#show-lacp">show lacp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html">Lb cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#lb-as">lb as</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#lb-conf">lb conf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#lb-flush-vip">lb flush vip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#lb-set-interface-nat4">lb set interface nat4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#lb-set-interface-nat6">lb set interface nat6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#lb-vip">lb vip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#show-lb">show lb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#show-lb-vips">show lb vips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lb.html#test-lb-flowtable-flush">test lb flowtable flush</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp.html">Linux-cp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp.html#lcp-create">lcp create</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp.html#lcp-default">lcp default</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp.html#lcp-delete">lcp delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp.html#show-lcp">show lcp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp_test.html">Test cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_linux-cp_test.html#test-lcp">test lcp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html">Lisp-cp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-adjacency">lisp adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-disable">lisp disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-eid-table">lisp eid-table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-eid-table-map">lisp eid-table map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-enable">lisp enable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-locator">lisp locator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-locator-set">lisp locator-set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-map-register">lisp map-register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-map-request-itr-rlocs">lisp map-request itr-rlocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-map-request-mode">lisp map-request mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-map-resolver">lisp map-resolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-map-server">lisp map-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-pitr">lisp pitr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-remote-mapping">lisp remote-mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-rloc-probe">lisp rloc-probe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#lisp-use-petr">lisp use-petr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-adjacency">one adjacency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-disable">one disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-eid-table">one eid-table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-eid-table-map">one eid-table map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-enable">one enable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-l2-arp">one l2 arp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-locator">one locator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-locator-set">one locator-set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-map-register">one map-register</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-map-register-fallback-threshold">one map-register fallback-threshold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-map-register-ttl">one map-register ttl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-map-request-itr-rlocs">one map-request itr-rlocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-map-request-mode">one map-request mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-map-resolver">one map-resolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-map-server">one map-server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-ndp">one ndp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-nsh-mapping">one nsh-mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-petr-mode">one petr mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-pitr">one pitr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-pitr-mode">one pitr mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-remote-mapping">one remote-mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-rloc-probe">one rloc-probe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-statistics">one statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-statistics-flush">one statistics flush</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-use-petr">one use-petr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#one-xtr-mode">one xtr mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-adjacencies">show lisp adjacencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-eid-table">show lisp eid-table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-eid-table-map">show lisp eid-table map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-locator-set">show lisp locator-set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-map-request-itr-rlocs">show lisp map-request itr-rlocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-map-request-mode">show lisp map-request mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-map-resolvers">show lisp map-resolvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-petr">show lisp petr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-pitr">show lisp pitr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-lisp-status">show lisp status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-adjacencies">show one adjacencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-eid-table">show one eid-table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-eid-table-map">show one eid-table map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-l2-arp-entries">show one l2 arp entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-locator-set">show one locator-set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-map-register-fallback-threshold">show one map-register fallback-threshold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-map-register-state">show one map-register state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-map-register-ttl">show one map-register ttl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-map-request-itr-rlocs">show one map-request itr-rlocs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-map-request-mode">show one map-request mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-map-resolvers">show one map-resolvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-map-servers">show one map-servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-modes">show one modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-ndp-entries">show one ndp entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-petr">show one petr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-pitr">show one pitr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-rloc-state">show one rloc state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-statistics-details">show one statistics details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-statistics-status">show one statistics status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-cp.html#show-one-status">show one status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html">Lisp-gpe cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#gpe">gpe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#gpe-encap">gpe encap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#gpe-entry">gpe entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#gpe-iface">gpe iface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#gpe-native-forward">gpe native-forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#show-gpe-encap">show gpe encap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#show-gpe-entry">show gpe entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#show-gpe-interface">show gpe interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#show-gpe-native-forward">show gpe native-forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#show-gpe-sub-interface">show gpe sub-interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#show-gpe-tenant">show gpe tenant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_lisp-gpe.html#test-one-nsh">test one nsh</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_test.html">Test cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lisp_test.html#test-lisp-cp">test lisp cp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_lldp.html">Lldp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lldp.html#set-interface-lldp">set interface lldp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lldp.html#set-lldp">set lldp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_lldp.html#show-lldp">show lldp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_mactime.html">Mactime cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mactime.html#clear-mactime">clear mactime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mactime.html#mactime-enable-disable">mactime enable-disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mactime.html#show-mactime">show mactime</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_map.html">Map cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-add-domain">map add domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-add-rule">map add rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-del-domain">map del domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-interface">map interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-params-fragment">map params fragment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-params-icmp-source-address">map params icmp source-address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-params-icmp6-unreachables">map params icmp6 unreachables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-params-pre-resolve">map params pre-resolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-params-security-check">map params security-check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-params-tcp-mss">map params tcp-mss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#map-params-traffic-class">map params traffic-class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#show-map-domain">show map domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_map.html#show-map-stats">show map stats</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_marvell_pp2.html">Pp2 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_marvell_pp2.html#create-interface-marvell-pp2">create interface marvell pp2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_marvell_pp2.html#delete-interface-marvell-pp2">delete interface marvell pp2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_mdata.html">Mdata cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mdata.html#buffer-metadata-tracking">buffer metadata tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mdata.html#show-buffer-metadata">show buffer metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_memif.html">Memif cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_memif.html#create-interface-memif">create interface memif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_memif.html#create-memif-socket">create memif socket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_memif.html#delete-interface-memif">delete interface memif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_memif.html#delete-memif-socket">delete memif socket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_memif.html#show-memif">show memif</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_mss_clamp.html">Mss_clamp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mss_clamp.html#set-interface-tcp-mss-clamp">set interface tcp-mss-clamp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_mss_clamp.html#show-interface-tcp-mss-clamp">show interface tcp-mss-clamp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html">Det44 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#det44-add">det44 add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#det44-close-session-in">det44 close session in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#det44-close-session-out">det44 close session out</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#det44-forward">det44 forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#det44-plugin">det44 plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#det44-reverse">det44 reverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#set-det44-timeouts">set det44 timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#set-interface-det44">set interface det44</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#show-det44-interfaces">show det44 interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#show-det44-mappings">show det44 mappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#show-det44-sessions">show det44 sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_det44.html#show-det44-timeouts">show det44 timeouts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html">Dslite cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html#dslite-add-pool-address">dslite add pool address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html#dslite-set-aftr-tunnel-endpoint-address">dslite set aftr-tunnel-endpoint-address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html#dslite-set-b4-tunnel-endpoint-address">dslite set b4-tunnel-endpoint-address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html#show-dslite-aftr-tunnel-endpoint-address">show dslite aftr-tunnel-endpoint-address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html#show-dslite-b4-tunnel-endpoint-address">show dslite b4-tunnel-endpoint-address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html#show-dslite-pool">show dslite pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_dslite.html#show-dslite-sessions">show dslite sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html">Nat44-ed cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat-ipfix-logging">nat ipfix logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat-mss-clamping">nat mss-clamping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat-set-logging-level">nat set logging level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44">nat44</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44-add-address">nat44 add address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44-add-identity-mapping">nat44 add identity mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44-add-interface-address">nat44 add interface address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44-add-load-balancing-back-end">nat44 add load-balancing back-end</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44-add-load-balancing-static-mapping">nat44 add load-balancing static mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44-add-static-mapping">nat44 add static mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44-del-session">nat44 del session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#nat44-forwarding">nat44 forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#set-interface-nat44">set interface nat44</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#set-nat-frame-queue-nelts">set nat frame-queue-nelts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#set-nat-timeout">set nat timeout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#set-nat-workers">set nat workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#set-nat44-session-limit">set nat44 session limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat-mss-clamping">show nat mss-clamping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat-timeouts">show nat timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat-workers">show nat workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat44-addresses">show nat44 addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat44-hash-tables">show nat44 hash tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat44-interface-address">show nat44 interface address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat44-interfaces">show nat44 interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat44-sessions">show nat44 sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat44-static-mappings">show nat44 static mappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ed.html#show-nat44-summary">show nat44 summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html">Nat44-ei cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#clear-nat44-ei-sessions">clear nat44 ei sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei">nat44 ei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-add-address">nat44 ei add address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-add-identity-mapping">nat44 ei add identity mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-add-interface-address">nat44 ei add interface address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-add-static-mapping">nat44 ei add static mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-addr-port-assignment-alg">nat44 ei addr-port-assignment-alg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-del-session">nat44 ei del session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-del-user">nat44 ei del user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-forwarding">nat44 ei forwarding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-ha-failover">nat44 ei ha failover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-ha-flush">nat44 ei ha flush</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-ha-listener">nat44 ei ha listener</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-ha-resync">nat44 ei ha resync</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-ipfix-logging">nat44 ei ipfix logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-mss-clamping">nat44 ei mss-clamping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#nat44-ei-set-logging-level">nat44 ei set logging level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#set-interface-nat44-ei">set interface nat44 ei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#set-nat44-ei-timeout">set nat44 ei timeout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#set-nat44-ei-workers">set nat44 ei workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-addr-port-assignment-alg">show nat44 ei addr-port-assignment-alg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-addresses">show nat44 ei addresses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-ha">show nat44 ei ha</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-hash-tables">show nat44 ei hash tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-interface-address">show nat44 ei interface address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-interfaces">show nat44 ei interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-mss-clamping">show nat44 ei mss-clamping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-sessions">show nat44 ei sessions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-static-mappings">show nat44 ei static mappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-timeouts">show nat44 ei timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat44-ei.html#show-nat44-ei-workers">show nat44 ei workers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html">Nat64 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#nat64-add-interface-address">nat64 add interface address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#nat64-add-pool-address">nat64 add pool address</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#nat64-add-prefix">nat64 add prefix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#nat64-add-static-bib">nat64 add static bib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#nat64-plugin">nat64 plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#set-interface-nat64">set interface nat64</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#show-nat64-bib">show nat64 bib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#show-nat64-interfaces">show nat64 interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#show-nat64-pool">show nat64 pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#show-nat64-prefix">show nat64 prefix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat64.html#show-nat64-session-table">show nat64 session table</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat66.html">Nat66 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat66.html#nat66">nat66</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat66.html#nat66-add-static-mapping">nat66 add static mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat66.html#set-interface-nat66">set interface nat66</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat66.html#show-nat66-interfaces">show nat66 interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_nat66.html#show-nat66-static-mappings">show nat66 static mappings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nat_pnat.html">Pnat cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_pnat.html#set-pnat-translation">set pnat translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_pnat.html#show-pnat-interfaces">show pnat interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nat_pnat.html#show-pnat-translations">show pnat translations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nsh.html">Nsh cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsh.html#create-nsh-entry">create nsh entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsh.html#create-nsh-map">create nsh map</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nsh_nsh-md2-ioam.html">Nsh-md2-ioam cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsh_nsh-md2-ioam.html#set-nsh-md2-ioam-transit">set nsh-md2-ioam-transit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsh_nsh-md2-ioam.html#show-ioam-nsh-lisp-gpe-trace">show ioam nsh-lisp-gpe trace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html">Export-nsh-md2-ioam cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html#set-nsh-md2-ioam-export-ipfix">set nsh-md2-ioam export ipfix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_oddbuf.html">Oddbuf cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_oddbuf.html#oddbuf-configure">oddbuf configure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_oddbuf.html#oddbuf-enable-disable">oddbuf enable-disable</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html">Perfmon cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html#perfmon-reset">perfmon reset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html#perfmon-start">perfmon start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html#perfmon-stop">perfmon stop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html#show-perfmon-active-bundle">show perfmon active-bundle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html#show-perfmon-bundle">show perfmon bundle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html#show-perfmon-source">show perfmon source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_perfmon.html#show-perfmon-statistics">show perfmon statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_ping.html">Ping cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_ping.html#ping">ping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_pppoe.html">Pppoe cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_pppoe.html#create-pppoe-cp">create pppoe cp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_pppoe.html#create-pppoe-session">create pppoe session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_pppoe.html#show-pppoe-fib">show pppoe fib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_pppoe.html#show-pppoe-session">show pppoe session</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_quic.html">Quic cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_quic.html#quic-set-crypto-api">quic set crypto api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_quic.html#quic-set-fifo-size">quic set fifo-size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_quic.html#set-quic-cc">set quic cc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_quic.html#set-quic-max-packets-per-key">set quic max_packets_per_key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_quic.html#show-quic">show quic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_quic.html#show-quic-crypto-context">show quic crypto context</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_rdma.html">Rdma cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_rdma.html#create-interface-rdma">create interface rdma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_rdma.html#delete-interface-rdma">delete interface rdma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_rdma.html#test-rdma-dump">test rdma dump</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html">Snort cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#show-snort-clients">show snort clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#show-snort-instances">show snort instances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#show-snort-interfaces">show snort interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#show-snort-mode">show snort mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#snort-attach">snort attach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#snort-create-instance">snort create-instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#snort-detach">snort detach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#snort-mode-interrupt">snort mode interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_snort.html#snort-mode-polling">snort mode polling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_stn.html">Stn cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_stn.html#show-stn-rules">show stn rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_stn.html#stn-rule">stn rule</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_svs.html">Svs cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_svs.html#show-svs">show svs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_svs.html#svs-enable">svs enable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_svs.html#svs-route">svs route</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_svs.html#svs-table">svs table</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_tlsopenssl.html">Tlsopenssl cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_tlsopenssl.html#tls-openssl-set">tls openssl set</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_tracedump.html">Tracedump cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_tracedump.html#show-graph">show graph</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html">Unittest cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-api-fuzz">test api fuzz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-bier">test bier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-bihash">test bihash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-chained-buffer-linearization">test chained-buffer-linearization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-chained-buffer-linearization-speed">test chained-buffer-linearization speed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-counter">test counter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-crash">test crash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-crypto">test crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-format-vlib">test format-vlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-hash-memory">test hash_memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-interface-link-state">test interface link-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-ipsec">test ipsec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-llist">test llist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-membulk">test membulk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-phc">test phc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-policing">test policing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-pool">test pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-punt">test punt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-rbtree">test rbtree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-segment-manager">test segment-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-sparse-vec">test sparse_vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-string">test string</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-svm-fifo">test svm fifo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-time-range">test time-range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-vlib">test vlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_unittest.html#test-vlib2">test vlib2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_urpf.html">Urpf cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_urpf.html#set-urpf">set urpf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_urpf.html#set-urpf-accept">set urpf-accept</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_vmxnet3.html">Vmxnet3 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vmxnet3.html#create-interface-vmxnet3">create interface vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vmxnet3.html#delete-interface-vmxnet3">delete interface vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vmxnet3.html#show-vmxnet3">show vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vmxnet3.html#test-vmxnet3">test vmxnet3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_vrrp.html">Vrrp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vrrp.html#show-vrrp-vr">show vrrp vr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vrrp.html#vrrp-peers">vrrp peers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vrrp.html#vrrp-proto">vrrp proto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vrrp.html#vrrp-vr-add">vrrp vr add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vrrp.html#vrrp-vr-del">vrrp vr del</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_vrrp.html#vrrp-vr-track-if">vrrp vr track-if</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_plugins_wireguard.html">Wireguard cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_wireguard.html#show-wireguard-interface">show wireguard interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_wireguard.html#show-wireguard-peer">show wireguard peer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_wireguard.html#wireguard-create">wireguard create</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_wireguard.html#wireguard-delete">wireguard delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_wireguard.html#wireguard-peer-add">wireguard peer add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_plugins_wireguard.html#wireguard-peer-remove">wireguard peer remove</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vlib_pci.html">Pci cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlib_pci.html#show-pci">show pci</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vlibapi.html">Vlibapi cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibapi.html#test-node-serialize">test node serialize</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html">Vlibmemory cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#api-trace">api trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#clear-api-histogram">clear api histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#show-api">show api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#show-api-clients">show api clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#show-api-dump">show api dump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#show-api-histogram">show api histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#show-api-message-table">show api message-table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#show-api-plugin">show api plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#show-api-ring-stats">show api ring-stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vlibmemory.html#show-api-trace-status">show api trace-status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_adj.html">Adj cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_adj.html#adjacency-counters">adjacency counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_adj.html#show-adj">show adj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_adj.html#show-adj-nbr">show adj nbr</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_arp.html">Arp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_arp.html#set-arp-proxy">set arp proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_arp.html#set-interface-proxy-arp">set interface proxy-arp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_arp.html#show-arp-proxy">show arp proxy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html">Bfd cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-key-del">bfd key del</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-key-set">bfd key set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-udp-echo-source-del">bfd udp echo-source del</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-udp-echo-source-set">bfd udp echo-source set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-udp-session-add">bfd udp session add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-udp-session-auth-activate">bfd udp session auth activate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-udp-session-auth-deactivate">bfd udp session auth deactivate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-udp-session-del">bfd udp session del</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-udp-session-mod">bfd udp session mod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#bfd-udp-session-set-flags">bfd udp session set-flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bfd.html#show-bfd">show bfd</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html">Bier cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html#bier-route">bier route</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html#bier-table">bier table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html#show-bier-bift">show bier bift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html#show-bier-disp-entry">show bier disp entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html#show-bier-disp-table">show bier disp table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html#show-bier-fib">show bier fib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html#show-bier-fmask">show bier fmask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bier.html#show-bier-imp">show bier imp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_bonding.html">Bonding cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bonding.html#bond-add">bond add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bonding.html#bond-del">bond del</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bonding.html#create-bond">create bond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bonding.html#delete-bond">delete bond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bonding.html#set-interface-bond">set interface bond</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_bonding.html#show-bond">show bond</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html">Classify cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#classify-filter">classify filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#classify-session">classify session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#classify-table">classify table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#set-interface-input-acl">set interface input acl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#set-interface-output-acl">set interface output acl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#set-policer-classify">set policer classify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#show-classify-filter">show classify filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#show-classify-flow">show classify flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#show-classify-policer">show classify policer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#show-classify-tables">show classify tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#show-inacl">show inacl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#show-outacl">show outacl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_classify.html#test-classify">test classify</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html">Crypto cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html#set-crypto-async-dispatch-interrupt">set crypto async dispatch interrupt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html#set-crypto-async-dispatch-polling">set crypto async dispatch polling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html#set-crypto-async-handler">set crypto async handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html#set-crypto-handler">set crypto handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html#show-crypto-async-handlers">show crypto async handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html#show-crypto-async-status">show crypto async status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html#show-crypto-engines">show crypto engines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_crypto.html#show-crypto-handlers">show crypto handlers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_devices_pipe.html">Pipe cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_pipe.html#pipe-create">pipe create</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_pipe.html#pipe-delete">pipe delete</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_devices_tap.html">Tap cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_tap.html#create-tap">create tap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_tap.html#delete-tap">delete tap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_tap.html#set-tap-offload">set tap offload</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_dpo.html">Dpo cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_dpo.html#show-dpo-memory">show dpo memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_dpo.html#show-load-balance">show load-balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_dpo.html#show-load-balance-map">show load-balance-map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_dpo.html#show-lookup-dpo">show lookup-dpo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_feature.html">Feature cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_feature.html#set-interface-feature">set interface feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_feature.html#show-features">show features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html">Fib cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#clear-fib-walk">clear fib walk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#set-fib-walk-histogram-elements-size">set fib walk histogram elements size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#set-fib-walk-quota">set fib walk quota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-fib-entry-delegate">show fib entry-delegate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-fib-memory">show fib memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-fib-path-lists">show fib path-lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-fib-paths">show fib paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-fib-source">show fib source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-fib-urpf">show fib uRPF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-fib-walk">show fib walk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-ip-fib">show ip fib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-ip6-fib">show ip6 fib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#show-mpls-fib">show mpls fib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_fib.html#test-fib-walk-process">test fib-walk-process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_flow.html">Flow cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_flow.html#show-flow-entry">show flow entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_flow.html#show-flow-interface">show flow interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_flow.html#show-flow-ranges">show flow ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_flow.html#test-flow">test flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_gre.html">Gre cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_gre.html#create-gre-tunnel">create gre tunnel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_gso.html">Gso cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_gso.html#set-interface-feature-gso">set interface feature gso</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_hash.html">Hash cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_hash.html#show-hash">show hash</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html">Ip-neighbor cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#ip-neighbor">ip neighbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#set-ip-neighbor">set ip neighbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#set-ip-neighbor-config">set ip neighbor-config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip-neighbor">show ip neighbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip-neighbor-config">show ip neighbor-config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip-neighbor-watcher">show ip neighbor-watcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip-neighbors">show ip neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip4-neighbor">show ip4 neighbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip4-neighbor-sorted">show ip4 neighbor-sorted</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip4-neighbors">show ip4 neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip6-neighbor">show ip6 neighbor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip6-neighbor-sorted">show ip6 neighbor-sorted</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip-neighbor.html#show-ip6-neighbors">show ip6 neighbors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_ip_reass.html">Reass cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip_reass.html#show-ip4-full-reassembly">show ip4-full-reassembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip_reass.html#show-ip4-sv-reassembly">show ip4-sv-reassembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip_reass.html#show-ip6-full-reassembly">show ip6-full-reassembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip_reass.html#show-ip6-sv-reassembly">show ip6-sv-reassembly</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_ip6-nd.html">Ip6-nd cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip6-nd.html#ip6-nd">ip6 nd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip6-nd.html#ip6-nd-address-autoconfig">ip6 nd address autoconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip6-nd.html#set-interface-ip6-nd-proxy">set interface ip6-nd proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ip6-nd.html#set-ip6-nd-proxy">set ip6 nd proxy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_ipfix-export.html">Ipfix-export cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipfix-export.html#ipfix-classify-table">ipfix classify table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipfix-export.html#ipfix-flush">ipfix flush</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipfix-export.html#set-ipfix-classify-stream">set ipfix classify stream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipfix-export.html#set-ipfix-exporter">set ipfix exporter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_ipip.html">Ipip cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipip.html#create-6rd-tunnel">create 6rd tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipip.html#create-ipip-tunnel">create ipip tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipip.html#delete-6rd-tunnel">delete 6rd tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipip.html#delete-ipip-tunnel">delete ipip tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipip.html#show-ipip-tunnel-hash">show ipip tunnel-hash</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html">Ipsec cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#clear-ipsec-counters">clear ipsec counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#clear-ipsec-sa">clear ipsec sa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#ipsec-itf-create">ipsec itf create</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#ipsec-itf-delete">ipsec itf delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#ipsec-policy">ipsec policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#ipsec-sa">ipsec sa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#ipsec-select-backend">ipsec select backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#ipsec-spd">ipsec spd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#ipsec-tunnel-protect">ipsec tunnel protect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#set-interface-ipsec-spd">set interface ipsec spd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#set-ipsec-async-mode">set ipsec async mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#show-ipsec-all">show ipsec all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#show-ipsec-backends">show ipsec backends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#show-ipsec-interface">show ipsec interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#show-ipsec-protect">show ipsec protect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#show-ipsec-protect-hash">show ipsec protect-hash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#show-ipsec-sa">show ipsec sa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#show-ipsec-spd">show ipsec spd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_ipsec.html#show-ipsec-tunnel">show ipsec tunnel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_lawful-intercept.html">Lawful-intercept cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_lawful-intercept.html#set-li">set li</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_mfib.html">Mfib cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mfib.html#show-ip-mfib">show ip mfib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mfib.html#show-ip6-mfib">show ip6 mfib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mfib.html#show-mfib-entry">show mfib entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mfib.html#show-mfib-interface">show mfib interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_mpls.html">Mpls cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mpls.html#mpls-local-label">mpls local-label</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mpls.html#mpls-table">mpls table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mpls.html#mpls-tunnel">mpls tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mpls.html#set-interface-mpls">set interface mpls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_mpls.html#show-mpls-interface">show mpls interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html">Pg cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#create-packet-generator">create packet-generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#packet-generator">packet-generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#packet-generator-capture">packet-generator capture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#packet-generator-configure">packet-generator configure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#packet-generator-delete">packet-generator delete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#packet-generator-disable-stream">packet-generator disable-stream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#packet-generator-mac-filter">packet-generator mac-filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#packet-generator-new">packet-generator new</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_pg.html#show-packet-generator">show packet-generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html">Policer cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html#configure-policer">configure policer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html#policer-add">policer add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html#policer-bind">policer bind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html#policer-del">policer del</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html#policer-input">policer input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html#show-policer">show policer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_policer.html#show-policer-pools">show policer pools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html">Qos cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html#qos-egress-map">qos egress map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html#qos-mark">qos mark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html#qos-record">qos record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html#qos-store">qos store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html#show-qos-egress-map">show qos egress map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html#show-qos-mark">show qos mark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html#show-qos-record">show qos record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_qos.html#show-qos-store">show qos store</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_session.html">Session cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#app-ns">app ns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#clear-session">clear session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#clear-session-dbg-clock-cycles">clear session dbg clock_cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#session">session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#session-replay-fifo">session replay fifo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#session-rule">session rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#show-app">show app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#show-app-certificate">show app certificate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#show-app-ns">show app ns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#show-segment-manager">show segment-manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#show-session">show session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#show-session-dbg-clock-cycles">show session dbg clock_cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#show-session-fifo-trace">show session fifo trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_session.html#show-session-rules">show session rules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_span.html">Span cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_span.html#set-interface-span">set interface span</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_span.html#show-interface-span">show interface span</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_srmpls.html">Srmpls cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srmpls.html#show-sr-mpls-policies">show sr mpls policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srmpls.html#show-sr-mpls-steering-policies">show sr mpls steering policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srmpls.html#sr-mpls-policy">sr mpls policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srmpls.html#sr-mpls-policy-te">sr mpls policy te</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srmpls.html#sr-mpls-steer">sr mpls steer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html">Srv6 cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#clear-sr-localsid-counters">clear sr localsid-counters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#set-sr-encaps-hop-limit">set sr encaps hop-limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#set-sr-encaps-source">set sr encaps source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#show-sr-encaps-hop-limit">show sr encaps hop-limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#show-sr-encaps-source-addr">show sr encaps source addr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#show-sr-localsids">show sr localsids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#show-sr-localsids-behaviors">show sr localsids behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#show-sr-policies">show sr policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#show-sr-policy-behaviors">show sr policy behaviors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#show-sr-steering-policies">show sr steering-policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#sr-localsid">sr localsid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#sr-policy">sr policy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_srv6.html#sr-steer">sr steer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_syslog.html">Syslog cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_syslog.html#set-syslog-filter">set syslog filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_syslog.html#set-syslog-sender">set syslog sender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_syslog.html#show-syslog-filter">show syslog filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_syslog.html#show-syslog-sender">show syslog sender</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_syslog.html#test-syslog">test syslog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html">Tcp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html#clear-tcp-stats">clear tcp stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html#ip-syn-filter">ip syn filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html#show-tcp-punt">show tcp punt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html#show-tcp-scoreboard-trace">show tcp scoreboard trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html#show-tcp-stats">show tcp stats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html#tcp-debug">tcp debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html#tcp-replay-scoreboard">tcp replay scoreboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_tcp.html#tcp-src-address">tcp src-address</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_teib.html">Teib cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_teib.html#create-teib">create teib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_teib.html#delete-teib">delete teib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_teib.html#show-teib">show teib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_udp.html">Udp cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_udp.html#show-udp-encap">show udp encap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_udp.html#show-udp-punt">show udp punt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_udp.html#udp-decap">udp decap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_udp.html#udp-encap">udp encap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_unix.html">Unix cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_unix.html#show-gdb">show gdb</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gpe.html">Vxlan-gpe cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gpe.html#create-vxlan-gpe-tunnel">create vxlan-gpe tunnel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gpe.html#set-interface-ip-vxlan-gpe-bypass">set interface ip vxlan-gpe-bypass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_vxlan-gpe.html#set-interface-ip6-vxlan-gpe-bypass">set interface ip6 vxlan-gpe-bypass</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vpp_api.html">Api cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_api.html#binary-api">binary-api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_api.html#set-significant-error">set significant error</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vpp_app.html">App cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_app.html#ip-virtual">ip virtual</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vpp_stats.html">Stats cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_stats.html#show-statistics-segment">show statistics segment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vpp_vnet.html">Vnet cli reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vpp_vnet.html#show-bihash">show bihash</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html">vHost User</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html#create-interface-virtio">create interface virtio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html#create-vhost-user">create vhost-user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html#delete-interface-virtio">delete interface virtio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html#delete-vhost-user">delete vhost-user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html#set-virtio-pci">set virtio pci</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html#show-vhost-user">show vhost-user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clis/clicmd_src_vnet_devices_virtio.html#show-virtio-pci">show virtio pci</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="interface/setinterface.html" class="btn btn-neutral float-left" title="Set Interface Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clis/clicmd_src_vnet_ethernet.html" class="btn btn-neutral float-right" title="ARP and Loopback CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layer 3 IP CLI &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Network Delay Simulator" href="clicmd_src_plugins_nsim_nsim_c.html" />
+    <link rel="prev" title="Layer 2 CLI" href="clicmd_src_vnet_l2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ethernet.html">ARP and Loopback CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_vlib_unix_cj_c.html">Circular Journal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix_cli_c.html">Command line session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_dpdk-ipsec.html">DPDK Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_device.html">DPDK and pcap tx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_af_packet.html">Host Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app_version_c.html">Image Version Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_init_c.html">Init functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet.html">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_l2.html">Layer 2 CLI</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Layer 3 IP CLI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clear-ioam-rewrite">clear ioam rewrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disable-ip6-interface">disable ip6 interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-ip6-interface">enable ip6 interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip">ip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-container">ip container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-mroute">ip mroute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-punt-policer">ip punt policer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-punt-redirect">ip punt redirect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-route">ip route</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-table">ip table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip6">ip6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip6-punt-policer">ip6 punt policer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip6-punt-redirect">ip6 punt redirect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip6-table">ip6 table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#punt-socket-deregister">punt socket deregister</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#punt-socket-register">punt socket register</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-ip">set interface ip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-ip-address">set interface ip address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-ip-source-and-port-range-check">set interface ip source-and-port-range-check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-ip-table">set interface ip table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-ip6-table">set interface ip6 table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-reassembly">set interface reassembly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-ioam-rewrite">set ioam rewrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-ip-classify">set ip classify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-ip-flow-hash">set ip flow-hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-ip-source-and-port-range-check">set ip source-and-port-range-check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-ip6-classify">set ip6 classify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-ip6-flow-hash">set ip6 flow-hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-punt">set punt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ioam-summary">show ioam summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip">show ip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip-container">show ip container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip-local">show ip local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip-pmtu">show ip pmtu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip-punt-redirect">show ip punt redirect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip-source-and-port-range-check">show ip source-and-port-range-check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip-table">show ip table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip6">show ip6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip6-hbh">show ip6 hbh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip6-interface">show ip6 interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip6-local">show ip6 local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip6-punt-redirect">show ip6 punt redirect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip6-table">show ip6 table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-ip6-ll">show ip6-ll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-punt-socket-registrations">show punt socket registrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-ip-checksum">test ip checksum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-ip6-link">test ip6 link</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsim_nsim_c.html">Network Delay Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_http_static_static_server_c.html">Static HTTP Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix.html">Unix Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib.html">VLIB application library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan.html">VXLAN CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gbp.html">VXLAN-GBP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_netmap.html">netmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_abf.html">Abf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_acl.html">Acl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_adl.html">Adl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_af_xdp.html">Af_xdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_arping.html">Arping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_avf.html">Avf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_bufmon.html">Bufmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_builtinurl.html">Builtinurl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cdp.html">Cdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cnat.html">Cnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_crypto_sw_scheduler.html">Crypto_sw_scheduler cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ct6.html">Ct6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dhcp.html">Dhcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dispatch-trace.html">Dispatch-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dns.html">Dns cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_cryptodev.html">Cryptodev cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_flowprobe.html">Flowprobe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gbp.html">Gbp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_geneve.html">Geneve cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gtpu.html">Gtpu cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_hs_apps.html">Hs_apps cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_igmp.html">Igmp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ikev2.html">Ikev2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ila.html">Ila cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_analyse_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_encap.html">Encap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export.html">Export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export-vxlan-gpe.html">Export-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-pot.html">Lib-pot cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-trace.html">Lib-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-vxlan-gpe.html">Lib-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_udp-ping.html">Udp-ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2e.html">L2e cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2tp.html">L2tp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l3xc.html">L3xc cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lacp.html">Lacp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lb.html">Lb cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp.html">Linux-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-cp.html">Lisp-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-gpe.html">Lisp-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lldp.html">Lldp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mactime.html">Mactime cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_map.html">Map cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_marvell_pp2.html">Pp2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mdata.html">Mdata cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_memif.html">Memif cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mss_clamp.html">Mss_clamp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_det44.html">Det44 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_dslite.html">Dslite cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ed.html">Nat44-ed cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ei.html">Nat44-ei cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat64.html">Nat64 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat66.html">Nat66 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_pnat.html">Pnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh.html">Nsh cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam.html">Nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html">Export-nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_oddbuf.html">Oddbuf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ping.html">Ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_pppoe.html">Pppoe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_quic.html">Quic cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_rdma.html">Rdma cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_snort.html">Snort cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_stn.html">Stn cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_svs.html">Svs cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tlsopenssl.html">Tlsopenssl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tracedump.html">Tracedump cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_unittest.html">Unittest cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_urpf.html">Urpf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vmxnet3.html">Vmxnet3 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vrrp.html">Vrrp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_wireguard.html">Wireguard cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_pci.html">Pci cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibapi.html">Vlibapi cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibmemory.html">Vlibmemory cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_adj.html">Adj cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_arp.html">Arp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bfd.html">Bfd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bier.html">Bier cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bonding.html">Bonding cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_classify.html">Classify cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_crypto.html">Crypto cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_pipe.html">Pipe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_tap.html">Tap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_dpo.html">Dpo cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_feature.html">Feature cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_fib.html">Fib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_flow.html">Flow cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gre.html">Gre cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gso.html">Gso cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_hash.html">Hash cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip-neighbor.html">Ip-neighbor cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip_reass.html">Reass cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip6-nd.html">Ip6-nd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipfix-export.html">Ipfix-export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipip.html">Ipip cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipsec.html">Ipsec cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_lawful-intercept.html">Lawful-intercept cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mfib.html">Mfib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mpls.html">Mpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_pg.html">Pg cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_policer.html">Policer cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_qos.html">Qos cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_session.html">Session cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_span.html">Span cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srmpls.html">Srmpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srv6.html">Srv6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_syslog.html">Syslog cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_tcp.html">Tcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_teib.html">Teib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_udp.html">Udp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_unix.html">Unix cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gpe.html">Vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_api.html">Api cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app.html">App cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_stats.html">Stats cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_vnet.html">Vnet cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_virtio.html">vHost User</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+      <li>Layer 3 IP CLI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cli-reference/clis/clicmd_src_vnet_ip.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="layer-3-ip-cli">
+<span id="clicmd-src-vnet-ip"></span><h1>Layer 3 IP CLI<a class="headerlink" href="#layer-3-ip-cli" title="Permalink to this headline"></a></h1>
+<section id="clear-ioam-rewrite">
+<h2>clear ioam rewrite<a class="headerlink" href="#clear-ioam-rewrite" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">clear ioam rewrite</span>
+</pre></div>
+</div>
+<p>This command clears all the In-band OAM (iOAM) features enabled by
+the <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">ioam</span> <span class="pre">rewrite</span></code> command. Use <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">ioam</span> <span class="pre">summary</span></code> to
+verify the configured settings cleared.</p>
+<p>Example of how to clear iOAM features:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">clear ioam rewrite</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip6_clear_ioam_rewrite_cmd</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_hop_by_hop.c#L1268">src/vnet/ip/ip6_hop_by_hop.c line 1268</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">clear_ioam_rewrite_command_fn</span></code></p>
+</section>
+<section id="disable-ip6-interface">
+<h2>disable ip6 interface<a class="headerlink" href="#disable-ip6-interface" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">disable ip6 interface &lt;interface&gt;</span>
+</pre></div>
+</div>
+<p>This command is used to disable IPv6 on a given interface.</p>
+<p>Example of how disable IPv6 on a given interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">disable ip6 interface GigabitEthernet2/0/0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">disable_ip6_interface_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_link.c#L823">src/vnet/ip/ip6_link.c line 823</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">disable_ip6_interface_cmd</span></code></p>
+</section>
+<section id="enable-ip6-interface">
+<h2>enable ip6 interface<a class="headerlink" href="#enable-ip6-interface" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">enable ip6 interface &lt;interface&gt;</span>
+</pre></div>
+</div>
+<p>This command is used to enable IPv6 on a given interface.</p>
+<p>Example of how enable IPv6 on a given interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">enable ip6 interface GigabitEthernet2/0/0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">enable_ip6_interface_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_link.c#L783">src/vnet/ip/ip6_link.c line 783</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">enable_ip6_interface_cmd</span></code></p>
+</section>
+<section id="ip">
+<h2>ip<a class="headerlink" href="#ip" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Internet protocol (IP) commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_ip_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L514">src/vnet/ip/lookup.c line 514</a></p>
+</section>
+<section id="ip-container">
+<h2>ip container<a class="headerlink" href="#ip-container" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip container &lt;address&gt; &lt;interface&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip_container_command_node</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip_container_proxy.c#L220">src/vnet/ip/ip_container_proxy.c line 220</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip_container_cmd</span></code></p>
+</section>
+<section id="ip-mroute">
+<h2>ip mroute<a class="headerlink" href="#ip-mroute" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip mroute [add|del] &lt;dst-ip-addr&gt;/&lt;width&gt; [table &lt;table-id&gt;] [rpf-id &lt;ID&gt;] [via &lt;next-hop-ip-addr&gt; [&lt;interface&gt;],</span>
+</pre></div>
+</div>
+<p>This command is used to add or delete IPv4 or IPv6  multicast routes. All
+IP Addresses (<code class="docutils literal notranslate"><span class="pre">&lt;dst-ip-addr&gt;/&lt;width&gt;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;next-hop-ip-addr&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;adj-hop-ip-addr&gt;</span></code>)
+can be IPv4 or IPv6, but all must be of the same form in a single
+command. To display the current set of routes, use the commands
+<code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">ip</span> <span class="pre">mfib</span></code> and <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">ip6</span> <span class="pre">mfib</span></code>.
+The full set of support flags for interfaces and route is shown via;
+<code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">mfib</span> <span class="pre">route</span> <span class="pre">flags</span></code> and <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">mfib</span> <span class="pre">itf</span> <span class="pre">flags</span></code>
+respectively.
+Example of how to add a forwarding interface to a route (and create the
+route if it does not exist)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip mroute add 232.1.1.1 via GigabitEthernet2/0/0 Forward</span>
+</pre></div>
+</div>
+<p>Example of how to add an accepting interface to a route (and create the
+route if it does not exist)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip mroute add 232.1.1.1 via GigabitEthernet2/0/1 Accept</span>
+</pre></div>
+</div>
+<p>Example of changing the route’s flags to send signals via the API</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip mroute add 232.1.1.1 Signal</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip_mroute_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L976">src/vnet/ip/lookup.c line 976</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">vnet_ip_mroute_cmd</span></code></p>
+</section>
+<section id="ip-punt-policer">
+<h2>ip punt policer<a class="headerlink" href="#ip-punt-policer" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip punt policer [add|del] &lt;index&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip punt policer &lt;INDEX&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip4_punt_policer_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_punt_drop.c#L305">src/vnet/ip/ip4_punt_drop.c line 305</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip4_punt_police_cmd</span></code></p>
+</section>
+<section id="ip-punt-redirect">
+<h2>ip punt redirect<a class="headerlink" href="#ip-punt-redirect" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip punt redirect [add|del] rx [&lt;interface&gt;|all] via [&lt;nh&gt;] &lt;tx_interface&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip punt policer</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip4_punt_redirect_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_punt_drop.c#L403">src/vnet/ip/ip4_punt_drop.c line 403</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip4_punt_redirect_cmd</span></code></p>
+</section>
+<section id="ip-route">
+<h2>ip route<a class="headerlink" href="#ip-route" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route [add|del] [count &lt;n&gt;] &lt;dst-ip-addr&gt;/&lt;width&gt; [table &lt;table-id&gt;] via [next-hop-address] [next-hop-interface] [next-hop-table &lt;value&gt;] [weight &lt;value&gt;] [preference &lt;value&gt;] [udp-encap-id &lt;value&gt;] [ip4-lookup-in-table &lt;value&gt;] [ip6-lookup-in-table &lt;value&gt;] [mpls-lookup-in-table &lt;value&gt;] [resolve-via-host] [resolve-via-connected] [rx-ip4 &lt;interface&gt;] [out-labels &lt;value value value&gt;]</span>
+</pre></div>
+</div>
+<p>This command is used to add or delete IPv4 or IPv6 routes. All
+IP Addresses (<code class="docutils literal notranslate"><span class="pre">&lt;dst-ip-addr&gt;/&lt;width&gt;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;next-hop-ip-addr&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;adj-hop-ip-addr&gt;</span></code>)
+can be IPv4 or IPv6, but all must be of the same form in a single
+command. To display the current set of routes, use the commands
+<code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">ip</span> <span class="pre">fib</span></code> and <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">ip6</span> <span class="pre">fib</span></code>.</p>
+<p>Example of how to add a straight forward static route:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add 6.0.1.2/32 via 6.0.0.1 GigabitEthernet2/0/0</span>
+</pre></div>
+</div>
+<p>Example of how to delete a straight forward static route:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route del 6.0.1.2/32 via 6.0.0.1 GigabitEthernet2/0/0</span>
+</pre></div>
+</div>
+<p>Mainly for route add/del performance testing, one can add or delete
+multiple routes by adding ‘count N’ to the previous item:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add count 10 7.0.0.0/24 via 6.0.0.1 GigabitEthernet2/0/0</span>
+</pre></div>
+</div>
+<p>Add multiple routes for the same destination to create equal-cost multipath:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add 7.0.0.1/32 via 6.0.0.1 GigabitEthernet2/0/0</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add 7.0.0.1/32 via 6.0.0.2 GigabitEthernet2/0/0</span>
+</pre></div>
+</div>
+<p>For unequal-cost multipath, specify the desired weights. This
+combination of weights results in 3/4 of the traffic following the
+second path, 1/4 following the first path:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add 7.0.0.1/32 via 6.0.0.1 GigabitEthernet2/0/0 weight 1</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add 7.0.0.1/32 via 6.0.0.2 GigabitEthernet2/0/0 weight 3</span>
+</pre></div>
+</div>
+<p>To add a route to a particular FIB table (VRF), use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add 172.16.24.0/24 table 7 via GigabitEthernet2/0/0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip_route_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L569">src/vnet/ip/lookup.c line 569</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">vnet_ip_route_cmd</span></code></p>
+</section>
+<section id="ip-table">
+<h2>ip table<a class="headerlink" href="#ip-table" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip table [add|del] &lt;table-id&gt;</span>
+</pre></div>
+</div>
+<p>This command is used to add or delete IPv4  Tables. All
+Tables must be explicitly added before that can be used. Creating a
+table will add both unicast and multicast FIBs</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip4_table_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L584">src/vnet/ip/lookup.c line 584</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">vnet_ip4_table_cmd</span></code></p>
+</section>
+<section id="ip6">
+<h2>ip6<a class="headerlink" href="#ip6" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Internet protocol version 6 (IPv6) commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_ip6_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L521">src/vnet/ip/lookup.c line 521</a></p>
+</section>
+<section id="ip6-punt-policer">
+<h2>ip6 punt policer<a class="headerlink" href="#ip6-punt-policer" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip6 punt policer [add|del] &lt;index&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip punt policer &lt;INDEX&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip6_punt_policer_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_punt_drop.c#L247">src/vnet/ip/ip6_punt_drop.c line 247</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip6_punt_police_cmd</span></code></p>
+</section>
+<section id="ip6-punt-redirect">
+<h2>ip6 punt redirect<a class="headerlink" href="#ip6-punt-redirect" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip6 punt redirect [add|del] rx [&lt;interface&gt;|all] via [&lt;nh&gt;] &lt;tx_interface&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip punt policer &lt;INDEX&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip6_punt_redirect_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_punt_drop.c#L396">src/vnet/ip/ip6_punt_drop.c line 396</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip6_punt_redirect_cmd</span></code></p>
+</section>
+<section id="ip6-table">
+<h2>ip6 table<a class="headerlink" href="#ip6-table" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip6 table [add|del] &lt;table-id&gt;</span>
+</pre></div>
+</div>
+<p>This command is used to add or delete IPv4  Tables. All
+Tables must be explicitly added before that can be used. Creating a
+table will add both unicast and multicast FIBs</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip6_table_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L599">src/vnet/ip/lookup.c line 599</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">vnet_ip6_table_cmd</span></code></p>
+</section>
+<section id="punt-socket-deregister">
+<h2>punt socket deregister<a class="headerlink" href="#punt-socket-deregister" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">punt socket deregister [IPV4|ipv6] [UDP|tcp] [ALL|&lt;port-num&gt;]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">punt socket register</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">punt_socket_deregister_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/punt.c#L686">src/vnet/ip/punt.c line 686</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">punt_socket_deregister_cmd</span></code></p>
+</section>
+<section id="punt-socket-register">
+<h2>punt socket register<a class="headerlink" href="#punt-socket-register" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">punt socket register [IPV4|ipv6] [UDP|tcp] [ALL|&lt;port-num&gt;] socket &lt;socket&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">punt socket register socket punt_l4_foo.sock</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">punt_socket_register_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/punt.c#L617">src/vnet/ip/punt.c line 617</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">punt_socket_register_cmd</span></code></p>
+</section>
+<section id="set-interface-ip">
+<h2>set interface ip<a class="headerlink" href="#set-interface-ip" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">IP4/IP6 commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_interface_ip_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip46_cli.c#L75">src/vnet/ip/ip46_cli.c line 75</a></p>
+</section>
+<section id="set-interface-ip-address">
+<h2>set interface ip address<a class="headerlink" href="#set-interface-ip-address" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip address [del] &lt;interface&gt; &lt;ip-addr&gt;/&lt;mask&gt; | [all]</span>
+</pre></div>
+</div>
+<p>Add an IP Address to an interface or remove and IP Address from an interface.
+The IP Address can be an IPv4 or an IPv6 address. Interfaces may have multiple
+IPv4 and IPv6 addresses. There is no concept of primary vs. secondary
+interface addresses; they’re just addresses.</p>
+<p>To display the addresses associated with a given interface, use the command
+<code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">interface</span> <span class="pre">address</span> <span class="pre">&lt;interface&gt;</span></code>.</p>
+<p>Note that the debug CLI does not enforce classful mask-width / addressing
+constraints.</p>
+<p>An example of how to add an IPv4 address to an interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip address GigabitEthernet2/0/0 172.16.2.12/24</span>
+</pre></div>
+</div>
+<p>An example of how to add an IPv6 address to an interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip address GigabitEthernet2/0/0 @::a:1:1:0:7/126</span>
+</pre></div>
+</div>
+<p>To delete a specific interface ip address:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip address del GigabitEthernet2/0/0 172.16.2.12/24</span>
+</pre></div>
+</div>
+<p>To delete all interfaces addresses (IPv4 and IPv6):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip address del GigabitEthernet2/0/0 all</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_interface_ip_address_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip46_cli.c#L216">src/vnet/ip/ip46_cli.c line 216</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">add_del_ip_address</span></code></p>
+</section>
+<section id="set-interface-ip-source-and-port-range-check">
+<h2>set interface ip source-and-port-range-check<a class="headerlink" href="#set-interface-ip-source-and-port-range-check" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip source-and-port-range-check &lt;interface&gt; [tcp-out-vrf &lt;table-id&gt;] [udp-out-vrf &lt;table-id&gt;] [tcp-in-vrf &lt;table-id&gt;] [udp-in-vrf &lt;table-id&gt;] [del]</span>
+</pre></div>
+</div>
+<p>Add the ‘ip4-source-and-port-range-check-rx’ or
+‘ip4-source-and-port-range-check-tx’ graph node for a given
+interface. ‘tcp-out-vrf’ and ‘udp-out-vrf’ will add to
+the RX path. ‘tcp-in-vrf’ and ‘udp-in-vrf’ will add to
+the TX path. A graph node will be inserted into the chain when
+the range check is added to the first interface. It will not
+be removed from when range check is removed from the last
+interface.</p>
+<p>By adding the range check graph node to the interface, incoming
+or outgoing TCP/UDP packets will be validated using the
+provided IPv4 FIB table (VRF).</p>
+<p>&#64;note ‘ip4-source-and-port-range-check-rx’ and
+‘ip4-source-and-port-range-check-tx’ strings are too long, so
+they are truncated on the ‘show vlib graph’ output.</p>
+<p>Example of graph node before range checking is enabled:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show vlib graph ip4-source-and-port-range-check-tx</span>
+
+<span class="go">           Name                      Next                    Previous</span>
+<span class="go">ip4-source-and-port-range-      ip4-drop [0]</span>
+</pre></div>
+</div>
+<p>Example of how to enable range checking on TX:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip source-and-port-range-check GigabitEthernet2/0/0 udp-in-vrf 7</span>
+</pre></div>
+</div>
+<p>Example of graph node after range checking is enabled:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show vlib graph ip4-source-and-port-range-check-tx</span>
+
+<span class="go">           Name                      Next                    Previous</span>
+<span class="go">ip4-source-and-port-range-      ip4-drop [0]                ip4-rewrite</span>
+<span class="go">                             interface-output [1]</span>
+</pre></div>
+</div>
+<p>Example of how to display the features enabled on an interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip interface features GigabitEthernet2/0/0</span>
+
+<span class="go">IP feature paths configured on GigabitEthernet2/0/0...</span>
+
+<span class="go">ipv4 unicast:</span>
+<span class="go">  ip4-source-and-port-range-check-rx</span>
+<span class="go">  ip4-lookup</span>
+
+<span class="go">ipv4 multicast:</span>
+<span class="go">  ip4-lookup-multicast</span>
+
+<span class="go">ipv4 multicast:</span>
+<span class="go">  interface-output</span>
+
+<span class="go">ipv6 unicast:</span>
+<span class="go">  ip6-lookup</span>
+
+<span class="go">ipv6 multicast:</span>
+<span class="go">  ip6-lookup</span>
+
+<span class="go">ipv6 multicast:</span>
+<span class="go">  interface-output</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_interface_ip_source_and_port_range_check_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_source_and_port_range_check.c#L788">src/vnet/ip/ip4_source_and_port_range_check.c line 788</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_ip_source_and_port_range_check_fn</span></code></p>
+</section>
+<section id="set-interface-ip-table">
+<h2>set interface ip table<a class="headerlink" href="#set-interface-ip-table" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip table &lt;interface&gt; &lt;table-id&gt;</span>
+</pre></div>
+</div>
+<p>Place the indicated interface into the supplied IPv4 FIB table (also known
+as a VRF). The FIB table must be created using “ip table add” already. To
+display the current IPv4 FIB table, use the command <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">ip</span> <span class="pre">fib</span></code>.
+FIB table will only be displayed if a route has been added to the table, or
+an IP Address is assigned to an interface in the table (which adds a route
+automatically).</p>
+<p>&#64;note IP addresses added after setting the interface IP table are added to
+the indicated FIB table. If an IP address is added prior to changing the
+table then this is an error. The control plane must remove these addresses
+first and then change the table. VPP will not automatically move the
+addresses from the old to the new table as it does not know the validity
+of such a change.</p>
+<p>Example of how to add an interface to an IPv4 FIB table (where 2 is the table-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip table GigabitEthernet2/0/0 2</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_interface_ip_table_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L704">src/vnet/ip/lookup.c line 704</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip4_table_bind_cmd</span></code></p>
+</section>
+<section id="set-interface-ip6-table">
+<h2>set interface ip6 table<a class="headerlink" href="#set-interface-ip6-table" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip6 table &lt;interface&gt; &lt;table-id&gt;</span>
+</pre></div>
+</div>
+<p>Place the indicated interface into the supplied IPv6 FIB table (also known
+as a VRF). The FIB table must be created using “ip6 table add” already. To
+display the current IPv6 FIB table, use the command <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">ip6</span> <span class="pre">fib</span></code>.
+FIB table will only be displayed if a route has been added to the table, or
+an IP Address is assigned to an interface in the table (which adds a route
+automatically).</p>
+<p>&#64;note IP addresses added after setting the interface IP table are added to
+the indicated FIB table. If an IP address is added prior to changing the
+table then this is an error. The control plane must remove these addresses
+first and then change the table. VPP will not automatically move the
+addresses from the old to the new table as it does not know the validity
+of such a change.</p>
+<p>Example of how to add an interface to an IPv6 FIB table (where 2 is the table-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface ip6 table GigabitEthernet2/0/0 2</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_interface_ip6_table_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L732">src/vnet/ip/lookup.c line 732</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip6_table_bind_cmd</span></code></p>
+</section>
+<section id="set-interface-reassembly">
+<h2>set interface reassembly<a class="headerlink" href="#set-interface-reassembly" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface reassembly &lt;interface-name&gt; [on|off|ip4|ip6]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_reassembly_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip46_cli.c#L298">src/vnet/ip/ip46_cli.c line 298</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_reassembly_command_fn</span></code></p>
+</section>
+<section id="set-ioam-rewrite">
+<h2>set ioam rewrite<a class="headerlink" href="#set-ioam-rewrite" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ioam [trace] [pot] [seqno] [analyse]</span>
+</pre></div>
+</div>
+<p>This command is used to enable In-band OAM (iOAM) features on IPv6.
+<code class="docutils literal notranslate"><span class="pre">trace</span></code> is used to enable iOAM trace feature. <code class="docutils literal notranslate"><span class="pre">pot</span></code> is used to
+enable the Proof Of Transit feature. <code class="docutils literal notranslate"><span class="pre">ppc</span></code> is used to indicate the
+Per Packet Counter feature for Edge to Edge processing. <code class="docutils literal notranslate"><span class="pre">ppc</span></code> is
+used to indicate if this node is an <code class="docutils literal notranslate"><span class="pre">encap</span></code> node (iOAM edge node
+where packet enters iOAM domain), a <code class="docutils literal notranslate"><span class="pre">decap</span></code> node (iOAM edge node
+where packet leaves iOAM domain) or <code class="docutils literal notranslate"><span class="pre">none</span></code> (iOAM node where packet
+is in-transit through the iOAM domain). <code class="docutils literal notranslate"><span class="pre">ppc</span></code> can only be set if
+<code class="docutils literal notranslate"><span class="pre">trace</span></code> or <code class="docutils literal notranslate"><span class="pre">pot</span></code> is enabled.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">clear</span> <span class="pre">ioam</span> <span class="pre">rewrite</span></code> to disable all features enabled by this
+command. Use <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">ioam</span> <span class="pre">summary</span></code> to verify the configured settings.</p>
+<p>Example of how to enable trace and pot with ppc set to encap:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ioam rewrite trace pot ppc encap</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip6_set_ioam_rewrite_cmd</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_hop_by_hop.c#L1375">src/vnet/ip/ip6_hop_by_hop.c line 1375</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip6_set_ioam_rewrite_command_fn</span></code></p>
+</section>
+<section id="set-ip-classify">
+<h2>set ip classify<a class="headerlink" href="#set-ip-classify" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip classify intfc &lt;interface&gt; table-index &lt;classify-idx&gt;</span>
+</pre></div>
+</div>
+<p>Assign a classification table to an interface. The classification
+table is created using the <code class="docutils literal notranslate"><span class="pre">classify</span> <span class="pre">table</span></code> and <code class="docutils literal notranslate"><span class="pre">classify</span> <span class="pre">session</span></code>
+commands. Once the table is create, use this command to filter packets
+on an interface.</p>
+<p>Example of how to assign a classification table to an interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip classify intfc GigabitEthernet2/0/0 table-index 1</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_ip_classify_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_forward.c#L2902">src/vnet/ip/ip4_forward.c line 2902</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_ip_classify_command_fn</span></code></p>
+</section>
+<section id="set-ip-flow-hash">
+<h2>set ip flow-hash<a class="headerlink" href="#set-ip-flow-hash" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip flow-hash table &lt;table-id&gt; [src] [dst] [sport] [dport] [proto] [reverse]</span>
+</pre></div>
+</div>
+<p>Configure the set of IPv4 fields used by the flow hash.</p>
+<p>Example of how to set the flow hash on a given table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip flow-hash table 7 dst sport dport proto</span>
+</pre></div>
+</div>
+<p>Example of display the configured flow hash:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip fib</span>
+
+<span class="go">ipv4-VRF:0, fib_index 0, flow hash: src dst sport dport proto</span>
+<span class="go">0.0.0.0/0</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:0 buckets:1 uRPF:0 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">0.0.0.0/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:1 buckets:1 uRPF:1 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">224.0.0.0/8</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:3 buckets:1 uRPF:3 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">6.0.1.2/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:30 buckets:1 uRPF:29 to:[0:0]]</span>
+<span class="go">    [0] [@3]: arp-ipv4: via 6.0.0.1 af_packet0</span>
+<span class="go">7.0.0.1/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:31 buckets:4 uRPF:30 to:[0:0]]</span>
+<span class="go">    [0] [@3]: arp-ipv4: via 6.0.0.2 af_packet0</span>
+<span class="go">    [1] [@3]: arp-ipv4: via 6.0.0.2 af_packet0</span>
+<span class="go">    [2] [@3]: arp-ipv4: via 6.0.0.2 af_packet0</span>
+<span class="go">    [3] [@3]: arp-ipv4: via 6.0.0.1 af_packet0</span>
+<span class="go">240.0.0.0/8</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:2 buckets:1 uRPF:2 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">255.255.255.255/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:4 buckets:1 uRPF:4 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">ipv4-VRF:7, fib_index 1, flow hash: dst sport dport proto</span>
+<span class="go">0.0.0.0/0</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:12 buckets:1 uRPF:11 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">0.0.0.0/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:13 buckets:1 uRPF:12 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">172.16.1.0/24</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:17 buckets:1 uRPF:16 to:[0:0]]</span>
+<span class="go">    [0] [@4]: ipv4-glean: af_packet0</span>
+<span class="go">172.16.1.1/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:18 buckets:1 uRPF:17 to:[1:84]]</span>
+<span class="go">    [0] [@2]: dpo-receive: 172.16.1.1 on af_packet0</span>
+<span class="go">172.16.1.2/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:21 buckets:1 uRPF:20 to:[0:0]]</span>
+<span class="go">    [0] [@5]: ipv4 via 172.16.1.2 af_packet0: IP4: 02:fe:9e:70:7a:2b -&gt; 26:a5:f6:9c:3a:36</span>
+<span class="go">172.16.2.0/24</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:19 buckets:1 uRPF:18 to:[0:0]]</span>
+<span class="go">    [0] [@4]: ipv4-glean: af_packet1</span>
+<span class="go">172.16.2.1/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:20 buckets:1 uRPF:19 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive: 172.16.2.1 on af_packet1</span>
+<span class="go">224.0.0.0/8</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:15 buckets:1 uRPF:14 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">240.0.0.0/8</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:14 buckets:1 uRPF:13 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">255.255.255.255/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:16 buckets:1 uRPF:15 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_ip_flow_hash_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_forward.c#L2777">src/vnet/ip/ip4_forward.c line 2777</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_ip_flow_hash_command_fn</span></code></p>
+</section>
+<section id="set-ip-source-and-port-range-check">
+<h2>set ip source-and-port-range-check<a class="headerlink" href="#set-ip-source-and-port-range-check" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip source-and-port-range-check vrf &lt;table-id&gt; &lt;ip-addr&gt;/&lt;mask&gt; {port nn | range &lt;nn&gt; - &lt;nn&gt;} [del]</span>
+</pre></div>
+</div>
+<p>This command adds an IP Subnet and range of ports to be validated
+by an IP FIB table (VRF).</p>
+<p>practical example.</p>
+<p>Example of how to add an IPv4 subnet and single port to an IPv4 FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip source-and-port-range-check vrf 7 172.16.1.0/24 port 23</span>
+</pre></div>
+</div>
+<p>Example of how to add an IPv4 subnet and range of ports to an IPv4 FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip source-and-port-range-check vrf 7 172.16.1.0/24 range 23 - 100</span>
+</pre></div>
+</div>
+<p>Example of how to delete an IPv4 subnet and single port from an IPv4 FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip source-and-port-range-check vrf 7 172.16.1.0/24 port 23 del</span>
+</pre></div>
+</div>
+<p>Example of how to delete an IPv4 subnet and range of ports from an IPv4 FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip source-and-port-range-check vrf 7 172.16.1.0/24 range 23 - 100 del</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip_source_and_port_range_check_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_source_and_port_range_check.c#L1255">src/vnet/ip/ip4_source_and_port_range_check.c line 1255</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip_source_and_port_range_check_command_fn</span></code></p>
+</section>
+<section id="set-ip6-classify">
+<h2>set ip6 classify<a class="headerlink" href="#set-ip6-classify" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip6 classify intfc &lt;interface&gt; table-index &lt;classify-idx&gt;</span>
+</pre></div>
+</div>
+<p>Assign a classification table to an interface. The classification
+table is created using the <code class="docutils literal notranslate"><span class="pre">classify</span> <span class="pre">table</span></code> and <code class="docutils literal notranslate"><span class="pre">classify</span> <span class="pre">session</span></code>
+commands. Once the table is create, use this command to filter packets
+on an interface.</p>
+<p>Example of how to assign a classification table to an interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip6 classify intfc GigabitEthernet2/0/0 table-index 1</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_ip6_classify_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_forward.c#L3128">src/vnet/ip/ip6_forward.c line 3128</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_ip6_classify_command_fn</span></code></p>
+</section>
+<section id="set-ip6-flow-hash">
+<h2>set ip6 flow-hash<a class="headerlink" href="#set-ip6-flow-hash" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip6 flow-hash table &lt;table-id&gt; [src] [dst] [sport] [dport] [proto] [reverse] [flowlabel]</span>
+</pre></div>
+</div>
+<p>Configure the set of IPv6 fields used by the flow hash.</p>
+<p>Example of how to set the flow hash on a given table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip6 flow-hash table 8 dst sport dport proto</span>
+</pre></div>
+</div>
+<p>Example of display the configured flow hash:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 fib</span>
+
+<span class="go">ipv6-VRF:0, fib_index 0, flow hash: src dst sport dport proto</span>
+<span class="go">@::/0</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:5 buckets:1 uRPF:5 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">fe80::/10</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:10 buckets:1 uRPF:10 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">ff02::1/128</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:8 buckets:1 uRPF:8 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">ff02::2/128</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:7 buckets:1 uRPF:7 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">ff02::16/128</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:9 buckets:1 uRPF:9 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">ff02::1:ff00:0/104</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:6 buckets:1 uRPF:6 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">ipv6-VRF:8, fib_index 1, flow hash: dst sport dport proto</span>
+<span class="go">@::/0</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:21 buckets:1 uRPF:20 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip6</span>
+<span class="go">@::a:1:1:0:4/126</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:27 buckets:1 uRPF:26 to:[0:0]]</span>
+<span class="go">    [0] [@4]: ipv6-glean: af_packet0</span>
+<span class="go">@::a:1:1:0:7/128</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:28 buckets:1 uRPF:27 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive: @::a:1:1:0:7 on af_packet0</span>
+<span class="go">fe80::/10</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:26 buckets:1 uRPF:25 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">fe80::fe:3eff:fe3e:9222/128</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:29 buckets:1 uRPF:28 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive: fe80::fe:3eff:fe3e:9222 on af_packet0</span>
+<span class="go">ff02::1/128</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:24 buckets:1 uRPF:23 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">ff02::2/128</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:23 buckets:1 uRPF:22 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">ff02::16/128</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:25 buckets:1 uRPF:24 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+<span class="go">ff02::1:ff00:0/104</span>
+<span class="go">  unicast-ip6-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [index:22 buckets:1 uRPF:21 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_ip6_flow_hash_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_forward.c#L2961">src/vnet/ip/ip6_forward.c line 2961</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_ip6_flow_hash_command_fn</span></code></p>
+</section>
+<section id="set-punt">
+<h2>set punt<a class="headerlink" href="#set-punt" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set punt [IPV4|ip6|ipv6] [UDP|tcp] [del] [ALL|&lt;port-num&gt;]</span>
+</pre></div>
+</div>
+<p>The set of <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">punt</span></code> commands allows specific IP traffic to
+be punted to the host TCP/IP stack</p>
+<p>&#64;em Note</p>
+<ul class="simple">
+<li><p>UDP is the only protocol supported in the current implementation</p></li>
+<li><p>All TCP traffic is currently punted to the host by default</p></li>
+</ul>
+<p>Example of how to request NTP traffic to be punted</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set punt udp 125</span>
+</pre></div>
+</div>
+<p>Example of how to request all ‘unknown’ UDP traffic to be punted</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set punt udp all</span>
+</pre></div>
+</div>
+<p>Example of how to stop all ‘unknown’ UDP traffic to be punted</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set punt udp del all</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">punt_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/punt.c#L542">src/vnet/ip/punt.c line 542</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">punt_cli</span></code></p>
+</section>
+<section id="show-ioam-summary">
+<h2>show ioam summary<a class="headerlink" href="#show-ioam-summary" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ioam summary</span>
+</pre></div>
+</div>
+<p>This command displays the current configuration data for In-band
+OAM (iOAM).</p>
+<p>Example to show the iOAM configuration:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ioam summary</span>
+
+<span class="go">              REWRITE FLOW CONFIGS -</span>
+<span class="go">               Destination Address : ff02::1</span>
+<span class="go">                    Flow operation : 2 (Pop)</span>
+<span class="go">                        TRACE OPTION - 1 (Enabled)</span>
+<span class="go">Try &#39;show ioam trace and show ioam-trace profile&#39; for more information</span>
+<span class="go">                        POT OPTION - 1 (Enabled)</span>
+<span class="go">Try &#39;show ioam pot and show pot profile&#39; for more information</span>
+<span class="go">         EDGE TO EDGE - PPC OPTION - 1 (Encap)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip6_show_ioam_run_cmd</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_hop_by_hop.c#L1459">src/vnet/ip/ip6_hop_by_hop.c line 1459</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip6_show_ioam_summary_cmd_fn</span></code></p>
+</section>
+<section id="show-ip">
+<h2>show ip<a class="headerlink" href="#show-ip" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Internet protocol (IP) show commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_show_ip_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L528">src/vnet/ip/lookup.c line 528</a></p>
+</section>
+<section id="show-ip-container">
+<h2>show ip container<a class="headerlink" href="#show-ip-container" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip container &lt;address&gt; &lt;interface&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_ip_container_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip_container_proxy.c#L279">src/vnet/ip/ip_container_proxy.c line 279</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_ip_container_cmd_fn</span></code></p>
+</section>
+<section id="show-ip-local">
+<h2>show ip local<a class="headerlink" href="#show-ip-local" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip local</span>
+</pre></div>
+</div>
+<p>Display the set of protocols handled by the local IPv4 stack.</p>
+<p>Example of how to display local protocol table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip local</span>
+
+<span class="go">Protocols handled by ip4_local</span>
+<span class="go">1</span>
+<span class="go">17</span>
+<span class="go">47</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_ip_local</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_forward.c#L1935">src/vnet/ip/ip4_forward.c line 1935</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_ip_local_command_fn</span></code></p>
+</section>
+<section id="show-ip-pmtu">
+<h2>show ip pmtu<a class="headerlink" href="#show-ip-pmtu" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip path MTU</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_fib_entry</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip_path_mtu.c#L871">src/vnet/ip/ip_path_mtu.c line 871</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_ip_pmtu_command</span></code></p>
+</section>
+<section id="show-ip-punt-redirect">
+<h2>show ip punt redirect<a class="headerlink" href="#show-ip-punt-redirect" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip punt redirect</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip punt redierect</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_ip4_punt_redirect_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_punt_drop.c#L427">src/vnet/ip/ip4_punt_drop.c line 427</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip4_punt_redirect_show_cmd</span></code></p>
+</section>
+<section id="show-ip-source-and-port-range-check">
+<h2>show ip source-and-port-range-check<a class="headerlink" href="#show-ip-source-and-port-range-check" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip source-and-port-range-check vrf &lt;table-id&gt; &lt;ip-addr&gt; [port &lt;n&gt;]</span>
+</pre></div>
+</div>
+<p>Display the range of ports being validated by an IPv4 FIB for a given
+IP or subnet, or test if a given IP and port are being validated.</p>
+<p>practical example.</p>
+<p>Example of how to display the set of ports being validated for a given
+IPv4 subnet:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip source-and-port-range-check vrf 7 172.16.2.0</span>
+
+<span class="go">172.16.2.0: 23 - 101</span>
+</pre></div>
+</div>
+<p>Example of how to test to determine of a given iPv4 address and port
+are being validated:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip source-and-port-range-check vrf 7 172.16.2.2 port 23</span>
+
+<span class="go">172.16.2.2 port 23 PASS</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip source-and-port-range-check vrf 7 172.16.2.2 port 250</span>
+
+<span class="go">172.16.2.2 port 250 FAIL</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_source_and_port_range_check</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_source_and_port_range_check.c#L1381">src/vnet/ip/ip4_source_and_port_range_check.c line 1381</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_source_and_port_range_check_fn</span></code></p>
+</section>
+<section id="show-ip-table">
+<h2>show ip table<a class="headerlink" href="#show-ip-table" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip table &lt;table-id&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_ip4_table_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L605">src/vnet/ip/lookup.c line 605</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">vnet_show_ip4_table_cmd</span></code></p>
+</section>
+<section id="show-ip6">
+<h2>show ip6<a class="headerlink" href="#show-ip6" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Internet protocol version 6 (IPv6) show commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_show_ip6_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L535">src/vnet/ip/lookup.c line 535</a></p>
+</section>
+<section id="show-ip6-hbh">
+<h2>show ip6 hbh<a class="headerlink" href="#show-ip6-hbh" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 hbh</span>
+</pre></div>
+</div>
+<p>Display the set of ip6 local hop-by-hop next protocol handler nodes</p>
+<p>Display ip6 local hop-by-hop next protocol handler nodes</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 hbh</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_ip6_hbh</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_hop_by_hop.c#L1063">src/vnet/ip/ip6_hop_by_hop.c line 1063</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_ip6_hbh_command_fn</span></code></p>
+</section>
+<section id="show-ip6-interface">
+<h2>show ip6 interface<a class="headerlink" href="#show-ip6-interface" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 interface &lt;interface&gt;</span>
+</pre></div>
+</div>
+<p>This command is used to display various IPv6 attributes on a given
+interface.</p>
+<p>Example of how to display IPv6 settings:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 interface GigabitEthernet2/0/0</span>
+
+<span class="go">GigabitEthernet2/0/0 is admin up</span>
+<span class="go">        Link-local address(es):</span>
+<span class="go">                fe80::ab8/64</span>
+<span class="go">        Joined group address(es):</span>
+<span class="go">                ff02::1</span>
+<span class="go">                ff02::2</span>
+<span class="go">                ff02::16</span>
+<span class="go">                ff02::1:ff00:ab8</span>
+<span class="go">        Advertised Prefixes:</span>
+<span class="go">                prefix fe80::fe:28ff:fe9c:75b3,  length 64</span>
+<span class="go">        MTU is 1500</span>
+<span class="go">        ICMP error messages are unlimited</span>
+<span class="go">        ICMP redirects are disabled</span>
+<span class="go">        ICMP unreachables are not sent</span>
+<span class="go">        ND DAD is disabled</span>
+<span class="go">        ND advertised reachable time is 0</span>
+<span class="go">        ND advertised retransmit interval is 0 (msec)</span>
+<span class="go">        ND router advertisements are sent every 200 seconds (min interval is 150)</span>
+<span class="go">        ND router advertisements live for 600 seconds</span>
+<span class="go">        Hosts use stateless autoconfig for addresses</span>
+<span class="go">        ND router advertisements sent 19336</span>
+<span class="go">        ND router solicitations received 0</span>
+<span class="go">        ND router solicitations dropped 0</span>
+</pre></div>
+</div>
+<p>Example of output if IPv6 is not enabled on the interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 interface GigabitEthernet2/0/0</span>
+
+<span class="go">show ip6 interface: IPv6 not enabled on interface</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip6_link_show_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_link.c#L743">src/vnet/ip/ip6_link.c line 743</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip6_link_show</span></code></p>
+</section>
+<section id="show-ip6-local">
+<h2>show ip6 local<a class="headerlink" href="#show-ip6-local" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 local</span>
+</pre></div>
+</div>
+<p>Display the set of protocols handled by the local IPv6 stack.</p>
+<p>Example of how to display local protocol table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 local</span>
+
+<span class="go">Protocols handled by ip6_local</span>
+<span class="go">17</span>
+<span class="go">43</span>
+<span class="go">58</span>
+<span class="go">115</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_ip6_local</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_forward.c#L3009">src/vnet/ip/ip6_forward.c line 3009</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_ip6_local_command_fn</span></code></p>
+</section>
+<section id="show-ip6-punt-redirect">
+<h2>show ip6 punt redirect<a class="headerlink" href="#show-ip6-punt-redirect" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 punt redirect</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set ip punt policer &lt;INDEX&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_ip6_punt_redirect_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_punt_drop.c#L424">src/vnet/ip/ip6_punt_drop.c line 424</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip6_punt_redirect_show_cmd</span></code></p>
+</section>
+<section id="show-ip6-table">
+<h2>show ip6 table<a class="headerlink" href="#show-ip6-table" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6 table &lt;table-id&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_ip6_table_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L611">src/vnet/ip/lookup.c line 611</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">vnet_show_ip6_table_cmd</span></code></p>
+</section>
+<section id="show-ip6-ll">
+<h2>show ip6-ll<a class="headerlink" href="#show-ip6-ll" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show ip6-ll [summary] [interface] [&lt;ip6-addr&gt;[/&lt;width&gt;]] [detail]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ip6_show_fib_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_ll_table.c#L349">src/vnet/ip/ip6_ll_table.c line 349</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">ip6_ll_show_fib</span></code></p>
+</section>
+<section id="show-punt-socket-registrations">
+<h2>show punt socket registrations<a class="headerlink" href="#show-punt-socket-registrations" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show punt socket registrations [l4|exception]</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show punt socket ipv4</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_punt_socket_registration_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/punt.c#L822">src/vnet/ip/punt.c line 822</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">punt_socket_show_cmd</span></code></p>
+</section>
+<section id="test-ip-checksum">
+<h2>test ip checksum<a class="headerlink" href="#test-ip-checksum" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test ip checksum</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">test_checksum</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip_checksum.c#L169">src/vnet/ip/ip_checksum.c line 169</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">test_ip_checksum_fn</span></code></p>
+</section>
+<section id="test-ip6-link">
+<h2>test ip6 link<a class="headerlink" href="#test-ip6-link" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test ip6 link &lt;mac-address&gt;</span>
+</pre></div>
+</div>
+<p>This command converts the given MAC Address into an IPv6 link-local
+address.</p>
+<p>Example of how to create an IPv6 link-local address:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test ip6 link 16:d9:e0:91:79:86</span>
+
+<span class="go">Link local address: fe80::14d9:e0ff:fe91:7986</span>
+<span class="go">Original MAC address: 16:d9:e0:91:79:86</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">test_link_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_link.c#L559">src/vnet/ip/ip6_link.c line 559</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">test_ip6_link_command_fn</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clicmd_src_vnet_l2.html" class="btn btn-neutral float-left" title="Layer 2 CLI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clicmd_src_plugins_nsim_nsim_c.html" class="btn btn-neutral float-right" title="Network Delay Simulator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

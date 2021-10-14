@@ -1,0 +1,109 @@
+.. _clicmd_src_vnet_crypto:
+
+===============================================================
+Crypto cli reference
+===============================================================
+
+set crypto async dispatch interrupt
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set crypto async dispatch polling|interrupt
+
+
+Declaration: ``set_crypto_async_dispatch_interrupt_command`` `src/vnet/crypto/cli.c line 474 <https://github.com/FDio/vpp/blob/master//src/vnet/crypto/cli.c#L474>`_
+
+Implementation: ``set_crypto_async_dispatch_interrupt_command_fn``
+
+
+set crypto async dispatch polling
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set crypto async dispatch polling|interrupt
+
+
+Declaration: ``set_crypto_async_dispatch_polling_command`` `src/vnet/crypto/cli.c line 468 <https://github.com/FDio/vpp/blob/master//src/vnet/crypto/cli.c#L468>`_
+
+Implementation: ``set_crypto_async_dispatch_polling_command_fn``
+
+
+set crypto async handler
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set crypto async handler type [type2 type3 ...] engine
+
+
+Declaration: ``set_crypto_async_handler_command`` `src/vnet/crypto/cli.c line 430 <https://github.com/FDio/vpp/blob/master//src/vnet/crypto/cli.c#L430>`_
+
+Implementation: ``set_crypto_async_handler_command_fn``
+
+
+set crypto handler
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set crypto handler cipher [cipher2 cipher3 ...] engine [simple|chained]
+
+
+Declaration: ``set_crypto_handler_command`` `src/vnet/crypto/cli.c line 245 <https://github.com/FDio/vpp/blob/master//src/vnet/crypto/cli.c#L245>`_
+
+Implementation: ``set_crypto_handler_command_fn``
+
+
+show crypto async handlers
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show crypto async handlers
+
+
+Declaration: ``show_crypto_async_handlers_command`` `src/vnet/crypto/cli.c line 304 <https://github.com/FDio/vpp/blob/master//src/vnet/crypto/cli.c#L304>`_
+
+Implementation: ``show_crypto_async_handlers_command_fn``
+
+
+show crypto async status
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show crypto async status
+
+
+Declaration: ``show_crypto_async_status_command`` `src/vnet/crypto/cli.c line 347 <https://github.com/FDio/vpp/blob/master//src/vnet/crypto/cli.c#L347>`_
+
+Implementation: ``show_crypto_async_status_command_fn``
+
+
+show crypto engines
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show crypto engines
+
+
+Declaration: ``show_crypto_engines_command`` `src/vnet/crypto/cli.c line 49 <https://github.com/FDio/vpp/blob/master//src/vnet/crypto/cli.c#L49>`_
+
+Implementation: ``show_crypto_engines_command_fn``
+
+
+show crypto handlers
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show crypto handlers
+
+
+Declaration: ``show_crypto_handlers_command`` `src/vnet/crypto/cli.c line 155 <https://github.com/FDio/vpp/blob/master//src/vnet/crypto/cli.c#L155>`_
+
+Implementation: ``show_crypto_handlers_command_fn``
+

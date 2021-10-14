@@ -1,0 +1,3791 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release notes for VPP 18.04 &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Release notes for VPP 18.01.2" href="v18.01.2.html" />
+    <link rel="prev" title="Release notes for VPP 18.07" href="v18.07.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v21.10.html">Release notes for VPP 21.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v21.06.html">Release notes for VPP 21.06</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="past.html">Past releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="v21.01.html">Release notes for VPP 21.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.09.html">Release notes for VPP 20.09</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.05.1.html">Release notes for VPP 20.05.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.05.html">Release notes for VPP 20.05</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.01.html">Release notes for VPP 20.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.3.html">Release notes for VPP 19.08.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.2.html">Release notes for VPP 19.08.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.1.html">Release notes for VPP 19.08.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.html">Release notes for VPP 19.08</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.3.html">Release notes for VPP 19.04.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.2.html">Release notes for VPP 19.04.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.1.html">Release notes for VPP 19.04.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.html">Release notes for VPP 19.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.3.html">Release notes for VPP 19.01.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.2.html">Release notes for VPP 19.01.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.1.html">Release notes for VPP 19.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.html">Release notes for VPP 19.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.10.html">Release notes for VPP 18.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.07.html">Release notes for VPP 18.07</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Release notes for VPP 18.04</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#issues-fixed">Issues fixed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-changes">API changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.2.html">Release notes for VPP 18.01.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.1.html">Release notes for VPP 18.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.html">Release notes for VPP 18.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.10.html">Release notes for VPP 17.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.07.html">Release notes for VPP 17.07</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.04.html">Release notes for VPP 17.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.01.1.html">Release notes for VPP 17.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.01.html">Release notes for VPP 17.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v16.09.html">Release notes for VPP 16.09</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v16.06.html">Release notes for VPP 16.06</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Release notes</a> &raquo;</li>
+          <li><a href="past.html">Past releases</a> &raquo;</li>
+      <li>Release notes for VPP 18.04</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/aboutvpp/releasenotes/v18.04.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-notes-for-vpp-18-04">
+<h1>Release notes for VPP 18.04<a class="headerlink" href="#release-notes-for-vpp-18-04" title="Permalink to this headline"></a></h1>
+<p>More than 570 commits since the 18.01 release.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<section id="infrastructure">
+<h3>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>DPDK 18.02.1</p></li>
+<li><p>ARM aarch64 integrated into CI</p></li>
+</ul>
+</section>
+<section id="vnet-plugins">
+<h3>VNET &amp; Plugins<a class="headerlink" href="#vnet-plugins" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>ERSPAN</p></li>
+<li><p>L3DSR load balancing support</p></li>
+<li><p>VPC bonding / LACP</p></li>
+<li><p>IPv4/IPv6 packet reassembly</p></li>
+<li><p>IPv6 link-local support</p></li>
+<li><p>Asymmetrical static NAT</p></li>
+<li><p>464XLAT for NAT44</p></li>
+<li><p>MAP-T CE support</p></li>
+<li><p>Intel Adaptive Virtual Function native device driver plugin</p></li>
+<li><p>Marvell device plugin</p></li>
+<li><p>SRv6 static, dynamic and masquerading proxy plugins</p></li>
+<li><p>MPLS Uniform mode</p></li>
+<li><p>IGMP plugin</p></li>
+<li><p>IPIP tunnel support (IPv4/IPv6 over IPv4/IPv6)</p></li>
+<li><p>IPv6 Router Discovery mechanism</p></li>
+</ul>
+</section>
+<section id="vlib">
+<h3>VLIB<a class="headerlink" href="#vlib" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>ARM-optimized library variations for key functions</p></li>
+<li><p>Better handling of physmem on non-NUMA kernels</p></li>
+</ul>
+</section>
+<section id="host-stack">
+<h3>Host stack<a class="headerlink" href="#host-stack" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>TLS support via OpenSSL or mbedtls software engines</p></li>
+<li><p>Session layer can utilize both shm and memfd (secure) FIFO segments</p></li>
+<li><p>STCP</p></li>
+<li><p>VCL logging / tracing</p></li>
+</ul>
+</section>
+<section id="api-framework">
+<h3>API framework<a class="headerlink" href="#api-framework" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>New API definition compiler (vppapigen)</p></li>
+<li><p>Memory (shm) and socket APIs refactored</p></li>
+<li><p>API handlers refactored to make them transport (shared memory or
+socket) agnostic</p></li>
+<li><p>Improved support for bootstrapping of the shm API with memfd segments
+over the socket API</p></li>
+</ul>
+</section>
+<section id="packaging">
+<h3>Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>SELinux for RPM builds</p></li>
+<li><p>Debuginfo RPMs</p></li>
+<li><p>ARM aarch64 for Ubuntu</p></li>
+</ul>
+</section>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline"></a></h2>
+<p>For the full list of issues please refer to fd.io
+<a class="reference external" href="https://jira.fd.io">JIRA</a>.</p>
+</section>
+<section id="issues-fixed">
+<h2>Issues fixed<a class="headerlink" href="#issues-fixed" title="Permalink to this headline"></a></h2>
+<p>For the full list of fixed issues please refer to:</p>
+<ul class="simple">
+<li><p>fd.io <a class="reference external" href="https://jira.fd.io">JIRA</a></p></li>
+<li><p>git <a class="reference external" href="https://git.fd.io/vpp/log/?h=stable/1804">commit log</a></p></li>
+</ul>
+</section>
+<section id="api-changes">
+<h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline"></a></h2>
+<p>Description of results:</p>
+<ul class="simple">
+<li><p><em>Definition changed</em>: indicates that the API file was modified
+between releases.</p></li>
+<li><p><em>Only in image</em>: indicates the API is new for this release.</p></li>
+<li><p><em>Only in file</em>: indicates the API has been removed in this release.</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Message Name</p></th>
+<th class="head"><p>Results</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accept_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>accept_session_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_add_replace</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_add_replace_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_interface_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_interface_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_interface_etype_whitelist_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_interface_etype_whitelist_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_interface_list_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_interface_list_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_interface_set_acl_list</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_interface_set_acl_list_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_interface_set_etype_whitelist</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_plugin_control_ping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_plugin_control_ping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>acl_plugin_get_version</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>acl_plugin_get_version_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>add_node_next</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>add_node_next_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>af_packet_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>af_packet_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>af_packet_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>af_packet_delete_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>af_packet_set_l4_cksum_offload</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>af_packet_set_l4_cksum_offload_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>api_versions</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>api_versions_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>app_namespace_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>app_namespace_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>application_attach</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>application_attach_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>application_detach</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>application_detach_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>application_tls_cert_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>application_tls_key_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bd_ip_mac_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bd_ip_mac_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_auth_del_key</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_auth_del_key_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_auth_keys_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_auth_keys_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_auth_set_key</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_auth_set_key_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_auth_activate</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_auth_activate_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_auth_deactivate</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_auth_deactivate_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_del_echo_source</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_del_echo_source_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_mod</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_mod_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_session_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_session_set_flags</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_session_set_flags_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bfd_udp_set_echo_source</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bfd_udp_set_echo_source_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_disp_entry_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_disp_entry_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_disp_entry_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_disp_entry_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_disp_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_disp_table_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_disp_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_disp_table_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_imp_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_imp_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_imp_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_imp_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_imp_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_imp_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_route_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_route_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_route_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_route_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_table_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bier_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bier_table_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bind_sock</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bind_sock_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bind_uri</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bind_uri_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bond_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bond_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bond_detach_slave</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bond_enslave</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bridge_domain_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bridge_domain_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bridge_domain_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bridge_domain_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bridge_domain_set_mac_age</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bridge_domain_set_mac_age_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>bridge_flags</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>bridge_flags_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>cdp_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_add_del_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_add_del_session_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_add_del_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_add_del_table_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_session_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_set_interface_ip_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_set_interface_ip_table_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_set_interface_l2_tables</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_set_interface_l2_tables_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_table_by_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_table_by_interface_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_table_ids</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_table_ids_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>classify_table_info</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>classify_table_info_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cli</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>cli_inband</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cli_inband_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>cli_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>collect_detailed_interface_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>connect_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>connect_session_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>connect_sock</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>connect_sock_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>connect_uri</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>connect_uri_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>control_ping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>control_ping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>cop_interface_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cop_interface_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>cop_whitelist_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>cop_whitelist_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_loopback</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_loopback_instance</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_loopback_instance_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_loopback_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_subif</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_subif_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_vhost_user_if</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_vhost_user_if_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_vlan_subif</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>create_vlan_subif_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>delete_loopback</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>delete_loopback_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>delete_subif</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>delete_subif_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>delete_vhost_user_if</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>delete_vhost_user_if_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_client_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_client_config_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_compl_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_proxy_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_proxy_config_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_proxy_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_proxy_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dhcp_proxy_set_vss</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dhcp_proxy_set_vss_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>disconnect_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>disconnect_session_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dns_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dns_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dns_name_server_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dns_name_server_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dns_resolve_ip</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dns_resolve_ip_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dns_resolve_name</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dns_resolve_name_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_add_del_pool_addr_range</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dslite_add_del_pool_addr_range_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_get_aftr_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dslite_get_b4_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_set_aftr_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>dslite_set_aftr_addr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>dslite_set_b4_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>feature_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>feature_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>flow_classify_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>flow_classify_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>flow_classify_set_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>flow_classify_set_interface_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>flowprobe_params</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>flowprobe_params_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>flowprobe_tx_interface_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>flowprobe_tx_interface_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_contract_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_contract_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_contract_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_endpoint_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gbp_endpoint_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>gbp_endpoint_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>geneve_add_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>geneve_add_del_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>geneve_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>geneve_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_first_msg_id</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>get_first_msg_id_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_next_index</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>get_next_index_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_node_graph</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>get_node_graph_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_node_index</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>get_node_index_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_add_del_fwd_entry</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_add_del_fwd_entry_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_add_del_iface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_add_del_iface_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_add_del_native_fwd_rpath</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_add_del_native_fwd_rpath_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_fwd_entries_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_fwd_entries_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_fwd_entry_path_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_fwd_entry_path_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_fwd_entry_vnis_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_fwd_entry_vnis_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_get_encap_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_get_encap_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_native_fwd_rpaths_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_native_fwd_rpaths_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gpe_set_encap_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gpe_set_encap_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gre_add_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gre_add_del_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gre_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gre_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gtpu_add_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gtpu_add_del_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>gtpu_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>gtpu_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_clear_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>igmp_event</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>igmp_listen</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_initiate_del_child_sa</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_initiate_del_child_sa_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_initiate_del_ike_sa</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_initiate_del_ike_sa_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_initiate_rekey_child_sa</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_initiate_rekey_child_sa_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_initiate_sa_init</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_initiate_sa_init_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_profile_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_profile_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_profile_set_auth</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_profile_set_auth_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_profile_set_id</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_profile_set_id_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_profile_set_ts</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_profile_set_ts_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_set_esp_transforms</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_set_esp_transforms_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_set_ike_transforms</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_set_ike_transforms_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_set_local_key</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_set_local_key_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_set_responder</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_set_responder_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ikev2_set_sa_lifetime</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ikev2_set_sa_lifetime_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>input_acl_set_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>input_acl_set_interface_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>interface_name_renumber</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>interface_name_renumber_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ioam_cache_ip6_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ioam_cache_ip6_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ioam_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ioam_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ioam_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ioam_enable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ioam_export_ip6_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ioam_export_ip6_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip4_arp_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6_fib_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6_fib_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6_mfib_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6_mfib_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6_nd_address_autoconfig</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6_nd_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6_ra_event</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6nd_proxy_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6nd_proxy_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6nd_proxy_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip6nd_proxy_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip6nd_send_router_solicitation</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_add_del_route</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_add_del_route_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_address_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_address_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_container_proxy_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_container_proxy_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_fib_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_fib_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_mfib_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_mfib_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_mroute_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_mroute_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_neighbor_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_neighbor_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_neighbor_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_neighbor_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_punt_police</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_punt_police_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_punt_redirect</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_punt_redirect_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_reassembly_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_reassembly_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_reassembly_set</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_source_and_port_range_check_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_source_and_port_range_check_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_source_and_port_range_check_interface_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_source_and_port_range_check_interface_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ip_table_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipfix_classify_stream_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipfix_classify_stream_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipfix_classify_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipfix_classify_table_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipfix_classify_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipfix_classify_table_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipfix_exporter_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipfix_exporter_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_6rd_add_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipip_6rd_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_add_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipip_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipip_tunnel_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>ipip_tunnel_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_gre_add_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_gre_add_del_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_gre_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_gre_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_interface_add_del_spd</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_interface_add_del_spd_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_sa_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_sa_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_sa_set_key</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_sa_set_key_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_sad_add_del_entry</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_sad_add_del_entry_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_spd_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_spd_add_del_entry</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_spd_add_del_entry_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_spd_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_spd_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_spd_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_tunnel_if_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_if_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_tunnel_if_set_key</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_if_set_key_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>ipsec_tunnel_if_set_sa</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>ipsec_tunnel_if_set_sa_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>kp_add_del_pod</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>kp_add_del_pod_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>kp_add_del_vip</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>kp_add_del_vip_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>kp_conf</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>kp_conf_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_emulation</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_emulation_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_fib_clear_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_fib_clear_table_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_fib_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_fib_table_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_flags</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_flags_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_interface_efp_filter</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_interface_efp_filter_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_interface_pbb_tag_rewrite</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_interface_pbb_tag_rewrite_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_interface_vlan_tag_rewrite</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_interface_vlan_tag_rewrite_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_macs_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_patch_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_patch_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2_xconnect_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2_xconnect_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2fib_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2fib_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2fib_flush_all</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2fib_flush_all_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2fib_flush_bd</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2fib_flush_bd_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2fib_flush_int</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2fib_flush_int_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2tpv3_create_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2tpv3_create_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2tpv3_interface_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2tpv3_interface_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2tpv3_set_lookup_key</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2tpv3_set_lookup_key_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>l2tpv3_set_tunnel_cookies</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>l2tpv3_set_tunnel_cookies_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_add_del_as</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_add_del_as_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_add_del_vip</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_add_del_vip_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lb_conf</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lb_conf_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_adjacency</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_adjacency_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_local_eid</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_local_eid_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_locator</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_locator_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_locator_set</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_locator_set_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_map_request_itr_rlocs</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_map_request_itr_rlocs_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_map_resolver</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_map_resolver_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_map_server</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_map_server_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_add_del_remote_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_add_del_remote_mapping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_adjacencies_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_adjacencies_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_eid_table_add_del_map</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_eid_table_add_del_map_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_eid_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_eid_table_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_eid_table_map_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_eid_table_map_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_eid_table_vni_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_eid_table_vni_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_get_map_request_itr_rlocs</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_get_map_request_itr_rlocs_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_locator_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_locator_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_locator_set_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_locator_set_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_map_register_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_map_register_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_map_request_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_map_request_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_map_resolver_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_map_resolver_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_map_server_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_map_server_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_pitr_set_locator_set</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_pitr_set_locator_set_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_rloc_probe_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_rloc_probe_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lisp_use_petr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisp_use_petr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>lldp_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>lldp_config_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>macip_acl_add_replace</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_add_replace_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>macip_acl_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>macip_acl_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>macip_acl_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_interface_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>macip_acl_interface_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_interface_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>macip_acl_interface_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>macip_acl_interface_list_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>macip_acl_interface_list_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_add_del_rule</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_add_del_rule_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_add_domain</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_add_domain_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_another_segment</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_another_segment_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_del_domain</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_del_domain_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_domain_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_domain_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_rule_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_rule_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>map_summary_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>map_summary_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memclnt_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memclnt_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memclnt_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memclnt_delete_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memclnt_keepalive</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memclnt_keepalive_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memclnt_read_timeout</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memclnt_rx_thread_suspend</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memfd_segment_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memfd_segment_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memif_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memif_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memif_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memif_delete_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memif_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memif_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>memif_socket_filename_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>memif_socket_filename_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>memif_socket_filename_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>mfib_signal_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mfib_signal_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>modify_vhost_user_if</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>modify_vhost_user_if_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_fib_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_fib_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_ip_bind_unbind</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_ip_bind_unbind_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_route_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_route_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_table_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_table_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_tunnel_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_tunnel_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>mpls_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>mpls_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_address_range</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_address_range_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_identity_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_identity_mapping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_interface_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_interface_addr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_lb_static_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_lb_static_mapping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_add_del_static_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_add_del_static_mapping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_address_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_address_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_del_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_del_session_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_forwarding_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_forwarding_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_forwarding_is_enabled</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_forwarding_is_enabled_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_identity_mapping_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_identity_mapping_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_interface_add_del_feature</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_add_del_feature_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_interface_add_del_output_feature</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_add_del_output_feature_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_interface_addr_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_addr_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_interface_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_interface_output_feature_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_interface_output_feature_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_lb_static_mapping_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_lb_static_mapping_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_static_mapping_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_static_mapping_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_user_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_user_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat44_user_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat44_user_session_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_interface_addr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_add_del_interface_addr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_add_del_interface_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_pool_addr_range</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_add_del_pool_addr_range_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_prefix</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_add_del_prefix_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_add_del_static_bib</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_add_del_static_bib_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_bib_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_bib_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_get_timeouts</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_get_timeouts_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_interface_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_interface_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_pool_addr_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_pool_addr_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_prefix_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_prefix_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_set_timeouts</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_set_timeouts_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat64_st_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat64_st_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat66_add_del_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat66_add_del_static_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat66_interface_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat66_interface_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat66_static_mapping_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>nat66_static_mapping_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_control_ping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_control_ping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_add_del_map</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_add_del_map_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_close_session_in</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_close_session_in_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_close_session_out</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_close_session_out_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_forward</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_forward_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_get_timeouts</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_get_timeouts_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_map_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_map_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_reverse</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_reverse_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_session_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_det_set_timeouts</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_det_set_timeouts_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_get_reass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_get_reass_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_ipfix_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_ipfix_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_reass_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_reass_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_set_reass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_set_reass_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_set_workers</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_set_workers_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_show_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_show_config_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>nat_worker_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>nat_worker_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>netmap_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>netmap_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>netmap_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>netmap_delete_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>oam_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>oam_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>oam_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_adjacency</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_adjacency_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_l2_arp_entry</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_l2_arp_entry_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_local_eid</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_local_eid_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_locator</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_locator_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_locator_set</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_locator_set_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_map_request_itr_rlocs</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_map_request_itr_rlocs_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_map_resolver</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_map_resolver_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_map_server</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_map_server_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_ndp_entry</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_ndp_entry_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_add_del_remote_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_add_del_remote_mapping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_adjacencies_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_adjacencies_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_eid_table_add_del_map</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_eid_table_add_del_map_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_eid_table_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_eid_table_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_eid_table_map_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_eid_table_map_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_eid_table_vni_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_eid_table_vni_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_enable_disable_petr_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_enable_disable_petr_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_enable_disable_pitr_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_enable_disable_pitr_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_enable_disable_xtr_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_enable_disable_xtr_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_get_map_request_itr_rlocs</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_get_map_request_itr_rlocs_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_get_transport_protocol</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_get_transport_protocol_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_l2_arp_bd_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_l2_arp_bd_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_l2_arp_entries_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_l2_arp_entries_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_locator_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_locator_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_locator_set_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_locator_set_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_map_register_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_map_register_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_map_register_fallback_threshold</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_map_register_fallback_threshold_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_map_register_set_ttl</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_map_register_set_ttl_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_map_request_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_map_request_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_map_resolver_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_map_resolver_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_map_server_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_map_server_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_ndp_bd_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_ndp_bd_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_ndp_entries_get</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_ndp_entries_get_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_nsh_set_locator_set</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_nsh_set_locator_set_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_pitr_set_locator_set</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_pitr_set_locator_set_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_rloc_probe_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_rloc_probe_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_set_transport_protocol</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_set_transport_protocol_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_show_petr_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_show_petr_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_show_pitr_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_show_pitr_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_show_xtr_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_show_xtr_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_stats_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_stats_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_stats_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_stats_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_stats_flush</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_stats_flush_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>one_use_petr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>one_use_petr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>output_acl_set_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>p2p_ethernet_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>p2p_ethernet_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>p2p_ethernet_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>p2p_ethernet_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pg_capture</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pg_capture_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pg_create_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pg_create_interface_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pg_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pg_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>policer_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_classify_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>policer_classify_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_classify_set_interface</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>policer_classify_set_interface_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>policer_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>policer_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pot_profile_activate</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pot_profile_activate_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pot_profile_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pot_profile_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pot_profile_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pot_profile_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pot_profile_show_config_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pot_profile_show_config_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pppoe_add_del_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pppoe_add_del_session_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>pppoe_session_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>pppoe_session_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>proxy_arp_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>proxy_arp_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>proxy_arp_intfc_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>proxy_arp_intfc_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>punt</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>punt_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>punt_socket_deregister</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>punt_socket_deregister_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>punt_socket_register</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>punt_socket_register_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos_egress_map_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>qos_egress_map_update</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos_mark_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>qos_record_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>reset_fib</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>reset_fib_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>reset_session</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>reset_session_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>rpc_call</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>rpc_call_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>rx_thread_exit</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sctp_add_src_dst_connection</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sctp_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sctp_del_src_dst_connection</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>session_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>session_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>session_rule_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>session_rule_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>session_rules_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>session_rules_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_arp_neighbor_limit</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>set_arp_neighbor_limit_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_ip_flow_hash</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>set_ip_flow_hash_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_ipfix_classify_stream</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>set_ipfix_classify_stream_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>set_ipfix_exporter</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>set_ipfix_exporter_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_lisp_map_register_state</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_lisp_map_register_state_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_lisp_map_request_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_lisp_map_request_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_lisp_pitr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_lisp_pitr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_lisp_rloc_probe_state</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_lisp_rloc_probe_state_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_lisp_status</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_lisp_status_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_lisp_use_petr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_lisp_use_petr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_map_register_fallback_threshold</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_map_register_fallback_threshold_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_map_register_state</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_map_register_state_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_map_register_ttl</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_map_register_ttl_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_map_request_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_map_request_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_nsh_mapping</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_nsh_mapping_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_pitr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_pitr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_rloc_probe_state</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_rloc_probe_state_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_stats_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_stats_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_status</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_status_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_one_use_petr</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_one_use_petr_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>show_version</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>show_version_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sock_init_shm</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sockclnt_create</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sockclnt_create_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sockclnt_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sockclnt_delete_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_localsid_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_localsid_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_localsids_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_localsids_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_mpls_policy_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_mpls_policy_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_mpls_policy_assign_endpoint_color</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_mpls_policy_assign_endpoint_color_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_mpls_policy_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_mpls_policy_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_mpls_policy_mod</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_mpls_policy_mod_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_mpls_steering_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_mpls_steering_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_policy_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_policy_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_policy_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_policy_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_policy_mod</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_policy_mod_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_set_encap_source</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_set_encap_source_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sr_steering_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sr_steering_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>stats_get_poller_delay</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>stn_add_del_rule</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>stn_add_del_rule_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>stn_rule_details</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>stn_rules_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>stn_rules_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_if_l2tpv3_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_if_l2tpv3_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_add_del_address</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_add_del_address_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_bond_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_bond_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_clear_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_clear_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_event</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_get_mac_address</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_get_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_get_table_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_ip6_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_ip6_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_ip6_set_link_local_address</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_ip6_set_link_local_address_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_ip6nd_ra_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_ip6nd_ra_config_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_ip6nd_ra_prefix</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_ip6nd_ra_prefix_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_lacp_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_lacp_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_dpdk_hqos_pipe</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_dpdk_hqos_pipe_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_dpdk_hqos_subport</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_dpdk_hqos_subport_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_dpdk_hqos_tctbl</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_dpdk_hqos_tctbl_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_flags</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_flags_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_geneve_bypass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_geneve_bypass_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_gtpu_bypass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_gtpu_bypass_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_l2_bridge</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_l2_bridge_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_l2_xconnect</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_l2_xconnect_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_lldp</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_lldp_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_mac_address</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_mac_address_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_mpls_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_mpls_enable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_mtu</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_mtu_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_rx_mode</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_rx_mode_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_table</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_table_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_unnumbered</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_unnumbered_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_vpath</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_vpath_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_vxlan_bypass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_vxlan_bypass_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_set_vxlan_gpe_bypass</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_set_vxlan_gpe_bypass_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_slave_details</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_slave_dump</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_span_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_span_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_span_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_span_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_tag_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_tag_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_tap_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_tap_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_tap_v2_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_tap_v2_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>sw_interface_vhost_user_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>sw_interface_vhost_user_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>tap_connect</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tap_connect_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>tap_create_v2</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tap_create_v2_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>tap_delete</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tap_delete_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>tap_delete_v2</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tap_delete_v2_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>tap_modify</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tap_modify_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>tcp_configure_src_addresses</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>tcp_configure_src_addresses_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>trace_plugin_msg_ids</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>trace_profile_add</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>trace_profile_add_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>trace_profile_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>trace_profile_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>trace_profile_show_config</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>trace_profile_show_config_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>udp_encap_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_encap_add_del_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>udp_encap_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_encap_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>udp_ping_add_del</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_ping_add_del_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>udp_ping_add_del_req</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_ping_export</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>udp_ping_export_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-even"><td><p>udp_ping_export_req</p></td>
+<td><p>only in file</p></td>
+</tr>
+<tr class="row-odd"><td><p>unbind_sock</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>unbind_sock_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>unbind_uri</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>unbind_uri_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>unmap_segment</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vnet_get_summary_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vnet_get_summary_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vnet_interface_combined_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vnet_interface_simple_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vnet_ip4_fib_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vnet_ip4_mfib_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vnet_ip4_nbr_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vnet_ip6_fib_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vnet_ip6_mfib_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vnet_ip6_nbr_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vnet_per_interface_combined_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vnet_per_interface_simple_counters</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vnet_udp_encap_counters</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_add_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_add_del_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_add_del_tunnel</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_add_del_tunnel_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_enable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_export_enable_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_export_enable_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_transit_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_transit_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_transit_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_transit_enable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_vni_disable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_vni_disable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_ioam_vni_enable</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_ioam_vni_enable_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_gpe_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_gpe_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>vxlan_tunnel_details</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>vxlan_tunnel_dump</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_bfd_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_bfd_events_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_igmp_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_interface_combined_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_interface_combined_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_interface_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_interface_events_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_interface_simple_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_interface_simple_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip4_arp_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip4_arp_events_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip4_fib_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip4_fib_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip4_mfib_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip4_mfib_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip4_nbr_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip4_nbr_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip6_fib_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip6_fib_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip6_mfib_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip6_mfib_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip6_nbr_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip6_nbr_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip6_nd_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_ip6_nd_events_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_ip6_ra_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_l2_macs_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_l2_macs_events_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_oam_events</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_oam_events_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_per_interface_combined_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_per_interface_combined_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_per_interface_simple_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_per_interface_simple_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-even"><td><p>want_stats_reply</p></td>
+<td><p>definition changed</p></td>
+</tr>
+<tr class="row-odd"><td><p>want_udp_encap_stats</p></td>
+<td><p>definition changed</p></td>
+</tr>
+</tbody>
+</table>
+<p>Found 1036 api message signature differences</p>
+<section id="patches-that-changed-api-definitions">
+<h3>Patches that changed API definitions<a class="headerlink" href="#patches-that-changed-api-definitions" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">src/vpp/stats/stats.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=43b1f44">43b1f44</a> UDP Encap counters</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ff92efe">ff92efe</a> stats: allow configuring poller delay</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=51e5968">51e5968</a> API: Add service definitions for events and singleton messages (second attempt)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2de1f15">2de1f15</a> Revert “API: Add service definitions for events and singleton messages.”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f7b7fa5">f7b7fa5</a> API: Add service definitions for events and singleton messages.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vpp/oam/oam.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=51e5968">51e5968</a> API: Add service definitions for events and singleton messages (second attempt)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2de1f15">2de1f15</a> Revert “API: Add service definitions for events and singleton messages.”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f7b7fa5">f7b7fa5</a> API: Add service definitions for events and singleton messages.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vpp/api/vpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/interface.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0cae3f7">0cae3f7</a> Detailed Interface stats API takes sw_if_index</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6f4a6be">6f4a6be</a> Interface Unicast, Multicast and Broadcast stats on the API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c037423">c037423</a> IPv6 ND Router discovery control plane (VPP-1095)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=51e5968">51e5968</a> API: Add service definitions for events and singleton messages (second attempt)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2de1f15">2de1f15</a> Revert “API: Add service definitions for events and singleton messages.”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f7b7fa5">f7b7fa5</a> API: Add service definitions for events and singleton messages.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/unix/tap.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/qos/qos.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=039cbfe">039cbfe</a> QoS recording and marking</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/policer/policer.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/mpls/mpls.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=31ed744">31ed744</a> MPLS Unifom mode</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/span/span.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=179ab36">179ab36</a> SPAN: Add “is_l2” flag to DETAILS response messages.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/vxlan-gpe/vxlan_gpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/l2tp/l2tp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lldp/lldp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/srmpls/sr_mpls.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/cop/cop.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/feature/feature.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipsec-gre/ipsec_gre.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/geneve/geneve.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-gpe/lisp_gpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/map/map.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e31d956">e31d956</a> MAP: Add RFC6052 mapping to MAP-T</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-cp/lisp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-cp/one.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/tcp/tcp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/dhcp/dhcp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=51e5968">51e5968</a> API: Add service definitions for events and singleton messages (second attempt)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2de1f15">2de1f15</a> Revert “API: Add service definitions for events and singleton messages.”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f7b7fa5">f7b7fa5</a> API: Add service definitions for events and singleton messages.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=54c6dc4">54c6dc4</a> For DHCP client configuration control the setting of the broadcast flag in the DISCOVER message sent.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/gre/gre.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a43ccae">a43ccae</a> Optimize GRE Tunnel and add support for ERSPAN encap</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/flow/flow.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/virtio/vhost_user.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/af_packet/af_packet.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/tap/tapv2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7866c45">7866c45</a> tapv2: add option to set host-side default gw</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/netmap/netmap.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/dns/dns.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bonding/bond.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9cd2d7a">9cd2d7a</a> bond: Add bonding driver and LACP protocol</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/session/session.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=8f89dd0">8f89dd0</a> tls: enforce certificate verification</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=371ca50">371ca50</a> session: first approximation implementation of tls</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f8f516a">f8f516a</a> session: support local sessions and deprecate redirects</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ethernet/p2p_ethernet.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/rd_cp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c037423">c037423</a> IPv6 ND Router discovery control plane (VPP-1095)</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/punt.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/ip.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4c53313">4c53313</a> reassembly: feature/concurrency</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4b9669d">4b9669d</a> IPv6 ND Router discovery data plane (VPP-1095)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=31ed744">31ed744</a> MPLS Unifom mode</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=51e5968">51e5968</a> API: Add service definitions for events and singleton messages (second attempt)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2de1f15">2de1f15</a> Revert “API: Add service definitions for events and singleton messages.”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f7b7fa5">f7b7fa5</a> API: Add service definitions for events and singleton messages.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75e7d13">75e7d13</a> IPv4/6 reassembly</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f068c3e">f068c3e</a> DVR: run L3 output features</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/classify/classify.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=815d7d5">815d7d5</a> classifier-based ACL: refactor + add output ACL</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipip/ipip.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=298c695">298c695</a> IPIP: Add IP{v4,v6} over IP{v4,v6} configured tunnel support.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/udp/udp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bfd/bfd.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/srv6/sr.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipsec/ipsec.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bier/bier.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=31ed744">31ed744</a> MPLS Unifom mode</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f051072">f051072</a> BIER: fix support for longer bit-string lengths</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/sctp/sctp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c7fe4f3">c7fe4f3</a> SCTP: API to configure some tunables</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=465c087">465c087</a> SCTP: API to delete a sub-connection</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3c6a976">3c6a976</a> SCTP: API to add a sub-connection</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/l2/l2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e23c99e">e23c99e</a> Improve l2_macs_events API to provide MAC move information</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=51e5968">51e5968</a> API: Add service definitions for events and singleton messages (second attempt)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2de1f15">2de1f15</a> Revert “API: Add service definitions for events and singleton messages.”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f7b7fa5">f7b7fa5</a> API: Add service definitions for events and singleton messages.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/vxlan/vxlan.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=31ed744">31ed744</a> MPLS Unifom mode</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=3d460bd">3d460bd</a> VXLAN: Allow user to specify a custom vxlan tunnel instance id.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/fib/fib_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2303cb1">2303cb1</a> FIB Interpose Source</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=8145842">8145842</a> Common form of fib-path reproting in dumps</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=31ed744">31ed744</a> MPLS Unifom mode</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/pg/pg.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/examples/sample-plugin/sample/sample.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/lb/lb.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=647f609">647f609</a> Add L3DSR feature in LB plugin</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/gtpu/gtpu.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/kubeproxy/kp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/pppoe/pppoe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/nat.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f2a23cc">f2a23cc</a> NAT66 1:1 mapping (VPP-1108)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9dba781">9dba781</a> NAT44: nat44_static_mapping_details protocol=0 if addr_only=0 (VPP-1158)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bc39e34">bc39e34</a> NAT: add missing CLI and API documentation (VPP-1142)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5f22499">5f22499</a> NAT44: add opaque string tag to static mapping APIs (VPP-1147)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=e82488f">e82488f</a> NAT44: asymmetrical static mapping rule (VPP-1135)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=240b5ef">240b5ef</a> NAT44: asymmetrical load balancing static mapping rule (VPP-1132)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c5c6a33">c5c6a33</a> Add basic support for DS-Lite CE (VPP-1059)</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/l2e/l2e.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/lib-pot/pot.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/ip6/ioam_cache.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/udp-ping/udp_ping.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=149a143">149a143</a> fix udp_ping api naming error</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/export/ioam_export.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/export-vxlan-gpe/vxlan_gpe_ioam_export.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/lib-vxlan-gpe/ioam_vxlan_gpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/ioam/lib-trace/trace.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/igmp/igmp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7b867a8">7b867a8</a> IGMP plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/memif/memif.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=30349b0">30349b0</a> memif: Add new API calls to manage memif socket names.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/lacp/lacp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9cd2d7a">9cd2d7a</a> bond: Add bonding driver and LACP protocol</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/acl/acl.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=27fe75a">27fe75a</a> acl-plugin: add the support for dumping the ethertype whitelist (VPP-1163)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c43b3f9">c43b3f9</a> acl-plugin: add whitelisted ethertype mode (VPP-1163)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/flowprobe/flowprobe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/dpdk/api/dpdk.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/gbp/gbp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bc27d1b">bc27d1b</a> GBP plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/stn/stn.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=62bab65">62bab65</a> STN: Fix stn_rules_dump/details to follow API convention</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/cdp/cdp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=aaacfbc">aaacfbc</a> Move the vnet cdp protocol implementation to a plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vlibmemory/memclnt.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=51e5968">51e5968</a> API: Add service definitions for events and singleton messages (second attempt)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2de1f15">2de1f15</a> Revert “API: Add service definitions for events and singleton messages.”</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f7b7fa5">f7b7fa5</a> API: Add service definitions for events and singleton messages.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9d42087">9d42087</a> VPPAPIGEN: vppapigen replacement in Python PLY.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=90a6398">90a6398</a> sock api: add infra for bootstrapping shm clients</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="v18.07.html" class="btn btn-neutral float-left" title="Release notes for VPP 18.07" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="v18.01.2.html" class="btn btn-neutral float-right" title="Release notes for VPP 18.01.2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

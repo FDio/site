@@ -1,0 +1,18 @@
+.. _clicmd_src_plugins_builtinurl:
+
+===============================================================
+Builtinurl cli reference
+===============================================================
+
+builtinurl enable
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Turn on builtin http/https GET and POST urls
+
+
+Declaration: ``builtinurl_enable_command`` `src/plugins/builtinurl/builtinurl.c line 89 <https://github.com/FDio/vpp/blob/master//src/plugins/builtinurl/builtinurl.c#L89>`_
+
+Implementation: ``builtinurl_enable_command_fn``
+

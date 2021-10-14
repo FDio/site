@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VPP stats segment FUSE filesystem &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VPP Top Installation" href="vpptop.html" />
+    <link rel="prev" title="VPP interface stats client" href="vpp_if_stats.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">VPP extra tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lcov.html">Code coverage with lcov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap.html">VPP Snap Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strongswan.html">Strongswan Testing Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_config.html">VPP configuration utility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_if_stats.html">VPP interface stats client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">VPP stats segment FUSE filesystem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#help">Help</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start">Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stop">Stop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#force-unmount">Force unmount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cleanup">Cleanup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#browsing-the-filesystem">Browsing the filesystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-and-mounting-the-filesystem-manually">Building and mounting the filesystem manually</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building">Building</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mounting">Mounting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unmounting-the-file-system">Unmounting the file system</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vpptop.html">VPP Top Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vcl_ldpreload.html">LD_PRELOAD the VCL</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">VPP extra tools</a> &raquo;</li>
+      <li>VPP stats segment FUSE filesystem</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/extras/vpp_stats_fs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vpp-stats-segment-fuse-filesystem">
+<span id="stats-fs-doc"></span><h1>VPP stats segment FUSE filesystem<a class="headerlink" href="#vpp-stats-segment-fuse-filesystem" title="Permalink to this headline"></a></h1>
+<p>The statfs binary allows to create a FUSE filesystem to expose and to
+browse the stats segment. It relies on the Go-FUSE library and requires
+Go-VPP stats bindings to work.</p>
+<p>The binary mounts a filesystem on the local machine with the data from
+the stats segments. The counters can be opened and read as files
+(e.g. in a Unix shell). Note that the value of a counter is determined
+when the corresponding file is opened (as for /proc/interrupts).</p>
+<p>Directories update their contents on epoch changes so that new counters
+get added to the filesystem.</p>
+<p>The script <code class="docutils literal notranslate"><span class="pre">install.sh</span></code> is responsible for building and installing
+the filesystem.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<p>The local Makefile contains targets for all the possible interactions
+with the stats_f binary.</p>
+<section id="help">
+<h3>Help<a class="headerlink" href="#help" title="Permalink to this headline"></a></h3>
+<p>A basic help menu</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make <span class="nb">help</span>
+</pre></div>
+</div>
+</section>
+<section id="install">
+<h3>Install<a class="headerlink" href="#install" title="Permalink to this headline"></a></h3>
+<p>Building the binary</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make install
+</pre></div>
+</div>
+</section>
+<section id="start">
+<h3>Start<a class="headerlink" href="#start" title="Permalink to this headline"></a></h3>
+<p>Starts the filesystem. Requires a running VPP instance using the default
+socket /run/vpp/stats.sock.</p>
+<p>May require a privileged user (sudo)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make start
+</pre></div>
+</div>
+</section>
+<section id="stop">
+<h3>Stop<a class="headerlink" href="#stop" title="Permalink to this headline"></a></h3>
+<p>Stops and unmounts the filesystem if it is not busy.</p>
+<p>May require a privileged user (sudo)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make stop
+</pre></div>
+</div>
+</section>
+<section id="force-unmount">
+<h3>Force unmount<a class="headerlink" href="#force-unmount" title="Permalink to this headline"></a></h3>
+<p>Forces the unmount of the filesystem even if it is busy.</p>
+<p>May require a privileged user (sudo)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make force-unmount
+</pre></div>
+</div>
+</section>
+<section id="cleanup">
+<h3>Cleanup<a class="headerlink" href="#cleanup" title="Permalink to this headline"></a></h3>
+<p>Cleaning stats_fs binary.</p>
+<p>May require a privileged user (sudo).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make clean
+</pre></div>
+</div>
+</section>
+</section>
+<section id="browsing-the-filesystem">
+<h2>Browsing the filesystem<a class="headerlink" href="#browsing-the-filesystem" title="Permalink to this headline"></a></h2>
+<p>The default mountpoint is /run/vpp/stats_fs_dir. You can browse the
+filesystem as a regular user. Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /run/vpp/stats_fs_dir
+<span class="nb">cd</span> sys/node
+ls -al
+cat names
+</pre></div>
+</div>
+</section>
+<section id="building-and-mounting-the-filesystem-manually">
+<h2>Building and mounting the filesystem manually<a class="headerlink" href="#building-and-mounting-the-filesystem-manually" title="Permalink to this headline"></a></h2>
+<p>For more modularity, you can build and mount the filesystem manually.</p>
+<section id="building">
+<h3>Building<a class="headerlink" href="#building" title="Permalink to this headline"></a></h3>
+<p>Inside the local directory, you can build the go binary:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>go build
+</pre></div>
+</div>
+</section>
+<section id="mounting">
+<h3>Mounting<a class="headerlink" href="#mounting" title="Permalink to this headline"></a></h3>
+<p>Then, you can mount the filesystem with the local binary.</p>
+<p>May require a privileged user (sudo).</p>
+<p>The basic usage is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./stats_fs &lt;MOUNT_POINT&gt;
+</pre></div>
+</div>
+<p><strong>Options:</strong> - debug &lt;true|false&gt; (default is false) - socket
+&lt;statSocket&gt; (default is /run/vpp/stats.sock) : VPP socket for stats</p>
+</section>
+<section id="unmounting-the-file-system">
+<h3>Unmounting the file system<a class="headerlink" href="#unmounting-the-file-system" title="Permalink to this headline"></a></h3>
+<p>You can unmount the filesystem with the fusermount command.</p>
+<p>May require a privileged user (sudo)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fusermount -u /path/to/mountpoint
+</pre></div>
+</div>
+<p>To force the unmount even if the resource is busy, add the -z option:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fusermount -uz /path/to/mountpoint
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vpp_if_stats.html" class="btn btn-neutral float-left" title="VPP interface stats client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vpptop.html" class="btn btn-neutral float-right" title="VPP Top Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

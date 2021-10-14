@@ -1,0 +1,18 @@
+.. _clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam:
+
+===============================================================
+Export-nsh-md2-ioam cli reference
+===============================================================
+
+set nsh-md2-ioam export ipfix
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set nsh-md2-ioam export ipfix collector <ip4-address> src <ip4-address>
+
+
+Declaration: ``set_nsh_md2_ioam_ipfix_command`` `src/plugins/nsh/nsh-md2-ioam/export-nsh-md2-ioam/nsh_md2_ioam_export.c line 140 <https://github.com/FDio/vpp/blob/master//src/plugins/nsh/nsh-md2-ioam/export-nsh-md2-ioam/nsh_md2_ioam_export.c#L140>`_
+
+Implementation: ``set_nsh_md2_ioam_export_ipfix_command_fn``
+

@@ -1,0 +1,70 @@
+.. _clicmd_src_plugins_memif:
+
+===============================================================
+Memif cli reference
+===============================================================
+
+create interface memif
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create interface memif [id <id>] [socket-id <socket-id>] [ring-size <size>] [buffer-size <size>] [hw-addr <mac-address>] <master|slave> [rx-queues <number>] [tx-queues <number>] [mode ip] [secret <string>]
+
+
+Declaration: ``memif_create_command`` `src/plugins/memif/cli.c line 258 <https://github.com/FDio/vpp/blob/master//src/plugins/memif/cli.c#L258>`_
+
+Implementation: ``memif_create_command_fn``
+
+
+create memif socket
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create memif socket [id <id>] [filename <path>]
+
+
+Declaration: ``memif_socket_filename_create_command`` `src/plugins/memif/cli.c line 100 <https://github.com/FDio/vpp/blob/master//src/plugins/memif/cli.c#L100>`_
+
+Implementation: ``memif_socket_filename_create_command_fn``
+
+
+delete interface memif
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete interface memif {<interface> | sw_if_index <sw_idx>}
+
+
+Declaration: ``memif_delete_command`` `src/plugins/memif/cli.c line 312 <https://github.com/FDio/vpp/blob/master//src/plugins/memif/cli.c#L312>`_
+
+Implementation: ``memif_delete_command_fn``
+
+
+delete memif socket
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete memif socket [id <id>]
+
+
+Declaration: ``memif_socket_filename_delete_command`` `src/plugins/memif/cli.c line 163 <https://github.com/FDio/vpp/blob/master//src/plugins/memif/cli.c#L163>`_
+
+Implementation: ``memif_socket_filename_delete_command_fn``
+
+
+show memif
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show memif [<interface>] [descriptors]
+
+
+Declaration: ``memif_show_command`` `src/plugins/memif/cli.c line 530 <https://github.com/FDio/vpp/blob/master//src/plugins/memif/cli.c#L530>`_
+
+Implementation: ``memif_show_command_fn``
+

@@ -1,0 +1,31 @@
+.. _clicmd_src_plugins_oddbuf:
+
+===============================================================
+Oddbuf cli reference
+===============================================================
+
+oddbuf configure
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    oddbuf configure n_to_copy <nn> offset <nn> first_offset <nn>
+
+
+Declaration: ``oddbuf_config_command`` `src/plugins/oddbuf/oddbuf.c line 209 <https://github.com/FDio/vpp/blob/master//src/plugins/oddbuf/oddbuf.c#L209>`_
+
+Implementation: ``oddbuf_config_command_fn``
+
+
+oddbuf enable-disable
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    oddbuf enable-disable <interface-name> [disable]
+
+
+Declaration: ``oddbuf_enable_disable_command`` `src/plugins/oddbuf/oddbuf.c line 110 <https://github.com/FDio/vpp/blob/master//src/plugins/oddbuf/oddbuf.c#L110>`_
+
+Implementation: ``oddbuf_enable_disable_command_fn``
+

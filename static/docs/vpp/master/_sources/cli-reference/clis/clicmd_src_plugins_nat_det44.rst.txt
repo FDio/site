@@ -1,0 +1,347 @@
+.. _clicmd_src_plugins_nat_det44:
+
+===============================================================
+Det44 cli reference
+===============================================================
+
+det44 add
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    det44 add in <addr>/<plen> out <addr>/<plen> [del]
+
+
+
+
+
+.. code-block:: console
+
+    det44 add
+    
+    Create bijective mapping of inside address to outside address and port range
+    pairs, with the purpose of enabling DET44 to reduce logging in CGN
+    deployments.
+    To create mapping between inside network 10.0.0.0/18 and
+    outside network 1.1.1.0/30 use:
+    # vpp# det44 add in 10.0.0.0/18 out 1.1.1.0/30
+    
+
+
+
+Declaration: ``det44_map_command`` `src/plugins/nat/det44/det44_cli.c line 507 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L507>`_
+
+Implementation: ``det44_map_command_fn``
+
+
+det44 close session in
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    det44 close session in <in_addr>:<in_port> <ext_addr>:<ext_port>
+
+
+
+
+
+.. code-block:: console
+
+    det44 deterministic close session in
+    
+    Close session using inside ip address and port
+    and external ip address and port, use:
+     vpp# det44 close session in 3.3.3.3:3487 2.2.2.2:2387
+    
+
+
+
+Declaration: ``det44_close_session_in_command`` `src/plugins/nat/det44/det44_cli.c line 601 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L601>`_
+
+Implementation: ``det44_close_session_in_fn``
+
+
+det44 close session out
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    det44 close session out <out_addr>:<out_port> <ext_addr>:<ext_port>
+
+
+
+
+
+.. code-block:: console
+
+    det44 close session out
+    
+    Close session using outside ip address and port
+    and external ip address and port, use:
+     vpp# det44 close session out 1.1.1.1:1276 2.2.2.2:2387
+    
+
+
+
+Declaration: ``det44_close_sesion_out_command`` `src/plugins/nat/det44/det44_cli.c line 586 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L586>`_
+
+Implementation: ``det44_close_session_out_fn``
+
+
+det44 forward
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    det44 forward <addr>
+
+
+
+
+
+.. code-block:: console
+
+    det44 forward
+    
+    Return outside address and port range from inside address for DET44.
+    To obtain outside address and port of inside host use:
+     vpp# det44 forward 10.0.0.2
+     1.1.1.0:<1054-1068>
+    
+
+
+
+Declaration: ``det44_forward_command`` `src/plugins/nat/det44/det44_cli.c line 540 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L540>`_
+
+Implementation: ``det44_forward_command_fn``
+
+
+det44 plugin
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    det44 plugin <enable [inside vrf] [outside vrf]|disable>
+
+
+
+
+
+.. code-block:: console
+
+    det44 plugin
+    
+    Enable/disable DET44 plugin.
+    
+
+
+
+Declaration: ``det44_plugin_enable_disable_command`` `src/plugins/nat/det44/det44_cli.c line 649 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L649>`_
+
+Implementation: ``det44_plugin_enable_disable_command_fn``
+
+
+det44 reverse
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    det44 reverse <addr>:<port>
+
+
+
+
+
+.. code-block:: console
+
+    det44 reverse
+    
+    Return inside address from outside address and port for DET44.
+    To obtain inside host address from outside address and port use:
+     #vpp det44 reverse 1.1.1.1:1276
+     10.0.16.16
+    
+
+
+
+Declaration: ``det44_reverse_command`` `src/plugins/nat/det44/det44_cli.c line 555 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L555>`_
+
+Implementation: ``det44_reverse_command_fn``
+
+
+set det44 timeouts
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set det44 timeouts <[udp <sec>] [tcp established <sec>] [tcp transitory <sec>] [icmp <sec>]|reset>
+
+
+
+
+
+.. code-block:: console
+
+    set det44 timeout
+    
+    Set values of timeouts for DET44 sessions (in seconds), use:
+     vpp# set det44 timeouts udp 120 tcp established 7500 tcp transitory 250 icmp 90
+    To reset default values use:
+     vpp# set det44 timeouts reset
+    
+
+
+
+Declaration: ``det44_set_timeouts_command`` `src/plugins/nat/det44/det44_cli.c line 617 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L617>`_
+
+Implementation: ``det44_set_timeouts_command_fn``
+
+
+set interface det44
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface det44 inside <intfc> outside <intfc> [del]
+
+
+
+
+
+.. code-block:: console
+
+    set interface det44
+    
+    Enable/disable DET44 feature on the interface.
+    To enable DET44 feature with local network interface use:
+     vpp# set interface det44 inside GigabitEthernet0/8/0
+    To enable DET44 feature with external network interface use:
+     vpp# set interface det44 outside GigabitEthernet0/a/0
+    
+
+
+
+Declaration: ``det44_feature_command`` `src/plugins/nat/det44/det44_cli.c line 666 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L666>`_
+
+Implementation: ``det44_feature_command_fn``
+
+
+show det44 interfaces
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show det44 interfaces
+
+
+
+
+
+.. code-block:: console
+
+    show det44 interfaces
+    
+    Show interfaces with DET44 feature.
+    vpp# show det44 interfaces
+    DET44 interfaces:
+     GigabitEthernet0/8/0 in
+     GigabitEthernet0/a/0 out
+    
+
+
+
+Declaration: ``det44_show_interfaces_command`` `src/plugins/nat/det44/det44_cli.c line 683 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L683>`_
+
+Implementation: ``det44_show_interfaces_command_fn``
+
+
+show det44 mappings
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show det44 mappings
+
+
+
+
+
+.. code-block:: console
+
+    show det44 mappings
+    
+    Show DET44 mappings
+    vpp# show det44 mappings
+    DET44 mappings:
+     in 10.0.0.0/24 out 1.1.1.1/32
+      outside address sharing ratio: 256
+      number of ports per inside host: 252
+      sessions number: 0
+    
+
+
+
+Declaration: ``det44_show_mappings_command`` `src/plugins/nat/det44/det44_cli.c line 525 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L525>`_
+
+Implementation: ``det44_show_mappings_command_fn``
+
+
+show det44 sessions
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show det44 sessions
+
+
+
+
+
+.. code-block:: console
+
+    show det44 sessions
+    
+    Show DET44 sessions.
+    vpp# show det44 sessions
+    DET44 sessions:
+      in 10.0.0.3:3005 out 1.1.1.2:1146 external host 172.16.1.2:3006 state: udp-active expire: 306
+      in 10.0.0.3:3000 out 1.1.1.2:1141 external host 172.16.1.2:3001 state: udp-active expire: 306
+      in 10.0.0.4:3005 out 1.1.1.2:1177 external host 172.16.1.2:3006 state: udp-active expire: 306
+    
+
+
+
+Declaration: ``det44_show_sessions_command`` `src/plugins/nat/det44/det44_cli.c line 572 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L572>`_
+
+Implementation: ``det44_show_sessions_command_fn``
+
+
+show det44 timeouts
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show det44 timeouts
+
+
+
+
+
+.. code-block:: console
+
+    show det44 timeouts
+    
+    Show values of timeouts for DET44 sessions.
+    vpp# show det44 timeouts
+    udp timeout: 300sec
+    tcp-established timeout: 7440sec
+    tcp-transitory timeout: 240sec
+    icmp timeout: 60sec
+    
+
+
+
+Declaration: ``det44_show_timeouts_command`` `src/plugins/nat/det44/det44_cli.c line 636 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/det44/det44_cli.c#L636>`_
+
+Implementation: ``det44_show_timeouts_command_fn``
+

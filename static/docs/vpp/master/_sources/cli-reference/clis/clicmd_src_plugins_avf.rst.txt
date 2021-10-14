@@ -1,0 +1,44 @@
+.. _clicmd_src_plugins_avf:
+
+===============================================================
+Avf cli reference
+===============================================================
+
+create interface avf
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create interface avf <pci-address> [rx-queue-size <size>] [tx-queue-size <size>] [num-rx-queues <size>]
+
+
+Declaration: ``avf_create_command`` `src/plugins/avf/cli.c line 73 <https://github.com/FDio/vpp/blob/master//src/plugins/avf/cli.c#L73>`_
+
+Implementation: ``avf_create_command_fn``
+
+
+delete interface avf
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete interface avf {<interface> | sw_if_index <sw_idx>}
+
+
+Declaration: ``avf_delete_command`` `src/plugins/avf/cli.c line 123 <https://github.com/FDio/vpp/blob/master//src/plugins/avf/cli.c#L123>`_
+
+Implementation: ``avf_delete_command_fn``
+
+
+test avf
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test avf [<interface> | sw_if_index <sw_idx>] [irq] [elog-on] [elog-off]
+
+
+Declaration: ``avf_test_command`` `src/plugins/avf/cli.c line 189 <https://github.com/FDio/vpp/blob/master//src/plugins/avf/cli.c#L189>`_
+
+Implementation: ``avf_test_command_fn``
+

@@ -1,0 +1,45 @@
+.. _clicmd_src_plugins_ioam_ip6:
+
+===============================================================
+Ip6 cli reference
+===============================================================
+
+set ioam ip6 cache
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ioam ip6 cache sr_localsid <ip6 address> [disable]
+
+
+Declaration: ``set_ioam_cache_command`` `src/plugins/ioam/ip6/ioam_cache.c line 192 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/ip6/ioam_cache.c#L192>`_
+
+Implementation: ``set_ioam_cache_command_fn``
+
+
+set ioam ip6 sr-tunnel-select
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ioam ip6 sr-tunnel-select [disable] [oneway|rtt] [wait_for_responses <n|default 3>] \
+      [sr_localsid <ip6 address>]
+
+
+Declaration: ``set_ioam_cache_ts_command`` `src/plugins/ioam/ip6/ioam_cache.c line 240 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/ip6/ioam_cache.c#L240>`_
+
+Implementation: ``set_ioam_tunnel_select_command_fn``
+
+
+show ioam ip6 cache
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ioam ip6 cache [verbose]
+
+
+Declaration: ``show_ioam_cache_command`` `src/plugins/ioam/ip6/ioam_cache.c line 302 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/ip6/ioam_cache.c#L302>`_
+
+Implementation: ``show_ioam_cache_command_fn``
+

@@ -1,0 +1,57 @@
+.. _clicmd_src_plugins_hs_apps:
+
+===============================================================
+Hs_apps cli reference
+===============================================================
+
+test echo clients
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test echo clients [nclients %d][[m|g]bytes <bytes>][test-timeout <time>][syn-timeout <time>][no-return][fifo-size <size>][private-segment-count <count>][private-segment-size <bytes>[m|g]][preallocate-fifos][preallocate-sessions][client-batch <batch-size>][uri <tcp://ip/port>][test-bytes][no-output]
+
+
+Declaration: ``echo_clients_command`` `src/plugins/hs_apps/echo_client.c line 1081 <https://github.com/FDio/vpp/blob/master//src/plugins/hs_apps/echo_client.c#L1081>`_
+
+Implementation: ``echo_clients_command_fn``
+
+
+test echo server
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test echo server proto <proto> [no echo][fifo-size <mbytes>][rcv-buf-size <bytes>][prealloc-fifos <count>][private-segment-count <count>][private-segment-size <bytes[m|g]>][uri <tcp://ip/port>]
+
+
+Declaration: ``echo_server_create_command`` `src/plugins/hs_apps/echo_server.c line 581 <https://github.com/FDio/vpp/blob/master//src/plugins/hs_apps/echo_server.c#L581>`_
+
+Implementation: ``echo_server_create_command_fn``
+
+
+test http server
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test http server
+
+
+Declaration: ``http_server_create_command`` `src/plugins/hs_apps/http_server.c line 978 <https://github.com/FDio/vpp/blob/master//src/plugins/hs_apps/http_server.c#L978>`_
+
+Implementation: ``http_server_create_command_fn``
+
+
+test proxy server
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test proxy server [server-uri <tcp://ip/port>][client-uri <tcp://ip/port>][fifo-size <nn>[k|m]][max-fifo-size <nn>[k|m]][high-watermark <nn>][low-watermark <nn>][rcv-buf-size <nn>][prealloc-fifos <nn>][private-segment-size <mem>][private-segment-count <nn>]
+
+
+Declaration: ``proxy_create_command`` `src/plugins/hs_apps/proxy.c line 917 <https://github.com/FDio/vpp/blob/master//src/plugins/hs_apps/proxy.c#L917>`_
+
+Implementation: ``proxy_server_create_command_fn``
+

@@ -1,0 +1,47 @@
+.. _clicmd_src_plugins_ioam_udp-ping:
+
+===============================================================
+Udp-ping cli reference
+===============================================================
+
+set udp-ping
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set udp-ping src <local IPv6 address>  src-port-range <local port range> \
+          dst <remote IPv6 address> dst-port-range <destination port range> \
+          interval <time interval in sec for which ping packet will be sent> \
+          [disable]
+
+
+Declaration: ``set_udp_ping_command`` `src/plugins/ioam/udp-ping/udp_ping_node.c line 305 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/udp-ping/udp_ping_node.c#L305>`_
+
+Implementation: ``set_udp_ping_command_fn``
+
+
+set udp-ping export-ipfix
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set udp-ping export-ipfix [disable]
+
+
+Declaration: ``set_udp_ping_export_command`` `src/plugins/ioam/udp-ping/udp_ping_export.c line 285 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/udp-ping/udp_ping_export.c#L285>`_
+
+Implementation: ``set_udp_ping_export_command_fn``
+
+
+show udp-ping summary
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Summary of udp-ping
+
+
+Declaration: ``show_udp_ping_cmd`` `src/plugins/ioam/udp-ping/udp_ping_node.c line 378 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/udp-ping/udp_ping_node.c#L378>`_
+
+Implementation: ``show_udp_ping_summary_cmd_fn``
+

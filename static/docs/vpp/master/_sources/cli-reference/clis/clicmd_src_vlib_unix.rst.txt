@@ -1,0 +1,18 @@
+.. _clicmd_src_vlib_unix:
+
+===============================================================
+Unix Interface
+===============================================================
+
+show plugins
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show loaded plugins
+
+
+Declaration: ``plugins_show_cmd`` `src/vlib/unix/plugin.c line 661 <https://github.com/FDio/vpp/blob/master//src/vlib/unix/plugin.c#L661>`_
+
+Implementation: ``vlib_plugins_show_cmd_fn``
+

@@ -1,0 +1,175 @@
+.. _clicmd_src_plugins_dpdk_device:
+
+===============================================================
+DPDK and pcap tx
+===============================================================
+
+set dpdk interface descriptors
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set dpdk interface descriptors <interface> [rx <nn>] [tx <nn>]
+
+
+
+This command sets the number of DPDK ``rx`` and
+``tx`` descriptors for the given physical interface. Use
+the command ``show hardware-interface`` to display the
+current descriptor allocation.
+
+Example of how to set the DPDK interface descriptors:
+
+
+.. code-block:: console
+
+    set dpdk interface descriptors GigabitEthernet0/8/0 rx 512 tx 512
+
+
+
+Declaration: ``cmd_set_dpdk_if_desc`` `src/plugins/dpdk/device/cli.c line 349 <https://github.com/FDio/vpp/blob/master//src/plugins/dpdk/device/cli.c#L349>`_
+
+Implementation: ``set_dpdk_if_desc``
+
+
+show dpdk buffer
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dpdk buffer
+
+
+
+This command displays statistics of each DPDK mempool.
+
+Example of how to display DPDK buffer data:
+
+
+.. code-block:: console
+
+    show dpdk buffer
+    
+    name="mbuf_pool_socket0"  available =   15104 allocated =    1280 total =   16384
+    
+
+
+
+Declaration: ``cmd_show_dpdk_buffer`` `src/plugins/dpdk/device/cli.c line 81 <https://github.com/FDio/vpp/blob/master//src/plugins/dpdk/device/cli.c#L81>`_
+
+Implementation: ``show_dpdk_buffer``
+
+
+show dpdk physmem
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dpdk physmem
+
+
+
+This command displays DPDK physmem layout
+
+Example of how to display DPDK physmem layout:
+
+
+.. code-block:: console
+
+    show dpdk physmem
+    
+    
+
+
+
+Declaration: ``cmd_show_dpdk_physmem`` `src/plugins/dpdk/device/cli.c line 166 <https://github.com/FDio/vpp/blob/master//src/plugins/dpdk/device/cli.c#L166>`_
+
+Implementation: ``show_dpdk_physmem``
+
+
+show dpdk version
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dpdk version
+
+
+
+This command is used to display the current DPDK version and
+the list of arguments passed to DPDK when started.
+
+Example of how to display how many DPDK buffer test command has allocated:
+
+
+.. code-block:: console
+
+    show dpdk version
+    
+    DPDK Version:        DPDK 16.11.0
+    DPDK EAL init args:  -c 1 -n 4 --huge-dir /run/vpp/hugepages --file-prefix vpp -w 0000:00:08.0 -w 0000:00:09.0 --master-lcore 0 --socket-mem 256
+    
+
+
+
+Declaration: ``show_vpe_version_command`` `src/plugins/dpdk/device/cli.c line 380 <https://github.com/FDio/vpp/blob/master//src/plugins/dpdk/device/cli.c#L380>`_
+
+Implementation: ``show_dpdk_version_command_fn``
+
+
+test dpdk buffer
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test dpdk buffer [allocate <nn>] [free <nn>]
+
+
+
+This command tests the allocation and freeing of DPDK buffers.
+If both ``allocate`` and ``free`` are entered on the
+same command, the ``free`` is executed first. If no
+parameters are provided, this command display how many DPDK buffers
+the test command has allocated.
+
+Example of how to display how many DPDK buffer test command has allocated:
+
+
+.. code-block:: console
+
+    test dpdk buffer
+    
+    Currently 0 buffers allocated
+    
+
+
+
+Example of how to allocate DPDK buffers using the test command:
+
+
+.. code-block:: console
+
+    test dpdk buffer allocate 10
+    
+    Currently 10 buffers allocated
+    
+
+
+
+Example of how to free DPDK buffers allocated by the test command:
+
+
+.. code-block:: console
+
+    test dpdk buffer free 10
+    
+    Currently 0 buffers allocated
+    
+
+
+
+
+Declaration: ``cmd_test_dpdk_buffer`` `src/plugins/dpdk/device/cli.c line 254 <https://github.com/FDio/vpp/blob/master//src/plugins/dpdk/device/cli.c#L254>`_
+
+Implementation: ``test_dpdk_buffer``
+

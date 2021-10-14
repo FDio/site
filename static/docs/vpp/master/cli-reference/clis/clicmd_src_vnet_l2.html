@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layer 2 CLI &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Layer 3 IP CLI" href="clicmd_src_vnet_ip.html" />
+    <link rel="prev" title="Interface" href="clicmd_src_vnet.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ethernet.html">ARP and Loopback CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_vlib_unix_cj_c.html">Circular Journal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix_cli_c.html">Command line session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_dpdk-ipsec.html">DPDK Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_device.html">DPDK and pcap tx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_af_packet.html">Host Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app_version_c.html">Image Version Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_init_c.html">Init functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet.html">Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Layer 2 CLI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bvi-create">bvi create</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bvi-delete">bvi delete</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clear-l2fib">clear l2fib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-bridge-domain">create bridge-domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l2-rewrite-entry">l2 rewrite entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l2fib-add">l2fib add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l2fib-del">l2fib del</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l2fib-flush-mac-all">l2fib flush-mac all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l2fib-flush-mac-bridge-domain">l2fib flush-mac bridge-domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l2fib-flush-mac-interface">l2fib flush-mac interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-arp-entry">set bridge-domain arp entry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-arp-term">set bridge-domain arp term</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-arp-ufwd">set bridge-domain arp-ufwd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-default-learn-limit">set bridge-domain default-learn-limit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-flood">set bridge-domain flood</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-forward">set bridge-domain forward</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-learn">set bridge-domain learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-learn-limit">set bridge-domain learn-limit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-mac-age">set bridge-domain mac-age</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-rewrite">set bridge-domain rewrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-bridge-domain-uu-flood">set bridge-domain uu-flood</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-bridge">set interface l2 bridge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-efp-filter">set interface l2 efp-filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-flood">set interface l2 flood</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-forward">set interface l2 forward</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-input-classify">set interface l2 input classify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-learn">set interface l2 learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-output-classify">set interface l2 output classify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-pbb-tag-rewrite">set interface l2 pbb-tag-rewrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-rewrite">set interface l2 rewrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-tag-rewrite">set interface l2 tag-rewrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-xconnect">set interface l2 xconnect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-interface-l2-xcrw">set interface l2 xcrw</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-l2fib-scan-delay">set l2fib scan-delay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-bridge-domain">show bridge-domain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-l2-rewrite-entries">show l2 rewrite entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-l2-rewrite-interfaces">show l2 rewrite interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-l2fib">show l2fib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-l2patch">show l2patch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-l2xcrw">show l2xcrw</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-mode">show mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-l2fib">test l2fib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-l2patch">test l2patch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip.html">Layer 3 IP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsim_nsim_c.html">Network Delay Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_http_static_static_server_c.html">Static HTTP Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix.html">Unix Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib.html">VLIB application library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan.html">VXLAN CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gbp.html">VXLAN-GBP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_netmap.html">netmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_abf.html">Abf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_acl.html">Acl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_adl.html">Adl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_af_xdp.html">Af_xdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_arping.html">Arping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_avf.html">Avf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_bufmon.html">Bufmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_builtinurl.html">Builtinurl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cdp.html">Cdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cnat.html">Cnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_crypto_sw_scheduler.html">Crypto_sw_scheduler cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ct6.html">Ct6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dhcp.html">Dhcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dispatch-trace.html">Dispatch-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dns.html">Dns cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_cryptodev.html">Cryptodev cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_flowprobe.html">Flowprobe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gbp.html">Gbp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_geneve.html">Geneve cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gtpu.html">Gtpu cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_hs_apps.html">Hs_apps cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_igmp.html">Igmp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ikev2.html">Ikev2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ila.html">Ila cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_analyse_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_encap.html">Encap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export.html">Export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export-vxlan-gpe.html">Export-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-pot.html">Lib-pot cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-trace.html">Lib-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-vxlan-gpe.html">Lib-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_udp-ping.html">Udp-ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2e.html">L2e cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2tp.html">L2tp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l3xc.html">L3xc cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lacp.html">Lacp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lb.html">Lb cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp.html">Linux-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-cp.html">Lisp-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-gpe.html">Lisp-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lldp.html">Lldp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mactime.html">Mactime cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_map.html">Map cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_marvell_pp2.html">Pp2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mdata.html">Mdata cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_memif.html">Memif cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mss_clamp.html">Mss_clamp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_det44.html">Det44 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_dslite.html">Dslite cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ed.html">Nat44-ed cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ei.html">Nat44-ei cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat64.html">Nat64 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat66.html">Nat66 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_pnat.html">Pnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh.html">Nsh cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam.html">Nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html">Export-nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_oddbuf.html">Oddbuf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ping.html">Ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_pppoe.html">Pppoe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_quic.html">Quic cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_rdma.html">Rdma cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_snort.html">Snort cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_stn.html">Stn cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_svs.html">Svs cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tlsopenssl.html">Tlsopenssl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tracedump.html">Tracedump cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_unittest.html">Unittest cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_urpf.html">Urpf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vmxnet3.html">Vmxnet3 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vrrp.html">Vrrp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_wireguard.html">Wireguard cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_pci.html">Pci cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibapi.html">Vlibapi cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibmemory.html">Vlibmemory cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_adj.html">Adj cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_arp.html">Arp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bfd.html">Bfd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bier.html">Bier cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bonding.html">Bonding cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_classify.html">Classify cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_crypto.html">Crypto cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_pipe.html">Pipe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_tap.html">Tap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_dpo.html">Dpo cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_feature.html">Feature cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_fib.html">Fib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_flow.html">Flow cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gre.html">Gre cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gso.html">Gso cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_hash.html">Hash cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip-neighbor.html">Ip-neighbor cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip_reass.html">Reass cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip6-nd.html">Ip6-nd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipfix-export.html">Ipfix-export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipip.html">Ipip cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipsec.html">Ipsec cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_lawful-intercept.html">Lawful-intercept cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mfib.html">Mfib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mpls.html">Mpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_pg.html">Pg cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_policer.html">Policer cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_qos.html">Qos cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_session.html">Session cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_span.html">Span cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srmpls.html">Srmpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srv6.html">Srv6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_syslog.html">Syslog cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_tcp.html">Tcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_teib.html">Teib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_udp.html">Udp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_unix.html">Unix cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gpe.html">Vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_api.html">Api cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app.html">App cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_stats.html">Stats cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_vnet.html">Vnet cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_virtio.html">vHost User</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+      <li>Layer 2 CLI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cli-reference/clis/clicmd_src_vnet_l2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="layer-2-cli">
+<span id="clicmd-src-vnet-l2"></span><h1>Layer 2 CLI<a class="headerlink" href="#layer-2-cli" title="Permalink to this headline"></a></h1>
+<section id="bvi-create">
+<h2>bvi create<a class="headerlink" href="#bvi-create" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bvi create [mac &lt;mac-addr&gt;] [instance &lt;instance&gt;]</span>
+</pre></div>
+</div>
+<p>Create a BVI interface. Optionally, a MAC Address can be
+provided. If not provided, 0b:0b::00:00:00:&lt;instance&gt; will be used.</p>
+<p>The following two command syntaxes are equivalent:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bvi create [mac &lt;mac-addr&gt;] [instance &lt;instance&gt;]</span>
+</pre></div>
+</div>
+<p>Example of how to create a bvi interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bvi create</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2_bvi_create_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bvi.c#L286">src/vnet/l2/l2_bvi.c line 286</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2_bvi_create_cli</span></code></p>
+</section>
+<section id="bvi-delete">
+<h2>bvi delete<a class="headerlink" href="#bvi-delete" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bvi delete &lt;interface&gt;</span>
+</pre></div>
+</div>
+<p>Delete a BVI interface.</p>
+<p>The following two command syntaxes are equivalent:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bvi delete &lt;interface&gt;</span>
+</pre></div>
+</div>
+<p>Example of how to create a bvi interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bvi delete bvi0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2_bvi_delete_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bvi.c#L337">src/vnet/l2/l2_bvi.c line 337</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2_bvi_delete_cli</span></code></p>
+</section>
+<section id="clear-l2fib">
+<h2>clear l2fib<a class="headerlink" href="#clear-l2fib" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">clear l2fib</span>
+</pre></div>
+</div>
+<p>This command clears all the MAC Address entries from the L2 FIB table.</p>
+<p>Example of how to clear the L2 FIB Table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">clear l2fib</span>
+</pre></div>
+</div>
+<p>Example to show the L2 FIB Table has been cleared:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2fib verbose</span>
+
+<span class="go">no l2fib entries</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">clear_l2fib_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L420">src/vnet/l2/l2_fib.c line 420</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">clear_l2fib</span></code></p>
+</section>
+<section id="create-bridge-domain">
+<h2>create bridge-domain<a class="headerlink" href="#create-bridge-domain" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">create bridge-domain &lt;bridge-domain-id&gt; [learn &lt;0|1&gt;] [forward &lt;0|1&gt;] [uu-flood &lt;0|1&gt;] [flood &lt;0|1&gt;] [arp-term &lt;0|1&gt;] [arp-ufwd &lt;0|1&gt;] [mac-age &lt;nn&gt;] [bd-tag &lt;tag&gt;] [del]</span>
+</pre></div>
+</div>
+<p>Create/Delete bridge-domain instance</p>
+<p>Example of creating bridge-domain 1:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">create bridge-domain 1</span>
+
+<span class="go">bridge-domain 1</span>
+</pre></div>
+</div>
+<p>Example of creating bridge-domain 2 with enabling arp-term, mac-age 60:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">create bridge-domain 2 arp-term 1 mac-age 60</span>
+
+<span class="go">bridge-domain 2</span>
+
+<span class="go">vpp# show bridge-domain</span>
+<span class="go">  ID   Index   BSN  Age(min)  Learning  U-Forwrd  UU-Flood  Flooding  ARP-Term  BVI-Intf</span>
+<span class="go">  0      0      0     off       off       off       off       off       off      local0</span>
+<span class="go">  1      1      0     off        on        on       off        on       off       N/A</span>
+<span class="go">  2      2      0      60        on        on       off        on        on       N/A</span>
+</pre></div>
+</div>
+<p>Example of delete bridge-domain 1:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">create bridge-domain 1 del</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_create_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L1591">src/vnet/l2/l2_bd.c line 1591</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_add_del_command_fn</span></code></p>
+</section>
+<section id="l2-rewrite-entry">
+<h2>l2 rewrite entry<a class="headerlink" href="#l2-rewrite-entry" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2 rewrite entry [index &lt;index&gt;] [mask &lt;hex-mask&gt;] [value &lt;hex-value&gt;] [skip &lt;n_bytes&gt;] [del]</span>
+</pre></div>
+</div>
+<p>Layer 2-Rewrite node uses classify tables to match packets. Then, using
+the provisioned mask and value, modifies the packet header.</p>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2_rw_entry_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_rw.c#L405">src/vnet/l2/l2_rw.c line 405</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2_rw_entry_cli_fn</span></code></p>
+</section>
+<section id="l2fib-add">
+<h2>l2fib add<a class="headerlink" href="#l2fib-add" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib add &lt;mac&gt; &lt;bridge-domain-id&gt; filter | &lt;intf&gt; [static | bvi]</span>
+</pre></div>
+</div>
+<p>This command adds a MAC Address entry to the L2 FIB table
+of an existing bridge-domain. The MAC Address can be static
+or dynamic. This command also allows a filter to be added,
+such that packets with given MAC Addresses (source mac or
+destination mac match) are dropped.</p>
+<p>Example of how to add a dynamic MAC Address entry to the L2 FIB table
+of a bridge-domain (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib add 52:54:00:53:18:33 200 GigabitEthernet0/8/0.200</span>
+</pre></div>
+</div>
+<p>Example of how to add a static MAC Address entry to the L2 FIB table
+of a bridge-domain (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib add 52:54:00:53:18:55 200 GigabitEthernet0/8/0.200 static</span>
+</pre></div>
+</div>
+<p>Example of how to add a filter such that a packet with the given MAC
+Address will be dropped in a given bridge-domain (where 200 is the
+bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib add 52:54:00:53:18:77 200 filter</span>
+</pre></div>
+</div>
+<p>Example of show command of the provisioned MAC Addresses and filters:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2fib verbose</span>
+
+<span class="go">    Mac Address     BD Idx           Interface           Index  static  filter  bvi  refresh  timestamp</span>
+<span class="go"> 52:54:00:53:18:33    1      GigabitEthernet0/8/0.200      3       0       0     0      0         0</span>
+<span class="go"> 52:54:00:53:18:55    1      GigabitEthernet0/8/0.200      3       1       0     0      0         0</span>
+<span class="go"> 52:54:00:53:18:77    1                 N/A                -1      1       1     0      0         0</span>
+<span class="go">3 l2fib entries</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2fib_add_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L597">src/vnet/l2/l2_fib.c line 597</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2fib_add</span></code></p>
+</section>
+<section id="l2fib-del">
+<h2>l2fib del<a class="headerlink" href="#l2fib-del" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib del &lt;mac&gt; &lt;bridge-domain-id&gt; []</span>
+</pre></div>
+</div>
+<p>This command deletes an existing MAC Address entry from the L2 FIB
+table of an existing bridge-domain.</p>
+<p>Example of how to delete a MAC Address entry from the L2 FIB table of a bridge-domain (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib del 52:54:00:53:18:33 200</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2fib_del_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L837">src/vnet/l2/l2_fib.c line 837</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2fib_del</span></code></p>
+</section>
+<section id="l2fib-flush-mac-all">
+<h2>l2fib flush-mac all<a class="headerlink" href="#l2fib-flush-mac-all" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib flush-mac all</span>
+</pre></div>
+</div>
+<p>This command kick off ager to delete all existing MAC Address entries,
+except static ones, associated with an interface from the L2 FIB table.</p>
+<p>Example of how to flush MAC Address entries learned on an interface from the L2 FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib flush-mac interface GigabitEthernet2/1/0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2fib_flush_mac_all_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L981">src/vnet/l2/l2_fib.c line 981</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2fib_flush_mac_all</span></code></p>
+</section>
+<section id="l2fib-flush-mac-bridge-domain">
+<h2>l2fib flush-mac bridge-domain<a class="headerlink" href="#l2fib-flush-mac-bridge-domain" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib flush-mac bridge-domain &lt;bd-id&gt;</span>
+</pre></div>
+</div>
+<p>This command kick off ager to delete all existing MAC Address entries,
+except static ones, in a bridge domain from the L2 FIB table.</p>
+<p>Example of how to flush MAC Address entries learned in a bridge domain from the L2 FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib flush-mac bridge-domain 1000</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2fib_flush_mac_bd_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L1046">src/vnet/l2/l2_fib.c line 1046</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2fib_flush_mac_bd</span></code></p>
+</section>
+<section id="l2fib-flush-mac-interface">
+<h2>l2fib flush-mac interface<a class="headerlink" href="#l2fib-flush-mac-interface" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib flush-mac interface &lt;if-name&gt;</span>
+</pre></div>
+</div>
+<p>This command kick off ager to delete all existing MAC Address entries,
+except static ones, associated with an interface from the L2 FIB table.</p>
+<p>Example of how to flush MAC Address entries learned on an interface from the L2 FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">l2fib flush-mac interface GigabitEthernet2/1/0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2fib_flush_mac_int_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L997">src/vnet/l2/l2_fib.c line 997</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2fib_flush_mac_int</span></code></p>
+</section>
+<section id="set-bridge-domain-arp-entry">
+<h2>set bridge-domain arp entry<a class="headerlink" href="#set-bridge-domain-arp-entry" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp entry &lt;bridge-domain-id&gt; [&lt;ip-addr&gt; &lt;mac-addr&gt; [del] | del-all]</span>
+</pre></div>
+</div>
+<p>Add an ARP entry to an existing bridge-domain.</p>
+<p>Example of how to add an ARP entry (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp entry 200 192.168.72.45 52:54:00:3b:83:1a</span>
+</pre></div>
+</div>
+<p>Example of how to delete an ARP entry (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp entry 200 192.168.72.45 52:54:00:3b:83:1a del</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_arp_entry_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L1123">src/vnet/l2/l2_bd.c line 1123</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_arp_entry</span></code></p>
+</section>
+<section id="set-bridge-domain-arp-term">
+<h2>set bridge-domain arp term<a class="headerlink" href="#set-bridge-domain-arp-term" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp term &lt;bridge-domain-id&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Modify whether or not an existing bridge-domain should terminate and respond
+to ARP Requests. ARP Termination is disabled by default.</p>
+<p>Example of how to enable ARP termination (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp term 200</span>
+</pre></div>
+</div>
+<p>Example of how to disable ARP termination (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp term 200 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_arp_term_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L925">src/vnet/l2/l2_bd.c line 925</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_arp_term</span></code></p>
+</section>
+<section id="set-bridge-domain-arp-ufwd">
+<h2>set bridge-domain arp-ufwd<a class="headerlink" href="#set-bridge-domain-arp-ufwd" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp-ufwd &lt;bridge-domain-id&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2 arp-unicast forwarding can be enabled and disabled on each
+bridge-domain. It is disabled by default.</p>
+<p>Example of how to enable arp-unicast forwarding (where 200 is the
+bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp-ufwd 200</span>
+</pre></div>
+</div>
+<p>Example of how to disable arp-unicast forwarding (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain arp-ufwd 200 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_arp_ufwd_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L746">src/vnet/l2/l2_bd.c line 746</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_arp_ufwd</span></code></p>
+</section>
+<section id="set-bridge-domain-default-learn-limit">
+<h2>set bridge-domain default-learn-limit<a class="headerlink" href="#set-bridge-domain-default-learn-limit" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain default-learn-limit &lt;maxentries&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_default_learn_limit_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L487">src/vnet/l2/l2_bd.c line 487</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_default_learn_limit</span></code></p>
+</section>
+<section id="set-bridge-domain-flood">
+<h2>set bridge-domain flood<a class="headerlink" href="#set-bridge-domain-flood" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain flood &lt;bridge-domain-id&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2 flooding can be enabled and disabled on each
+interface and on each bridge-domain. Use this command to
+manage bridge-domains. It is enabled by default.</p>
+<p>Example of how to enable flooding (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain flood 200</span>
+</pre></div>
+</div>
+<p>Example of how to disable flooding (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain flood 200 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_flood_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L616">src/vnet/l2/l2_bd.c line 616</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_flood</span></code></p>
+</section>
+<section id="set-bridge-domain-forward">
+<h2>set bridge-domain forward<a class="headerlink" href="#set-bridge-domain-forward" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain forward &lt;bridge-domain-id&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2 unicast forwarding can be enabled and disabled on each
+interface and on each bridge-domain. Use this command to
+manage bridge-domains. It is enabled by default.</p>
+<p>Example of how to enable forwarding (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain forward 200</span>
+</pre></div>
+</div>
+<p>Example of how to disable forwarding (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain forward 200 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_fwd_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L551">src/vnet/l2/l2_bd.c line 551</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_fwd</span></code></p>
+</section>
+<section id="set-bridge-domain-learn">
+<h2>set bridge-domain learn<a class="headerlink" href="#set-bridge-domain-learn" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain learn &lt;bridge-domain-id&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2 learning can be enabled and disabled on each
+interface and on each bridge-domain. Use this command to
+manage bridge-domains. It is enabled by default.</p>
+<p>Example of how to enable learning (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain learn 200</span>
+</pre></div>
+</div>
+<p>Example of how to disable learning (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain learn 200 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_learn_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L458">src/vnet/l2/l2_bd.c line 458</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_learn</span></code></p>
+</section>
+<section id="set-bridge-domain-learn-limit">
+<h2>set bridge-domain learn-limit<a class="headerlink" href="#set-bridge-domain-learn-limit" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain learn-limit &lt;bridge-domain-id&gt; &lt;learn-limit&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_learn_limit_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L907">src/vnet/l2/l2_bd.c line 907</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_learn_limit</span></code></p>
+</section>
+<section id="set-bridge-domain-mac-age">
+<h2>set bridge-domain mac-age<a class="headerlink" href="#set-bridge-domain-mac-age" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain mac-age &lt;bridge-domain-id&gt; &lt;mins&gt;</span>
+</pre></div>
+</div>
+<p>Layer 2 mac aging can be enabled and disabled on each
+bridge-domain. Use this command to set or disable mac aging
+on specific bridge-domains. It is disabled by default.</p>
+<p>Example of how to set mac aging (where 200 is the bridge-domain-id and
+5 is aging time in minutes):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain mac-age 200 5</span>
+</pre></div>
+</div>
+<p>Example of how to disable mac aging (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain flood 200 0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_mac_age_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L858">src/vnet/l2/l2_bd.c line 858</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_mac_age</span></code></p>
+</section>
+<section id="set-bridge-domain-rewrite">
+<h2>set bridge-domain rewrite<a class="headerlink" href="#set-bridge-domain-rewrite" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain rewrite &lt;bridge-domain&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2-Rewrite node uses classify tables to match packets. Then, using
+the provisioned mask and value, modifies the packet header.</p>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2_rw_set_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_rw.c#L598">src/vnet/l2/l2_rw.c line 598</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2_rw_set_cli_fn</span></code></p>
+</section>
+<section id="set-bridge-domain-uu-flood">
+<h2>set bridge-domain uu-flood<a class="headerlink" href="#set-bridge-domain-uu-flood" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain uu-flood &lt;bridge-domain-id&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2 unknown-unicast flooding can be enabled and disabled on each
+bridge-domain. It is enabled by default.</p>
+<p>Example of how to enable unknown-unicast flooding (where 200 is the
+bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain uu-flood 200</span>
+</pre></div>
+</div>
+<p>Example of how to disable unknown-unicast flooding (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set bridge-domain uu-flood 200 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_uu_flood_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L681">src/vnet/l2/l2_bd.c line 681</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_uu_flood</span></code></p>
+</section>
+<section id="set-interface-l2-bridge">
+<h2>set interface l2 bridge<a class="headerlink" href="#set-interface-l2-bridge" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 bridge &lt;interface&gt; &lt;bridge-domain-id&gt; [bvi|uu-fwd] [shg]</span>
+</pre></div>
+</div>
+<p>Use this command put an interface into Layer 2 bridge domain. If a
+bridge-domain with the provided bridge-domain-id does not exist, it
+will be created. Interfaces in a bridge-domain forward packets to
+other interfaces in the same bridge-domain based on destination mac
+address. To remove an interface from a the Layer 2 bridge domain,
+put the interface in a different mode, for example Layer 3 mode.</p>
+<p>Optionally, an interface can be added to a Layer 2 bridge-domain as
+a Bridged Virtual Interface (bvi). Only one interface in a Layer 2
+bridge-domain can be a bvi.</p>
+<p>Optionally, a split-horizon group can also be specified. This defaults
+to 0 if not specified.</p>
+<p>Example of how to configure a Layer 2 bridge-domain with three
+interfaces (where 200 is the bridge-domain-id):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 bridge GigabitEthernet0/8/0.200 200</span>
+</pre></div>
+</div>
+<p>This interface is added a BVI interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 bridge GigabitEthernet0/9/0.200 200 bvi</span>
+</pre></div>
+</div>
+<p>This interface also has a split-horizon group of 1 specified:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 bridge GigabitEthernet0/a/0.200 200 1</span>
+</pre></div>
+</div>
+<p>Example of how to remove an interface from a Layer2 bridge-domain:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l3 GigabitEthernet0/a/0.200</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_l2_bridge_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_input.c#L650">src/vnet/l2/l2_input.c line 650</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_l2_bridge</span></code></p>
+</section>
+<section id="set-interface-l2-efp-filter">
+<h2>set interface l2 efp-filter<a class="headerlink" href="#set-interface-l2-efp-filter" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 efp-filter &lt;interface&gt; [disable]</span>
+</pre></div>
+</div>
+<p>EFP filtering is a basic switch feature which prevents an interface from
+transmitting a packet that doesn’t match the interface’s ingress match
+criteria. The check has two parts, one performed before egress vlan tag
+rewrite and one after. This command enables or disables the EFP filtering
+for a given sub-interface.</p>
+<p>Example of how to enable a Layer 2 efp-filter on a sub-interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 efp-filter GigabitEthernet0/8/0.200</span>
+</pre></div>
+</div>
+<p>Example of how to disable a Layer 2 efp-filter on a sub-interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 efp-filter GigabitEthernet0/8/0.200 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_l2_efp_filter_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_efp_filter.c#L563">src/vnet/l2/l2_efp_filter.c line 563</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_l2_efp_filter</span></code></p>
+</section>
+<section id="set-interface-l2-flood">
+<h2>set interface l2 flood<a class="headerlink" href="#set-interface-l2-flood" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 flood &lt;interface&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2 flooding can be enabled and disabled on each
+interface and on each bridge-domain. Use this command to
+manage interfaces. It is enabled by default.</p>
+<p>Example of how to enable flooding:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 flood GigabitEthernet0/8/0</span>
+</pre></div>
+</div>
+<p>Example of how to disable flooding:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 flood GigabitEthernet0/8/0 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_flood_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_flood.c#L472">src/vnet/l2/l2_flood.c line 472</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_flood</span></code></p>
+</section>
+<section id="set-interface-l2-forward">
+<h2>set interface l2 forward<a class="headerlink" href="#set-interface-l2-forward" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 forward &lt;interface&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2 unicast forwarding can be enabled and disabled on each
+interface and on each bridge-domain. Use this command to
+manage interfaces. It is enabled by default.</p>
+<p>Example of how to enable forwarding:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 forward GigabitEthernet0/8/0</span>
+</pre></div>
+</div>
+<p>Example of how to disable forwarding:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 forward GigabitEthernet0/8/0 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_fwd_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fwd.c#L532">src/vnet/l2/l2_fwd.c line 532</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_fwd</span></code></p>
+</section>
+<section id="set-interface-l2-input-classify">
+<h2>set interface l2 input classify<a class="headerlink" href="#set-interface-l2-input-classify" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 input classify intfc &lt;interface-name&gt; [ip4-table &lt;n&gt;]</span>
+<span class="go">  [ip6-table &lt;n&gt;] [other-table &lt;n&gt;]</span>
+</pre></div>
+</div>
+<p>Configure l2 input classification.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 input classify intfc &lt;interface-name&gt; [ip4-table &lt;index&gt;] [ip6-table &lt;index&gt;] [other-table &lt;index&gt;]</span>
+</pre></div>
+</div>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_l2_input_classify_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_input_classify.c#L647">src/vnet/l2/l2_input_classify.c line 647</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_l2_input_classify_command_fn</span></code></p>
+</section>
+<section id="set-interface-l2-learn">
+<h2>set interface l2 learn<a class="headerlink" href="#set-interface-l2-learn" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 learn &lt;interface&gt; [disable]</span>
+</pre></div>
+</div>
+<p>Layer 2 learning can be enabled and disabled on each
+interface and on each bridge-domain. Use this command to
+manage interfaces. It is enabled by default.</p>
+<p>Example of how to enable learning:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 learn GigabitEthernet0/8/0</span>
+</pre></div>
+</div>
+<p>Example of how to disable learning:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 learn GigabitEthernet0/8/0 disable</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_learn_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_learn.c#L544">src/vnet/l2/l2_learn.c line 544</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_learn</span></code></p>
+</section>
+<section id="set-interface-l2-output-classify">
+<h2>set interface l2 output classify<a class="headerlink" href="#set-interface-l2-output-classify" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 output classify intfc &lt;&lt;interface-name&gt;&gt; [ip4-table &lt;n&gt;]</span>
+<span class="go">  [ip6-table &lt;n&gt;] [other-table &lt;n&gt;]</span>
+</pre></div>
+</div>
+<p>Configure Layer 2 output classification.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 output classify intfc &lt;interface-name&gt; [ip4-table &lt;index&gt;] [ip6-table &lt;index&gt;] [other-table &lt;index&gt;]</span>
+</pre></div>
+</div>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_l2_output_classify_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_output_classify.c#L639">src/vnet/l2/l2_output_classify.c line 639</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_l2_output_classify_command_fn</span></code></p>
+</section>
+<section id="set-interface-l2-pbb-tag-rewrite">
+<h2>set interface l2 pbb-tag-rewrite<a class="headerlink" href="#set-interface-l2-pbb-tag-rewrite" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 pbb-tag-rewrite &lt;interface&gt; [disable | pop | push | translate_pbb_stag &lt;outer_tag&gt; dmac &lt;address&gt; smac &lt;address&gt; s_id &lt;nn&gt; [b_vlanid &lt;nn&gt;]]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_l2_pbb_vtr_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_vtr.c#L820">src/vnet/l2/l2_vtr.c line 820</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_l2_pbb_vtr</span></code></p>
+</section>
+<section id="set-interface-l2-rewrite">
+<h2>set interface l2 rewrite<a class="headerlink" href="#set-interface-l2-rewrite" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 rewrite &lt;interface&gt; [table &lt;table index&gt;] [miss-index &lt;entry-index&gt;]</span>
+</pre></div>
+</div>
+<p>Layer 2-Rewrite node uses classify tables to match packets. Then, using
+the provisioned mask and value, modifies the packet header.</p>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2_rw_interface_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_rw.c#L479">src/vnet/l2/l2_rw.c line 479</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2_rw_interface_cli_fn</span></code></p>
+</section>
+<section id="set-interface-l2-tag-rewrite">
+<h2>set interface l2 tag-rewrite<a class="headerlink" href="#set-interface-l2-tag-rewrite" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite &lt;interface&gt; [disable | pop {1|2} | push {dot1q|dot1ad} &lt;tag&gt; &lt;tag&gt;]</span>
+</pre></div>
+</div>
+<p>VLAN tag rewrite provides the ability to change the VLAN tags on a packet.
+Existing tags can be popped, new tags can be pushed, and existing tags can
+be swapped with new tags. The rewrite feature is attached to a subinterface
+as input and output operations. The input operation is explicitly configured.
+The output operation is the symmetric opposite and is automatically derived
+from the input operation.</p>
+<p><strong>POP:</strong> For pop operations, the subinterface encapsulation (the vlan
+tags specified when it was created) must have at least the number of popped
+tags. e.g. the &quot;pop 2&quot; operation would be rejected on a single-vlan interface.
+The output tag-rewrite operation for pops is to push the specified number of
+vlan tags onto the packet. The pushed tag values are the ones in the
+subinterface encapsulation.</p>
+<p><strong>PUSH:</strong> For push operations, the ethertype is also specified. The
+output tag-rewrite operation for pushes is to pop the same number of tags
+off the packet. If the packet doesn’t have enough tags it is dropped.</p>
+<p>By default a subinterface has no tag-rewrite. To return a subinterface to
+this state use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 disable</span>
+</pre></div>
+</div>
+<p>To pop vlan tags off packets received from a subinterface, use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 pop 1</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 pop 2</span>
+</pre></div>
+</div>
+<p>To push one or two vlan tags onto packets received from an interface, use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 push dot1q 100</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 push dot1ad 100 150</span>
+</pre></div>
+</div>
+<p>Tags can also be translated, which is basically a combination of a pop and push.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 translate 1-1 dot1ad 100</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 translate 2-2 dot1ad 100 150</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 translate 1-2 dot1q 100</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 tag-rewrite GigabitEthernet0/8/0.200 translate 2-1 dot1q 100 150</span>
+</pre></div>
+</div>
+<p>To display the VLAN Tag settings, show the associate bridge-domain:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show bridge-domain 200 detail</span>
+
+<span class="go"> ID   Index   Learning   U-Forwrd   UU-Flood   Flooding   ARP-Term     BVI-Intf</span>
+<span class="go">200     1        on         on         on         on         off          N/A</span>
+
+<span class="go">         Interface           Index  SHG  BVI        VLAN-Tag-Rewrite</span>
+<span class="go"> GigabitEthernet0/8/0.200      5     0    -       trans-1-1 dot1ad 100</span>
+<span class="go"> GigabitEthernet0/9/0.200      4     0    -               none</span>
+<span class="go"> GigabitEthernet0/a/0.200      6     0    -               none</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_l2_vtr_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_vtr.c#L674">src/vnet/l2/l2_vtr.c line 674</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_l2_vtr</span></code></p>
+</section>
+<section id="set-interface-l2-xconnect">
+<h2>set interface l2 xconnect<a class="headerlink" href="#set-interface-l2-xconnect" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 xconnect &lt;interface&gt; &lt;peer interface&gt;</span>
+</pre></div>
+</div>
+<p>Use this command put an interface into Layer 2 cross-connect mode.
+Both interfaces must be in this mode for bi-directional traffic. All
+packets received on one interface will be transmitted to the other.
+To remove the Layer 2 cross-connect, put the interface in a different
+mode, for example Layer 3 mode.</p>
+<p>Example of how to configure a Layer2 cross-connect between two interfaces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 xconnect GigabitEthernet0/8/0.300 GigabitEthernet0/9/0.300</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 xconnect GigabitEthernet0/9/0.300 GigabitEthernet0/8/0.300</span>
+</pre></div>
+</div>
+<p>Example of how to remove a Layer2 cross-connect:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l3 GigabitEthernet0/8/0.300</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l3 GigabitEthernet0/9/0.300</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">int_l2_xc_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_input.c#L716">src/vnet/l2/l2_input.c line 716</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">int_l2_xc</span></code></p>
+</section>
+<section id="set-interface-l2-xcrw">
+<h2>set interface l2 xcrw<a class="headerlink" href="#set-interface-l2-xcrw" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l2 xcrw &lt;interface&gt; next &lt;node-name&gt;</span>
+<span class="go">    [del] [tx-fib-id &lt;id&gt;] [ipv6] rw &lt;hex-bytes&gt;</span>
+</pre></div>
+</div>
+<p>Add or delete a Layer 2 to Layer 3 rewrite cross-connect. This is
+used to hook Layer 2 interface(s) up to the Layer 3 stack in
+arbitrary ways. For example, cross-connect an L2 interface or
+(future) bridge to an mpls-o-gre tunnel. Set up the L2 rewrite
+string as shown in mpls_gre_rewrite, and use &quot;mpls-post-rewrite&quot;
+to fix the GRE IP header checksum and length fields.</p>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_l2_xcrw_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_xcrw.c#L500">src/vnet/l2/l2_xcrw.c line 500</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_l2_xcrw_command_fn</span></code></p>
+</section>
+<section id="set-l2fib-scan-delay">
+<h2>set l2fib scan-delay<a class="headerlink" href="#set-l2fib-scan-delay" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set l2fib scan-delay &lt;delay&gt;</span>
+</pre></div>
+</div>
+<p>This command set scan delay (in 1/10s unit)</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2fib_set_scan_delay_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L868">src/vnet/l2/l2_fib.c line 868</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2fib_set_scan_delay</span></code></p>
+</section>
+<section id="show-bridge-domain">
+<h2>show bridge-domain<a class="headerlink" href="#show-bridge-domain" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show bridge-domain [bridge-domain-id [detail|int|arp|bd-tag]]</span>
+</pre></div>
+</div>
+<p>Show a summary of all the bridge-domain instances or detailed view of a
+single bridge-domain. Bridge-domains are created by adding an interface
+to a bridge using the <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">interface</span> <span class="pre">l2</span> <span class="pre">bridge</span></code> command.</p>
+<p>Example of displaying all bridge-domains:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show bridge-domain</span>
+
+<span class="go"> ID   Index   Learning   U-Forwrd   UU-Flood   Flooding   ARP-Term     BVI-Intf</span>
+<span class="go"> 0      0        off        off        off        off        off        local0</span>
+<span class="go">200     1        on         on         on         on         off          N/A</span>
+</pre></div>
+</div>
+<p>Example of displaying details of a single bridge-domains:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show bridge-domain 200 detail</span>
+
+<span class="go"> ID   Index   Learning   U-Forwrd   UU-Flood   Flooding   ARP-Term     BVI-Intf</span>
+<span class="go">200     1        on         on         on         on         off          N/A</span>
+
+<span class="go">         Interface           Index  SHG  BVI        VLAN-Tag-Rewrite</span>
+<span class="go"> GigabitEthernet0/8/0.200      3     0    -               none</span>
+<span class="go"> GigabitEthernet0/9/0.200      4     0    -               none</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">bd_show_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_bd.c#L1353">src/vnet/l2/l2_bd.c line 1353</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">bd_show</span></code></p>
+</section>
+<section id="show-l2-rewrite-entries">
+<h2>show l2 rewrite entries<a class="headerlink" href="#show-l2-rewrite-entries" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2 rewrite entries</span>
+</pre></div>
+</div>
+<p>Layer 2-Rewrite node uses classify tables to match packets. Then, using
+the provisioned mask and value, modifies the packet header.</p>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2_rw_show_entries_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_rw.c#L548">src/vnet/l2/l2_rw.c line 548</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2_rw_show_entries_cli_fn</span></code></p>
+</section>
+<section id="show-l2-rewrite-interfaces">
+<h2>show l2 rewrite interfaces<a class="headerlink" href="#show-l2-rewrite-interfaces" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2 rewrite interfaces</span>
+</pre></div>
+</div>
+<p>Layer 2-Rewrite node uses classify tables to match packets. Then, using
+the provisioned mask and value, modifies the packet header.</p>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2_rw_show_interfaces_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_rw.c#L514">src/vnet/l2/l2_rw.c line 514</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2_rw_show_interfaces_cli_fn</span></code></p>
+</section>
+<section id="show-l2fib">
+<h2>show l2fib<a class="headerlink" href="#show-l2fib" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2fib [all] | [bd_id &lt;nn&gt; | bd_index &lt;nn&gt;] [learn | add] | [raw]</span>
+</pre></div>
+</div>
+<p>This command displays the MAC Address entries of the L2 FIB table.
+Output can be filtered to just get the number of MAC Addresses or display
+each MAC Address for all bridge domains or just a single bridge domain.</p>
+<p>Example of how to display the number of MAC Address entries in the L2
+FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2fib</span>
+
+<span class="go">3 l2fib entries</span>
+</pre></div>
+</div>
+<p>Example of how to display all the MAC Address entries in the L2
+FIB table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2fib all</span>
+
+<span class="go">    Mac Address     BD Idx           Interface           Index  static  filter  bvi  refresh  timestamp</span>
+<span class="go"> 52:54:00:53:18:33    1      GigabitEthernet0/8/0.200      3       0       0     0      0         0</span>
+<span class="go"> 52:54:00:53:18:55    1      GigabitEthernet0/8/0.200      3       1       0     0      0         0</span>
+<span class="go"> 52:54:00:53:18:77    1                 N/A                -1      1       1     0      0         0</span>
+<span class="go">3 l2fib entries</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_l2fib_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L357">src/vnet/l2/l2_fib.c line 357</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_l2fib</span></code></p>
+</section>
+<section id="show-l2patch">
+<h2>show l2patch<a class="headerlink" href="#show-l2patch" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show l2 interface cross-connect entries</span>
+</pre></div>
+</div>
+<p>Show Layer 2 patch entries.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2patch</span>
+</pre></div>
+</div>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_l2patch_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_patch.c#L425">src/vnet/l2/l2_patch.c line 425</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_l2patch</span></code></p>
+</section>
+<section id="show-l2xcrw">
+<h2>show l2xcrw<a class="headerlink" href="#show-l2xcrw" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2xcrw</span>
+</pre></div>
+</div>
+<p>Display a Layer 2 to Layer 3 rewrite cross-connect. This is used to
+hook Layer 2 interface(s) up to the Layer 3 stack in arbitrary ways.</p>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_l2xcrw_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_xcrw.c#L589">src/vnet/l2/l2_xcrw.c line 589</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_l2xcrw_command_fn</span></code></p>
+</section>
+<section id="show-mode">
+<h2>show mode<a class="headerlink" href="#show-mode" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show mode [&lt;if-name1&gt; &lt;if-name2&gt; ...]</span>
+</pre></div>
+</div>
+<p>Modify the packet processing mode of the interface to Layer 3, which
+implies packets will be routed. This is the default mode of an interface.
+Use this command to remove an interface from a Layer 2 cross-connect or a
+Layer 2 bridge.</p>
+<p>Example of how to set the mode of an interface to Layer 3:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set interface l3 GigabitEthernet0/8/0.200</span>
+</pre></div>
+</div>
+<p>Show the packet processing mode (Layer2 cross-connect, Layer 2 bridge,
+Layer 3 routed) of all interfaces and sub-interfaces, or limit the
+output to just the provided list of interfaces and sub-interfaces.
+The output shows the mode, the interface, and if the interface is
+a member of a bridge, the bridge-domain-id and the split horizon group (shg).</p>
+<p>Example of displaying the mode of all interfaces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show mode</span>
+
+<span class="go">l3 local0</span>
+<span class="go">l3 GigabitEthernet0/8/0</span>
+<span class="go">l3 GigabitEthernet0/9/0</span>
+<span class="go">l3 GigabitEthernet0/a/0</span>
+<span class="go">l2 bridge GigabitEthernet0/8/0.200 bd_id 200 shg 0</span>
+<span class="go">l2 bridge GigabitEthernet0/9/0.200 bd_id 200 shg 0</span>
+<span class="go">l2 bridge GigabitEthernet0/a/0.200 bd_id 200 shg 0</span>
+<span class="go">l2 xconnect GigabitEthernet0/8/0.300 GigabitEthernet0/9/0.300</span>
+<span class="go">l2 xconnect GigabitEthernet0/9/0.300 GigabitEthernet0/8/0.300</span>
+</pre></div>
+</div>
+<p>Example of displaying the mode of a selected list of interfaces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show mode GigabitEthernet0/8/0 GigabitEthernet0/8/0.200</span>
+
+<span class="go">l3 GigabitEthernet0/8/0</span>
+<span class="go">l2 bridge GigabitEthernet0/8/0.200 bd_id 200 shg 0</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_l2_mode</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_input.c#L882">src/vnet/l2/l2_input.c line 882</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_int_mode</span></code></p>
+</section>
+<section id="test-l2fib">
+<h2>test l2fib<a class="headerlink" href="#test-l2fib" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test l2fib [add|del|check] mac &lt;base-addr&gt; count &lt;nn&gt;</span>
+</pre></div>
+</div>
+<p>The set of <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">l2fib</span></code> commands allow the L2 FIB table of the default
+bridge domain (bridge-domain-id of 0) to be modified.</p>
+<p>Example of how to add a set of 4 sequential MAC Address entries to L2
+FIB table of the default bridge-domain:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test l2fib add mac 52:54:00:53:00:00 count 4</span>
+</pre></div>
+</div>
+<p>Show the set of 4 sequential MAC Address entries that were added:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show l2fib verbose</span>
+
+<span class="go">    Mac Address     BD Idx           Interface           Index  static  filter  bvi  refresh  timestamp</span>
+<span class="go">52:54:00:53:00:00    0       GigabitEthernet0/8/0.300     8       0       0     0      0         0</span>
+<span class="go">52:54:00:53:00:01    0       GigabitEthernet0/8/0.300     8       0       0     0      0         0</span>
+<span class="go">52:54:00:53:00:03    0       GigabitEthernet0/8/0.300     8       0       0     0      0         0</span>
+<span class="go">52:54:00:53:00:02    0       GigabitEthernet0/8/0.300     8       0       0     0      0         0</span>
+<span class="go">4 l2fib entries</span>
+</pre></div>
+</div>
+<p>Example of how to check that the set of 4 sequential MAC Address
+entries were added to L2 FIB table of the default
+bridge-domain. Used a count of 5 to produce an error:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test l2fib check mac 52:54:00:53:00:00 count 5</span>
+</pre></div>
+</div>
+<p>The output of the check command is in the log files. Log file
+location may vary based on your OS and Version:</p>
+<p><code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">tail</span> <span class="pre">-f</span> <span class="pre">/var/log/messages</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">l2fib_test_command_fn</span></code></p>
+<p>Sep  7 17:15:24 localhost vnet[4952]: l2fib_test_command_fn:446: key 52:54:00:53:00:04 AWOL</p>
+<p>Example of how to delete a set of 4 sequential MAC Address entries
+from L2 FIB table of the default bridge-domain:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test l2fib del mac 52:54:00:53:00:00 count 4</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">l2fib_test_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_fib.c#L728">src/vnet/l2/l2_fib.c line 728</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">l2fib_test_command_fn</span></code></p>
+</section>
+<section id="test-l2patch">
+<h2>test l2patch<a class="headerlink" href="#test-l2patch" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test l2patch rx &lt;intfc&gt; tx &lt;intfc&gt; [del]</span>
+</pre></div>
+</div>
+<p>Create or delete a Layer 2 patch.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test l2patch rx &lt;intfc&gt; tx &lt;intfc&gt; [del]</span>
+</pre></div>
+</div>
+<p>practical example.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">test_patch_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/l2/l2_patch.c#L373">src/vnet/l2/l2_patch.c line 373</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">test_patch_command_fn</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clicmd_src_vnet.html" class="btn btn-neutral float-left" title="Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clicmd_src_vnet_ip.html" class="btn btn-neutral float-right" title="Layer 3 IP CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

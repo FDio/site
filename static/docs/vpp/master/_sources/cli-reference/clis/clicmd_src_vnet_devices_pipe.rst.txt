@@ -1,0 +1,71 @@
+.. _clicmd_src_vnet_devices_pipe:
+
+===============================================================
+Pipe cli reference
+===============================================================
+
+pipe create
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    pipe create [instance <instance>]
+
+
+
+Create a pipe interface.
+
+The following two command syntaxes are equivalent:
+
+
+.. code-block:: console
+
+    pipe create-interface [mac <mac-addr>] [instance <instance>]
+
+
+Example of how to create a pipe interface:
+
+
+.. code-block:: console
+
+    pipe create
+
+
+
+Declaration: ``pipe_create_interface_command`` `src/vnet/devices/pipe/pipe.c line 700 <https://github.com/FDio/vpp/blob/master//src/vnet/devices/pipe/pipe.c#L700>`_
+
+Implementation: ``create_pipe_interfaces``
+
+
+pipe delete
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    pipe delete <interface>
+
+
+
+Delete a pipe interface.
+
+The following two command syntaxes are equivalent:
+
+
+.. code-block:: console
+
+    pipe delete intfc <interface>
+
+
+Example of how to delete a pipe interface:
+
+
+.. code-block:: console
+
+    pipe delete-interface intfc loop0
+
+
+
+Declaration: ``pipe_delete_interface_command`` `src/vnet/devices/pipe/pipe.c line 780 <https://github.com/FDio/vpp/blob/master//src/vnet/devices/pipe/pipe.c#L780>`_
+
+Implementation: ``delete_pipe_interfaces``
+

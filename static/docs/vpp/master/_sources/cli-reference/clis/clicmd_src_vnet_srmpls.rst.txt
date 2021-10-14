@@ -1,0 +1,85 @@
+.. _clicmd_src_vnet_srmpls:
+
+===============================================================
+Srmpls cli reference
+===============================================================
+
+show sr mpls policies
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr mpls policies
+
+
+Declaration: ``show_sr_mpls_policies_command`` `src/vnet/srmpls/sr_mpls_policy.c line 651 <https://github.com/FDio/vpp/blob/master//src/vnet/srmpls/sr_mpls_policy.c#L651>`_
+
+Implementation: ``show_sr_mpls_policies_command_fn``
+
+
+show sr mpls steering policies
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show sr mpls steering policies
+
+
+Declaration: ``show_sr_mpls_steering_policies_command`` `src/vnet/srmpls/sr_mpls_steering.c line 875 <https://github.com/FDio/vpp/blob/master//src/vnet/srmpls/sr_mpls_steering.c#L875>`_
+
+Implementation: ``show_sr_mpls_steering_policies_command_fn``
+
+
+sr mpls policy
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    sr mpls policy [add||del||mod] bsid 2999 next 10 next 20 next 30 (weight 1) (spray)
+
+.. code-block:: console
+
+    TBD.
+    
+
+
+Declaration: ``sr_mpls_policy_command`` `src/vnet/srmpls/sr_mpls_policy.c line 572 <https://github.com/FDio/vpp/blob/master//src/vnet/srmpls/sr_mpls_policy.c#L572>`_
+
+Implementation: ``sr_mpls_policy_command_fn``
+
+
+sr mpls policy te
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    sr mpls policy te bsid xxxxx endpoint x.x.x.x color 12341234
+
+
+Declaration: ``cli_sr_mpls_policy_ec_command`` `src/vnet/srmpls/sr_mpls_policy.c line 892 <https://github.com/FDio/vpp/blob/master//src/vnet/srmpls/sr_mpls_policy.c#L892>`_
+
+Implementation: ``cli_sr_mpls_policy_ec_command_fn``
+
+
+sr mpls steer
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    sr mpls steer (del) l3 <ip_addr/mask> via [sr policy bsid <mpls_label> || next-hop <ip46_addr> color <u32> co <0|1|2|3> ](fib-table <fib_table_index>)(vpn-label 500)
+
+.. code-block:: console
+
+    	Steer L3 traffic through an existing SR policy.
+    	Examples:
+    		sr steer l3 2001::/64 via sr_policy bsid 29999
+    		sr steer del l3 2001::/64 via sr_policy bsid 29999
+    		sr steer l3 2001::/64 via next-hop 1.1.1.1 color 1234 co 0
+    		sr steer l3 2001::/64 via next-hop 2001::1 color 1234 co 2 vpn-label 500
+    
+
+
+Declaration: ``sr_mpls_steer_policy_command`` `src/vnet/srmpls/sr_mpls_steering.c line 774 <https://github.com/FDio/vpp/blob/master//src/vnet/srmpls/sr_mpls_steering.c#L774>`_
+
+Implementation: ``sr_mpls_steer_policy_command_fn``
+

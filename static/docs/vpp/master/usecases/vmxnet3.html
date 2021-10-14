@@ -1,76 +1,41 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>VPP with VMware/Vmxnet3 &mdash; The Vector Packet Processor master documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VPP with VMware/Vmxnet3 &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
-    <link rel="author" title="About these documents" href="../about.html" />
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Access Control Lists (ACLs) with FD.io VPP" href="acls.html" />
+    <link rel="next" title="VPP as a Home Gateway" href="home_gateway.html" />
     <link rel="prev" title="The XML File" href="vhost/xmlexample.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
-          
-
-          
-            
             <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                master
-              </div>
-            
-          
+                v22.02-rc0-128-g4450b03ba
 
-          
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,126 +43,123 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="containers.html">VPP with Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vhost/index.html">FD.io VPP with Virtual Machines</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">VPP with VMware/Vmxnet3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#advantages">Advantages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#does-not-support">Does not support</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#vmware-fusion-for-mac">VMware Fusion for Mac</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#vmware-workstation-pro-15-for-linux">VMware Workstation PRO 15 for Linux</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#system-setup">System setup</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#interface-creation">Interface Creation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#interface-deletion">Interface Deletion</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#show-vmxnet3">Show vmxnet3</a></li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VPP with VMware/Vmxnet3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#advantages">Advantages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#does-not-support">Does not support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vmware-fusion-for-mac">VMware Fusion for Mac</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vmware-workstation-pro-15-for-linux">VMware Workstation PRO 15 for Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-setup">System setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interface-creation">Interface Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interface-deletion">Interface Deletion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-vmxnet3">Show vmxnet3</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vppcloud.html">VPP inside the Cloud</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hgw.html">Using VPP as a Home Gateway</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="networksim.html">Network Simulator Plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webapp.html">Building VPP web applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="container_test.html">Container-based network simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="trafficgen.html">Vpp Stateless Traffic Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ikev2.html">IKEv2 in VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related FD.IO Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/reference.html">Configuration Reference</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">The Vector Packet Processor</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="index.html">Use Cases</a> &raquo;</li>
-        
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
       <li>VPP with VMware/Vmxnet3</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/usecases/vmxnet3.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="vpp-with-vmware-vmxnet3">
-<span id="vmxnet3"></span><h1>VPP with VMware/Vmxnet3<a class="headerlink" href="#vpp-with-vmware-vmxnet3" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="vpp-with-vmware-vmxnet3">
+<span id="vmxnet3"></span><h1>VPP with VMware/Vmxnet3<a class="headerlink" href="#vpp-with-vmware-vmxnet3" title="Permalink to this headline"></a></h1>
 <p>This section describes a native Vmxnet3 driver that is included with VPP.
 This driver is written as a plugin and is found in src/plugin/vmxnet3.</p>
-<div class="section" id="advantages">
-<h2>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h2>
+<section id="advantages">
+<h2>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline"></a></h2>
 <p>The native VPP native vmxnet3 driver provides the following features
 that are not provided with the standard dpdk vmxnet3 driver.</p>
 <ul class="simple">
@@ -205,16 +167,16 @@ that are not provided with the standard dpdk vmxnet3 driver.</p>
 <li><p>Adaptive mode</p></li>
 <li><p>LRO/TSO mode</p></li>
 </ul>
-</div>
-<div class="section" id="does-not-support">
-<h2>Does not support<a class="headerlink" href="#does-not-support" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="does-not-support">
+<h2>Does not support<a class="headerlink" href="#does-not-support" title="Permalink to this headline"></a></h2>
 <p>This driver does yet support the following features.</p>
 <ul class="simple">
 <li><p>VLAN filter</p></li>
 </ul>
-</div>
-<div class="section" id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>This code is tested with vfio-pci driver installed with Ubuntu 18.04
 which has kernel version 4.15.0-33-generic.</p></li>
@@ -225,9 +187,9 @@ uio_pci_generic driver, so vfio-pci needs to be used. On systems
 without IOMMU vfio driver can still be used with recent kernels which
 support no-iommu mode.</p></li>
 </ul>
-</div>
-<div class="section" id="vmware-fusion-for-mac">
-<h2>VMware Fusion for Mac<a class="headerlink" href="#vmware-fusion-for-mac" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vmware-fusion-for-mac">
+<h2>VMware Fusion for Mac<a class="headerlink" href="#vmware-fusion-for-mac" title="Permalink to this headline"></a></h2>
 <p>VMware fusion does not have a menu option to change the default driver (e1000)
 to the <strong>vmxnet3</strong> driver. VPP supports the <strong>vmxnet3</strong> driver.</p>
 <p>These instructions describe how to change the e1000 driver for VMware fusion.</p>
@@ -244,9 +206,9 @@ select <strong>Show Package Contents</strong></p></li>
 <p>If you are concerned more with configuration not performance the vmxnet3 driver
 can be set to <strong>interrupt</strong> mode in VPP. This will save a great deal on battery
 usage. Do this with the following</p>
-</div>
-<div class="section" id="vmware-workstation-pro-15-for-linux">
-<h2>VMware Workstation PRO 15 for Linux<a class="headerlink" href="#vmware-workstation-pro-15-for-linux" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vmware-workstation-pro-15-for-linux">
+<h2>VMware Workstation PRO 15 for Linux<a class="headerlink" href="#vmware-workstation-pro-15-for-linux" title="Permalink to this headline"></a></h2>
 <p>VMware Workstation does not have a menu option to change the default driver
 (e1000) to the <strong>vmxnet3</strong> driver. VPP supports the <strong>vmxnet3</strong> driver.</p>
 <p>These instructions describe how to change the e1000 driver for VMware
@@ -266,29 +228,29 @@ is ethernet1, then change the line <strong>ethernet1.virtualDev = “e1000”</s
 <p>If you are concerned more with configuration not performance the vmxnet3 driver
 can be set to <strong>interrupt</strong> mode in VPP. This will save a great deal on battery
 usage. Do this with the following</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl <span class="nb">set</span> interface rx-mode &lt;interface&gt; interrupt
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo vppctl <span class="nb">set</span> interface rx-mode &lt;interface&gt; interrupt
 </pre></div>
 </div>
-<div class="section" id="system-setup">
-<h3>System setup<a class="headerlink" href="#system-setup" title="Permalink to this headline">¶</a></h3>
+<section id="system-setup">
+<h3>System setup<a class="headerlink" href="#system-setup" title="Permalink to this headline"></a></h3>
 <p>To use the native VPP vmxnet3 driver use the following Steps</p>
 <p>Load VFIO driver</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo modprobe vfio-pci
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo modprobe vfio-pci
 </pre></div>
 </div>
 <p>Make sure the interface is down</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo ifconfig &lt;<span class="k">if</span>-name&gt; down
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo ifconfig &lt;<span class="k">if</span>-name&gt; down
 </pre></div>
 </div>
 <p>The next 2 steps are optional and may be accomplished by specifying the optional
 “bind” keyword when creating the vmxnet3 interface.</p>
 <p>For systems without IOMMU only, enable unsafe NOIOMMU mode</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">echo</span> Y <span class="p">|</span> sudo tee /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">echo</span> Y <span class="p">|</span> sudo tee /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
 </pre></div>
 </div>
 <p>To bind interface to vfio-pci first install get the dpdk_devbind.py script.</p>
 <p>Bind the driver with the following commands:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /usr/local/vpp/vpp-config/scripts/dpdk-devbind.py -s
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo /usr/local/vpp/vpp-config/scripts/dpdk-devbind.py -s
 
 <span class="go">Network devices using DPDK-compatible driver</span>
 <span class="go">============================================</span>
@@ -301,32 +263,32 @@ usage. Do this with the following</p>
 <span class="go">0000:13:00.0 &#39;VMXNET3 Ethernet Controller&#39; drv=vfio-pci unused=vmxnet3,uio_pci_generic</span>
 <span class="go">.....</span>
 
-<span class="gp">$</span> sudo /usr/local/vpp/vpp-config/scripts/dpdk-devbind.py --bind vfio-pci 0b:00.0
+<span class="gp">$ </span>sudo /usr/local/vpp/vpp-config/scripts/dpdk-devbind.py --bind vfio-pci 0b:00.0
 </pre></div>
 </div>
-</div>
-<div class="section" id="interface-creation">
-<h3>Interface Creation<a class="headerlink" href="#interface-creation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="interface-creation">
+<h3>Interface Creation<a class="headerlink" href="#interface-creation" title="Permalink to this headline"></a></h3>
 <p>Now create the interface dynamically with following. The bind option must be
 specified if pci is not already bound manually by above steps.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl create interface vmxnet3 <span class="m">0000</span>:0b:00.0 <span class="nb">bind</span>
-<span class="gp">$</span> sudo vppctl <span class="nb">set</span> interface state vmxnet3-0/b/0/0 up
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo vppctl create interface vmxnet3 <span class="m">0000</span>:0b:00.0 <span class="nb">bind</span>
+<span class="gp">$ </span>sudo vppctl <span class="nb">set</span> interface state vmxnet3-0/b/0/0 up
 </pre></div>
 </div>
-</div>
-<div class="section" id="interface-deletion">
-<h3>Interface Deletion<a class="headerlink" href="#interface-deletion" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="interface-deletion">
+<h3>Interface Deletion<a class="headerlink" href="#interface-deletion" title="Permalink to this headline"></a></h3>
 <p>If the interface needs to be deleted:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl delete interface vmxnet3 &lt;<span class="k">if</span>-name&gt;
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo vppctl delete interface vmxnet3 &lt;<span class="k">if</span>-name&gt;
 </pre></div>
 </div>
-</div>
-<div class="section" id="show-vmxnet3">
-<h3>Show vmxnet3<a class="headerlink" href="#show-vmxnet3" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="show-vmxnet3">
+<h3>Show vmxnet3<a class="headerlink" href="#show-vmxnet3" title="Permalink to this headline"></a></h3>
 <p>Interface and ring information can be obtained with the command
 <strong>show vmxnet3 [if-name] [desc]</strong></p>
 <p>For example:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl show vmxnet3
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo vppctl show vmxnet3
 <span class="go">Interface: vmxnet3-0/b/0/0 (ifindex 1)</span>
 <span class="go">  Version: 1</span>
 <span class="go">  PCI Address: 0000:0b:00.0</span>
@@ -345,57 +307,39 @@ specified if pci is not already bound manually by above steps.</p>
 <span class="go">    size 4096 consume 216 produce 245</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="acls.html" class="btn btn-neutral float-right" title="Access Control Lists (ACLs) with FD.io VPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="vhost/xmlexample.html" class="btn btn-neutral float-left" title="The XML File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vhost/xmlexample.html" class="btn btn-neutral float-left" title="The XML File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="home_gateway.html" class="btn btn-neutral float-right" title="VPP as a Home Gateway" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018-2021, Linux Foundation
-
-    </p>
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,0 +1,44 @@
+.. _clicmd_src_plugins_nat_pnat:
+
+===============================================================
+Pnat cli reference
+===============================================================
+
+set pnat translation
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set pnat translation interface <name> match <5-tuple> rewrite <tuple> {in|out} [del]
+
+
+Declaration: ``set_pnat_translation_command`` `src/plugins/nat/pnat/pnat_cli.c line 293 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/pnat/pnat_cli.c#L293>`_
+
+Implementation: ``set_pnat_translation_command_fn``
+
+
+show pnat interfaces
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show pnat interfaces
+
+
+Declaration: ``show_pnat_interfaces_command`` `src/plugins/nat/pnat/pnat_cli.c line 335 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/pnat/pnat_cli.c#L335>`_
+
+Implementation: ``show_pnat_interfaces_command_fn``
+
+
+show pnat translations
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show pnat translations
+
+
+Declaration: ``show_pnat_translations_command`` `src/plugins/nat/pnat/pnat_cli.c line 315 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/pnat/pnat_cli.c#L315>`_
+
+Implementation: ``show_pnat_translations_command_fn``
+

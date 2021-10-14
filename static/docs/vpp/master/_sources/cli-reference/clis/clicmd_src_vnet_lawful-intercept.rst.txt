@@ -1,0 +1,18 @@
+.. _clicmd_src_vnet_lawful-intercept:
+
+===============================================================
+Lawful-intercept cli reference
+===============================================================
+
+set li
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set li src <ip4-address> collector <ip4-address> udp-port <nnnn>
+
+
+Declaration: ``set_li_command`` `src/vnet/lawful-intercept/lawful_intercept.c line 96 <https://github.com/FDio/vpp/blob/master//src/vnet/lawful-intercept/lawful_intercept.c#L96>`_
+
+Implementation: ``set_li_command_fn``
+

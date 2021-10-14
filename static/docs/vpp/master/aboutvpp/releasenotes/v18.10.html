@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release notes for VPP 18.10 &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Release notes for VPP 18.07" href="v18.07.html" />
+    <link rel="prev" title="Release notes for VPP 19.01" href="v19.01.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v21.10.html">Release notes for VPP 21.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v21.06.html">Release notes for VPP 21.06</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="past.html">Past releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="v21.01.html">Release notes for VPP 21.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.09.html">Release notes for VPP 20.09</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.05.1.html">Release notes for VPP 20.05.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.05.html">Release notes for VPP 20.05</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.01.html">Release notes for VPP 20.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.3.html">Release notes for VPP 19.08.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.2.html">Release notes for VPP 19.08.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.1.html">Release notes for VPP 19.08.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.html">Release notes for VPP 19.08</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.3.html">Release notes for VPP 19.04.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.2.html">Release notes for VPP 19.04.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.1.html">Release notes for VPP 19.04.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.html">Release notes for VPP 19.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.3.html">Release notes for VPP 19.01.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.2.html">Release notes for VPP 19.01.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.1.html">Release notes for VPP 19.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.html">Release notes for VPP 19.01</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Release notes for VPP 18.10</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#issues-fixed">Issues fixed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-changes">API changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="v18.07.html">Release notes for VPP 18.07</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.04.html">Release notes for VPP 18.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.2.html">Release notes for VPP 18.01.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.1.html">Release notes for VPP 18.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.html">Release notes for VPP 18.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.10.html">Release notes for VPP 17.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.07.html">Release notes for VPP 17.07</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.04.html">Release notes for VPP 17.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.01.1.html">Release notes for VPP 17.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.01.html">Release notes for VPP 17.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v16.09.html">Release notes for VPP 16.09</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v16.06.html">Release notes for VPP 16.06</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Release notes</a> &raquo;</li>
+          <li><a href="past.html">Past releases</a> &raquo;</li>
+      <li>Release notes for VPP 18.10</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/aboutvpp/releasenotes/v18.10.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-notes-for-vpp-18-10">
+<h1>Release notes for VPP 18.10<a class="headerlink" href="#release-notes-for-vpp-18-10" title="Permalink to this headline"></a></h1>
+<p>More than 632 commits since the 18.07 release.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<section id="infrastructure">
+<h3>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>DPDK 18.08 integration</p></li>
+<li><p>New Stats infrastructure (interface, error, node performance
+counters)</p></li>
+<li><p>Add configurable “Doug Lea malloc” support</p></li>
+</ul>
+</section>
+<section id="vnet-plugins">
+<h3>VNET &amp; Plugins<a class="headerlink" href="#vnet-plugins" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Load balancing: support per-port VIP and all-port VIP</p></li>
+<li><p>Port NSH plugin to VPP</p></li>
+<li><p>NAT</p>
+<ul>
+<li><p>Configurable port range</p></li>
+<li><p>Virtual Fragmentation Reassembly for endpoint-dependent mode</p></li>
+<li><p>Client-IP based session affinity for load-balancing</p></li>
+<li><p>TCP MSS clamping</p></li>
+<li><p>Session timeout</p></li>
+<li><p>Bug-fixing and performance optimizations</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="host-stack">
+<h3>Host stack<a class="headerlink" href="#host-stack" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Support for applications with multiple workers</p></li>
+<li><p>Support for binds from multiple app workers to same ip:port</p></li>
+<li><p>Switched to a message queue for io and control event notifications</p></li>
+<li><p>Support for eventfd based notifications as alternative to
+mutext-condvar pair</p></li>
+<li><p>VCL refactor to support async event notifications and multiple
+workers</p></li>
+<li><p>TLS async support in client for HW accleration</p></li>
+<li><p>Performance optimizations and bug-fixing</p></li>
+<li><p>A number of binary APIs will be deprecated in favor of using the
+event message queue. Details in the API section.</p></li>
+</ul>
+</section>
+</section>
+<section id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline"></a></h2>
+<p>For the full list of issues please refer to fd.io
+<a class="reference external" href="https://jira.fd.io">JIRA</a>.</p>
+</section>
+<section id="issues-fixed">
+<h2>Issues fixed<a class="headerlink" href="#issues-fixed" title="Permalink to this headline"></a></h2>
+<p>For the full list of fixed issues please refer to:</p>
+<ul class="simple">
+<li><p>fd.io <a class="reference external" href="https://jira.fd.io">JIRA</a></p></li>
+<li><p>git <a class="reference external" href="https://git.fd.io/vpp/log/?h=stable/1810">commit log</a></p></li>
+</ul>
+</section>
+<section id="api-changes">
+<h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline"></a></h2>
+<p>Description of results:</p>
+<ul>
+<li><p><em>Definition changed</em>: indicates that the API file was modified
+between releases.</p></li>
+<li><p><em>Only in image</em>: indicates the API is new for this release.</p></li>
+<li><p><em>Only in file</em>: indicates the API has been removed in this release.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Message</span> <span class="n">Name</span>                         <span class="n">Result</span>
+</pre></div>
+</div>
+<p>api_versions_reply definition changed
+app_cut_through_registration_add definition changed
+app_worker_add_del definition changed application_attach_reply
+definition changed bd_ip_mac_details only in image bd_ip_mac_dump
+only in image bfd_udp_get_echo_source definition changed
+bier_imp_details definition changed bier_route_details definition
+changed bind_sock definition changed bridge_domain_details definition
+changed bridge_flags definition changed classify_add_del_session
+definition changed classify_add_del_table definition changed
+connect_sock definition changed create_vhost_user_if definition
+changed get_first_msg_id_reply definition changed
+gpe_add_del_fwd_entry_reply definition changed
+gpe_fwd_entry_path_details definition changed ip6_fib_details
+definition changed ip6nd_proxy_details definition changed
+ip_add_del_route_reply definition changed ip_address_details
+definition changed ip_details definition changed ip_fib_details
+definition changed ip_mfib_details definition changed
+ip_mroute_add_del_reply definition changed ip_neighbor_add_del_reply
+definition changed ip_neighbor_details definition changed
+ip_reassembly_get_reply definition changed ip_unnumbered_details
+definition changed ipip_6rd_add_tunnel definition changed
+ipip_add_tunnel definition changed ipsec_spds_details only in image
+ipsec_spds_dump only in image l2_interface_efp_filter definition
+changed lisp_eid_table_vni_details definition changed
+map_another_segment definition changed mfib_signal_details definition
+changed mpls_route_add_del_reply definition changed
+mpls_tunnel_add_del definition changed mpls_tunnel_add_del_reply
+definition changed mpls_tunnel_details definition changed
+mpls_tunnel_dump definition changed one_eid_table_vni_details
+definition changed qos_mark_enable_disable definition changed
+qos_record_enable_disable definition changed reset_session_reply
+definition changed rpc_call definition changed show_threads
+definition changed sockclnt_create_reply definition changed
+sockclnt_delete definition changed sockclnt_delete_reply definition
+changed sw_interface_rx_placement_details only in image
+sw_interface_rx_placement_dump only in image
+sw_interface_set_ip_directed_broadcast definition changed
+sw_interface_set_l2_bridge definition changed
+sw_interface_set_rx_placement definition changed
+sw_interface_set_vxlan_gbp_bypass definition changed udp_encap_add
+definition changed udp_encap_add_del_reply only in file
+udp_encap_add_reply only in image udp_encap_del definition changed
+udp_encap_details definition changed unbind_sock definition changed
+vxlan_gbp_tunnel_add_del definition changed vxlan_gbp_tunnel_details
+only in image vxlan_gbp_tunnel_dump only in image Found 68 api
+message signature differences</p>
+</li>
+</ul>
+<section id="patches-that-changed-api-definitions">
+<h3>Patches that changed API definitions<a class="headerlink" href="#patches-that-changed-api-definitions" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/avf/avf.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=149d0e28">149d0e28</a> avf: RSS support</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=4e6014fc">4e6014fc</a> avf: api fix</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/gbp/gbp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c0a93143">c0a93143</a> GBP Endpoint Updates</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=61b94c6b">61b94c6b</a> vxlan-gbp: Add support for vxlan gbp</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/igmp/igmp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/lb/lb.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6a4375e0">6a4375e0</a> LB: fix flush flow table issue</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=49ca2601">49ca2601</a> Add flush flag on del as command</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=219cc90c">219cc90c</a> Support lb on both vip and per-port-vip case</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nat/nat.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bb4e0225">bb4e0225</a> NAT: TCP MSS clamping</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5d28c7af">5d28c7af</a> NAT: add support for configurable port range (VPP-1346)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ea5b5be4">ea5b5be4</a> NAT44: client-IP based session affinity for load-balancing (VPP-1297)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=878c646a">878c646a</a> NAT44: add support for session timeout (VPP-1272)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=69ce30d6">69ce30d6</a> NAT: update nat_show_config_reply API (VPP-1403)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bd197eb">6bd197eb</a> Remove client_index field from replies in API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=c6c0d2a0">c6c0d2a0</a> NAT44: LB NAT - local backends in multiple VRFs (VPP-1345)</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/vmxnet3/vmxnet3.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=df7f8e8c">df7f8e8c</a> vmxnet3 device driver</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nsh/nsh.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d313f9e6">d313f9e6</a> Port NSH plugin to VPP</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/nsim/nsim.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9e3252b5">9e3252b5</a> Network delay simulator plugin</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/plugins/svs/svs.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d1e68ab7">d1e68ab7</a> Source VRF Select</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vlibmemory/memclnt.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=94495f2a">94495f2a</a> PAPI: Use UNIX domain sockets instead of shared memory</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bd197eb">6bd197eb</a> Remove client_index field from replies in API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75282457">75282457</a> Fix “Old Style VLA” build warnings</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/interface.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f0b42f48">f0b42f48</a> itf: dump interface rx-placement</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=54f7c51f">54f7c51f</a> rx-placement: Add API call for interface rx-placement</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=1855b8e4">1855b8e4</a> IP directed broadcast</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bfd/bfd.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=2d3c7b9c">2d3c7b9c</a> BFD: add get echo source API (VPP-1367)</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/bier/bier.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ef90ed08">ef90ed08</a> BIER API and load-balancing fixes</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bd197eb">6bd197eb</a> Remove client_index field from replies in API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/classify/classify.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=34eb5d42">34eb5d42</a> classify_add_del_session API: Use more descriptive docstring (VPP-1385)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=75282457">75282457</a> Fix “Old Style VLA” build warnings</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/pipe/pipe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=208c29aa">208c29aa</a> VOM: support for pipes</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/devices/virtio/vhost_user.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ee2e58f6">ee2e58f6</a> vhost-user: Add disable feature support in api</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ethernet/ethernet_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=de5b08fb">de5b08fb</a> Introduce a mac_address_t on the API and in VPP</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/ip_types.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d0df49f2">d0df49f2</a> Use IP address types on UDP encap API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ip/ip.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=412ecd32">412ecd32</a> Improve ip_mroute_add_del documentation</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=14260393">14260393</a> Add adjacency counters to the stats segment</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=28c142e3">28c142e3</a> mroute routers in the stats segment</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=008dbe10">008dbe10</a> Route counters in the stats segment</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=de5b08fb">de5b08fb</a> Introduce a mac_address_t on the API and in VPP</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bd197eb">6bd197eb</a> Remove client_index field from replies in API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b11f903a">b11f903a</a> Fix context field position in API definition</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipip/ipip.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=61502115">61502115</a> IPIP and SIXRD tunnels create API needs table-IDs not fib-indexes</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/ipsec/ipsec.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=a9a0b2ce">a9a0b2ce</a> IPsec: add API for SPDs dump (VPP-1363)</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/l2/l2.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=0a4e0063">0a4e0063</a> Fix documentation about sw_interface_set_l2_bridge</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b474380f">b474380f</a> L2 BD: introduce a BD interface on which to send UU packets</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5c7c49d1">5c7c49d1</a> Fix documentation for SHG in bridge domain</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5d82d2f1">5d82d2f1</a> l2: arp termination dump</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6b9b41c8">6b9b41c8</a> L2 EFP: byteswap sw_if_index, enable flag can be u8 on .api</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-cp/lisp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bd197eb">6bd197eb</a> Remove client_index field from replies in API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-cp/one.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bd197eb">6bd197eb</a> Remove client_index field from replies in API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/lisp-gpe/lisp_gpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bd197eb">6bd197eb</a> Remove client_index field from replies in API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=b11f903a">b11f903a</a> Fix context field position in API definition</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/mpls/mpls.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=f5fa5ae2">f5fa5ae2</a> MPLS tunnel dump: use sw_if_index not tunnel_index</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6a30b5f9">6a30b5f9</a> MPLS tunnel dump fix</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=008dbe10">008dbe10</a> Route counters in the stats segment</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=7c922dc4">7c922dc4</a> SR-MPLS: fixes and tests</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/qos/qos.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ed234e7f">ed234e7f</a> Enum type on the API for QoS sources</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/session/session.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ab2f6dbf">ab2f6dbf</a> session: support multiple worker binds</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=134a996a">134a996a</a> vcl: add support for multi-worker apps</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=1553197f">1553197f</a> session: add support for multiple app workers</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=6bd197eb">6bd197eb</a> Remove client_index field from replies in API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=99368315">99368315</a> vcl: support for eventfd mq signaling</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/span/span.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/udp/udp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=9c0a3c42">9c0a3c42</a> UDP-Encap: name counters for the stats segment</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=d0df49f2">d0df49f2</a> Use IP address types on UDP encap API</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/unix/tap.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=bdc0e6b7">bdc0e6b7</a> Trivial: Clean up some typos.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vnet/vxlan-gbp/vxlan_gbp.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=79a05f54">79a05f54</a> VXLAN-GBP: use common types on the API</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=61b94c6b">61b94c6b</a> vxlan-gbp: Add support for vxlan gbp</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vpp/api/vpe.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=5d64c786">5d64c786</a> thread: Add show threads api</p></li>
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ec11b13a">ec11b13a</a> Trivial: Cleanup some typos.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">src/vpp/stats/stats.api</span></code></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gerrit.fd.io/r/gitweb?p=vpp.git;a=commit;h=ec11b13a">ec11b13a</a> Trivial: Cleanup some typos.</p></li>
+</ul>
+</section>
+<section id="notice-of-future-api-deprecation">
+<h3>Notice of future API deprecation<a class="headerlink" href="#notice-of-future-api-deprecation" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>bind_uri_reply</p></li>
+<li><p>accept_session</p></li>
+<li><p>accept_session_reply</p></li>
+<li><p>disconnect_session_reply</p></li>
+<li><p>reset_session</p></li>
+<li><p>reset_session_reply</p></li>
+<li><p>bind_sock_reply</p></li>
+<li><p>connect_session_reply</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="v19.01.html" class="btn btn-neutral float-left" title="Release notes for VPP 19.01" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="v18.07.html" class="btn btn-neutral float-right" title="Release notes for VPP 18.07" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

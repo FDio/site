@@ -1,0 +1,122 @@
+.. _clicmd_src_plugins_snort:
+
+===============================================================
+Snort cli reference
+===============================================================
+
+show snort clients
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show snort clients
+
+
+Declaration: ``snort_show_clients_command`` `src/plugins/snort/cli.c line 235 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L235>`_
+
+Implementation: ``snort_show_clients_command_fn``
+
+
+show snort instances
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show snort instances
+
+
+Declaration: ``snort_show_instances_command`` `src/plugins/snort/cli.c line 192 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L192>`_
+
+Implementation: ``snort_show_instances_command_fn``
+
+
+show snort interfaces
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show snort interfaces
+
+
+Declaration: ``snort_show_interfaces_command`` `src/plugins/snort/cli.c line 220 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L220>`_
+
+Implementation: ``snort_show_interfaces_command_fn``
+
+
+show snort mode
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show snort mode
+
+
+Declaration: ``snort_show_mode_command`` `src/plugins/snort/cli.c line 278 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L278>`_
+
+Implementation: ``snort_show_mode_command_fn``
+
+
+snort attach
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    snort attach instance <name> interface <if-name>
+
+
+Declaration: ``snort_attach_command`` `src/plugins/snort/cli.c line 128 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L128>`_
+
+Implementation: ``snort_attach_command_fn``
+
+
+snort create-instance
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    snort create-instaince name <name> [queue-size <size>] [on-disconnect drop|pass]
+
+
+Declaration: ``snort_create_instance_command`` `src/plugins/snort/cli.c line 72 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L72>`_
+
+Implementation: ``snort_create_instance_command_fn``
+
+
+snort detach
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    snort detach interface <if-name>
+
+
+Declaration: ``snort_detach_command`` `src/plugins/snort/cli.c line 173 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L173>`_
+
+Implementation: ``snort_detach_command_fn``
+
+
+snort mode interrupt
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    snort mode polling|interrupt
+
+
+Declaration: ``snort_mode_interrupt_command`` `src/plugins/snort/cli.c line 261 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L261>`_
+
+Implementation: ``snort_mode_interrupt_command_fn``
+
+
+snort mode polling
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    snort mode polling|interrupt
+
+
+Declaration: ``snort_mode_polling_command`` `src/plugins/snort/cli.c line 255 <https://github.com/FDio/vpp/blob/master//src/plugins/snort/cli.c#L255>`_
+
+Implementation: ``snort_mode_polling_command_fn``
+

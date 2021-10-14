@@ -1,0 +1,31 @@
+.. _clicmd_src_plugins_lacp:
+
+===============================================================
+Lacp cli reference
+===============================================================
+
+debug lacp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    debug lacp <interface> <on | off>
+
+
+Declaration: ``debug_lacp_command`` `src/plugins/lacp/cli.c line 388 <https://github.com/FDio/vpp/blob/master//src/plugins/lacp/cli.c#L388>`_
+
+Implementation: ``debug_lacp_command_fn``
+
+
+show lacp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show lacp [<interface>] [details]
+
+
+Declaration: ``show_lacp_command`` `src/plugins/lacp/cli.c line 313 <https://github.com/FDio/vpp/blob/master//src/plugins/lacp/cli.c#L313>`_
+
+Implementation: ``show_lacp_fn``
+

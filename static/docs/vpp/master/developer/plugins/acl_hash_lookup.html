@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACL plugin constant-time lookup &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ACL Lookup contexts" href="acl_lookup_context.html" />
+    <link rel="prev" title="Multicore support for ACL plugin" href="acl_multicore.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Plugins</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quic.html">QUIC HostStack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcp.html">Linux Control Plane Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="srv6/index.html">SRv6 Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marvell.html">Marvell device plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lldp.html">LLDP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nat64.html">Stateful NAT64</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nat44_ei_ha.html">Active-Passive NAT HA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnat.html">PNAT 1:1 match &amp; rewrite NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lb.html">Load Balancer plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lacp.html">LACP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowprobe.html">IPFIX flow record plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_lw4o6.html">MAP and Lw4o6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mdata.html">Buffer metadata change tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dhcp6_pd.html">DHCPv6 prefix delegation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ioam.html">Inband OAM (iOAM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wireguard.html">Wireguard vpp-plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="srtp.html">SRTP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_multicore.html">Multicore support for ACL plugin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ACL plugin constant-time lookup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparation-of-acl-s">Preparation of ACL(s)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assigning-acls-to-an-interface">Assigning ACLs to an interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#per-packet-lookup">Per-packet lookup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shadowed-independent-redundant-aces">Shadowed/independent/redundant ACEs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plumbing">Plumbing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="acl_lookup_context.html">ACL Lookup contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bufmon_doc.html">Buffers monitoring plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Plugins</a> &raquo;</li>
+      <li>ACL plugin constant-time lookup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/plugins/acl_hash_lookup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="acl-plugin-constant-time-lookup">
+<h1>ACL plugin constant-time lookup<a class="headerlink" href="#acl-plugin-constant-time-lookup" title="Permalink to this headline"></a></h1>
+<p>The initial implementation of ACL plugin performs a trivial for() cycle,
+going through the assigned ACLs on a per-packet basis. This is not very
+efficient, even if for very short ACLs due to its simplicity it can beat
+more advanced methods.</p>
+<p>However, to cover the case of longer ACLs with acceptable performance,
+we need to have a better way of matching. This write-up proposes a
+mechanism to make a lookup from O(M) where M is number of entries to
+O(N) where N is number of different mask combinations.</p>
+<section id="preparation-of-acl-s">
+<h2>Preparation of ACL(s)<a class="headerlink" href="#preparation-of-acl-s" title="Permalink to this headline"></a></h2>
+<p>The ACL plugin will maintain a global list of “mask types”, i.e. the
+specific configurations of “do not care” bits within the ACEs. Upon the
+creation of a new ACL, a pass will be made through all the ACEs, to
+assign and possibly allocate the “mask type number”.</p>
+<p>Each ACL has a structure <em>hash_acl_info_t</em> representing the “hash-based”
+parts of information related to that ACL, primarily the array of
+<em>hash_ace_info_t</em> structures - each of the members of that array
+corresponding to one of the rules (ACEs) in the original ACL, for this
+they have a pair of <em>(acl_index, ace_index)</em> to keep track,
+predominantly for debugging.</p>
+<p>Why do we need a whole separate structure, and are not adding new fields
+to the existing rule structure? First, encapsulation, to minimize the
+pollution of the main ACL code with the hash-based lookup artifacts.
+Second, one rule may correspond to more than one “hash-based” ACE. In
+fact, most of the rules do correspond to two of those. Why ?</p>
+<p>Consider that the current ACL lookup logic is that if a packet is not
+the initial fragment, and there is an L4 entry acting on the packet, the
+comparison will be made only on the L4 protocol field value rather than
+on the protocol and port values. This behavior is governed by
+<em>l4_match_nonfirst_fragment</em> flag in the <em>acl_main</em>, and is needed to
+maintain the compatibility with the existing software switch
+implementation.</p>
+<p>While for the sequential check in <em>single_acl_match_5tuple()</em> it is very
+easy to implement by just breaking out at the right moment, in case of
+hash-based matching this cost us two checks: one on full 5-tuple and the
+flag <em>pkt.is_nonfirst_fragment</em> being zero, the second on 3-tuple and
+the flag <em>pkt.is_nonfirst_fragment</em> being one, with the second check
+triggered by the <em>acl_main.l4_match_nonfirst_fragment</em> setting being the
+default 1. This dictates the necessity of having a “match” field in a
+given <em>hash_ace_info_t</em> element, which would reflect the value we are
+supposed to match after applying the mask.</p>
+<p>There can be other circumstances when it might be beneficial to expand
+the given rule in the original ACL into multiple - for example, as an
+optimization within the port range handling for small port ranges (this
+is not done as of the time of writing).</p>
+</section>
+<section id="assigning-acls-to-an-interface">
+<h2>Assigning ACLs to an interface<a class="headerlink" href="#assigning-acls-to-an-interface" title="Permalink to this headline"></a></h2>
+<p>Once the ACL list is assigned to an interface, or, rather, a new ACL is
+added to the list of the existing ACLs applied to the interface, we need
+to update the bihash accelerating the lookup.</p>
+<p>All the entries for the lookups are stored within a single <em>48_8</em>
+bihash, which captures the 5-tuple from the packet as well as the
+miscellaneous per-packet information flags, e.g. <em>l4_valid</em>,
+<em>is_non_first_fragment</em>, and so on. To facilitate the use of the single
+bihash by all the interfaces, the <em>is_ip6</em>, <em>is_input</em>, <em>sw_if_index</em>
+are part of the key, as well as <em>mask_type_index</em> - the latter being
+necessary because there can be entries with the same value but different
+masks, e.g.: <code class="docutils literal notranslate"><span class="pre">permit</span> <span class="pre">::/0,</span> <span class="pre">permit::/128</span></code>.</p>
+<p>At the moment of an ACL being applied to an interface, we need to walk
+the list of <em>hash_ace_info_t</em> entries corresponding to that ACL, and
+update the bihash with the keys corresponding to the match values in
+these entries.</p>
+<p>The value of the hash match contains the index into a per-<em>sw_if_index</em>
+vector of <em>applied_ace_hash_entry_t</em> elements, as well as a couple of
+flags: <em>shadowed</em> (optimization: if this flag on a matched entry is
+zero, means we can stop the lookup early and declare a match - see
+below), and <em>need_portrange_check</em> - meaning that what matched was a
+superset of the actual match, and we need to perform an extra check.</p>
+<p>Also, upon insertion, we must keep in mind there can be multiple
+<em>applied_ace_hash_entry_t</em> for the same key and must keep a list of
+those. This is necessary to incrementally apply/unapply the ACLs as part
+of the ACL vector: say, two ACLs have “permit 2001:db8::1/128 any” - we
+should be able to retain the entry for the second ACL even if we have
+deleted the first one. Also, in case there are two entries with the same
+key but different port ranges, say 0..42 and 142..65535 - we need to be
+able to sequentially match on those if we decide not to expand them into
+individual port-specific entries.</p>
+</section>
+<section id="per-packet-lookup">
+<h2>Per-packet lookup<a class="headerlink" href="#per-packet-lookup" title="Permalink to this headline"></a></h2>
+<p>The simple single-packet lookup is defined in
+<em>multi_acl_match_get_applied_ace_index</em>, which returns the index of the
+applied hash ACE if there was a match, or ~0 if there wasn’t.</p>
+<p>The future optimized per-packet lookup may be batched in three phases:</p>
+<ol class="arabic simple">
+<li><p>Prepare the keys in the per-worker vector by doing logical AND of
+original 5-tuple record with the elements of the mask vector.</p></li>
+<li><p>Lookup the keys in the bihash in a batch manner, collecting the
+result with lowest u64 (acl index within vector, ACE index) from the
+hash lookup value, and performing the list walk if necessary (for
+portranges).</p></li>
+<li><p>Take the action from the ACL record as defined by (ACL#, ACE#) from
+the resulting lookup winner, or, if no match found, then perform
+default deny.</p></li>
+</ol>
+</section>
+<section id="shadowed-independent-redundant-aces">
+<h2>Shadowed/independent/redundant ACEs<a class="headerlink" href="#shadowed-independent-redundant-aces" title="Permalink to this headline"></a></h2>
+<p>During the phase of combining multiple ACLs into one rulebase, when they
+are applied to interface, we also can perform several optimizations.</p>
+<p>If a given ACE is a strict subset of another ACE located up in the
+linear search order, we can ignore this ACE completely - because by
+definition it will never match. We will call such an ACE <em>redundant</em>.
+Here is an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">permit</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">48</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">2</span><span class="p">::</span><span class="o">/</span><span class="mi">48</span>   <span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">deny</span> <span class="mi">2001</span><span class="p">:</span><span class="n">d8b</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">64</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">64</span> <span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A bit more formally, we can define this relationship of an ACE A to ACE
+B as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">redundant</span><span class="p">(</span><span class="n">aceA</span><span class="p">,</span> <span class="n">aceB</span><span class="p">)</span> <span class="o">:=</span> <span class="p">(</span><span class="n">contains</span><span class="p">(</span><span class="n">protoB</span><span class="p">,</span> <span class="n">protoA</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">contains</span><span class="p">(</span><span class="n">srcB</span><span class="p">,</span> <span class="n">srcA</span><span class="p">)</span>
+                          <span class="o">&amp;&amp;</span> <span class="n">contains</span><span class="p">(</span><span class="n">dstB</span><span class="p">,</span> <span class="n">dstA</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">is_after</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Here as “contains” we define an operation operating on the sets defined
+by the protocol, (srcIP, srcPortDefinition) and (dstIP,
+dstPortDefinition) respectively, and returning true if all the elements
+represented by the second argument are represented by the first
+argument. The “is_after” is true if A is located below B in the ruleset.</p>
+<p>If a given ACE does not intersect at all with any other ACE in front of
+it, we can mark it as such.</p>
+<p>Then during the sequence of the lookups the successful hit on this ACE
+means we do not need to look up other mask combinations - thus
+potentially significantly speeding up the match process. Here is an
+example, assuming we have the following ACL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">permit</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">48</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">2</span><span class="p">::</span><span class="o">/</span><span class="mi">48</span>    <span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">deny</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">3</span><span class="p">::</span><span class="o">/</span><span class="mi">48</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">64</span>    <span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this case if we match the second entry, we do not need to check
+whether we have matched the first one - the source addresses are
+completely different. We call such an ACE <em>independent</em> from another.</p>
+<p>We can define this as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>independent(aceA, aceB) := (!intersect(protoA, protoB) ||
+                            !intersect(srcA, srcB) ||
+                            !intersect(dstA, dstB))
+</pre></div>
+</div>
+<p>where intersect is defined as operation returning true if there are
+elements belonging to the sets of both arguments.</p>
+<p>If the entry A is neither redundant nor independent from B, and is below
+B in the ruleset, we call such an entry <em>shadowed</em> by B, here is an
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deny</span> <span class="n">tcp</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">48</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">2</span><span class="p">::</span><span class="o">/</span><span class="mi">48</span>         <span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">permit</span> <span class="mi">2001</span><span class="p">:</span><span class="n">d8b</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">64</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db8</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">64</span>    <span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This means the earlier rule “carves out” a subset of A, thus leaving a
+“shadow”. (Evidently, the action needs to be different for the shadow to
+have an effect, but for for the terminology sake we do not care).</p>
+<p>The more formal definition:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>shadowed(aceA, aceB) := !redundant(aceA, aceB) &amp;&amp;
+                        !independent(aceA, aceB) &amp;&amp;
+                        is_after(aceA, aceB)
+</pre></div>
+</div>
+<p>Using this terminology, any ruleset can be represented as a DAG
+(Directed Acyclic Graph), with the bottom being the implicit “deny any”,
+pointing to the set of rules shadowing it or the ones it is redundant
+for.</p>
+<p>These rules may in turn be shadowing each other. There is no cycles in
+this graph because of the natural order of the rules - the rule located
+closer to the end of the ruleset can never shadow or make redundant a
+rule higher up.</p>
+<p>The optimization that enables can allow for is to skip matching certain
+masks on a per-lookup basis - if a given rule has matched, the only
+adjustments that can happen is the match with one of the shadowing
+rules.</p>
+<p>Also, another avenue for the optimization can be starting the lookup
+process with the mask type that maximizes the chances of the independent
+ACE match, thus resulting in an ACE lookup being a single hash table
+hit.</p>
+</section>
+<section id="plumbing">
+<h2>Plumbing<a class="headerlink" href="#plumbing" title="Permalink to this headline"></a></h2>
+<p>All the new routines are located in a separate file, so we can cleanly
+experiment with a different approach if this does not fit all of the use
+cases.</p>
+<p>The constant-time lookup within the data path has the API with the same
+signature as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u8</span>
+<span class="n">multi_acl_match_5tuple</span> <span class="p">(</span><span class="n">u32</span> <span class="n">sw_if_index</span><span class="p">,</span> <span class="n">fa_5tuple_t</span> <span class="o">*</span> <span class="n">pkt_5tuple</span><span class="p">,</span> <span class="nb">int</span> <span class="n">is_l2</span><span class="p">,</span>
+                       <span class="nb">int</span> <span class="n">is_ip6</span><span class="p">,</span> <span class="nb">int</span> <span class="n">is_input</span><span class="p">,</span> <span class="n">u32</span> <span class="o">*</span> <span class="n">acl_match_p</span><span class="p">,</span>
+                       <span class="n">u32</span> <span class="o">*</span> <span class="n">rule_match_p</span><span class="p">,</span> <span class="n">u32</span> <span class="o">*</span> <span class="n">trace_bitmap</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There should be a new upper-level function with the same signature,
+which will make a decision whether to use a linear lookup, or to use the
+constant-time lookup implemented by this work, or to add some other
+optimizations (e.g. by keeping the cache of the last N lookups).</p>
+<p>The calls to the routine doing preparatory work should happen in
+<code class="docutils literal notranslate"><span class="pre">acl_add_list()</span></code> after creating the linear-lookup structures, and the
+routine doing the preparatory work populating the hashtable should be
+called from <code class="docutils literal notranslate"><span class="pre">acl_interface_add_del_inout_acl()</span></code> or its callees.</p>
+<p>The initial implementation will be geared towards looking up a single
+match at a time, with the subsequent optimizations possible to make the
+lookup for more than one packet.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="acl_multicore.html" class="btn btn-neutral float-left" title="Multicore support for ACL plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="acl_lookup_context.html" class="btn btn-neutral float-right" title="ACL Lookup contexts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

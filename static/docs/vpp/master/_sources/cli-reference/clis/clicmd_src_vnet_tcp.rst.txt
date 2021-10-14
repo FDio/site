@@ -1,0 +1,109 @@
+.. _clicmd_src_vnet_tcp:
+
+===============================================================
+Tcp cli reference
+===============================================================
+
+clear tcp stats
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear tcp stats
+
+
+Declaration: ``clear_tcp_stats_command`` `src/vnet/tcp/tcp_cli.c line 895 <https://github.com/FDio/vpp/blob/master//src/vnet/tcp/tcp_cli.c#L895>`_
+
+Implementation: ``clear_tcp_stats_fn``
+
+
+ip syn filter
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip syn filter <interface-name> [disable]
+
+
+Declaration: ``sr_content_command`` `src/vnet/tcp/tcp_syn_filter4.c line 529 <https://github.com/FDio/vpp/blob/master//src/vnet/tcp/tcp_syn_filter4.c#L529>`_
+
+Implementation: ``syn_filter_enable_disable_command_fn``
+
+
+show tcp punt
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show tcp punt
+
+
+Declaration: ``show_tcp_punt_command`` `src/vnet/tcp/tcp_cli.c line 826 <https://github.com/FDio/vpp/blob/master//src/vnet/tcp/tcp_cli.c#L826>`_
+
+Implementation: ``show_tcp_punt_fn``
+
+
+show tcp scoreboard trace
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show tcp scoreboard trace <connection>
+
+
+Declaration: ``tcp_show_scoreboard_trace_command`` `src/vnet/tcp/tcp_cli.c line 678 <https://github.com/FDio/vpp/blob/master//src/vnet/tcp/tcp_cli.c#L678>`_
+
+Implementation: ``tcp_show_scoreboard_trace_fn``
+
+
+show tcp stats
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show tcp stats
+
+
+Declaration: ``show_tcp_stats_command`` `src/vnet/tcp/tcp_cli.c line 865 <https://github.com/FDio/vpp/blob/master//src/vnet/tcp/tcp_cli.c#L865>`_
+
+Implementation: ``show_tcp_stats_fn``
+
+
+tcp debug
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    tcp [show] [debug group <N> level <N>]
+
+
+Declaration: ``tcp_debug_command`` `src/vnet/tcp/tcp_debug.c line 138 <https://github.com/FDio/vpp/blob/master//src/vnet/tcp/tcp_debug.c#L138>`_
+
+Implementation: ``tcp_debug_fn``
+
+
+tcp replay scoreboard
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    tcp replay scoreboard <connection>
+
+
+Declaration: ``tcp_replay_scoreboard_command`` `src/vnet/tcp/tcp_cli.c line 803 <https://github.com/FDio/vpp/blob/master//src/vnet/tcp/tcp_cli.c#L803>`_
+
+Implementation: ``tcp_scoreboard_trace_fn``
+
+
+tcp src-address
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    tcp src-address <ip-addr> [- <ip-addr>] add src address range
+
+
+Declaration: ``tcp_src_address_command`` `src/vnet/tcp/tcp_cli.c line 615 <https://github.com/FDio/vpp/blob/master//src/vnet/tcp/tcp_cli.c#L615>`_
+
+Implementation: ``tcp_src_address_fn``
+

@@ -1,0 +1,31 @@
+.. _clicmd_src_plugins_adl:
+
+===============================================================
+Adl cli reference
+===============================================================
+
+adl allowlist
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    adl allowlist <interface-name> [ip4][ip6][default][fib-id <NN>][disable]
+
+
+Declaration: ``adl_allowlist_command`` `src/plugins/adl/adl.c line 393 <https://github.com/FDio/vpp/blob/master//src/plugins/adl/adl.c#L393>`_
+
+Implementation: ``adl_allowlist_enable_disable_command_fn``
+
+
+adl interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    adl interface <interface-name> [disable]
+
+
+Declaration: ``adl_interface_command`` `src/plugins/adl/adl.c line 225 <https://github.com/FDio/vpp/blob/master//src/plugins/adl/adl.c#L225>`_
+
+Implementation: ``adl_enable_disable_command_fn``
+

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistics &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SELinux - VPP Custom SELinux Policy" href="selinux_doc.html" />
+    <link rel="prev" title="Event-logger" href="eventviewer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Core Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fib/index.html">The FIB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sr/index.html">Segment routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipsec.html">IPSec (IP Security)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bfd_doc.html">BFD module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipfix_doc.html">IPFIX support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="span_doc.html">Switched Port Analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtu.html">MTU in VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sylog_doc.html">Syslog protocol support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Statistics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vpp-counter-architecture">VPP Counter Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#memory-layout">Memory layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directory-layout">Directory layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimistic-concurrency">Optimistic concurrency</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-are-counters-exposed-out-of-vpp">How are counters exposed out of VPP?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#types-of-counters">Types of Counters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client-libraries">Client libraries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#writing-a-new-client-library">Writing a new client library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c">C</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#integrations">Integrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#future-evolution">Future evolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="selinux_doc.html">SELinux - VPP Custom SELinux Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Core Features</a> &raquo;</li>
+      <li>Statistics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/corefeatures/stats.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="statistics">
+<span id="stats-doc"></span><h1>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline"></a></h1>
+<p>In VPP most things are measured and counted. There are counters for
+interface statistics, like RX, TX counters, packet drops, and so on.
+Every node has a set of per-node counters, one set of error counters,
+like TTL exceeded, or packet to big or out-of-buffers. And a set of
+performance counters, like number of clocks, vectors, calls and
+suspends.</p>
+<p>There is also a set of system counters and performance counters,
+e.g. memory utilization per heap, buffer utilisation and so on.</p>
+<section id="vpp-counter-architecture">
+<h2>VPP Counter Architecture<a class="headerlink" href="#vpp-counter-architecture" title="Permalink to this headline"></a></h2>
+<p>Counters are exposed directly via shared memory. These are the actual
+counters in VPP, no sampling or aggregation is done by the statistics
+infrastructure. With the exception of per node performance data under
+/sys/node and a few system counters.</p>
+<p>Clients mount the shared memory segment read-only, using a optimistic
+concurrency algorithm.</p>
+<p>Directory structure as an index.</p>
+<section id="memory-layout">
+<h3>Memory layout<a class="headerlink" href="#memory-layout" title="Permalink to this headline"></a></h3>
+<p>The memory segment consists of a shared header, containing atomics for
+the optimistic concurrency mechanism, and offsets into memory for the
+directory vectors. The only data structure used is the VPP vectors. All
+pointers are converted to offsets so that client applications can map
+the shared memory wherever it pleases.</p>
+</section>
+<section id="directory-layout">
+<h3>Directory layout<a class="headerlink" href="#directory-layout" title="Permalink to this headline"></a></h3>
+</section>
+<section id="optimistic-concurrency">
+<h3>Optimistic concurrency<a class="headerlink" href="#optimistic-concurrency" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Shared</span> <span class="n">header</span> <span class="n">first</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">shared</span> <span class="n">memory</span> <span class="n">segment</span><span class="o">.</span>
+ <span class="o">*/</span>
+<span class="n">typedef</span> <span class="n">struct</span> <span class="p">{</span>
+  <span class="n">atomic_int_fast64_t</span> <span class="n">epoch</span><span class="p">;</span>
+  <span class="n">atomic_int_fast64_t</span> <span class="n">in_progress</span><span class="p">;</span>
+  <span class="n">atomic_int_fast64_t</span> <span class="n">directory_offset</span><span class="p">;</span>
+  <span class="n">atomic_int_fast64_t</span> <span class="n">error_offset</span><span class="p">;</span>
+  <span class="n">atomic_int_fast64_t</span> <span class="n">stats_offset</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">stat_segment_shared_header_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="writer">
+<h4>Writer<a class="headerlink" href="#writer" title="Permalink to this headline"></a></h4>
+<p>On the VPP side there is a single writer (controlled by a spinlock).
+When the writer starts it sets in_progress=1, continues with the update
+of the data-structures, and when done, bumps epoch++ and sets
+in_progress=0.</p>
+</section>
+<section id="readers">
+<h4>Readers<a class="headerlink" href="#readers" title="Permalink to this headline"></a></h4>
+<p>If in_progress=1, there is no point continuing, so reader sits spinning
+on the in_progress flag until it is 0. Then it sets start_epoch = epoch
+and continues copying out the counter data it is interested in, while
+doing strict boundary checks on all offsets / pointers. When the reader
+is done, it checks if in_progress=1 or if epoch != start_epoch. If
+either of those are true is discards the data read.</p>
+</section>
+</section>
+</section>
+<section id="how-are-counters-exposed-out-of-vpp">
+<h2>How are counters exposed out of VPP?<a class="headerlink" href="#how-are-counters-exposed-out-of-vpp" title="Permalink to this headline"></a></h2>
+</section>
+<section id="types-of-counters">
+<h2>Types of Counters<a class="headerlink" href="#types-of-counters" title="Permalink to this headline"></a></h2>
+<p>All counters under /err and /if are the directly exposed VPP counters.</p>
+<ul class="simple">
+<li><p>Gauges</p></li>
+<li><p>u64 / float</p></li>
+<li><p>Interface Counters</p></li>
+<li><p>Simple counters, counter_t array of threads of an array of interfaces</p></li>
+<li><p>Combined counters, vlib_counter_t array of threads of an array of
+interfaces.</p></li>
+</ul>
+</section>
+<section id="client-libraries">
+<h2>Client libraries<a class="headerlink" href="#client-libraries" title="Permalink to this headline"></a></h2>
+<section id="writing-a-new-client-library">
+<h3>Writing a new client library<a class="headerlink" href="#writing-a-new-client-library" title="Permalink to this headline"></a></h3>
+<p>A new client library can either wrap the C library (libvppapiclient.so)
+or it can integrate directly with the shared memory. That involves
+exchanging a file descriptor over the VPP stats Unix domain socket, and
+opening the memory mapped segment.</p>
+</section>
+<section id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">from</span> <span class="nn">vpp_papi.vpp_stats</span> <span class="kn">import</span> <span class="n">VPPStats</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">VPPStats</span><span class="p">(</span><span class="s1">&#39;/run/vpp/stats.sock&#39;</span><span class="p">)</span>
+<span class="nb">dir</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ls</span><span class="p">([</span><span class="s1">&#39;^/if&#39;</span><span class="p">,</span> <span class="s1">&#39;/err/ip4-input&#39;</span><span class="p">,</span> <span class="s1">&#39;/sys/node/ip4-input&#39;</span><span class="p">])</span>
+<span class="n">counters</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+
+<span class="c1"># Print the RX counters for the first interface on the first worker core</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;RX interface core 0, sw_if_index 0&#39;</span><span class="p">,</span> <span class="n">counters</span><span class="p">[</span><span class="s1">&#39;/if/rx&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="c">
+<h3>C<a class="headerlink" href="#c" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;vpp-api/client/stat_client.h&gt;</span>
+<span class="c1">#include &lt;vppinfra/vec.h&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span> <span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">uint8_t</span> <span class="o">*</span><span class="n">patterns</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="n">vec_add1</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="s2">&quot;^/if&quot;</span><span class="p">);</span>
+  <span class="n">vec_add1</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="s2">&quot;ip4-input&quot;</span><span class="p">);</span>
+
+  <span class="nb">int</span> <span class="n">rv</span> <span class="o">=</span> <span class="n">stat_segment_connect</span><span class="p">(</span><span class="n">STAT_SEGMENT_SOCKET_FILE</span><span class="p">);</span>
+  <span class="n">uint32_t</span> <span class="o">*</span><span class="nb">dir</span> <span class="o">=</span> <span class="n">stat_segment_ls</span><span class="p">(</span><span class="n">patterns</span><span class="p">);</span>
+  <span class="n">stat_segment_data_t</span> <span class="o">*</span><span class="n">res</span> <span class="o">=</span> <span class="n">stat_segment_dump</span><span class="p">(</span><span class="nb">dir</span><span class="p">);</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vec_len</span><span class="p">(</span><span class="n">res</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">switch</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">case</span> <span class="n">STAT_DIR_TYPE_COUNTER_VECTOR_SIMPLE</span><span class="p">:</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">simple_counter_vec</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">simple_counter_vec</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+          <span class="n">fformat</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s2">&quot;[</span><span class="si">%d</span><span class="s2"> @ </span><span class="si">%d</span><span class="s2">]: %llu packets </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                   <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">simple_counter_vec</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">],</span>
+                   <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+
+      <span class="n">case</span> <span class="n">STAT_DIR_TYPE_COUNTER_VECTOR_COMBINED</span><span class="p">:</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">combined_counter_vec</span><span class="p">);</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">combined_counter_vec</span><span class="p">[</span><span class="n">k</span><span class="p">]);</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">fformat</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s2">&quot;[</span><span class="si">%d</span><span class="s2"> @ </span><span class="si">%d</span><span class="s2">]: %llu packets, %llu bytes </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                     <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">combined_counter_vec</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">packets</span><span class="p">,</span>
+                     <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">combined_counter_vec</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">bytes</span><span class="p">,</span>
+                     <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+
+      <span class="n">case</span> <span class="n">STAT_DIR_TYPE_ERROR_INDEX</span><span class="p">:</span>
+     <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">error_vector</span><span class="p">);</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+       <span class="n">fformat</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s2">&quot;[@</span><span class="si">%d</span><span class="s2">] %llu </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">error_vector</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+
+      <span class="n">case</span> <span class="n">STAT_DIR_TYPE_SCALAR_INDEX</span><span class="p">:</span>
+        <span class="n">fformat</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%.2f</span><span class="s2"> </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scalar_value</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+
+      <span class="n">default</span><span class="p">:</span>
+        <span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">stat_segment_data_free</span> <span class="p">(</span><span class="n">res</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="integrations">
+<h2>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>CLI command. vpp_get_stats [ls | dump | poll]</p></li>
+<li><p>Prometheus</p></li>
+</ul>
+</section>
+<section id="future-evolution">
+<h2>Future evolution<a class="headerlink" href="#future-evolution" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Deprecate the stats over binary API calls that are based on
+want_stats</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="eventviewer.html" class="btn btn-neutral float-left" title="Event-logger" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="selinux_doc.html" class="btn btn-neutral float-right" title="SELinux - VPP Custom SELinux Policy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

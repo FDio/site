@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Interfaces Commands &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Set Interface Commands" href="setinterface.html" />
+    <link rel="prev" title="Hardware-Interfaces Commands" href="hardware.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Interface Commands</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic Interface Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html">Hardware-Interfaces Commands</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Create Interfaces Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-host-interface">Create Host-Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-usage">Example Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#declaration-and-implementation">Declaration and Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-interface-memif">Create Interface Memif</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Declaration and Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-loopback-interface">Create Loopback Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Example Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Declaration and Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-sub-interfaces">Create Sub-Interfaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary-usage">Summary/Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Example Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="setinterface.html">Set Interface Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Interface Commands</a> &raquo;</li>
+      <li>Create Interfaces Commands</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cli-reference/interface/create_interface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="interface">
+</div>
+<section id="create-interfaces-commands">
+<h1>Create Interfaces Commands<a class="headerlink" href="#create-interfaces-commands" title="Permalink to this headline"></a></h1>
+<p>This section contains those interface commands that are associated to creating an interface:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#create-host-interface">Create Host-Interface</a></p></li>
+<li><p><a class="reference internal" href="#create-interface-memif">Create Interface Memif</a></p></li>
+<li><p><a class="reference internal" href="#create-loopback-interface">Create Loopback Interface</a></p></li>
+<li><p><a class="reference internal" href="#create-sub-interfaces">Create Sub-Interfaces</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a complete list of CLI Debug commands refer to the Debug CLI section of the <a class="reference external" href="https://docs.fd.io/vpp/18.07/clicmd.html">Source Code Documents</a> .</p>
+</div>
+<section id="create-host-interface">
+<h2>Create Host-Interface<a class="headerlink" href="#create-host-interface" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">create host-interface name &lt;*ifname*&gt; [*hw-addr &lt;*mac-addr*&gt;]</span>
+</pre></div>
+</div>
+<section id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h3>
+<p>Create a host interface that will attach to a linux AF_PACKET interface, one side of a veth pair.
+The veth pair must already exist. Once created, a new host interface will exist in VPP with the name
+‘host-&lt;<em>ifname</em>&gt;’, where ‘&lt;<em>ifname</em>&gt;’ is the name of the specified veth pair.
+Use the <cite>show interface</cite> command to display host interface details.</p>
+<p>This command has the following optional parameters:</p>
+<blockquote>
+<div><p>hw-addr &lt;<em>mac-addr</em>&gt; - Optional ethernet address, can be in either X:X:X:X:X:X unix or X.X.X cisco format</p>
+</div></blockquote>
+</section>
+<section id="example-usage">
+<h3>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline"></a></h3>
+<p>Example of how to create a host interface tied to one side of an existing linux veth pair named vpp1:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create host-interface name vpp1</span>
+
+<span class="go">host-vpp1</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Once the host interface is created, enable the interface using:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# set interface state host-vpp1 up</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="declaration-and-implementation">
+<h3>Declaration and Implementation<a class="headerlink" href="#declaration-and-implementation" title="Permalink to this headline"></a></h3>
+<p><strong>Declaration:</strong> af_packet_create_command (src/vnet/devices/af_packet/cli.c line 133)</p>
+<p><strong>Implementation:</strong> af_packet_create_command_fn</p>
+</section>
+</section>
+<section id="create-interface-memif">
+<h2>Create Interface Memif<a class="headerlink" href="#create-interface-memif" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">create interface memif [id &lt;*id*&gt;] [socket-id &lt;*socket-id*&gt;] [ring-size &lt;*size*&gt;] [buffer-size &lt;*size*&gt;] [hw-addr &lt;*mac-address*&gt;] &lt;master|slave&gt; [rx-queues &lt;*number*&gt;] [tx-queues &lt;*number*&gt;] [mode ip] [secret &lt;*string*&gt;]</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Declaration and Implementation<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p><strong>Declaration:</strong> memif_create_command (src/plugins/memif/cli.c line 258)</p>
+<p><strong>Implementation:</strong> memif_create_command_fn</p>
+</section>
+</section>
+<section id="create-loopback-interface">
+<h2>Create Loopback Interface<a class="headerlink" href="#create-loopback-interface" title="Permalink to this headline"></a></h2>
+<p>Create a loopback interface. Optionally, a MAC Address can be provided. If not provided, de:ad:00:00:00:&lt;<em>loopId</em>&gt; will be used.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">create loopback interface [mac &lt;*mac-addr*&gt;] [instance &lt;*instance*&gt;]</span>
+</pre></div>
+</div>
+<section id="id2">
+<h3>Example Usage<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<p>The following two command syntaxes are equivalent:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# loopback create-interface [mac &lt;*mac-addr*&gt;] [instance &lt;*instance*&gt;]</span>
+
+<span class="go">vpp# create loopback interface [mac &lt;*mac-addr*&gt;] [instance &lt;*instance*&gt;]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Example of how to create a loopback interface:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create loopback interface</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="id3">
+<h3>Declaration and Implementation<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<p><strong>Declaration:</strong> create_loopback_interface_command (src/vnet/ethernet/interface.c line 879)</p>
+<p><strong>Implementation:</strong> create_simulated_ethernet_interfaces</p>
+</section>
+</section>
+<section id="create-sub-interfaces">
+<h2>Create Sub-Interfaces<a class="headerlink" href="#create-sub-interfaces" title="Permalink to this headline"></a></h2>
+<p>This command is used to add VLAN IDs to interfaces, also known as
+subinterfaces. The primary input to this command is the <em>interface</em>
+and <em>subId</em> (subinterface Id) parameters. If no additional VLAN ID is
+provide, the VLAN ID is assumed to be the <em>subId</em>. The VLAN ID and
+<em>subId</em> can be different, but this is not recommended.</p>
+<p>This command has several variations:</p>
+<ul class="simple">
+<li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt; - Create a subinterface
+to process packets with a given 802.1q VLAN ID (same value as the
+<em>subId</em>).</p></li>
+<li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt; default - Adding the
+<em>default</em> parameter indicates that packets with VLAN IDs that do
+not match any other subinterfaces should be sent to this
+subinterface.</p></li>
+<li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt; untagged - Adding the
+<em>untagged</em> parameter indicates that packets no VLAN IDs should be
+sent to this subinterface.</p></li>
+<li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt;-&lt;<em>subId</em>&gt; - Create a
+range of subinterfaces to handle a range of VLAN IDs.</p></li>
+<li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt; dot1q|dot1ad &lt;<em>vlanId</em>&gt;|any
+[exact-match] - Use this command to explicitly specify the outer VLAN ID,
+or to make the VLAN ID different from the <em>subId</em>.</p></li>
+<li><p><strong>create sub-interfaces</strong> &lt;<em>interface</em>&gt; &lt;<em>subId</em>&gt; dot1q|dot1ad &lt;<em>vlanId</em>&gt;|any
+inner-dot1q &lt;<em>vlanId</em>&gt;|any [exact-match] - Use this command to
+specify the outer VLAN ID and the inner VLAN ID.</p></li>
+</ul>
+<p>When <em>dot1q</em> or <em>dot1ad</em> is explicitly entered, subinterfaces can be
+configured as either <em>exact-match</em> or <em>non-exact match</em>. <em>Non-exact match</em> is
+the CLI default. If <em>exact-match</em> is specified, packets must have the
+same number of VLAN tags as the configuration. For <em>non-exact-match</em>,
+packets must at least that number of tags. L3 (routed) interfaces must
+be configured as exact-match. L2 interfaces are typically configured as
+non-exact-match. If <em>dot1q</em> or <em>dot1ad</em> is NOT entered, then the
+default behavior is <em>exact-match</em>.</p>
+<p>Use the <strong>show interface</strong> command to display all subinterfaces.</p>
+<section id="summary-usage">
+<h3>Summary/Usage<a class="headerlink" href="#summary-usage" title="Permalink to this headline"></a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>create sub-interfaces &lt;interface&gt; <span class="o">{</span>&lt;subId&gt; <span class="o">[</span>default<span class="p">|</span>untagged<span class="o">]}</span> <span class="p">|</span> <span class="o">{</span>&lt;subId&gt;-&lt;subId&gt;<span class="o">}</span> <span class="p">|</span> <span class="o">{</span>&lt;subId&gt; dot1q<span class="p">|</span>dot1ad &lt;vlanId&gt;<span class="p">|</span>any <span class="o">[</span>inner-dot1q &lt;vlanId&gt;<span class="p">|</span>any<span class="o">]</span> <span class="o">[</span>exact-match<span class="o">]}</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Example Usage<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<p>Example of how to create a VLAN subinterface 11 to process packets on 802.1q VLAN ID 11:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 11</span>
+</pre></div>
+</div>
+<p>The previous example is shorthand and is equivalent to:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 11 dot1q 11 exact-match</span>
+</pre></div>
+</div>
+<p>Example of how to create a subinterface number that is different from the VLAN ID:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 11 dot1q 100</span>
+</pre></div>
+</div>
+<p>Examples of how to create q-in-q and q-in-any subinterfaces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 11 dot1q 100 inner-dot1q 200</span>
+<span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 12 dot1q 100 inner-dot1q any</span>
+</pre></div>
+</div>
+<p>Examples of how to create dot1ad interfaces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 11 dot1ad 11</span>
+<span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 12 dot1ad 100 inner-dot1q 200</span>
+</pre></div>
+</div>
+<p>Examples of <em>exact-match</em> versus non-exact match. A packet with outer VLAN 100 and inner VLAN 200 would match this interface, because the default is non-exact match:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 5 dot1q 100</span>
+</pre></div>
+</div>
+<p>However, the same packet would NOT match this interface because <em>exact-match</em> is specified and only one VLAN is configured, but packet contains two VLANs:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 5 dot1q 100 exact-match</span>
+</pre></div>
+</div>
+<p>Example of how to created a subinterface to process untagged packets:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 5 untagged</span>
+</pre></div>
+</div>
+<p>Example of how to created a subinterface to process any packet with a VLAN ID that does not match any other subinterface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create sub-interfaces GigabitEthernet2/0/0 7 default</span>
+</pre></div>
+</div>
+<p>When subinterfaces are created, they are in the down state. Example of how to enable a newly created subinterface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# set interface GigabitEthernet2/0/0.7 up</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hardware.html" class="btn btn-neutral float-left" title="Hardware-Interfaces Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="setinterface.html" class="btn btn-neutral float-right" title="Set Interface Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

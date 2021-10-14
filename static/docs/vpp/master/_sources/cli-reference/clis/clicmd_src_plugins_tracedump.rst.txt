@@ -1,0 +1,18 @@
+.. _clicmd_src_plugins_tracedump:
+
+===============================================================
+Tracedump cli reference
+===============================================================
+
+show graph
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show graph [node <index>|<name>] [want_arcs] [input|trace_supported] [drop] [output] [punt] [handoff] [no_free] [polling] [interrupt]
+
+
+Declaration: ``graph_node_show_command`` `src/plugins/tracedump/graph_cli.c line 136 <https://github.com/FDio/vpp/blob/master//src/plugins/tracedump/graph_cli.c#L136>`_
+
+Implementation: ``graph_node_show_cmd``
+

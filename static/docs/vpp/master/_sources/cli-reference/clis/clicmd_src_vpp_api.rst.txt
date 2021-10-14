@@ -1,0 +1,31 @@
+.. _clicmd_src_vpp_api:
+
+===============================================================
+Api cli reference
+===============================================================
+
+binary-api
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    binary-api [help] <name> [<args>]
+
+
+Declaration: ``api_command`` `src/vpp/api/api_main.c line 244 <https://github.com/FDio/vpp/blob/master//src/vpp/api/api_main.c#L244>`_
+
+Implementation: ``api_command_fn``
+
+
+set significant error
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set significant error <counter-index-nnn> [disable]
+
+
+Declaration: ``set_significant_error_command`` `src/vpp/api/gmon.c line 292 <https://github.com/FDio/vpp/blob/master//src/vpp/api/gmon.c#L292>`_
+
+Implementation: ``set_significant_error_command_fn``
+

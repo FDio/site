@@ -1,0 +1,83 @@
+.. _clicmd_src_plugins_l2tp:
+
+===============================================================
+L2tp cli reference
+===============================================================
+
+clear l2tp counters
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear all active counters
+
+
+Declaration: ``clear_counters_command`` `src/plugins/l2tp/l2tp.c line 222 <https://github.com/FDio/vpp/blob/master//src/plugins/l2tp/l2tp.c#L222>`_
+
+Implementation: ``clear_counters_command_fn``
+
+
+create l2tpv3 tunnel
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create l2tpv3 tunnel client <ip6> our <ip6> local-cookie <hex> remote-cookie <hex> local-session <dec> remote-session <dec>
+
+
+Declaration: ``create_l2tpv3_tunnel_command`` `src/plugins/l2tp/l2tp.c line 521 <https://github.com/FDio/vpp/blob/master//src/plugins/l2tp/l2tp.c#L521>`_
+
+Implementation: ``create_l2tpv3_tunnel_command_fn``
+
+
+set interface ip6 l2tpv3
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip6 l2tpv3 <intfc> [del]
+
+
+Declaration: ``set_interface_ip6_l2tpv3`` `src/plugins/l2tp/l2tp.c line 669 <https://github.com/FDio/vpp/blob/master//src/plugins/l2tp/l2tp.c#L669>`_
+
+Implementation: ``set_ip6_l2tpv3``
+
+
+set l2tpv3 tunnel cookie
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set l2tpv3 tunnel cookie <intfc> local <hex> remote <hex>
+
+
+Declaration: ``set_l2tp_tunnel_cookie_command`` `src/plugins/l2tp/l2tp.c line 604 <https://github.com/FDio/vpp/blob/master//src/plugins/l2tp/l2tp.c#L604>`_
+
+Implementation: ``set_l2tp_tunnel_cookie_command_fn``
+
+
+show l2tpv3
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show l2tpv3 [verbose]
+
+
+Declaration: ``show_session_detail_command`` `src/plugins/l2tp/l2tp.c line 144 <https://github.com/FDio/vpp/blob/master//src/plugins/l2tp/l2tp.c#L144>`_
+
+Implementation: ``show_l2tp_command_fn``
+
+
+test lt2p counters
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    increment all active counters
+
+
+Declaration: ``test_counters_command`` `src/plugins/l2tp/l2tp.c line 187 <https://github.com/FDio/vpp/blob/master//src/plugins/l2tp/l2tp.c#L187>`_
+
+Implementation: ``test_counters_command_fn``
+

@@ -1,0 +1,135 @@
+.. _clicmd_src_vnet_pg:
+
+===============================================================
+Pg cli reference
+===============================================================
+
+create packet-generator
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create packet-generator interface <interface name> [gso-enabled gso-size <size> [coalesce-enabled]]
+
+
+Declaration: ``create_pg_if_cmd`` `src/vnet/pg/cli.c line 731 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/cli.c#L731>`_
+
+Implementation: ``create_pg_if_cmd_fn``
+
+
+packet-generator
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Packet generator commands
+
+
+Declaration: ``vlib_cli_pg_command`` `src/vnet/pg/cli.c line 51 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/cli.c#L51>`_
+
+
+packet-generator capture
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    packet-generator capture <interface name> pcap <filename> [count <n>]
+
+
+Declaration: ``pg_capture_cmd`` `src/vnet/pg/cli.c line 677 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/cli.c#L677>`_
+
+Implementation: ``pg_capture_cmd_fn``
+
+
+packet-generator configure
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Change packet generator stream parameters
+
+
+Declaration: ``change_stream_parameters_cli`` `src/vnet/pg/cli.c line 594 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/cli.c#L594>`_
+
+Implementation: ``change_stream_parameters``
+
+
+packet-generator delete
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Delete stream with given name
+
+
+Declaration: ``del_stream_cli`` `src/vnet/pg/cli.c line 547 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/cli.c#L547>`_
+
+Implementation: ``del_stream``
+
+
+packet-generator disable-stream
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Disable packet generator streams
+
+
+Declaration: ``disable_streams_cli`` `src/vnet/pg/cli.c line 151 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/cli.c#L151>`_
+
+Implementation: ``enable_disable_stream``
+
+
+packet-generator mac-filter
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    packet-generator mac-filter <INTERFACE> <on|off>
+
+
+Declaration: ``enable_streams_cli`` `src/vnet/pg/input.c line 1950 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/input.c#L1950>`_
+
+Implementation: ``pg_input_mac_filter_cfg``
+
+
+packet-generator new
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Create packet generator stream
+
+.. code-block:: console
+
+    Create packet generator stream
+    
+    Arguments:
+    
+    name STRING          sets stream name
+    interface STRING     interface for stream output 
+    node NODE-NAME       node for stream output
+    data STRING          specifies packet data
+    pcap FILENAME        read packet data from pcap file
+    rate PPS             rate to transfer packet data
+    maxframe NPKTS       maximum number of packets per frame
+    
+
+
+Declaration: ``new_stream_cli`` `src/vnet/pg/cli.c line 511 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/cli.c#L511>`_
+
+Implementation: ``new_stream``
+
+
+show packet-generator 
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show packet-generator [verbose]
+
+
+Declaration: ``show_streams_cli`` `src/vnet/pg/cli.c line 258 <https://github.com/FDio/vpp/blob/master//src/vnet/pg/cli.c#L258>`_
+
+Implementation: ``show_streams``
+

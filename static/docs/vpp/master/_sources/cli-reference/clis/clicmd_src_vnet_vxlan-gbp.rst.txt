@@ -1,0 +1,267 @@
+.. _clicmd_src_vnet_vxlan-gbp:
+
+===============================================================
+VXLAN-GBP CLI
+===============================================================
+
+create vxlan-gbp tunnel
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create vxlan-gbp tunnel src <local-vtep-addr> {dst <remote-vtep-addr>|group <mcast-vtep-addr> <intf-name>} vni <nn> [instance <id>] [encap-vrf-id <nn>] [decap-next [l2|node <name>]] [del]
+
+
+
+Add or delete a VXLAN Tunnel.
+
+VXLAN provides the features needed to allow L2 bridge domains (BDs)
+to span multiple servers. This is done by building an L2 overlay on
+top of an L3 network underlay using VXLAN tunnels.
+
+This makes it possible for servers to be co-located in the same data
+center or be separated geographically as long as they are reachable
+through the underlay L3 network.
+
+You can refer to this kind of L2 overlay bridge domain as a VXLAN
+(Virtual eXtensible VLAN) segment.
+
+Example of how to create a VXLAN Tunnel:
+
+
+.. code-block:: console
+
+    create vxlan_gbp tunnel src 10.0.3.1 dst 10.0.3.3 vni 13 encap-vrf-id 7
+
+
+Example of how to create a VXLAN Tunnel with a known name, vxlan_gbp_tunnel42:
+
+
+.. code-block:: console
+
+    create vxlan_gbp tunnel src 10.0.3.1 dst 10.0.3.3 instance 42
+
+
+Example of how to create a multicast VXLAN Tunnel with a known name, vxlan_gbp_tunnel23:
+
+
+.. code-block:: console
+
+    create vxlan_gbp tunnel src 10.0.3.1 group 239.1.1.1 GigabitEthernet0/8/0 instance 23
+
+
+Example of how to delete a VXLAN Tunnel:
+
+
+.. code-block:: console
+
+    create vxlan_gbp tunnel src 10.0.3.1 dst 10.0.3.3 vni 13 del
+
+
+
+Declaration: ``create_vxlan_gbp_tunnel_command`` `src/vnet/vxlan-gbp/vxlan_gbp.c line 900 <https://github.com/FDio/vpp/blob/master//src/vnet/vxlan-gbp/vxlan_gbp.c#L900>`_
+
+Implementation: ``vxlan_gbp_tunnel_add_del_command_fn``
+
+
+set interface ip vxlan-gbp-bypass
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip vxlan-gbp-bypass <interface> [del]
+
+
+
+This command adds the 'ip4-vxlan-gbp-bypass' graph node for a given
+interface. By adding the IPv4 vxlan_gbp-bypass graph node to an interface,
+the node checks for and validate input vxlan_gbp packet and bypass
+ip4-lookup, ip4-local, ip4-udp-lookup nodes to speedup vxlan_gbp packet
+forwarding. This node will cause extra overhead to for non-vxlan_gbp packets
+which is kept at a minimum.
+
+Example of graph node before ip4-vxlan_gbp-bypass is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip4-vxlan_gbp-bypass
+    
+               Name                      Next                    Previous
+    ip4-vxlan-gbp-bypass              error-drop [0]
+                                   vxlan4-gbp-input [1]
+                                      ip4-lookup [2]
+    
+
+
+
+Example of how to enable ip4-vxlan-gbp-bypass on an interface:
+
+
+.. code-block:: console
+
+    set interface ip vxlan-gbp-bypass GigabitEthernet2/0/0
+
+
+
+Example of graph node after ip4-vxlan-gbp-bypass is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip4-vxlan-gbp-bypass
+    
+               Name             Next                      Previous
+    ip4-vxlan-gbp-bypass     error-drop [0]               ip4-input
+                          vxlan4-gbp-input [1]       ip4-input-no-checksum
+                             ip4-lookup [2]
+    
+
+
+
+Example of how to display the feature enabled on an interface:
+
+
+.. code-block:: console
+
+    show ip interface features GigabitEthernet2/0/0
+    
+    IP feature paths configured on GigabitEthernet2/0/0...
+    ...
+    ipv4 unicast:
+      ip4-vxlan-gbp-bypass
+      ip4-lookup
+    ...
+    
+
+
+
+Example of how to disable ip4-vxlan-gbp-bypass on an interface:
+
+
+.. code-block:: console
+
+    set interface ip vxlan-gbp-bypass GigabitEthernet2/0/0 del
+
+
+
+
+Declaration: ``set_interface_ip_vxlan_gbp_bypass_command`` `src/vnet/vxlan-gbp/vxlan_gbp.c line 1077 <https://github.com/FDio/vpp/blob/master//src/vnet/vxlan-gbp/vxlan_gbp.c#L1077>`_
+
+Implementation: ``set_ip4_vxlan_gbp_bypass``
+
+
+set interface ip6 vxlan-gbp-bypass
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip6 vxlan-gbp-bypass <interface> [del]
+
+
+
+This command adds the 'ip6-vxlan-gbp-bypass' graph node for a given
+interface. By adding the IPv6 vxlan-gbp-bypass graph node to an interface,
+the node checks for and validate input vxlan_gbp packet and bypass
+ip6-lookup, ip6-local, ip6-udp-lookup nodes to speedup vxlan_gbp packet
+forwarding. This node will cause extra overhead to for non-vxlan packets
+which is kept at a minimum.
+
+Example of graph node before ip6-vxlan-gbp-bypass is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip6-vxlan-gbp-bypass
+    
+               Name                      Next                    Previous
+    ip6-vxlan-gbp-bypass              error-drop [0]
+                                   vxlan6-gbp-input [1]
+                                      ip6-lookup [2]
+    
+
+
+
+Example of how to enable ip6-vxlan-gbp-bypass on an interface:
+
+
+.. code-block:: console
+
+    set interface ip6 vxlan-gbp-bypass GigabitEthernet2/0/0
+
+
+
+Example of graph node after ip6-vxlan-gbp-bypass is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip6-vxlan-gbp-bypass
+    
+               Name             Next                    Previous
+    ip6-vxlan-gbp-bypass     error-drop [0]             ip6-input
+                          vxlan6-gbp-input [1]      ip4-input-no-checksum
+                             ip6-lookup [2]
+    
+
+
+
+Example of how to display the feature enabled on an interface:
+
+
+.. code-block:: console
+
+    show ip interface features GigabitEthernet2/0/0
+    
+    IP feature paths configured on GigabitEthernet2/0/0...
+    ...
+    ipv6 unicast:
+      ip6-vxlan-gbp-bypass
+      ip6-lookup
+    ...
+    
+
+
+
+Example of how to disable ip6-vxlan-gbp-bypass on an interface:
+
+
+.. code-block:: console
+
+    set interface ip6 vxlan-gbp-bypass GigabitEthernet2/0/0 del
+
+
+
+
+Declaration: ``set_interface_ip6_vxlan_gbp_bypass_command`` `src/vnet/vxlan-gbp/vxlan_gbp.c line 1135 <https://github.com/FDio/vpp/blob/master//src/vnet/vxlan-gbp/vxlan_gbp.c#L1135>`_
+
+Implementation: ``set_ip6_vxlan_gbp_bypass``
+
+
+show vxlan-gbp tunnel
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show vxlan-gbp tunnel [raw]
+
+
+
+Display all the VXLAN Tunnel entries.
+
+Example of how to display the VXLAN Tunnel entries:
+
+
+.. code-block:: console
+
+    show vxlan_gbp tunnel
+    
+    [0] src 10.0.3.1 dst 10.0.3.3 vni 13 encap_fib_index 0 sw_if_index 5 decap_next l2
+    
+
+
+
+Declaration: ``show_vxlan_gbp_tunnel_command`` `src/vnet/vxlan-gbp/vxlan_gbp.c line 962 <https://github.com/FDio/vpp/blob/master//src/vnet/vxlan-gbp/vxlan_gbp.c#L962>`_
+
+Implementation: ``show_vxlan_gbp_tunnel_command_fn``
+

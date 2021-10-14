@@ -1,0 +1,122 @@
+.. _clicmd_src_plugins_lb:
+
+===============================================================
+Lb cli reference
+===============================================================
+
+lb as
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    lb as <vip-prefix> [protocol (tcp|udp) port <n>] [<address> [<address> [...]]] [del] [flush]
+
+
+Declaration: ``lb_as_command`` `src/plugins/lb/cli.c line 292 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L292>`_
+
+Implementation: ``lb_as_command_fn``
+
+
+lb conf
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    lb conf [ip4-src-address <addr>] [ip6-src-address <addr>] [buckets <n>] [timeout <s>]
+
+
+Declaration: ``lb_conf_command`` `src/plugins/lb/cli.c line 351 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L351>`_
+
+Implementation: ``lb_conf_command_fn``
+
+
+lb flush vip
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    lb flush vip <prefix> [protocol (tcp|udp) port <n>]
+
+
+Declaration: ``lb_flush_vip_command`` `src/plugins/lb/cli.c line 576 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L576>`_
+
+Implementation: ``lb_flush_vip_command_fn``
+
+
+lb set interface nat4
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    lb set interface nat4 in <intfc> [del]
+
+
+Declaration: ``lb_set_interface_nat4_command`` `src/plugins/lb/cli.c line 480 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L480>`_
+
+Implementation: ``lb_set_interface_nat4_command_fn``
+
+
+lb set interface nat6
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    lb set interface nat6 in <intfc> [del]
+
+
+Declaration: ``lb_set_interface_nat6_command`` `src/plugins/lb/cli.c line 494 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L494>`_
+
+Implementation: ``lb_set_interface_nat6_command_fn``
+
+
+lb vip
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    lb vip <prefix> [protocol (tcp|udp) port <n>] [encap (gre6|gre4|l3dsr|nat4|nat6)] [dscp <n>] [type (nodeport|clusterip) target_port <n>] [new_len <n>] [del]
+
+
+Declaration: ``lb_vip_command`` `src/plugins/lb/cli.c line 180 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L180>`_
+
+Implementation: ``lb_vip_command_fn``
+
+
+show lb
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show lb
+
+
+Declaration: ``lb_show_command`` `src/plugins/lb/cli.c line 367 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L367>`_
+
+Implementation: ``lb_show_command_fn``
+
+
+show lb vips
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show lb vips [verbose]
+
+
+Declaration: ``lb_show_vips_command`` `src/plugins/lb/cli.c line 400 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L400>`_
+
+Implementation: ``lb_show_vips_command_fn``
+
+
+test lb flowtable flush
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test lb flowtable flush
+
+
+Declaration: ``lb_flowtable_flush_command`` `src/plugins/lb/cli.c line 588 <https://github.com/FDio/vpp/blob/master//src/plugins/lb/cli.c#L588>`_
+
+Implementation: ``lb_flowtable_flush_command_fn``
+

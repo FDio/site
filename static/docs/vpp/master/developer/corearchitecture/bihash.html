@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bounded-index Extensible Hashing (bihash) &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Build System" href="buildsystem/index.html" />
+    <link rel="prev" title="Multi-Architecture Arbitrary Function Cookbook" href="multiarch/arbfns.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Core Architecture</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="buffer_metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bounded-index Extensible Hashing (bihash)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#discussion-of-the-algorithm">Discussion of the algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bihash-cookbook">Bihash Cookbook</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-current-key-value-template-instance-types">Using current (key,value) template instance types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initializing-a-bihash-table">Initializing a bihash table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-or-delete-a-key-value-pair">Add or delete a key/value pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simple-search">Simple search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bihash-vector-processing">Bihash vector processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#walking-a-bihash-table">Walking a bihash table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-a-new-template-instance">Creating a new template instance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mem.html">VPP mem preload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi_thread.html">Multi-threading in VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Core Architecture</a> &raquo;</li>
+      <li>Bounded-index Extensible Hashing (bihash)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/corearchitecture/bihash.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bounded-index-extensible-hashing-bihash">
+<h1>Bounded-index Extensible Hashing (bihash)<a class="headerlink" href="#bounded-index-extensible-hashing-bihash" title="Permalink to this headline"></a></h1>
+<p>Vpp uses bounded-index extensible hashing to solve a variety of
+exact-match (key, value) lookup problems. Benefits of the current
+implementation:</p>
+<ul class="simple">
+<li><p>Very high record count scaling, tested to 100,000,000 records.</p></li>
+<li><p>Lookup performance degrades gracefully as the number of records
+increases</p></li>
+<li><p>No reader locking required</p></li>
+<li><p>Template implementation, it’s easy to support arbitrary (key,value)
+types</p></li>
+</ul>
+<p>Bounded-index extensible hashing has been widely used in databases for
+decades.</p>
+<p>Bihash uses a two-level data structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------------+</span>
+<span class="o">|</span> <span class="n">bucket</span><span class="o">-</span><span class="mi">0</span>        <span class="o">|</span>
+<span class="o">|</span>  <span class="n">log2_size</span>      <span class="o">|</span>
+<span class="o">|</span>  <span class="n">backing</span> <span class="n">store</span>  <span class="o">|</span>
+<span class="o">+-----------------+</span>
+<span class="o">|</span> <span class="n">bucket</span><span class="o">-</span><span class="mi">1</span>        <span class="o">|</span>
+<span class="o">|</span>  <span class="n">log2_size</span>      <span class="o">|</span>           <span class="o">+--------------------------------+</span>
+<span class="o">|</span>  <span class="n">backing</span> <span class="n">store</span>  <span class="o">|</span> <span class="o">--------&gt;</span> <span class="o">|</span> <span class="n">KVP_PER_PAGE</span> <span class="o">*</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span><span class="o">-</span><span class="n">pairs</span> <span class="o">|</span>
+<span class="o">+-----------------+</span>           <span class="o">|</span> <span class="n">page</span> <span class="mi">0</span>                         <span class="o">|</span>
+     <span class="o">...</span>                      <span class="o">+--------------------------------+</span>
+<span class="o">+-----------------+</span>           <span class="o">|</span> <span class="n">KVP_PER_PAGE</span> <span class="o">*</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span><span class="o">-</span><span class="n">pairs</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">bucket</span><span class="o">-</span><span class="mi">2</span><span class="o">**</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span>   <span class="o">|</span>           <span class="o">|</span> <span class="n">page</span> <span class="mi">1</span>                         <span class="o">|</span>
+<span class="o">|</span>  <span class="n">log2_size</span>      <span class="o">|</span>           <span class="o">+--------------------------------+</span>
+<span class="o">|</span>  <span class="n">backing</span> <span class="n">store</span>  <span class="o">|</span>                       <span class="o">---</span>
+<span class="o">+-----------------+</span>           <span class="o">+--------------------------------+</span>
+                              <span class="o">|</span> <span class="n">KVP_PER_PAGE</span> <span class="o">*</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span><span class="o">-</span><span class="n">pairs</span> <span class="o">|</span>
+                              <span class="o">|</span> <span class="n">page</span> <span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="n">size</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>       <span class="o">|</span>
+                              <span class="o">+--------------------------------+</span>
+</pre></div>
+</div>
+<section id="discussion-of-the-algorithm">
+<h2>Discussion of the algorithm<a class="headerlink" href="#discussion-of-the-algorithm" title="Permalink to this headline"></a></h2>
+<p>This structure has a couple of major advantages. In practice, each
+bucket entry fits into a 64-bit integer. Coincidentally, vpp’s target
+CPU architectures support 64-bit atomic operations. When modifying the
+contents of a specific bucket, we do the following:</p>
+<ul class="simple">
+<li><p>Make a working copy of the bucket’s backing storage</p></li>
+<li><p>Atomically swap a pointer to the working copy into the bucket array</p></li>
+<li><p>Change the original backing store data</p></li>
+<li><p>Atomically swap back to the original</p></li>
+</ul>
+<p>So, no reader locking is required to search a bihash table.</p>
+<p>At lookup time, the implementation computes a key hash code. We use the
+least-significant N bits of the hash to select the bucket.</p>
+<p>With the bucket in hand, we learn log2 (nBackingPages) for the selected
+bucket. At this point, we use the next log2_size bits from the hash code
+to select the specific backing page in which the (key,value) page will
+be found.</p>
+<p>Net result: we search <strong>one</strong> backing page, not 2**log2_size pages. This
+is a key property of the algorithm.</p>
+<p>When sufficient collisions occur to fill the backing pages for a given
+bucket, we double the bucket size, rehash, and deal the bucket contents
+into a double-sized set of backing pages. In the future, we may
+represent the size as a linear combination of two powers-of-two, to
+increase space efficiency.</p>
+<p>To solve the “jackpot case” where a set of records collide under hashing
+in a bad way, the implementation will fall back to linear search across
+2**log2_size backing pages on a per-bucket basis.</p>
+<p>To maintain <em>space</em> efficiency, we should configure the bucket array so
+that backing pages are effectively utilized. Lookup performance tends to
+change <em>very little</em> if the bucket array is too small or too large.</p>
+<p>Bihash depends on selecting an effective hash function. If one were to
+use a truly broken hash function such as “return 1ULL.” bihash would
+still work, but it would be equivalent to poorly-programmed linear
+search.</p>
+<p>We often use cpu intrinsic functions - think crc32 - to rapidly compute
+a hash code which has decent statistics.</p>
+</section>
+<section id="bihash-cookbook">
+<h2>Bihash Cookbook<a class="headerlink" href="#bihash-cookbook" title="Permalink to this headline"></a></h2>
+<section id="using-current-key-value-template-instance-types">
+<h3>Using current (key,value) template instance types<a class="headerlink" href="#using-current-key-value-template-instance-types" title="Permalink to this headline"></a></h3>
+<p>It’s quite easy to use one of the template instance types. As of this
+writing, …/src/vppinfra provides pre-built templates for 8, 16, 20, 24,
+40, and 48 byte keys, u8 * vector keys, and 8 byte values.</p>
+<p>See …/src/vppinfra/{bihash__8}.h</p>
+<p>To define the data types, #include a specific template instance, most
+often in a subsystem header file:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vppinfra/bihash_8_8.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>If you’re building a standalone application, you’ll need to define the
+various functions by #including the method implementation file in a C
+source file.</p>
+<p>The core vpp engine currently uses most if not all of the known bihash
+types, so you probably won’t need to #include the method implementation
+file.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vppinfra/bihash_template.c&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>Add an instance of the selected bihash data structure to e.g. a “main_t”
+structure:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="w">  </span><span class="n">BVT</span><span class="w"> </span><span class="p">(</span><span class="n">clib_bihash</span><span class="p">)</span><span class="w"> </span><span class="n">hash_table</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">or</span><span class="w"></span>
+<span class="w">  </span><span class="n">clib_bihash_8_8_t</span><span class="w"> </span><span class="n">hash_table</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">my_main_t</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The BV macro concatenate its argument with the value of the preprocessor
+symbol BIHASH_TYPE. The BVT macro concatenates its argument with the
+value of BIHASH_TYPE and the fixed-string “_t”. So in the above example,
+BVT (clib_bihash) generates “clib_bihash_8_8_t”.</p>
+<p>If you’re sure you won’t decide to change the template / type name
+later, it’s perfectly OK to code “clib_bihash_8_8_t” and so forth.</p>
+<p>In fact, if you #include multiple template instances in a single source
+file, you <strong>must</strong> use fully-enumerated type names. The macros stand no
+chance of working.</p>
+</section>
+<section id="initializing-a-bihash-table">
+<h3>Initializing a bihash table<a class="headerlink" href="#initializing-a-bihash-table" title="Permalink to this headline"></a></h3>
+<p>Call the init function as shown. As a rough guide, pick a number of
+buckets which is approximately
+number_of_expected_records/BIHASH_KVP_PER_PAGE from the relevant
+template instance header-file. See previous discussion.</p>
+<p>The amount of memory selected should easily contain all of the records,
+with a generous allowance for hash collisions. Bihash memory is
+allocated separately from the main heap, and won’t cost anything except
+kernel PTE’s until touched, so it’s OK to be reasonably generous.</p>
+<p>For example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">my_main_t</span><span class="w"> </span><span class="o">*</span><span class="n">mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">my_main</span><span class="p">;</span><span class="w"></span>
+<span class="n">clib_bihash_8_8_t</span><span class="w"> </span><span class="o">*</span><span class="n">h</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">hash_table</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">clib_bihash_init_8_8</span><span class="w"> </span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;test&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">u32</span><span class="p">)</span><span class="w"> </span><span class="n">number_of_buckets</span><span class="p">,</span><span class="w"></span>
+<span class="w">                       </span><span class="p">(</span><span class="n">uword</span><span class="p">)</span><span class="w"> </span><span class="n">memory_size</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="add-or-delete-a-key-value-pair">
+<h3>Add or delete a key/value pair<a class="headerlink" href="#add-or-delete-a-key-value-pair" title="Permalink to this headline"></a></h3>
+<p>Use BV(clib_bihash_add_del), or the explicit type variant:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">clib_bihash_kv_8_8_t</span><span class="w"> </span><span class="n">kv</span><span class="p">;</span><span class="w"></span>
+<span class="n">clib_bihash_8_8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"></span>
+<span class="n">my_main_t</span><span class="w"> </span><span class="o">*</span><span class="n">mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">my_main</span><span class="p">;</span><span class="w"></span>
+<span class="n">clib_bihash_8_8_t</span><span class="w"> </span><span class="o">*</span><span class="n">h</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">hash_table</span><span class="p">;</span><span class="w"></span>
+<span class="n">kv</span><span class="p">.</span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key_to_add_or_delete</span><span class="p">;</span><span class="w"></span>
+<span class="n">kv</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value_to_add_or_delete</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">clib_bihash_add_del_8_8</span><span class="w"> </span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">kv</span><span class="p">,</span><span class="w"> </span><span class="n">is_add</span><span class="w"> </span><span class="cm">/* 1=add, 0=delete */</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the delete case, kv.value is irrelevant. To change the value
+associated with an existing (key,value) pair, simply re-add the [new]
+pair.</p>
+</section>
+<section id="simple-search">
+<h3>Simple search<a class="headerlink" href="#simple-search" title="Permalink to this headline"></a></h3>
+<p>The simplest possible (key, value) search goes like so:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">clib_bihash_kv_8_8_t</span><span class="w"> </span><span class="n">search_kv</span><span class="p">,</span><span class="w"> </span><span class="n">return_kv</span><span class="p">;</span><span class="w"></span>
+<span class="n">clib_bihash_8_8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"></span>
+<span class="n">my_main_t</span><span class="w"> </span><span class="o">*</span><span class="n">mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">my_main</span><span class="p">;</span><span class="w"></span>
+<span class="n">clib_bihash_8_8_t</span><span class="w"> </span><span class="o">*</span><span class="n">h</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">hash_table</span><span class="p">;</span><span class="w"></span>
+<span class="n">search_kv</span><span class="p">.</span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key_to_add_or_delete</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">clib_bihash_search_8_8</span><span class="w"> </span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">search_kv</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">return_kv</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">key_not_found</span><span class="p">();</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="n">key_found</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that it’s perfectly fine to collect the lookup result</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">clib_bihash_search_8_8</span><span class="w"> </span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">search_kv</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">search_kv</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="n">key_not_found</span><span class="p">();</span><span class="w"></span>
+<span class="n">etc</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="bihash-vector-processing">
+<h3>Bihash vector processing<a class="headerlink" href="#bihash-vector-processing" title="Permalink to this headline"></a></h3>
+<p>When processing a vector of packets which need a certain lookup
+performed, it’s worth the trouble to compute the key hash, and prefetch
+the correct bucket ahead of time.</p>
+<p>Here’s a sketch of one way to write the required code:</p>
+<p>Dual-loop: * 6 packets ahead, prefetch 2x vlib_buffer_t’s and 2x packet
+data required to form the record keys * 4 packets ahead, form 2x record
+keys and call BV(clib_bihash_hash) or the explicit hash function to
+calculate the record hashes. Call 2x BV(clib_bihash_prefetch_bucket) to
+prefetch the buckets * 2 packets ahead, call 2x
+BV(clib_bihash_prefetch_data) to prefetch 2x (key,value) data pages. *
+In the processing section, call 2x
+BV(clib_bihash_search_inline_with_hash) to perform the search</p>
+<p>Programmer’s choice whether to stash the hash code somewhere in
+vnet_buffer(b) metadata, or to use local variables.</p>
+<p>Single-loop: * Use simple search as shown above.</p>
+</section>
+<section id="walking-a-bihash-table">
+<h3>Walking a bihash table<a class="headerlink" href="#walking-a-bihash-table" title="Permalink to this headline"></a></h3>
+<p>A fairly common scenario to build “show” commands involves walking a
+bihash table. It’s simple enough:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">my_main_t</span><span class="w"> </span><span class="o">*</span><span class="n">mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">my_main</span><span class="p">;</span><span class="w"></span>
+<span class="n">clib_bihash_8_8_t</span><span class="w"> </span><span class="o">*</span><span class="n">h</span><span class="p">;</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">callback_fn</span><span class="w"> </span><span class="p">(</span><span class="n">clib_bihash_kv_8_8_t</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">);</span><span class="w"></span>
+
+<span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">mm</span><span class="o">-&gt;</span><span class="n">hash_table</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">BV</span><span class="p">(</span><span class="n">clib_bihash_foreach_key_value_pair</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">callback_fn</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">arg</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To nobody’s great surprise: clib_bihash_foreach_key_value_pair iterates
+across the entire table, calling callback_fn with active entries.</p>
+<section id="bihash-table-iteration-safety">
+<h4>Bihash table iteration safety<a class="headerlink" href="#bihash-table-iteration-safety" title="Permalink to this headline"></a></h4>
+<p>The iterator template “clib_bihash_foreach_key_value_pair” must be used
+with a certain amount of care. For one thing, the iterator template does
+<em>not</em> take the bihash hash table writer lock. If your use-case requires
+it, lock the table.</p>
+<p>For another, the iterator template is not safe under all conditions:</p>
+<ul class="simple">
+<li><p>It’s <strong>OK to delete</strong> bihash table entries during a table-walk. The
+iterator checks whether the current bucket has been freed after each
+<em>callback_fn(…)</em> invocation.</p></li>
+<li><p>It is <strong>not OK to add</strong> entries during a table-walk.</p></li>
+</ul>
+<p>The add-during-walk case involves a jackpot: while processing a
+key-value-pair in a particular bucket, add a certain number of entries.
+By luck, assume that one or more of the added entries causes the
+<strong>current bucket</strong> to split-and-rehash.</p>
+<p>Since we rehash KVP’s to different pages based on what amounts to a
+different hash function, either of these things can go wrong:</p>
+<ul class="simple">
+<li><p>We may revisit previously-visited entries. Depending on how one coded
+the use-case, we could end up in a recursive-add situation.</p></li>
+<li><p>We may skip entries that have not been visited</p></li>
+</ul>
+<p>One could build an add-safe iterator, at a significant cost in
+performance: copy the entire bucket, and walk the copy.</p>
+<p>It’s hard to imagine a worthwhile add-during walk use-case in the first
+place; let alone one which couldn’t be implemented by walking the table
+without modifying it, then adding a set of records.</p>
+</section>
+</section>
+<section id="creating-a-new-template-instance">
+<h3>Creating a new template instance<a class="headerlink" href="#creating-a-new-template-instance" title="Permalink to this headline"></a></h3>
+<p>Creating a new template is easy. Use one of the existing templates as a
+model, and make the obvious changes. The hash and key_compare methods
+are performance-critical in multiple senses.</p>
+<p>If the key compare method is slow, every lookup will be slow. If the
+hash function is slow, same story. If the hash function has poor
+statistical properties, space efficiency will suffer. In the limit, a
+bad enough hash function will cause large portions of the table to
+revert to linear search.</p>
+<p>Use of the best available vector unit is well worth the trouble in the
+hash and key_compare functions.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="multiarch/arbfns.html" class="btn btn-neutral float-left" title="Multi-Architecture Arbitrary Function Cookbook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="buildsystem/index.html" class="btn btn-neutral float-right" title="Build System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

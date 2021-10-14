@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VPP Supported Features &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="VPP with Containers" href="../usecases/containers/index.html" />
+    <link rel="prev" title="Release notes for VPP 16.06" href="releasenotes/v16.06.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VPP Supported Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#feature-details">Feature Details:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#acl-based-forwarding">ACL Based Forwarding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#acls-for-security-groups">ACLs for Security Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adl">ADL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#af-xdp-device-driver">AF_XDP device driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#address-resolution-protocol">Address Resolution Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adjacency">Adjacency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bidirectional-forwarding-detection">Bidirectional Forwarding Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-api-library">Binary API library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-api-shared-memory-socket-transport-library">Binary API shared memory / socket transport library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bit-indexed-explicit-replication">Bit Indexed Explicit Replication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bonding">Bonding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#buffer-metadata-change-tracker">Buffer Metadata Change Tracker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#buffers-monitoring-plugin">Buffers monitoring plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#builtin-url-support-for-the-static-http-or-https-server">Builtin URL support for the static http or https server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caching-dns-name-resolver">Caching DNS name resolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classify">Classify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cloud-nat">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-plane-objects">Data-Plane Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-host-configuration-protocol">Dynamic Host Configuration Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-arc-support">Feature Arc Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flow-infrastructure">Flow infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#g2-graphical-event-log-viewer">G2 graphical event log viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gprs-tunneling-protocol">GPRS Tunneling Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generic-routing-encapsulation">Generic Routing Encapsulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hash-infrastructure">Hash infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-neighbour-database">IP Neighbour Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-security">IP Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ip-in-ip-tunnelling">IP in IP tunnelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipfix-probe">IPFIX probe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipsec-crypto-engine-provided-by-intel-ipsecmb-library">IPSec crypto engine provided by Intel IPSecMB library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipsec-crypto-engine-provided-by-openssl-library">IPSec crypto engine provided by Openssl library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipsec-crypto-engine-provided-by-native-implementation">IPSec crypto engine provided by native implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipv6-neighbor-discovery-and-proxy">IPv6 Neighbor Discovery and Proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#internet-group-management-protocol">Internet Group Management Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l2tpv3">L2TPv3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#layer-2-forwarding">Layer 2 Forwarding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#layer-3-cross-connect">Layer 3 cross connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link-aggregation-control-protocol">Link Aggregation Control Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link-layer-discovery-protocol">Link Layer Discovery Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux-control-plane-integration">Linux Control Plane (integration)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-balancer">Load Balancer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#locator-id-separation-protocol-control-plane">Locator ID Separation Protocol Control Plane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#locator-id-separation-protocol-generic-protocol-extension">Locator ID Separation Protocol Generic Protocol Extension</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mapping-of-address-and-port">Mapping of Address and Port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-protocol-label-switching">Multi-Protocol Label Switching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nsh">NSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#netmap-device">Netmap Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-address-translation">Network Address Translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-delay-simulator">Network Delay Simulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pg">PG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pppoe">PPPoE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipe-device">Pipe Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#policy-1-1-nat">Policy 1:1 NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quic-protocol">QUIC Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quality-of-service">Quality of Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srtp-secure-real-time-transport-protocol">SRTP (Secure Real-time Transport Protocol)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srv6-service-chaining-dynamic-proxy">SRv6 - Service Chaining Dynamic Proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srv6-service-chaining-flow-based-dynamic-proxy">SRv6 - Service Chaining Flow-based Dynamic Proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srv6-service-chaining-masquerading-proxy">SRv6 - Service Chaining Masquerading Proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srv6-service-chaining-static-proxy">SRv6 - Service Chaining Static Proxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#srv6-mobile">SRv6 Mobile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#segment-routing-for-ipv6-srv6">Segment Routing for IPv6 (SRv6)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#segment-routing-for-mpls">Segment Routing for MPLS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#session-layer">Session Layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#source-vrf-select">Source VRF Select</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-http-https-server">Static http https server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tls-openssl">TLS OpenSSL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tap-device">Tap Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-range-based-mac-address-filter">Time-range-based MAC-address filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transmission-control-protocol">Transmission Control Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transport-layer-security">Transport Layer Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tunnel-infra">Tunnel Infra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-datagram-protocol">User Datagram Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vnet-gso">VNET GSO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vpp-comms-library">VPP Comms Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vpp-infrastructure-library">VPP infrastructure library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtio-pci-device">Virtio PCI Device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-router-redundancy-protocol">Virtual Router Redundancy Protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-extensible-lan">Virtual eXtensible LAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vxlan-gpe">VxLAN-GPE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wireguard-protocol">Wireguard protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arping-command">arping command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#host-interface-device-af-packet">host-interface Device AF_PACKET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ikev2-plugin">ikev2 plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rdma-device-driver">rdma device driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vlib-unix">vlib/unix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vmxnet3-device-driver">vmxnet3 device driver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>VPP Supported Features</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/aboutvpp/featurelist.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vpp-supported-features">
+<h1>VPP Supported Features<a class="headerlink" href="#vpp-supported-features" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="#acl-based-forwarding">ACL Based Forwarding</a><br /><a class="reference external" href="#acls-for-security-groups">ACLs for Security Groups</a><br /><a class="reference external" href="#adl">ADL</a><br /><a class="reference external" href="#af_xdp-device-driver">AF_XDP device driver</a><br /><a class="reference external" href="#address-resolution-protocol">Address Resolution Protocol</a><br /><a class="reference external" href="#adjacency">Adjacency</a><br /><a class="reference external" href="#bidirectional-forwarding-detection">Bidirectional Forwarding Detection</a><br /><a class="reference external" href="#binary-api-library">Binary API library</a><br /><a class="reference external" href="#binary-api-shared-memory-/-socket-transport-library">Binary API shared memory / socket transport library</a><br /><a class="reference external" href="#bit-indexed-explicit-replication">Bit Indexed Explicit Replication</a><br /><a class="reference external" href="#bonding">Bonding</a><br /><a class="reference external" href="#buffer-metadata-change-tracker">Buffer Metadata Change Tracker</a><br /><a class="reference external" href="#buffers-monitoring-plugin">Buffers monitoring plugin</a><br /><a class="reference external" href="#builtin-url-support-for-the-static-http-or-https-server">Builtin URL support for the static http or https server</a><br /><a class="reference external" href="#caching-dns-name-resolver">Caching DNS name resolver</a><br /><a class="reference external" href="#classify">Classify</a><br /><a class="reference external" href="#cloud-nat">Cloud NAT</a><br /><a class="reference external" href="#data-plane-objects">Data-Plane Objects</a><br /><a class="reference external" href="#dynamic-host-configuration-protocol">Dynamic Host Configuration Protocol</a><br /><a class="reference external" href="#feature-arc-support">Feature Arc Support</a><br /><a class="reference external" href="#flow-infrastructure">Flow infrastructure</a><br /><a class="reference external" href="#g2-graphical-event-log-viewer">G2 graphical event log viewer</a><br /><a class="reference external" href="#gprs-tunneling-protocol">GPRS Tunneling Protocol</a><br /><a class="reference external" href="#generic-routing-encapsulation">Generic Routing Encapsulation</a><br /><a class="reference external" href="#hash-infrastructure">Hash infrastructure</a><br /><a class="reference external" href="#ip-neighbour-database">IP Neighbour Database</a><br /><a class="reference external" href="#ip-security">IP Security</a><br /><a class="reference external" href="#ip-in-ip-tunnelling">IP in IP tunnelling</a><br /><a class="reference external" href="#ipfix-probe">IPFIX probe</a><br /><a class="reference external" href="#ipsec-crypto-engine-provided-by-intel-ipsecmb-library">IPSec crypto engine provided by Intel IPSecMB library</a><br /><a class="reference external" href="#ipsec-crypto-engine-provided-by-openssl-library">IPSec crypto engine provided by Openssl library</a><br /><a class="reference external" href="#ipsec-crypto-engine-provided-by-native-implementation">IPSec crypto engine provided by native implementation</a><br /><a class="reference external" href="#ipv6-neighbor-discovery-and-proxy">IPv6 Neighbor Discovery and Proxy</a><br /><a class="reference external" href="#internet-group-management-protocol">Internet Group Management Protocol</a><br /><a class="reference external" href="#l2tpv3">L2TPv3</a><br /><a class="reference external" href="#layer-2-forwarding">Layer 2 Forwarding</a><br /><a class="reference external" href="#layer-3-cross-connect">Layer 3 cross connect</a><br /><a class="reference external" href="#link-aggregation-control-protocol">Link Aggregation Control Protocol</a><br /><a class="reference external" href="#link-layer-discovery-protocol">Link Layer Discovery Protocol</a><br /><a class="reference external" href="#linux-control-plane-(integration)">Linux Control Plane (integration)</a><br /><a class="reference external" href="#load-balancer">Load Balancer</a><br /><a class="reference external" href="#locator-id-separation-protocol-control-plane">Locator ID Separation Protocol Control Plane</a><br /><a class="reference external" href="#locator-id-separation-protocol-generic-protocol-extension">Locator ID Separation Protocol Generic Protocol Extension</a><br /><a class="reference external" href="#mapping-of-address-and-port">Mapping of Address and Port</a><br /><a class="reference external" href="#multi-protocol-label-switching">Multi-Protocol Label Switching</a><br /><a class="reference external" href="#nsh">NSH</a><br /><a class="reference external" href="#netmap-device">Netmap Device</a><br /><a class="reference external" href="#network-address-translation">Network Address Translation</a><br /><a class="reference external" href="#network-delay-simulator">Network Delay Simulator</a><br /><a class="reference external" href="#pg">PG</a><br /><a class="reference external" href="#pppoe">PPPoE</a><br /><a class="reference external" href="#pipe-device">Pipe Device</a><br /><a class="reference external" href="#policy-1:1-nat">Policy 1:1 NAT</a><br /><a class="reference external" href="#quic-protocol">QUIC Protocol</a><br /><a class="reference external" href="#quality-of-service">Quality of Service</a><br /><a class="reference external" href="#srtp-(secure-real-time-transport-protocol)">SRTP (Secure Real-time Transport Protocol)</a><br /><a class="reference external" href="#srv6---service-chaining-dynamic-proxy">SRv6 - Service Chaining Dynamic Proxy</a><br /><a class="reference external" href="#srv6---service-chaining-flow-based-dynamic-proxy">SRv6 - Service Chaining Flow-based Dynamic Proxy</a><br /><a class="reference external" href="#srv6---service-chaining-masquerading-proxy">SRv6 - Service Chaining Masquerading Proxy</a><br /><a class="reference external" href="#srv6---service-chaining-static-proxy">SRv6 - Service Chaining Static Proxy</a><br /><a class="reference external" href="#srv6-mobile">SRv6 Mobile</a><br /><a class="reference external" href="#segment-routing-for-ipv6-(srv6)">Segment Routing for IPv6 (SRv6)</a><br /><a class="reference external" href="#segment-routing-for-mpls">Segment Routing for MPLS</a><br /><a class="reference external" href="#session-layer">Session Layer</a><br /><a class="reference external" href="#source-vrf-select">Source VRF Select</a><br /><a class="reference external" href="#static-http-https-server">Static http https server</a><br /><a class="reference external" href="#tls-openssl">TLS OpenSSL</a><br /><a class="reference external" href="#tap-device">Tap Device</a><br /><a class="reference external" href="#time-range-based-mac-address-filter">Time-range-based MAC-address filter</a><br /><a class="reference external" href="#transmission-control-protocol">Transmission Control Protocol</a><br /><a class="reference external" href="#transport-layer-security">Transport Layer Security</a><br /><a class="reference external" href="#tunnel-infra">Tunnel Infra</a><br /><a class="reference external" href="#user-datagram-protocol">User Datagram Protocol</a><br /><a class="reference external" href="#vnet-gso">VNET GSO</a><br /><a class="reference external" href="#vpp-comms-library">VPP Comms Library</a><br /><a class="reference external" href="#vpp-infrastructure-library">VPP infrastructure library</a><br /><a class="reference external" href="#virtio-pci-device">Virtio PCI Device</a><br /><a class="reference external" href="#virtual-router-redundancy-protocol">Virtual Router Redundancy Protocol</a><br /><a class="reference external" href="#virtual-extensible-lan">Virtual eXtensible LAN</a><br /><a class="reference external" href="#vxlan-gpe">VxLAN-GPE</a><br /><a class="reference external" href="#wireguard-protocol">Wireguard protocol</a><br /><a class="reference external" href="#arping-command">arping command</a><br /><a class="reference external" href="#host-interface-device-af_packet">host-interface Device AF_PACKET</a><br /><a class="reference external" href="#ikev2-plugin">ikev2 plugin</a><br /><a class="reference external" href="#rdma-device-driver">rdma device driver</a><br /><a class="reference external" href="#vlib/unix">vlib/unix</a><br /><a class="reference external" href="#vmxnet3-device-driver">vmxnet3 device driver</a></p>
+<section id="feature-details">
+<h2>Feature Details:<a class="headerlink" href="#feature-details" title="Permalink to this headline"></a></h2>
+<section id="acl-based-forwarding">
+<h3>ACL Based Forwarding<a class="headerlink" href="#acl-based-forwarding" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<ul class="simple">
+<li><p>Policy Based Routing</p></li>
+<li><p>ACLs match traffic to be forwarded</p></li>
+<li><p>Each rule in the ACL has an associated ‘path’ which determines how the traffic will be forwarded. This path is described as a FIB path, so anything possible with basic L3 forwarding is possible with ABF (with the exception of output MPLS labels)</p></li>
+<li><p>ACLs are grouped into a policy</p></li>
+<li><p>ACL priorities within the policy determine which traffic is preferentially matched</p></li>
+<li><p>Policies are attached to interfaces.</p></li>
+<li><p>ABF runs as an input feature in the L3 path</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/abf">https://github.com/FDio/vpp/blob/master/src/plugins/abf</a></p>
+</section>
+<section id="acls-for-security-groups">
+<h3>ACLs for Security Groups<a class="headerlink" href="#acls-for-security-groups" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Andrew Yourtchenko <a class="reference external" href="mailto:ayourtch&#37;&#52;&#48;gmail&#46;com">ayourtch<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>The ACL plugin allows to implement access control policies
+at the levels of IP address ownership (by locking down
+the IP-MAC associations by MACIP ACLs), and by using network
+and transport level policies in inbound and outbound ACLs.
+For non-initial fragments the matching is done on network
+layer only. The session state in stateful ACLs is maintained
+per-interface (e.g. outbound interface ACL creates the session
+while inbound ACL matches it), which simplifies the design
+and operation. For TCP handling, the session processing
+tracks “established” (seen both SYN segments and seen ACKs for them),
+and “transient” (all the other TCP states) sessions.</p>
+<ul class="simple">
+<li><p>Inbound MACIP ACLs</p>
+<ul>
+<li><p>filter the source IP:MAC address statically configured bindings</p></li>
+</ul>
+</li>
+<li><p>Stateless inbound and outbound ACLs</p>
+<ul>
+<li><p>permit/deny packets based on their L3/L4 info</p></li>
+</ul>
+</li>
+<li><p>Stateful inbound and outbound ACLs</p>
+<ul>
+<li><p>create inbound sessions based on outbound traffic and vice versa</p></li>
+</ul>
+</li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/acl">https://github.com/FDio/vpp/blob/master/src/plugins/acl</a></p>
+</section>
+<section id="adl">
+<h3>ADL<a class="headerlink" href="#adl" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>A very simple / fast source-address allow/deny list feature</p>
+<ul class="simple">
+<li><p>v4, v6 non-default FIB src-address lookup</p></li>
+<li><p>Drop packets which don’t hit a receive adjacency</p></li>
+<li><p>Not widely used</p></li>
+</ul>
+<p>Feature maturity level: experimental<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/adl">https://github.com/FDio/vpp/blob/master/src/plugins/adl</a></p>
+</section>
+<section id="af-xdp-device-driver">
+<h3>AF_XDP device driver<a class="headerlink" href="#af-xdp-device-driver" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Benoît Ganne <a class="reference external" href="mailto:bganne&#37;&#52;&#48;cisco&#46;com">bganne<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>AF_XDP device driver support</p>
+<ul class="simple">
+<li><p>AF_XDP driver for Linux kernel 5.4+</p></li>
+</ul>
+<p>Feature maturity level: experimental<br />Supports: CLI STATS MULTITHREAD API<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/af_xdp">https://github.com/FDio/vpp/blob/master/src/plugins/af_xdp</a></p>
+</section>
+<section id="address-resolution-protocol">
+<h3>Address Resolution Protocol<a class="headerlink" href="#address-resolution-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of the Address resolution protocol (ARP) as described in RFC826</p>
+<ul class="simple">
+<li><p>ARP responder</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/arp">https://github.com/FDio/vpp/blob/master/src/vnet/arp</a></p>
+</section>
+<section id="adjacency">
+<h3>Adjacency<a class="headerlink" href="#adjacency" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Adjacencies represent the next-hop information required to reach a directly connected neighbour.</p>
+<ul class="simple">
+<li><p>An adjacency represents how to send different traffic types to a peer</p></li>
+<li><p>The principles properties of an adjacency are the interface and rewrite. The rewrite will be prepended to the packet as it is forward through the interface.</p></li>
+<li><p>The rewrite is provided either by the interface type. It can be constructed either from fixed interface properties (i.e. src,dst IP address on a P2P tunnel) or from a resolution protocol (like ARP on an Ethernet link).</p></li>
+<li><p>An Adjacency is said to be complete when the rewrite is present and incomplete when it is not,</p></li>
+<li><p>An adjacency that is a leaf in the DPO graph is terminal/normal (i.e on a physical interface). When not terminal it is termed a midchain (i.e. one on a virtual interface, e.g. GRE tunnel). Midchain adjacencies can be stacked/joined onto the the DPO graph that described subsequent forwarding (i.e. how to send the the GRE tunnel’s destination address).</p></li>
+<li><p>Glean adjacencies describe how to broadcast packets onto a subnet</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/adj">https://github.com/FDio/vpp/blob/master/src/vnet/adj</a></p>
+</section>
+<section id="bidirectional-forwarding-detection">
+<h3>Bidirectional Forwarding Detection<a class="headerlink" href="#bidirectional-forwarding-detection" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Klement Sekera <a class="reference external" href="mailto:ksekera&#37;&#52;&#48;cisco&#46;com">ksekera<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of Bidirectional Forwarding Detection (BFD).</p>
+<ul class="simple">
+<li><p>BFD protocol implementation</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/bfd">https://github.com/FDio/vpp/blob/master/src/vnet/bfd</a></p>
+</section>
+<section id="binary-api-library">
+<h3>Binary API library<a class="headerlink" href="#binary-api-library" title="Permalink to this headline"></a></h3>
+<p>Maintainers: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>Transport-independent binary API message handling library</p>
+<ul class="simple">
+<li><p>Event logging</p></li>
+<li><p>Message execution</p></li>
+<li><p>Message handler registration</p></li>
+<li><p>Message replay</p></li>
+<li><p>Message tracing</p></li>
+<li><p>Post-mortem message trace capture</p></li>
+<li><p>Platform-dependent message handler invocation</p></li>
+</ul>
+<p>Feature maturity level: production<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vlibapi">https://github.com/FDio/vpp/blob/master/src/vlibapi</a></p>
+</section>
+<section id="binary-api-shared-memory-socket-transport-library">
+<h3>Binary API shared memory / socket transport library<a class="headerlink" href="#binary-api-shared-memory-socket-transport-library" title="Permalink to this headline"></a></h3>
+<p>Maintainers: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>Binary API message transport library</p>
+<ul class="simple">
+<li><p>Transport connection setup and teardown binary API message definitions</p></li>
+<li><p>Transport connection setup and teardown binary API message handlers</p></li>
+<li><p>Remote procedure call binary API support</p></li>
+<li><p>Debug CLI for binary api message trace dump and replay</p></li>
+<li><p>Command-line configuration of binary api tracing</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vlibmemory">https://github.com/FDio/vpp/blob/master/src/vlibmemory</a></p>
+</section>
+<section id="bit-indexed-explicit-replication">
+<h3>Bit Indexed Explicit Replication<a class="headerlink" href="#bit-indexed-explicit-replication" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of Bit Indexed Explicit Replication (BIER)</p>
+<ul class="simple">
+<li><p>Multicast Using Bit Index Explicit Replication (https://tools.ietf.org/html/rfc8279)</p></li>
+<li><p>Encapsulation for Bit Index Explicit Replication (BIER) in MPLS and Non-MPLS Networks (https://tools.ietf.org/html/rfc8296)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/bier">https://github.com/FDio/vpp/blob/master/src/vnet/bier</a></p>
+</section>
+<section id="bonding">
+<h3>Bonding<a class="headerlink" href="#bonding" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Steven Luong <a class="reference external" href="mailto:sluong&#37;&#52;&#48;cisco&#46;com">sluong<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Bonding implementation</p>
+<ul class="simple">
+<li><p>Interface bonding support with the following options - mode active-backup - mode lacp - load-balance l2 | l23 | l34 - numa-only - mode xor - load-balance l2 | l23 | l34 - mode round-robin - mode broadcast</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/bonding">https://github.com/FDio/vpp/blob/master/src/vnet/bonding</a></p>
+</section>
+<section id="buffer-metadata-change-tracker">
+<h3>Buffer Metadata Change Tracker<a class="headerlink" href="#buffer-metadata-change-tracker" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>The Buffer Metadata Change Tracker (mdata)
+uses the before / after graph node main loop performance
+callback hooks to snapshoot buffer metadata, then
+compare and summarize results per-node.
+Answers the question “what buffer metadata does a particular
+graph node change?” by direct observation.
+Zero performance impact until enabled.</p>
+<ul class="simple">
+<li><p>Buffer Metadata Change Tracker</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/mdata">https://github.com/FDio/vpp/blob/master/src/plugins/mdata</a></p>
+</section>
+<section id="buffers-monitoring-plugin">
+<h3>Buffers monitoring plugin<a class="headerlink" href="#buffers-monitoring-plugin" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Benoît Ganne <a class="reference external" href="mailto:bganne&#37;&#52;&#48;cisco&#46;com">bganne<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>monitor buffer utilization in VPP graph nodes</p>
+<ul class="simple">
+<li><p>monitor buffer utilization in VPP graph nodes</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/bufmon">https://github.com/FDio/vpp/blob/master/src/plugins/bufmon</a></p>
+</section>
+<section id="builtin-url-support-for-the-static-http-or-https-server">
+<h3>Builtin URL support for the static http or https server<a class="headerlink" href="#builtin-url-support-for-the-static-http-or-https-server" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>The (builtinurl) plugin adds a set of URLs to the static http/https server. Current URLs, all of which return data in .json fmt: <root-url>/version.json - vpp version info <root-url>/interface_list.json - list of interfaces <root-url>/interface_stats - single interface via HTTP POST <root-url>/interface_stats - all intfcs via HTTP GET.</p>
+<ul class="simple">
+<li><p>Builtin URLs for the static http/https server</p></li>
+</ul>
+<p>Feature maturity level: development<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/builtinurl">https://github.com/FDio/vpp/blob/master/src/plugins/builtinurl</a></p>
+</section>
+<section id="caching-dns-name-resolver">
+<h3>Caching DNS name resolver<a class="headerlink" href="#caching-dns-name-resolver" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>A caching DNS name resolver suitable for optimizing name resolution performance, and for overriding gethostbyname() in an LD_PRELOAD library.</p>
+<ul class="simple">
+<li><p>Cache A and AAAA records from an upstream ipv4 DNS server</p></li>
+<li><p>Respond to ipv4 and ipv6 name resolution requests</p></li>
+<li><p>Supports cache sizes up to 64K concurrent entries</p></li>
+<li><p>Supports CNAME indirection</p></li>
+<li><p>Static cache entry creation, suitable for redirecting specific names</p></li>
+<li><p>Round robin upstream name lookups</p></li>
+<li><p>Binary API name lookup support</p></li>
+<li><p>Missing ipv6 upstream server support</p></li>
+<li><p>Perf/scale suitable for SOHO devices or other light-duty apps</p></li>
+</ul>
+<p>Feature maturity level: development<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/dns">https://github.com/FDio/vpp/blob/master/src/plugins/dns</a></p>
+</section>
+<section id="classify">
+<h3>Classify<a class="headerlink" href="#classify" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dbarach&#37;&#52;&#48;cisco&#46;com">dbarach<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Mask / match packet classifier</p>
+<ul class="simple">
+<li><p>Swiss-army-knife mask-match engine for classifying packets</p></li>
+<li><p>Uses 128-bit SIMD vector operations for performance</p></li>
+<li><p>Many use-cases, including packet trace / pcap capture filtration</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/classify">https://github.com/FDio/vpp/blob/master/src/vnet/classify</a></p>
+</section>
+<section id="cloud-nat">
+<h3>Cloud NAT<a class="headerlink" href="#cloud-nat" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Nathan Skrzypczak <a class="reference external" href="mailto:nathan&#46;skrzypczak&#37;&#52;&#48;gmail&#46;com">nathan<span>&#46;</span>skrzypczak<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>This plugin is intended to complement the VPP’s plugin_nat for Cloud use-cases. It allows for source/destination address/port translation based on multiple criterias. It is intended to be modular enough so that one could write a use-case optimised translation function without having to deal with actually re-writing packets or maintaining sessions. This plugin supports multithreading. Workers share a unique bihash where sessions are stored.</p>
+<ul class="simple">
+<li><p>Destination based address/port translation</p></li>
+<li><p>Conditional sourceNATing based on prefix exclusions</p></li>
+</ul>
+<p>Feature maturity level: development<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/cnat">https://github.com/FDio/vpp/blob/master/src/plugins/cnat</a></p>
+</section>
+<section id="data-plane-objects">
+<h3>Data-Plane Objects<a class="headerlink" href="#data-plane-objects" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Data-Plane Objects (DPO)</p>
+<ul class="simple">
+<li><p>A DPO is a generic term (a.k.a abstract base class) for objects that perform [a set of] actions on packets in the data-plane</p></li>
+<li><p>Concrete examples of DPO types are; adjacency, mpls-imposition, replication.</p></li>
+<li><p>DPOs are stacked/joined to form a processing graph that packets traverse to describe the full set of actions a packet should experience.</p></li>
+<li><p>DPO graphs can be rooted at any point in the VLIB graph - notable examples are L3 FIB lookup, ABF, L3XC.</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/dpo">https://github.com/FDio/vpp/blob/master/src/vnet/dpo</a></p>
+</section>
+<section id="dynamic-host-configuration-protocol">
+<h3>Dynamic Host Configuration Protocol<a class="headerlink" href="#dynamic-host-configuration-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a>, Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of the Dynamic Host Configuration Protocol (DHCP) client</p>
+<ul class="simple">
+<li><p>DHCP client (v4/v6)</p></li>
+<li><p>DHCPv6 prefix delegation</p></li>
+<li><p>DHCP Proxy / Option 82</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/dhcp">https://github.com/FDio/vpp/blob/master/src/plugins/dhcp</a></p>
+</section>
+<section id="feature-arc-support">
+<h3>Feature Arc Support<a class="headerlink" href="#feature-arc-support" title="Permalink to this headline"></a></h3>
+<p>Maintainers: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>Constraint-based feature arc configuration, internal APIs to dispatch packets to the next configured feature. A fundamental vpp forwarding graph extension mechanism.</p>
+<ul class="simple">
+<li><p>Feature arc registration</p></li>
+<li><p>Feature registration</p></li>
+<li><p>Flexible feature order constraint specification</p></li>
+<li><p>High-performance internal APIs to dispatch packets to the next feature node</p></li>
+<li><p>Topological feature sorting</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/feature">https://github.com/FDio/vpp/blob/master/src/vnet/feature</a></p>
+</section>
+<section id="flow-infrastructure">
+<h3>Flow infrastructure<a class="headerlink" href="#flow-infrastructure" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Damjan Marion <a class="reference external" href="mailto:damarion&#37;&#52;&#48;cisco&#46;com">damarion<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Flow infrastructure to provide hardware offload capabilities</p>
+<ul class="simple">
+<li><p>Four APIs are provided - flow_add, flow_del, flow_enable and flow_disable</p></li>
+<li><p>The below flow types are currently supported</p>
+<ul>
+<li><p>FLOW_TYPE_IP4,</p></li>
+<li><p>FLOW_TYPE_IP6,</p></li>
+<li><p>FLOW_TYPE_IP4_N_TUPLE,</p></li>
+<li><p>FLOW_TYPE_IP6_N_TUPLE,</p></li>
+<li><p>FLOW_TYPE_IP4_N_TUPLE_TAGGED,</p></li>
+<li><p>FLOW_TYPE_IP6_N_TUPLE_TAGGED,</p></li>
+<li><p>FLOW_TYPE_IP4_L2TPV3OIP,</p></li>
+<li><p>FLOW_TYPE_IP4_IPSEC_ESP,</p></li>
+<li><p>FLOW_TYPE_IP4_IPSEC_AH,</p></li>
+<li><p>FLOW_TYPE_IP4_VXLAN,</p></li>
+<li><p>FLOW_TYPE_IP6_VXLAN,</p></li>
+<li><p>FLOW_TYPE_IP4_GTPC,</p></li>
+<li><p>FLOW_TYPE_IP4_GTPU</p></li>
+</ul>
+</li>
+<li><p>The below flow actions can be specified for the flows</p>
+<ul>
+<li><p>FLOW_ACTION_COUNT,</p></li>
+<li><p>FLOW_ACTION_MARK,</p></li>
+<li><p>FLOW_ACTION_BUFFER_ADVANCE,</p></li>
+<li><p>FLOW_ACTION_REDIRECT_TO_NODE,</p></li>
+<li><p>FLOW_ACTION_REDIRECT_TO_QUEUE,</p></li>
+<li><p>FLOW_ACTION_DROP</p></li>
+</ul>
+</li>
+</ul>
+<p>Feature maturity level: development<br />Supports: API CLI<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/flow">https://github.com/FDio/vpp/blob/master/src/vnet/flow</a></p>
+</section>
+<section id="g2-graphical-event-log-viewer">
+<h3>G2 graphical event log viewer<a class="headerlink" href="#g2-graphical-event-log-viewer" title="Permalink to this headline"></a></h3>
+<p>Maintainers: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>A highly scalable graphical event log viewer, specifically tailored to displaying src/vppinfra/elog.[ch] log files</p>
+<ul class="simple">
+<li><p>Vppinfra elog.[ch] log viewer</p></li>
+<li><p>Scales to over 10e6 events, 10e4 tracks</p></li>
+<li><p>Automated anomaly detector</p></li>
+<li><p>View snapshots</p></li>
+</ul>
+<p>Feature maturity level: production<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/tools/g2">https://github.com/FDio/vpp/blob/master/src/tools/g2</a></p>
+</section>
+<section id="gprs-tunneling-protocol">
+<h3>GPRS Tunneling Protocol<a class="headerlink" href="#gprs-tunneling-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Hongjun Ni <a class="reference external" href="mailto:hongjun&#46;ni&#37;&#52;&#48;intel&#46;com">hongjun<span>&#46;</span>ni<span>&#64;</span>intel<span>&#46;</span>com</a></p>
+<p>An implementation of the GPRS Tunnelling Protocol</p>
+<ul class="simple">
+<li><p>GTPU decapsulation</p></li>
+<li><p>GTPU encapsulation</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/gtpu">https://github.com/FDio/vpp/blob/master/src/plugins/gtpu</a></p>
+</section>
+<section id="generic-routing-encapsulation">
+<h3>Generic Routing Encapsulation<a class="headerlink" href="#generic-routing-encapsulation" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of Generic Routing Encapsulation (GRE)</p>
+<ul class="simple">
+<li><p>L3 tunnels, all combinations of IPv4 and IPv6</p></li>
+<li><p>Encap/Decap flags to control the copying of DSCP, ECN, DF from overlay to underlay and vice-versa.</p></li>
+<li><p>L2 tunnels</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>GRE keys</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/gre">https://github.com/FDio/vpp/blob/master/src/vnet/gre</a></p>
+</section>
+<section id="hash-infrastructure">
+<h3>Hash infrastructure<a class="headerlink" href="#hash-infrastructure" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Mohsin Kazmi <a class="reference external" href="mailto:sykazmi&#37;&#52;&#48;cisco&#46;com">sykazmi<span>&#64;</span>cisco<span>&#46;</span>com</a>, Damjan Marion <a class="reference external" href="mailto:damarion&#37;&#52;&#48;cisco&#46;com">damarion<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Hash infrastructure</p>
+<ul class="simple">
+<li><p>Ethernet</p></li>
+<li><p>IP</p></li>
+</ul>
+<p>Feature maturity level: development<br />Supports: CLI<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/hash">https://github.com/FDio/vpp/blob/master/src/vnet/hash</a></p>
+</section>
+<section id="ip-neighbour-database">
+<h3>IP Neighbour Database<a class="headerlink" href="#ip-neighbour-database" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<ul class="simple">
+<li><p>IP protocol independent Database of Neighbours (aka peers)</p></li>
+<li><p>limits on number of peers, recycling and aging</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/ip-neighbor">https://github.com/FDio/vpp/blob/master/src/vnet/ip-neighbor</a></p>
+</section>
+<section id="ip-security">
+<h3>IP Security<a class="headerlink" href="#ip-security" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of IPSec</p>
+<ul class="simple">
+<li><p>IPSec (https://tools.ietf.org/html/rfc4301)</p></li>
+<li><p>Authentication Header (https://tools.ietf.org/html/rfc4302)</p></li>
+<li><p>Encapsulating Security Payload (https://tools.ietf.org/html/rfc4303)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/ipsec">https://github.com/FDio/vpp/blob/master/src/vnet/ipsec</a></p>
+</section>
+<section id="ip-in-ip-tunnelling">
+<h3>IP in IP tunnelling<a class="headerlink" href="#ip-in-ip-tunnelling" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Ole Troan <a class="reference external" href="mailto:ot&#37;&#52;&#48;cisco&#46;com">ot<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Implements IP{v4,v6} over IP{v4,v6} tunnelling as
+described in RFC2473. This module also implements the
+border relay of 6RD (RFC5969).</p>
+<ul class="simple">
+<li><p>IPv4/IPv6 over IPv4/IPv6 encapsulation</p>
+<ul>
+<li><p>Fragmentation and Reassembly</p></li>
+<li><p>Configurable MTU</p></li>
+<li><p>Inner to outer Traffic Class / TOS copy</p></li>
+<li><p>Configurable Traffic Class / TOS</p></li>
+</ul>
+</li>
+<li><p>ICMPv4 / ICMPv6 proxying</p></li>
+<li><p>6RD (RFC5969)</p>
+<ul>
+<li><p>Border Relay</p></li>
+</ul>
+</li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>Tunnel PMTUD</p></li>
+<li><p>Tracking of FIB state for tunnel state</p></li>
+<li><p>IPv6 extension headers (Tunnel encapsulation limit option)</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/ipip">https://github.com/FDio/vpp/blob/master/src/vnet/ipip</a></p>
+</section>
+<section id="ipfix-probe">
+<h3>IPFIX probe<a class="headerlink" href="#ipfix-probe" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Ole Troan <a class="reference external" href="mailto:ot&#37;&#52;&#48;cisco&#46;com">ot<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>IPFIX flow probe. Works in the L2, or IP input feature path.</p>
+<ul class="simple">
+<li><p>L2 input feature</p></li>
+<li><p>IPv4 / IPv6 input feature</p></li>
+<li><p>Recording of L2, L3 and L4 information</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>Output path</p></li>
+<li><p>Export over IPv6</p></li>
+<li><p>Export over TCP/SCTP</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/flowprobe">https://github.com/FDio/vpp/blob/master/src/plugins/flowprobe</a></p>
+</section>
+<section id="ipsec-crypto-engine-provided-by-intel-ipsecmb-library">
+<h3>IPSec crypto engine provided by Intel IPSecMB library<a class="headerlink" href="#ipsec-crypto-engine-provided-by-intel-ipsecmb-library" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<ul class="simple">
+<li><p>SHA(1, 224, 256, 384, 512)</p></li>
+<li><p>CBC(128, 192, 256)</p></li>
+<li><p>GCM(128, 192, 256)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/crypto_ipsecmb">https://github.com/FDio/vpp/blob/master/src/plugins/crypto_ipsecmb</a></p>
+</section>
+<section id="ipsec-crypto-engine-provided-by-openssl-library">
+<h3>IPSec crypto engine provided by Openssl library<a class="headerlink" href="#ipsec-crypto-engine-provided-by-openssl-library" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Damjan Marion <a class="reference external" href="mailto:damarion&#37;&#52;&#48;cisco&#46;com">damarion<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<ul class="simple">
+<li><p>SHA(1, 224, 256, 384, 512)</p></li>
+<li><p>CBC(128, 192, 256)</p></li>
+<li><p>GCM(128, 192, 256)</p></li>
+<li><p>CTR(128, 192, 256)</p></li>
+<li><p>DES, 3DES</p></li>
+<li><p>MD5</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/crypto_openssl">https://github.com/FDio/vpp/blob/master/src/plugins/crypto_openssl</a></p>
+</section>
+<section id="ipsec-crypto-engine-provided-by-native-implementation">
+<h3>IPSec crypto engine provided by native implementation<a class="headerlink" href="#ipsec-crypto-engine-provided-by-native-implementation" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Damjan Marion <a class="reference external" href="mailto:damarion&#37;&#52;&#48;cisco&#46;com">damarion<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of a native crypto-engine</p>
+<ul class="simple">
+<li><p>CBC(128, 192, 256)</p></li>
+<li><p>GCM(128, 192, 256)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/crypto_native">https://github.com/FDio/vpp/blob/master/src/plugins/crypto_native</a></p>
+</section>
+<section id="ipv6-neighbor-discovery-and-proxy">
+<h3>IPv6 Neighbor Discovery and Proxy<a class="headerlink" href="#ipv6-neighbor-discovery-and-proxy" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of the IPv6 Neighbor discovery protocol as described in RFC4861 and RFC4862. It also implements ND (mirror) proxy on given interface (some inspiration from RFC4389).</p>
+<ul class="simple">
+<li><p>Neighbor discovery.</p></li>
+<li><p>ND Auto address configuration</p></li>
+<li><p>Multicast Listener Discovery - only as host role to send adverts</p></li>
+<li><p>Router Advertisements</p></li>
+<li><p>ND (mirror) proxy on given interface</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/ip6-nd">https://github.com/FDio/vpp/blob/master/src/vnet/ip6-nd</a></p>
+</section>
+<section id="internet-group-management-protocol">
+<h3>Internet Group Management Protocol<a class="headerlink" href="#internet-group-management-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of the Internet Group Management Protocol (IGMP)</p>
+<ul class="simple">
+<li><p>IGMPv3 only.</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/igmp">https://github.com/FDio/vpp/blob/master/src/plugins/igmp</a></p>
+</section>
+<section id="l2tpv3">
+<h3>L2TPv3<a class="headerlink" href="#l2tpv3" title="Permalink to this headline"></a></h3>
+<p>Maintainer: unmaintained</p>
+<p>An initial and incomplete implementation of L2TPv3 (RFC3931).</p>
+<ul class="simple">
+<li><p>L2TPv3 over IPv6</p></li>
+</ul>
+<p>Feature maturity level: experimental<br />Supports: API CLI<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/l2tp">https://github.com/FDio/vpp/blob/master/src/plugins/l2tp</a></p>
+</section>
+<section id="layer-2-forwarding">
+<h3>Layer 2 Forwarding<a class="headerlink" href="#layer-2-forwarding" title="Permalink to this headline"></a></h3>
+<p>Maintainer: John Lo <a class="reference external" href="mailto:loj&#37;&#52;&#48;cisco&#46;com">loj<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Layer 2 Bridging and Cross-Connect Support</p>
+<ul class="simple">
+<li><p>Layer 2 (L2) Cross-connect (xconnect) of two interfaces</p></li>
+<li><p>Layer 2 (L2) Bridging of multiple interfaces in a bridge domain (BD)</p>
+<ul>
+<li><p>Forwarding via destination MAC address of packet</p></li>
+<li><p>MAC learning enable/disable on BD or per interface</p></li>
+<li><p>MAC aging with specified aging interval enable/disable</p></li>
+<li><p>MAC flush of learned MACs on interface down, BD deletion, or by user</p></li>
+<li><p>User added static MACs not subject to aging nor overwritten by MAC learn</p></li>
+<li><p>User added MACs not subject to aging but can be overwritten by MAC learn</p></li>
+<li><p>Unicast forwarding enable/disable</p></li>
+<li><p>Unknown unicast flooding enable/disable</p></li>
+<li><p>Multicast/broadcast flooding enable/disable</p></li>
+<li><p>ARP-termination to avoid flooding of ARP requests</p></li>
+<li><p>Enable/disable unicast of ARP requests instead of flooding</p></li>
+<li><p>BVI (Bridge Virtual Interface) for IP forwarding from or to BD</p></li>
+<li><p>Set interface in BD to send unknown unicast packets instead of flooding</p></li>
+<li><p>Support of split horizon group (SHG) on BD interfaces</p></li>
+</ul>
+</li>
+<li><p>VLAN tag rewrite on L2 bridging or xconnect interfaces</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/l2">https://github.com/FDio/vpp/blob/master/src/vnet/l2</a></p>
+</section>
+<section id="layer-3-cross-connect">
+<h3>Layer 3 cross connect<a class="headerlink" href="#layer-3-cross-connect" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<ul class="simple">
+<li><p>cross connect all ingress traffic on an L3 interface to an output FIB path.</p></li>
+<li><p>the path can describe any output (with the exception of MPLS labels)</p></li>
+<li><p>The same functions can be achieved by using a dedicated VRF for the table and adding a default route with the same path. However, the L3XC is more efficient in memory and CPU</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/l3xc">https://github.com/FDio/vpp/blob/master/src/plugins/l3xc</a></p>
+</section>
+<section id="link-aggregation-control-protocol">
+<h3>Link Aggregation Control Protocol<a class="headerlink" href="#link-aggregation-control-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Steven Luong <a class="reference external" href="mailto:sluong&#37;&#52;&#48;cisco&#46;com">sluong<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Link Aggregation Control Protocol implementation (LACP)</p>
+<ul class="simple">
+<li><p>Support LACP version 1 specification including marker protocol</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/lacp">https://github.com/FDio/vpp/blob/master/src/plugins/lacp</a></p>
+</section>
+<section id="link-layer-discovery-protocol">
+<h3>Link Layer Discovery Protocol<a class="headerlink" href="#link-layer-discovery-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Klement Sekera <a class="reference external" href="mailto:ksekera&#37;&#52;&#48;cisco&#46;com">ksekera<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Link Layer Discovery Protocol (LLDP) implementation</p>
+<ul class="simple">
+<li><p>link layer discovery protocol implementation</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/lldp">https://github.com/FDio/vpp/blob/master/src/plugins/lldp</a></p>
+</section>
+<section id="linux-control-plane-integration">
+<h3>Linux Control Plane (integration)<a class="headerlink" href="#linux-control-plane-integration" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:neale&#37;&#52;&#48;grahpiant&#46;com">neale<span>&#64;</span>grahpiant<span>&#46;</span>com</a></p>
+<p>This plugin provides the beginnings of an integration with the
+Linux network stack.
+The plugin provides the capability to ‘mirror’ VPP interfaces in
+the Linux kernel. This means that for any interface in VPP the user
+can create a corresponding TAP or TUN device in the Linux kernel
+and have VPP plumb them together.
+The plumbing mechanics is different in each direction.
+In the RX direction, all packets received on a given VPP interface
+that are punted (i.e. are not dropped or forwarded) are transmitted
+on its mirror interface (this includes for example ARP, ND etc,
+so the recommendation is to disable ARP, ND, ping plugin).
+In the TX direction, packets received by VPP an the mirror Tap/Tun
+are cross-connected to the VPP interfaces. For IP packets, IP output
+features are applied.
+This is the beginnings of integration, because there needs to be
+an external agent that will configure (and synchronize) the IP
+configuration of the paired interfaces.</p>
+<p>Feature maturity level: experimental<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/linux-cp">https://github.com/FDio/vpp/blob/master/src/plugins/linux-cp</a></p>
+</section>
+<section id="load-balancer">
+<h3>Load Balancer<a class="headerlink" href="#load-balancer" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Pfister <a class="reference external" href="mailto:ppfister&#37;&#52;&#48;cisco&#46;com">ppfister<span>&#64;</span>cisco<span>&#46;</span>com</a>, Hongjun Ni <a class="reference external" href="mailto:hongjun&#46;ni&#37;&#52;&#48;intel&#46;com">hongjun<span>&#46;</span>ni<span>&#64;</span>intel<span>&#46;</span>com</a></p>
+<ul class="simple">
+<li><p>GRE tunnel mode</p></li>
+<li><p>NAT mode</p></li>
+<li><p>L3DSR mode</p></li>
+<li><p>Consistent Hash</p></li>
+<li><p>Connection Track</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/lb">https://github.com/FDio/vpp/blob/master/src/plugins/lb</a></p>
+</section>
+<section id="locator-id-separation-protocol-control-plane">
+<h3>Locator ID Separation Protocol Control Plane<a class="headerlink" href="#locator-id-separation-protocol-control-plane" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Locator ID Separation Protocol control plane (LISP) implementation</p>
+<ul class="simple">
+<li><p>ITR, ETR and RTR mode of operation</p></li>
+<li><p>Multitenancy</p></li>
+<li><p>Multihoming</p></li>
+<li><p>Source/dest map-cache lookups</p></li>
+<li><p>RLOC-probing</p></li>
+<li><p>Support for Ethernet, IPv4, IPv6 and NSH EIDs (payloads)</p></li>
+<li><p>Map-resolver failover algorithm</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/lisp/lisp-cp">https://github.com/FDio/vpp/blob/master/src/plugins/lisp/lisp-cp</a></p>
+</section>
+<section id="locator-id-separation-protocol-generic-protocol-extension">
+<h3>Locator ID Separation Protocol Generic Protocol Extension<a class="headerlink" href="#locator-id-separation-protocol-generic-protocol-extension" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Locator ID Separation Protocol Generic Protocol Extension (LISP-GPE) implementation</p>
+<ul class="simple">
+<li><p>ITR, ETR and RTR modes</p></li>
+<li><p>Support for Ethernet, IPv4, IPv6 and NSH EIDs (payloads)</p></li>
+<li><p>Source/dest forwarding</p></li>
+<li><p>IPv4 and IPv6 RLOCs</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/lisp/lisp-gpe">https://github.com/FDio/vpp/blob/master/src/plugins/lisp/lisp-gpe</a></p>
+</section>
+<section id="mapping-of-address-and-port">
+<h3>Mapping of Address and Port<a class="headerlink" href="#mapping-of-address-and-port" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Ole Troan <a class="reference external" href="mailto:ot&#37;&#52;&#48;cisco&#46;com">ot<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Mapping of Address and Port (MAP): IPv4 as a service mechanisms. Tunnel or translate an IPv4 address, an IPv4 subnet or a shared IPv4 address. In shared IPv4 address mode, only UDP, TCP and restricted ICMP is supported.</p>
+<ul class="simple">
+<li><p>LW46 BR (RFC7596)</p>
+<ul>
+<li><p>Fragmentation and Reassembly</p></li>
+</ul>
+</li>
+<li><p>MAP-E BR (RFC7597)</p></li>
+<li><p>MAP-T BR (RFC7599)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/map">https://github.com/FDio/vpp/blob/master/src/plugins/map</a></p>
+</section>
+<section id="multi-protocol-label-switching">
+<h3>Multi-Protocol Label Switching<a class="headerlink" href="#multi-protocol-label-switching" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of Multi-Protocol Label Switching (MPLS)</p>
+<ul class="simple">
+<li><p>Label imposition/disposition - pipe and uniform mode</p></li>
+<li><p>Tunnels - unidirectional</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/mpls">https://github.com/FDio/vpp/blob/master/src/vnet/mpls</a></p>
+</section>
+<section id="nsh">
+<h3>NSH<a class="headerlink" href="#nsh" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Hongjun Ni <a class="reference external" href="mailto:hongjun&#46;ni&#37;&#52;&#48;intel&#46;com">hongjun<span>&#46;</span>ni<span>&#64;</span>intel<span>&#46;</span>com</a>, Vengada <a class="reference external" href="mailto:venggovi&#37;&#52;&#48;cisco&#46;com">venggovi<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>NSH for SFC</p>
+<ul class="simple">
+<li><p>NSH Classifier</p></li>
+<li><p>NSH Forwarder</p></li>
+<li><p>NSH SF</p></li>
+<li><p>NSH Proxy</p></li>
+<li><p>NSH OAM</p></li>
+<li><p>NSH Metadata</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/nsh">https://github.com/FDio/vpp/blob/master/src/plugins/nsh</a></p>
+</section>
+<section id="netmap-device">
+<h3>Netmap Device<a class="headerlink" href="#netmap-device" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Damjan Marion <a class="reference external" href="mailto:damarion&#37;&#52;&#48;cisco&#46;com">damarion<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Create a netmap interface, which is a high speed user-space interface that allows VPP to patch into a linux namespace, a linux container, or a physical NIC without the use of DPDK.</p>
+<ul class="simple">
+<li><p>L4 checksum offload</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>API dump</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/extras/deprecated/netmap">https://github.com/FDio/vpp/blob/master/extras/deprecated/netmap</a></p>
+</section>
+<section id="network-address-translation">
+<h3>Network Address Translation<a class="headerlink" href="#network-address-translation" title="Permalink to this headline"></a></h3>
+<p>Maintainers: Ole Troan <a class="reference external" href="mailto:ot&#37;&#52;&#48;cisco&#46;com">ot<span>&#64;</span>cisco<span>&#46;</span>com</a>, Filip Varga <a class="reference external" href="mailto:fivarga&#37;&#52;&#48;cisco&#46;com">fivarga<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>The Network Address Translation (NAT) plugin offers a multiple address translation functions. These can be used in a raft of different scenarios. CPE, CGN, etc.</p>
+<ul class="simple">
+<li><p>NAT44-EI - IPv4 Endpoint Independent NAT - 1:1 NAT - 1:1 NAT with ports - VRF awareness - Multiple inside interfaces - Hairpinning - IPFIX - Syslog - TCP MSS clamping - Local bypass (DHCP)</p></li>
+<li><p>NAT44-ED - IPv4 Endpoint Dependent NAT - 1:1 NAT - 1:1 NAT with ports - VRF awareness - Multiple inside interfaces - Hairpinning - IPFIX - Syslog - TCP MSS clamping - Local bypass (DHCP)</p></li>
+<li><p>DET44 - deterministic NAT (CGN)</p></li>
+<li><p>NAT64</p></li>
+<li><p>NAT66</p></li>
+<li><p>DSLITE</p></li>
+<li><p>464XLAT</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/nat">https://github.com/FDio/vpp/blob/master/src/plugins/nat</a></p>
+</section>
+<section id="network-delay-simulator">
+<h3>Network Delay Simulator<a class="headerlink" href="#network-delay-simulator" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>Introduces configurable network delay and loss</p>
+<ul class="simple">
+<li><p>Network delay and loss fraction simulator</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/nsim">https://github.com/FDio/vpp/blob/master/src/plugins/nsim</a></p>
+</section>
+<section id="pg">
+<h3>PG<a class="headerlink" href="#pg" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dbarach&#37;&#52;&#48;cisco&#46;com">dbarach<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>High-speed packet generator</p>
+<ul class="simple">
+<li><p>High-speed packet generation</p></li>
+<li><p>Packet definition CLI</p></li>
+<li><p>Support for pcap capture replay</p></li>
+<li><p>Multi-thread packet generation</p></li>
+<li><p>Packet injection into arbitrary graph nodes</p></li>
+<li><p>Heavily used by “make test”</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/pg">https://github.com/FDio/vpp/blob/master/src/vnet/pg</a></p>
+</section>
+<section id="pppoe">
+<h3>PPPoE<a class="headerlink" href="#pppoe" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Hongjun Ni <a class="reference external" href="mailto:hongjun&#46;ni&#37;&#52;&#48;intel&#46;com">hongjun<span>&#46;</span>ni<span>&#64;</span>intel<span>&#46;</span>com</a></p>
+<p>PPP over Ethernet</p>
+<ul class="simple">
+<li><p>PPPoE Control Plane packet dispatch</p></li>
+<li><p>PPPoE decapsulation</p></li>
+<li><p>PPPoE encapsulation</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/pppoe">https://github.com/FDio/vpp/blob/master/src/plugins/pppoe</a></p>
+</section>
+<section id="pipe-device">
+<h3>Pipe Device<a class="headerlink" href="#pipe-device" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Damjan Marion <a class="reference external" href="mailto:damarion&#37;&#52;&#48;cisco&#46;com">damarion<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Create a pipe device interface, which can pass packets bidirectionally in one side of the pipe to the other side of the pipe. While similar in behavior to a unix pipe, it is not a host-based pipe.</p>
+<ul class="simple">
+<li><p>L4 checksum offload</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>does not use hw-address</p></li>
+<li><p>does not support tagged traffic</p></li>
+<li><p>API dump filtering by sw_if_index</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/devices/pipe">https://github.com/FDio/vpp/blob/master/src/vnet/devices/pipe</a></p>
+</section>
+<section id="policy-1-1-nat">
+<h3>Policy 1:1 NAT<a class="headerlink" href="#policy-1-1-nat" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Ole Troan <a class="reference external" href="mailto:ot&#37;&#52;&#48;cisco&#46;com">ot<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Match packet against rule and translate according to given instructions. Rules are kept in a flow cache bihash. Instructions in a pool of translation entries.
+For a given interface/direction all rules must use the same lookup mask. E.g. SA + SP.
+A dynamic NAT would punt to slow path on a miss in the flow cache, in this case the miss behaviour is configurable. Default behaviour is pass packet along unchanged.</p>
+<p>Feature maturity level: experimental<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/nat/pnat">https://github.com/FDio/vpp/blob/master/src/plugins/nat/pnat</a></p>
+</section>
+<section id="quic-protocol">
+<h3>QUIC Protocol<a class="headerlink" href="#quic-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Aloys Augustin <a class="reference external" href="mailto:aloaugus&#37;&#52;&#48;cisco&#46;com">aloaugus<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>IETF QUIC Protocol implementation</p>
+<ul class="simple">
+<li><p>host stack integration via session layer</p></li>
+<li><p>based on the Quicly library: https://github.com/h2o/quicly</p></li>
+</ul>
+<p>Feature maturity level: experimental<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/quic">https://github.com/FDio/vpp/blob/master/src/plugins/quic</a></p>
+</section>
+<section id="quality-of-service">
+<h3>Quality of Service<a class="headerlink" href="#quality-of-service" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>An implementation of Quality of Service (QoS)</p>
+<ul class="simple">
+<li><p>Record - extract QoS bits from packets headers and write in metadata</p></li>
+<li><p>Mapp - defines simple transform of QoS bits from/to each packet layer</p></li>
+<li><p>Mark - write [mapped] QoS bits into packet headers</p></li>
+<li><p>Store - write in packet metadata a fixed QoS value</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/qos">https://github.com/FDio/vpp/blob/master/src/vnet/qos</a></p>
+</section>
+<section id="srtp-secure-real-time-transport-protocol">
+<h3>SRTP (Secure Real-time Transport Protocol)<a class="headerlink" href="#srtp-secure-real-time-transport-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>SRTP transport protocol implementation based on libsrtp2</p>
+<ul class="simple">
+<li><p>SRTP transport protocol implementation</p></li>
+</ul>
+<p>Feature maturity level: experimental<br />Supports: MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/srtp">https://github.com/FDio/vpp/blob/master/src/plugins/srtp</a></p>
+</section>
+<section id="srv6-service-chaining-dynamic-proxy">
+<h3>SRv6 - Service Chaining Dynamic Proxy<a class="headerlink" href="#srv6-service-chaining-dynamic-proxy" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Francois Clad <a class="reference external" href="mailto:fclad&#37;&#52;&#48;cisco&#46;com">fclad<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>SRv6 dynamic proxy</p>
+<ul class="simple">
+<li><p>SRv6 - dynamic service chaining proxy (draft-ietf-spring-sr-service-programming-01)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/srv6-ad">https://github.com/FDio/vpp/blob/master/src/plugins/srv6-ad</a></p>
+</section>
+<section id="srv6-service-chaining-flow-based-dynamic-proxy">
+<h3>SRv6 - Service Chaining Flow-based Dynamic Proxy<a class="headerlink" href="#srv6-service-chaining-flow-based-dynamic-proxy" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Francois Clad <a class="reference external" href="mailto:fclad&#37;&#52;&#48;cisco&#46;com">fclad<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>SRv6 flow-based dynamic proxy</p>
+<ul class="simple">
+<li><p>SRv6 - flow-based dynamic service chaining proxy (draft-ietf-spring-sr-service-programming-01)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: CLI<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/srv6-ad-flow">https://github.com/FDio/vpp/blob/master/src/plugins/srv6-ad-flow</a></p>
+</section>
+<section id="srv6-service-chaining-masquerading-proxy">
+<h3>SRv6 - Service Chaining Masquerading Proxy<a class="headerlink" href="#srv6-service-chaining-masquerading-proxy" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Francois Clad <a class="reference external" href="mailto:fclad&#37;&#52;&#48;cisco&#46;com">fclad<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>SRv6 masquerading proxy</p>
+<ul class="simple">
+<li><p>SRv6 - masquerading service chaining proxy (draft-ietf-spring-sr-service-programming-01)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/srv6-am">https://github.com/FDio/vpp/blob/master/src/plugins/srv6-am</a></p>
+</section>
+<section id="srv6-service-chaining-static-proxy">
+<h3>SRv6 - Service Chaining Static Proxy<a class="headerlink" href="#srv6-service-chaining-static-proxy" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Francois Clad <a class="reference external" href="mailto:fclad&#37;&#52;&#48;cisco&#46;com">fclad<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>SRv6 static proxy</p>
+<ul class="simple">
+<li><p>SRv6 - static service chaining proxy (draft-ietf-spring-sr-service-programming-01)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/srv6-as">https://github.com/FDio/vpp/blob/master/src/plugins/srv6-as</a></p>
+</section>
+<section id="srv6-mobile">
+<h3>SRv6 Mobile<a class="headerlink" href="#srv6-mobile" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Tetsuya Murakami <a class="reference external" href="mailto:tetsuya&#46;mrk&#37;&#52;&#48;gmail&#46;com">tetsuya<span>&#46;</span>mrk<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>SRv6 Mobile End Functions. GTP4.D, GTP4.E, GTP6.D, GTP6.D.Di and GTP6.E are supported.</p>
+<ul class="simple">
+<li><p>GTP4.D</p></li>
+<li><p>GTP4.E</p></li>
+<li><p>GTP6.D</p></li>
+<li><p>GTP6.D.Di</p></li>
+<li><p>GTP6.E</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/srv6-mobile">https://github.com/FDio/vpp/blob/master/src/plugins/srv6-mobile</a></p>
+</section>
+<section id="segment-routing-for-ipv6-srv6">
+<h3>Segment Routing for IPv6 (SRv6)<a class="headerlink" href="#segment-routing-for-ipv6-srv6" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Pablo Camarillo <a class="reference external" href="mailto:pcamaril&#37;&#52;&#48;cisco&#46;com">pcamaril<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Full SRv6 Network Programming implementation</p>
+<ul class="simple">
+<li><p>Support for SRv6 Network Programming (draft-ietf-spring-srv6-network-programming-07)</p></li>
+<li><p>SR Headend behaviors (H.Encaps, H.Encaps.Red, H.Encaps.L2, H.Encaps.L2.Red)</p></li>
+<li><p>SR Endpoint behaviors (End, End.X, End.T) for intermediate TE with PSP support</p></li>
+<li><p>SR Endpoint behaviors (End.DX4, End.DX6, End.DT4, End.DT6, End.DX2) for overlay creation</p></li>
+<li><p>SR Endpoint behaviors (End.B6.Encaps.Red) for BindingSID instantiation</p></li>
+<li><p>Support for SRH insertion (draft-filsfils-spring-srv6-net-pgm-insertion-01)</p></li>
+<li><p>SR counters</p></li>
+<li><p>SR policy implementation (draft-ietf-spring-segment-routing-policy-02)</p></li>
+<li><p>SR steering based on IP prefix / L2 interface classification</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/srv6">https://github.com/FDio/vpp/blob/master/src/vnet/srv6</a></p>
+</section>
+<section id="segment-routing-for-mpls">
+<h3>Segment Routing for MPLS<a class="headerlink" href="#segment-routing-for-mpls" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Pablo Camarillo <a class="reference external" href="mailto:pcamaril&#37;&#52;&#48;cisco&#46;com">pcamaril<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>SR-MPLS</p>
+<ul class="simple">
+<li><p>SR Policy support</p></li>
+<li><p>Automated steering (SR steering based on NextHop/Color)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/srmpls">https://github.com/FDio/vpp/blob/master/src/vnet/srmpls</a></p>
+</section>
+<section id="session-layer">
+<h3>Session Layer<a class="headerlink" href="#session-layer" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>The session layer facilitates the interaction between northbound applications and southbound transport protocols. To this end, northbound, through the app-interface sub layer, the session layer exposes APIs for applications to interact with abstract units of communication, i.e., sessions. And southbound, through the transport protocol interface, it exposes APIs that allow transport protocols to exchange data and events (ctrl and io) with applications, without actually being aware of how that communication is carried out.</p>
+<ul class="simple">
+<li><p>Manages allocation and tracking of sessions (6-tuple lookup tables)</p></li>
+<li><p>App namespaces that constrain application access to network resources</p></li>
+<li><p>Conveys data and notifications (ctrl and io) between transport protocols and apps</p></li>
+<li><p>Transport protocol interface</p>
+<ul>
+<li><p>Provides generic transport protocol template</p></li>
+<li><p>Converts between transport and application representation of data</p></li>
+<li><p>Schedules sessions/connections for sending</p></li>
+</ul>
+</li>
+<li><p>Application interface</p>
+<ul>
+<li><p>Maintains per application state</p></li>
+<li><p>Manages allocation of shared memory resources used for exchanging data between applications and transports</p></li>
+<li><p>Exposes a native C and a binary api for builtin and external apps respectively</p></li>
+</ul>
+</li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/session">https://github.com/FDio/vpp/blob/master/src/vnet/session</a></p>
+</section>
+<section id="source-vrf-select">
+<h3>Source VRF Select<a class="headerlink" href="#source-vrf-select" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<ul class="simple">
+<li><p>Determine the input VRF/table based on the source IP address</p></li>
+<li><p>routes are added to tables.</p></li>
+<li><p>route lookup is performed using the packet’s source address</p></li>
+<li><p>The route is programmed with the table in which the subsequent destination address lookup will be performed</p></li>
+<li><p>Tables are bound to interfaces.</p></li>
+<li><p>SVS runs as an input feature in the L3 path</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/svs">https://github.com/FDio/vpp/blob/master/src/plugins/svs</a></p>
+</section>
+<section id="static-http-https-server">
+<h3>Static http https server<a class="headerlink" href="#static-http-https-server" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>A simple caching static http / https server A built-in vpp host stack application. Supports HTTP GET and HTTP POST methods.</p>
+<ul class="simple">
+<li><p>An extensible static http/https server with caching</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/http_static">https://github.com/FDio/vpp/blob/master/src/plugins/http_static</a></p>
+</section>
+<section id="tls-openssl">
+<h3>TLS OpenSSL<a class="headerlink" href="#tls-openssl" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a>, Ping Yu <a class="reference external" href="mailto:ping&#46;yu&#37;&#52;&#48;intel&#46;com">ping<span>&#46;</span>yu<span>&#64;</span>intel<span>&#46;</span>com</a></p>
+<p>TLS OpenSSL plugin for VPP host stack</p>
+<ul class="simple">
+<li><p>OpenSSL engine for TLS</p></li>
+<li><p>TLS Async framework</p></li>
+<li><p>Enable QAT for crypto offload</p></li>
+</ul>
+<p>Feature maturity level: experimental<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/tlsopenssl">https://github.com/FDio/vpp/blob/master/src/plugins/tlsopenssl</a></p>
+</section>
+<section id="tap-device">
+<h3>Tap Device<a class="headerlink" href="#tap-device" title="Permalink to this headline"></a></h3>
+<p>Maintainer: damarion&#64;cisco.com sluong&#64;cisco.com sykazmi&#64;cisco.com</p>
+<p>Create a tap v2 device interface, which connects to a tap interface on the host system.</p>
+<ul class="simple">
+<li><p>Virtio</p></li>
+<li><p>Persistence</p></li>
+<li><p>Attach to an existing tap at host</p></li>
+<li><p>Filter packet dump output with SW if index</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/devices/tap">https://github.com/FDio/vpp/blob/master/src/vnet/devices/tap</a></p>
+</section>
+<section id="time-range-based-mac-address-filter">
+<h3>Time-range-based MAC-address filter<a class="headerlink" href="#time-range-based-mac-address-filter" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>Device-input/output arc driver level MAC filter. Checks to see if traffic is allowed to/from the given MAC address, and takes the appropriate action. Intended for the home gateway use-case, where WAN traffic is billed per bit.</p>
+<ul class="simple">
+<li><p>Static / time-range / data quota based MAC address filter</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/mactime">https://github.com/FDio/vpp/blob/master/src/plugins/mactime</a></p>
+</section>
+<section id="transmission-control-protocol">
+<h3>Transmission Control Protocol<a class="headerlink" href="#transmission-control-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>High speed and scale Transmission Control Protocol (TCP) implementation</p>
+<ul class="simple">
+<li><p>Core functionality (RFC793, RFC5681, RFC6691)</p></li>
+<li><p>Extensions for high performance (RFC7323)</p></li>
+<li><p>Congestion control extensions (RFC3465, RFC8312)</p></li>
+<li><p>Loss recovery extensions (RFC2018, RFC3042, RFC6582, RFC6675, RFC6937)</p></li>
+<li><p>Detection and prevention of spurious retransmits (RFC3522)</p></li>
+<li><p>Defending spoofing and flooding attacks (RFC6528)</p></li>
+<li><p>Partly implemented features (RFC1122, RFC4898, RFC5961)</p></li>
+<li><p>Delivery rate estimation (draft-cheng-iccrg-delivery-rate-estimation)</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/tcp">https://github.com/FDio/vpp/blob/master/src/vnet/tcp</a></p>
+</section>
+<section id="transport-layer-security">
+<h3>Transport Layer Security<a class="headerlink" href="#transport-layer-security" title="Permalink to this headline"></a></h3>
+<p>Maintainers: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a>, Ping Yu <a class="reference external" href="mailto:ping&#46;yu&#37;&#52;&#48;intel&#46;com">ping<span>&#46;</span>yu<span>&#64;</span>intel<span>&#46;</span>com</a></p>
+<p>Transport Layer Security (TLS) protocol implementation that consists of a set of engines that act as wrappers for existing TLS implementations, e.g., OpenSSL, Picotls and MbedTLS, and a framework that integrates the engines into VPP’s host stack</p>
+<ul class="simple">
+<li><p>Framework that supports pluggable TLS engines</p></li>
+<li><p>OpenSSL, Picotls and MbedTLS engines</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/tls">https://github.com/FDio/vpp/blob/master/src/vnet/tls</a></p>
+</section>
+<section id="tunnel-infra">
+<h3>Tunnel Infra<a class="headerlink" href="#tunnel-infra" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Tunnel Infrastructure</p>
+<ul class="simple">
+<li><p>Common types and functions for IP tunnels</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/tunnel">https://github.com/FDio/vpp/blob/master/src/vnet/tunnel</a></p>
+</section>
+<section id="user-datagram-protocol">
+<h3>User Datagram Protocol<a class="headerlink" href="#user-datagram-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>User Datagram Protocol (UDP) implementation</p>
+<ul class="simple">
+<li><p>host stack integration via session layer</p></li>
+<li><p>standalone per port dispatcher for tunneling protocols</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/udp">https://github.com/FDio/vpp/blob/master/src/vnet/udp</a></p>
+</section>
+<section id="vnet-gso">
+<h3>VNET GSO<a class="headerlink" href="#vnet-gso" title="Permalink to this headline"></a></h3>
+<p>Maintainer: ayourtch&#64;gmail.com sykazmi&#64;cisco.com</p>
+<p>Generic Segmentation Offload</p>
+<ul class="simple">
+<li><p>Basic GSO support</p></li>
+<li><p>GSO for VLAN tagged packets</p></li>
+<li><p>GSO for VXLAN tunnel</p></li>
+<li><p>GSO for IP-IP tunnel</p></li>
+<li><p>GSO for IPSec tunnel</p></li>
+<li><p>Provide inline function to get header offsets</p></li>
+<li><p>Basic GRO support</p></li>
+<li><p>Implements flow table support</p></li>
+</ul>
+<p>Feature maturity level: experimental<br />Supports: API CLI</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>Thorough Testing, GRE, Geneve</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/gso">https://github.com/FDio/vpp/blob/master/src/vnet/gso</a></p>
+</section>
+<section id="vpp-comms-library">
+<h3>VPP Comms Library<a class="headerlink" href="#vpp-comms-library" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Florin Coras <a class="reference external" href="mailto:fcoras&#37;&#52;&#48;cisco&#46;com">fcoras<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>VPP Comms Library (VCL) simplifies app interaction with session layer by exposing APIs that are similar to but not POSIX-compliant.</p>
+<ul class="simple">
+<li><p>Abstracts vpp host stack sessions to integer session handles</p></li>
+<li><p>Exposes its own async communication functions, i.e., epoll, select, poll</p></li>
+<li><p>Supports multi-worker applications</p></li>
+<li><p>Sessions cannot be shared between multiple threads/processes</p></li>
+<li><p>VCL Locked Sessions (VLS)</p>
+<ul>
+<li><p>Ensure through locking that only one thread accesses a session at a time</p></li>
+<li><p>Detects and registers forked processes as new VCL workers. It does not register threads as new workers.</p></li>
+</ul>
+</li>
+<li><p>LD_PRELOAD shim (LDP)</p>
+<ul>
+<li><p>Intercepts syscalls and injects them into VLS.</p></li>
+<li><p>Applications that are supported work with VCL and implicitly with VPP’s host stack without any code change</p></li>
+<li><p>It does not support all syscalls and syscall options</p></li>
+</ul>
+</li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vcl">https://github.com/FDio/vpp/blob/master/src/vcl</a></p>
+</section>
+<section id="vpp-infrastructure-library">
+<h3>VPP infrastructure library<a class="headerlink" href="#vpp-infrastructure-library" title="Permalink to this headline"></a></h3>
+<p>Maintainers: Dave Barach <a class="reference external" href="mailto:dave&#37;&#52;&#48;barachs&#46;net">dave<span>&#64;</span>barachs<span>&#46;</span>net</a></p>
+<p>VPP’s foundation / infrastructure support library. The library dates from 2000 and hardly changes anymore. Heavily used across vpp, issues are not expected.</p>
+<ul class="simple">
+<li><p>Abstract device driver ring support</p></li>
+<li><p>Address sanitizer support</p></li>
+<li><p>Altivec, Neon, MMX, AVX2, AVX512 SIMD vector unit support</p></li>
+<li><p>Atomic op support</p></li>
+<li><p>Backtrace support</p></li>
+<li><p>Bitmaps</p></li>
+<li><p>Bounded-index extensible hashing templates</p></li>
+<li><p>C11 safe-string support</p></li>
+<li><p>Cache control primitives, including prefetching</p></li>
+<li><p>C-dynamic arrays (vectors)</p></li>
+<li><p>Circular doubly-linked list support with a head sentinel</p></li>
+<li><p>Contiguous N x fixed block allocator</p></li>
+<li><p>CPU clock based timebase support</p></li>
+<li><p>Doubly-linked list support</p></li>
+<li><p>ELF file parser</p></li>
+<li><p>Endian-order support</p></li>
+<li><p>Error return / reporting support</p></li>
+<li><p>FIFO support</p></li>
+<li><p>Fundamental types, u8, u16, u32, and so on</p></li>
+<li><p>High-performance event logger</p></li>
+<li><p>High-performance memcpy support</p></li>
+<li><p>High-performance mmap-based circular log support</p></li>
+<li><p>High-performance timer-wheel templates</p></li>
+<li><p>Linux socket support</p></li>
+<li><p>Linux sysfs file parsing support</p></li>
+<li><p>Low-level CPU support</p></li>
+<li><p>Mapped pcap file support</p></li>
+<li><p>Memory allocator, “Doug Lea” malloc with a few tweaks</p></li>
+<li><p>Minimal overhead Linux system-call support</p></li>
+<li><p>Multi-architecture setjmp / longjmp support</p></li>
+<li><p>Numerous Unit tests</p></li>
+<li><p>Physical memory allocator support</p></li>
+<li><p>Pools, a high performance fixed block allocation scheme</p></li>
+<li><p>Red/black trees.</p></li>
+<li><p>Rigorously vetted linear congruential random numbers (32 and 64 bit)</p></li>
+<li><p>Serialization / unserialization support</p></li>
+<li><p>SHA256, SHA512 support</p></li>
+<li><p>Simple first-fit virtual space allocator</p></li>
+<li><p>Simple hashing support</p></li>
+<li><p>Simple macro expander</p></li>
+<li><p>Sparse vector support</p></li>
+<li><p>Spinlock support</p></li>
+<li><p>Time Range support</p></li>
+<li><p>Unix / Linux errno support</p></li>
+<li><p>Vector-based printf / scanf equivalents (format, unformat)</p></li>
+<li><p>Warshall’s algorithm (positive transitive closure of a relation)</p></li>
+<li><p>XXhash support</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vppinfra">https://github.com/FDio/vpp/blob/master/src/vppinfra</a></p>
+</section>
+<section id="virtio-pci-device">
+<h3>Virtio PCI Device<a class="headerlink" href="#virtio-pci-device" title="Permalink to this headline"></a></h3>
+<p>Maintainer: sykazmi&#64;cisco.com sluong&#64;cisco.com</p>
+<p>Virtio implementation</p>
+<ul class="simple">
+<li><p>Driver mode to emulate PCI interface presented to VPP from the host interface.</p></li>
+<li><p>Device mode to emulate vhost-user interface presented to VPP from the guest VM.</p></li>
+<li><p>Support virtio 1.0 in virtio</p></li>
+<li><p>Support virtio 1.1 packed ring in virtio [experimental]</p></li>
+<li><p>Support multi-queue, GSO, checksum offload, indirect descriptor, jumbo frame, and packed ring.</p></li>
+<li><p>Support virtio 1.1 packed ring in vhost</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>API dump filtering by sw_if_index</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/devices/virtio">https://github.com/FDio/vpp/blob/master/src/vnet/devices/virtio</a></p>
+</section>
+<section id="virtual-router-redundancy-protocol">
+<h3>Virtual Router Redundancy Protocol<a class="headerlink" href="#virtual-router-redundancy-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Matthew Smith <a class="reference external" href="mailto:mgsmith&#37;&#52;&#48;netgate&#46;com">mgsmith<span>&#64;</span>netgate<span>&#46;</span>com</a></p>
+<p>Virtual Router Redundancy Protocol implementation (VRRPv3)</p>
+<ul class="simple">
+<li><p>VRRPv3 (RFC 5798) for IPv4 and IPv6</p>
+<ul>
+<li><p>Signaling/advertisements and election of a master</p></li>
+<li><p>Replies to ARP, NS requests for virtual router addresses</p></li>
+</ul>
+</li>
+<li><p>VRRP virtual MAC address support</p>
+<ul>
+<li><p>DPDK interfaces with PMD support for multiple MAC addresses via the rte_eth_dev_mac_addr_add(), rte_eth_dev_mac_addr_del()</p></li>
+<li><p>Other interfaces which are set in promiscuous mode may work</p></li>
+</ul>
+</li>
+<li><p>Support interface types for VRRP virtual routers</p>
+<ul>
+<li><p>Hardware interfaces</p></li>
+<li><p>VLAN subinterfaces</p></li>
+<li><p>Bond interfaces</p></li>
+</ul>
+</li>
+<li><p>Additional features not specified in RFC 5798</p>
+<ul>
+<li><p>Allows sending advertisements to unicast peers instead of multicast</p></li>
+<li><p>Allows a virtual router’s priority to be adjusted based on the state of an upstream interface. Mentioned as a configuration option to “track interfaces or networks” in RFC 8347.</p></li>
+</ul>
+</li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/vrrp">https://github.com/FDio/vpp/blob/master/src/plugins/vrrp</a></p>
+</section>
+<section id="virtual-extensible-lan">
+<h3>Virtual eXtensible LAN<a class="headerlink" href="#virtual-extensible-lan" title="Permalink to this headline"></a></h3>
+<p>Maintainer: John Lo <a class="reference external" href="mailto:loj&#37;&#52;&#48;cisco&#46;com">loj<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Virtual eXtensible LAN (VXLAN) tunnels support L2 overlay networks that span L3 networks</p>
+<ul class="simple">
+<li><p>VXLAN tunnel for support of L2 overlay/virtual networks (RFC-7348)</p></li>
+<li><p>Support either IPv4 or IPv6 underlay network VTEPs</p></li>
+<li><p>Flooding via headend replication if all VXLAN tunnels in BD are unicast ones</p></li>
+<li><p>Multicast VXLAN tunnel can be added to BD to flood via IP multicast</p></li>
+<li><p>VXLAN encap with flow-hashed source port for better underlay IP load balance</p></li>
+<li><p>VXLAN decap optimization via vxlan-bypass IP feature on underlay interfaces</p></li>
+<li><p>VXLAN decap HW offload using flow director with DPDK on Intel Fortville NICs</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/vxlan">https://github.com/FDio/vpp/blob/master/src/vnet/vxlan</a></p>
+</section>
+<section id="vxlan-gpe">
+<h3>VxLAN-GPE<a class="headerlink" href="#vxlan-gpe" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Hongjun Ni <a class="reference external" href="mailto:hongjun&#46;ni&#37;&#52;&#48;intel&#46;com">hongjun<span>&#46;</span>ni<span>&#64;</span>intel<span>&#46;</span>com</a></p>
+<p>VxLAN-GPE tunnel handling</p>
+<ul class="simple">
+<li><p>VxLAN-GPE decapsulation</p></li>
+<li><p>VxLAN-GPE encapsulation</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/vxlan-gpe">https://github.com/FDio/vpp/blob/master/src/vnet/vxlan-gpe</a></p>
+</section>
+<section id="wireguard-protocol">
+<h3>Wireguard protocol<a class="headerlink" href="#wireguard-protocol" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Artem Glazychev <a class="reference external" href="mailto:artem&#46;glazychev&#37;&#52;&#48;xored&#46;com">artem<span>&#46;</span>glazychev<span>&#64;</span>xored<span>&#46;</span>com</a></p>
+<p>Wireguard protocol implementation</p>
+<ul class="simple">
+<li><p>based on wireguard-openbsd implementation: https://git.zx2c4.com/wireguard-openbsd</p></li>
+<li><p>creating secure VPN-tunnel</p></li>
+</ul>
+<p>Feature maturity level: development<br />Supports: API CLI</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>IPv6 support</p></li>
+<li><p>DoS protection as in the original protocol</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/wireguard">https://github.com/FDio/vpp/blob/master/src/plugins/wireguard</a></p>
+</section>
+<section id="arping-command">
+<h3>arping command<a class="headerlink" href="#arping-command" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Steven Luong <a class="reference external" href="mailto:sluong&#37;&#52;&#48;cisco&#46;com">sluong<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>arping command</p>
+<ul class="simple">
+<li><p>arping command to send either gratuitous or ARP request to the remote</p></li>
+<li><p>support both IPv4 and IPv6</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/arping">https://github.com/FDio/vpp/blob/master/src/plugins/arping</a></p>
+</section>
+<section id="host-interface-device-af-packet">
+<h3>host-interface Device AF_PACKET<a class="headerlink" href="#host-interface-device-af-packet" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Damjan Marion <a class="reference external" href="mailto:damarion&#37;&#52;&#48;cisco&#46;com">damarion<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Create a host interface that will attach to a linux AF_PACKET interface, one side of a veth pair. The veth pair must already exist. Once created, a new host interface will exist in VPP with the name ‘host-<ifname>’, where ‘<ifname>’ is the name of the specified veth pair. Use the ‘show interface’ command to display host interface details.</p>
+<ul class="simple">
+<li><p>L4 checksum offload</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD</p>
+<p>Not yet implemented:</p>
+<ul class="simple">
+<li><p>API dump details beyond sw_if_index and name</p></li>
+</ul>
+<p>Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vnet/devices/af_packet">https://github.com/FDio/vpp/blob/master/src/vnet/devices/af_packet</a></p>
+</section>
+<section id="ikev2-plugin">
+<h3>ikev2 plugin<a class="headerlink" href="#ikev2-plugin" title="Permalink to this headline"></a></h3>
+<p>Maintainers: Damjan Marion <a class="reference external" href="mailto:damarion&#37;&#52;&#48;cisco&#46;com">damarion<span>&#64;</span>cisco<span>&#46;</span>com</a>, Neale Ranns <a class="reference external" href="mailto:nranns&#37;&#52;&#48;cisco&#46;com">nranns<span>&#64;</span>cisco<span>&#46;</span>com</a>, Filip Tehlar <a class="reference external" href="mailto:ftehlar&#37;&#52;&#48;cisco&#46;com">ftehlar<span>&#64;</span>cisco<span>&#46;</span>com</a>, Benoît Ganne <a class="reference external" href="mailto:bganne&#37;&#52;&#48;cisco&#46;com">bganne<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Internet Key Exchange (IKEv2) Protocol plugin</p>
+<ul class="simple">
+<li><p>RFC 7296 “Internet Key Exchange Protocol Version 2 (IKEv2)”</p></li>
+<li><p>NAT-T, ESN, PSK and public key authentication</p></li>
+<li><p>AES-CBC-128/192/256 and AES-GCM-16-128/192/256 encryption</p></li>
+<li><p>HMAC-SHA2-256/384/512 and HMAC-SHA1 pseudo-random functions</p></li>
+<li><p>HMAC-SHA2-256-128/384-192/512-256 integrity</p></li>
+<li><p>MODP and ECP Diffie-Hellman</p></li>
+</ul>
+<p>Feature maturity level: experimental<br />Supports: API CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/ikev2">https://github.com/FDio/vpp/blob/master/src/plugins/ikev2</a></p>
+</section>
+<section id="rdma-device-driver">
+<h3>rdma device driver<a class="headerlink" href="#rdma-device-driver" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Benoît Ganne <a class="reference external" href="mailto:bganne&#37;&#52;&#48;cisco&#46;com">bganne<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>rdma device driver support</p>
+<ul class="simple">
+<li><p>rdma driver for Mellanox ConnectX-4/5 adapters</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/rdma">https://github.com/FDio/vpp/blob/master/src/plugins/rdma</a></p>
+</section>
+<section id="vlib-unix">
+<h3>vlib/unix<a class="headerlink" href="#vlib-unix" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Dave Barach <a class="reference external" href="mailto:dbarach&#37;&#52;&#48;cisco&#46;com">dbarach<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>Linux-specific support routines</p>
+<ul class="simple">
+<li><p>epoll-based file I/O support</p></li>
+<li><p>Linux signal handling</p></li>
+<li><p>Syslog support</p></li>
+<li><p>Startup configuration processing, logging</p></li>
+<li><p>Configuration debug CLI pager, banner, main loop polling interval</p></li>
+<li><p>Per-thread stack allocation, guard-page setup</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: CLI MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/vlib/unix">https://github.com/FDio/vpp/blob/master/src/vlib/unix</a></p>
+</section>
+<section id="vmxnet3-device-driver">
+<h3>vmxnet3 device driver<a class="headerlink" href="#vmxnet3-device-driver" title="Permalink to this headline"></a></h3>
+<p>Maintainer: Steven Luong <a class="reference external" href="mailto:sluong&#37;&#52;&#48;cisco&#46;com">sluong<span>&#64;</span>cisco<span>&#46;</span>com</a></p>
+<p>vmxnet3 device driver support</p>
+<ul class="simple">
+<li><p>vmxnet3 device driver to connect to ESXi server, VMWare Fusion, and VMWare Workstation</p></li>
+<li><p>Supports GSO. It was tested on ESXi 6.7</p></li>
+</ul>
+<p>Feature maturity level: production<br />Supports: API CLI STATS MULTITHREAD<br />Source Code: <a class="reference external" href="https://github.com/FDio/vpp/blob/master/src/plugins/vmxnet3">https://github.com/FDio/vpp/blob/master/src/plugins/vmxnet3</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="releasenotes/v16.06.html" class="btn btn-neutral float-left" title="Release notes for VPP 16.06" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../usecases/containers/index.html" class="btn btn-neutral float-right" title="VPP with Containers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

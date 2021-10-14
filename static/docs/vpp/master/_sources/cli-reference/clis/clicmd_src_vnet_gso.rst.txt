@@ -1,0 +1,18 @@
+.. _clicmd_src_vnet_gso:
+
+===============================================================
+Gso cli reference
+===============================================================
+
+set interface feature gso
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface feature gso <intfc> [enable | disable]
+
+
+Declaration: ``set_interface_feature_gso_command`` `src/vnet/gso/cli.c line 80 <https://github.com/FDio/vpp/blob/master//src/vnet/gso/cli.c#L80>`_
+
+Implementation: ``set_interface_feature_gso_command_fn``
+
