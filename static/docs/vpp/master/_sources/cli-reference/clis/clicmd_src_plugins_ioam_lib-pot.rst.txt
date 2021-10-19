@@ -1,0 +1,59 @@
+.. _clicmd_src_plugins_ioam_lib-pot:
+
+===============================================================
+Lib-pot cli reference
+===============================================================
+
+clear pot profile
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear pot profile [<index>|all]
+
+
+Declaration: ``clear_pot_profile_command`` `src/plugins/ioam/lib-pot/pot_util.c line 269 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/lib-pot/pot_util.c#L269>`_
+
+Implementation: ``clear_pot_profile_command_fn``
+
+
+set pot profile
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set pot profile name <string> id [0-1] [validator-key 0xu64] \
+                      prime-number 0xu64 secret_share 0xu64 lpc 0xu64 \
+                      polynomial2 0xu64 bits-in-random [0-64] 
+
+
+Declaration: ``set_pot_profile_command`` `src/plugins/ioam/lib-pot/pot_util.c line 333 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/lib-pot/pot_util.c#L333>`_
+
+Implementation: ``set_pot_profile_command_fn``
+
+
+set pot profile-active
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set pot profile-active name <string> id [0-1]
+
+
+Declaration: ``set_pot_profile_activate_command`` `src/plugins/ioam/lib-pot/pot_util.c line 376 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/lib-pot/pot_util.c#L376>`_
+
+Implementation: ``set_pot_profile_activate_command_fn``
+
+
+show pot profile
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show pot profile
+
+
+Declaration: ``show_pot_profile_command`` `src/plugins/ioam/lib-pot/pot_util.c line 440 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/lib-pot/pot_util.c#L440>`_
+
+Implementation: ``show_pot_profile_command_fn``
+

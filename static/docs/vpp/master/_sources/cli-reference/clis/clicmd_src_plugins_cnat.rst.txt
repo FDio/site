@@ -1,0 +1,148 @@
+.. _clicmd_src_plugins_cnat:
+
+===============================================================
+Cnat cli reference
+===============================================================
+
+cnat translation
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    cnat translation [add|del] proto [TCP|UDP] [vip|real] [ip|sw_if_index [v6]] [port] [to [ip|sw_if_index [v6]] [port]->[ip|sw_if_index [v6]] [port]]
+
+
+Declaration: ``cnat_translation_cli_add_del_command`` `src/plugins/cnat/cnat_translation.c line 692 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_translation.c#L692>`_
+
+Implementation: ``cnat_translation_cli_add_del``
+
+
+set cnat snat-policy
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set cnat snat-policy [none][if-pfx][k8s]
+
+
+Declaration: ``cnat_snat_policy_set_cmd`` `src/plugins/cnat/cnat_snat_policy.c line 515 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_snat_policy.c#L515>`_
+
+Implementation: ``cnat_snat_policy_set_cmd_fn``
+
+
+set cnat snat-policy addr
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set cnat snat-policy addr [<ip4-address>][<ip6-address>][sw_if_index]
+
+
+Declaration: ``cnat_set_snat_command`` `src/plugins/cnat/cnat_snat_policy.c line 394 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_snat_policy.c#L394>`_
+
+Implementation: ``cnat_set_snat_cli``
+
+
+set cnat snat-policy if
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set cnat snat-policy if [del][table [include-v4 include-v6 k8s]] [interface]
+
+
+Declaration: ``cnat_snat_policy_add_del_if_command`` `src/plugins/cnat/cnat_snat_policy.c line 140 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_snat_policy.c#L140>`_
+
+Implementation: ``cnat_snat_policy_add_del_if_command_fn``
+
+
+set cnat snat-policy prefix
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set cnat snat-policy prefix [del] [prefix]
+
+
+Declaration: ``cnat_snat_policy_add_del_pfx_command`` `src/plugins/cnat/cnat_snat_policy.c line 432 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_snat_policy.c#L432>`_
+
+Implementation: ``cnat_snat_policy_add_del_pfx_command_fn``
+
+
+show cnat client
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show cnat client
+
+
+Declaration: ``cnat_client_show_cmd_node`` `src/plugins/cnat/cnat_client.c line 304 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_client.c#L304>`_
+
+Implementation: ``cnat_client_show``
+
+
+show cnat session
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show cnat session
+
+
+Declaration: ``cnat_session_show_cmd_node`` `src/plugins/cnat/cnat_session.c line 136 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_session.c#L136>`_
+
+Implementation: ``cnat_session_show``
+
+
+show cnat snat-policy
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show cnat snat-policy
+
+
+Declaration: ``cnat_show_snat_command`` `src/plugins/cnat/cnat_snat_policy.c line 466 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_snat_policy.c#L466>`_
+
+Implementation: ``cnat_show_snat``
+
+
+show cnat timestamp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show cnat timestamp
+
+
+Declaration: ``cnat_timestamp_show_cmd`` `src/plugins/cnat/cnat_session.c line 272 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_session.c#L272>`_
+
+Implementation: ``cnat_timestamp_show``
+
+
+show cnat translation
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show cnat translation <VIP>
+
+
+Declaration: ``cnat_translation_show_cmd_node`` `src/plugins/cnat/cnat_translation.c line 576 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_translation.c#L576>`_
+
+Implementation: ``cnat_translation_show``
+
+
+test cnat scanner
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test cnat scanner
+
+
+Declaration: ``cnat_scanner_cmd_node`` `src/plugins/cnat/cnat_scanner.c line 90 <https://github.com/FDio/vpp/blob/master//src/plugins/cnat/cnat_scanner.c#L90>`_
+
+Implementation: ``cnat_scanner_cmd``
+

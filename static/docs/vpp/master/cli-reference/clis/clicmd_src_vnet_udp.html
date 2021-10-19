@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Udp cli reference &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Unix cli reference" href="clicmd_src_vnet_unix.html" />
+    <link rel="prev" title="Teib cli reference" href="clicmd_src_vnet_teib.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ethernet.html">ARP and Loopback CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_vlib_unix_cj_c.html">Circular Journal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix_cli_c.html">Command line session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_dpdk-ipsec.html">DPDK Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_device.html">DPDK and pcap tx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_af_packet.html">Host Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app_version_c.html">Image Version Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_init_c.html">Init functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet.html">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_l2.html">Layer 2 CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip.html">Layer 3 IP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsim_nsim_c.html">Network Delay Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_http_static_static_server_c.html">Static HTTP Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix.html">Unix Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib.html">VLIB application library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan.html">VXLAN CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gbp.html">VXLAN-GBP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_netmap.html">netmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_abf.html">Abf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_acl.html">Acl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_adl.html">Adl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_af_xdp.html">Af_xdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_arping.html">Arping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_avf.html">Avf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_bufmon.html">Bufmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_builtinurl.html">Builtinurl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cdp.html">Cdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cnat.html">Cnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_crypto_sw_scheduler.html">Crypto_sw_scheduler cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ct6.html">Ct6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dhcp.html">Dhcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dispatch-trace.html">Dispatch-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dns.html">Dns cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_cryptodev.html">Cryptodev cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_flowprobe.html">Flowprobe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gbp.html">Gbp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_geneve.html">Geneve cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gtpu.html">Gtpu cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_hs_apps.html">Hs_apps cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_igmp.html">Igmp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ikev2.html">Ikev2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ila.html">Ila cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_analyse_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_encap.html">Encap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export.html">Export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export-vxlan-gpe.html">Export-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-pot.html">Lib-pot cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-trace.html">Lib-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-vxlan-gpe.html">Lib-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_udp-ping.html">Udp-ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2e.html">L2e cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2tp.html">L2tp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l3xc.html">L3xc cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lacp.html">Lacp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lb.html">Lb cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp.html">Linux-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-cp.html">Lisp-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-gpe.html">Lisp-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lldp.html">Lldp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mactime.html">Mactime cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_map.html">Map cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_marvell_pp2.html">Pp2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mdata.html">Mdata cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_memif.html">Memif cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mss_clamp.html">Mss_clamp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_det44.html">Det44 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_dslite.html">Dslite cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ed.html">Nat44-ed cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ei.html">Nat44-ei cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat64.html">Nat64 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat66.html">Nat66 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_pnat.html">Pnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh.html">Nsh cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam.html">Nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html">Export-nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_oddbuf.html">Oddbuf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ping.html">Ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_pppoe.html">Pppoe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_quic.html">Quic cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_rdma.html">Rdma cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_snort.html">Snort cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_stn.html">Stn cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_svs.html">Svs cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tlsopenssl.html">Tlsopenssl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tracedump.html">Tracedump cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_unittest.html">Unittest cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_urpf.html">Urpf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vmxnet3.html">Vmxnet3 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vrrp.html">Vrrp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_wireguard.html">Wireguard cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_pci.html">Pci cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibapi.html">Vlibapi cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibmemory.html">Vlibmemory cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_adj.html">Adj cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_arp.html">Arp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bfd.html">Bfd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bier.html">Bier cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bonding.html">Bonding cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_classify.html">Classify cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_crypto.html">Crypto cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_pipe.html">Pipe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_tap.html">Tap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_dpo.html">Dpo cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_feature.html">Feature cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_fib.html">Fib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_flow.html">Flow cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gre.html">Gre cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gso.html">Gso cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_hash.html">Hash cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip-neighbor.html">Ip-neighbor cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip_reass.html">Reass cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip6-nd.html">Ip6-nd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipfix-export.html">Ipfix-export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipip.html">Ipip cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipsec.html">Ipsec cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_lawful-intercept.html">Lawful-intercept cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mfib.html">Mfib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mpls.html">Mpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_pg.html">Pg cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_policer.html">Policer cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_qos.html">Qos cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_session.html">Session cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_span.html">Span cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srmpls.html">Srmpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srv6.html">Srv6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_syslog.html">Syslog cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_tcp.html">Tcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_teib.html">Teib cli reference</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Udp cli reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#show-udp-encap">show udp encap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-udp-punt">show udp punt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#udp-decap">udp decap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#udp-encap">udp encap</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_unix.html">Unix cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gpe.html">Vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_api.html">Api cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app.html">App cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_stats.html">Stats cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_vnet.html">Vnet cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_virtio.html">vHost User</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+      <li>Udp cli reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cli-reference/clis/clicmd_src_vnet_udp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="udp-cli-reference">
+<span id="clicmd-src-vnet-udp"></span><h1>Udp cli reference<a class="headerlink" href="#udp-cli-reference" title="Permalink to this headline"></a></h1>
+<section id="show-udp-encap">
+<h2>show udp encap<a class="headerlink" href="#show-udp-encap" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show udp encap [ID]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">udp_encap_show_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/udp/udp_encap.c#L561">src/vnet/udp/udp_encap.c line 561</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">udp_encap_show</span></code></p>
+</section>
+<section id="show-udp-punt">
+<h2>show udp punt<a class="headerlink" href="#show-udp-punt" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show udp punt [ipv4|ipv6]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_tcp_punt_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/udp/udp_cli.c#L166">src/vnet/udp/udp_cli.c line 166</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_udp_punt_fn</span></code></p>
+</section>
+<section id="udp-decap">
+<h2>udp decap<a class="headerlink" href="#udp-decap" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">udp decap [add|del] [ipv4|ipv6] &lt;dst-port&gt; next-proto &lt;inner-protocol&gt;</span>
+</pre></div>
+</div>
+<p>Register a port to decapsulate incoming UDP encapsulated packets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">udp decap add ipv4 1234 next-proto mpls</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">udp decap [add|del] [ipv4|ipv6] &lt;dst-port&gt; next-proto &lt;inner-protocol&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">udp_decap_add_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/udp/udp_decap.c#L101">src/vnet/udp/udp_decap.c line 101</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">udp_decap_cli</span></code></p>
+</section>
+<section id="udp-encap">
+<h2>udp encap<a class="headerlink" href="#udp-encap" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">udp encap [add|del] &lt;id ID&gt; &lt;src-ip&gt; &lt;dst-ip&gt; [&lt;src-port&gt;] &lt;dst-port&gt;  [src-port-is-entropy] [table-id &lt;table&gt;]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">udp_encap_add_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vnet/udp/udp_encap.c#L555">src/vnet/udp/udp_encap.c line 555</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">udp_encap_cli</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clicmd_src_vnet_teib.html" class="btn btn-neutral float-left" title="Teib cli reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clicmd_src_vnet_unix.html" class="btn btn-neutral float-right" title="Unix cli reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

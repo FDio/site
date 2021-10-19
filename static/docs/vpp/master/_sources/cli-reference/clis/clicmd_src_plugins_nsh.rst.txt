@@ -1,0 +1,43 @@
+.. _clicmd_src_plugins_nsh:
+
+===============================================================
+Nsh cli reference
+===============================================================
+
+create nsh entry
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create nsh entry {nsp <nn> nsi <nn>} [ttl <nn>] [md-type <nn>]  [c1 <nn> c2 <nn> c3 <nn> c4 <nn>] [tlv-ioam-trace] [del]
+    
+
+
+Declaration: ``create_nsh_entry_command`` `src/plugins/nsh/nsh_cli.c line 498 <https://github.com/FDio/vpp/blob/master//src/plugins/nsh/nsh_cli.c#L498>`_
+
+Implementation: ``nsh_add_del_entry_command_fn``
+
+
+create nsh map
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create nsh map nsp <nn> nsi <nn> [del] mapped-nsp <nn> mapped-nsi <nn> nsh_action [swap|push|pop] [encap-gre4-intf <nn> | encap-gre4-intf <nn> | encap-vxlan-gpe-intf <nn> | encap-lisp-gpe-intf <nn>  encap-vxlan4-intf <nn> | encap-vxlan6-intf <nn>| encap-eth-intf <nn> | encap-none]
+    
+
+
+Declaration: ``create_nsh_map_command`` `src/plugins/nsh/nsh_cli.c line 294 <https://github.com/FDio/vpp/blob/master//src/plugins/nsh/nsh_cli.c#L294>`_
+
+Implementation: ``nsh_add_del_map_command_fn``
+
+
+Declaration: ``show_nsh_entry_command`` `src/plugins/nsh/nsh_cli.c line 625 <https://github.com/FDio/vpp/blob/master//src/plugins/nsh/nsh_cli.c#L625>`_
+
+Implementation: ``show_nsh_entry_command_fn``
+
+
+Declaration: ``show_nsh_map_command`` `src/plugins/nsh/nsh_cli.c line 326 <https://github.com/FDio/vpp/blob/master//src/plugins/nsh/nsh_cli.c#L326>`_
+
+Implementation: ``show_nsh_map_command_fn``
+

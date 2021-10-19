@@ -1,0 +1,57 @@
+.. _clicmd_src_vnet_ip_reass:
+
+===============================================================
+Reass cli reference
+===============================================================
+
+show ip4-full-reassembly
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip4-full-reassembly [details]
+
+
+Declaration: ``show_ip4_full_reass_cmd`` `src/vnet/ip/reass/ip4_full_reass.c line 1697 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/reass/ip4_full_reass.c#L1697>`_
+
+Implementation: ``show_ip4_reass``
+
+
+show ip4-sv-reassembly
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip4-sv-reassembly [details]
+
+
+Declaration: ``show_ip4_sv_reass_cmd`` `src/vnet/ip/reass/ip4_sv_reass.c line 1345 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/reass/ip4_sv_reass.c#L1345>`_
+
+Implementation: ``show_ip4_reass``
+
+
+show ip6-full-reassembly
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6-full-reassembly [details]
+
+
+Declaration: ``show_ip6_full_reassembly_cmd`` `src/vnet/ip/reass/ip6_full_reass.c line 1681 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/reass/ip6_full_reass.c#L1681>`_
+
+Implementation: ``show_ip6_full_reass``
+
+
+show ip6-sv-reassembly
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6-sv-reassembly [details]
+
+
+Declaration: ``show_ip6_sv_reassembly_cmd`` `src/vnet/ip/reass/ip6_sv_reass.c line 1150 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/reass/ip6_sv_reass.c#L1150>`_
+
+Implementation: ``show_ip6_sv_reass``
+

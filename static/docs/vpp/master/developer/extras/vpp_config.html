@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VPP configuration utility &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VPP interface stats client" href="vpp_if_stats.html" />
+    <link rel="prev" title="Strongswan Testing Tool" href="strongswan.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">VPP extra tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lcov.html">Code coverage with lcov</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snap.html">VPP Snap Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strongswan.html">Strongswan Testing Tool</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">VPP configuration utility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vpp-config-usage">VPP config Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caveats">Caveats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uploading-to-pypi">Uploading to PyPi</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_if_stats.html">VPP interface stats client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp_stats_fs.html">VPP stats segment FUSE filesystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpptop.html">VPP Top Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vcl_ldpreload.html">LD_PRELOAD the VCL</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">VPP extra tools</a> &raquo;</li>
+      <li>VPP configuration utility</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/extras/vpp_config.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vpp-configuration-utility">
+<h1>VPP configuration utility<a class="headerlink" href="#vpp-configuration-utility" title="Permalink to this headline"></a></h1>
+<p>The purpose of the VPP configuration utility is to allow the user to configure
+VPP in a simple and safe manner. The utility takes input from the user and
+then modifies the key configuration files. The user can then examine these files
+to be sure they are correct and then actually apply the configuration. The user
+can also install a released and stable version of VPP. This is currently
+released with release 17.10.</p>
+<section id="vpp-config-usage">
+<h2>VPP config Usage<a class="headerlink" href="#vpp-config-usage" title="Permalink to this headline"></a></h2>
+<p>The installation and executing of the VPP configuration utility is simple. First
+install the python pip module. Using pip install, then pip install vpp-config.
+Then simply type <code class="docutils literal notranslate"><span class="pre">vpp-config</span></code> and answer the questions. If you are not sure what
+to answer choose the default. For yes or no questions the capital letter
+designates the default. For example, for a question that shows [Y/n] Y is the
+default. For numbers the default is within the brackets for example for a
+question that shows [1024]. 1024 is the default.</p>
+<p>The flow of the utility is to inspect the system, if VPP is not install it,
+create dry run configurations, inspect the files created during the dry run,
+apply the configuration and then inspect the system again and then repeat.</p>
+</section>
+<section id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Supports Ubuntu, centos7, RedHat is coming shortly.</p></li>
+</ul>
+<p>For Developers:</p>
+<p>Modifying the code is reasonable simple. The process would be edit and debug the
+code from the root directory. In order to do this, we need a script that will copy
+or data files to the proper place. This is where they end up with pip install. For
+Ubuntu, this is <code class="docutils literal notranslate"><span class="pre">/usr/local/vpp/vpp-config</span></code>. I have provided a script that will copy
+the relevant files correctly. I have also provided a script that will clean the
+environment so you can start from scratch. These are the steps to run the utility
+in this environment. The scripts are meant to be run from the root directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./scripts/clean.sh</span>
+<span class="go">./scripts/cp-data.sh</span>
+<span class="go">./vpp-config</span>
+</pre></div>
+</div>
+<p>When the utility is installed with pip the wrapper <code class="docutils literal notranslate"><span class="pre">scripts/vpp-config</span></code> is written to
+<code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code>. However, the starting point when debugging this script locally is
+vpp-config. Run the utility by executing vpp-config.</p>
+<p>The start point in the code is in vpp_config.py. However, most of the work is
+done in the files in <code class="docutils literal notranslate"><span class="pre">./vpplib</span></code></p>
+</section>
+<section id="uploading-to-pypi">
+<h2>Uploading to PyPi<a class="headerlink" href="#uploading-to-pypi" title="Permalink to this headline"></a></h2>
+<p>To upload this utility to PpPi simple do the following. Currently, I have my own account
+when we want everyone to contribute we will need to change that.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo bash</span>
+<span class="go">cd vpp_config</span>
+<span class="go">python setup.py sdist bdist_wheel</span>
+<span class="go">twine upload dist/*</span>
+</pre></div>
+</div>
+<p>Example Run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>pip install vpp-config
+<span class="gp"># </span>vpp-config
+
+<span class="go">Welcome to the VPP system configuration utility</span>
+
+<span class="go">These are the files we will modify:</span>
+
+<span class="go">/etc/vpp/startup.conf</span>
+<span class="go">/etc/sysctl.d/80-vpp.conf</span>
+<span class="go">/etc/default/grub</span>
+
+<span class="go">Before we change them, we&#39;ll create working copies in ``/usr/local/vpp/vpp-config/dryrun``</span>
+<span class="go">Please inspect them carefully before applying the actual configuration (option 3)!</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">    and user input in /usr/local/vpp/vpp-config/configs/auto-config.yaml</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) Install/Uninstall VPP.</span>
+<span class="go">5) Dry Run from /usr/local/vpp/vpp-config/auto-config.yaml (will not ask questions).</span>
+<span class="go">6) Install QEMU patch (Needed when running openstack).</span>
+<span class="go">9 or q) Quit</span>
+
+<span class="go">Command: 1</span>
+
+<span class="go">NODE: DUT1</span>
+
+<span class="go">CPU:</span>
+<span class="go">          Model name:    Intel(R) Xeon(R) CPU E5-2667 v3 @ 3.20GHz</span>
+<span class="go">              CPU(s):    32</span>
+<span class="go">  Thread(s) per core:    2</span>
+<span class="go">  Core(s) per socket:    8</span>
+<span class="go">          Socket(s):    2</span>
+<span class="go">  NUMA node0 CPU(s):    0-7,16-23</span>
+<span class="go">  NUMA node1 CPU(s):    8-15,24-31</span>
+<span class="go">        CPU max MHz:    3600.0000</span>
+<span class="go">        CPU min MHz:    1200.0000</span>
+<span class="go">                SMT:    Enabled</span>
+
+<span class="go">VPP Threads: (Name: Cpu Number)</span>
+
+<span class="go">Grub Command Line:</span>
+<span class="go">  Current: BOOT_IMAGE=/boot/vmlinuz-4.4.0-96-generic root=UUID=d760b82f-f37b-47e2-9815-db8d479a3557 ro</span>
+<span class="go">  Configured: GRUB_CMDLINE_LINUX_DEFAULT=&quot;&quot;</span>
+
+<span class="go">Huge Pages:</span>
+<span class="go">  Total System Memory           : 65863484 kB</span>
+<span class="go">  Total Free Memory             : 41325924 kB</span>
+<span class="go">  Actual Huge Page Total        : 8192</span>
+<span class="go">  Configured Huge Page Total    : 1024</span>
+<span class="go">  Huge Pages Free               : 8192</span>
+<span class="go">  Huge Page Size                : 2048 kB</span>
+
+<span class="go">Devices:</span>
+
+<span class="go">Status:</span>
+<span class="go">  Not Installed</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">    and user input in /usr/local/vpp/vpp-config/configs/auto-config.yaml</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) Install/Uninstall VPP.</span>
+<span class="go">5) Dry Run from /usr/local/vpp/vpp-config/auto-config.yaml (will not ask questions).</span>
+<span class="go">6) Install QEMU patch (Needed when running openstack).</span>
+<span class="go">9 or q) Quit</span>
+
+<span class="go">Command: 4</span>
+
+<span class="go">There are no VPP packages on node localhost.</span>
+<span class="go">Do you want to install VPP [Y/n]?</span>
+<span class="go">INFO:root: Local Command: ls /etc/apt/sources.list.d/99fd.io.list.orig</span>
+<span class="go">INFO:root:  /etc/apt/sources.list.d/99fd.io.list.orig</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">    and user input in /usr/local/vpp/vpp-config/configs/auto-config.yaml</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) Install/Uninstall VPP.</span>
+<span class="go">5) Dry Run from /usr/local/vpp/vpp-config/auto-config.yaml (will not ask questions).</span>
+<span class="go">6) Install QEMU patch (Needed when running openstack).</span>
+<span class="go">9 or q) Quit</span>
+
+<span class="go">Command: 1</span>
+
+<span class="go">==============================</span>
+<span class="go">NODE: DUT1</span>
+
+<span class="go">CPU:</span>
+<span class="go">          Model name:    Intel(R) Xeon(R) CPU E5-2667 v3 @ 3.20GHz</span>
+<span class="go">              CPU(s):    32</span>
+<span class="go">  Thread(s) per core:    2</span>
+<span class="go">  Core(s) per socket:    8</span>
+<span class="go">          Socket(s):    2</span>
+<span class="go">  NUMA node0 CPU(s):    0-7,16-23</span>
+<span class="go">  NUMA node1 CPU(s):    8-15,24-31</span>
+<span class="go">        CPU max MHz:    3600.0000</span>
+<span class="go">        CPU min MHz:    1200.0000</span>
+<span class="go">                SMT:    Enabled</span>
+
+<span class="go">VPP Threads: (Name: Cpu Number)</span>
+<span class="go">  vpp_main  : 0</span>
+<span class="go">  vpp_stats : 0</span>
+
+<span class="go">Grub Command Line:</span>
+<span class="go">  Current: BOOT_IMAGE=/boot/vmlinuz-4.4.0-96-generic root=UUID=d760b82f-f37b-47e2-9815-db8d479a3557 ro</span>
+<span class="go">  Configured: GRUB_CMDLINE_LINUX_DEFAULT=&quot;&quot;</span>
+
+<span class="go">Huge Pages:</span>
+<span class="go">  Total System Memory           : 65863484 kB</span>
+<span class="go">  Total Free Memory             : 55877364 kB</span>
+<span class="go">  Actual Huge Page Total        : 1024</span>
+<span class="go">  Configured Huge Page Total    : 1024</span>
+<span class="go">  Huge Pages Free               : 1024</span>
+<span class="go">  Huge Page Size                : 2048 kB</span>
+
+<span class="go">Devices:</span>
+<span class="go">Name                           Socket RXQs RXDescs TXQs TXDescs</span>
+
+<span class="go">Status:</span>
+<span class="go">  active (running)</span>
+
+<span class="go">==============================</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">    and user input in /usr/local/vpp/vpp-config/configs/auto-config.yaml</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) Install/Uninstall VPP.</span>
+<span class="go">5) Dry Run from /usr/local/vpp/vpp-config/auto-config.yaml (will not ask questions).</span>
+<span class="go">6) Install QEMU patch (Needed when running openstack).</span>
+<span class="go">9 or q) Quit</span>
+
+<span class="go">Command: 2</span>
+
+<span class="go">These device(s) are currently NOT being used by VPP or the OS.</span>
+
+<span class="go">PCI ID          Description</span>
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">0000:02:00.0    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:02:00.1    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+
+<span class="go">Would you like to give any of these devices back to the OS [y/N]? y</span>
+<span class="go">Would you like to use device 0000:02:00.0 for the OS [y/N]? y</span>
+<span class="go">Would you like to use device 0000:02:00.1 for the OS [y/N]? y</span>
+
+<span class="go">These devices have kernel interfaces, but appear to be safe to use with VPP.</span>
+
+<span class="go">PCI ID          Kernel Interface(s)       Description</span>
+<span class="go">------------------------------------------------------------------------------------------</span>
+<span class="go">0000:90:00.0    enp144s0                  VIC Ethernet NIC</span>
+<span class="go">0000:8f:00.0    enp143s0                  VIC Ethernet NIC</span>
+<span class="go">0000:84:00.0    enp132s0f0,enp132s0f0d1   Ethernet Controller XL710 for 40GbE QSFP+</span>
+<span class="go">0000:84:00.1    enp132s0f1,enp132s0f1d1   Ethernet Controller XL710 for 40GbE QSFP+</span>
+<span class="go">0000:08:00.1    enp8s0f1                  I350 Gigabit Network Connection</span>
+<span class="go">0000:02:00.0    enp2s0f0                  82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:02:00.1    enp2s0f1                  82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:86:00.0    enp134s0f0                82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:86:00.1    enp134s0f1                82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+
+<span class="go">Would you like to use any of these device(s) for VPP [y/N]? y</span>
+<span class="go">Would you like to use device 0000:90:00.0 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:8f:00.0 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:84:00.0 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:84:00.1 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:08:00.1 for VPP [y/N]?</span>
+<span class="go">Would you like to use device 0000:02:00.0 for VPP [y/N]? y</span>
+<span class="go">Would you like to use device 0000:02:00.1 for VPP [y/N]? y</span>
+<span class="go">Would you like to use device 0000:86:00.0 for VPP [y/N]? y</span>
+<span class="go">Would you like to use device 0000:86:00.1 for VPP [y/N]? y</span>
+
+<span class="go">PCI ID          Description</span>
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">0000:86:00.0    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:86:00.1    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:02:00.0    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:02:00.1    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+
+<span class="go">Would you like to remove any of these device(s) [y/N]?</span>
+
+<span class="go">These device(s) will be used by VPP, please rerun this option if this is incorrect.</span>
+
+<span class="go">PCI ID          Description</span>
+<span class="go">----------------------------------------------------------------</span>
+<span class="go">0000:86:00.0    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:86:00.1    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:02:00.0    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+<span class="go">0000:02:00.1    82599ES 10-Gigabit SFI/SFP+ Network Connection</span>
+
+<span class="go">Your system has 32 core(s) and 2 Numa Nodes.</span>
+<span class="go">To begin, we suggest not reserving any cores for VPP or other processes.</span>
+<span class="go">Then to improve performance try reserving cores as needed.</span>
+
+<span class="go">How many core(s) do you want to reserve for processes other than VPP? [0-16][0]? 4</span>
+<span class="go">How many core(s) shall we reserve for VPP workers[0-4][0]? 2</span>
+<span class="go">Should we reserve 1 core for the VPP Main thread? [Y/n]?</span>
+
+<span class="go">There currently 1024 2048 kB huge pages free.</span>
+<span class="go">Do you want to reconfigure the number of huge pages [y/N]? y</span>
+
+<span class="go">There currently a total of 1024 huge pages.</span>
+<span class="go">How many huge pages do you want [1024 - 22511][1024]? 8192</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">    and user input in /usr/local/vpp/vpp-config/configs/auto-config.yaml</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) Install/Uninstall VPP.</span>
+<span class="go">5) Dry Run from /usr/local/vpp/vpp-config/auto-config.yaml (will not ask questions).</span>
+<span class="go">6) Install QEMU patch (Needed when running openstack).</span>
+<span class="go">9 or q) Quit</span>
+
+<span class="go">Command: 3</span>
+
+<span class="go">We are now going to configure your system(s).</span>
+
+<span class="go">Are you sure you want to do this [Y/n]?</span>
+<span class="go">These are the changes we will apply to</span>
+<span class="go">the huge page file (/etc/sysctl.d/80-vpp.conf).</span>
+
+<span class="go">1,2d0</span>
+<span class="go">&lt; # Number of 2MB hugepages desired</span>
+<span class="go">&lt; vm.nr_hugepages=1024</span>
+<span class="go">4,7c2,3</span>
+<span class="go">&lt; # Must be greater than or equal to (2 * vm.nr_hugepages).</span>
+<span class="go">&lt; vm.max_map_count=3096</span>
+<span class="go">&lt;</span>
+<span class="go">&lt; # All groups allowed to access hugepages</span>
+<span class="go">---</span>
+<span class="go">&gt; vm.nr_hugepages=8192</span>
+<span class="go">&gt; vm.max_map_count=17408</span>
+<span class="go">8a5</span>
+<span class="go">&gt; kernel.shmmax=17179869184</span>
+<span class="go">10,15d6</span>
+<span class="go">&lt; # Shared Memory Max must be greator or equal to the total size of hugepages.</span>
+<span class="go">&lt; # For 2MB pages, TotalHugepageSize = vm.nr_hugepages * 2 * 1024 * 1024</span>
+<span class="go">&lt; # If the existing kernel.shmmax setting  (cat /sys/proc/kernel/shmmax)</span>
+<span class="go">&lt; # is greater than the calculated TotalHugepageSize then set this parameter</span>
+<span class="go">&lt; # to current shmmax value.</span>
+<span class="go">&lt; kernel.shmmax=2147483648</span>
+
+<span class="go">Are you sure you want to apply these changes [Y/n]?</span>
+<span class="go">These are the changes we will apply to</span>
+<span class="go">the VPP startup file (/etc/vpp/startup.conf).</span>
+
+<span class="go">3c3</span>
+<span class="go">&lt;   nodaemon</span>
+<span class="go">---</span>
+<span class="go">&gt;   interactive</span>
+<span class="go">5a6</span>
+<span class="go">&gt;   cli-listen /run/vpp/cli.sock</span>
+<span class="go">17c18,25</span>
+<span class="go">&lt;     ## In the VPP there is one main thread and optionally the user can create worker(s)</span>
+<span class="go">---</span>
+<span class="go">&gt;</span>
+<span class="go">&gt;   main-core 8</span>
+<span class="go">&gt;   corelist-workers 9-10,5-6</span>
+<span class="go">&gt;</span>
+<span class="go">&gt;   scheduler-policy fifo</span>
+<span class="go">&gt;   scheduler-priority 50</span>
+<span class="go">&gt;</span>
+<span class="go">&gt;         ## In the VPP there is one main thread and optionally the user can create worker(s)</span>
+<span class="go">52,53c60,76</span>
+<span class="go">&lt; # dpdk {</span>
+<span class="go">&lt;     ## Change default settings for all intefaces</span>
+<span class="go">---</span>
+<span class="go">&gt; dpdk {</span>
+<span class="go">&gt;</span>
+<span class="go">&gt;   dev 0000:86:00.0 {</span>
+<span class="go">&gt;     num-rx-queues 2</span>
+<span class="go">&gt;   }</span>
+<span class="go">&gt;   dev 0000:86:00.1 {</span>
+<span class="go">&gt;     num-rx-queues 2</span>
+<span class="go">&gt;   }</span>
+<span class="go">&gt;   dev 0000:02:00.0 {</span>
+<span class="go">&gt;     num-rx-queues 2</span>
+<span class="go">&gt;   }</span>
+<span class="go">&gt;   dev 0000:02:00.1 {</span>
+<span class="go">&gt;     num-rx-queues 2</span>
+<span class="go">&gt;   }</span>
+<span class="go">&gt;   num-mbufs 71680</span>
+<span class="go">&gt;</span>
+<span class="go">&gt;         ## Change default settings for all intefaces</span>
+<span class="go">82a106,115</span>
+<span class="go">&gt;     ## Specify bonded interface and its slaves via PCI addresses</span>
+<span class="go">&gt;     ##</span>
+<span class="go">&gt;         ## Bonded interface in XOR load balance mode (mode 2) with L3 and L4 headers</span>
+<span class="go">&gt;     # vdev eth_bond0,mode=2,slave=0000:02:00.0,slave=0000:03:00.0,xmit_policy=l34</span>
+<span class="go">&gt;     # vdev eth_bond1,mode=2,slave=0000:02:00.1,slave=0000:03:00.1,xmit_policy=l34</span>
+<span class="go">&gt;     ##</span>
+<span class="go">&gt;     ## Bonded interface in Active-Back up mode (mode 1)</span>
+<span class="go">&gt;     # vdev eth_bond0,mode=1,slave=0000:02:00.0,slave=0000:03:00.0</span>
+<span class="go">&gt;     # vdev eth_bond1,mode=1,slave=0000:02:00.1,slave=0000:03:00.1</span>
+<span class="go">&gt;</span>
+<span class="go">99c132</span>
+<span class="go">&lt; # }</span>
+<span class="go">---</span>
+<span class="go">&gt; }</span>
+<span class="go">108a142</span>
+<span class="go">&gt;</span>
+
+<span class="go">Are you sure you want to apply these changes [Y/n]?</span>
+
+<span class="go">The configured grub cmdline looks like this:</span>
+<span class="go">GRUB_CMDLINE_LINUX_DEFAULT=&quot;intel_pstate=disable isolcpus=1-4,8,9-10,5-6 nohz_full=1-4,8,9-10,5-6 rcu_nocbs=1-4,8,9-10,5-6&quot;</span>
+
+<span class="go">The current boot cmdline looks like this:</span>
+<span class="go">BOOT_IMAGE=/boot/vmlinuz-4.4.0-96-generic root=UUID=d760b82f-f37b-47e2-9815-db8d479a3557 ro</span>
+
+<span class="go">Do you want to keep the current boot cmdline [Y/n]?</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">    and user input in /usr/local/vpp/vpp-config/configs/auto-config.yaml</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) Install/Uninstall VPP.</span>
+<span class="go">5) Dry Run from /usr/local/vpp/vpp-config/auto-config.yaml (will not ask questions).</span>
+<span class="go">6) Install QEMU patch (Needed when running openstack).</span>
+<span class="go">9 or q) Quit</span>
+
+<span class="go">Command: 1</span>
+
+<span class="go">==============================</span>
+<span class="go">NODE: DUT1</span>
+
+<span class="go">CPU:</span>
+<span class="go">          Model name:    Intel(R) Xeon(R) CPU E5-2667 v3 @ 3.20GHz</span>
+<span class="go">              CPU(s):    32</span>
+<span class="go">  Thread(s) per core:    2</span>
+<span class="go">  Core(s) per socket:    8</span>
+<span class="go">          Socket(s):    2</span>
+<span class="go">  NUMA node0 CPU(s):    0-7,16-23</span>
+<span class="go">  NUMA node1 CPU(s):    8-15,24-31</span>
+<span class="go">        CPU max MHz:    3600.0000</span>
+<span class="go">        CPU min MHz:    1200.0000</span>
+<span class="go">                SMT:    Enabled</span>
+
+<span class="go">VPP Threads: (Name: Cpu Number)</span>
+
+<span class="go">Grub Command Line:</span>
+<span class="go">  Current: BOOT_IMAGE=/boot/vmlinuz-4.4.0-96-generic root=UUID=d760b82f-f37b-47e2-9815-db8d479a3557 ro</span>
+<span class="go">  Configured: GRUB_CMDLINE_LINUX_DEFAULT=&quot;intel_pstate=disable isolcpus=1-4,8,9-10,5-6 nohz_full=1-4,8,9-10,5-6 rcu_nocbs=1-4,8,9-10,5-6&quot;</span>
+
+<span class="go">Huge Pages:</span>
+<span class="go">  Total System Memory           : 65863484 kB</span>
+<span class="go">  Total Free Memory             : 41163916 kB</span>
+<span class="go">  Actual Huge Page Total        : 8192</span>
+<span class="go">  Configured Huge Page Total    : 8192</span>
+<span class="go">  Huge Pages Free               : 3108</span>
+<span class="go">  Huge Page Size                : 2048 kB</span>
+
+<span class="go">Devices:</span>
+<span class="go">Total Number of Buffers: 71680</span>
+
+<span class="go">Status:</span>
+<span class="go">  active (running)</span>
+<span class="go">  Sep 27 12:49:59 tf-ucs-3 vpp[13671]: EAL: No free hugepages reported in hugepages-1048576kB</span>
+
+<span class="go">==============================</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">    and user input in /usr/local/vpp/vpp-config/configs/auto-config.yaml</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) Install/Uninstall VPP.</span>
+<span class="go">5) Dry Run from /usr/local/vpp/vpp-config/auto-config.yaml (will not ask questions).</span>
+<span class="go">6) Install QEMU patch (Needed when running openstack).</span>
+<span class="go">9 or q) Quit</span>
+
+<span class="go">Command: 1</span>
+
+<span class="go">==============================</span>
+<span class="go">NODE: DUT1</span>
+
+<span class="go">CPU:</span>
+<span class="go">          Model name:    Intel(R) Xeon(R) CPU E5-2667 v3 @ 3.20GHz</span>
+<span class="go">              CPU(s):    32</span>
+<span class="go">  Thread(s) per core:    2</span>
+<span class="go">  Core(s) per socket:    8</span>
+<span class="go">          Socket(s):    2</span>
+<span class="go">  NUMA node0 CPU(s):    0-7,16-23</span>
+<span class="go">  NUMA node1 CPU(s):    8-15,24-31</span>
+<span class="go">        CPU max MHz:    3600.0000</span>
+<span class="go">        CPU min MHz:    1200.0000</span>
+<span class="go">                SMT:    Enabled</span>
+
+<span class="go">VPP Threads: (Name: Cpu Number)</span>
+<span class="go">  vpp_stats : 0</span>
+<span class="go">  vpp_wk_2  : 9</span>
+<span class="go">  vpp_wk_3  : 10</span>
+<span class="go">  vpp_wk_0  : 5</span>
+<span class="go">  vpp_wk_1  : 6</span>
+<span class="go">  vpp_main  : 8</span>
+
+<span class="go">Grub Command Line:</span>
+<span class="go">  Current: BOOT_IMAGE=/boot/vmlinuz-4.4.0-96-generic root=UUID=d760b82f-f37b-47e2-9815-db8d479a3557 ro</span>
+<span class="go">  Configured: GRUB_CMDLINE_LINUX_DEFAULT=&quot;intel_pstate=disable isolcpus=1-4,8,9-10,5-6 nohz_full=1-4,8,9-10,5-6 rcu_nocbs=1-4,8,9-10,5-6&quot;</span>
+
+<span class="go">Huge Pages:</span>
+<span class="go">  Total System Memory           : 65863484 kB</span>
+<span class="go">  Total Free Memory             : 41170684 kB</span>
+<span class="go">  Actual Huge Page Total        : 8192</span>
+<span class="go">  Configured Huge Page Total    : 8192</span>
+<span class="go">  Huge Pages Free               : 7936</span>
+<span class="go">  Huge Page Size                : 2048 kB</span>
+
+<span class="go">Devices:</span>
+<span class="go">Total Number of Buffers: 71680</span>
+<span class="go">Name                           Socket RXQs RXDescs TXQs TXDescs</span>
+<span class="go">TenGigabitEthernet2/0/0             0    2    1024    5    1024</span>
+<span class="go">TenGigabitEthernet2/0/1             0    2    1024    5    1024</span>
+<span class="go">TenGigabitEthernet86/0/0            1    2    1024    5    1024</span>
+<span class="go">TenGigabitEthernet86/0/1            1    2    1024    5    1024</span>
+
+<span class="go">Status:</span>
+<span class="go">  active (running)</span>
+
+<span class="go">==============================</span>
+
+<span class="go">What would you like to do?</span>
+
+<span class="go">1) Show basic system information</span>
+<span class="go">2) Dry Run (Will save the configuration files in /usr/local/vpp/vpp-config/dryrun for inspection)</span>
+<span class="go">    and user input in /usr/local/vpp/vpp-config/configs/auto-config.yaml</span>
+<span class="go">3) Full configuration (WARNING: This will change the system configuration)</span>
+<span class="go">4) Install/Uninstall VPP.</span>
+<span class="go">5) Dry Run from /usr/local/vpp/vpp-config/auto-config.yaml (will not ask questions).</span>
+<span class="go">6) Install QEMU patch (Needed when running openstack).</span>
+<span class="go">9 or q) Quit</span>
+
+<span class="go">Command: q</span>
+<span class="gp">#</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="strongswan.html" class="btn btn-neutral float-left" title="Strongswan Testing Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vpp_if_stats.html" class="btn btn-neutral float-right" title="VPP interface stats client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

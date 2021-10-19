@@ -1,0 +1,31 @@
+.. _clicmd_src_plugins_dpdk_cryptodev:
+
+===============================================================
+Cryptodev cli reference
+===============================================================
+
+set cryptodev assignment
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set cryptodev assignment thread <thread_index> resource <inst_index>
+
+
+Declaration: ``set_cryptodev_assignment`` `src/plugins/dpdk/cryptodev/cryptodev.c line 612 <https://github.com/FDio/vpp/blob/master//src/plugins/dpdk/cryptodev/cryptodev.c#L612>`_
+
+Implementation: ``cryptodev_set_assignment_fn``
+
+
+show cryptodev assignment
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show cryptodev assignment
+
+
+Declaration: ``show_cryptodev_assignment`` `src/plugins/dpdk/cryptodev/cryptodev.c line 543 <https://github.com/FDio/vpp/blob/master//src/plugins/dpdk/cryptodev/cryptodev.c#L543>`_
+
+Implementation: ``cryptodev_show_assignment_fn``
+

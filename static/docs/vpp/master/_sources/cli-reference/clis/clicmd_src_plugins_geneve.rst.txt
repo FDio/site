@@ -1,0 +1,249 @@
+.. _clicmd_src_plugins_geneve:
+
+===============================================================
+Geneve cli reference
+===============================================================
+
+create geneve tunnel
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create geneve tunnel local <local-vtep-addr> {remote <remote-vtep-addr>|group <mcast-vtep-addr> <intf-name>} vni <nn> [encap-vrf-id <nn>] [decap-next [l2|node <name>]] [l3-mode] [del]
+
+
+
+Add or delete a GENEVE Tunnel.
+
+GENEVE provides the features needed to allow L2 bridge domains (BDs)
+to span multiple servers. This is done by building an L2 overlay on
+top of an L3 network underlay using GENEVE tunnels.
+
+This makes it possible for servers to be co-located in the same data
+center or be separated geographically as long as they are reachable
+through the underlay L3 network.
+
+You can refer to this kind of L2 overlay bridge domain as a GENEVE
+segment.
+
+Example of how to create a GENEVE Tunnel:
+
+
+.. code-block:: console
+
+    create geneve tunnel local 10.0.3.1 remote 10.0.3.3 vni 13 encap-vrf-id 7
+
+
+Example of how to delete a GENEVE Tunnel:
+
+
+.. code-block:: console
+
+    create geneve tunnel local 10.0.3.1 remote 10.0.3.3 vni 13 del
+
+
+
+Declaration: ``create_geneve_tunnel_command`` `src/plugins/geneve/geneve.c line 885 <https://github.com/FDio/vpp/blob/master//src/plugins/geneve/geneve.c#L885>`_
+
+Implementation: ``geneve_add_del_tunnel_command_fn``
+
+
+set interface ip geneve-bypass
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip geneve-bypass <interface> [del]
+
+
+
+This command adds the 'ip4-geneve-bypass' graph node for a given interface.
+By adding the IPv4 geneve-bypass graph node to an interface, the node checks
+for and validate input geneve packet and bypass ip4-lookup, ip4-local,
+ip4-udp-lookup nodes to speedup geneve packet forwarding. This node will
+cause extra overhead to for non-geneve packets which is kept at a minimum.
+
+Example of graph node before ip4-geneve-bypass is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip4-geneve-bypass
+    
+               Name                      Next                    Previous
+    ip4-geneve-bypass                error-drop [0]
+                                   geneve4-input [1]
+                                    ip4-lookup [2]
+    
+
+
+
+Example of how to enable ip4-geneve-bypass on an interface:
+
+
+.. code-block:: console
+
+    set interface ip geneve-bypass GigabitEthernet2/0/0
+
+
+
+Example of graph node after ip4-geneve-bypass is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip4-geneve-bypass
+    
+               Name           Next                    Previous
+    ip4-geneve-bypass     error-drop [0]              ip4-input
+                        geneve4-input [1]        ip4-input-no-checksum
+                         ip4-lookup [2]
+    
+
+
+
+Example of how to display the feature enabled on an interface:
+
+
+.. code-block:: console
+
+    show ip interface features GigabitEthernet2/0/0
+    
+    IP feature paths configured on GigabitEthernet2/0/0...
+    ...
+    ipv4 unicast:
+      ip4-geneve-bypass
+      ip4-lookup
+    ...
+    
+
+
+
+Example of how to disable ip4-geneve-bypass on an interface:
+
+
+.. code-block:: console
+
+    set interface ip geneve-bypass GigabitEthernet2/0/0 del
+
+
+
+
+Declaration: ``set_interface_ip_geneve_bypass_command`` `src/plugins/geneve/geneve.c line 1038 <https://github.com/FDio/vpp/blob/master//src/plugins/geneve/geneve.c#L1038>`_
+
+Implementation: ``set_ip4_geneve_bypass``
+
+
+set interface ip6 geneve-bypass
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip6 geneve-bypass <interface> [del]
+
+
+
+This command adds the 'ip6-geneve-bypass' graph node for a given interface.
+By adding the IPv6 geneve-bypass graph node to an interface, the node checks
+for and validate input geneve packet and bypass ip6-lookup, ip6-local,
+ip6-udp-lookup nodes to speedup geneve packet forwarding. This node will
+cause extra overhead to for non-geneve packets which is kept at a minimum.
+
+Example of graph node before ip6-geneve-bypass is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip6-geneve-bypass
+    
+               Name                      Next                    Previous
+    ip6-geneve-bypass                error-drop [0]
+                                   geneve6-input [1]
+                                    ip6-lookup [2]
+    
+
+
+
+Example of how to enable ip6-geneve-bypass on an interface:
+
+
+.. code-block:: console
+
+    set interface ip6 geneve-bypass GigabitEthernet2/0/0
+
+
+
+Example of graph node after ip6-geneve-bypass is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip6-geneve-bypass
+    
+         Name                      Next                    Previous
+    ip6-geneve-bypass          error-drop [0]             ip6-input
+                             geneve6-input [1]       ip4-input-no-checksum
+                              ip6-lookup [2]
+    
+
+
+
+Example of how to display the feature enabled on an interface:
+
+
+.. code-block:: console
+
+    show ip interface features GigabitEthernet2/0/0
+    
+    IP feature paths configured on GigabitEthernet2/0/0...
+    ...
+    ipv6 unicast:
+      ip6-geneve-bypass
+      ip6-lookup
+    ...
+    
+
+
+
+Example of how to disable ip6-geneve-bypass on an interface:
+
+
+.. code-block:: console
+
+    set interface ip6 geneve-bypass GigabitEthernet2/0/0 del
+
+
+
+
+Declaration: ``set_interface_ip6_geneve_bypass_command`` `src/plugins/geneve/geneve.c line 1095 <https://github.com/FDio/vpp/blob/master//src/plugins/geneve/geneve.c#L1095>`_
+
+Implementation: ``set_ip6_geneve_bypass``
+
+
+show geneve tunnel
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show geneve tunnel
+
+
+
+Display all the GENEVE Tunnel entries.
+
+Example of how to display the GENEVE Tunnel entries:
+
+
+.. code-block:: console
+
+    show geneve tunnel
+    
+    [0] local 10.0.3.1 remote 10.0.3.3 vni 13 encap_fib_index 0 sw_if_index 5 decap_next l2
+    
+
+
+
+Declaration: ``show_geneve_tunnel_command`` `src/plugins/geneve/geneve.c line 924 <https://github.com/FDio/vpp/blob/master//src/plugins/geneve/geneve.c#L924>`_
+
+Implementation: ``show_geneve_tunnel_command_fn``
+

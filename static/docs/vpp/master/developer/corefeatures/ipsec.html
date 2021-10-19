@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPSec (IP Security) &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="BFD module" href="bfd_doc.html" />
+    <link rel="prev" title="Punting Packets" href="punt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Core Features</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fib/index.html">The FIB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sr/index.html">Segment routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IPSec (IP Security)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#route-base-vpns">Route Base VPNs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multi-point-interfaces">Multi-point Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#policy-based-vpns">Policy Based VPNs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bfd_doc.html">BFD module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipfix_doc.html">IPFIX support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="span_doc.html">Switched Port Analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtu.html">MTU in VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sylog_doc.html">Syslog protocol support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stats.html">Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selinux_doc.html">SELinux - VPP Custom SELinux Policy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Core Features</a> &raquo;</li>
+      <li>IPSec (IP Security)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/corefeatures/ipsec.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="ipsec">
+</div>
+<section id="ipsec-ip-security">
+<h1>IPSec (IP Security)<a class="headerlink" href="#ipsec-ip-security" title="Permalink to this headline"></a></h1>
+<p>This is not a description on how IPSec works. Please read:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc4301">https://tools.ietf.org/html/rfc4301</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc4302">https://tools.ietf.org/html/rfc4302</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc4303">https://tools.ietf.org/html/rfc4303</a></p></li>
+</ul>
+</div></blockquote>
+<p>I would also suggest this:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://wiki.strongswan.org/projects/strongswan/wiki/RouteBasedVPN">https://wiki.strongswan.org/projects/strongswan/wiki/RouteBasedVPN</a></p></li>
+</ul>
+</div></blockquote>
+<p>If you’re interested in cryptography, I would recommend this excellent
+introductory lecture series (there is also a book, but you’ll have to
+buy it, IMHO it’s worth it):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/channel/UC1usFRN4LCMcfIV7UjHNuQg/featured">https://www.youtube.com/channel/UC1usFRN4LCMcfIV7UjHNuQg/featured</a></p></li>
+</ul>
+</div></blockquote>
+<p>IPSec VPNs come in two flavours; policy and route based, the
+difference is how the Security Association (SA) is chosen.</p>
+<section id="route-base-vpns">
+<h2>Route Base VPNs<a class="headerlink" href="#route-base-vpns" title="Permalink to this headline"></a></h2>
+<p>There are two aspects of a route based VPN; all packets to a
+particular peer are encrypted by the same SA and routing
+decides the peer to which to forward traffic (as routing always
+does). Therefore, routing is choosing the SA. Of course the same must
+be true in reverse, that all packets from a given peer are decrypted
+with the same SA. Another way of expressing this is to say a peer is
+‘protected’ by this SA (really a pair of SAs; one for rx and tx).</p>
+<p>The ‘standard’ <a class="footnote-reference brackets" href="#i1" id="id1">1</a> way of representing this protected peer is by
+using a point-to-point virtual interface to which the peer is
+attached and the SA pair is associated. Prefixes
+that require protection are routed through this virtual interface and
+hence implicitly to the peer.</p>
+<p>There are three components to the model:</p>
+<ul class="simple">
+<li><p>The SAs; An <strong>ipsec_sa_t</strong>, use the force, read the source.</p></li>
+<li><p>The virtual interface</p></li>
+<li><p>The protection - the association of the SAs to the interface.</p></li>
+</ul>
+<p>The protection is represented by a <strong>ipsec_tun_protect_t</strong>. The “tun”
+part comes from the fact that the protected interface is usually a
+tunnel. IMO It would have been better if the author had not assumed
+this <a class="footnote-reference brackets" href="#i2" id="id2">2</a>.
+The protection associates a single TX SA and up to four RX SAs to an
+interface. Four is as many as can fit on one cache-line. Multiple RX
+SAs mean that a peer can be using any SA in the set, this is
+particularly useful during rekeying because it is not possible for the
+peers to swap their RX and TX SAs at exactly the same moment in the
+traffic stream. Instead they can add the new RX immediately, then swap
+the TX after a short delay, then remove the old RX after another short
+delay. This will minimize, if not eliminate, packet loss.</p>
+<p>The virtual interface can be represented in two ways:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>interface + encap + SA = (interface + encap) + SA = ipip-interface + SA transport mode</p></li>
+</ul>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>interface + encap + SA = interface + (encap + SA) = IPSec-interface + SA tunnel mode</p></li>
+</ul>
+</div></blockquote>
+<p>It’s a question of where you add the parenthesis, from the perspective
+of the external user the effect is identical.</p>
+<p>The IPSec interface serves as the encap-free interface to be used in
+conjunction with an encap-describing tunnel mode SA. VPP supports both models.</p>
+<p>A route based VPN could impose 0, 1 or 2 encaps. the support matrix for  these use cases is:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">      |  0  |  1  |  2  |</span>
+<span class="go">--------------------------</span>
+<span class="go">ipip  |  N  |  Y  |  Y  |</span>
+<span class="go">ipsec |  P  |  Y  |  P  |</span>
+</pre></div>
+</div>
+<p>Where P = potentially.</p>
+<p>Ipsec could potentially support 0 encap (i.e. transport mode) since
+neither the interface nor the SA <em>requires</em> encap. However, for a
+route based VPN to use transport mode is probably wrong since one
+shouldn’t use transport mode for transit traffic, since without encap
+it is not guaranteed to return. IPSec could potentially support 2
+encaps, but that would require the SA to describe both, something it
+does not do at this time.</p>
+<p>Internally the difference is that the mid-chain adjacency for the IPSec
+interface has no associated encap (whereas for an ipip tunnel it
+describes the peer). Consequently, features on the output arc see
+packets without any encap. Since the protecting SAs are in tunnel
+mode, they apply the encap. The mid-chain adj is stacked only once the
+protecting SA is known, since only then is the peer known. Otherwise
+the VLIB graph nodes used are the same:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(routing)</span> <span class="go">--&gt; ipX-michain --&gt; espX-encrypt --&gt; adj-midchain-tx --&gt; (routing)</span>
+
+<span class="go"> where X = 4 or 6.</span>
+</pre></div>
+</div>
+<p>Some benefits to the ipsec interface:</p>
+<ul class="simple">
+<li><p>it is slightly more efficient since the encapsulating IP header has its checksum updated only once.</p></li>
+<li><p>even when the interface is admin up traffic cannot be sent to a peer
+unless the SA is available (since it’s the SA that determines the
+encap). With ipip interfaces a client must use the admin state to
+prevent sending until the SA is available.</p></li>
+</ul>
+<p>The best recommendations I can make are:</p>
+<ul class="simple">
+<li><p>pick a model that supports your use case</p></li>
+<li><p>make sure any other features you wish to use are supported by the model</p></li>
+<li><p>choose the model that best fits your control plane’s model.</p></li>
+</ul>
+<section id="multi-point-interfaces">
+<h3>Multi-point Interfaces<a class="headerlink" href="#multi-point-interfaces" title="Permalink to this headline"></a></h3>
+<p>As mentioned above route based VPNs protect all packets destined to
+a given peer with the same SA pair. This protection was modelled using
+a virtual p2p interface, so one could legitimately reason that
+all traffic through the interface is protected with the SA pair or all
+traffic to the peer is protected, since they are one in the
+same. However, when we consider multi-point interfaces, we have to
+think of protection applying to the peers on the link.</p>
+<p>When using IPSec protection on a P2MP link the <strong>ipsec_tun_protect_t</strong>
+will be specific to a particular peer (in the P2P case this peer is
+the usual special all zero address).</p>
+<p>All other aspects of using route based VPNs remains the same. The
+routes are resolved via specific peers on the interface, i.e.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add 10.0.0.0/8 via 192.168.1.1 mipip0</span>
+</pre></div>
+</div>
+<p>rather than</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ip route add 10.0.0.0/8 via ipip0</span>
+</pre></div>
+</div>
+<p>but one should always use a next-hop on a multi-access interface, so
+this is not a restriction.</p>
+<p>The data-path is unchanged, in both P2P and P2MP case the SA to
+use for TX comes from the adjacency, and for RX it’s the SPI that
+matches to the SA and interface.</p>
+</section>
+</section>
+<section id="policy-based-vpns">
+<h2>Policy Based VPNs<a class="headerlink" href="#policy-based-vpns" title="Permalink to this headline"></a></h2>
+<p>At the risk of stating the obvious, in a policy based VPN the SA is
+chosen based on a specific IPSec policy. A policy describes what
+attributes of the packets to match and what action to take if
+matched. Actions are:</p>
+<ul class="simple">
+<li><p>bypass: Ignore it</p></li>
+<li><p>discard: Drop it</p></li>
+<li><p>protect: Either encrypt or decrypt with a specific SA</p></li>
+</ul>
+<p>The ‘resolve’ action which (as per-RFC4301) states that an IKE session
+should be initiated, is not supported.</p>
+<p>Policies are stored in a security policy database (SPD). An SPD is
+attached to an interface. Packets that ingress and egress the
+interface are matched against the policies in the attached SPD.
+This is IPSec as described in RFC4301.</p>
+<p class="rubric">Footnotes:</p>
+<dl class="footnote brackets">
+<dt class="label" id="i1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Standard in inverted commas because, at least to my
+knowledge, there is no official standard (RFC) that states it
+should be this way. It is probably this way because routers
+model/implement/restrict/etc IPSec as an interface
+input/output feature.</p>
+</dd>
+<dt class="label" id="i2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>That’s a self criticism.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="punt.html" class="btn btn-neutral float-left" title="Punting Packets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bfd_doc.html" class="btn btn-neutral float-right" title="BFD module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

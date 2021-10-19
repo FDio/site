@@ -1,0 +1,106 @@
+.. _clicmd_src_plugins_flowprobe:
+
+===============================================================
+Flowprobe cli reference
+===============================================================
+
+flowprobe feature add-del
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    flowprobe feature add-del <interface-name> <l2|ip4|ip6> disable
+
+
+
+``flowprobe feature add-del`` commands to enable/disable
+per-packet IPFIX flow record generation on an interface
+
+To enable per-packet IPFIX flow-record generation on an interface:
+
+
+.. code-block:: console
+
+    flowprobe feature add-del GigabitEthernet2/0/0
+
+
+
+To disable per-packet IPFIX flow-record generation on an interface:
+
+
+.. code-block:: console
+
+    flowprobe feature add-del GigabitEthernet2/0/0 disable
+
+
+
+
+Declaration: ``flowprobe_enable_disable_command`` `src/plugins/flowprobe/flowprobe.c line 987 <https://github.com/FDio/vpp/blob/master//src/plugins/flowprobe/flowprobe.c#L987>`_
+
+Implementation: ``flowprobe_tx_interface_add_del_feature_command_fn``
+
+
+flowprobe params
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    flowprobe params record <[l2] [l3] [l4]> [active <timer> passive <timer>]
+
+
+Declaration: ``flowprobe_params_command`` `src/plugins/flowprobe/flowprobe.c line 993 <https://github.com/FDio/vpp/blob/master//src/plugins/flowprobe/flowprobe.c#L993>`_
+
+Implementation: ``flowprobe_params_command_fn``
+
+
+show flowprobe feature
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show flowprobe feature
+
+
+Declaration: ``flowprobe_show_feature_command`` `src/plugins/flowprobe/flowprobe.c line 1000 <https://github.com/FDio/vpp/blob/master//src/plugins/flowprobe/flowprobe.c#L1000>`_
+
+Implementation: ``flowprobe_show_feature_command_fn``
+
+
+show flowprobe params
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show flowprobe params
+
+
+Declaration: ``flowprobe_show_params_command`` `src/plugins/flowprobe/flowprobe.c line 1006 <https://github.com/FDio/vpp/blob/master//src/plugins/flowprobe/flowprobe.c#L1006>`_
+
+Implementation: ``flowprobe_show_params_command_fn``
+
+
+show flowprobe statistics
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show flowprobe statistics
+
+
+Declaration: ``flowprobe_show_stats_command`` `src/plugins/flowprobe/flowprobe.c line 1017 <https://github.com/FDio/vpp/blob/master//src/plugins/flowprobe/flowprobe.c#L1017>`_
+
+Implementation: ``flowprobe_show_stats_fn``
+
+
+show flowprobe table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show flowprobe table
+
+
+Declaration: ``flowprobe_show_table_command`` `src/plugins/flowprobe/flowprobe.c line 1012 <https://github.com/FDio/vpp/blob/master//src/plugins/flowprobe/flowprobe.c#L1012>`_
+
+Implementation: ``flowprobe_show_table_fn``
+

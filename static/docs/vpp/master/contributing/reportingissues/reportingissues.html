@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data to include in bug reports &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Getting Started with the debug CLI" href="../../cli-reference/gettingstarted/index.html" />
+    <link rel="prev" title="Reporting Bugs" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reporting Bugs</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data to include in bug reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#image-version-and-operating-environment">Image version and operating environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-command-output">“Show” command output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-topology">Network Topology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#packet-tracer-output">Packet Tracer Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#capturing-post-mortem-data">Capturing post-mortem data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#syslog-output">Syslog Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-api-trace">Binary API Trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core-files">Core Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#core-files-from-private-images">Core files from Private Images</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#on-the-fly-core-file-compression">On-the-fly Core File Compression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core-file-summary">Core File Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Reporting Bugs</a> &raquo;</li>
+      <li>Data to include in bug reports</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/contributing/reportingissues/reportingissues.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="reportingbugs">
+</div>
+<section id="data-to-include-in-bug-reports">
+<h1>Data to include in bug reports<a class="headerlink" href="#data-to-include-in-bug-reports" title="Permalink to this headline"></a></h1>
+<section id="image-version-and-operating-environment">
+<h2>Image version and operating environment<a class="headerlink" href="#image-version-and-operating-environment" title="Permalink to this headline"></a></h2>
+<p>Please make sure to include the vpp image version and command-line arguments.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo bash
+<span class="gp"># </span>vppctl show version verbose cmdline
+<span class="go">Version:                  v18.07-rc0~509-gb9124828</span>
+<span class="go">Compiled by:              vppuser</span>
+<span class="go">Compile host:             vppbuild</span>
+<span class="go">Compile date:             Fri Jul 13 09:05:37 EDT 2018</span>
+<span class="go">Compile location:         /scratch/vpp-showversion</span>
+<span class="go">Compiler:                 GCC 7.3.0</span>
+<span class="go">Current PID:              5211</span>
+<span class="go">Command line arguments:</span>
+<span class="go">  /scratch/vpp-showversion/build-root/install-vpp_debug-native/vpp/bin/vpp</span>
+<span class="go">  unix</span>
+<span class="go">  interactive</span>
+</pre></div>
+</div>
+<p>With respect to the operating environment: if misbehavior involving a
+specific VM / container / bare-metal environment is involved, please
+describe the environment in detail:</p>
+<ul class="simple">
+<li><p>Linux Distro (e.g. Ubuntu 18.04.2 LTS, CentOS-7, etc.)</p></li>
+<li><p>NIC type(s) (ixgbe, i40e, enic, etc. etc.), vhost-user, tuntap</p></li>
+<li><p>NUMA configuration if applicable</p></li>
+</ul>
+<p>Please note the CPU architecture (x86_86, aarch64), and hardware platform.</p>
+<p>When practicable, please report issues against released software, or
+unmodified master/latest software.</p>
+</section>
+<section id="show-command-output">
+<h2>“Show” command output<a class="headerlink" href="#show-command-output" title="Permalink to this headline"></a></h2>
+<p>Every situation is different. If the issue involves a sequence of
+debug CLI command, please enable CLI command logging, and send the
+sequence involved. Note that the debug CLI is a developer’s tool -
+<strong>no warranty express or implied</strong> - and that we may choose not to fix
+debug CLI bugs.</p>
+<p>Please include “show error” [error counter] output. It’s often helpful
+to “clear error”, send a bit of traffic, then “show error”
+particularly when running vpp on noisy networks.</p>
+<p>Please include ip4 / ip6 / mpls FIB contents (“show ip fib”, “show ip6
+fib”, “show mpls fib”, “show mpls tunnel”).</p>
+<p>Please include “show hardware”, “show interface”, and “show interface
+address” output</p>
+<p>Here is a consolidated set of commands that are generally useful
+before/after sending traffic.  Before sending traffic:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vppctl clear hardware</span>
+<span class="go">vppctl clear interface</span>
+<span class="go">vppctl clear error</span>
+<span class="go">vppctl clear run</span>
+</pre></div>
+</div>
+<p>Send some traffic and then issue the following commands.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vppctl show version verbose</span>
+<span class="go">vppctl show hardware</span>
+<span class="go">vppctl show interface address</span>
+<span class="go">vppctl show interface</span>
+<span class="go">vppctl show run</span>
+<span class="go">vppctl show error</span>
+</pre></div>
+</div>
+<p>Here are some protocol specific show commands that may also make
+sense.  Only include those features which have been configured.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vppctl show l2fib</span>
+<span class="go">vppctl show bridge-domain</span>
+
+<span class="go">vppctl show ip fib</span>
+<span class="go">vppctl show ip neighbors</span>
+
+<span class="go">vppctl show ip6 fib</span>
+<span class="go">vppctl show ip6 neighbors</span>
+
+<span class="go">vppctl show mpls fib</span>
+<span class="go">vppctl show mpls tunnel</span>
+</pre></div>
+</div>
+</section>
+<section id="network-topology">
+<h2>Network Topology<a class="headerlink" href="#network-topology" title="Permalink to this headline"></a></h2>
+<p>Please include a crisp description of the network topology, including
+L2 / IP / MPLS / segment-routing addressing details. If you expect
+folks to reproduce and debug issues, this is a must.</p>
+<p>At or above a certain level of topological complexity, it becomes
+problematic to reproduce the original setup.</p>
+</section>
+<section id="packet-tracer-output">
+<h2>Packet Tracer Output<a class="headerlink" href="#packet-tracer-output" title="Permalink to this headline"></a></h2>
+<p>If you capture packet tracer output which seems relevant, please include it.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vppctl trace add dpdk-input 100  # or similar</span>
+</pre></div>
+</div>
+<p>send-traffic</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vppctl show trace</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="capturing-post-mortem-data">
+<h1>Capturing post-mortem data<a class="headerlink" href="#capturing-post-mortem-data" title="Permalink to this headline"></a></h1>
+<p>It should go without saying, but anyhow: <strong>please put post-mortem data
+in obvious, accessible places.</strong> Time wasted trying to acquire
+accounts, credentials, and IP addresses simply delays problem
+resolution.</p>
+<p>Please remember to add post-mortem data location information to Jira
+tickets.</p>
+<section id="syslog-output">
+<h2>Syslog Output<a class="headerlink" href="#syslog-output" title="Permalink to this headline"></a></h2>
+<p>The vpp signal handler typically writes a certain amount of data in
+/var/log/syslog before exiting. Make sure to check for evidence, e.g
+via “grep /usr/bin/vpp /var/log/syslog” or similar.</p>
+</section>
+<section id="binary-api-trace">
+<h2>Binary API Trace<a class="headerlink" href="#binary-api-trace" title="Permalink to this headline"></a></h2>
+<p>If the issue involves a sequence of control-plane API messages - even
+a very long sequence - please enable control-plane API
+tracing. Control-plane API post-mortem traces end up in
+/tmp/api_post_mortem.&lt;pid&gt;.</p>
+<p>Please remember to put post-mortem binary api traces in accessible
+places.</p>
+<p>These API traces are especially helpful in cases where the vpp engine
+is throwing traffic on the floor, e.g. for want of a default route or
+similar.</p>
+<p>Make sure to leave the default stanza “… api-trace { on } … ” in
+the vpp startup configuration file /etc/vpp/startup.conf, or to
+include it in the command line arguments passed by orchestration
+software.</p>
+</section>
+<section id="core-files">
+<h2>Core Files<a class="headerlink" href="#core-files" title="Permalink to this headline"></a></h2>
+<p>Production systems, as well as long-running pre-production soak-test
+systems, <strong>must</strong> arrange to collect core images. There are various
+ways to configure core image capture, including e.g. the Ubuntu
+“corekeeper” package. In a pinch, the following very basic sequence
+will capture usable vpp core files in /tmp/dumps.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>mkdir -p /tmp/dumps
+<span class="gp"># </span>sysctl -w debug.exception-trace<span class="o">=</span><span class="m">1</span>
+<span class="gp"># </span>sysctl -w kernel.core_pattern<span class="o">=</span><span class="s2">&quot;/tmp/dumps/%e-%t&quot;</span>
+<span class="gp"># </span><span class="nb">ulimit</span> -c unlimited
+<span class="gp"># </span><span class="nb">echo</span> <span class="m">2</span> &gt; /proc/sys/fs/suid_dumpable
+</pre></div>
+</div>
+<p>If you start VPP from systemd, you also need to edit
+/lib/systemd/system/vpp.service and uncomment the “LimitCORE=infinity”
+line before restarting VPP.</p>
+<p>Vpp core files often appear enormous, but they are invariably
+sparse. Gzip compresses them to manageable sizes. A multi-GByte
+corefile often compresses to 10-20 Mbytes.</p>
+<p>When decompressing a vpp core file, we suggest using “dd” as shown to
+create a sparse, uncompressed core file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>zcat vpp_core.gz <span class="p">|</span> dd <span class="nv">conv</span><span class="o">=</span>sparse <span class="nv">of</span><span class="o">=</span>vpp_core
+</pre></div>
+</div>
+<p>Please remember to put compressed core files in accessible places.</p>
+<p>Make sure to leave the default stanza “… unix { … full-coredump
+… } … ” in the vpp startup configuration file
+/etc/vpp/startup.conf, or to include it in the command line arguments
+passed by orchestration software.</p>
+</section>
+</section>
+<section id="core-files-from-private-images">
+<h1>Core files from Private Images<a class="headerlink" href="#core-files-from-private-images" title="Permalink to this headline"></a></h1>
+<p>Core files from private images require special handling. If it’s
+necessary to go that route, copy the <strong>exact</strong> Debian packages (or
+RPMs) which correspond to the core file to the same public place as
+the core file. A no-excuses-allowed, hard-and-fast requirement.</p>
+<p>In particular:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">libvppinfra_&lt;version&gt;_&lt;arch&gt;.deb # vppinfra library</span>
+<span class="go">libvppinfra-dev_&lt;version&gt;_&lt;arch&gt;.deb # vppinfra library development pkg</span>
+<span class="go">vpp_&lt;version&gt;_&lt;arch&gt;.deb         # the vpp executable</span>
+<span class="go">vpp-dbg_&lt;version&gt;_&lt;arch&gt;.deb     # debug symbols</span>
+<span class="go">vpp-dev_&lt;version&gt;_&lt;arch&gt;.deb     # vpp development pkg</span>
+<span class="go">vpp-lib_&lt;version&gt;_&lt;arch&gt;.deb     # shared libraries</span>
+<span class="go">vpp-plugin-core_&lt;version&gt;_&lt;arch&gt;.deb # core plugins</span>
+<span class="go">vpp-plugin-dpdk_&lt;version&gt;_&lt;arch&gt;.deb # dpdk plugin</span>
+</pre></div>
+</div>
+<p>For reference, please include git commit-ID, branch, and git repo
+information [for repos other than gerrit.fd.io] in the Jira ticket.</p>
+<p>Note that git commit-ids are crypto sums of the head [latest]
+<strong>merged</strong> patch. They say <strong>nothing whatsoever</strong> about local
+workspace modifications, branching, or the git repo in question.</p>
+<p>Even given a byte-for-byte identical source tree, it’s easy to build
+dramatically different binary artifacts. All it takes is a different
+toolchain version.</p>
+<section id="on-the-fly-core-file-compression">
+<h2>On-the-fly Core File Compression<a class="headerlink" href="#on-the-fly-core-file-compression" title="Permalink to this headline"></a></h2>
+<p>Depending on operational requirements, it’s possible to compress
+corefiles as they are generated. Please note that it takes several
+seconds’ worth of wall-clock time to compress a vpp core file on the
+fly, during which all packet processing activities are suspended.</p>
+<p>To create compressed core files on the fly, create the following
+script, e.g. in /usr/local/bin/compressed_corefiles, owned by root,
+executable:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>!/bin/sh
+<span class="go">exec /bin/gzip -f - &gt;&quot;/tmp/dumps/core-$1.$2.gz&quot;</span>
+</pre></div>
+</div>
+<p>Adjust the kernel core file pattern as shown:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sysctl -w kernel.core_pattern=&quot;|/usr/local/bin/compressed_corefiles %e %t&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="core-file-summary">
+<h2>Core File Summary<a class="headerlink" href="#core-file-summary" title="Permalink to this headline"></a></h2>
+<p>Bottom line: please follow core file handling instructions to the
+letter. It’s not complicated. Simply copy the exact Debian packages or
+RPMs which correspond to core files to accessible locations.</p>
+<p>If we go through the setup process only to discover that the image and
+core files don’t match, it will simply delay resolution of the issue;
+to say nothing of irritating the person who just wasted their time.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Reporting Bugs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../cli-reference/gettingstarted/index.html" class="btn btn-neutral float-right" title="Getting Started with the debug CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

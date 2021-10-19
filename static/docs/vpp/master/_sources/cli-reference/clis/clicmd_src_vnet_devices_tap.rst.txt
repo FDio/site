@@ -1,0 +1,44 @@
+.. _clicmd_src_vnet_devices_tap:
+
+===============================================================
+Tap cli reference
+===============================================================
+
+create tap
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create tap {id <if-id>} [hw-addr <mac-address>] [num-rx-queues <n>] [rx-ring-size <size>] [tx-ring-size <size>] [host-ns <netns>] [host-bridge <bridge-name>] [host-ip4-addr <ip4addr/mask>] [host-ip6-addr <ip6-addr>] [host-ip4-gw <ip4-addr>] [host-ip6-gw <ip6-addr>] [host-mac-addr <host-mac-address>] [host-if-name <name>] [host-mtu-size <size>] [no-gso|gso [gro-coalesce]|csum-offload] [persist] [attach] [tun] [packed] [in-order]
+
+
+Declaration: ``tap_create_command`` `src/vnet/devices/tap/cli.c line 137 <https://github.com/FDio/vpp/blob/master//src/vnet/devices/tap/cli.c#L137>`_
+
+Implementation: ``tap_create_command_fn``
+
+
+delete tap
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete tap {<interface> | sw_if_index <sw_idx>}
+
+
+Declaration: ``tap_delete__command`` `src/vnet/devices/tap/cli.c line 191 <https://github.com/FDio/vpp/blob/master//src/vnet/devices/tap/cli.c#L191>`_
+
+Implementation: ``tap_delete_command_fn``
+
+
+set tap offload
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set tap offload {<interface> | sw_if_index <sw_idx>} <gso-enable [gro-coalesce]  | gso-disable | csum-offload-enable |csum-offload-disable>
+
+
+Declaration: ``tap_offload_command`` `src/vnet/devices/tap/cli.c line 261 <https://github.com/FDio/vpp/blob/master//src/vnet/devices/tap/cli.c#L261>`_
+
+Implementation: ``tap_offload_command_fn``
+

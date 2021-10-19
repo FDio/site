@@ -1,0 +1,31 @@
+.. _clicmd_src_plugins_nsh_nsh-md2-ioam:
+
+===============================================================
+Nsh-md2-ioam cli reference
+===============================================================
+
+set nsh-md2-ioam-transit
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set nsh-ioam-lisp-gpe-transit dst-ip <dst_ip> [outer-fib-index <outer_fib_index>] [disable]
+
+
+Declaration: ``nsh_md2_ioam_set_transit_rewrite_cmd`` `src/plugins/nsh/nsh-md2-ioam/nsh_md2_ioam.c line 453 <https://github.com/FDio/vpp/blob/master//src/plugins/nsh/nsh-md2-ioam/nsh_md2_ioam.c#L453>`_
+
+Implementation: ``nsh_md2_ioam_set_transit_rewrite_command_fn``
+
+
+show ioam nsh-lisp-gpe trace
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    iOAM trace statistics
+
+
+Declaration: ``nsh_md2_ioam_show_ioam_trace_cmd`` `src/plugins/nsh/nsh-md2-ioam/nsh_md2_ioam_trace.c line 337 <https://github.com/FDio/vpp/blob/master//src/plugins/nsh/nsh-md2-ioam/nsh_md2_ioam_trace.c#L337>`_
+
+Implementation: ``nsh_md2_ioam_show_ioam_trace_cmd_fn``
+

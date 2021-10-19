@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DHCPv6 prefix delegation &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Inband OAM (iOAM)" href="ioam.html" />
+    <link rel="prev" title="Buffer metadata change tracker" href="mdata.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Plugins</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quic.html">QUIC HostStack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcp.html">Linux Control Plane Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="srv6/index.html">SRv6 Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marvell.html">Marvell device plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lldp.html">LLDP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nat64.html">Stateful NAT64</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nat44_ei_ha.html">Active-Passive NAT HA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnat.html">PNAT 1:1 match &amp; rewrite NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lb.html">Load Balancer plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lacp.html">LACP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowprobe.html">IPFIX flow record plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_lw4o6.html">MAP and Lw4o6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mdata.html">Buffer metadata change tracker</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DHCPv6 prefix delegation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#control-plane">Control Plane</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-configuration">Example configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#data-plane">Data Plane</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ioam.html">Inband OAM (iOAM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wireguard.html">Wireguard vpp-plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="srtp.html">SRTP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_multicore.html">Multicore support for ACL plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_hash_lookup.html">ACL plugin constant-time lookup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_lookup_context.html">ACL Lookup contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bufmon_doc.html">Buffers monitoring plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Plugins</a> &raquo;</li>
+      <li>DHCPv6 prefix delegation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/plugins/dhcp6_pd.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dhcpv6-prefix-delegation">
+<h1>DHCPv6 prefix delegation<a class="headerlink" href="#dhcpv6-prefix-delegation" title="Permalink to this headline"></a></h1>
+<div class="line-block">
+<div class="line">DHCPv6 prefix delegation client implementation is split between
+Control Plane and Data Plane.</div>
+<div class="line">Data Plane can also be used alone by external application (external
+Control Plane) using Data Plane Binary API.</div>
+</div>
+<div class="line-block">
+<div class="line">Number of different IA_PDs managed by VPP is currently limited to 1
+(and corresponding IAID has value 1).</div>
+<div class="line">Client ID is of type DUID-LLT (Link Layer address plus time) and is
+created on VPP startup from avaliable interfaces (or chosen at random
+for debugging purposes).</div>
+<div class="line">Server ID is only visible to Data Plane. Control Plane identifies
+servers by a 32-bit handle (server_index) mapped to Server ID by Data
+Plane.</div>
+</div>
+<section id="control-plane">
+<h2>Control Plane<a class="headerlink" href="#control-plane" title="Permalink to this headline"></a></h2>
+<div class="line-block">
+<div class="line">DHCPv6 PD clients are configured per interface.</div>
+<div class="line">When configuring a PD client we have to choose a name of a prefix
+group for that client.</div>
+<div class="line">Each prefix obtained through this client will be flagged as belonging
+to specified prefix group.</div>
+<div class="line">The prefix groups are used as a filter by prefix consumers.</div>
+</div>
+<div class="line-block">
+<div class="line">To enable client on particular interface call Binary API function
+dhcp6_pd_client_enable_disable with param ‘sw_if_index’ set to that
+interface, ‘prefix_group’ set to prefix group name and ‘enable’ set to
+true.</div>
+<div class="line">Format of corresponding Debug CLI command is: “dhcp6 pd client
+[disable]”</div>
+</div>
+<p>To add/delete IPv6 address potentially using available prefix from
+specified prefix group call Binary API command
+ip6_add_del_address_using_prefix with parameters:
+&gt; sw_if_index - software interface index of interface to add/delete
+address to/from &gt; prefix_group - name of prefix group, prefix_group[0]
+== ‘\0’ means no prefix should be used &gt; address - address or suffix to
+be used with a prefix from selected group &gt; prefix_length - subnet
+prefix for the address &gt; is_add - 1 for add, 0 for remove or Debug CLI
+command with format: “set ip6 addresses [prefix group ]</p>
+<address><p>[del]”</p>
+<div class="line-block">
+<div class="line">When no prefix is avaliable, no address is physically added, but is
+added once a prefix becomes avaliable.</div>
+<div class="line">Address is removed when all available prefixes are removed.</div>
+<div class="line">When a used prefix is removed and there is other available prefix, the
+address that used the prefix is reconfigured using the available
+prefix.</div>
+</div>
+<div class="line-block">
+<div class="line">There are three debug CLI commands (with no parameters) used to show
+the state of clients, prefixes and addresses:</div>
+<div class="line">show ip6 pd clients</div>
+<div class="line">show ip6 prefixes</div>
+<div class="line">show ip6 addresses</div>
+</div>
+<section id="example-configuration">
+<h3>Example configuration<a class="headerlink" href="#example-configuration" title="Permalink to this headline"></a></h3>
+<p>set int state GigabitEthernet0/8/0 up dhcp6 pd client
+GigabitEthernet0/8/0 prefix group my-dhcp6-pd-group set ip6 address
+GigabitEthernet0/8/0 prefix group my-dhcp6-pd-group ::7/64</p>
+</section>
+</section>
+<section id="data-plane">
+<h2>Data Plane<a class="headerlink" href="#data-plane" title="Permalink to this headline"></a></h2>
+<div class="line-block">
+<div class="line">First API message to be called is dhcp6_clients_enable_disable with
+enable parameter set to 1.</div>
+<div class="line">It enables DHCPv6 client subsystem to receive UDP messages containing
+DHCPv6 client port (sets the router to DHCPv6 client mode).</div>
+<div class="line">This is to ensure client subsystem gets the messages instead of DHCPv6
+proxy subsystem.</div>
+</div>
+<div class="line-block">
+<div class="line">There is one common Binary API call for sending DHCPv6 client messages
+(dhcp6_pd_send_client_message) with these fields:</div>
+<div class="line">&gt; msg_type - message type (e.g. Solicit) &gt; sw_if_index - index of TX
+interface &gt; server_index - used to dentify DHCPv6 server, unique for
+each DHCPv6 server on the link, value obrtained from
+dhcp6_pd_reply_event API message, use ~0 to send message to all DHCPv6
+servers &gt; param irt - initial retransmission time &gt; param mrt -
+maximum retransmission time &gt; param mrc - maximum retransmission count
+&gt; param mrd - maximum retransmission duration for sending the message
+&gt; stop - if non-zero then stop resending the message, otherwise start
+sending the message &gt; T1 - value of T1 in IA_PD option &gt; T2 - value of
+T2 in IA_PD option &gt; prefixes - list of prefixes in IA_PD option</div>
+</div>
+<div class="line-block">
+<div class="line">The message is automatically resent by Data Plane based on parameters
+‘irt’, ‘mrt’, ‘mrc’ and ‘mrd’.</div>
+<div class="line">To stop the resending call the same function (same msg_type is
+sufficient) with ‘stop’ set to 1.</div>
+</div>
+<div class="line-block">
+<div class="line">To subscribe for notifications of DHCPv6 messages from server call
+Binary API function</div>
+<div class="line">want_dhcp6_pd_reply_events with enable_disable set to 1</div>
+<div class="line">Notification (dhcp6_pd_reply_event) fileds are:</div>
+<div class="line">&gt; sw_if_index - index of RX interface &gt; server_index - used to dentify
+DHCPv6 server, unique for each DHCPv6 server on the link &gt; msg_type -
+message type &gt; T1 - value of T1 in IA_PD option &gt; T2 - value of T2 in
+IA_PD option &gt; inner_status_code - value of status code inside IA_PD
+option &gt; status_code - value of status code &gt; preference - value of
+preference option in reply message &gt; prefixes - list of prefixes in
+IA_PD option</div>
+</div>
+<div class="line-block">
+<div class="line">Prefix is a struct with with these fields:</div>
+<div class="line">&gt; prefix - prefix bytes &gt; prefix_length - prefix length &gt; valid_time -
+valid lifetime &gt; preferred_time - preferred lifetime</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mdata.html" class="btn btn-neutral float-left" title="Buffer metadata change tracker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ioam.html" class="btn btn-neutral float-right" title="Inband OAM (iOAM)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

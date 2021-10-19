@@ -1,0 +1,204 @@
+.. _clicmd_src_vnet_qos:
+
+===============================================================
+Qos cli reference
+===============================================================
+
+qos egress map
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    qos egress map id %d [delete] {[SOURCE][INPUT]=OUTPUT}
+
+
+
+Update a Egress Qos Map table
+
+
+
+.. code-block:: console
+
+    qos egress map id 0 [ip][4]=4
+
+
+
+Declaration: ``qos_egress_map_update_command`` `src/vnet/qos/qos_egress_map.c line 185 <https://github.com/FDio/vpp/blob/master//src/vnet/qos/qos_egress_map.c#L185>`_
+
+Implementation: ``qos_egress_map_update_cli``
+
+
+qos mark
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    qos mark <SOURCE> <INTERFACE> id <MAP>
+
+
+
+Apply a QoS egress mapping table to an interface for QoS marking packets
+at the given output protocol.
+
+
+
+.. code-block:: console
+
+    qos egress interface GigEthernet0/9/0 id 0 output ip
+
+
+
+Declaration: ``qos_egress_map_interface_command`` `src/vnet/qos/qos_mark.c line 191 <https://github.com/FDio/vpp/blob/master//src/vnet/qos/qos_mark.c#L191>`_
+
+Implementation: ``qos_mark_cli``
+
+
+qos record
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    qos record <record-source> <INTERFACE> [disable]
+
+
+
+Enable QoS bit recording on an interface using the packet's input DSCP bits
+Which input QoS bits to use are either; IP, MPLS or VLAN. If more than
+one protocol is chosen (which is foolish) the higher layers override the
+lower.
+
+
+
+.. code-block:: console
+
+    qos record ip GigEthernet0/1/0
+
+
+
+Declaration: ``qos_record_command`` `src/vnet/qos/qos_record.c line 207 <https://github.com/FDio/vpp/blob/master//src/vnet/qos/qos_record.c#L207>`_
+
+Implementation: ``qos_record_cli``
+
+
+qos store
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    qos store <store-source> <INTERFACE> [disable]
+
+
+
+Enable QoS bit storing on an interface using the packet's input DSCP bits
+Which input QoS bits to use are either; IP, MPLS or VLAN. If more than
+one protocol is chosen (which is foolish) the higher layers override the
+lower.
+
+
+
+.. code-block:: console
+
+    qos store ip GigEthernet0/1/0
+
+
+
+Declaration: ``qos_store_command`` `src/vnet/qos/qos_store.c line 215 <https://github.com/FDio/vpp/blob/master//src/vnet/qos/qos_store.c#L215>`_
+
+Implementation: ``qos_store_cli``
+
+
+show qos egress map
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show qos egress map id %d
+
+
+
+Show Egress Qos Maps
+
+
+
+.. code-block:: console
+
+    show qos egress map
+
+
+
+Declaration: ``qos_egress_map_show_command`` `src/vnet/qos/qos_egress_map.c line 278 <https://github.com/FDio/vpp/blob/master//src/vnet/qos/qos_egress_map.c#L278>`_
+
+Implementation: ``qos_egress_map_show``
+
+
+show qos mark
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show qos mark [interface]
+
+
+
+Show Egress Qos Maps
+
+
+
+.. code-block:: console
+
+    show qos egress map
+
+
+
+Declaration: ``qos_mark_show_command`` `src/vnet/qos/qos_mark.c line 275 <https://github.com/FDio/vpp/blob/master//src/vnet/qos/qos_mark.c#L275>`_
+
+Implementation: ``qos_mark_show``
+
+
+show qos record
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show qos record [interface]
+
+
+
+Show Egress Qos Maps
+
+
+
+.. code-block:: console
+
+    show qos egress map
+
+
+
+Declaration: ``qos_record_show_command`` `src/vnet/qos/qos_record.c line 289 <https://github.com/FDio/vpp/blob/master//src/vnet/qos/qos_record.c#L289>`_
+
+Implementation: ``qos_record_show``
+
+
+show qos store
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show qos store [interface]
+
+
+
+Show Egress Qos Maps
+
+
+
+.. code-block:: console
+
+    show qos egress map
+
+
+
+Declaration: ``qos_store_show_command`` `src/vnet/qos/qos_store.c line 299 <https://github.com/FDio/vpp/blob/master//src/vnet/qos/qos_store.c#L299>`_
+
+Implementation: ``qos_store_show``
+

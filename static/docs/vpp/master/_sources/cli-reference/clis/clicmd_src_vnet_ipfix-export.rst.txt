@@ -1,0 +1,57 @@
+.. _clicmd_src_vnet_ipfix-export:
+
+===============================================================
+Ipfix-export cli reference
+===============================================================
+
+ipfix classify table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ipfix classify table add|del <table-index>
+
+
+Declaration: ``ipfix_classify_table_add_del_command`` `src/vnet/ipfix-export/flow_report_classify.c line 490 <https://github.com/FDio/vpp/blob/master//src/vnet/ipfix-export/flow_report_classify.c#L490>`_
+
+Implementation: ``ipfix_classify_table_add_del_command_fn``
+
+
+ipfix flush
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    flush the current ipfix data [for make test]
+
+
+Declaration: ``ipfix_flush_command`` `src/vnet/ipfix-export/flow_report.c line 600 <https://github.com/FDio/vpp/blob/master//src/vnet/ipfix-export/flow_report.c#L600>`_
+
+Implementation: ``ipfix_flush_command_fn``
+
+
+set ipfix classify stream
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ipfix classify stream[domain <domain-id>] [src-port <src-port>]
+
+
+Declaration: ``set_ipfix_classify_stream_command`` `src/vnet/ipfix-export/flow_report_classify.c line 533 <https://github.com/FDio/vpp/blob/master//src/vnet/ipfix-export/flow_report_classify.c#L533>`_
+
+Implementation: ``set_ipfix_classify_stream_command_fn``
+
+
+set ipfix exporter
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ipfix exporter collector <ip4-address> [port <port>] src <ip4-address> [fib-id <fib-id>] [path-mtu <path-mtu>] [template-interval <template-interval>] [udp-checksum]
+
+
+Declaration: ``set_ipfix_exporter_command`` `src/vnet/ipfix-export/flow_report.c line 577 <https://github.com/FDio/vpp/blob/master//src/vnet/ipfix-export/flow_report.c#L577>`_
+
+Implementation: ``set_ipfix_exporter_command_fn``
+

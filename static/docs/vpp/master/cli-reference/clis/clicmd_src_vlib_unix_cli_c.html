@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command line session &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DPDK Crypto" href="clicmd_extras_deprecated_dpdk-ipsec.html" />
+    <link rel="prev" title="Circular Journal" href="clicmd_extras_deprecated_vlib_unix_cj_c.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ethernet.html">ARP and Loopback CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_vlib_unix_cj_c.html">Circular Journal</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Command line session</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#define">define</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#echo">echo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exec">exec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#history">history</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#q">q</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quit">quit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-terminal-ansi">set terminal ansi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-terminal-history">set terminal history</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-terminal-pager">set terminal pager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-cli-sessions">show cli-sessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-macro">show macro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-terminal">show terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-unix-errors">show unix errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-unix-files">show unix files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#undefine">undefine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wait">wait</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_dpdk-ipsec.html">DPDK Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_device.html">DPDK and pcap tx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_af_packet.html">Host Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app_version_c.html">Image Version Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_init_c.html">Init functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet.html">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_l2.html">Layer 2 CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip.html">Layer 3 IP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsim_nsim_c.html">Network Delay Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_http_static_static_server_c.html">Static HTTP Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix.html">Unix Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib.html">VLIB application library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan.html">VXLAN CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gbp.html">VXLAN-GBP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_netmap.html">netmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_abf.html">Abf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_acl.html">Acl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_adl.html">Adl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_af_xdp.html">Af_xdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_arping.html">Arping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_avf.html">Avf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_bufmon.html">Bufmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_builtinurl.html">Builtinurl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cdp.html">Cdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cnat.html">Cnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_crypto_sw_scheduler.html">Crypto_sw_scheduler cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ct6.html">Ct6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dhcp.html">Dhcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dispatch-trace.html">Dispatch-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dns.html">Dns cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_cryptodev.html">Cryptodev cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_flowprobe.html">Flowprobe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gbp.html">Gbp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_geneve.html">Geneve cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gtpu.html">Gtpu cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_hs_apps.html">Hs_apps cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_igmp.html">Igmp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ikev2.html">Ikev2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ila.html">Ila cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_analyse_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_encap.html">Encap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export.html">Export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export-vxlan-gpe.html">Export-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-pot.html">Lib-pot cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-trace.html">Lib-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-vxlan-gpe.html">Lib-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_udp-ping.html">Udp-ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2e.html">L2e cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2tp.html">L2tp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l3xc.html">L3xc cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lacp.html">Lacp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lb.html">Lb cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp.html">Linux-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-cp.html">Lisp-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-gpe.html">Lisp-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lldp.html">Lldp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mactime.html">Mactime cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_map.html">Map cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_marvell_pp2.html">Pp2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mdata.html">Mdata cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_memif.html">Memif cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mss_clamp.html">Mss_clamp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_det44.html">Det44 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_dslite.html">Dslite cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ed.html">Nat44-ed cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ei.html">Nat44-ei cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat64.html">Nat64 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat66.html">Nat66 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_pnat.html">Pnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh.html">Nsh cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam.html">Nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html">Export-nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_oddbuf.html">Oddbuf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ping.html">Ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_pppoe.html">Pppoe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_quic.html">Quic cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_rdma.html">Rdma cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_snort.html">Snort cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_stn.html">Stn cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_svs.html">Svs cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tlsopenssl.html">Tlsopenssl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tracedump.html">Tracedump cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_unittest.html">Unittest cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_urpf.html">Urpf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vmxnet3.html">Vmxnet3 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vrrp.html">Vrrp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_wireguard.html">Wireguard cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_pci.html">Pci cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibapi.html">Vlibapi cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibmemory.html">Vlibmemory cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_adj.html">Adj cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_arp.html">Arp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bfd.html">Bfd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bier.html">Bier cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bonding.html">Bonding cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_classify.html">Classify cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_crypto.html">Crypto cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_pipe.html">Pipe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_tap.html">Tap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_dpo.html">Dpo cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_feature.html">Feature cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_fib.html">Fib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_flow.html">Flow cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gre.html">Gre cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gso.html">Gso cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_hash.html">Hash cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip-neighbor.html">Ip-neighbor cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip_reass.html">Reass cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip6-nd.html">Ip6-nd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipfix-export.html">Ipfix-export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipip.html">Ipip cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipsec.html">Ipsec cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_lawful-intercept.html">Lawful-intercept cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mfib.html">Mfib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mpls.html">Mpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_pg.html">Pg cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_policer.html">Policer cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_qos.html">Qos cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_session.html">Session cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_span.html">Span cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srmpls.html">Srmpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srv6.html">Srv6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_syslog.html">Syslog cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_tcp.html">Tcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_teib.html">Teib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_udp.html">Udp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_unix.html">Unix cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gpe.html">Vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_api.html">Api cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app.html">App cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_stats.html">Stats cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_vnet.html">Vnet cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_virtio.html">vHost User</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+      <li>Command line session</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cli-reference/clis/clicmd_src_vlib_unix_cli_c.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="command-line-session">
+<span id="clicmd-src-vlib-unix-cli-c"></span><h1>Command line session<a class="headerlink" href="#command-line-session" title="Permalink to this headline"></a></h1>
+<section id="define">
+<h2>define<a class="headerlink" href="#define" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">define &lt;variable-name&gt; &lt;value&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">define_cmd</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4067">src/vlib/unix/cli.c line 4067</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">define_cmd_fn</span></code></p>
+</section>
+<section id="echo">
+<h2>echo<a class="headerlink" href="#echo" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &lt;rest-of-line&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_echo_cmd</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4029">src/vlib/unix/cli.c line 4029</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">echo_cmd</span></code></p>
+</section>
+<section id="exec">
+<h2>exec<a class="headerlink" href="#exec" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">exec &lt;filename&gt;</span>
+</pre></div>
+</div>
+<p>Executes a sequence of CLI commands which are read from a file. If
+a command is unrecognized or otherwise invalid then the usual CLI
+feedback will be generated, however execution of subsequent commands
+from the file will continue.</p>
+<p>The VPP code is indifferent to the file location. However, if SELinux
+is enabled, then the file needs to have an SELinux label the VPP
+process is allowed to access. For example, if a file is created in
+<code class="docutils literal notranslate"><span class="pre">/usr/share/vpp/</span></code>, it will be allowed. However, files manually
+created in ‘/tmp/’ or ‘/home/&lt;user&gt;/’ will not be accessible by the VPP
+process when SELinux is enabled.</p>
+<p>Sample file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">``$ cat /usr/share/vpp/scripts/gigup.txt``</span>
+<span class="go">set interface state GigabitEthernet0/8/0 up</span>
+<span class="go">set interface state GigabitEthernet0/9/0 up</span>
+</pre></div>
+</div>
+<p>Example of how to execute a set of CLI commands from a file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">exec /usr/share/vpp/scripts/gigup.txt</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_exec</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3487">src/vlib/unix/cli.c line 3487</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_exec</span></code></p>
+</section>
+<section id="history">
+<h2>history<a class="headerlink" href="#history" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show current session command history</span>
+</pre></div>
+</div>
+<p>Displays the command history for the current session, if any.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_cli_show_history</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3643">src/vlib/unix/cli.c line 3643</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_show_history</span></code></p>
+</section>
+<section id="q">
+<h2>q<a class="headerlink" href="#q" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Exit CLI</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">unix_cli_q_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3354">src/vlib/unix/cli.c line 3354</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_quit</span></code></p>
+</section>
+<section id="quit">
+<h2>quit<a class="headerlink" href="#quit" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Exit CLI</span>
+</pre></div>
+</div>
+<p>Terminates the current CLI session.</p>
+<p>If VPP is running in &#64;em interactive mode and this is the console session
+(that is, the session on <code class="docutils literal notranslate"><span class="pre">stdin)</span></code> then this will also terminate VPP.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">unix_cli_quit_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3346">src/vlib/unix/cli.c line 3346</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_quit</span></code></p>
+</section>
+<section id="set-terminal-ansi">
+<h2>set terminal ansi<a class="headerlink" href="#set-terminal-ansi" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set terminal ansi [on|off]</span>
+</pre></div>
+</div>
+<p>Enables or disables the use of ANSI control sequences by this terminal.
+The default will vary based on terminal detection at the start of the
+session.</p>
+<p>ANSI control sequences are used in a small number of places to provide,
+for example, color text output and to control the cursor in the pager.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_cli_set_terminal_ansi</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3962">src/vlib/unix/cli.c line 3962</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_set_terminal_ansi</span></code></p>
+</section>
+<section id="set-terminal-history">
+<h2>set terminal history<a class="headerlink" href="#set-terminal-history" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set terminal history [on|off] [limit &lt;lines&gt;]</span>
+</pre></div>
+</div>
+<p>Enables or disables the command history function of the current
+terminal. Generally this defaults to enabled.</p>
+<p>This command also allows the maximum size of the history buffer for
+this session to be altered.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_cli_set_terminal_history</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3923">src/vlib/unix/cli.c line 3923</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_set_terminal_history</span></code></p>
+</section>
+<section id="set-terminal-pager">
+<h2>set terminal pager<a class="headerlink" href="#set-terminal-pager" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set terminal pager [on|off] [limit &lt;lines&gt;]</span>
+</pre></div>
+</div>
+<p>Enables or disables the terminal pager for this session. Generally
+this defaults to enabled.</p>
+<p>Additionally allows the pager buffer size to be set; though note that
+this value is set globally and not per session.</p>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_cli_set_terminal_pager</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3852">src/vlib/unix/cli.c line 3852</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_set_terminal_pager</span></code></p>
+</section>
+<section id="show-cli-sessions">
+<h2>show cli-sessions<a class="headerlink" href="#show-cli-sessions" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show current CLI sessions</span>
+</pre></div>
+</div>
+<p>Displays a summary of all the current CLI sessions.</p>
+<p>Typically used to diagnose connection issues with the CLI
+socket.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show cli-sessions</span>
+
+<span class="go">PNI   FD    Name                 Flags</span>
+<span class="go">343   0     unix-cli-stdin       IslpA</span>
+<span class="go">344   7     unix-cli-local:20    ISlpA</span>
+<span class="go">346   8     unix-cli-local:21    iSLpa</span>
+</pre></div>
+</div>
+<p>In this example we have the debug console of the running process
+on stdin/out, we have an interactive socket session and we also
+have a non-interactive socket session.</p>
+<p>Fields:</p>
+<ul class="simple">
+<li><p>&#64;em PNI: Process node index.</p></li>
+<li><p>&#64;em FD: Unix file descriptor.</p></li>
+<li><p>&#64;em Name: Name of the session.</p></li>
+<li><p>&#64;em Flags: Various flags that describe the state of the session.</p></li>
+</ul>
+<p>&#64;em Flags have the following meanings; lower-case typically negates
+upper-case:</p>
+<ul class="simple">
+<li><p>&#64;em I Interactive session.</p></li>
+<li><p>&#64;em S Connected by socket.</p></li>
+<li><p>&#64;em s Not a socket, likely stdin.</p></li>
+<li><p>&#64;em L Line-by-line mode.</p></li>
+<li><p>&#64;em l Char-by-char mode.</p></li>
+<li><p>&#64;em P EPIPE detected on connection; it will close soon.</p></li>
+<li><p>&#64;em A ANSI-capable terminal.</p></li>
+</ul>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_cli_show_cli_sessions</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3795">src/vlib/unix/cli.c line 3795</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_show_cli_sessions</span></code></p>
+</section>
+<section id="show-macro">
+<h2>show macro<a class="headerlink" href="#show-macro" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show macro [noevaluate]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_macro</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4117">src/vlib/unix/cli.c line 4117</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_macro_cmd_fn</span></code></p>
+</section>
+<section id="show-terminal">
+<h2>show terminal<a class="headerlink" href="#show-terminal" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show current session terminal settings</span>
+</pre></div>
+</div>
+<p>Displays various information about the state of the current terminal
+session.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show terminal</span>
+
+<span class="go">Terminal name:   unix-cli-stdin</span>
+<span class="go">Terminal mode:   char-by-char</span>
+<span class="go">Terminal width:  123</span>
+<span class="go">Terminal height: 48</span>
+<span class="go">ANSI capable:    yes</span>
+<span class="go">Interactive:     yes</span>
+<span class="go">History enabled: yes</span>
+<span class="go">History limit:   50</span>
+<span class="go">Pager enabled:   yes</span>
+<span class="go">Pager limit:     100000</span>
+<span class="go">CRLF mode:       LF</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_cli_show_terminal</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3715">src/vlib/unix/cli.c line 3715</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_cli_show_terminal</span></code></p>
+</section>
+<section id="show-unix-errors">
+<h2>show unix errors<a class="headerlink" href="#show-unix-errors" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show Unix system call error history</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_show_errors</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3563">src/vlib/unix/cli.c line 3563</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_show_errors</span></code></p>
+</section>
+<section id="show-unix-files">
+<h2>show unix files<a class="headerlink" href="#show-unix-files" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show Unix files in use</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_show_files</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L3606">src/vlib/unix/cli.c line 3606</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_show_files</span></code></p>
+</section>
+<section id="undefine">
+<h2>undefine<a class="headerlink" href="#undefine" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">undefine &lt;variable-name&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">undefine_cmd</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4093">src/vlib/unix/cli.c line 4093</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">undefine_cmd_fn</span></code></p>
+</section>
+<section id="wait">
+<h2>wait<a class="headerlink" href="#wait" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wait &lt;sec&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_unix_wait_cmd</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/unix/cli.c#L4002">src/vlib/unix/cli.c line 4002</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">unix_wait_cmd</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clicmd_extras_deprecated_vlib_unix_cj_c.html" class="btn btn-neutral float-left" title="Circular Journal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clicmd_extras_deprecated_dpdk-ipsec.html" class="btn btn-neutral float-right" title="DPDK Crypto" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

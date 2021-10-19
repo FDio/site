@@ -1,0 +1,83 @@
+.. _clicmd_src_vnet_bonding:
+
+===============================================================
+Bonding cli reference
+===============================================================
+
+bond add
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bond add <BondEthernetx> <member-interface> [passive] [long-timeout]
+
+
+Declaration: ``add_member_interface_command`` `src/vnet/bonding/cli.c line 821 <https://github.com/FDio/vpp/blob/master//src/vnet/bonding/cli.c#L821>`_
+
+Implementation: ``add_member_interface_command_fn``
+
+
+bond del
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bond del <member-interface>
+
+
+Declaration: ``detach_interface_command`` `src/vnet/bonding/cli.c line 885 <https://github.com/FDio/vpp/blob/master//src/vnet/bonding/cli.c#L885>`_
+
+Implementation: ``detach_interface_command_fn``
+
+
+create bond
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create bond mode {round-robin | active-backup | broadcast | {lacp | xor} [load-balance { l2 | l23 | l34 } [numa-only]]} [hw-addr <mac-address>] [id <if-id>] [gso]
+
+
+Declaration: ``bond_create_command`` `src/vnet/bonding/cli.c line 542 <https://github.com/FDio/vpp/blob/master//src/vnet/bonding/cli.c#L542>`_
+
+Implementation: ``bond_create_command_fn``
+
+
+delete bond
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete bond {<interface> | sw_if_index <sw_idx>}
+
+
+Declaration: ``bond_delete__command`` `src/vnet/bonding/cli.c line 591 <https://github.com/FDio/vpp/blob/master//src/vnet/bonding/cli.c#L591>`_
+
+Implementation: ``bond_delete_command_fn``
+
+
+set interface bond
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface bond <interface> | sw_if_index <idx> weight <value>
+
+
+Declaration: ``set_interface_bond_cmd`` `src/vnet/bonding/cli.c line 1095 <https://github.com/FDio/vpp/blob/master//src/vnet/bonding/cli.c#L1095>`_
+
+Implementation: ``bond_set_intf_cmd``
+
+
+show bond
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show bond [details]
+
+
+Declaration: ``show_bond_command`` `src/vnet/bonding/cli.c line 989 <https://github.com/FDio/vpp/blob/master//src/vnet/bonding/cli.c#L989>`_
+
+Implementation: ``show_bond_fn``
+

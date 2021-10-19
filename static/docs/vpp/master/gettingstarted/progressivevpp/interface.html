@@ -1,76 +1,41 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Creating an Interface &mdash; The Vector Packet Processor master documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creating an Interface &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
-    <link rel="author" title="About these documents" href="../../about.html" />
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Using the trace command" href="traces.html" />
     <link rel="prev" title="Running VPP" href="runningvpp.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
-          
-
-          
-            
             <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                master
-              </div>
-            
-          
+                v22.02-rc0-128-g4450b03ba
 
-          
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,134 +43,138 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Progressive VPP Tutorial</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="settingupenvironment.html">Setting up your environment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="runningvpp.html">Running VPP</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Creating an Interface</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#skills-to-be-learned">Skills to be Learned</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#vpp-commands-learned-in-this-exercise">VPP commands learned in this exercise</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#topology">Topology</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#initial-state">Initial State</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#create-veth-interfaces-on-host">Create veth interfaces on host</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#assign-an-ip-address">Assign an IP address</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#create-vpp-host-interface">Create vpp host-interface</a></li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../running/index.html">Running VPP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Progressive VPP Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="settingupenvironment.html">Setting up your environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="runningvpp.html">Running VPP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating an Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#skills-to-be-learned">Skills to be Learned</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vpp-commands-learned-in-this-exercise">VPP commands learned in this exercise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#topology">Topology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initial-state">Initial State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-veth-interfaces-on-host">Create veth interfaces on host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assign-an-ip-address">Assign an IP address</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-vpp-host-interface">Create vpp host-interface</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="traces.html">Using the trace command</a></li>
-<li class="toctree-l3"><a class="reference internal" href="twovppinstances.html">Connecting Two FD.io VPP Instances</a></li>
-<li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
-<li class="toctree-l3"><a class="reference internal" href="switching.html">Switching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traces.html">Using the trace command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twovppinstances.html">Connecting Two FD.io VPP Instances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switching.html">Switching</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../developers/index.html">For Developers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related FD.IO Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">The Vector Packet Processor</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../index.html">Getting Started</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Progressive VPP Tutorial</a> &raquo;</li>
-        
       <li>Creating an Interface</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../_sources/gettingstarted/progressivevpp/interface.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="toctree-wrapper compound" id="interface">
 </div>
-<div class="section" id="creating-an-interface">
-<h1>Creating an Interface<a class="headerlink" href="#creating-an-interface" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="skills-to-be-learned">
-<h2>Skills to be Learned<a class="headerlink" href="#skills-to-be-learned" title="Permalink to this headline">¶</a></h2>
+<section id="creating-an-interface">
+<h1>Creating an Interface<a class="headerlink" href="#creating-an-interface" title="Permalink to this headline"></a></h1>
+<section id="skills-to-be-learned">
+<h2>Skills to be Learned<a class="headerlink" href="#skills-to-be-learned" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Create a veth interface in Linux host</p></li>
 <li><p>Assign an IP address to one end of the veth interface in the Linux host</p></li>
 <li><p>Create a vpp host-interface that connected to one end of a veth interface via AF_PACKET</p></li>
 <li><p>Add an ip address to a vpp interface</p></li>
 </ol>
-</div>
-<div class="section" id="vpp-commands-learned-in-this-exercise">
-<h2>VPP commands learned in this exercise<a class="headerlink" href="#vpp-commands-learned-in-this-exercise" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vpp-commands-learned-in-this-exercise">
+<h2>VPP commands learned in this exercise<a class="headerlink" href="#vpp-commands-learned-in-this-exercise" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://docs.fd.io/vpp/17.04/clicmd_src_vnet_devices_af_packet.html#clicmd_create_host-interface">create host-interface</a></p></li>
 <li><p><a class="reference external" href="https://docs.fd.io/vpp/17.04/clicmd_src_vnet.html#clicmd_set_interface_state">set int state</a></p></li>
@@ -219,42 +188,44 @@
 <li><p><a class="reference external" href="https://docs.fd.io/vpp/21.06/db/dba/clicmd_src_vnet_ip-neighbor.html#clicmd_show_ip_neighbors">show ip neighbors</a></p></li>
 <li><p><a class="reference external" href="https://docs.fd.io/vpp/17.04/clicmd_src_vnet_fib.html#clicmd_show_ip_fib">show ip fib</a></p></li>
 </ol>
-</div>
-<div class="section" id="topology">
-<h2>Topology<a class="headerlink" href="#topology" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="id1">
+</section>
+<section id="topology">
+<h2>Topology<a class="headerlink" href="#topology" title="Permalink to this headline"></a></h2>
+<figure class="align-default" id="id1">
 <img alt="Figure: Create Interface Topology" src="../../_images/Create_Interface_Topology.jpg" />
-<p class="caption"><span class="caption-text">Figure: Create Interface Topology</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="initial-state">
-<h2>Initial State<a class="headerlink" href="#initial-state" title="Permalink to this headline">¶</a></h2>
+<figcaption>
+<p><span class="caption-text">Figure: Create Interface Topology</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="initial-state">
+<h2>Initial State<a class="headerlink" href="#initial-state" title="Permalink to this headline"></a></h2>
 <p>The initial state here is presumed to be the final state from the previous sections
 of the tutorial.</p>
-</div>
-<div class="section" id="create-veth-interfaces-on-host">
-<h2>Create veth interfaces on host<a class="headerlink" href="#create-veth-interfaces-on-host" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="create-veth-interfaces-on-host">
+<h2>Create veth interfaces on host<a class="headerlink" href="#create-veth-interfaces-on-host" title="Permalink to this headline"></a></h2>
 <p>In Linux, there is a type of interface call ‘veth’. Think of a ‘veth’
 interface as being an interface that has two ends to it (rather than
 one).</p>
 <p>Create a veth interface with one end named <strong>vpp1out</strong> and the other
 named <strong>vpp1host</strong></p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo ip link add name vpp1out <span class="nb">type</span> veth peer name vpp1host
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo ip link add name vpp1out <span class="nb">type</span> veth peer name vpp1host
 </pre></div>
 </div>
 <p>Turn up both ends:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo ip link <span class="nb">set</span> dev vpp1out up
-<span class="gp">$</span> sudo ip link <span class="nb">set</span> dev vpp1host up
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo ip link <span class="nb">set</span> dev vpp1out up
+<span class="gp">$ </span>sudo ip link <span class="nb">set</span> dev vpp1host up
 </pre></div>
 </div>
-</div>
-<div class="section" id="assign-an-ip-address">
-<h2>Assign an IP address<a class="headerlink" href="#assign-an-ip-address" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo ip addr add <span class="m">10</span>.10.1.1/24 dev vpp1host
+</section>
+<section id="assign-an-ip-address">
+<h2>Assign an IP address<a class="headerlink" href="#assign-an-ip-address" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo ip addr add <span class="m">10</span>.10.1.1/24 dev vpp1host
 </pre></div>
 </div>
 <p>Display the result:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip addr show vpp1host
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ip addr show vpp1host
 <span class="go">5: vpp1host@vpp1out: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000</span>
 <span class="go">  link/ether e2:0f:1e:59:ec:f7 brd ff:ff:ff:ff:ff:ff</span>
 <span class="go">  inet 10.10.1.1/24 scope global vpp1host</span>
@@ -263,19 +234,19 @@ named <strong>vpp1host</strong></p>
 <span class="go">     valid_lft forever preferred_lft forever</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-vpp-host-interface">
-<h2>Create vpp host-interface<a class="headerlink" href="#create-vpp-host-interface" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="create-vpp-host-interface">
+<h2>Create vpp host-interface<a class="headerlink" href="#create-vpp-host-interface" title="Permalink to this headline"></a></h2>
 <p>Make sure VPP is running, if not start it.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ps -eaf <span class="p">|</span> grep vpp
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ps -eaf <span class="p">|</span> grep vpp
 <span class="go">vagrant   2141   903  0 05:28 pts/0    00:00:00 grep --color=auto vpp</span>
-<span class="gp">#</span> vpp is not running, so start it
-<span class="gp">$</span> sudo /usr/bin/vpp -c startup1.conf
+<span class="gp"># </span>vpp is not running, so start it
+<span class="gp">$ </span>sudo /usr/bin/vpp -c startup1.conf
 </pre></div>
 </div>
 <p>These commands are run from the vpp shell. Enter the VPP shell with the following
 command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl -s /run/vpp/cli-vpp1.sock
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo vppctl -s /run/vpp/cli-vpp1.sock
 <span class="go">    _______    _        _   _____  ___</span>
 <span class="go"> __/ __/ _ \  (_)__    | | / / _ \/ _ \</span>
 <span class="go"> _/ _// // / / / _ \   | |/ / ___/ ___/</span>
@@ -321,56 +292,38 @@ command:</p>
 <span class="go">local0 (dn):</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="traces.html" class="btn btn-neutral float-right" title="Using the trace command" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="runningvpp.html" class="btn btn-neutral float-left" title="Running VPP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="runningvpp.html" class="btn btn-neutral float-left" title="Running VPP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="traces.html" class="btn btn-neutral float-right" title="Using the trace command" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018-2021, Linux Foundation
-
-    </p>
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,0 +1,1523 @@
+.. _clicmd_src_vnet_ip:
+
+===============================================================
+Layer 3 IP CLI
+===============================================================
+
+clear ioam rewrite
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear ioam rewrite
+
+
+
+This command clears all the In-band OAM (iOAM) features enabled by
+the ``set ioam rewrite`` command. Use ``show ioam summary`` to
+verify the configured settings cleared.
+
+Example of how to clear iOAM features:
+
+
+.. code-block:: console
+
+    clear ioam rewrite
+
+
+
+Declaration: ``ip6_clear_ioam_rewrite_cmd`` `src/vnet/ip/ip6_hop_by_hop.c line 1268 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_hop_by_hop.c#L1268>`_
+
+Implementation: ``clear_ioam_rewrite_command_fn``
+
+
+disable ip6 interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    disable ip6 interface <interface>
+
+
+
+This command is used to disable IPv6 on a given interface.
+
+Example of how disable IPv6 on a given interface:
+
+
+.. code-block:: console
+
+    disable ip6 interface GigabitEthernet2/0/0
+
+
+
+Declaration: ``disable_ip6_interface_command`` `src/vnet/ip/ip6_link.c line 823 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_link.c#L823>`_
+
+Implementation: ``disable_ip6_interface_cmd``
+
+
+enable ip6 interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    enable ip6 interface <interface>
+
+
+
+This command is used to enable IPv6 on a given interface.
+
+Example of how enable IPv6 on a given interface:
+
+
+.. code-block:: console
+
+    enable ip6 interface GigabitEthernet2/0/0
+
+
+
+Declaration: ``enable_ip6_interface_command`` `src/vnet/ip/ip6_link.c line 783 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_link.c#L783>`_
+
+Implementation: ``enable_ip6_interface_cmd``
+
+
+ip
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Internet protocol (IP) commands
+
+
+Declaration: ``vlib_cli_ip_command`` `src/vnet/ip/lookup.c line 514 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L514>`_
+
+
+ip container
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip container <address> <interface>
+
+
+Declaration: ``ip_container_command_node`` `src/vnet/ip/ip_container_proxy.c line 220 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip_container_proxy.c#L220>`_
+
+Implementation: ``ip_container_cmd``
+
+
+ip mroute
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip mroute [add|del] <dst-ip-addr>/<width> [table <table-id>] [rpf-id <ID>] [via <next-hop-ip-addr> [<interface>],
+
+
+
+This command is used to add or delete IPv4 or IPv6  multicast routes. All
+IP Addresses (``<dst-ip-addr>/<width>``,
+``<next-hop-ip-addr>`` and ``<adj-hop-ip-addr>``)
+can be IPv4 or IPv6, but all must be of the same form in a single
+command. To display the current set of routes, use the commands
+``show ip mfib`` and ``show ip6 mfib``.
+The full set of support flags for interfaces and route is shown via;
+``show mfib route flags`` and ``show mfib itf flags``
+respectively.
+Example of how to add a forwarding interface to a route (and create the
+route if it does not exist)
+
+
+.. code-block:: console
+
+    ip mroute add 232.1.1.1 via GigabitEthernet2/0/0 Forward
+
+
+Example of how to add an accepting interface to a route (and create the
+route if it does not exist)
+
+
+.. code-block:: console
+
+    ip mroute add 232.1.1.1 via GigabitEthernet2/0/1 Accept
+
+
+Example of changing the route's flags to send signals via the API
+
+
+.. code-block:: console
+
+    ip mroute add 232.1.1.1 Signal
+
+
+
+Declaration: ``ip_mroute_command`` `src/vnet/ip/lookup.c line 976 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L976>`_
+
+Implementation: ``vnet_ip_mroute_cmd``
+
+
+ip punt policer
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip punt policer [add|del] <index>
+
+
+
+
+
+.. code-block:: console
+
+    set ip punt policer <INDEX>
+
+
+
+Declaration: ``ip4_punt_policer_command`` `src/vnet/ip/ip4_punt_drop.c line 305 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_punt_drop.c#L305>`_
+
+Implementation: ``ip4_punt_police_cmd``
+
+
+ip punt redirect
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip punt redirect [add|del] rx [<interface>|all] via [<nh>] <tx_interface>
+
+
+
+
+
+.. code-block:: console
+
+    set ip punt policer
+
+
+
+Declaration: ``ip4_punt_redirect_command`` `src/vnet/ip/ip4_punt_drop.c line 403 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_punt_drop.c#L403>`_
+
+Implementation: ``ip4_punt_redirect_cmd``
+
+
+ip route
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip route [add|del] [count <n>] <dst-ip-addr>/<width> [table <table-id>] via [next-hop-address] [next-hop-interface] [next-hop-table <value>] [weight <value>] [preference <value>] [udp-encap-id <value>] [ip4-lookup-in-table <value>] [ip6-lookup-in-table <value>] [mpls-lookup-in-table <value>] [resolve-via-host] [resolve-via-connected] [rx-ip4 <interface>] [out-labels <value value value>]
+
+
+
+This command is used to add or delete IPv4 or IPv6 routes. All
+IP Addresses (``<dst-ip-addr>/<width>``,
+``<next-hop-ip-addr>`` and ``<adj-hop-ip-addr>``)
+can be IPv4 or IPv6, but all must be of the same form in a single
+command. To display the current set of routes, use the commands
+``show ip fib`` and ``show ip6 fib``.
+
+Example of how to add a straight forward static route:
+
+
+.. code-block:: console
+
+    ip route add 6.0.1.2/32 via 6.0.0.1 GigabitEthernet2/0/0
+
+
+Example of how to delete a straight forward static route:
+
+
+.. code-block:: console
+
+    ip route del 6.0.1.2/32 via 6.0.0.1 GigabitEthernet2/0/0
+
+
+Mainly for route add/del performance testing, one can add or delete
+multiple routes by adding 'count N' to the previous item:
+
+
+.. code-block:: console
+
+    ip route add count 10 7.0.0.0/24 via 6.0.0.1 GigabitEthernet2/0/0
+
+
+Add multiple routes for the same destination to create equal-cost multipath:
+
+
+.. code-block:: console
+
+    ip route add 7.0.0.1/32 via 6.0.0.1 GigabitEthernet2/0/0
+
+
+
+
+.. code-block:: console
+
+    ip route add 7.0.0.1/32 via 6.0.0.2 GigabitEthernet2/0/0
+
+
+For unequal-cost multipath, specify the desired weights. This
+combination of weights results in 3/4 of the traffic following the
+second path, 1/4 following the first path:
+
+
+.. code-block:: console
+
+    ip route add 7.0.0.1/32 via 6.0.0.1 GigabitEthernet2/0/0 weight 1
+
+
+
+
+.. code-block:: console
+
+    ip route add 7.0.0.1/32 via 6.0.0.2 GigabitEthernet2/0/0 weight 3
+
+
+To add a route to a particular FIB table (VRF), use:
+
+
+.. code-block:: console
+
+    ip route add 172.16.24.0/24 table 7 via GigabitEthernet2/0/0
+
+
+
+Declaration: ``ip_route_command`` `src/vnet/ip/lookup.c line 569 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L569>`_
+
+Implementation: ``vnet_ip_route_cmd``
+
+
+ip table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip table [add|del] <table-id>
+
+
+
+This command is used to add or delete IPv4  Tables. All
+Tables must be explicitly added before that can be used. Creating a
+table will add both unicast and multicast FIBs
+
+Declaration: ``ip4_table_command`` `src/vnet/ip/lookup.c line 584 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L584>`_
+
+Implementation: ``vnet_ip4_table_cmd``
+
+
+ip6
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Internet protocol version 6 (IPv6) commands
+
+
+Declaration: ``vlib_cli_ip6_command`` `src/vnet/ip/lookup.c line 521 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L521>`_
+
+
+ip6 punt policer
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip6 punt policer [add|del] <index>
+
+
+
+
+
+.. code-block:: console
+
+    set ip punt policer <INDEX>
+
+
+
+Declaration: ``ip6_punt_policer_command`` `src/vnet/ip/ip6_punt_drop.c line 247 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_punt_drop.c#L247>`_
+
+Implementation: ``ip6_punt_police_cmd``
+
+
+ip6 punt redirect
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip6 punt redirect [add|del] rx [<interface>|all] via [<nh>] <tx_interface>
+
+
+
+
+
+.. code-block:: console
+
+    set ip punt policer <INDEX>
+
+
+
+Declaration: ``ip6_punt_redirect_command`` `src/vnet/ip/ip6_punt_drop.c line 396 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_punt_drop.c#L396>`_
+
+Implementation: ``ip6_punt_redirect_cmd``
+
+
+ip6 table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip6 table [add|del] <table-id>
+
+
+
+This command is used to add or delete IPv4  Tables. All
+Tables must be explicitly added before that can be used. Creating a
+table will add both unicast and multicast FIBs
+
+Declaration: ``ip6_table_command`` `src/vnet/ip/lookup.c line 599 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L599>`_
+
+Implementation: ``vnet_ip6_table_cmd``
+
+
+punt socket deregister
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    punt socket deregister [IPV4|ipv6] [UDP|tcp] [ALL|<port-num>]
+
+
+
+
+
+.. code-block:: console
+
+    punt socket register
+
+
+
+Declaration: ``punt_socket_deregister_command`` `src/vnet/ip/punt.c line 686 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/punt.c#L686>`_
+
+Implementation: ``punt_socket_deregister_cmd``
+
+
+punt socket register
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    punt socket register [IPV4|ipv6] [UDP|tcp] [ALL|<port-num>] socket <socket>
+
+
+
+
+
+.. code-block:: console
+
+    punt socket register socket punt_l4_foo.sock
+
+
+
+Declaration: ``punt_socket_register_command`` `src/vnet/ip/punt.c line 617 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/punt.c#L617>`_
+
+Implementation: ``punt_socket_register_cmd``
+
+
+set interface ip
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    IP4/IP6 commands
+
+
+Declaration: ``set_interface_ip_command`` `src/vnet/ip/ip46_cli.c line 75 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip46_cli.c#L75>`_
+
+
+set interface ip address
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip address [del] <interface> <ip-addr>/<mask> | [all]
+
+
+
+Add an IP Address to an interface or remove and IP Address from an interface.
+The IP Address can be an IPv4 or an IPv6 address. Interfaces may have multiple
+IPv4 and IPv6 addresses. There is no concept of primary vs. secondary
+interface addresses; they're just addresses.
+
+To display the addresses associated with a given interface, use the command
+``show interface address <interface>``.
+
+Note that the debug CLI does not enforce classful mask-width / addressing
+constraints.
+
+An example of how to add an IPv4 address to an interface:
+
+
+.. code-block:: console
+
+    set interface ip address GigabitEthernet2/0/0 172.16.2.12/24
+
+
+
+An example of how to add an IPv6 address to an interface:
+
+
+.. code-block:: console
+
+    set interface ip address GigabitEthernet2/0/0 @::a:1:1:0:7/126
+
+
+
+To delete a specific interface ip address:
+
+
+.. code-block:: console
+
+    set interface ip address del GigabitEthernet2/0/0 172.16.2.12/24
+
+
+
+To delete all interfaces addresses (IPv4 and IPv6):
+
+
+.. code-block:: console
+
+    set interface ip address del GigabitEthernet2/0/0 all
+
+
+
+
+Declaration: ``set_interface_ip_address_command`` `src/vnet/ip/ip46_cli.c line 216 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip46_cli.c#L216>`_
+
+Implementation: ``add_del_ip_address``
+
+
+set interface ip source-and-port-range-check
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip source-and-port-range-check <interface> [tcp-out-vrf <table-id>] [udp-out-vrf <table-id>] [tcp-in-vrf <table-id>] [udp-in-vrf <table-id>] [del]
+
+
+
+Add the 'ip4-source-and-port-range-check-rx' or
+'ip4-source-and-port-range-check-tx' graph node for a given
+interface. 'tcp-out-vrf' and 'udp-out-vrf' will add to
+the RX path. 'tcp-in-vrf' and 'udp-in-vrf' will add to
+the TX path. A graph node will be inserted into the chain when
+the range check is added to the first interface. It will not
+be removed from when range check is removed from the last
+interface.
+
+By adding the range check graph node to the interface, incoming
+or outgoing TCP/UDP packets will be validated using the
+provided IPv4 FIB table (VRF).
+
+@note 'ip4-source-and-port-range-check-rx' and
+'ip4-source-and-port-range-check-tx' strings are too long, so
+they are truncated on the 'show vlib graph' output.
+
+
+
+Example of graph node before range checking is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip4-source-and-port-range-check-tx
+    
+               Name                      Next                    Previous
+    ip4-source-and-port-range-      ip4-drop [0]
+    
+
+
+
+Example of how to enable range checking on TX:
+
+
+.. code-block:: console
+
+    set interface ip source-and-port-range-check GigabitEthernet2/0/0 udp-in-vrf 7
+
+
+
+Example of graph node after range checking is enabled:
+
+
+.. code-block:: console
+
+    show vlib graph ip4-source-and-port-range-check-tx
+    
+               Name                      Next                    Previous
+    ip4-source-and-port-range-      ip4-drop [0]                ip4-rewrite
+                                 interface-output [1]
+    
+
+
+
+Example of how to display the features enabled on an interface:
+
+
+.. code-block:: console
+
+    show ip interface features GigabitEthernet2/0/0
+    
+    IP feature paths configured on GigabitEthernet2/0/0...
+    
+    ipv4 unicast:
+      ip4-source-and-port-range-check-rx
+      ip4-lookup
+    
+    ipv4 multicast:
+      ip4-lookup-multicast
+    
+    ipv4 multicast:
+      interface-output
+    
+    ipv6 unicast:
+      ip6-lookup
+    
+    ipv6 multicast:
+      ip6-lookup
+    
+    ipv6 multicast:
+      interface-output
+    
+
+
+
+
+Declaration: ``set_interface_ip_source_and_port_range_check_command`` `src/vnet/ip/ip4_source_and_port_range_check.c line 788 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_source_and_port_range_check.c#L788>`_
+
+Implementation: ``set_ip_source_and_port_range_check_fn``
+
+
+set interface ip table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip table <interface> <table-id>
+
+
+
+Place the indicated interface into the supplied IPv4 FIB table (also known
+as a VRF). The FIB table must be created using "ip table add" already. To
+display the current IPv4 FIB table, use the command ``show ip fib``.
+FIB table will only be displayed if a route has been added to the table, or
+an IP Address is assigned to an interface in the table (which adds a route
+automatically).
+
+@note IP addresses added after setting the interface IP table are added to
+the indicated FIB table. If an IP address is added prior to changing the
+table then this is an error. The control plane must remove these addresses
+first and then change the table. VPP will not automatically move the
+addresses from the old to the new table as it does not know the validity
+of such a change.
+
+Example of how to add an interface to an IPv4 FIB table (where 2 is the table-id):
+
+
+.. code-block:: console
+
+    set interface ip table GigabitEthernet2/0/0 2
+
+
+
+Declaration: ``set_interface_ip_table_command`` `src/vnet/ip/lookup.c line 704 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L704>`_
+
+Implementation: ``ip4_table_bind_cmd``
+
+
+set interface ip6 table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface ip6 table <interface> <table-id>
+
+
+
+Place the indicated interface into the supplied IPv6 FIB table (also known
+as a VRF). The FIB table must be created using "ip6 table add" already. To
+display the current IPv6 FIB table, use the command ``show ip6 fib``.
+FIB table will only be displayed if a route has been added to the table, or
+an IP Address is assigned to an interface in the table (which adds a route
+automatically).
+
+@note IP addresses added after setting the interface IP table are added to
+the indicated FIB table. If an IP address is added prior to changing the
+table then this is an error. The control plane must remove these addresses
+first and then change the table. VPP will not automatically move the
+addresses from the old to the new table as it does not know the validity
+of such a change.
+
+Example of how to add an interface to an IPv6 FIB table (where 2 is the table-id):
+
+
+.. code-block:: console
+
+    set interface ip6 table GigabitEthernet2/0/0 2
+
+
+
+Declaration: ``set_interface_ip6_table_command`` `src/vnet/ip/lookup.c line 732 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L732>`_
+
+Implementation: ``ip6_table_bind_cmd``
+
+
+set interface reassembly
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface reassembly <interface-name> [on|off|ip4|ip6]
+
+
+Declaration: ``set_reassembly_command`` `src/vnet/ip/ip46_cli.c line 298 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip46_cli.c#L298>`_
+
+Implementation: ``set_reassembly_command_fn``
+
+
+set ioam rewrite
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ioam [trace] [pot] [seqno] [analyse]
+
+
+
+This command is used to enable In-band OAM (iOAM) features on IPv6.
+``trace`` is used to enable iOAM trace feature. ``pot`` is used to
+enable the Proof Of Transit feature. ``ppc`` is used to indicate the
+Per Packet Counter feature for Edge to Edge processing. ``ppc`` is
+used to indicate if this node is an ``encap`` node (iOAM edge node
+where packet enters iOAM domain), a ``decap`` node (iOAM edge node
+where packet leaves iOAM domain) or ``none`` (iOAM node where packet
+is in-transit through the iOAM domain). ``ppc`` can only be set if
+``trace`` or ``pot`` is enabled.
+
+Use ``clear ioam rewrite`` to disable all features enabled by this
+command. Use ``show ioam summary`` to verify the configured settings.
+
+Example of how to enable trace and pot with ppc set to encap:
+
+
+.. code-block:: console
+
+    set ioam rewrite trace pot ppc encap
+
+
+
+Declaration: ``ip6_set_ioam_rewrite_cmd`` `src/vnet/ip/ip6_hop_by_hop.c line 1375 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_hop_by_hop.c#L1375>`_
+
+Implementation: ``ip6_set_ioam_rewrite_command_fn``
+
+
+set ip classify
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ip classify intfc <interface> table-index <classify-idx>
+
+
+
+Assign a classification table to an interface. The classification
+table is created using the ``classify table`` and ``classify session``
+commands. Once the table is create, use this command to filter packets
+on an interface.
+
+Example of how to assign a classification table to an interface:
+
+
+.. code-block:: console
+
+    set ip classify intfc GigabitEthernet2/0/0 table-index 1
+
+
+
+Declaration: ``set_ip_classify_command`` `src/vnet/ip/ip4_forward.c line 2902 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_forward.c#L2902>`_
+
+Implementation: ``set_ip_classify_command_fn``
+
+
+set ip flow-hash
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ip flow-hash table <table-id> [src] [dst] [sport] [dport] [proto] [reverse]
+
+
+
+Configure the set of IPv4 fields used by the flow hash.
+
+Example of how to set the flow hash on a given table:
+
+
+.. code-block:: console
+
+    set ip flow-hash table 7 dst sport dport proto
+
+
+Example of display the configured flow hash:
+
+
+.. code-block:: console
+
+    show ip fib
+    
+    ipv4-VRF:0, fib_index 0, flow hash: src dst sport dport proto
+    0.0.0.0/0
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:0 buckets:1 uRPF:0 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    0.0.0.0/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:1 buckets:1 uRPF:1 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    224.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:3 buckets:1 uRPF:3 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    6.0.1.2/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:30 buckets:1 uRPF:29 to:[0:0]]
+        [0] [@3]: arp-ipv4: via 6.0.0.1 af_packet0
+    7.0.0.1/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:31 buckets:4 uRPF:30 to:[0:0]]
+        [0] [@3]: arp-ipv4: via 6.0.0.2 af_packet0
+        [1] [@3]: arp-ipv4: via 6.0.0.2 af_packet0
+        [2] [@3]: arp-ipv4: via 6.0.0.2 af_packet0
+        [3] [@3]: arp-ipv4: via 6.0.0.1 af_packet0
+    240.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:2 buckets:1 uRPF:2 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    255.255.255.255/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:4 buckets:1 uRPF:4 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    ipv4-VRF:7, fib_index 1, flow hash: dst sport dport proto
+    0.0.0.0/0
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:12 buckets:1 uRPF:11 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    0.0.0.0/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:13 buckets:1 uRPF:12 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    172.16.1.0/24
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:17 buckets:1 uRPF:16 to:[0:0]]
+        [0] [@4]: ipv4-glean: af_packet0
+    172.16.1.1/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:18 buckets:1 uRPF:17 to:[1:84]]
+        [0] [@2]: dpo-receive: 172.16.1.1 on af_packet0
+    172.16.1.2/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:21 buckets:1 uRPF:20 to:[0:0]]
+        [0] [@5]: ipv4 via 172.16.1.2 af_packet0: IP4: 02:fe:9e:70:7a:2b -> 26:a5:f6:9c:3a:36
+    172.16.2.0/24
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:19 buckets:1 uRPF:18 to:[0:0]]
+        [0] [@4]: ipv4-glean: af_packet1
+    172.16.2.1/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:20 buckets:1 uRPF:19 to:[0:0]]
+        [0] [@2]: dpo-receive: 172.16.2.1 on af_packet1
+    224.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:15 buckets:1 uRPF:14 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    240.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:14 buckets:1 uRPF:13 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    255.255.255.255/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:16 buckets:1 uRPF:15 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    
+
+
+
+Declaration: ``set_ip_flow_hash_command`` `src/vnet/ip/ip4_forward.c line 2777 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_forward.c#L2777>`_
+
+Implementation: ``set_ip_flow_hash_command_fn``
+
+
+set ip source-and-port-range-check
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ip source-and-port-range-check vrf <table-id> <ip-addr>/<mask> {port nn | range <nn> - <nn>} [del]
+
+
+
+This command adds an IP Subnet and range of ports to be validated
+by an IP FIB table (VRF).
+
+
+practical example.
+
+Example of how to add an IPv4 subnet and single port to an IPv4 FIB table:
+
+
+.. code-block:: console
+
+    set ip source-and-port-range-check vrf 7 172.16.1.0/24 port 23
+
+
+Example of how to add an IPv4 subnet and range of ports to an IPv4 FIB table:
+
+
+.. code-block:: console
+
+    set ip source-and-port-range-check vrf 7 172.16.1.0/24 range 23 - 100
+
+
+Example of how to delete an IPv4 subnet and single port from an IPv4 FIB table:
+
+
+.. code-block:: console
+
+    set ip source-and-port-range-check vrf 7 172.16.1.0/24 port 23 del
+
+
+Example of how to delete an IPv4 subnet and range of ports from an IPv4 FIB table:
+
+
+.. code-block:: console
+
+    set ip source-and-port-range-check vrf 7 172.16.1.0/24 range 23 - 100 del
+
+
+
+Declaration: ``ip_source_and_port_range_check_command`` `src/vnet/ip/ip4_source_and_port_range_check.c line 1255 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_source_and_port_range_check.c#L1255>`_
+
+Implementation: ``ip_source_and_port_range_check_command_fn``
+
+
+set ip6 classify
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ip6 classify intfc <interface> table-index <classify-idx>
+
+
+
+Assign a classification table to an interface. The classification
+table is created using the ``classify table`` and ``classify session``
+commands. Once the table is create, use this command to filter packets
+on an interface.
+
+Example of how to assign a classification table to an interface:
+
+
+.. code-block:: console
+
+    set ip6 classify intfc GigabitEthernet2/0/0 table-index 1
+
+
+
+Declaration: ``set_ip6_classify_command`` `src/vnet/ip/ip6_forward.c line 3128 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_forward.c#L3128>`_
+
+Implementation: ``set_ip6_classify_command_fn``
+
+
+set ip6 flow-hash
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ip6 flow-hash table <table-id> [src] [dst] [sport] [dport] [proto] [reverse] [flowlabel]
+
+
+
+Configure the set of IPv6 fields used by the flow hash.
+
+Example of how to set the flow hash on a given table:
+
+
+.. code-block:: console
+
+    set ip6 flow-hash table 8 dst sport dport proto
+
+
+
+Example of display the configured flow hash:
+
+
+.. code-block:: console
+
+    show ip6 fib
+    
+    ipv6-VRF:0, fib_index 0, flow hash: src dst sport dport proto
+    @::/0
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:5 buckets:1 uRPF:5 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    fe80::/10
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:10 buckets:1 uRPF:10 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::1/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:8 buckets:1 uRPF:8 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::2/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:7 buckets:1 uRPF:7 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::16/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:9 buckets:1 uRPF:9 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::1:ff00:0/104
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:6 buckets:1 uRPF:6 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ipv6-VRF:8, fib_index 1, flow hash: dst sport dport proto
+    @::/0
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:21 buckets:1 uRPF:20 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    @::a:1:1:0:4/126
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:27 buckets:1 uRPF:26 to:[0:0]]
+        [0] [@4]: ipv6-glean: af_packet0
+    @::a:1:1:0:7/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:28 buckets:1 uRPF:27 to:[0:0]]
+        [0] [@2]: dpo-receive: @::a:1:1:0:7 on af_packet0
+    fe80::/10
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:26 buckets:1 uRPF:25 to:[0:0]]
+        [0] [@2]: dpo-receive
+    fe80::fe:3eff:fe3e:9222/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:29 buckets:1 uRPF:28 to:[0:0]]
+        [0] [@2]: dpo-receive: fe80::fe:3eff:fe3e:9222 on af_packet0
+    ff02::1/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:24 buckets:1 uRPF:23 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::2/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:23 buckets:1 uRPF:22 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::16/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:25 buckets:1 uRPF:24 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::1:ff00:0/104
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:22 buckets:1 uRPF:21 to:[0:0]]
+        [0] [@2]: dpo-receive
+    
+
+
+
+
+Declaration: ``set_ip6_flow_hash_command`` `src/vnet/ip/ip6_forward.c line 2961 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_forward.c#L2961>`_
+
+Implementation: ``set_ip6_flow_hash_command_fn``
+
+
+set punt
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set punt [IPV4|ip6|ipv6] [UDP|tcp] [del] [ALL|<port-num>]
+
+
+
+The set of ``set punt`` commands allows specific IP traffic to
+be punted to the host TCP/IP stack
+
+@em Note
+
+- UDP is the only protocol supported in the current implementation
+- All TCP traffic is currently punted to the host by default
+
+
+Example of how to request NTP traffic to be punted
+
+
+.. code-block:: console
+
+    set punt udp 125
+
+
+
+Example of how to request all 'unknown' UDP traffic to be punted
+
+
+.. code-block:: console
+
+    set punt udp all
+
+
+
+Example of how to stop all 'unknown' UDP traffic to be punted
+
+
+.. code-block:: console
+
+    set punt udp del all
+
+
+
+
+Declaration: ``punt_command`` `src/vnet/ip/punt.c line 542 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/punt.c#L542>`_
+
+Implementation: ``punt_cli``
+
+
+show ioam summary
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ioam summary
+
+
+
+This command displays the current configuration data for In-band
+OAM (iOAM).
+
+Example to show the iOAM configuration:
+
+
+.. code-block:: console
+
+    show ioam summary
+    
+                  REWRITE FLOW CONFIGS -
+                   Destination Address : ff02::1
+                        Flow operation : 2 (Pop)
+                            TRACE OPTION - 1 (Enabled)
+    Try 'show ioam trace and show ioam-trace profile' for more information
+                            POT OPTION - 1 (Enabled)
+    Try 'show ioam pot and show pot profile' for more information
+             EDGE TO EDGE - PPC OPTION - 1 (Encap)
+    
+
+
+
+Declaration: ``ip6_show_ioam_run_cmd`` `src/vnet/ip/ip6_hop_by_hop.c line 1459 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_hop_by_hop.c#L1459>`_
+
+Implementation: ``ip6_show_ioam_summary_cmd_fn``
+
+
+show ip
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Internet protocol (IP) show commands
+
+
+Declaration: ``vlib_cli_show_ip_command`` `src/vnet/ip/lookup.c line 528 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L528>`_
+
+
+show ip container
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip container <address> <interface>
+
+
+Declaration: ``show_ip_container_command`` `src/vnet/ip/ip_container_proxy.c line 279 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip_container_proxy.c#L279>`_
+
+Implementation: ``show_ip_container_cmd_fn``
+
+
+show ip local
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip local
+
+
+
+Display the set of protocols handled by the local IPv4 stack.
+
+Example of how to display local protocol table:
+
+
+.. code-block:: console
+
+    show ip local
+    
+    Protocols handled by ip4_local
+    1
+    17
+    47
+    
+
+
+
+Declaration: ``show_ip_local`` `src/vnet/ip/ip4_forward.c line 1935 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_forward.c#L1935>`_
+
+Implementation: ``show_ip_local_command_fn``
+
+
+show ip pmtu
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip path MTU
+
+
+Declaration: ``show_fib_entry`` `src/vnet/ip/ip_path_mtu.c line 871 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip_path_mtu.c#L871>`_
+
+Implementation: ``show_ip_pmtu_command``
+
+
+show ip punt redirect
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip punt redirect
+
+
+
+
+
+.. code-block:: console
+
+    set ip punt redierect
+
+
+
+Declaration: ``show_ip4_punt_redirect_command`` `src/vnet/ip/ip4_punt_drop.c line 427 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_punt_drop.c#L427>`_
+
+Implementation: ``ip4_punt_redirect_show_cmd``
+
+
+show ip source-and-port-range-check
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip source-and-port-range-check vrf <table-id> <ip-addr> [port <n>]
+
+
+
+Display the range of ports being validated by an IPv4 FIB for a given
+IP or subnet, or test if a given IP and port are being validated.
+
+
+practical example.
+
+Example of how to display the set of ports being validated for a given
+IPv4 subnet:
+
+
+.. code-block:: console
+
+    show ip source-and-port-range-check vrf 7 172.16.2.0
+    
+    172.16.2.0: 23 - 101
+    
+
+
+Example of how to test to determine of a given iPv4 address and port
+are being validated:
+
+
+.. code-block:: console
+
+    show ip source-and-port-range-check vrf 7 172.16.2.2 port 23
+    
+    172.16.2.2 port 23 PASS
+    
+
+
+
+
+.. code-block:: console
+
+    show ip source-and-port-range-check vrf 7 172.16.2.2 port 250
+    
+    172.16.2.2 port 250 FAIL
+    
+
+
+
+Declaration: ``show_source_and_port_range_check`` `src/vnet/ip/ip4_source_and_port_range_check.c line 1381 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip4_source_and_port_range_check.c#L1381>`_
+
+Implementation: ``show_source_and_port_range_check_fn``
+
+
+show ip table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip table <table-id>
+
+
+Declaration: ``show_ip4_table_command`` `src/vnet/ip/lookup.c line 605 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L605>`_
+
+Implementation: ``vnet_show_ip4_table_cmd``
+
+
+show ip6
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Internet protocol version 6 (IPv6) show commands
+
+
+Declaration: ``vlib_cli_show_ip6_command`` `src/vnet/ip/lookup.c line 535 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L535>`_
+
+
+show ip6 hbh
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 hbh
+
+
+
+Display the set of ip6 local hop-by-hop next protocol handler nodes
+
+Display ip6 local hop-by-hop next protocol handler nodes
+
+
+.. code-block:: console
+
+    show ip6 hbh
+
+
+
+Declaration: ``show_ip6_hbh`` `src/vnet/ip/ip6_hop_by_hop.c line 1063 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_hop_by_hop.c#L1063>`_
+
+Implementation: ``show_ip6_hbh_command_fn``
+
+
+show ip6 interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 interface <interface>
+
+
+
+This command is used to display various IPv6 attributes on a given
+interface.
+
+Example of how to display IPv6 settings:
+
+
+.. code-block:: console
+
+    show ip6 interface GigabitEthernet2/0/0
+    
+    GigabitEthernet2/0/0 is admin up
+            Link-local address(es):
+                    fe80::ab8/64
+            Joined group address(es):
+                    ff02::1
+                    ff02::2
+                    ff02::16
+                    ff02::1:ff00:ab8
+            Advertised Prefixes:
+                    prefix fe80::fe:28ff:fe9c:75b3,  length 64
+            MTU is 1500
+            ICMP error messages are unlimited
+            ICMP redirects are disabled
+            ICMP unreachables are not sent
+            ND DAD is disabled
+            ND advertised reachable time is 0
+            ND advertised retransmit interval is 0 (msec)
+            ND router advertisements are sent every 200 seconds (min interval is 150)
+            ND router advertisements live for 600 seconds
+            Hosts use stateless autoconfig for addresses
+            ND router advertisements sent 19336
+            ND router solicitations received 0
+            ND router solicitations dropped 0
+    
+
+
+Example of output if IPv6 is not enabled on the interface:
+
+
+.. code-block:: console
+
+    show ip6 interface GigabitEthernet2/0/0
+    
+    show ip6 interface: IPv6 not enabled on interface
+    
+
+
+
+Declaration: ``ip6_link_show_command`` `src/vnet/ip/ip6_link.c line 743 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_link.c#L743>`_
+
+Implementation: ``ip6_link_show``
+
+
+show ip6 local
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 local
+
+
+
+Display the set of protocols handled by the local IPv6 stack.
+
+Example of how to display local protocol table:
+
+
+.. code-block:: console
+
+    show ip6 local
+    
+    Protocols handled by ip6_local
+    17
+    43
+    58
+    115
+    
+
+
+
+Declaration: ``show_ip6_local`` `src/vnet/ip/ip6_forward.c line 3009 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_forward.c#L3009>`_
+
+Implementation: ``show_ip6_local_command_fn``
+
+
+show ip6 punt redirect
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 punt redirect
+
+
+
+
+
+.. code-block:: console
+
+    set ip punt policer <INDEX>
+
+
+
+Declaration: ``show_ip6_punt_redirect_command`` `src/vnet/ip/ip6_punt_drop.c line 424 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_punt_drop.c#L424>`_
+
+Implementation: ``ip6_punt_redirect_show_cmd``
+
+
+show ip6 table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 table <table-id>
+
+
+Declaration: ``show_ip6_table_command`` `src/vnet/ip/lookup.c line 611 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/lookup.c#L611>`_
+
+Implementation: ``vnet_show_ip6_table_cmd``
+
+
+show ip6-ll
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6-ll [summary] [interface] [<ip6-addr>[/<width>]] [detail]
+
+
+Declaration: ``ip6_show_fib_command`` `src/vnet/ip/ip6_ll_table.c line 349 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_ll_table.c#L349>`_
+
+Implementation: ``ip6_ll_show_fib``
+
+
+show punt socket registrations
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show punt socket registrations [l4|exception]
+
+
+
+
+
+.. code-block:: console
+
+    show punt socket ipv4
+
+
+
+Declaration: ``show_punt_socket_registration_command`` `src/vnet/ip/punt.c line 822 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/punt.c#L822>`_
+
+Implementation: ``punt_socket_show_cmd``
+
+
+test ip checksum
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test ip checksum
+
+
+Declaration: ``test_checksum`` `src/vnet/ip/ip_checksum.c line 169 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip_checksum.c#L169>`_
+
+Implementation: ``test_ip_checksum_fn``
+
+
+test ip6 link
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test ip6 link <mac-address>
+
+
+
+This command converts the given MAC Address into an IPv6 link-local
+address.
+
+Example of how to create an IPv6 link-local address:
+
+
+.. code-block:: console
+
+    test ip6 link 16:d9:e0:91:79:86
+    
+    Link local address: fe80::14d9:e0ff:fe91:7986
+    Original MAC address: 16:d9:e0:91:79:86
+    
+
+
+
+Declaration: ``test_link_command`` `src/vnet/ip/ip6_link.c line 559 <https://github.com/FDio/vpp/blob/master//src/vnet/ip/ip6_link.c#L559>`_
+
+Implementation: ``test_ip6_link_command_fn``
+

@@ -1,0 +1,227 @@
+.. _clicmd_extras_deprecated_dpdk-ipsec:
+
+===============================================================
+DPDK Crypto
+===============================================================
+
+clear dpdk crypto devices statistics
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear dpdk crypto devices statistics
+
+
+
+This command is used to clear the DPDK Crypto device statistics.
+
+Example of how to clear the DPDK Crypto device statistics:
+
+
+.. code-block:: console
+
+    clear dpdk crypto devices statistics
+    
+    vpp# clear dpdk crypto devices statistics
+    
+
+
+
+Declaration: ``clear_dpdk_crypto_stats`` `extras/deprecated/dpdk-ipsec/cli.c line 149 <https://github.com/FDio/vpp/blob/master//extras/deprecated/dpdk-ipsec/cli.c#L149>`_
+
+Implementation: ``clear_crypto_stats_fn``
+
+
+clear dpdk crypto placement
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear dpdk crypto placement <device> [<thread>]
+
+
+Declaration: ``clear_dpdk_crypto_placement`` `extras/deprecated/dpdk-ipsec/cli.c line 575 <https://github.com/FDio/vpp/blob/master//extras/deprecated/dpdk-ipsec/cli.c#L575>`_
+
+Implementation: ``clear_dpdk_crypto_placement_fn``
+
+
+set dpdk crypto placement
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set dpdk crypto placement (<device> <thread> | auto)
+
+
+Declaration: ``set_dpdk_crypto_placement`` `extras/deprecated/dpdk-ipsec/cli.c line 470 <https://github.com/FDio/vpp/blob/master//extras/deprecated/dpdk-ipsec/cli.c#L470>`_
+
+Implementation: ``set_dpdk_crypto_placement_fn``
+
+
+show dpdk crypto devices
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dpdk crypto devices
+
+
+
+This command is used to display the DPDK Crypto device information.
+
+Example of how to display the DPDK Crypto device information:
+
+
+.. code-block:: console
+
+    show dpdk crypto devices
+    
+    vpp# show dpdk crypto devices
+     aesni_mb0		  crypto_aesni_mb     up
+     numa_node 0, max_queues 4
+     SYMMETRIC_CRYPTO, SYM_OPERATION_CHAINING, CPU_AVX2, CPU_AESNI
+     Cipher: aes-cbc-128, aes-cbc-192, aes-cbc-256, aes-ctr-128, aes-ctr-192,
+             aes-ctr-256, aes-gcm-128, aes-gcm-192, aes-gcm-256
+     Auth: md5-96, sha1-96, sha-256-128, sha-384-192, sha-512-256
+     enqueue 2	      dequeue 2 	 enqueue_err 0		dequeue_err 0
+     free_resources 3 :
+     *		      thr_id  -1 qp  3 inflight 0
+     *		      thr_id  -1 qp  2 inflight 0
+     *		      thr_id  -1 qp  1 inflight 0
+     used_resources 1 :
+     *		      thr_id   1 qp  0 inflight 0
+    
+
+
+Example of displaying the DPDK Crypto device data when enabled:
+
+
+Declaration: ``show_dpdk_crypto`` `extras/deprecated/dpdk-ipsec/cli.c line 197 <https://github.com/FDio/vpp/blob/master//extras/deprecated/dpdk-ipsec/cli.c#L197>`_
+
+Implementation: ``show_dpdk_crypto_fn``
+
+
+show dpdk crypto placement
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dpdk crypto placement
+
+
+
+This command is used to display the DPDK Crypto device placement.
+
+Example of displaying the DPDK Crypto device placement:
+
+
+.. code-block:: console
+
+    show dpdk crypto placement
+    
+    vpp# show dpdk crypto placement
+    Thread 1 (vpp_wk_0):
+      cryptodev_aesni_mb_p dev-id  0 queue-pair  0
+      cryptodev_aesni_gcm_ dev-id  1 queue-pair  0
+    
+    Thread 2 (vpp_wk_1):
+      cryptodev_aesni_mb_p dev-id  0 queue-pair  1
+      cryptodev_aesni_gcm_ dev-id  1 queue-pair  1
+    
+
+
+
+Declaration: ``show_dpdk_crypto_placement`` `extras/deprecated/dpdk-ipsec/cli.c line 320 <https://github.com/FDio/vpp/blob/master//extras/deprecated/dpdk-ipsec/cli.c#L320>`_
+
+Implementation: ``show_dpdk_crypto_placement_fn``
+
+
+show dpdk crypto placement verbose
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dpdk crypto placement verbose
+
+
+
+This command is used to display the DPDK Crypto device placement
+with verbose output.
+
+Example of displaying the DPDK Crypto device placement verbose:
+
+
+.. code-block:: console
+
+    show dpdk crypto placement verbose
+    
+    vpp# show dpdk crypto placement verbose
+    Thread 1 (vpp_wk_0):
+      cryptodev_aesni_mb_p dev-id  0 queue-pair  0
+        Cipher: aes-cbc-128, aes-cbc-192, aes-cbc-256, aes-ctr-128, aes-ctr-192, aes-ctr-256
+        Auth: md5-96, sha1-96, sha-256-128, sha-384-192, sha-512-256
+        cryptodev_aesni_gcm_ dev-id  1 queue-pair  0
+        Cipher: aes-gcm-128, aes-gcm-192, aes-gcm-256
+        Auth:
+    
+    Thread 2 (vpp_wk_1):
+      cryptodev_aesni_mb_p dev-id  0 queue-pair  1
+        Cipher: aes-cbc-128, aes-cbc-192, aes-cbc-256, aes-ctr-128, aes-ctr-192, aes-ctr-256
+        Auth: md5-96, sha1-96, sha-256-128, sha-384-192, sha-512-256
+        cryptodev_aesni_gcm_ dev-id  1 queue-pair  1
+        Cipher: aes-gcm-128, aes-gcm-192, aes-gcm-256
+        Auth:
+    
+    
+
+
+
+Declaration: ``show_dpdk_crypto_placement_v`` `extras/deprecated/dpdk-ipsec/cli.c line 354 <https://github.com/FDio/vpp/blob/master//extras/deprecated/dpdk-ipsec/cli.c#L354>`_
+
+Implementation: ``show_dpdk_crypto_placement_v_fn``
+
+
+show dpdk crypto pools
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dpdk crypto pools
+
+
+
+This command is used to display the DPDK Crypto pools information.
+
+Example of how to display the DPDK Crypto pools information:
+
+
+.. code-block:: console
+
+    show crypto device mapping
+    
+    vpp# show dpdk crypto pools
+    crypto_pool_numa1
+    available   15872, allocated     512 total   16384
+    phys_addr 0xf3d2086c0, flags 00000010, nb_mem_chunks 1
+    elt_size  160, header_size  64, trailer_size 96
+    private_data_size  64, total_elt_size 320
+    
+    session_h_pool_numa1
+    available   19998, allocated       2 total   20000
+    phys_addr 0xf3c9c4380, flags 00000010, nb_mem_chunks 1
+    elt_size   40, header_size  64, trailer_size 88
+    private_data_size   0, total_elt_size 192
+    
+    session_drv0_pool_numa1
+    available   19998, allocated       2 total   20000
+    phys_addr 0xf3ad42d80, flags 00000010, nb_mem_chunks 1
+    elt_size  512, header_size  64, trailer_size 0
+    private_data_size   0, total_elt_size 576
+    
+
+
+
+Declaration: ``show_dpdk_crypto_pools`` `extras/deprecated/dpdk-ipsec/cli.c line 657 <https://github.com/FDio/vpp/blob/master//extras/deprecated/dpdk-ipsec/cli.c#L657>`_
+
+Implementation: ``show_dpdk_crypto_pools_fn``
+

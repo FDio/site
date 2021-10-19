@@ -1,0 +1,18 @@
+.. _clicmd_src_vnet_unix:
+
+===============================================================
+Unix cli reference
+===============================================================
+
+show gdb
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Describe functions which can be called from gdb
+
+
+Declaration: ``show_gdb_funcs_command`` `src/vnet/unix/gdb_funcs.c line 322 <https://github.com/FDio/vpp/blob/master//src/vnet/unix/gdb_funcs.c#L322>`_
+
+Implementation: ``show_gdb_command_fn``
+

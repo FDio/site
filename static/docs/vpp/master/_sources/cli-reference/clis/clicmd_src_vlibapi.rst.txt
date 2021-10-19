@@ -1,0 +1,18 @@
+.. _clicmd_src_vlibapi:
+
+===============================================================
+Vlibapi cli reference
+===============================================================
+
+test node serialize
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test node serialize [max-threads NN] nexts stats
+
+
+Declaration: ``test_node_serialize_node`` `src/vlibapi/node_serialize.c line 330 <https://github.com/FDio/vpp/blob/master//src/vlibapi/node_serialize.c#L330>`_
+
+Implementation: ``test_node_serialize_command_fn``
+

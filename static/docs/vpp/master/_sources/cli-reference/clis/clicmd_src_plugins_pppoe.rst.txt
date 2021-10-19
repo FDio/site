@@ -1,0 +1,113 @@
+.. _clicmd_src_plugins_pppoe:
+
+===============================================================
+Pppoe cli reference
+===============================================================
+
+create pppoe cp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create pppoe cp-if-index <intfc> [del]
+
+
+Declaration: ``create_pppoe_cp_cmd`` `src/plugins/pppoe/pppoe_cp.c line 101 <https://github.com/FDio/vpp/blob/master//src/plugins/pppoe/pppoe_cp.c#L101>`_
+
+Implementation: ``pppoe_add_del_cp_command_fn``
+
+
+create pppoe session
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create pppoe session client-ip <client-ip> session-id <nn> client-mac <client-mac> [decap-vrf-id <nn>] [del]
+
+
+
+Add or delete a PPPoE Session.
+
+Example of how to create a PPPoE Session:
+
+
+.. code-block:: console
+
+    create pppoe session client-ip 10.0.3.1 session-id 13             client-mac 00:01:02:03:04:05 
+
+
+Example of how to delete a PPPoE Session:
+
+
+.. code-block:: console
+
+    create pppoe session client-ip 10.0.3.1 session-id 13             client-mac 00:01:02:03:04:05 del 
+
+
+
+Declaration: ``create_pppoe_session_command`` `src/plugins/pppoe/pppoe.c line 614 <https://github.com/FDio/vpp/blob/master//src/plugins/pppoe/pppoe.c#L614>`_
+
+Implementation: ``pppoe_add_del_session_command_fn``
+
+
+show pppoe fib
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show pppoe fib
+
+
+
+This command displays the MAC Address entries of the PPPoE FIB table.
+Output can be filtered to just get the number of MAC Addresses or display
+each MAC Address.
+
+Example of how to display the number of MAC Address entries in the PPPoE
+FIB table:
+
+
+.. code-block:: console
+
+    show pppoe fib
+    
+       Mac Address    session_id    Interface         sw_if_index session_index
+    52:54:00:53:18:33   1        GigabitEthernet0/8/0      2          0
+    52:54:00:53:18:55   2        GigabitEthernet0/8/1      3          1
+    
+
+
+
+Declaration: ``show_pppoe_fib_command`` `src/plugins/pppoe/pppoe.c line 738 <https://github.com/FDio/vpp/blob/master//src/plugins/pppoe/pppoe.c#L738>`_
+
+Implementation: ``show_pppoe_fib_command_fn``
+
+
+show pppoe session
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show pppoe session
+
+
+
+Display all the PPPoE Session entries.
+
+Example of how to display the PPPoE Session entries:
+
+
+.. code-block:: console
+
+    show pppoe session
+    
+    [0] client-ip 10.0.3.1 session_id 13 encap-if-index 0 decap-vrf-id 13 sw_if_index 5
+        local-mac a0:b0:c0:d0:e0:f0 client-mac 00:01:02:03:04:05
+    
+
+
+
+Declaration: ``show_pppoe_session_command`` `src/plugins/pppoe/pppoe.c line 655 <https://github.com/FDio/vpp/blob/master//src/plugins/pppoe/pppoe.c#L655>`_
+
+Implementation: ``show_pppoe_session_command_fn``
+

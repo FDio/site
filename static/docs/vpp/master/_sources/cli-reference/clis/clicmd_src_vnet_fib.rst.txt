@@ -1,0 +1,508 @@
+.. _clicmd_src_vnet_fib:
+
+===============================================================
+Fib cli reference
+===============================================================
+
+clear fib walk
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear fib walk
+
+
+Declaration: ``fib_walk_clear_command`` `src/vnet/fib/fib_walk.c line 1195 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_walk.c#L1195>`_
+
+Implementation: ``fib_walk_clear``
+
+
+set fib walk histogram elements size
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set fib walk histogram elements size
+
+
+Declaration: ``fib_walk_set_histogram_elements_size_command`` `src/vnet/fib/fib_walk.c line 1175 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_walk.c#L1175>`_
+
+Implementation: ``fib_walk_set_histogram_elements_size``
+
+
+set fib walk quota
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set fib walk quota
+
+
+Declaration: ``fib_walk_set_quota_command`` `src/vnet/fib/fib_walk.c line 1149 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_walk.c#L1149>`_
+
+Implementation: ``fib_walk_set_quota``
+
+
+show fib entry-delegate
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show fib entry delegate
+
+
+Declaration: ``show_fib_entry`` `src/vnet/fib/fib_entry_delegate.c line 347 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_entry_delegate.c#L347>`_
+
+Implementation: ``show_fib_entry_delegate_command``
+
+
+show fib memory
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show fib memory
+
+
+
+The ``sh fib memory`` command displays the memory usage for each
+FIB object type.
+
+
+
+.. code-block:: console
+
+    show fib memory
+    
+     *FIB memory
+    Tables:
+               SAFI              Number   Bytes
+           IPv4 unicast             2    673066
+           IPv6 unicast             2    1054608
+               MPLS                 1    4194312
+          IPv4 multicast            2     2322
+          IPv6 multicast            2      ???
+    Nodes:
+               Name               Size  in-use /allocated   totals
+               Entry               96     20   /    20      1920/1920
+           Entry Source            32      0   /    0       0/0
+       Entry Path-Extensions       60      0   /    0       0/0
+          multicast-Entry         192     12   /    12      2304/2304
+             Path-list             40     28   /    28      1120/1120
+             uRPF-list             16     20   /    20      320/320
+               Path                72     28   /    28      2016/2016
+        Node-list elements         20     28   /    28      560/560
+          Node-list heads          8      30   /    30      240/240
+    
+
+
+
+Declaration: ``show_fib_memory`` `src/vnet/fib/fib_node.c line 286 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_node.c#L286>`_
+
+Implementation: ``fib_memory_show``
+
+
+show fib path-lists
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show fib path-lists
+
+
+Declaration: ``show_fib_path_list`` `src/vnet/fib/fib_path_list.c line 1480 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_path_list.c#L1480>`_
+
+Implementation: ``show_fib_path_list_command``
+
+
+show fib paths
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show fib paths
+
+
+Declaration: ``show_fib_path`` `src/vnet/fib/fib_path.c line 2851 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_path.c#L2851>`_
+
+Implementation: ``show_fib_path_command``
+
+
+show fib source
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show fib source [prio]
+
+
+Declaration: ``show_fib_sources`` `src/vnet/fib/fib_source.c line 209 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_source.c#L209>`_
+
+Implementation: ``fib_source_show``
+
+
+show fib uRPF
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show fib uRPF
+
+
+
+The ``sh fib uRPF [index]`` command displays the uRPF lists
+
+
+
+.. code-block:: console
+
+    show fib uRPF
+    
+    FIB uRPF Entries:
+     0@uPRF-list:0 len:0 itfs:[]
+     1@uPRF-list:1 len:2 itfs:[1, 2, ]
+     2@uPRF-list:2 len:1 itfs:[3, ]
+     3@uPRF-list:3 len:1 itfs:[9, ]
+    
+
+
+
+Declaration: ``show_fib_urpf_list`` `src/vnet/fib/fib_urpf_list.c line 245 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_urpf_list.c#L245>`_
+
+Implementation: ``show_fib_urpf_list_command``
+
+
+show fib walk
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show fib walk
+
+
+Declaration: ``fib_walk_show_command`` `src/vnet/fib/fib_walk.c line 1123 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_walk.c#L1123>`_
+
+Implementation: ``fib_walk_show``
+
+
+show ip fib
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip fib [summary] [table <table-id>] [index <fib-id>] [<ip4-addr>[/<mask>]] [mtrie] [detail]
+
+
+
+This command displays the IPv4 FIB Tables (VRF Tables) and the route
+entries for each table.
+
+@note This command will run for a long time when the FIB tables are
+comprised of millions of entries. For those scenarios, consider displaying
+a single table or summary mode.
+
+Example of how to display all the IPv4 FIB tables:
+
+
+.. code-block:: console
+
+    show ip fib
+    
+    ipv4-VRF:0, fib_index 0, flow hash: src dst sport dport proto
+    0.0.0.0/0
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:0 buckets:1 uRPF:0 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    0.0.0.0/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:1 buckets:1 uRPF:1 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    6.0.1.2/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:30 buckets:1 uRPF:29 to:[0:0]]
+        [0] [@3]: arp-ipv4: via 6.0.0.1 af_packet0
+    7.0.0.1/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:31 buckets:4 uRPF:30 to:[0:0]]
+        [0] [@3]: arp-ipv4: via 6.0.0.2 af_packet0
+        [1] [@3]: arp-ipv4: via 6.0.0.2 af_packet0
+        [2] [@3]: arp-ipv4: via 6.0.0.2 af_packet0
+        [3] [@3]: arp-ipv4: via 6.0.0.1 af_packet0
+    224.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:3 buckets:1 uRPF:3 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    240.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:2 buckets:1 uRPF:2 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    255.255.255.255/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:4 buckets:1 uRPF:4 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    ipv4-VRF:7, fib_index 1, flow hash: src dst sport dport proto
+    0.0.0.0/0
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:12 buckets:1 uRPF:11 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    0.0.0.0/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:13 buckets:1 uRPF:12 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    172.16.1.0/24
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:17 buckets:1 uRPF:16 to:[0:0]]
+        [0] [@4]: ipv4-glean: af_packet0
+    172.16.1.1/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:18 buckets:1 uRPF:17 to:[1:84]]
+        [0] [@2]: dpo-receive: 172.16.1.1 on af_packet0
+    172.16.1.2/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:21 buckets:1 uRPF:20 to:[0:0]]
+        [0] [@5]: ipv4 via 172.16.1.2 af_packet0: IP4: 02:fe:9e:70:7a:2b -> 26:a5:f6:9c:3a:36
+    172.16.2.0/24
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:19 buckets:1 uRPF:18 to:[0:0]]
+        [0] [@4]: ipv4-glean: af_packet1
+    172.16.2.1/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:20 buckets:1 uRPF:19 to:[0:0]]
+        [0] [@2]: dpo-receive: 172.16.2.1 on af_packet1
+    224.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:15 buckets:1 uRPF:14 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    240.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:14 buckets:1 uRPF:13 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    255.255.255.255/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:16 buckets:1 uRPF:15 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    
+
+
+Example of how to display a single IPv4 FIB table:
+
+
+.. code-block:: console
+
+    show ip fib table 7
+    
+    ipv4-VRF:7, fib_index 1, flow hash: src dst sport dport proto
+    0.0.0.0/0
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:12 buckets:1 uRPF:11 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    0.0.0.0/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:13 buckets:1 uRPF:12 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    172.16.1.0/24
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:17 buckets:1 uRPF:16 to:[0:0]]
+        [0] [@4]: ipv4-glean: af_packet0
+    172.16.1.1/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:18 buckets:1 uRPF:17 to:[1:84]]
+        [0] [@2]: dpo-receive: 172.16.1.1 on af_packet0
+    172.16.1.2/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:21 buckets:1 uRPF:20 to:[0:0]]
+        [0] [@5]: ipv4 via 172.16.1.2 af_packet0: IP4: 02:fe:9e:70:7a:2b -> 26:a5:f6:9c:3a:36
+    172.16.2.0/24
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:19 buckets:1 uRPF:18 to:[0:0]]
+        [0] [@4]: ipv4-glean: af_packet1
+    172.16.2.1/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:20 buckets:1 uRPF:19 to:[0:0]]
+        [0] [@2]: dpo-receive: 172.16.2.1 on af_packet1
+    224.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:15 buckets:1 uRPF:14 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    240.0.0.0/8
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:14 buckets:1 uRPF:13 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    255.255.255.255/32
+      unicast-ip4-chain
+      [@0]: dpo-load-balance: [index:16 buckets:1 uRPF:15 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    
+
+
+Example of how to display a summary of all IPv4 FIB tables:
+
+
+.. code-block:: console
+
+    show ip fib summary
+    
+    ipv4-VRF:0, fib_index 0, flow hash: src dst sport dport proto
+        Prefix length         Count
+                       0               1
+                       8               2
+                      32               4
+    ipv4-VRF:7, fib_index 1, flow hash: src dst sport dport proto
+        Prefix length         Count
+                       0               1
+                       8               2
+                      24               2
+                      32               4
+    
+
+
+
+Declaration: ``ip4_show_fib_command`` `src/vnet/fib/ip4_fib.c line 624 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/ip4_fib.c#L624>`_
+
+Implementation: ``ip4_show_fib``
+
+
+show ip6 fib
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 fib [summary] [table <table-id>] [index <fib-id>] [<ip6-addr>[/<width>]] [detail]
+
+
+
+This command displays the IPv6 FIB Tables (VRF Tables) and the route
+entries for each table.
+
+@note This command will run for a long time when the FIB tables are
+comprised of millions of entries. For those scenarios, consider displaying
+in summary mode.
+
+Example of how to display all the IPv6 FIB tables:
+
+
+.. code-block:: console
+
+    show ip6 fib
+    
+    ipv6-VRF:0, fib_index 0, flow hash: src dst sport dport proto
+    @::/0
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:5 buckets:1 uRPF:5 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    fe80::/10
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:10 buckets:1 uRPF:10 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::1/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:8 buckets:1 uRPF:8 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::2/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:7 buckets:1 uRPF:7 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::16/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:9 buckets:1 uRPF:9 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::1:ff00:0/104
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:6 buckets:1 uRPF:6 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ipv6-VRF:8, fib_index 1, flow hash: src dst sport dport proto
+    @::/0
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:21 buckets:1 uRPF:20 to:[0:0]]
+        [0] [@0]: dpo-drop ip6
+    @::a:1:1:0:4/126
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:27 buckets:1 uRPF:26 to:[0:0]]
+        [0] [@4]: ipv6-glean: af_packet0
+    @::a:1:1:0:7/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:28 buckets:1 uRPF:27 to:[0:0]]
+        [0] [@2]: dpo-receive: @::a:1:1:0:7 on af_packet0
+    fe80::/10
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:26 buckets:1 uRPF:25 to:[0:0]]
+        [0] [@2]: dpo-receive
+    fe80::fe:3eff:fe3e:9222/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:29 buckets:1 uRPF:28 to:[0:0]]
+        [0] [@2]: dpo-receive: fe80::fe:3eff:fe3e:9222 on af_packet0
+    ff02::1/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:24 buckets:1 uRPF:23 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::2/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:23 buckets:1 uRPF:22 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::16/128
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:25 buckets:1 uRPF:24 to:[0:0]]
+        [0] [@2]: dpo-receive
+    ff02::1:ff00:0/104
+      unicast-ip6-chain
+      [@0]: dpo-load-balance: [index:22 buckets:1 uRPF:21 to:[0:0]]
+        [0] [@2]: dpo-receive
+    
+
+
+
+Example of how to display a summary of all IPv6 FIB tables:
+
+
+.. code-block:: console
+
+    show ip6 fib summary
+    
+    ipv6-VRF:0, fib_index 0, flow hash: src dst sport dport proto
+        Prefix length         Count
+             128                3
+             104                1
+             10                 1
+              0                 1
+    ipv6-VRF:8, fib_index 1, flow hash: src dst sport dport proto
+        Prefix length         Count
+             128                5
+             126                1
+             104                1
+             10                 1
+              0                 1
+    
+
+
+
+
+Declaration: ``ip6_show_fib_command`` `src/vnet/fib/ip6_fib.c line 865 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/ip6_fib.c#L865>`_
+
+Implementation: ``ip6_show_fib``
+
+
+show mpls fib
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show mpls fib [summary] [table <n>]
+
+
+Declaration: ``mpls_fib_show_command`` `src/vnet/fib/mpls_fib.c line 478 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/mpls_fib.c#L478>`_
+
+Implementation: ``mpls_fib_show``
+
+
+test fib-walk-process
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test fib-walk-process [enable|disable]
+
+
+Declaration: ``fib_walk_process_command`` `src/vnet/fib/fib_walk.c line 1239 <https://github.com/FDio/vpp/blob/master//src/vnet/fib/fib_walk.c#L1239>`_
+
+Implementation: ``fib_walk_process_enable_disable``
+

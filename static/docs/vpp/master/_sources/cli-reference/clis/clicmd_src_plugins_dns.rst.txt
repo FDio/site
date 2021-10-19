@@ -1,0 +1,83 @@
+.. _clicmd_src_plugins_dns:
+
+===============================================================
+Dns cli reference
+===============================================================
+
+dns cache
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    dns cache [add|del|clear] <name> [ip4][ip6]
+
+
+Declaration: ``dns_cache_add_del_command`` `src/plugins/dns/dns.c line 2304 <https://github.com/FDio/vpp/blob/master//src/plugins/dns/dns.c#L2304>`_
+
+Implementation: ``dns_cache_add_del_command_fn``
+
+
+show dns cache
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dns cache [verbose [nn]]
+
+
+Declaration: ``show_dns_cache_command`` `src/plugins/dns/dns.c line 2165 <https://github.com/FDio/vpp/blob/master//src/plugins/dns/dns.c#L2165>`_
+
+Implementation: ``show_dns_cache_command_fn``
+
+
+show dns servers
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dns servers
+
+
+Declaration: ``show_dns_server_command`` `src/plugins/dns/dns.c line 2202 <https://github.com/FDio/vpp/blob/master//src/plugins/dns/dns.c#L2202>`_
+
+Implementation: ``show_dns_servers_command_fn``
+
+
+test dns expire
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test dns expire <name>
+
+
+Declaration: ``test_dns_expire_command`` `src/plugins/dns/dns.c line 2638 <https://github.com/FDio/vpp/blob/master//src/plugins/dns/dns.c#L2638>`_
+
+Implementation: ``test_dns_expire_command_fn``
+
+
+test dns format
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test dns format
+
+
+Declaration: ``test_dns_fmt_command`` `src/plugins/dns/dns.c line 2552 <https://github.com/FDio/vpp/blob/master//src/plugins/dns/dns.c#L2552>`_
+
+Implementation: ``test_dns_fmt_command_fn``
+
+
+test dns unformat
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test dns unformat <name> [ip4][ip6]
+
+
+Declaration: ``test_dns_unfmt_command`` `src/plugins/dns/dns.c line 2592 <https://github.com/FDio/vpp/blob/master//src/plugins/dns/dns.c#L2592>`_
+
+Implementation: ``test_dns_unfmt_command_fn``
+

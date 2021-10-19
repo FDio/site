@@ -1,0 +1,109 @@
+.. _clicmd_src_plugins_igmp:
+
+===============================================================
+Igmp cli reference
+===============================================================
+
+clear igmp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear igmp int <interface>
+
+
+Declaration: ``igmp_clear_interface_command`` `src/plugins/igmp/igmp_cli.c line 73 <https://github.com/FDio/vpp/blob/master//src/plugins/igmp/igmp_cli.c#L73>`_
+
+Implementation: ``igmp_clear_interface_command_fn``
+
+
+igmp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    igmp <enable|disable> <host|router> <interface>
+
+
+Declaration: ``igmp_enable_command`` `src/plugins/igmp/igmp_cli.c line 215 <https://github.com/FDio/vpp/blob/master//src/plugins/igmp/igmp_cli.c#L215>`_
+
+Implementation: ``igmp_enable_cli``
+
+
+igmp listen
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    igmp listen [<enable|disable>] int <interface> saddr <ip4-address> gaddr <ip4-address>
+
+
+Declaration: ``igmp_listen_command`` `src/plugins/igmp/igmp_cli.c line 154 <https://github.com/FDio/vpp/blob/master//src/plugins/igmp/igmp_cli.c#L154>`_
+
+Implementation: ``igmp_listen_command_fn``
+
+
+igmp proxy-dev
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    igmp proxy-dev <add|del> vrf-id <table-id> <interface>
+
+
+Declaration: ``igmp_proxy_device_add_del_command`` `src/plugins/igmp/igmp_cli.c line 279 <https://github.com/FDio/vpp/blob/master//src/plugins/igmp/igmp_cli.c#L279>`_
+
+Implementation: ``igmp_proxy_device_add_del_command_fn``
+
+
+igmp proxy-dev itf
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    igmp proxy-dev itf <add|del> vrf-id <table-id> <interface>
+
+
+Declaration: ``igmp_proxy_device_add_del_interface_command`` `src/plugins/igmp/igmp_cli.c line 343 <https://github.com/FDio/vpp/blob/master//src/plugins/igmp/igmp_cli.c#L343>`_
+
+Implementation: ``igmp_proxy_device_add_del_interface_command_fn``
+
+
+show igmp config
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show igmp config
+
+
+Declaration: ``igmp_show_command`` `src/plugins/igmp/igmp_cli.c line 369 <https://github.com/FDio/vpp/blob/master//src/plugins/igmp/igmp_cli.c#L369>`_
+
+Implementation: ``igmp_show_command_fn``
+
+
+show igmp ssm-ranges
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show igmp ssm-ranges
+
+
+Declaration: ``igmp_show_timers_command`` `src/plugins/igmp/igmp_ssm_range.c line 131 <https://github.com/FDio/vpp/blob/master//src/plugins/igmp/igmp_ssm_range.c#L131>`_
+
+Implementation: ``igmp_ssm_range_show``
+
+
+test igmp timers
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Change the default values for IGMP timers - only sensible during unit tests
+
+
+Declaration: ``test_igmp_command`` `src/plugins/igmp/igmp_cli.c line 418 <https://github.com/FDio/vpp/blob/master//src/plugins/igmp/igmp_cli.c#L418>`_
+
+Implementation: ``test_igmp_command_fn``
+

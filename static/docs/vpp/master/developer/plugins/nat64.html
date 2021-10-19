@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stateful NAT64 &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Active-Passive NAT HA" href="nat44_ei_ha.html" />
+    <link rel="prev" title="LLDP Protocol" href="lldp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Plugins</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quic.html">QUIC HostStack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcp.html">Linux Control Plane Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="srv6/index.html">SRv6 Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marvell.html">Marvell device plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lldp.html">LLDP Protocol</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Stateful NAT64</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#enable-disable-nat64-feature-on-the-interface">Enable/disable NAT64 feature on the interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-delete-nat64-pool-address">Add/delete NAT64 pool address</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-delete-static-bib-entry">Add/delete static BIB entry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-nat64-session-timeouts">Set NAT64 session timeouts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-nat64-prefix">Set NAT64 prefix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#show-commands">Show commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nat44_ei_ha.html">Active-Passive NAT HA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnat.html">PNAT 1:1 match &amp; rewrite NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lb.html">Load Balancer plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lacp.html">LACP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowprobe.html">IPFIX flow record plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_lw4o6.html">MAP and Lw4o6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mdata.html">Buffer metadata change tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dhcp6_pd.html">DHCPv6 prefix delegation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ioam.html">Inband OAM (iOAM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wireguard.html">Wireguard vpp-plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="srtp.html">SRTP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_multicore.html">Multicore support for ACL plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_hash_lookup.html">ACL plugin constant-time lookup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_lookup_context.html">ACL Lookup contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bufmon_doc.html">Buffers monitoring plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Plugins</a> &raquo;</li>
+      <li>Stateful NAT64</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/plugins/nat64.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="stateful-nat64">
+<h1>Stateful NAT64<a class="headerlink" href="#stateful-nat64" title="Permalink to this headline"></a></h1>
+<p>This document describes stateful NAT64 Network Address and Protocol
+Translation</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>Stateful NAT64 in VPP allows IPv6-only clients to contact IPv4 servers
+using unicast UDP, TCP, or ICMP based on RFC 6146.</p>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
+<section id="enable-disable-nat64-feature-on-the-interface">
+<h3>Enable/disable NAT64 feature on the interface<a class="headerlink" href="#enable-disable-nat64-feature-on-the-interface" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>set interface nat64 in|out [del]</p>
+</div></blockquote>
+<p>in: inside/local/IPv6 network out: outside/external/IPv4 network intfc:
+interface name</p>
+</section>
+<section id="add-delete-nat64-pool-address">
+<h3>Add/delete NAT64 pool address<a class="headerlink" href="#add-delete-nat64-pool-address" title="Permalink to this headline"></a></h3>
+<p>One or more public IPv4 addresses assigned to a NAT64 are shared among
+several IPv6-only clients.</p>
+<blockquote>
+<div><p>nat64 add pool address [- ] [tenant-vrf ] [del]</p>
+</div></blockquote>
+<p>ip4-range-start: First IPv4 address of the range ip4-range-end: Last
+IPv4 address of the range (optional, not used for single address)
+tenant-vrf-id: VRF id of the tenant associated with the pool address
+(optional, if not set pool address is global)</p>
+</section>
+<section id="add-delete-static-bib-entry">
+<h3>Add/delete static BIB entry<a class="headerlink" href="#add-delete-static-bib-entry" title="Permalink to this headline"></a></h3>
+<p>Stateful NAT64 also supports IPv4-initiated communications to a subset
+of the IPv6 hosts through statically configured bindings.</p>
+<blockquote>
+<div><p>nat64 add static bib tcp|udp|icmp [vfr ] [del]</p>
+</div></blockquote>
+<p>ip6-addr: inside IPv6 address of the host in-port: inside port or ICMPv6
+identifier ip4-addr: outside IPv4 address of the host out-port: outside
+port or ICMPv4 identifier table-id: VRF id of the tenant associated with
+the BIB entry (optional, default use global VRF)</p>
+</section>
+<section id="set-nat64-session-timeouts">
+<h3>Set NAT64 session timeouts<a class="headerlink" href="#set-nat64-session-timeouts" title="Permalink to this headline"></a></h3>
+<p>Session is deleted when timer expires. If all sessions corresponding to
+a dynamically create BIB entry are deleted, then the BIB entry is also
+deleted. When packets are flowing session timer is refreshed to keep the
+session alive.</p>
+<blockquote>
+<div><p>set nat64 timeouts udp icmp tcp-trans tcp-est tcp-incoming-syn |
+reset</p>
+</div></blockquote>
+<p>udp: UDP session timeout value (default 300sec) icmp: ICMP session
+timeout value (default 60sec) tcp-trans: transitory TCP session timeout
+value (default 240sec) tcp-est: established TCP session timeout value
+(default 7440sec) tcp-incoming-syn: incoming SYN TCP session timeout
+value (default 6sec) reset: reset timers to default values</p>
+</section>
+<section id="set-nat64-prefix">
+<h3>Set NAT64 prefix<a class="headerlink" href="#set-nat64-prefix" title="Permalink to this headline"></a></h3>
+<p>Stateful NAT64 support the algorithm for generating IPv6 representations
+of IPv4 addresses defined in RFC 6052. If no prefix is configured,
+Well-Known Prefix (64:ff9b::/96) is used.</p>
+<blockquote>
+<div><p>nat64 add prefix / [tenant-vrf ] [del]</p>
+</div></blockquote>
+<p>ip6-prefix: IPv6 prefix plen: prefix length (valid values: 32, 40, 48,
+56, 64, or 96) tenant-vrf: VRF id of the tenant associated with the
+prefix</p>
+</section>
+<section id="show-commands">
+<h3>Show commands<a class="headerlink" href="#show-commands" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>show nat64 pool show nat64 interfaces show nat64 bib tcp|udp|icmp
+show nat64 session table tcp|udp|icmp show nat64 timeouts show nat64
+prefix</p>
+</div></blockquote>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline"></a></h2>
+<p>Multi thread is not supported yet (CLI/API commands are disabled when
+VPP runs with multiple threads).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lldp.html" class="btn btn-neutral float-left" title="LLDP Protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nat44_ei_ha.html" class="btn btn-neutral float-right" title="Active-Passive NAT HA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

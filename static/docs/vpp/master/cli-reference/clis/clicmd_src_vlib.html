@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VLIB application library &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VXLAN CLI" href="clicmd_src_vnet_vxlan.html" />
+    <link rel="prev" title="Unix Interface" href="clicmd_src_vlib_unix.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ethernet.html">ARP and Loopback CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_vlib_unix_cj_c.html">Circular Journal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix_cli_c.html">Command line session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_dpdk-ipsec.html">DPDK Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_device.html">DPDK and pcap tx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_af_packet.html">Host Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app_version_c.html">Image Version Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_init_c.html">Init functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet.html">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_l2.html">Layer 2 CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip.html">Layer 3 IP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsim_nsim_c.html">Network Delay Simulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_http_static_static_server_c.html">Static HTTP Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_unix.html">Unix Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">VLIB application library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#clear">clear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clear-errors">clear errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clear-logging">clear logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clear-node-counters">clear node counters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clear-runtime">clear runtime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clear-trace">clear trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#event-logger-clear">event-logger clear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#event-logger-resize">event-logger resize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#event-logger-restart">event-logger restart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#event-logger-save">event-logger save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#event-logger-stop">event-logger stop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#event-logger-trace">event-logger trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-trace">memory-trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#restart">restart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set">set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-logging-class">set logging class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-logging-size">set logging size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-logging-unthrottle-time">set logging unthrottle-time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-node-function">set node function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show">show</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-buffers">show buffers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-cli">show cli</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-clock">show clock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-cpu">show cpu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-errors">show errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-event-logger">show event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-frame-queue">show frame-queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-frame-queue-histogram">show frame-queue histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-logging">show logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-logging-configuration">show logging configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-memory">show memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-node">show node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-node-counters">show node counters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-physmem">show physmem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-punt-client">show punt client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-punt-db">show punt db</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-punt-reasons">show punt reasons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-punt-stats">show punt stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-runtime">show runtime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-threads">show threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-trace">show trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-vlib-frame-allocation">show vlib frame-allocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-vlib-graph">show vlib graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-vlib-graphviz">show vlib graphviz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#suspend">suspend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test">test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-frame-queue-nelts">test frame-queue nelts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-frame-queue-threshold">test frame-queue threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-log">test log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-sleep">test sleep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trace">trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trace-add">trace add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trace-filter">trace filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trace-frame-queue">trace frame-queue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan.html">VXLAN CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gbp.html">VXLAN-GBP CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_extras_deprecated_netmap.html">netmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_abf.html">Abf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_acl.html">Acl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_adl.html">Adl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_af_xdp.html">Af_xdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_arping.html">Arping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_avf.html">Avf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_bufmon.html">Bufmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_builtinurl.html">Builtinurl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cdp.html">Cdp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_cnat.html">Cnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_crypto_sw_scheduler.html">Crypto_sw_scheduler cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ct6.html">Ct6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dhcp.html">Dhcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dispatch-trace.html">Dispatch-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dns.html">Dns cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_dpdk_cryptodev.html">Cryptodev cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_flowprobe.html">Flowprobe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gbp.html">Gbp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_geneve.html">Geneve cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_gtpu.html">Gtpu cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_hs_apps.html">Hs_apps cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_igmp.html">Igmp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ikev2.html">Ikev2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ila.html">Ila cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_analyse_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_encap.html">Encap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export.html">Export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_export-vxlan-gpe.html">Export-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_ip6.html">Ip6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-pot.html">Lib-pot cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-trace.html">Lib-trace cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_lib-vxlan-gpe.html">Lib-vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ioam_udp-ping.html">Udp-ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2e.html">L2e cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l2tp.html">L2tp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_l3xc.html">L3xc cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lacp.html">Lacp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lb.html">Lb cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp.html">Linux-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_linux-cp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-cp.html">Lisp-cp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_lisp-gpe.html">Lisp-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lisp_test.html">Test cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_lldp.html">Lldp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mactime.html">Mactime cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_map.html">Map cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_marvell_pp2.html">Pp2 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mdata.html">Mdata cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_memif.html">Memif cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_mss_clamp.html">Mss_clamp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_det44.html">Det44 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_dslite.html">Dslite cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ed.html">Nat44-ed cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat44-ei.html">Nat44-ei cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat64.html">Nat64 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_nat66.html">Nat66 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nat_pnat.html">Pnat cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh.html">Nsh cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam.html">Nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_nsh_nsh-md2-ioam_export-nsh-md2-ioam.html">Export-nsh-md2-ioam cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_oddbuf.html">Oddbuf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_perfmon.html">Perfmon cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_ping.html">Ping cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_pppoe.html">Pppoe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_quic.html">Quic cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_rdma.html">Rdma cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_snort.html">Snort cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_stn.html">Stn cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_svs.html">Svs cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tlsopenssl.html">Tlsopenssl cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_tracedump.html">Tracedump cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_unittest.html">Unittest cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_urpf.html">Urpf cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vmxnet3.html">Vmxnet3 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_vrrp.html">Vrrp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_plugins_wireguard.html">Wireguard cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlib_pci.html">Pci cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibapi.html">Vlibapi cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vlibmemory.html">Vlibmemory cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_adj.html">Adj cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_arp.html">Arp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bfd.html">Bfd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bier.html">Bier cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_bonding.html">Bonding cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_classify.html">Classify cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_crypto.html">Crypto cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_pipe.html">Pipe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_tap.html">Tap cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_dpo.html">Dpo cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_feature.html">Feature cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_fib.html">Fib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_flow.html">Flow cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gre.html">Gre cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_gso.html">Gso cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_hash.html">Hash cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip-neighbor.html">Ip-neighbor cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip_reass.html">Reass cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ip6-nd.html">Ip6-nd cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipfix-export.html">Ipfix-export cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipip.html">Ipip cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_ipsec.html">Ipsec cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_lawful-intercept.html">Lawful-intercept cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mfib.html">Mfib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_mpls.html">Mpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_pg.html">Pg cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_policer.html">Policer cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_qos.html">Qos cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_session.html">Session cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_span.html">Span cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srmpls.html">Srmpls cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_srv6.html">Srv6 cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_syslog.html">Syslog cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_tcp.html">Tcp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_teib.html">Teib cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_udp.html">Udp cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_unix.html">Unix cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_vxlan-gpe.html">Vxlan-gpe cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_api.html">Api cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_app.html">App cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_stats.html">Stats cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vpp_vnet.html">Vnet cli reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clicmd_src_vnet_devices_virtio.html">vHost User</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+      <li>VLIB application library</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cli-reference/clis/clicmd_src_vlib.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vlib-application-library">
+<span id="clicmd-src-vlib"></span><h1>VLIB application library<a class="headerlink" href="#vlib-application-library" title="Permalink to this headline"></a></h1>
+<section id="clear">
+<h2>clear<a class="headerlink" href="#clear" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Clear commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_clear_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L66">src/vlib/cli.c line 66</a></p>
+</section>
+<section id="clear-errors">
+<h2>clear errors<a class="headerlink" href="#clear-errors" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Clear error counters</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_clear_error_counters</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/error.c#L377">src/vlib/error.c line 377</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">clear_error_counters</span></code></p>
+</section>
+<section id="clear-logging">
+<h2>clear logging<a class="headerlink" href="#clear-logging" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">clear logging</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_clear_log</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/log.c#L509">src/vlib/log.c line 509</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">clear_log</span></code></p>
+</section>
+<section id="clear-node-counters">
+<h2>clear node counters<a class="headerlink" href="#clear-node-counters" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Clear node counters</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_clear_node_counters</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/error.c#L385">src/vlib/error.c line 385</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">clear_error_counters</span></code></p>
+</section>
+<section id="clear-runtime">
+<h2>clear runtime<a class="headerlink" href="#clear-runtime" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Clear packet processing runtime statistics</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">clear_node_runtime_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/node_cli.c#L703">src/vlib/node_cli.c line 703</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">clear_node_runtime</span></code></p>
+</section>
+<section id="clear-trace">
+<h2>clear trace<a class="headerlink" href="#clear-trace" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Clear trace buffer and free memory</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">clear_trace_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/trace.c#L602">src/vlib/trace.c line 602</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">cli_clear_trace_buffer</span></code></p>
+</section>
+<section id="event-logger-clear">
+<h2>event-logger clear<a class="headerlink" href="#event-logger-clear" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Clear the event log</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">elog_clear_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/main.c#L702">src/vlib/main.c line 702</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">vlib_cli_elog_clear</span></code></p>
+</section>
+<section id="event-logger-resize">
+<h2>event-logger resize<a class="headerlink" href="#event-logger-resize" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">event-logger resize &lt;nnn&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">elog_resize_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/main.c#L827">src/vlib/main.c line 827</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">elog_resize_command_fn</span></code></p>
+</section>
+<section id="event-logger-restart">
+<h2>event-logger restart<a class="headerlink" href="#event-logger-restart" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Restart the event-logger</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">elog_restart_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/main.c#L797">src/vlib/main.c line 797</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">elog_restart</span></code></p>
+</section>
+<section id="event-logger-save">
+<h2>event-logger save<a class="headerlink" href="#event-logger-save" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">event-logger save &lt;filename&gt; (saves log in /tmp/&lt;filename&gt;)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">elog_save_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/main.c#L757">src/vlib/main.c line 757</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">elog_save_buffer</span></code></p>
+</section>
+<section id="event-logger-stop">
+<h2>event-logger stop<a class="headerlink" href="#event-logger-stop" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Stop the event-logger</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">elog_stop_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/main.c#L777">src/vlib/main.c line 777</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">elog_stop</span></code></p>
+</section>
+<section id="event-logger-trace">
+<h2>event-logger trace<a class="headerlink" href="#event-logger-trace" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">event-logger trace [api][cli][barrier][dispatch]</span>
+<span class="go">[circuit-node &lt;name&gt; e.g. ethernet-input][disable]</span>
+</pre></div>
+</div>
+<p>Control event logging of api, cli, and thread barrier events
+With no arguments, displays the current trace status.
+Name the event groups you wish to trace or stop tracing.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">event-logger trace api cli barrier</span>
+<span class="go">event-logger trace api cli barrier disable</span>
+<span class="go">event-logger trace dispatch</span>
+<span class="go">event-logger trace circuit-node ethernet-input</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">event-logger trace [api][cli][barrier][disable]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">event_logger_trace_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L1601">src/vlib/cli.c line 1601</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">event_logger_trace_command_fn</span></code></p>
+</section>
+<section id="memory-trace">
+<h2>memory-trace<a class="headerlink" href="#memory-trace" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">memory-trace on|off [api-segment][stats-segment][main-heap]</span>
+<span class="go">                   [numa-heap &lt;numa-id&gt;]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">enable_disable_memory_trace_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L1077">src/vlib/cli.c line 1077</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">enable_disable_memory_trace</span></code></p>
+</section>
+<section id="restart">
+<h2>restart<a class="headerlink" href="#restart" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">restart process</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">restart_cmd</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L1112">src/vlib/cli.c line 1112</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">restart_cmd_fn</span></code></p>
+</section>
+<section id="set">
+<h2>set<a class="headerlink" href="#set" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Set commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_set_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L74">src/vlib/cli.c line 74</a></p>
+</section>
+<section id="set-logging-class">
+<h2>set logging class<a class="headerlink" href="#set-logging-class" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set logging class &lt;class&gt; [rate-limit &lt;int&gt;] [level &lt;level&gt;] [syslog-level &lt;level&gt;]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_set_log</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/log.c#L643">src/vlib/log.c line 643</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_log_class</span></code></p>
+</section>
+<section id="set-logging-size">
+<h2>set logging size<a class="headerlink" href="#set-logging-size" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set logging size &lt;int&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_set_log_size</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/log.c#L713">src/vlib/log.c line 713</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_log_size</span></code></p>
+</section>
+<section id="set-logging-unthrottle-time">
+<h2>set logging unthrottle-time<a class="headerlink" href="#set-logging-unthrottle-time" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set logging unthrottle-time &lt;int&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_set_log_params</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/log.c#L677">src/vlib/log.c line 677</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_log_unth_time</span></code></p>
+</section>
+<section id="set-node-function">
+<h2>set node function<a class="headerlink" href="#set-node-function" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">set node function &lt;node-name&gt; &lt;variant-name&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">set_node_fn_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/node_cli.c#L926">src/vlib/node_cli.c line 926</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">set_node_fn</span></code></p>
+</section>
+<section id="show">
+<h2>show<a class="headerlink" href="#show" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_show_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L58">src/vlib/cli.c line 58</a></p>
+</section>
+<section id="show-buffers">
+<h2>show buffers<a class="headerlink" href="#show-buffers" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show packet buffer allocation</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_buffers_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/buffer.c#L642">src/vlib/buffer.c line 642</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_buffers</span></code></p>
+</section>
+<section id="show-cli">
+<h2>show cli<a class="headerlink" href="#show-cli" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show cli [mp-safe][not-mp-safe][hit][clear-hit]</span>
+</pre></div>
+</div>
+<p>Displays debug cli command information</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show cli [mp-safe][not-mp-safe][hit][clear-hit]</span>
+
+
+<span class="go">&quot;show cli&quot; displays the entire debug cli:</span>
+
+<span class="go">abf attach</span>
+<span class="go">abf policy</span>
+<span class="go">adjacency counters</span>
+<span class="go">api trace</span>
+<span class="go">app ns</span>
+<span class="go">bfd key del</span>
+<span class="go">... and so on ...</span>
+
+<span class="go">&quot;show cli mp-safe&quot; displays mp-safe debug CLI commands:</span>
+
+<span class="go">abf policy</span>
+<span class="go">binary-api</span>
+<span class="go">create vhost-user</span>
+<span class="go">exec</span>
+<span class="go">ip container</span>
+<span class="go">ip mroute</span>
+<span class="go">ip probe-neighbor</span>
+<span class="go">ip route</span>
+<span class="go">ip scan-neighbor</span>
+<span class="go">ip table</span>
+<span class="go">ip6 table</span>
+
+<span class="go">&quot;show cli not-mp-safe&quot; displays debug CLI commands</span>
+<span class="go">which cause worker thread barrier synchronization</span>
+
+<span class="go">&quot;show cli hit&quot; displays commands which have been executed. Qualify</span>
+<span class="go">as desired with &quot;mp-safe&quot; or &quot;not-mp-safe&quot;.</span>
+
+<span class="go">&quot;show cli clear-hit&quot; clears the per-command hit counters.</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_cli_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L1818">src/vlib/cli.c line 1818</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_cli_command_fn</span></code></p>
+</section>
+<section id="show-clock">
+<h2>show clock<a class="headerlink" href="#show-clock" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show clock</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">f_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/threads.c#L1676">src/vlib/threads.c line 1676</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_clock_command_fn</span></code></p>
+</section>
+<section id="show-cpu">
+<h2>show cpu<a class="headerlink" href="#show-cpu" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show cpu information</span>
+</pre></div>
+</div>
+<p>Displays various information about the CPU.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show cpu</span>
+
+<span class="go">Model name:               Intel(R) Xeon(R) CPU E5-2667 v4 @ 3.20GHz</span>
+<span class="go">Microarchitecture:        Broadwell (Broadwell-EP/EX)</span>
+<span class="go">Flags:                    sse3 ssse3 sse41 sse42 avx avx2 aes</span>
+<span class="go">Base Frequency:           3.20 GHz</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_cpu_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L963">src/vlib/cli.c line 963</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_cpu</span></code></p>
+</section>
+<section id="show-errors">
+<h2>show errors<a class="headerlink" href="#show-errors" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show error counts</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_show_errors</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/error.c#L344">src/vlib/error.c line 344</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_errors</span></code></p>
+</section>
+<section id="show-event-logger">
+<h2>show event-logger<a class="headerlink" href="#show-event-logger" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show event logger info</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">elog_show_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/main.c#L886">src/vlib/main.c line 886</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">elog_show_buffer</span></code></p>
+</section>
+<section id="show-frame-queue">
+<h2>show frame-queue<a class="headerlink" href="#show-frame-queue" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show frame-queue trace</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cmd_show_frame_queue_trace</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/threads_cli.c#L366">src/vlib/threads_cli.c line 366</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_frame_queue_trace</span></code></p>
+</section>
+<section id="show-frame-queue-histogram">
+<h2>show frame-queue histogram<a class="headerlink" href="#show-frame-queue-histogram" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show frame-queue histogram</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cmd_show_frame_queue_histogram</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/threads_cli.c#L374">src/vlib/threads_cli.c line 374</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_frame_queue_histogram</span></code></p>
+</section>
+<section id="show-logging">
+<h2>show logging<a class="headerlink" href="#show-logging" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show logging</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_show_log</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/log.c#L430">src/vlib/log.c line 430</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_log</span></code></p>
+</section>
+<section id="show-logging-configuration">
+<h2>show logging configuration<a class="headerlink" href="#show-logging-configuration" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show logging configuration</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_show_log_config</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/log.c#L478">src/vlib/log.c line 478</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_log_config</span></code></p>
+</section>
+<section id="show-memory">
+<h2>show memory<a class="headerlink" href="#show-memory" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show memory [api-segment][stats-segment][verbose]</span>
+<span class="go">            [numa-heaps][map]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_memory_usage_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L929">src/vlib/cli.c line 929</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_memory_usage</span></code></p>
+</section>
+<section id="show-node">
+<h2>show node<a class="headerlink" href="#show-node" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show node [index] &lt;node-name | node-index&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_node_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/node_cli.c#L873">src/vlib/node_cli.c line 873</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_node</span></code></p>
+</section>
+<section id="show-node-counters">
+<h2>show node counters<a class="headerlink" href="#show-node-counters" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show node counters</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_show_node_counters</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/error.c#L352">src/vlib/error.c line 352</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_errors</span></code></p>
+</section>
+<section id="show-physmem">
+<h2>show physmem<a class="headerlink" href="#show-physmem" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show physmem [verbose | detail | map]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_physmem_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/physmem.c#L164">src/vlib/physmem.c line 164</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_physmem</span></code></p>
+</section>
+<section id="show-punt-client">
+<h2>show punt client<a class="headerlink" href="#show-punt-client" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show client[s] registered with the punt infra</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">punt_client_show_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/punt.c#L610">src/vlib/punt.c line 610</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">punt_client_show</span></code></p>
+</section>
+<section id="show-punt-db">
+<h2>show punt db<a class="headerlink" href="#show-punt-db" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show the punt DB</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">punt_db_show_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/punt.c#L676">src/vlib/punt.c line 676</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">punt_db_show</span></code></p>
+</section>
+<section id="show-punt-reasons">
+<h2>show punt reasons<a class="headerlink" href="#show-punt-reasons" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show all punt reasons</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">punt_reason_show_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/punt.c#L633">src/vlib/punt.c line 633</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">punt_reason_show</span></code></p>
+</section>
+<section id="show-punt-stats">
+<h2>show punt stats<a class="headerlink" href="#show-punt-stats" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show the punt stats</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">punt_stats_show_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/punt.c#L703">src/vlib/punt.c line 703</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">punt_stats_show</span></code></p>
+</section>
+<section id="show-runtime">
+<h2>show runtime<a class="headerlink" href="#show-runtime" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show packet processing runtime</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_node_runtime_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/node_cli.c#L650">src/vlib/node_cli.c line 650</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_node_runtime</span></code></p>
+</section>
+<section id="show-threads">
+<h2>show threads<a class="headerlink" href="#show-threads" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show threads</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_threads_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/threads_cli.c#L88">src/vlib/threads_cli.c line 88</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_threads_fn</span></code></p>
+</section>
+<section id="show-trace">
+<h2>show trace<a class="headerlink" href="#show-trace" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show trace buffer [max COUNT]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_trace_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/trace.c#L361">src/vlib/trace.c line 361</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">cli_show_trace_buffer</span></code></p>
+</section>
+<section id="show-vlib-frame-allocation">
+<h2>show vlib frame-allocation<a class="headerlink" href="#show-vlib-frame-allocation" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show node dispatch frame statistics</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_frame_stats_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/main.c#L292">src/vlib/main.c line 292</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_frame_stats</span></code></p>
+</section>
+<section id="show-vlib-graph">
+<h2>show vlib graph<a class="headerlink" href="#show-vlib-graph" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Show packet processing node graph</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_node_graph_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/node_cli.c#L88">src/vlib/node_cli.c line 88</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_node_graph</span></code></p>
+</section>
+<section id="show-vlib-graphviz">
+<h2>show vlib graphviz<a class="headerlink" href="#show-vlib-graphviz" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Dump packet processing node graph as a graphviz dotfile</span>
+</pre></div>
+</div>
+<p>Dump dot files data to draw a graph of all the nodes.
+If the argument ‘filter’ is provided, only the active nodes (since the last
+“clear run” command) are selected and they are scaled and colored according
+to their utilization. You can choose to filter nodes that are called,
+nodes that receive vectors or both (default).
+The ‘file’ option allows to save data in a temp file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show vlib graphviz</span>
+<span class="go">show vlib graphviz filter file tmpfile</span>
+<span class="go">show vlib graphviz filter calls file tmpfile</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">show vlib graphviz [filter][calls][vectors][file &lt;filename&gt;]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">show_node_graphviz_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/node_cli.c#L327">src/vlib/node_cli.c line 327</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">show_node_graphviz</span></code></p>
+</section>
+<section id="suspend">
+<h2>suspend<a class="headerlink" href="#suspend" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">suspend debug CLI for 30ms</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">suspend_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L1619">src/vlib/cli.c line 1619</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">suspend_command_fn</span></code></p>
+</section>
+<section id="test">
+<h2>test<a class="headerlink" href="#test" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Test commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">vlib_cli_test_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L82">src/vlib/cli.c line 82</a></p>
+</section>
+<section id="test-frame-queue-nelts">
+<h2>test frame-queue nelts<a class="headerlink" href="#test-frame-queue-nelts" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test frame-queue nelts (4,8,16,32)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cmd_test_frame_queue_nelts</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/threads_cli.c#L449">src/vlib/threads_cli.c line 449</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">test_frame_queue_nelts</span></code></p>
+</section>
+<section id="test-frame-queue-threshold">
+<h2>test frame-queue threshold<a class="headerlink" href="#test-frame-queue-threshold" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test frame-queue threshold N (0=no limit)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cmd_test_frame_queue_threshold</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/threads_cli.c#L528">src/vlib/threads_cli.c line 528</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">test_frame_queue_threshold</span></code></p>
+</section>
+<section id="test-log">
+<h2>test log<a class="headerlink" href="#test-log" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">test log &lt;level&gt; &lt;class&gt; &lt;subclass&gt; &lt;message&gt;</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cli_test_log</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/log.c#L792">src/vlib/log.c line 792</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">test_log_class_subclass</span></code></p>
+</section>
+<section id="test-sleep">
+<h2>test sleep<a class="headerlink" href="#test-sleep" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Sleep for 10 seconds</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">ping_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/cli.c#L1144">src/vlib/cli.c line 1144</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">sleep_ten_seconds</span></code></p>
+</section>
+<section id="trace">
+<h2>trace<a class="headerlink" href="#trace" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Packet tracer commands</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">trace_cli_command</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/trace.c#L177">src/vlib/trace.c line 177</a></p>
+</section>
+<section id="trace-add">
+<h2>trace add<a class="headerlink" href="#trace-add" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">trace add &lt;input-graph-node&gt; &lt;add&#39;l-pkts-for-node-&gt; [filter] [verbose]</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">add_trace_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/trace.c#L482">src/vlib/trace.c line 482</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">cli_add_trace_buffer</span></code></p>
+</section>
+<section id="trace-filter">
+<h2>trace filter<a class="headerlink" href="#trace-filter" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">trace filter none | [include|exclude] NODE COUNT</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">filter_trace_cli</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/trace.c#L586">src/vlib/trace.c line 586</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">cli_filter_trace</span></code></p>
+</section>
+<section id="trace-frame-queue">
+<h2>trace frame-queue<a class="headerlink" href="#trace-frame-queue" title="Permalink to this headline"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">trace frame-queue (on|off)</span>
+</pre></div>
+</div>
+<p>Declaration: <code class="docutils literal notranslate"><span class="pre">cmd_trace_frame_queue</span></code> <a class="reference external" href="https://github.com/FDio/vpp/blob/master//src/vlib/threads_cli.c#L184">src/vlib/threads_cli.c line 184</a></p>
+<p>Implementation: <code class="docutils literal notranslate"><span class="pre">trace_frame_queue</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="clicmd_src_vlib_unix.html" class="btn btn-neutral float-left" title="Unix Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clicmd_src_vnet_vxlan.html" class="btn btn-neutral float-right" title="VXLAN CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

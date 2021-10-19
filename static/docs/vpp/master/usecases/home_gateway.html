@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VPP as a Home Gateway &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Access Control Lists with VPP" href="acls.html" />
+    <link rel="prev" title="VPP with VMware/Vmxnet3" href="vmxnet3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VPP as a Home Gateway</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-configuration-files">System configuration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#systemd-configuration">Systemd configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#netplan-configuration">Netplan configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vpp-configuration-files">VPP Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-new-vpp-software">Installing new vpp software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reasonably-robust-remote-software-installation">Reasonably Robust Remote Software Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-host-script">Build-host script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#target-script">Target script</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-new-software">Testing new software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#patches">Patches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-time-based-mac-filter-plugin">Using the time-based mac filter plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>VPP as a Home Gateway</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usecases/home_gateway.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vpp-as-a-home-gateway">
+<h1>VPP as a Home Gateway<a class="headerlink" href="#vpp-as-a-home-gateway" title="Permalink to this headline"></a></h1>
+<p>Vpp running on a small system (with appropriate NICs) makes a fine home
+gateway. The resulting system performs far in excess of requirements: a
+debug image runs at a vector size of ~1.2 terminating a 150-mbit down /
+10-mbit up cable modem connection.</p>
+<p>At a minimum, install sshd and the isc-dhcp-server. If you prefer, you
+can use dnsmasq.</p>
+<section id="system-configuration-files">
+<h2>System configuration files<a class="headerlink" href="#system-configuration-files" title="Permalink to this headline"></a></h2>
+<p>/etc/vpp/startup.conf:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">unix</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">nodaemon</span><span class="w"></span>
+<span class="w">  </span><span class="n">log</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">vpp</span><span class="o">/</span><span class="n">vpp</span><span class="p">.</span><span class="n">log</span><span class="w"></span>
+<span class="w">  </span><span class="n">full</span><span class="o">-</span><span class="n">coredump</span><span class="w"></span>
+<span class="w">  </span><span class="n">cli</span><span class="o">-</span><span class="n">listen</span><span class="w"> </span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">vpp</span><span class="o">/</span><span class="n">cli</span><span class="p">.</span><span class="n">sock</span><span class="w"></span>
+<span class="w">  </span><span class="n">startup</span><span class="o">-</span><span class="n">config</span><span class="w"> </span><span class="o">/</span><span class="n">setup</span><span class="p">.</span><span class="n">gate</span><span class="w"></span>
+<span class="w">  </span><span class="n">poll</span><span class="o">-</span><span class="n">sleep</span><span class="o">-</span><span class="n">usec</span><span class="w"> </span><span class="mi">100</span><span class="w"></span>
+<span class="w">  </span><span class="n">gid</span><span class="w"> </span><span class="n">vpp</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">api</span><span class="o">-</span><span class="n">segment</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">gid</span><span class="w"> </span><span class="n">vpp</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">dpdk</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">     </span><span class="n">dev</span><span class="w"> </span><span class="mo">0000</span><span class="o">:</span><span class="mo">03</span><span class="o">:</span><span class="mf">00.0</span><span class="w"></span>
+<span class="w">     </span><span class="n">dev</span><span class="w"> </span><span class="mo">0000</span><span class="o">:</span><span class="mi">14</span><span class="o">:</span><span class="mf">00.0</span><span class="w"></span>
+<span class="w">     </span><span class="n">etc</span><span class="p">.</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w"> </span><span class="n">plugins</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="cp">## Disable all plugins, selectively enable specific plugins</span>
+<span class="w">       </span><span class="cp">## YMMV, you may wish to enable other plugins (acl, etc.)</span>
+<span class="w">   </span><span class="n">plugin</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">disable</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="n">plugin</span><span class="w"> </span><span class="n">dpdk_plugin</span><span class="p">.</span><span class="n">so</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="n">plugin</span><span class="w"> </span><span class="n">nat_plugin</span><span class="p">.</span><span class="n">so</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="cp">## if you plan to use the time-based MAC filter</span>
+<span class="w">   </span><span class="n">plugin</span><span class="w"> </span><span class="n">mactime_plugin</span><span class="p">.</span><span class="n">so</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>/etc/dhcp/dhcpd.conf:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">subnet</span><span class="w"> </span><span class="mf">192.168.1.0</span><span class="w"> </span><span class="n">netmask</span><span class="w"> </span><span class="mf">255.255.255.0</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">range</span><span class="w"> </span><span class="mf">192.168.1.10</span><span class="w"> </span><span class="mf">192.168.1.99</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">option</span><span class="w"> </span><span class="n">routers</span><span class="w"> </span><span class="mf">192.168.1.1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">option</span><span class="w"> </span><span class="n">domain</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">servers</span><span class="w"> </span><span class="mf">8.8.8.8</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If you decide to enable the vpp dns name resolver, substitute
+192.168.1.2 for 8.8.8.8 in the dhcp server configuration.</p>
+<p>/etc/default/isc-dhcp-server:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp"># On which interfaces should the DHCP server (dhcpd) serve DHCP requests?</span>
+<span class="cp"># Separate multiple interfaces with spaces, e.g. &quot;eth0 eth1&quot;.</span>
+<span class="n">INTERFACESv4</span><span class="o">=</span><span class="s">&quot;lstack&quot;</span><span class="w"></span>
+<span class="n">INTERFACESv6</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>/etc/ssh/sshd_config:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp"># What ports, IPs and protocols we listen for</span>
+<span class="n">Port</span><span class="w"> </span><span class="o">&lt;</span><span class="n">REDACTED</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">number</span><span class="o">-</span><span class="n">port</span><span class="o">&gt;</span><span class="w"></span>
+<span class="cp"># Change to no to disable tunnelled clear text passwords</span>
+<span class="n">PasswordAuthentication</span><span class="w"> </span><span class="n">no</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For your own comfort and safety, do NOT allow password authentication
+and do not answer ssh requests on port 22. Experience shows several hack
+attempts per hour on port 22, but none (ever) on random high-number
+ports.</p>
+</section>
+<section id="systemd-configuration">
+<h2>Systemd configuration<a class="headerlink" href="#systemd-configuration" title="Permalink to this headline"></a></h2>
+<p>In a typical home-gateway use-case, vpp owns the one-and-only WAN link
+with a prayer of reaching the public internet. Simple things like
+updating distro software requires use of the “lstack” interface created
+above, and configuring a plausible upstream DNS name resolver.</p>
+<p>Configure /etc/systemd/resolved.conf as follows.</p>
+<p>/etc/systemd/resolved.conf:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Resolve</span><span class="p">]</span><span class="w"></span>
+<span class="n">DNS</span><span class="o">=</span><span class="mf">8.8.8.8</span><span class="w"></span>
+<span class="cp">#FallbackDNS=</span>
+<span class="cp">#Domains=</span>
+<span class="cp">#LLMNR=no</span>
+<span class="cp">#MulticastDNS=no</span>
+<span class="cp">#DNSSEC=no</span>
+<span class="cp">#Cache=yes</span>
+<span class="cp">#DNSStubListener=yes</span>
+</pre></div>
+</div>
+</section>
+<section id="netplan-configuration">
+<h2>Netplan configuration<a class="headerlink" href="#netplan-configuration" title="Permalink to this headline"></a></h2>
+<p>If you want to configure a static IP address on one of your home-gateway
+Ethernet ports on Ubuntu 18.04, you’ll need to configure netplan.
+Netplan is relatively new. It and the network manager GUI and can be
+cranky. In the configuration shown below, s/enp4s0/&lt;your-interface&gt;/…</p>
+<p>/etc/netplan-01-netcfg.yaml:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp"># This file describes the network interfaces available on your system</span>
+<span class="cp"># For more information, see netplan(5).</span>
+<span class="nl">network</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nl">version</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">  </span><span class="nl">renderer</span><span class="p">:</span><span class="w"> </span><span class="n">networkd</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ethernets</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nl">enp4s0</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nl">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="n">no</span><span class="w"></span>
+<span class="w">      </span><span class="nl">addresses</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">192.168.2.254</span><span class="o">/</span><span class="mi">24</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="nl">gateway4</span><span class="p">:</span><span class="w"> </span><span class="mf">192.168.2.100</span><span class="w"></span>
+<span class="w">      </span><span class="nl">nameservers</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nl">search</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">my</span><span class="p">.</span><span class="n">local</span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="nl">addresses</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">8.8.8.8</span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>/etc/systemd/network-10.enp4s0.network:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Match</span><span class="p">]</span><span class="w"></span>
+<span class="n">Name</span><span class="o">=</span><span class="n">enp4s0</span><span class="w"></span>
+
+<span class="p">[</span><span class="n">Link</span><span class="p">]</span><span class="w"></span>
+<span class="n">RequiredForOnline</span><span class="o">=</span><span class="n">no</span><span class="w"></span>
+
+<span class="p">[</span><span class="n">Network</span><span class="p">]</span><span class="w"></span>
+<span class="n">ConfigureWithoutCarrier</span><span class="o">=</span><span class="nb">true</span><span class="w"></span>
+<span class="n">Address</span><span class="o">=</span><span class="mf">192.168.2.254</span><span class="o">/</span><span class="mi">24</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that we’ve picked an IP address for the home gateway which is on an
+independent unrouteable subnet. This is handy for installing (and
+possibly reverting) new vpp software.</p>
+</section>
+<section id="vpp-configuration-files">
+<h2>VPP Configuration Files<a class="headerlink" href="#vpp-configuration-files" title="Permalink to this headline"></a></h2>
+<p>Here we see a nice use-case for the vpp debug CLI macro expander:</p>
+<p>/setup.gate:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">define</span><span class="w"> </span><span class="n">HOSTNAME</span><span class="w"> </span><span class="n">vpp1</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">TRUNK</span><span class="w"> </span><span class="n">GigabitEthernet3</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="w"></span>
+
+<span class="n">comment</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Specific</span><span class="w"> </span><span class="n">MAC</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">yields</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">constant</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">TRUNK_MACADDR</span><span class="w"> </span><span class="mi">48</span><span class="o">:</span><span class="nl">f8</span><span class="p">:</span><span class="nl">b3</span><span class="p">:</span><span class="mo">00</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mo">01</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">BVI_MACADDR</span><span class="w"> </span><span class="mi">48</span><span class="o">:</span><span class="nl">f8</span><span class="p">:</span><span class="nl">b3</span><span class="p">:</span><span class="mo">01</span><span class="o">:</span><span class="mo">01</span><span class="o">:</span><span class="mo">02</span><span class="w"></span>
+
+<span class="n">comment</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">inside</span><span class="w"> </span><span class="n">subnet</span><span class="w"> </span><span class="mf">192.168</span><span class="p">.</span><span class="o">&lt;</span><span class="n">inside_subnet</span><span class="o">&gt;</span><span class="mf">.0</span><span class="o">/</span><span class="mi">24</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">INSIDE_SUBNET</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="n">define</span><span class="w"> </span><span class="n">INSIDE_PORT1</span><span class="w"> </span><span class="n">GigabitEthernet6</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">INSIDE_PORT2</span><span class="w"> </span><span class="n">GigabitEthernet6</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">INSIDE_PORT3</span><span class="w"> </span><span class="n">GigabitEthernet8</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">INSIDE_PORT4</span><span class="w"> </span><span class="n">GigabitEthernet8</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="w"></span>
+
+<span class="n">comment</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">feature</span><span class="w"> </span><span class="n">selections</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">FEATURE_NAT44</span><span class="w"> </span><span class="n">comment</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">FEATURE_CNAT</span><span class="w"> </span><span class="n">uncomment</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">FEATURE_DNS</span><span class="w"> </span><span class="n">comment</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">FEATURE_IP6</span><span class="w"> </span><span class="n">comment</span><span class="w"></span>
+<span class="n">define</span><span class="w"> </span><span class="n">FEATURE_MACTIME</span><span class="w"> </span><span class="n">uncomment</span><span class="w"></span>
+
+<span class="n">exec</span><span class="w"> </span><span class="o">/</span><span class="n">setup</span><span class="p">.</span><span class="n">tmpl</span><span class="w"></span>
+</pre></div>
+</div>
+<p>/setup.tmpl:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">show</span><span class="w"> </span><span class="n">macro</span><span class="w"></span>
+
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK_MACADDR</span><span class="p">)</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="n">dhcp</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="n">intfc</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="n">hostname</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">HOSTNAME</span><span class="p">)</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="n">up</span><span class="w"></span>
+
+<span class="n">bvi</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">BVI_MACADDR</span><span class="p">)</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l2</span><span class="w"> </span><span class="n">bridge</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">bvi</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ip</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="mf">192.168</span><span class="p">.</span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_SUBNET</span><span class="p">)</span><span class="mf">.1</span><span class="o">/</span><span class="mi">24</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="n">up</span><span class="w"></span>
+
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l2</span><span class="w"> </span><span class="n">bridge</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT1</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT1</span><span class="p">)</span><span class="w"> </span><span class="n">up</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l2</span><span class="w"> </span><span class="n">bridge</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT2</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT2</span><span class="p">)</span><span class="w"> </span><span class="n">up</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l2</span><span class="w"> </span><span class="n">bridge</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT3</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT3</span><span class="p">)</span><span class="w"> </span><span class="n">up</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l2</span><span class="w"> </span><span class="n">bridge</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT4</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT4</span><span class="p">)</span><span class="w"> </span><span class="n">up</span><span class="w"></span>
+
+<span class="n">comment</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dhcp</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">host</span><span class="o">-</span><span class="n">stack</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">create</span><span class="w"> </span><span class="n">tap</span><span class="w"> </span><span class="n">host</span><span class="o">-</span><span class="k">if</span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="n">lstack</span><span class="w"> </span><span class="n">host</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">addr</span><span class="w"> </span><span class="mf">192.168</span><span class="p">.</span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_SUBNET</span><span class="p">)</span><span class="mf">.2</span><span class="o">/</span><span class="mi">24</span><span class="w"> </span><span class="n">host</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">gw</span><span class="w"> </span><span class="mf">192.168</span><span class="p">.</span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_SUBNET</span><span class="p">)</span><span class="mf">.1</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l2</span><span class="w"> </span><span class="n">bridge</span><span class="w"> </span><span class="n">tap0</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">tap0</span><span class="w"> </span><span class="n">up</span><span class="w"></span>
+
+<span class="n">service</span><span class="w"> </span><span class="n">restart</span><span class="w"> </span><span class="n">isc</span><span class="o">-</span><span class="n">dhcp</span><span class="o">-</span><span class="n">server</span><span class="w"></span>
+
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_NAT44</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nat44</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="n">user</span><span class="o">-</span><span class="n">sessions</span><span class="w"> </span><span class="mi">750</span><span class="w"> </span><span class="n">sessions</span><span class="w"> </span><span class="mi">63000</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_NAT44</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nat44</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">interface</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_NAT44</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">interface</span><span class="w"> </span><span class="n">nat44</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_NAT44</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nat44</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="mf">192.168</span><span class="p">.</span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_SUBNET</span><span class="p">)</span><span class="mf">.2</span><span class="w"> </span><span class="mi">22432</span><span class="w"> </span><span class="n">external</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="mi">22432</span><span class="w"> </span><span class="n">tcp</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_CNAT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cnat</span><span class="w"> </span><span class="n">snat</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_CNAT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">interface</span><span class="w"> </span><span class="n">feature</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="n">ip4</span><span class="o">-</span><span class="n">cnat</span><span class="o">-</span><span class="n">snat</span><span class="w"> </span><span class="n">arc</span><span class="w"> </span><span class="n">ip4</span><span class="o">-</span><span class="n">unicast</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_CNAT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cnat</span><span class="w"> </span><span class="n">translation</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">proto</span><span class="w"> </span><span class="n">tcp</span><span class="w"> </span><span class="n">real</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="mi">22432</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">192.168</span><span class="p">.</span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_SUBNET</span><span class="p">)</span><span class="mf">.2</span><span class="w"> </span><span class="mi">22432</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_CNAT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">FEATURE_DNS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">cnat</span><span class="w"> </span><span class="n">translation</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">proto</span><span class="w"> </span><span class="n">udp</span><span class="w"> </span><span class="n">real</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="mi">53053</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">192.168</span><span class="p">.</span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_SUBNET</span><span class="p">)</span><span class="mf">.1</span><span class="w"> </span><span class="mi">53053</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_DNS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">FEATURE_NAT44</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nat44</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">identity</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="n">external</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="n">udp</span><span class="w"> </span><span class="mi">53053</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_DNS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">dns_name_server_add_del</span><span class="w"> </span><span class="mf">8.8.8.8</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_DNS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">dns_enable_disable</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="n">comment</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">ct6</span><span class="w"> </span><span class="n">inside</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">comment</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">ct6</span><span class="w"> </span><span class="n">outside</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_IP6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ip6</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_IP6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ip6</span><span class="w"> </span><span class="n">nd</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">autoconfig</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="k">default</span><span class="o">-</span><span class="n">route</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_IP6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dhcp6</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_IP6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dhcp6</span><span class="w"> </span><span class="n">pd</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">TRUNK</span><span class="p">)</span><span class="w"> </span><span class="n">prefix</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="n">hgw</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_IP6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">ip6</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="n">prefix</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="n">hgw</span><span class="w"> </span><span class="o">::</span><span class="mi">1</span><span class="o">/</span><span class="mi">64</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_IP6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ip6</span><span class="w"> </span><span class="n">nd</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="n">autoconfig</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="k">default</span><span class="o">-</span><span class="n">route</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">comment</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">iPhones</span><span class="w"> </span><span class="n">seem</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">lots</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">RA</span><span class="w"> </span><span class="n">messages</span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_IP6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ip6</span><span class="w"> </span><span class="n">nd</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="n">ra</span><span class="o">-</span><span class="n">managed</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">flag</span><span class="w"> </span><span class="n">ra</span><span class="o">-</span><span class="n">other</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">flag</span><span class="w"> </span><span class="n">ra</span><span class="o">-</span><span class="n">interval</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">ra</span><span class="o">-</span><span class="n">lifetime</span><span class="w"> </span><span class="mi">180</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">comment</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ip6</span><span class="w"> </span><span class="n">nd</span><span class="w"> </span><span class="n">bvi0</span><span class="w"> </span><span class="n">prefix</span><span class="w"> </span><span class="mi">0</span><span class="o">::</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="w">  </span><span class="n">ra</span><span class="o">-</span><span class="n">lifetime</span><span class="w"> </span><span class="mi">100000</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_MACTIME</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_add_del_range</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">cisco</span><span class="o">-</span><span class="n">vpn</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="nl">a8</span><span class="p">:</span><span class="nl">b4</span><span class="p">:</span><span class="mi">56</span><span class="o">:</span><span class="nl">e1</span><span class="p">:</span><span class="nl">b8</span><span class="p">:</span><span class="mi">3</span><span class="n">e</span><span class="w"> </span><span class="n">allow</span><span class="o">-</span><span class="k">static</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_MACTIME</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_add_del_range</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">old</span><span class="o">-</span><span class="n">mac</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="o">&lt;</span><span class="n">redacted</span><span class="o">&gt;</span><span class="w"> </span><span class="n">allow</span><span class="o">-</span><span class="k">static</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_MACTIME</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_add_del_range</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">roku</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="o">&lt;</span><span class="n">redacted</span><span class="o">&gt;</span><span class="w"> </span><span class="n">allow</span><span class="o">-</span><span class="k">static</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_MACTIME</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_enable_disable</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT1</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_MACTIME</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_enable_disable</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT2</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_MACTIME</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_enable_disable</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT3</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">$</span><span class="p">(</span><span class="n">FEATURE_MACTIME</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_enable_disable</span><span class="w"> </span><span class="n">$</span><span class="p">(</span><span class="n">INSIDE_PORT4</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="installing-new-vpp-software">
+<h2>Installing new vpp software<a class="headerlink" href="#installing-new-vpp-software" title="Permalink to this headline"></a></h2>
+<p>If you’re <strong>sure</strong> that a given set of vpp Debian packages will install
+and work properly, you can install them while logged into the gateway
+via the lstack / nat path. This procedure is a bit like standing on a
+rug and yanking it. If all goes well, a perfect back-flip occurs. If
+not, you may wish that you’d configured a static IP address on a
+reserved Ethernet interface as described above.</p>
+<p>Installing a new vpp image via ssh to 192.168.1.2:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp"># nohup dpkg -i *.deb &gt;/dev/null 2&gt;&amp;1 &amp;</span>
+</pre></div>
+</div>
+<p>Within a few seconds, the inbound ssh connection SHOULD begin to respond
+again. If it does not, you’ll have to debug the issue(s).</p>
+</section>
+<section id="reasonably-robust-remote-software-installation">
+<h2>Reasonably Robust Remote Software Installation<a class="headerlink" href="#reasonably-robust-remote-software-installation" title="Permalink to this headline"></a></h2>
+<p>Here are a couple of scripts which yield a reasonably robust software
+installation scheme.</p>
+<section id="build-host-script">
+<h3>Build-host script<a class="headerlink" href="#build-host-script" title="Permalink to this headline"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/bin/bash</span>
+
+<span class="n">buildroot</span><span class="o">=/</span><span class="n">scratch</span><span class="o">/</span><span class="n">vpp</span><span class="o">-</span><span class="n">workspace</span><span class="o">/</span><span class="n">build</span><span class="o">-</span><span class="n">root</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">$1x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;testx&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">then</span><span class="w"></span>
+<span class="w">    </span><span class="n">subdir</span><span class="o">=</span><span class="s">&quot;test&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ipaddr</span><span class="o">=</span><span class="s">&quot;192.168.2.48&quot;</span><span class="w"></span>
+<span class="n">elif</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">$1x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;foox&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">then</span><span class="w"></span>
+<span class="w">    </span><span class="n">subdir</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ipaddr</span><span class="o">=</span><span class="s">&quot;foo.some.net&quot;</span><span class="w"></span>
+<span class="n">elif</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">$1x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;barx&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">then</span><span class="w"></span>
+<span class="w">    </span><span class="n">subdir</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ipaddr</span><span class="o">=</span><span class="s">&quot;bar.some.net&quot;</span><span class="w"></span>
+<span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">subdir</span><span class="o">=</span><span class="s">&quot;test&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ipaddr</span><span class="o">=</span><span class="s">&quot;192.168.2.48&quot;</span><span class="w"></span>
+<span class="n">fi</span><span class="w"></span>
+
+<span class="n">echo</span><span class="w"> </span><span class="n">Save</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">software</span><span class="p">...</span><span class="w"></span>
+<span class="n">ssh</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22432</span><span class="w"> </span><span class="n">$ipaddr</span><span class="w"> </span><span class="s">&quot;rm -rf /gate_debians.prev&quot;</span><span class="w"></span>
+<span class="n">ssh</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22432</span><span class="w"> </span><span class="n">$ipaddr</span><span class="w"> </span><span class="s">&quot;mv /gate_debians /gate_debians.prev&quot;</span><span class="w"></span>
+<span class="n">ssh</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22432</span><span class="w"> </span><span class="n">$ipaddr</span><span class="w"> </span><span class="s">&quot;mkdir /gate_debians&quot;</span><span class="w"></span>
+<span class="n">echo</span><span class="w"> </span><span class="n">Copy</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">software</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">gateway</span><span class="p">...</span><span class="w"></span>
+<span class="n">scp</span><span class="w"> </span><span class="o">-</span><span class="n">P</span><span class="w"> </span><span class="mi">22432</span><span class="w"> </span><span class="n">$buildroot</span><span class="cm">/*.deb $ipaddr:/gate_debians</span>
+<span class="cm">echo Install new software...</span>
+<span class="cm">ssh -p 22432 $ipaddr &quot;nohup /usr/local/bin/vpp-swupdate &gt; /dev/null 2&gt;&amp;1 &amp;&quot;</span>
+
+<span class="cm">for i in 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1</span>
+<span class="cm">do</span>
+<span class="cm">    echo Wait for $i seconds...</span>
+<span class="cm">    sleep 1</span>
+<span class="cm">done</span>
+
+<span class="cm">echo Try to access the device...</span>
+
+<span class="cm">ssh -p 22432 -o ConnectTimeout=10 $ipaddr &quot;tail -20 /var/log/syslog | grep Ping&quot;</span>
+<span class="cm">if [ $? == 0 ] ; then</span>
+<span class="cm">    echo Access test OK...</span>
+<span class="cm">else</span>
+<span class="cm">    echo Access failed, wait for configuration restoration...</span>
+<span class="cm">    for i in 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1</span>
+<span class="cm">    do</span>
+<span class="cm">        echo Wait for $i seconds...</span>
+<span class="cm">        sleep 1</span>
+<span class="cm">    done</span>
+<span class="cm">    echo Retry access test</span>
+<span class="cm">    ssh -p 22432 -o ConnectTimeout=10 $ipaddr &quot;tail -20 /var/log/syslog | grep Ping&quot;</span>
+<span class="cm">    if [ $? == 0 ] ; then</span>
+<span class="cm">        echo Access test OK, check syslog on the device</span>
+<span class="cm">        exit 1</span>
+<span class="cm">    else</span>
+<span class="cm">        echo Access test still fails, manual intervention required.</span>
+<span class="cm">        exit 2</span>
+<span class="cm">    fi</span>
+<span class="cm">fi</span>
+
+<span class="cm">exit 0</span>
+</pre></div>
+</div>
+</section>
+<section id="target-script">
+<h3>Target script<a class="headerlink" href="#target-script" title="Permalink to this headline"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#!/bin/bash</span>
+
+<span class="n">logger</span><span class="w"> </span><span class="s">&quot;About to update vpp software...&quot;</span><span class="w"></span>
+<span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">gate_debians</span><span class="w"></span>
+<span class="n">service</span><span class="w"> </span><span class="n">vpp</span><span class="w"> </span><span class="n">stop</span><span class="w"></span>
+<span class="n">sudo</span><span class="w"> </span><span class="n">dpkg</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="n">deb</span><span class="w"> </span><span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
+<span class="n">sleep</span><span class="w"> </span><span class="mi">20</span><span class="w"></span>
+<span class="n">logger</span><span class="w"> </span><span class="s">&quot;Ping connectivity test...&quot;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="k">do</span><span class="w"></span>
+<span class="w">    </span><span class="n">ping</span><span class="w"> </span><span class="mi">-4</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">yahoo</span><span class="p">.</span><span class="n">com</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">$</span><span class="o">?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">then</span><span class="w"></span>
+<span class="w">        </span><span class="n">logger</span><span class="w"> </span><span class="s">&quot;Ping test OK...&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="n">exit</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">    </span><span class="n">fi</span><span class="w"></span>
+<span class="n">done</span><span class="w"></span>
+
+<span class="n">logger</span><span class="w"> </span><span class="s">&quot;Ping test NOT OK, restore old software...&quot;</span><span class="w"></span>
+<span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">rf</span><span class="w"> </span><span class="o">/</span><span class="n">gate_debians</span><span class="w"></span>
+<span class="n">mv</span><span class="w"> </span><span class="o">/</span><span class="n">gate_debians</span><span class="p">.</span><span class="n">prev</span><span class="w"> </span><span class="o">/</span><span class="n">gate_debians</span><span class="w"></span>
+<span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">gate_debians</span><span class="w"></span>
+<span class="n">nohup</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">dpkg</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="n">deb</span><span class="w"> </span><span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
+<span class="n">sleep</span><span class="w"> </span><span class="mi">20</span><span class="w"></span>
+<span class="n">logger</span><span class="w"> </span><span class="s">&quot;Repeat connectivity test...&quot;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="k">do</span><span class="w"></span>
+<span class="w">    </span><span class="n">ping</span><span class="w"> </span><span class="mi">-4</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">yahoo</span><span class="p">.</span><span class="n">com</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">$</span><span class="o">?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">then</span><span class="w"></span>
+<span class="w">        </span><span class="n">logger</span><span class="w"> </span><span class="s">&quot;Ping test OK after restoring old software...&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="n">exit</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">    </span><span class="n">fi</span><span class="w"></span>
+<span class="n">done</span><span class="w"></span>
+
+<span class="n">logger</span><span class="w"> </span><span class="s">&quot;Ping test FAIL after restoring software, manual intervention required&quot;</span><span class="w"></span>
+<span class="n">exit</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that the target script <strong>requires</strong> that the user id which invokes
+it will manage to “sudo dpkg …” without further authentication. If
+you’re uncomfortable with the security implications of that requirement,
+you’ll need to solve the problem a different way. Strongly suggest
+configuring sshd as described above to minimize risk.</p>
+</section>
+</section>
+<section id="testing-new-software">
+<h2>Testing new software<a class="headerlink" href="#testing-new-software" title="Permalink to this headline"></a></h2>
+<p>If you frequently test new home gateway software, it may be handy to set
+up a test gateway behind your production gateway. This testing
+methodology reduces complaints from family members, to name one benefit.</p>
+<p>Change the inside network (dhcp) subnet from 192.168.1.0/24 to
+192.168.3.0/24, change the (dhcp) advertised router to 192.168.3.1,
+reconfigure the vpp tap interface addresses onto the 192.168.3.0/24
+subnet, and you should be all set.</p>
+<p>This scenario nats traffic twice: first, from the 192.168.3.0/24 network
+onto the 192.168.1.0/24 network. Next, from the 192.168.1.0/24 network
+onto the public internet.</p>
+</section>
+<section id="patches">
+<h2>Patches<a class="headerlink" href="#patches" title="Permalink to this headline"></a></h2>
+<p>You’ll want this addition to src/vpp/vnet/main.c to add the “service
+restart isc-dhcp-server” and “service restart vpp” commands:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/wait.h&gt;</span><span class="cp"></span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
+<span class="nf">mysystem</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cmd</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fork</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="n">wait</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">rv</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">execl</span><span class="p">(</span><span class="s">&quot;/bin/sh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;-c&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cmd</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rv</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">clib_unix_warning</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;(&#39;%s&#39;) child process returned %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="n">rv</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">rv</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">clib_error_t</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">restart_isc_dhcp_server_command_fn</span><span class="w"> </span><span class="p">(</span><span class="n">vlib_main_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vm</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                    </span><span class="n">unformat_input_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                    </span><span class="n">vlib_cli_command_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cmd</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">rv</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="cm">/* Wait a while... */</span><span class="w"></span>
+<span class="w">  </span><span class="n">vlib_process_suspend</span><span class="w"> </span><span class="p">(</span><span class="n">vm</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysystem</span><span class="p">(</span><span class="s">&quot;/usr/sbin/service isc-dhcp-server restart&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">vlib_cli_output</span><span class="w"> </span><span class="p">(</span><span class="n">vm</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Restarted the isc-dhcp-server, status %d...&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rv</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">VLIB_CLI_COMMAND</span><span class="w"> </span><span class="p">(</span><span class="n">restart_isc_dhcp_server_command</span><span class="p">,</span><span class="w"> </span><span class="k">static</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;service restart isc-dhcp-server&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">short_help</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;restarts the isc-dhcp-server&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">restart_isc_dhcp_server_command_fn</span><span class="p">,</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">clib_error_t</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">restart_dora_tunnels_command_fn</span><span class="w"> </span><span class="p">(</span><span class="n">vlib_main_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vm</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                 </span><span class="n">unformat_input_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                 </span><span class="n">vlib_cli_command_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cmd</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">rv</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="cm">/* Wait three seconds... */</span><span class="w"></span>
+<span class="w">  </span><span class="n">vlib_process_suspend</span><span class="w"> </span><span class="p">(</span><span class="n">vm</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">rv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysystem</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;/usr/sbin/service dora restart&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">vlib_cli_output</span><span class="w"> </span><span class="p">(</span><span class="n">vm</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Restarted the dora tunnel service, status %d...&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rv</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">VLIB_CLI_COMMAND</span><span class="w"> </span><span class="p">(</span><span class="n">restart_dora_tunnels_command</span><span class="p">,</span><span class="w"> </span><span class="k">static</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;service restart dora&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">short_help</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;restarts the dora tunnel service&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">restart_dora_tunnels_command_fn</span><span class="p">,</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">clib_error_t</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="nf">restart_vpp_service_command_fn</span><span class="w"> </span><span class="p">(</span><span class="n">vlib_main_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vm</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="n">unformat_input_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                </span><span class="n">vlib_cli_command_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cmd</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="n">mysystem</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;/usr/sbin/service vpp restart&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">VLIB_CLI_COMMAND</span><span class="w"> </span><span class="p">(</span><span class="n">restart_vpp_service_command</span><span class="p">,</span><span class="w"> </span><span class="k">static</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;service restart vpp&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">short_help</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;restarts the vpp service, be careful what you wish for&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">restart_vpp_service_command_fn</span><span class="p">,</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="using-the-time-based-mac-filter-plugin">
+<h2>Using the time-based mac filter plugin<a class="headerlink" href="#using-the-time-based-mac-filter-plugin" title="Permalink to this headline"></a></h2>
+<p>If you need to restrict network access for certain devices to specific
+daily time ranges, configure the “mactime” plugin. Add it to the list of
+enabled plugins in /etc/vpp/startup.conf, then enable the feature on the
+NAT “inside” interfaces:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_enable_disable</span><span class="w"> </span><span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">14</span><span class="o">/</span><span class="mi">0</span><span class="w"></span>
+<span class="n">bin</span><span class="w"> </span><span class="n">mactime_enable_disable</span><span class="w"> </span><span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">14</span><span class="o">/</span><span class="mi">1</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Create the required src-mac-address rule database. There are 4 rule
+entry types:</p>
+<ul class="simple">
+<li><p>allow-static - pass traffic from this mac address</p></li>
+<li><p>drop-static - drop traffic from this mac address</p></li>
+<li><p>allow-range - pass traffic from this mac address at specific times</p></li>
+<li><p>drop-range - drop traffic from this mac address at specific times</p></li>
+</ul>
+<p>Here are some examples:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">bin</span><span class="w"> </span><span class="n">mactime_add_del_range</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">alarm</span><span class="o">-</span><span class="n">system</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="mo">00</span><span class="o">:</span><span class="nl">de</span><span class="p">:</span><span class="nl">ad</span><span class="p">:</span><span class="nl">be</span><span class="p">:</span><span class="nl">ef</span><span class="p">:</span><span class="mo">00</span><span class="w"> </span><span class="n">allow</span><span class="o">-</span><span class="k">static</span><span class="w"></span>
+<span class="n">bin</span><span class="w"> </span><span class="n">mactime_add_del_range</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">unwelcome</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="mo">00</span><span class="o">:</span><span class="nl">de</span><span class="p">:</span><span class="nl">ad</span><span class="p">:</span><span class="nl">be</span><span class="p">:</span><span class="nl">ef</span><span class="p">:</span><span class="mo">01</span><span class="w"> </span><span class="n">drop</span><span class="o">-</span><span class="k">static</span><span class="w"></span>
+<span class="n">bin</span><span class="w"> </span><span class="n">mactime_add_del_range</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">not</span><span class="o">-</span><span class="n">during</span><span class="o">-</span><span class="n">business</span><span class="o">-</span><span class="n">hours</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="o">&lt;</span><span class="n">mac</span><span class="o">&gt;</span><span class="w"> </span><span class="n">drop</span><span class="o">-</span><span class="n">range</span><span class="w"> </span><span class="n">Mon</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Fri</span><span class="w"> </span><span class="mi">7</span><span class="o">:</span><span class="mi">59</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">18</span><span class="o">:</span><span class="mo">01</span><span class="w"></span>
+<span class="n">bin</span><span class="w"> </span><span class="n">mactime_add_del_range</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">monday</span><span class="o">-</span><span class="n">busines</span><span class="o">-</span><span class="n">hours</span><span class="w"> </span><span class="n">mac</span><span class="w"> </span><span class="o">&lt;</span><span class="n">mac</span><span class="o">&gt;</span><span class="w"> </span><span class="n">allow</span><span class="o">-</span><span class="n">range</span><span class="w"> </span><span class="n">Mon</span><span class="w"> </span><span class="mi">7</span><span class="o">:</span><span class="mi">59</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">18</span><span class="o">:</span><span class="mo">01</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vmxnet3.html" class="btn btn-neutral float-left" title="VPP with VMware/Vmxnet3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="acls.html" class="btn btn-neutral float-right" title="Access Control Lists with VPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

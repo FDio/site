@@ -1,0 +1,152 @@
+.. _clicmd_src_plugins_nat_nat66:
+
+===============================================================
+Nat66 cli reference
+===============================================================
+
+nat66
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    nat66 <enable [outside-vrf <vrf-id>]>|disable
+
+
+
+
+
+.. code-block:: console
+
+    nat66
+    
+    To enable NAT66 plugin
+     vpp# nat66 enable
+    To disable NAT66 plugin
+     vpp# nat66 disable
+    To enable NAT66 plugin with outside-vrf id 10
+     vpp# nat66 enable outside-vrf 10
+    
+
+
+
+Declaration: ``nat66_enable_disable_command`` `src/plugins/nat/nat66/nat66_cli.c line 340 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat66/nat66_cli.c#L340>`_
+
+Implementation: ``nat66_enable_disable_command_fn``
+
+
+nat66 add static mapping
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    nat66 add static mapping local <ip6-addr> external <ip6-addr> [vfr <table-id>] [del]
+
+
+
+
+
+.. code-block:: console
+
+    nat66 add static mapping
+    
+    Add/delete NAT66 static mapping entry.
+    To add NAT66 static mapping entry use:
+     vpp# nat66 add static mapping local fd01:1::4 external 2001:db8:c000:223::
+     vpp# nat66 add static mapping local fd01:1::2 external 2001:db8:c000:221:: vrf 10
+    
+
+
+
+Declaration: ``show_nat66_add_del_static_mapping_command`` `src/plugins/nat/nat66/nat66_cli.c line 388 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat66/nat66_cli.c#L388>`_
+
+Implementation: ``nat66_add_del_static_mapping_command_fn``
+
+
+set interface nat66
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set interface nat66 in|out <intfc> [del]
+
+
+
+
+
+.. code-block:: console
+
+    set interface nat66
+    
+    Enable/disable NAT66 feature on the interface.
+    To enable NAT66 feature with local (IPv6) network interface
+    GigabitEthernet0/8/0 and external (IPv4) network interface
+    GigabitEthernet0/a/0 use:
+     vpp# set interface nat66 in GigabitEthernet0/8/0 out GigabitEthernet0/a/0
+    
+
+
+
+Declaration: ``set_interface_nat66_command`` `src/plugins/nat/nat66/nat66_cli.c line 356 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat66/nat66_cli.c#L356>`_
+
+Implementation: ``nat66_interface_feature_command_fn``
+
+
+show nat66 interfaces
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show nat66 interfaces
+
+
+
+
+
+.. code-block:: console
+
+    show nat66 interfaces
+    
+    Show interfaces with NAT66 feature.
+    To show interfaces with NAT66 feature use:
+     vpp# show nat66 interfaces
+     NAT66 interfaces:
+      GigabitEthernet0/8/0 in
+      GigabitEthernet0/a/0 out
+    
+
+
+
+Declaration: ``show_nat66_interfaces_command`` `src/plugins/nat/nat66/nat66_cli.c line 373 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat66/nat66_cli.c#L373>`_
+
+Implementation: ``nat66_show_interfaces_command_fn``
+
+
+show nat66 static mappings
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show nat66 static mappings
+
+
+
+
+
+.. code-block:: console
+
+    show nat66 static mappings
+    
+    Show NAT66 static mappings.
+    To show NAT66 static mappings use:
+     vpp# show nat66 static mappings
+     NAT66 static mappings:
+      local fd01:1::4 external 2001:db8:c000:223:: vrf 0
+      local fd01:1::2 external 2001:db8:c000:221:: vrf 10
+    
+
+
+
+Declaration: ``show_nat66_static_mappings_command`` `src/plugins/nat/nat66/nat66_cli.c line 406 <https://github.com/FDio/vpp/blob/master//src/plugins/nat/nat66/nat66_cli.c#L406>`_
+
+Implementation: ``nat66_show_static_mappings_command_fn``
+

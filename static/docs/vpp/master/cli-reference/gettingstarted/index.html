@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started with the debug CLI &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Interface Commands" href="../interface/index.html" />
+    <link rel="prev" title="Data to include in bug reports" href="../../contributing/reportingissues/reportingissues.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started with the debug CLI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#debug-and-telnet-cli">Debug and Telnet CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cli-features">CLI features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Getting Started with the debug CLI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cli-reference/gettingstarted/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-the-debug-cli">
+<span id="cli-getting-started"></span><h1>Getting Started with the debug CLI<a class="headerlink" href="#getting-started-with-the-debug-cli" title="Permalink to this headline"></a></h1>
+<p>The VPP network stack comes equipped with a set of commands that are useful
+for debugging.</p>
+<p>The easiest way to access the CLI (with proper permissions) is to use the
+vppctl command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo vppctl &lt;cli-command&gt;</span>
+</pre></div>
+</div>
+<p>The CLI parser matches static keyword strings, eventually invoking an action
+function. Unambiguous partial keyword matching always occurs. The action
+functions consume input until satisfied or until they fail. This model makes
+for easy coding, but does not guarantee useful “help” output. It’s up to the
+CLI command writer to add useful help strings.</p>
+<p>You can find the source code of CLI commands by searching for instances of the
+<code class="docutils literal notranslate"><span class="pre">VLIB_CLI_COMMAND</span></code> macro in the code source files.</p>
+<p>Please help maintain and improve this document to make and keep these commands
+clear and useful!</p>
+<section id="debug-and-telnet-cli">
+<span id="debug-telnet-cli"></span><h2>Debug and Telnet CLI<a class="headerlink" href="#debug-and-telnet-cli" title="Permalink to this headline"></a></h2>
+<p>The debug CLI is enabled with the unix interactive parameter or startup
+configuration option. This causes VPP to start without daemonizing and
+presents a command line interface on the terminal where it is run.</p>
+<p>The Telnet CLI is enabled with the <code class="docutils literal notranslate"><span class="pre">cli-listen</span> <span class="pre">localhost:5002</span></code> option which
+will cause VPP to listen for TCP connections on the localhost address port
+<code class="docutils literal notranslate"><span class="pre">5002</span></code>. A Telnet client can then connect to this port (for example, <code class="docutils literal notranslate"><span class="pre">telnet</span>
+<span class="pre">localhost</span> <span class="pre">5002</span></code>) and will receive a command line prompt.</p>
+<p>This configuration will enable both mechanisms:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">unix {</span>
+<span class="go">  interactive</span>
+<span class="go">  cli-listen localhost:5002</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>The debug CLI can operate in line mode, which may be useful when running
+inside an IDE like Emacs. This is enabled with the option
+<code class="docutils literal notranslate"><span class="pre">unix</span> <span class="pre">cli-line-mode</span></code>. Several other options exist that alter how this
+CLI works, see the &#64;ref syscfg section for details.</p>
+<p>The CLI starts with a banner graphic (which can be disabled) and a prompt. The
+prompt will typically read <code class="docutils literal notranslate"><span class="pre">vpp</span></code> for a release version of VPP and <code class="docutils literal notranslate"><span class="pre">DBGvpp#</span></code>
+for a development version with debugging enabled, for example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">    _______    _        _   _____  ___</span>
+<span class="go"> __/ __/ _ \  (_)__    | | / / _ \/ _ \</span>
+<span class="go"> _/ _// // / / / _ \   | |/ / ___/ ___/</span>
+<span class="go"> /_/ /____(_)_/\___/   |___/_/  /_/</span>
+
+<span class="go">vpp#</span>
+</pre></div>
+</div>
+<p>versus:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">    _______    _        _   _____  ___</span>
+<span class="go"> __/ __/ _ \  (_)__    | | / / _ \/ _ \</span>
+<span class="go"> _/ _// // / / / _ \   | |/ / ___/ ___/</span>
+<span class="go"> /_/ /____(_)_/\___/   |___/_/  /_/</span>
+
+<span class="go">DBGvpp#</span>
+</pre></div>
+</div>
+<p>This prompt can be configured with the <code class="docutils literal notranslate"><span class="pre">unix</span> <span class="pre">cli-prompt</span></code> setting and the
+banner is disabled with <code class="docutils literal notranslate"><span class="pre">unix</span> <span class="pre">cli-no-banner</span></code>.</p>
+</section>
+<section id="cli-features">
+<span id="id1"></span><h2>CLI features<a class="headerlink" href="#cli-features" title="Permalink to this headline"></a></h2>
+<p>The CLI has several editing features that make it easy to use.</p>
+<ul class="simple">
+<li><p>Cursor keys <code class="docutils literal notranslate"><span class="pre">left/right</span></code> will move the cursor within a command line;
+typing will insert at the cursor; erase will erase at the cursor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl-left/right</span></code> will search for the start of the next word to
+the left or right.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Home/end</span></code> will jump the cursor to the start and end of the line.</p></li>
+<li><p>Cursor keys up/down and <code class="docutils literal notranslate"><span class="pre">^P/^N</span></code> iterate through the command history
+buffer. Lines from the history buffer may be edited. New commands
+are added to the end of the buffer when executed; though
+duplicates of the previous command are not added.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^U</span></code> erases the line contents from the left of the cursor to the
+start.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^K</span></code> erases the contents from the cursor to the end.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^S/^R</span></code> will search the command history forwards or in reverse for
+a command; start typing for matches to auto complete.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^L</span></code> will clear the screen (if supported by the terminal) and repaint
+the prompt and any current line. The cursor position is also
+retained.</p></li>
+<li><p>The CLI can be closed with the quit command. Alternatively, <code class="docutils literal notranslate"><span class="pre">^D</span></code> on
+an empty input line will also close the session. Closing the debug
+session will also shutdown VPP.</p></li>
+</ul>
+<p>Output that exceeds the length of a terminal page will be buffered, up to a
+limit.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Space</span></code> or <code class="docutils literal notranslate"><span class="pre">page-down</span></code> displays the next page.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Enter</span></code> or <code class="docutils literal notranslate"><span class="pre">down-arrow</span></code> displays the next line.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Page-up</span></code> goes back a page.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Up-arrow</span></code> goes up a line.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Home/end</span></code> jump to the start/end of the buffered output.</p></li>
+<li><p>The key <code class="docutils literal notranslate"><span class="pre">q</span></code> quits the pager. <code class="docutils literal notranslate"><span class="pre">Space</span></code> and <code class="docutils literal notranslate"><span class="pre">enter</span></code> will also quit the
+pager if the end of the buffer has been reached.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../contributing/reportingissues/reportingissues.html" class="btn btn-neutral float-left" title="Data to include in bug reports" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../interface/index.html" class="btn btn-neutral float-right" title="Interface Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

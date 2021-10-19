@@ -1,0 +1,112 @@
+.. _clicmd_src_plugins_http_static_static_server_c:
+
+===============================================================
+Static HTTP Server
+===============================================================
+
+clear http static cache
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    clear http static cache
+
+
+
+Clear the static http server cache, to force the server to
+reload content from backing files
+
+This command clear the static http server cache
+
+
+.. code-block:: console
+
+    
+    clear http static cache
+    
+
+
+
+
+.. code-block:: console
+
+    clear http static cache
+
+
+
+Declaration: ``clear_http_static_cache_command`` `src/plugins/http_static/static_server.c line 1741 <https://github.com/FDio/vpp/blob/master//src/plugins/http_static/static_server.c#L1741>`_
+
+Implementation: ``http_clear_static_cache_command_fn``
+
+
+http static server
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    http static server www-root <path> [prealloc-fifos <nn>]
+    [private-segment-size <nnMG>] [fifo-size <nbytes>] [uri <uri>]
+    [debug [nn]]
+    
+
+
+
+Enable the static http server
+
+This command enables the static http server. Only the www-root
+parameter is required
+
+
+.. code-block:: console
+
+    
+    http static server www-root /tmp/www uri tcp://0.0.0.0/80 cache-size 2m
+    
+
+
+
+
+.. code-block:: console
+
+    http static server www-root <path> [prealloc-fios <nn>]   [private-segment-size <nnMG>] [fifo-size <nbytes>] [uri <uri>]
+
+
+
+Declaration: ``http_static_server_create_command`` `src/plugins/http_static/static_server.c line 1488 <https://github.com/FDio/vpp/blob/master//src/plugins/http_static/static_server.c#L1488>`_
+
+Implementation: ``http_static_server_create_command_fn``
+
+
+show http static server
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show http static server sessions cache [verbose [<nn>]]
+
+
+
+Display static http server cache statistics
+
+This command shows the contents of the static http server cache
+
+
+.. code-block:: console
+
+    
+    show http static server
+    
+
+
+
+
+.. code-block:: console
+
+    show http static server sessions cache [verbose [nn]]
+
+
+
+Declaration: ``http_show_static_server_command`` `src/plugins/http_static/static_server.c line 1666 <https://github.com/FDio/vpp/blob/master//src/plugins/http_static/static_server.c#L1666>`_
+
+Implementation: ``http_show_static_server_command_fn``
+

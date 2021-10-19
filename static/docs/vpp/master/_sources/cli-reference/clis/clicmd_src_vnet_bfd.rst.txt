@@ -1,0 +1,148 @@
+.. _clicmd_src_vnet_bfd:
+
+===============================================================
+Bfd cli reference
+===============================================================
+
+bfd key del
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd key del conf-key-id <id>
+
+
+Declaration: ``bfd_cli_key_del_command`` `src/vnet/bfd/bfd_cli.c line 359 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L359>`_
+
+Implementation: ``bfd_cli_key_del``
+
+
+bfd key set
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd key set conf-key-id <id> type <keyed-sha1|meticulous-keyed-sha1>  secret <secret>
+
+
+Declaration: ``bfd_cli_key_add_command`` `src/vnet/bfd/bfd_cli.c line 314 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L314>`_
+
+Implementation: ``bfd_cli_key_add``
+
+
+bfd udp echo-source del
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd udp echo-source del
+
+
+Declaration: ``bfd_cli_udp_del_echo_source_cmd`` `src/vnet/bfd/bfd_cli.c line 968 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L968>`_
+
+Implementation: ``bfd_cli_udp_del_echo_source``
+
+
+bfd udp echo-source set
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd udp echo-source set interface <interface>
+
+
+Declaration: ``bfd_cli_udp_set_echo_source_cmd`` `src/vnet/bfd/bfd_cli.c line 945 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L945>`_
+
+Implementation: ``bfd_cli_udp_set_echo_source``
+
+
+bfd udp session add
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd udp session add interface <interface> local-addr <local-address> peer-addr <peer-address> desired-min-tx <desired min tx interval> required-min-rx <required min rx interval> detect-mult <detect multiplier> [ conf-key-id <config key ID> bfd-key-id <BFD key ID>]
+
+
+Declaration: ``bfd_cli_udp_session_add_command`` `src/vnet/bfd/bfd_cli.c line 481 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L481>`_
+
+Implementation: ``bfd_cli_udp_session_add``
+
+
+bfd udp session auth activate
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd udp session auth activate interface <interface> local-addr <local-address> peer-addr <peer-address> conf-key-id <config key ID> bfd-key-id <BFD key ID> [ delayed <yes|no> ]
+
+
+Declaration: ``bfd_cli_udp_session_auth_activate_command`` `src/vnet/bfd/bfd_cli.c line 803 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L803>`_
+
+Implementation: ``bfd_cli_udp_session_auth_activate``
+
+
+bfd udp session auth deactivate
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd udp session auth deactivate interface <interface> local-addr <local-address> peer-addr <peer-address>[ delayed <yes|no> ]
+
+
+Declaration: ``bfd_cli_udp_session_auth_deactivate_command`` `src/vnet/bfd/bfd_cli.c line 888 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L888>`_
+
+Implementation: ``bfd_cli_udp_session_auth_deactivate``
+
+
+bfd udp session del
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd udp session del interface <interface> local-addr <local-address> peer-addr<peer-address> 
+
+
+Declaration: ``bfd_cli_udp_session_del_command`` `src/vnet/bfd/bfd_cli.c line 624 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L624>`_
+
+Implementation: ``bfd_cli_udp_session_del``
+
+
+bfd udp session mod
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd udp session mod interface <interface> local-addr <local-address> peer-addr <peer-address> desired-min-tx <desired min tx interval> required-min-rx <required min rx interval> detect-mult <detect multiplier> 
+
+
+Declaration: ``bfd_cli_udp_session_mod_command`` `src/vnet/bfd/bfd_cli.c line 560 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L560>`_
+
+Implementation: ``bfd_cli_udp_session_mod``
+
+
+bfd udp session set-flags
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bfd udp session set-flags interface <interface> local-addr <local-address> peer-addr <peer-address> admin <up|down>
+
+
+Declaration: ``bfd_cli_udp_session_set_flags_command`` `src/vnet/bfd/bfd_cli.c line 706 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L706>`_
+
+Implementation: ``bfd_cli_udp_session_set_flags``
+
+
+show bfd
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show bfd [keys|sessions|echo-source]
+
+
+Declaration: ``show_bfd_command`` `src/vnet/bfd/bfd_cli.c line 216 <https://github.com/FDio/vpp/blob/master//src/vnet/bfd/bfd_cli.c#L216>`_
+
+Implementation: ``show_bfd``
+

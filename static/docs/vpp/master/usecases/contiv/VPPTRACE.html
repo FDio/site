@@ -1,76 +1,41 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Using vpptrace.sh for VPP Packet Tracing &mdash; The Vector Packet Processor master documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using vpptrace.sh for VPP Packet Tracing &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
-    <link rel="author" title="About these documents" href="../../about.html" />
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Capturing VPP core dumps" href="CORE_FILES.html" />
     <link rel="prev" title="How to do VPP Packet Tracing in Kubernetes" href="VPP_PACKET_TRACING_K8S.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
-          
-
-          
-            
             <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                master
-              </div>
-            
-          
+                v22.02-rc0-128-g4450b03ba
 
-          
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,158 +43,168 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Use Cases</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../containers.html">VPP with Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../vhost/index.html">FD.io VPP with Virtual Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../hgw.html">Using VPP as a Home Gateway</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Contiv/VPP</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="K8s_Overview.html">Contiv/VPP Kubernetes Network Plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SECURITY.html">Security</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Vagrant.html">Contiv-VPP Vagrant Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MANUAL_INSTALL.html">Manual Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="VPP_CONFIG.html">Creating VPP Startup Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="VMWARE_FUSION_HOST.html">Preparing a VmWare Fusion Host</a></li>
-<li class="toctree-l3"><a class="reference internal" href="NETWORKING.html">Contiv/VPP Network Operation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SINGLE_NIC_SETUP.html">Setting up a Node with a Single NIC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="MULTI_NIC_SETUP.html">Setting Up a Node with Multiple NICs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="CUSTOM_MGMT_NETWORK.html">Setting Up a Custom Management Network on Multi-Homed Nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Prometheus.html">Prometheus Statistics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html">How to do VPP Packet Tracing in Kubernetes</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Using vpptrace.sh for VPP Packet Tracing</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">VPP in kubernetes (Contiv/Deprecated)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="K8s_Overview.html">Contiv/VPP Kubernetes Network Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SECURITY.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Vagrant.html">Contiv-VPP Vagrant Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MANUAL_INSTALL.html">Manual Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_CONFIG.html">Creating VPP Startup Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMWARE_FUSION_HOST.html">Preparing a VmWare Fusion Host</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMWARE_FUSION_HOST.html#the-loopback-network-interface">The loopback network interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMWARE_FUSION_HOST.html#the-primary-network-interface">The primary network interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NETWORKING.html">Contiv/VPP Network Operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SINGLE_NIC_SETUP.html">Setting up a Node with a Single NIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MULTI_NIC_SETUP.html">Setting Up a Node with Multiple NICs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CUSTOM_MGMT_NETWORK.html">Setting Up a Custom Management Network on Multi-Homed Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Prometheus.html">Prometheus Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html">How to do VPP Packet Tracing in Kubernetes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using vpptrace.sh for VPP Packet Tracing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="CORE_FILES.html">Capturing VPP core dumps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="BUG_REPORTS.html">Debugging and Reporting Bugs in Contiv-VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CORE_FILES.html">Capturing VPP core dumps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BUG_REPORTS.html">Debugging and Reporting Bugs in Contiv-VPP</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../webapp.html">Building VPP web applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../container_test.html">Container-based network simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../trafficgen.html">Vpp Stateless Traffic Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ikev2.html">IKEv2 in VPP</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related FD.IO Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">The Vector Packet Processor</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../index.html">Use Cases</a> &raquo;</li>
-        
-          <li><a href="index.html">Contiv/VPP</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">VPP in kubernetes (Contiv/Deprecated)</a> &raquo;</li>
       <li>Using vpptrace.sh for VPP Packet Tracing</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../../_sources/usecases/contiv/VPPTRACE.md.txt" rel="nofollow"> View page source</a>
-          
-        
+            <a href="../../_sources/usecases/contiv/VPPTRACE.rst.txt" rel="nofollow"> View page source</a>
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="using-vpptrace-sh-for-vpp-packet-tracing">
-<h1>Using vpptrace.sh for VPP Packet Tracing<a class="headerlink" href="#using-vpptrace-sh-for-vpp-packet-tracing" title="Permalink to this headline">¶</a></h1>
-<p>VPP allows tracing of incoming packets using CLI commands <code class="docutils literal notranslate"><span class="pre">trace</span> <span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">trace</span></code>
-as explained [here](VPP_PACKET_TRACING_K8S.html), but it is a rather cumbersome process.</p>
-<p>The buffer for captured packets is limited in size, and once it gets full the tracing stops. The user has to manually clear the buffer content, and then repeat the trace command to resume the packet capture, losing information about all packets received in the meantime.</p>
-<p>Packet filtering exposed via the CLI command <code class="docutils literal notranslate"><span class="pre">trace</span> <span class="pre">filter</span></code> is also quite limited in what it can do. Currently there is just one available filter, which allows you to keep only packets that include a certain node in the trace or exclude a certain node in the trace.
-It is not possible to filter the traffic by its content (e.g., by the source/destination IP address, protocol, etc.).</p>
-<p>Last but not least, it is not possible to trace packets on a selected interface
-like <code class="docutils literal notranslate"><span class="pre">tcpdump</span></code>, which allows tracing via the option <code class="docutils literal notranslate"><span class="pre">-i</span></code>. VPP is only able to capture packets
-on the <em>RX side</em> of selected <em>devices</em> (e.g., dpdk, virtio, af-packet). This means
-that interfaces based on the same device cannot be traced for incoming packets
-individually, but only all at the same time. In Contiv/VPP all pods are connected
-with VPP via the same kind of the TAP interface, meaning that it is not possible to
-capture packets incoming only from one selected pod.</p>
-<p>Contiv/VPP ships with a simple bash script <a class="reference external" href="https://github.com/contiv/vpp/blob/master/scripts/vpptrace.sh">vpptrace.sh</a>,
-which helps alleviate the aforementioned VPP limitations. The script automatically
-re-initializes buffers and traces whenever it is close to getting full, in order to
-avoid packet loss as much as possible. Next it allows you to filter packets
-by the content of the trace. There are two modes of filtering:</p>
-<ul class="simple">
-<li><p><em>substring mode</em> (default): packet trace must contain a given sub-string in order to
-be included in the output</p></li>
-<li><p><em>regex mode</em>: packet trace must match a given regex in order to be printed</p></li>
-</ul>
-<p>The script is still limited, in that capture runs only on the RX side of all interfaces that are built on top of selected devices. Using filtering, however, it is possible to limit
-<em>traffic by interface</em> simply by using the interface name as a substring to match against.</p>
-<div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="using-vpptrace-sh-for-vpp-packet-tracing">
+<h1>Using vpptrace.sh for VPP Packet Tracing<a class="headerlink" href="#using-vpptrace-sh-for-vpp-packet-tracing" title="Permalink to this headline"></a></h1>
+<p>VPP allows tracing of incoming packets using CLI commands <code class="docutils literal notranslate"><span class="pre">trace</span> <span class="pre">add</span></code>
+and <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">trace</span></code> as explained [here](VPP_PACKET_TRACING_K8S.html), but
+it is a rather cumbersome process.</p>
+<p>The buffer for captured packets is limited in size, and once it gets
+full the tracing stops. The user has to manually clear the buffer
+content, and then repeat the trace command to resume the packet capture,
+losing information about all packets received in the meantime.</p>
+<p>Packet filtering exposed via the CLI command <code class="docutils literal notranslate"><span class="pre">trace</span> <span class="pre">filter</span></code> is also
+quite limited in what it can do. Currently there is just one available
+filter, which allows you to keep only packets that include a certain
+node in the trace or exclude a certain node in the trace. It is not
+possible to filter the traffic by its content (e.g., by the
+source/destination IP address, protocol, etc.).</p>
+<p>Last but not least, it is not possible to trace packets on a selected
+interface like <code class="docutils literal notranslate"><span class="pre">tcpdump</span></code>, which allows tracing via the option <code class="docutils literal notranslate"><span class="pre">-i</span></code>.
+VPP is only able to capture packets on the <em>RX side</em> of selected
+<em>devices</em> (e.g., dpdk, virtio, af-packet). This means that interfaces
+based on the same device cannot be traced for incoming packets
+individually, but only all at the same time. In Contiv/VPP all pods are
+connected with VPP via the same kind of the TAP interface, meaning that
+it is not possible to capture packets incoming only from one selected
+pod.</p>
+<p>Contiv/VPP ships with a simple bash script
+<a class="reference external" href="https://github.com/contiv/vpp/blob/master/scripts/vpptrace.sh">vpptrace.sh</a>,
+which helps alleviate the aforementioned VPP limitations. The script
+automatically re-initializes buffers and traces whenever it is close to
+getting full, in order to avoid packet loss as much as possible. Next it
+allows you to filter packets by the content of the trace. There are two
+modes of filtering: - <em>substring mode</em> (default): packet trace must
+contain a given sub-string in order to be included in the output -
+<em>regex mode</em>: packet trace must match a given regex in order to be
+printed</p>
+<p>The script is still limited, in that capture runs only on the RX side of
+all interfaces that are built on top of selected devices. Using
+filtering, however, it is possible to limit <em>traffic by interface</em>
+simply by using the interface name as a substring to match against.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
 <p>Run the script with option <code class="docutils literal notranslate"><span class="pre">-h</span></code> to get the usage printed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="o">./</span><span class="n">vpptrace</span><span class="o">.</span><span class="n">sh</span>  <span class="p">[</span><span class="o">-</span><span class="n">i</span> <span class="o">&lt;</span><span class="n">VPP</span><span class="o">-</span><span class="n">IF</span><span class="o">-</span><span class="n">TYPE</span><span class="o">&gt;</span><span class="p">]</span><span class="o">...</span> <span class="p">[</span><span class="o">-</span><span class="n">a</span> <span class="o">&lt;</span><span class="n">VPP</span><span class="o">-</span><span class="n">ADDRESS</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="o">&lt;</span><span class="n">REGEXP</span><span class="o">&gt;</span> <span class="o">/</span> <span class="o">&lt;</span><span class="n">SUBSTRING</span><span class="o">&gt;</span><span class="p">]</span>
    <span class="o">-</span><span class="n">i</span> <span class="o">&lt;</span><span class="n">VPP</span><span class="o">-</span><span class="n">IF</span><span class="o">-</span><span class="n">TYPE</span><span class="o">&gt;</span> <span class="p">:</span> <span class="n">VPP</span> <span class="n">interface</span> <span class="o">*</span><span class="nb">type</span><span class="o">*</span> <span class="n">to</span> <span class="n">run</span> <span class="n">the</span> <span class="n">packet</span> <span class="n">capture</span> <span class="n">on</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">dpdk</span><span class="o">-</span><span class="nb">input</span><span class="p">,</span> <span class="n">virtio</span><span class="o">-</span><span class="nb">input</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span><span class="p">)</span>
@@ -243,44 +218,45 @@ be included in the output</p></li>
                        <span class="o">-</span> <span class="n">default</span> <span class="o">=</span> <span class="n">dpdk</span> <span class="o">+</span> <span class="n">tap</span>
    <span class="o">-</span><span class="n">a</span> <span class="o">&lt;</span><span class="n">VPP</span><span class="o">-</span><span class="n">ADDRESS</span><span class="o">&gt;</span> <span class="p">:</span> <span class="n">IP</span> <span class="n">address</span> <span class="ow">or</span> <span class="n">hostname</span> <span class="n">of</span> <span class="n">the</span> <span class="n">VPP</span> <span class="n">to</span> <span class="n">capture</span> <span class="n">packets</span> <span class="kn">from</span>
                       <span class="o">-</span> <span class="ow">not</span> <span class="n">supported</span> <span class="k">if</span> <span class="n">VPP</span> <span class="n">listens</span> <span class="n">on</span> <span class="n">a</span> <span class="n">UNIX</span> <span class="n">domain</span> <span class="n">socket</span>
-                      <span class="o">-</span> <span class="n">default</span> <span class="o">=</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+                      <span class="o">-</span> <span class="n">default</span> <span class="o">=</span> <span class="mf">127.0.0.1</span>
    <span class="o">-</span><span class="n">r</span>               <span class="p">:</span> <span class="n">apply</span> <span class="nb">filter</span> <span class="n">string</span> <span class="p">(</span><span class="n">passed</span> <span class="k">with</span> <span class="o">-</span><span class="n">f</span><span class="p">)</span> <span class="k">as</span> <span class="n">a</span> <span class="n">regexp</span> <span class="n">expression</span>
                       <span class="o">-</span> <span class="n">by</span> <span class="n">default</span> <span class="n">the</span> <span class="nb">filter</span> <span class="ow">is</span> <span class="n">NOT</span> <span class="n">treated</span> <span class="k">as</span> <span class="n">regexp</span>
    <span class="o">-</span><span class="n">f</span>               <span class="p">:</span> <span class="nb">filter</span> <span class="n">string</span> <span class="n">that</span> <span class="n">packet</span> <span class="n">must</span> <span class="n">contain</span> <span class="p">(</span><span class="n">without</span> <span class="o">-</span><span class="n">r</span><span class="p">)</span> <span class="ow">or</span> <span class="n">match</span> <span class="k">as</span> <span class="n">regexp</span> <span class="p">(</span><span class="k">with</span> <span class="o">-</span><span class="n">r</span><span class="p">)</span> <span class="n">to</span> <span class="n">be</span> <span class="n">printed</span>
                       <span class="o">-</span> <span class="n">default</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">filtering</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">VPP-IF-TYPE</span></code> is a repeated option used to select the set of devices (e.g., virtio, dpdk, etc.)
-to capture the incoming traffic. Script provides multiple aliases, which
-are much easier to remember than the device names. For <code class="docutils literal notranslate"><span class="pre">dpdk-input</span></code> one can enter
-just <code class="docutils literal notranslate"><span class="pre">dpdk</span></code>, or anything starting with <code class="docutils literal notranslate"><span class="pre">phys</span></code>, etc. For TAPs, the script is even
-smart enough to find out the TAP version used, which allows to enter just <code class="docutils literal notranslate"><span class="pre">tap</span></code>
-as the device name.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">VPP-IF-TYPE</span></code> is not specified, then the default behaviour is to capture from both
-<code class="docutils literal notranslate"><span class="pre">dpdk</span></code> (traffic entering the node from outside) and <code class="docutils literal notranslate"><span class="pre">tap</span></code> (preferred interface type
-for pod-VPP and host-VPP interconnection, receiving node-initiated traffic).</p>
-<p>vpptrace.sh can capture packets even from a VPP on a different host, provided that
-VPP-CLI listens on a port, and not on a UNIX domain socket (for security reasons IPC
-is the default communication link, see <code class="docutils literal notranslate"><span class="pre">/etc/vpp/contiv-vswitch.conf</span></code>). Enter the destination
-node IP address via the option <code class="docutils literal notranslate"><span class="pre">-a</span></code>(localhost is the default).</p>
-<p>The capture can be filtered via the <code class="docutils literal notranslate"><span class="pre">-f</span></code> option. The output will include only packets
-whose trace matches contain the given expression/sub-string.</p>
+<p><code class="docutils literal notranslate"><span class="pre">VPP-IF-TYPE</span></code> is a repeated option used to select the set of devices
+(e.g., virtio, dpdk, etc.) to capture the incoming traffic. Script
+provides multiple aliases, which are much easier to remember than the
+device names. For <code class="docutils literal notranslate"><span class="pre">dpdk-input</span></code> one can enter just <code class="docutils literal notranslate"><span class="pre">dpdk</span></code>, or
+anything starting with <code class="docutils literal notranslate"><span class="pre">phys</span></code>, etc. For TAPs, the script is even smart
+enough to find out the TAP version used, which allows to enter just
+<code class="docutils literal notranslate"><span class="pre">tap</span></code> as the device name.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">VPP-IF-TYPE</span></code> is not specified, then the default behaviour is to
+capture from both <code class="docutils literal notranslate"><span class="pre">dpdk</span></code> (traffic entering the node from outside) and
+<code class="docutils literal notranslate"><span class="pre">tap</span></code> (preferred interface type for pod-VPP and host-VPP
+interconnection, receiving node-initiated traffic).</p>
+<p>vpptrace.sh can capture packets even from a VPP on a different host,
+provided that VPP-CLI listens on a port, and not on a UNIX domain socket
+(for security reasons IPC is the default communication link, see
+<code class="docutils literal notranslate"><span class="pre">/etc/vpp/contiv-vswitch.conf</span></code>). Enter the destination node IP address
+via the option <code class="docutils literal notranslate"><span class="pre">-a</span></code>(localhost is the default).</p>
+<p>The capture can be filtered via the <code class="docutils literal notranslate"><span class="pre">-f</span></code> option. The output will
+include only packets whose trace matches contain the given
+expression/sub-string.</p>
 <p>Option <code class="docutils literal notranslate"><span class="pre">-r</span></code> enables the regex mode for filtering.</p>
-</div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Capture all packets entering VPP via <code class="docutils literal notranslate"><span class="pre">tapcli-1</span></code> interface <strong>AND</strong> all packets
-leaving VPP via <code class="docutils literal notranslate"><span class="pre">tapcli-1</span></code> that were sent from a pod, or the host on the <em>same node</em>
-(sent from tap, not Gbe):</p></li>
+<li><p>Capture all packets entering VPP via <code class="docutils literal notranslate"><span class="pre">tapcli-1</span></code> interface <strong>AND</strong>
+all packets leaving VPP via <code class="docutils literal notranslate"><span class="pre">tapcli-1</span></code> that were sent from a pod,
+or the host on the <em>same node</em> (sent from tap, not Gbe):</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vpptrace.sh -i tap -f &quot;tapcli-1&quot;
 </pre></div>
 </div>
-<p></p>
-<ul class="simple">
-<li><p>Capture all packets with source or destination IP address 10.1.1.3:</p></li>
-</ul>
+<p> - Capture all packets with source or destination IP address 10.1.1.3:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vpptrace.sh -i tap -i dpdk -f &quot;10.1.1.3&quot;
 
 Or just:
@@ -293,56 +269,38 @@ $ vpptrace.sh &quot;10.1.1.3&quot;
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vpptrace.sh -i dpdk -f &quot;SYN-ACK&quot;
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="CORE_FILES.html" class="btn btn-neutral float-right" title="Capturing VPP core dumps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="VPP_PACKET_TRACING_K8S.html" class="btn btn-neutral float-left" title="How to do VPP Packet Tracing in Kubernetes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="VPP_PACKET_TRACING_K8S.html" class="btn btn-neutral float-left" title="How to do VPP Packet Tracing in Kubernetes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CORE_FILES.html" class="btn btn-neutral float-right" title="Capturing VPP core dumps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018-2021, Linux Foundation
-
-    </p>
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,0 +1,73 @@
+.. _clicmd_src_plugins_mdata:
+
+===============================================================
+Mdata cli reference
+===============================================================
+
+buffer metadata tracking
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    buffer metadata tracking [on][off]
+
+
+
+This command enables or disables buffer metadata change tracking
+
+To enable buffer metadata change tracking:
+
+
+.. code-block:: console
+
+    buffer metadata tracking on
+    
+    Tracking enabled
+    
+
+
+
+
+
+.. code-block:: console
+
+    buffer metadata tracking off
+    
+    Tracking disabled
+    
+
+
+
+Declaration: ``mdata_enable_disable_command`` `src/plugins/mdata/mdata.c line 218 <https://github.com/FDio/vpp/blob/master//src/plugins/mdata/mdata.c#L218>`_
+
+Implementation: ``mdata_enable_disable_command_fn``
+
+
+show buffer metadata
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show buffer metadata
+
+
+
+This command displays buffer metadata change information
+How to display buffer metadata change information
+
+
+.. code-block:: console
+
+    show buffer metadata
+    
+    ethernet-input: current_data current_length flags error
+    vnet_buffer_t: l2_hdr_offset l3_hdr_offset
+    vnet_buffer2_t: no changes
+    
+
+
+
+Declaration: ``show_metadata_command`` `src/plugins/mdata/mdata.c line 485 <https://github.com/FDio/vpp/blob/master//src/plugins/mdata/mdata.c#L485>`_
+
+Implementation: ``show_metadata_command_fn``
+

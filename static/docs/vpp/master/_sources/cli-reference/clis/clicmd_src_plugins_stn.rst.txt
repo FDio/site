@@ -1,0 +1,31 @@
+.. _clicmd_src_plugins_stn:
+
+===============================================================
+Stn cli reference
+===============================================================
+
+show stn rules
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    
+
+
+Declaration: ``show_stn_rules_command`` `src/plugins/stn/stn.c line 391 <https://github.com/FDio/vpp/blob/master//src/plugins/stn/stn.c#L391>`_
+
+Implementation: ``show_stn_rules_fn``
+
+
+stn rule
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    address <addr> interface <iface> [del]
+
+
+Declaration: ``stn_rule_command`` `src/plugins/stn/stn.c line 454 <https://github.com/FDio/vpp/blob/master//src/plugins/stn/stn.c#L454>`_
+
+Implementation: ``stn_rule_fn``
+

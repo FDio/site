@@ -1,76 +1,41 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Packages &mdash; The Vector Packet Processor master documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packages &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
-    <link rel="author" title="About these documents" href="../../about.html" />
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Progressive VPP Tutorial" href="../progressivevpp/index.html" />
-    <link rel="prev" title="Setup the FD.io Repository - Centos 7" href="centos.html" /> 
+    <link rel="next" title="Running VPP" href="../running/index.html" />
+    <link rel="prev" title="Ubuntu - Setup the FD.io Repository" href="ubuntu.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
-          
-
-          
-            
             <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                master
-              </div>
-            
-          
+                v22.02-rc0-128-g4450b03ba
 
-          
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,116 +43,129 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Downloading and Installing VPP</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html#installing-on-ubuntu">Installing on Ubuntu</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#installing-on-centos">Installing on Centos</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html#package-descriptions">Package Descriptions</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Packages</a></li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Downloading and Installing VPP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#installing-on-ubuntu">Installing on Ubuntu</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#package-descriptions">Package Descriptions</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#vpp">vpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpp-lib">vpp-lib</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpp-plugins">vpp-plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpp-dbg">vpp-dbg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpp-dev">vpp-dev</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpp-api-python">vpp-api-python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpp-api-lua">vpp-api-lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpp-selinux-policy">vpp-selinux-policy</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../developers/index.html">For Developers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related FD.IO Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">The Vector Packet Processor</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../index.html">Getting Started</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Downloading and Installing VPP</a> &raquo;</li>
-        
       <li>Packages</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../_sources/gettingstarted/installing/packages.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="packages">
-<span id="id1"></span><h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="packages">
+<span id="id1"></span><h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline"></a></h1>
 <p>This section identifies the different VPP packages and describes their contents.</p>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="vpp">
-<h2>vpp<a class="headerlink" href="#vpp" title="Permalink to this headline">¶</a></h2>
+<section id="vpp">
+<h2>vpp<a class="headerlink" href="#vpp" title="Permalink to this headline"></a></h2>
 <p>Vector Packet Processing executables. This is the primary package that must be
 installed to use VPP. This package contains:</p>
 <ul class="simple">
@@ -195,9 +173,9 @@ installed to use VPP. This package contains:</p>
 <li><p>vpp_api_test - vector packet engine API test tool</p></li>
 <li><p>vpp_json_test - vector packet engine JSON test tool</p></li>
 </ul>
-</div>
-<div class="section" id="vpp-lib">
-<h2>vpp-lib<a class="headerlink" href="#vpp-lib" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vpp-lib">
+<h2>vpp-lib<a class="headerlink" href="#vpp-lib" title="Permalink to this headline"></a></h2>
 <p>Vector Packet Processing runtime libraries. The <em>‘vpp’</em> package depends on this
 package, so it will always be installed. This package contains the VPP shared
 libraries, including:</p>
@@ -208,9 +186,9 @@ libraries, including:</p>
 <li><p>vlib-api - binary API library</p></li>
 <li><p>vnet -  network stack library</p></li>
 </ul>
-</div>
-<div class="section" id="vpp-plugins">
-<h2>vpp-plugins<a class="headerlink" href="#vpp-plugins" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vpp-plugins">
+<h2>vpp-plugins<a class="headerlink" href="#vpp-plugins" title="Permalink to this headline"></a></h2>
 <p>Vector Packet Processing plugin modules.</p>
 <ul class="simple">
 <li><p>abf - Access Control List (ACL) Based Forwarding</p></li>
@@ -219,6 +197,7 @@ libraries, including:</p>
 <li><p>af_xdp - AF_XDP Device Plugin</p></li>
 <li><p>arping - Arping (arping)</p></li>
 <li><p>avf - Intel Adaptive Virtual Function (AVF) Device Driver</p></li>
+<li><p>bufmon - Buffers monitoring plugin</p></li>
 <li><p>builtinurl - vpp built-in URL support</p></li>
 <li><p>cdp - Cisco Discovery Protocol (CDP)</p></li>
 <li><p>cnat - CNat Translate</p></li>
@@ -272,7 +251,7 @@ libraries, including:</p>
 <li><p>srv6-as - Static Segment Routing for IPv6 (SRv6) Proxy</p></li>
 <li><p>srv6-mobile - SRv6 GTP Endpoint Functions</p></li>
 <li><p>stn - VPP Steals the NIC (STN) for Container Integration</p></li>
-<li><p>svs - Source Virtual Routing and Fowarding (VRF) Select</p></li>
+<li><p>svs - Source Virtual Routing and Forwarding (VRF) Select</p></li>
 <li><p>tlsmbedtls - Transport Layer Security (TLS) Engine, Mbedtls Based</p></li>
 <li><p>tlsopenssl - Transport Layer Security (TLS) Engine, OpenSSL Based</p></li>
 <li><p>tlspicotls - Transport Layer Security (TLS) Engine, Picotls Based</p></li>
@@ -283,81 +262,63 @@ libraries, including:</p>
 <li><p>vrrp - VRRP v3 (RFC 5798)</p></li>
 <li><p>wireguard - Wireguard Protocol</p></li>
 </ul>
-</div>
-<div class="section" id="vpp-dbg">
-<h2>vpp-dbg<a class="headerlink" href="#vpp-dbg" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vpp-dbg">
+<h2>vpp-dbg<a class="headerlink" href="#vpp-dbg" title="Permalink to this headline"></a></h2>
 <p>Vector Packet Processing debug symbols.</p>
-</div>
-<div class="section" id="vpp-dev">
-<h2>vpp-dev<a class="headerlink" href="#vpp-dev" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vpp-dev">
+<h2>vpp-dev<a class="headerlink" href="#vpp-dev" title="Permalink to this headline"></a></h2>
 <p>Vector Packet Processing development support. This package contains
 development support files for the VPP libraries.</p>
-</div>
-<div class="section" id="vpp-api-python">
-<h2>vpp-api-python<a class="headerlink" href="#vpp-api-python" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vpp-api-python">
+<h2>vpp-api-python<a class="headerlink" href="#vpp-api-python" title="Permalink to this headline"></a></h2>
 <p>Python binding for the VPP Binary API.</p>
-</div>
-<div class="section" id="vpp-api-lua">
-<h2>vpp-api-lua<a class="headerlink" href="#vpp-api-lua" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vpp-api-lua">
+<h2>vpp-api-lua<a class="headerlink" href="#vpp-api-lua" title="Permalink to this headline"></a></h2>
 <p>Lua binding for the VPP Binary API.</p>
-</div>
-<div class="section" id="vpp-selinux-policy">
-<h2>vpp-selinux-policy<a class="headerlink" href="#vpp-selinux-policy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vpp-selinux-policy">
+<h2>vpp-selinux-policy<a class="headerlink" href="#vpp-selinux-policy" title="Permalink to this headline"></a></h2>
 <p>This package contains the VPP Custom SELinux Policy. It is only generated for
 Fedora and CentOS distros. For those distros, the <em>‘vpp’</em> package depends on
 this package, so it will always be installed. It will not enable SELinux on
 the system. It will install a Custom VPP SELinux policy that will be used if
 SELinux is enabled at any time.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../progressivevpp/index.html" class="btn btn-neutral float-right" title="Progressive VPP Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="centos.html" class="btn btn-neutral float-left" title="Setup the FD.io Repository - Centos 7" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ubuntu.html" class="btn btn-neutral float-left" title="Ubuntu - Setup the FD.io Repository" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../running/index.html" class="btn btn-neutral float-right" title="Running VPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018-2021, Linux Foundation
-
-    </p>
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

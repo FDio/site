@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inband OAM (iOAM) &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Wireguard vpp-plugin" href="wireguard.html" />
+    <link rel="prev" title="DHCPv6 prefix delegation" href="dhcp6_pd.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Plugins</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quic.html">QUIC HostStack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lcp.html">Linux Control Plane Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="srv6/index.html">SRv6 Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="marvell.html">Marvell device plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lldp.html">LLDP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nat64.html">Stateful NAT64</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nat44_ei_ha.html">Active-Passive NAT HA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pnat.html">PNAT 1:1 match &amp; rewrite NAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lb.html">Load Balancer plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lacp.html">LACP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flowprobe.html">IPFIX flow record plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_lw4o6.html">MAP and Lw4o6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mdata.html">Buffer metadata change tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dhcp6_pd.html">DHCPv6 prefix delegation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Inband OAM (iOAM)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#terminology">Terminology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features-supported-in-the-current-release">Features supported in the current release</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#trace-configuration">Trace configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proof-of-transit-configuration">Proof of Transit configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#operational-data">Operational data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="wireguard.html">Wireguard vpp-plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="srtp.html">SRTP Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_multicore.html">Multicore support for ACL plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_hash_lookup.html">ACL plugin constant-time lookup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acl_lookup_context.html">ACL Lookup contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bufmon_doc.html">Buffers monitoring plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Plugins</a> &raquo;</li>
+      <li>Inband OAM (iOAM)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/developer/plugins/ioam.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="inband-oam-ioam">
+<h1>Inband OAM (iOAM)<a class="headerlink" href="#inband-oam-ioam" title="Permalink to this headline"></a></h1>
+<p>In-band OAM (iOAM) is an implementation study to record operational
+information in the packet while the packet traverses a path between two
+points in the network.</p>
+<p>Overview of iOAM can be found in
+<a class="reference external" href="https://github.com/ciscodevnet/iOAM">iOAM-Devnet</a> page. The
+following IETF drafts detail the motivation and mechanism for recording
+operational information: -
+<a class="reference external" href="https://tools.ietf.org/html/draft-brockners-inband-oam-requirements-01">iOAM-ietf-requirements</a>
+- Describes motivation and usecases for iOAM -
+<a class="reference external" href="https://tools.ietf.org/html/draft-brockners-inband-oam-data-01">iOAM-ietf-data</a>
+- Describes data records that can be collected using iOAM -
+<a class="reference external" href="https://tools.ietf.org/html/draft-brockners-inband-oam-transport-01">iOAM-ietf-transport</a>
+- Lists out the transport protocols and mechanism to carry iOAM data
+records -
+<a class="reference external" href="https://tools.ietf.org/html/draft-brockners-proof-of-transit-01">iOAM-ietf-proof-of-transit</a>
+- Describes the idea of Proof of Transit (POT) and mechanisms to
+operationalize the idea</p>
+<section id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline"></a></h2>
+<p>In-band OAM is expected to be deployed in a specific domain rather than
+on the overall Internet. The part of the network which employs in-band
+OAM is referred to as <strong>“in-band OAM-domain”</strong>.</p>
+<p>In-band OAM data is added to a packet on entering the in-band OAM-domain
+and is removed from the packet when exiting the domain. Within the
+in-band OAM-domain, network nodes that the packet traverses may update
+the in-band OAM data records.</p>
+<ul class="simple">
+<li><p>The node which adds in-band OAM data to the packet is called the
+<strong>“in-band OAM encapsulating node”</strong>.</p></li>
+<li><p>The node which removes the in-band OAM data is referred to as the
+<strong>“in-band OAM decapsulating node”</strong>.</p></li>
+<li><p>Nodes within the domain which are aware of in-band OAM data and read
+and/or write or process the in-band OAM data are called <strong>“in-band
+OAM transit nodes”</strong>.</p></li>
+</ul>
+</section>
+<section id="features-supported-in-the-current-release">
+<h2>Features supported in the current release<a class="headerlink" href="#features-supported-in-the-current-release" title="Permalink to this headline"></a></h2>
+<p>VPP can function as in-band OAM encapsulating, transit and decapsulating
+node. In this version of VPP in-band OAM data is transported as options
+in an IPv6 hop-by-hop extension header. Hence in-band OAM can be enabled
+for IPv6 traffic.</p>
+<p>The following iOAM features are supported:</p>
+<ul class="simple">
+<li><p><strong>In-band OAM Tracing</strong> : In-band OAM supports multiple data records
+to be recorded in the packet as the packet traverses the network.
+These data records offer insights into the operational behavior of
+the network. The following information can be collected in the
+tracing data from the nodes a packet traverses:</p>
+<ul>
+<li><p>Node ID</p></li>
+<li><p>Ingress interface ID</p></li>
+<li><p>Egress interface ID</p></li>
+<li><p>Timestamp</p></li>
+<li><p>Pre-configured application data</p></li>
+</ul>
+</li>
+<li><p><strong>In-band OAM Proof of Transit (POT)</strong>: Proof of transit iOAM data is
+added to every packet for verifying that a packet traverses a
+specific set of nodes. In-band OAM data is updated at every node that
+is enabled with iOAM proof of transit and is used to verify whether a
+packet traversed all the specified nodes. When the verifier receives
+each packet, it can validate whether the packet traversed the
+specified nodes.</p></li>
+</ul>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
+<p>Configuring iOAM involves: - Selecting the packets for which iOAM data
+must be inserted, updated or removed - Selection of packets for iOAM
+data insertion on iOAM encapsulating node. Selection of packets is done
+by 5-tuple based classification - Selection of packets for updating iOAM
+data is implicitly done on the presence of iOAM options in the packet -
+Selection of packets for removing the iOAM data is done on 5-tuple based
+classification - The kind of data to be collected - Tracing data - Proof
+of transit - Additional details for processing iOAM data to be collected
+- For trace data - trace type, number of nodes to be recorded in the
+trace, time stamp precision, etc. - For POT data - configuration of POT
+profile required to process the POT data</p>
+<p>The CLI for configuring iOAM is explained here followed by detailed
+steps and examples to deploy iOAM on VPP as an encapsulating, transit or
+decapsulating iOAM node in the subsequent sub-sections.</p>
+<p>VPP iOAM configuration for enabling trace and POT is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">ioam</span> <span class="n">rewrite</span> <span class="n">trace</span><span class="o">-</span><span class="nb">type</span> <span class="o">&lt;</span><span class="mh">0x1f</span><span class="o">|</span><span class="mh">0x7</span><span class="o">|</span><span class="mh">0x9</span><span class="o">|</span><span class="mh">0x11</span><span class="o">|</span><span class="mh">0x19</span><span class="o">&gt;</span>
+<span class="n">trace</span><span class="o">-</span><span class="n">elts</span> <span class="o">&lt;</span><span class="n">number</span> <span class="n">of</span> <span class="n">trace</span> <span class="n">elements</span><span class="o">&gt;</span> <span class="n">trace</span><span class="o">-</span><span class="n">tsp</span> <span class="o">&lt;</span><span class="mi">0</span><span class="o">|</span><span class="mi">1</span><span class="o">|</span><span class="mi">2</span><span class="o">|</span><span class="mi">3</span><span class="o">&gt;</span>
+<span class="n">node</span><span class="o">-</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">node</span> <span class="n">ID</span> <span class="ow">in</span> <span class="nb">hex</span><span class="o">&gt;</span> <span class="n">app</span><span class="o">-</span><span class="n">data</span> <span class="o">&lt;</span><span class="n">application</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">hex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">pot</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>A description of each of the options of the CLI follows: - trace-type :
+An entry in the “Node data List” array of the trace option can have
+different formats, following the needs of the a deployment. For example:
+Some deployments might only be interested in recording the node
+identifiers, whereas others might be interested in recording node
+identifier and timestamp. The following types are currently supported: -
+0x1f : Node data to include hop limit (8 bits), node ID (24 bits),
+ingress and egress interface IDs (16 bits each), timestamp (32 bits),
+application data (32 bits) - 0x7 : Node data to include hop limit (8
+bits), node ID (24 bits), ingress and egress interface IDs (16 bits
+each) - 0x9 : Node data to include hop limit (8 bits), node ID (24
+bits), timestamp (32 bits) - 0x11: Node data to include hop limit (8
+bits), node ID (24 bits), application data (32 bits) - 0x19: Node data
+to include hop limit (8 bits), node ID (24 bits), timestamp (32 bits),
+application data (32 bits) - trace-elts : Defines the length of the node
+data array in the trace option. - trace-tsp : Defines the timestamp
+precision to use with the enumerated value for precision as follows: - 0
+: 32bits timestamp in seconds - 1 : 32bits timestamp in milliseconds - 2
+: 32bits timestamp in microseconds - 3 : 32bits timestamp in nanoseconds
+- node-id : Unique identifier for the node, included in the node ID
+field of the node data in trace option. - app-data : The value
+configured here is included as is in application data field of node data
+in trace option. - pot : Enables POT option to be included in the iOAM
+options.</p>
+<section id="trace-configuration">
+<h3>Trace configuration<a class="headerlink" href="#trace-configuration" title="Permalink to this headline"></a></h3>
+<section id="on-in-band-oam-encapsulating-node">
+<h4>On in-band OAM encapsulating node<a class="headerlink" href="#on-in-band-oam-encapsulating-node" title="Permalink to this headline"></a></h4>
+<ul>
+<li><p><strong>Configure classifier and apply ACL</strong> to select packets for iOAM
+data insertion</p>
+<ul class="simple">
+<li><p>Example to enable iOAM data insertion for all the packets towards
+IPv6 address db06::06:</p></li>
+</ul>
+<p>vpp# classify table miss-next node ip6-lookup mask l3 ip6 dst</p>
+<p>vpp# classify session acl-hit-next node ip6-add-hop-by-hop
+table-index 0 match l3 ip6 dst db06::06</p>
+<p>vpp# set int input acl intfc GigabitEthernet0/0/0 ip6-table 0</p>
+</li>
+<li><p><strong>Enable tracing</strong> : Specify node ID, maximum number of nodes for
+which trace data should be recorded, type of data to be included for
+recording, optionally application data to be included</p>
+<ul class="simple">
+<li><p>Example to enable tracing with a maximum of 4 nodes recorded and
+the data to be recorded to include - hop limit, node id, ingress
+and egress interface IDs, timestamp (millisecond precision),
+application data (0x1234):</p></li>
+</ul>
+<p>vpp# set ioam rewrite trace-type 0x1f trace-elts 4 trace-tsp 1
+node-id 0x1 app-data 0x1234</p>
+</li>
+</ul>
+</section>
+<section id="on-in-band-oam-transit-node">
+<h4>On in-band OAM transit node<a class="headerlink" href="#on-in-band-oam-transit-node" title="Permalink to this headline"></a></h4>
+<ul class="simple">
+<li><p>The transit node requires trace type, timestamp precision, node ID
+and optionally application data to be configured, to update its node
+data in the trace option.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># set ioam rewrite trace-type 0x1f trace-elts 4 trace-tsp 1</span>
+<span class="n">node</span><span class="o">-</span><span class="nb">id</span> <span class="mh">0x2</span> <span class="n">app</span><span class="o">-</span><span class="n">data</span> <span class="mh">0x1234</span>
+</pre></div>
+</div>
+</section>
+<section id="on-the-in-band-oam-decapsulating-node">
+<h4>On the In-band OAM decapsulating node<a class="headerlink" href="#on-the-in-band-oam-decapsulating-node" title="Permalink to this headline"></a></h4>
+<ul>
+<li><p>The decapsulating node similar to encapsulating node requires
+<strong>classification</strong> of the packets to remove iOAM data from.</p>
+<ul class="simple">
+<li><p>Example to decapsulate iOAM data for packets towards db06::06,
+configure classifier and enable it as an ACL as follows:</p></li>
+</ul>
+<p>vpp# classify table miss-next node ip6-lookup mask l3 ip6 dst</p>
+<p>vpp# classify session acl-hit-next node ip6-lookup table-index 0
+match l3 ip6 dst db06::06 opaque-index 100</p>
+<p>vpp# set int input acl intfc GigabitEthernet0/0/0 ip6-table 0</p>
+</li>
+<li><p>Decapsulating node requires trace type, timestamp precision, node ID
+and optionally application data to be configured, to update its node
+data in the trace option before it is decapsulated.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># set ioam rewrite trace-type 0x1f trace-elts 4</span>
+<span class="n">trace</span><span class="o">-</span><span class="n">tsp</span> <span class="mi">1</span> <span class="n">node</span><span class="o">-</span><span class="nb">id</span> <span class="mh">0x3</span> <span class="n">app</span><span class="o">-</span><span class="n">data</span> <span class="mh">0x1234</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="proof-of-transit-configuration">
+<h3>Proof of Transit configuration<a class="headerlink" href="#proof-of-transit-configuration" title="Permalink to this headline"></a></h3>
+<p>For details on proof-of-transit, see the IETF draft
+<a class="reference external" href="https://tools.ietf.org/html/draft-brockners-proof-of-transit-01">iOAM-ietf-proof-of-transit</a>.
+To enable Proof of Transit all the nodes that participate and hence are
+verified for transit need a proof of transit profile. A script to
+generate a proof of transit profile as per the mechanism described in
+<a class="reference external" href="https://tools.ietf.org/html/draft-brockners-proof-of-transit-01">iOAM-ietf-proof-of-transit</a>
+will be available at
+<a class="reference external" href="https://github.com/ciscodevnet/iOAM">iOAM-Devnet</a>.</p>
+<p>The Proof of transit mechanism implemented here is based on Shamir’s
+Secret Sharing algorithm. The overall algorithm uses two polynomials
+POLY-1 and POLY-2. The degree of polynomials depends on number of nodes
+to be verified for transit. POLY-1 is secret and constant. Each node
+gets a point on POLY-1 at setup-time and keeps it secret. POLY-2 is
+public, random and per packet. Each node is assigned a point on POLY-1
+and POLY-2 with the same x index. Each node derives its point on POLY-2
+each time a packet arrives at it. A node then contributes its points on
+POLY-1 and POLY-2 to construct POLY-3 (POLY-3 = POLY-1 + POLY-2) using
+lagrange extrapolation and forwards it towards the verifier by updating
+POT data in the packet. The verifier constructs POLY-3 from the
+accumulated value from all the nodes and its own points on POLY-1 and
+POLY-2 and verifies whether POLY-3 = POLY-1 + POLY-2. Only the verifier
+knows POLY-1. The solution leverages finite field arithmetic in a field
+of size “prime number” for reasons explained in description of Shamir’s
+secret sharing algorithm.</p>
+<div class="line-block">
+<div class="line">Here is an explanation of POT profile list and profile configuration
+CLI to realize the above mechanism. It is best to use the script
+provided at <a class="reference external" href="https://github.com/ciscodevnet/iOAM">iOAM-Devnet</a> to
+generate this configuration. - <strong>Create POT profile</strong> : set pot
+profile name id [0-1]</div>
+<div class="line">[validator-key 0xu64] prime-number 0xu64 secret_share 0xu64</div>
+<div class="line">lpc 0xu64 polynomial2 0xu64 bits-in-random [0-64]</div>
+<div class="line">- name : Profile list name. - id : Profile id, it can be 0 or 1. A
+maximum of two profiles can be configured per profile list. -
+validator-key : Secret key configured only on the
+verifier/decapsulating node used to compare and verify proof of
+transit. - prime-number : Prime number for finite field arithmetic as
+required by the proof of transit mechanism. - secret_share : Unique
+point for each node on the secret polynomial POLY-1. - lpc : Lagrange
+Polynomial Constant(LPC) calculated per node based on its point (x
+value used for evaluating the points on the polynomial) on the
+polynomial used in lagrange extrapolation for reconstructing
+polynomial (POLY-3). - polynomial2 : Is the pre-evaluated value of the
+point on 2nd polynomial(POLY-2). This is unique for each node. It is
+pre-evaluated for all the coefficients of POLY-2 except for the
+constant part of the polynomial that changes per packet and is
+received as part of the POT data in the packet. - bits-in-random : To
+control the size of the random number to be generated. This number has
+to match the other numbers generated and used in the profile as per
+the algorithm.</div>
+</div>
+<ul class="simple">
+<li><p><strong>Set a configured profile as active/in-use</strong> :
+set pot profile-active name ID [0-1]</p>
+<ul>
+<li><p>name : Name of the profile list to be used for computing POT data
+per packet.</p></li>
+<li><p>ID : Identifier of the profile within the list to be used.</p></li>
+</ul>
+</li>
+</ul>
+<section id="on-in-band-oam-encapsulating-node-1">
+<span id="id1"></span><h4>On In-band OAM encapsulating node<a class="headerlink" href="#on-in-band-oam-encapsulating-node-1" title="Permalink to this headline"></a></h4>
+<ul>
+<li><p>Configure the classifier and apply ACL to select packets for iOAM
+data insertion.</p>
+<ul class="simple">
+<li><p>Example to enable iOAM data insertion for all the packet towards
+IPv6 address db06::06 -</p></li>
+</ul>
+<p>vpp# classify table miss-next node ip6-lookup mask l3 ip6 dst</p>
+<p>vpp# classify session acl-hit-next node ip6-add-hop-by-hop
+table-index 0 match l3 ip6 dst db06::06</p>
+<p>vpp# set int input acl intfc GigabitEthernet0/0/0 ip6-table 0</p>
+</li>
+<li><p>Configure the proof of transit profile list with profiles. Each
+profile list referred to by a name can contain 2 profiles, only one
+is in use for updating proof of transit data at any time.</p>
+<ul class="simple">
+<li><p>Example profile list example with a profile generated from the
+script to verify transit through 3 nodes is:</p></li>
+</ul>
+<p>vpp# set pot profile name example id 0 prime-number
+0x7fff0000fa884685 secret_share 0x6c22eff0f45ec56d lpc
+0x7fff0000fa884682 polynomial2 0xffb543d4a9c bits-in-random 63</p>
+</li>
+<li><p>Enable one of the profiles from the configured profile list as active
+so that is will be used for calculating proof of transit</p></li>
+</ul>
+<p>Example enable profile ID 0 from profile list example configured above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># set pot profile-active name example ID 0</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Enable POT option to be inserted</p>
+<p>vpp# set ioam rewrite pot</p>
+</li>
+</ul>
+</section>
+<section id="on-in-band-oam-transit-node-1">
+<span id="id2"></span><h4>On in-band OAM transit node<a class="headerlink" href="#on-in-band-oam-transit-node-1" title="Permalink to this headline"></a></h4>
+<ul>
+<li><p>Configure the proof of transit profile list with profiles for transit
+node. Example:</p>
+<p>vpp# set pot profile name example id 0 prime-number
+0x7fff0000fa884685 secret_share 0x564cdbdec4eb625d lpc 0x1
+polynomial2 0x23f3a227186a bits-in-random 63</p>
+</li>
+</ul>
+</section>
+<section id="on-in-band-oam-decapsulating-node-verifier">
+<h4>On in-band OAM decapsulating node / verifier<a class="headerlink" href="#on-in-band-oam-decapsulating-node-verifier" title="Permalink to this headline"></a></h4>
+<ul>
+<li><p>The decapsulating node, similar to the encapsulating node requires
+classification of the packets to remove iOAM data from.</p>
+<ul class="simple">
+<li><p>Example to decapsulate iOAM data for packets towards db06::06
+configure classifier and enable it as an ACL as follows:</p></li>
+</ul>
+<p>vpp# classify table miss-next node ip6-lookup mask l3 ip6 dst</p>
+<p>vpp# classify session acl-hit-next node ip6-lookup table-index 0
+match l3 ip6 dst db06::06 opaque-index 100</p>
+<p>vpp# set int input acl intfc GigabitEthernet0/0/0 ip6-table 0</p>
+</li>
+<li><p>To update and verify the proof of transit, POT profile list should be
+configured.</p>
+<ul class="simple">
+<li><p>Example POT profile list configured as follows:</p></li>
+</ul>
+<p>vpp# set pot profile name example id 0 validate-key
+0x7fff0000fa88465d prime-number 0x7fff0000fa884685 secret_share
+0x7a08fbfc5b93116d lpc 0x3 polynomial2 0x3ff738597ce bits-in-random
+63</p>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="operational-data">
+<h2>Operational data<a class="headerlink" href="#operational-data" title="Permalink to this headline"></a></h2>
+<p>Following CLIs are available to check iOAM operation: - To check iOAM
+configuration that are effective use “show ioam summary”</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show ioam summary</span>
+              <span class="n">REWRITE</span> <span class="n">FLOW</span> <span class="n">CONFIGS</span> <span class="o">-</span> <span class="n">Not</span> <span class="n">configured</span>
+ <span class="n">HOP</span> <span class="n">BY</span> <span class="n">HOP</span> <span class="n">OPTIONS</span> <span class="o">-</span> <span class="n">TRACE</span> <span class="n">CONFIG</span> <span class="o">-</span>
+                        <span class="n">Trace</span> <span class="n">Type</span> <span class="p">:</span> <span class="mh">0x1f</span> <span class="p">(</span><span class="mi">31</span><span class="p">)</span>
+         <span class="n">Trace</span> <span class="n">timestamp</span> <span class="n">precision</span> <span class="p">:</span> <span class="mi">1</span> <span class="p">(</span><span class="n">Milliseconds</span><span class="p">)</span>
+                <span class="n">Num</span> <span class="n">of</span> <span class="n">trace</span> <span class="n">nodes</span> <span class="p">:</span> <span class="mi">4</span>
+                           <span class="n">Node</span><span class="o">-</span><span class="nb">id</span> <span class="p">:</span> <span class="mh">0x2</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                          <span class="n">App</span> <span class="n">Data</span> <span class="p">:</span> <span class="mh">0x1234</span> <span class="p">(</span><span class="mi">4660</span><span class="p">)</span>
+                        <span class="n">POT</span> <span class="n">OPTION</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">(</span><span class="n">Enabled</span><span class="p">)</span>
+<span class="n">Try</span> <span class="s1">&#39;show ioam pot and show pot profile&#39;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To find statistics about packets for which iOAM options were added
+(encapsulating node) and removed (decapsulating node) execute <em>show
+errors</em></p></li>
+</ul>
+<p>Example on encapsulating node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show error</span>
+   <span class="n">Count</span>                    <span class="n">Node</span>                  <span class="n">Reason</span>
+<span class="mi">1208804706</span>                <span class="n">ip6</span><span class="o">-</span><span class="n">inacl</span>               <span class="nb">input</span> <span class="n">ACL</span> <span class="n">hits</span>
+<span class="mi">1208804706</span>           <span class="n">ip6</span><span class="o">-</span><span class="n">add</span><span class="o">-</span><span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span>           <span class="n">Pkts</span> <span class="n">w</span><span class="o">/</span> <span class="n">added</span> <span class="n">ip6</span> <span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span> <span class="n">options</span>
+</pre></div>
+</div>
+<p>Example on decapsulating node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show error</span>
+   <span class="n">Count</span>                    <span class="n">Node</span>                  <span class="n">Reason</span>
+  <span class="mi">69508569</span>                <span class="n">ip6</span><span class="o">-</span><span class="n">inacl</span>               <span class="nb">input</span> <span class="n">ACL</span> <span class="n">hits</span>
+  <span class="mi">69508569</span>           <span class="n">ip6</span><span class="o">-</span><span class="n">pop</span><span class="o">-</span><span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span>           <span class="n">Pkts</span> <span class="n">w</span><span class="o">/</span> <span class="n">removed</span> <span class="n">ip6</span> <span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span> <span class="n">options</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To check the POT profiles use “show pot profile”</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show pot profile</span>
+<span class="n">Profile</span> <span class="nb">list</span> <span class="ow">in</span> <span class="n">use</span>  <span class="p">:</span> <span class="n">example</span>
+<span class="n">POT</span> <span class="n">Profile</span> <span class="n">at</span> <span class="n">index</span><span class="p">:</span> <span class="mi">0</span>
+                 <span class="n">ID</span> <span class="p">:</span> <span class="mi">0</span>
+          <span class="n">Validator</span> <span class="p">:</span> <span class="kc">False</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+       <span class="n">Secret</span> <span class="n">share</span> <span class="p">:</span> <span class="mh">0x564cdbdec4eb625d</span> <span class="p">(</span><span class="mi">6218586935324795485</span><span class="p">)</span>
+       <span class="n">Prime</span> <span class="n">number</span> <span class="p">:</span> <span class="mh">0x7fff0000fa884685</span> <span class="p">(</span><span class="mi">9223090566081300101</span><span class="p">)</span>
+<span class="mi">2</span><span class="n">nd</span> <span class="n">polynomial</span><span class="p">(</span><span class="nb">eval</span><span class="p">)</span> <span class="p">:</span> <span class="mh">0x23f3a227186a</span> <span class="p">(</span><span class="mi">39529304496234</span><span class="p">)</span>
+                 <span class="n">LPC</span> <span class="p">:</span> <span class="mh">0x1</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+           <span class="n">Bit</span> <span class="n">mask</span> <span class="p">:</span> <span class="mh">0x7fffffffffffffff</span> <span class="p">(</span><span class="mi">9223372036854775807</span><span class="p">)</span>
+<span class="n">Profile</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">use</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Pkts</span> <span class="n">passed</span> <span class="p">:</span> <span class="mh">0x36</span> <span class="p">(</span><span class="mi">54</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To get statistics of POT for packets use “show ioam pot”</p></li>
+</ul>
+<p>Example at encapsulating or transit node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show ioam pot</span>
+ <span class="n">Pkts</span> <span class="k">with</span> <span class="n">ip6</span> <span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span> <span class="n">POT</span> <span class="n">options</span> <span class="o">-</span> <span class="mi">54</span>
+ <span class="n">Pkts</span> <span class="k">with</span> <span class="n">ip6</span> <span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span> <span class="n">POT</span> <span class="n">options</span> <span class="n">but</span> <span class="n">no</span> <span class="n">profile</span> <span class="nb">set</span> <span class="o">-</span> <span class="mi">0</span>
+ <span class="n">Pkts</span> <span class="k">with</span> <span class="n">POT</span> <span class="ow">in</span> <span class="n">Policy</span> <span class="o">-</span> <span class="mi">0</span>
+ <span class="n">Pkts</span> <span class="k">with</span> <span class="n">POT</span> <span class="n">out</span> <span class="n">of</span> <span class="n">Policy</span> <span class="o">-</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Example at decapsulating/verification node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show ioam pot</span>
+ <span class="n">Pkts</span> <span class="k">with</span> <span class="n">ip6</span> <span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span> <span class="n">POT</span> <span class="n">options</span> <span class="o">-</span> <span class="mi">54</span>
+ <span class="n">Pkts</span> <span class="k">with</span> <span class="n">ip6</span> <span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span> <span class="n">POT</span> <span class="n">options</span> <span class="n">but</span> <span class="n">no</span> <span class="n">profile</span> <span class="nb">set</span> <span class="o">-</span> <span class="mi">0</span>
+ <span class="n">Pkts</span> <span class="k">with</span> <span class="n">POT</span> <span class="ow">in</span> <span class="n">Policy</span> <span class="o">-</span> <span class="mi">54</span>
+ <span class="n">Pkts</span> <span class="k">with</span> <span class="n">POT</span> <span class="n">out</span> <span class="n">of</span> <span class="n">Policy</span> <span class="o">-</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Tracing - enable trace of IPv6 packets to view the data inserted and
+collected.</p></li>
+</ul>
+<p>Example when the nodes are receiving data over a DPDK interface: Enable
+tracing using “trace add dpdk-input 20” and execute “show trace” to view
+the iOAM data collected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># trace add dpdk-input 20</span>
+
+<span class="n">vpp</span><span class="c1"># show trace</span>
+
+<span class="o">-------------------</span> <span class="n">Start</span> <span class="n">of</span> <span class="n">thread</span> <span class="mi">0</span> <span class="n">vpp_main</span> <span class="o">-------------------</span>
+
+<span class="n">Packet</span> <span class="mi">1</span>
+
+<span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">294697</span><span class="p">:</span> <span class="n">dpdk</span><span class="o">-</span><span class="nb">input</span>
+  <span class="n">GigabitEthernetb</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="n">rx</span> <span class="n">queue</span> <span class="mi">0</span>
+  <span class="n">buffer</span> <span class="mh">0x10e6b</span><span class="p">:</span> <span class="n">current</span> <span class="n">data</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="mi">214</span><span class="p">,</span> <span class="n">free</span><span class="o">-</span><span class="nb">list</span> <span class="mi">0</span><span class="p">,</span> <span class="n">totlen</span><span class="o">-</span><span class="n">nifb</span> <span class="mi">0</span><span class="p">,</span> <span class="n">trace</span> <span class="mh">0x0</span>
+  <span class="n">PKT</span> <span class="n">MBUF</span><span class="p">:</span> <span class="n">port</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nb_segs</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pkt_len</span> <span class="mi">214</span>
+    <span class="n">buf_len</span> <span class="mi">2176</span><span class="p">,</span> <span class="n">data_len</span> <span class="mi">214</span><span class="p">,</span> <span class="n">ol_flags</span> <span class="mh">0x0</span><span class="p">,</span> <span class="n">data_off</span> <span class="mi">128</span><span class="p">,</span> <span class="n">phys_addr</span> <span class="mh">0xe9a35a00</span>
+    <span class="n">packet_type</span> <span class="mh">0x0</span>
+  <span class="n">IP6</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">df</span><span class="p">:</span><span class="mi">72</span> <span class="o">-&gt;</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">be</span><span class="p">:</span><span class="mi">55</span>
+  <span class="n">IP6_HOP_BY_HOP_OPTIONS</span><span class="p">:</span> <span class="n">db05</span><span class="p">::</span><span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">db06</span><span class="p">::</span><span class="mi">6</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">flow</span> <span class="n">label</span> <span class="mh">0x0</span><span class="p">,</span> <span class="n">hop</span> <span class="n">limit</span> <span class="mi">63</span><span class="p">,</span> <span class="n">payload</span> <span class="n">length</span> <span class="mi">160</span>
+<span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">294737</span><span class="p">:</span> <span class="n">ethernet</span><span class="o">-</span><span class="nb">input</span>
+  <span class="n">IP6</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">df</span><span class="p">:</span><span class="mi">72</span> <span class="o">-&gt;</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">be</span><span class="p">:</span><span class="mi">55</span>
+<span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">294753</span><span class="p">:</span> <span class="n">ip6</span><span class="o">-</span><span class="nb">input</span>
+  <span class="n">IP6_HOP_BY_HOP_OPTIONS</span><span class="p">:</span> <span class="n">db05</span><span class="p">::</span><span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">db06</span><span class="p">::</span><span class="mi">6</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">flow</span> <span class="n">label</span> <span class="mh">0x0</span><span class="p">,</span> <span class="n">hop</span> <span class="n">limit</span> <span class="mi">63</span><span class="p">,</span> <span class="n">payload</span> <span class="n">length</span> <span class="mi">160</span>
+<span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">294757</span><span class="p">:</span> <span class="n">ip6</span><span class="o">-</span><span class="n">lookup</span>
+  <span class="n">fib</span> <span class="mi">0</span> <span class="n">adj</span><span class="o">-</span><span class="n">idx</span> <span class="mi">15</span> <span class="p">:</span> <span class="n">indirect</span> <span class="n">via</span> <span class="n">db05</span><span class="p">::</span><span class="mi">2</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:</span> <span class="mh">0x00000000</span>
+  <span class="n">IP6_HOP_BY_HOP_OPTIONS</span><span class="p">:</span> <span class="n">db05</span><span class="p">::</span><span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">db06</span><span class="p">::</span><span class="mi">6</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">flow</span> <span class="n">label</span> <span class="mh">0x0</span><span class="p">,</span> <span class="n">hop</span> <span class="n">limit</span> <span class="mi">63</span><span class="p">,</span> <span class="n">payload</span> <span class="n">length</span> <span class="mi">160</span>
+<span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">294802</span><span class="p">:</span> <span class="n">ip6</span><span class="o">-</span><span class="n">hop</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">hop</span>
+  <span class="n">IP6_HOP_BY_HOP</span><span class="p">:</span> <span class="nb">next</span> <span class="n">index</span> <span class="mi">5</span> <span class="nb">len</span> <span class="mi">96</span> <span class="n">traced</span> <span class="mi">96</span>  <span class="n">Trace</span> <span class="n">Type</span> <span class="mh">0x1f</span> <span class="p">,</span> <span class="mi">1</span> <span class="n">elts</span> <span class="n">left</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">ttl</span> <span class="mh">0x0</span> <span class="n">node</span> <span class="n">ID</span> <span class="mh">0x0</span> <span class="n">ingress</span> <span class="mh">0x0</span> <span class="n">egress</span> <span class="mh">0x0</span> <span class="n">ts</span> <span class="mh">0x0</span>
+<span class="n">app</span> <span class="mh">0x0</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">ttl</span> <span class="mh">0x3e</span> <span class="n">node</span> <span class="n">ID</span> <span class="mh">0x3</span> <span class="n">ingress</span> <span class="mh">0x1</span> <span class="n">egress</span> <span class="mh">0x2</span> <span class="n">ts</span> <span class="mh">0xb68c2213</span>
+<span class="n">app</span> <span class="mh">0x1234</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">ttl</span> <span class="mh">0x3f</span> <span class="n">node</span> <span class="n">ID</span> <span class="mh">0x2</span> <span class="n">ingress</span> <span class="mh">0x1</span> <span class="n">egress</span> <span class="mh">0x2</span> <span class="n">ts</span> <span class="mh">0xb68c2204</span>
+<span class="n">app</span> <span class="mh">0x1234</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">ttl</span> <span class="mh">0x40</span> <span class="n">node</span> <span class="n">ID</span> <span class="mh">0x1</span> <span class="n">ingress</span> <span class="mh">0x5</span> <span class="n">egress</span> <span class="mh">0x6</span> <span class="n">ts</span> <span class="mh">0xb68c2200</span>
+<span class="n">app</span> <span class="mh">0x1234</span>
+    <span class="n">POT</span> <span class="n">opt</span> <span class="n">present</span>
+          <span class="n">random</span> <span class="o">=</span> <span class="mh">0x577a916946071950</span><span class="p">,</span> <span class="n">Cumulative</span> <span class="o">=</span> <span class="mh">0x10b46e78a35a392d</span><span class="p">,</span> <span class="n">Index</span> <span class="o">=</span> <span class="mh">0x0</span>
+<span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">294810</span><span class="p">:</span> <span class="n">ip6</span><span class="o">-</span><span class="n">rewrite</span>
+  <span class="n">tx_sw_if_index</span> <span class="mi">1</span> <span class="n">adj</span><span class="o">-</span><span class="n">idx</span> <span class="mi">14</span> <span class="p">:</span> <span class="n">GigabitEthernetb</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+                                <span class="n">IP6</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">be</span><span class="p">:</span><span class="mi">55</span> <span class="o">-&gt;</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">df</span><span class="p">:</span><span class="mi">72</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:</span> <span class="mh">0x00000000</span>
+  <span class="n">IP6</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">be</span><span class="p">:</span><span class="mi">55</span> <span class="o">-&gt;</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">df</span><span class="p">:</span><span class="mi">72</span>
+  <span class="n">IP6_HOP_BY_HOP_OPTIONS</span><span class="p">:</span> <span class="n">db05</span><span class="p">::</span><span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">db06</span><span class="p">::</span><span class="mi">6</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">flow</span> <span class="n">label</span> <span class="mh">0x0</span><span class="p">,</span> <span class="n">hop</span> <span class="n">limit</span> <span class="mi">62</span><span class="p">,</span> <span class="n">payload</span> <span class="n">length</span> <span class="mi">160</span>
+<span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">294814</span><span class="p">:</span> <span class="n">GigabitEthernetb</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">-</span><span class="n">output</span>
+  <span class="n">GigabitEthernetb</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+  <span class="n">IP6</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">be</span><span class="p">:</span><span class="mi">55</span> <span class="o">-&gt;</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">df</span><span class="p">:</span><span class="mi">72</span>
+  <span class="n">IP6_HOP_BY_HOP_OPTIONS</span><span class="p">:</span> <span class="n">db05</span><span class="p">::</span><span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">db06</span><span class="p">::</span><span class="mi">6</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">flow</span> <span class="n">label</span> <span class="mh">0x0</span><span class="p">,</span> <span class="n">hop</span> <span class="n">limit</span> <span class="mi">62</span><span class="p">,</span> <span class="n">payload</span> <span class="n">length</span> <span class="mi">160</span>
+<span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">294820</span><span class="p">:</span> <span class="n">GigabitEthernetb</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">-</span><span class="n">tx</span>
+  <span class="n">GigabitEthernetb</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="n">tx</span> <span class="n">queue</span> <span class="mi">0</span>
+  <span class="n">buffer</span> <span class="mh">0x10e6b</span><span class="p">:</span> <span class="n">current</span> <span class="n">data</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="mi">214</span><span class="p">,</span> <span class="n">free</span><span class="o">-</span><span class="nb">list</span> <span class="mi">0</span><span class="p">,</span> <span class="n">totlen</span><span class="o">-</span><span class="n">nifb</span> <span class="mi">0</span><span class="p">,</span> <span class="n">trace</span> <span class="mh">0x0</span>
+  <span class="n">IP6</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">be</span><span class="p">:</span><span class="mi">55</span> <span class="o">-&gt;</span> <span class="mi">00</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span><span class="p">:</span><span class="n">df</span><span class="p">:</span><span class="mi">72</span>
+
+  <span class="n">IP6_HOP_BY_HOP_OPTIONS</span><span class="p">:</span> <span class="n">db05</span><span class="p">::</span><span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">db06</span><span class="p">::</span><span class="mi">6</span>
+
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">flow</span> <span class="n">label</span> <span class="mh">0x0</span><span class="p">,</span> <span class="n">hop</span> <span class="n">limit</span> <span class="mi">62</span><span class="p">,</span> <span class="n">payload</span> <span class="n">length</span> <span class="mi">160</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dhcp6_pd.html" class="btn btn-neutral float-left" title="DHCPv6 prefix delegation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="wireguard.html" class="btn btn-neutral float-right" title="Wireguard vpp-plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+.. _clicmd_src_plugins_dhcp:
+
+===============================================================
+Dhcp cli reference
+===============================================================
+
+dhcp6 client
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    dhcp6 client <interface> [disable]
+
+
+
+This command is used to enable/disable DHCPv6 client
+on particular interface.
+
+Example of how to enable DHCPv6 client:
+
+
+.. code-block:: console
+
+    dhcp6 client GigabitEthernet2/0/0
+
+
+Example of how to disable DHCPv6 client:
+
+
+.. code-block:: console
+
+    dhcp6 client GigabitEthernet2/0/0 disable
+
+
+
+
+Declaration: ``dhcp6_client_enable_disable_command`` `src/plugins/dhcp/dhcp6_ia_na_client_cp.c line 749 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_ia_na_client_cp.c#L749>`_
+
+Implementation: ``dhcp6_client_enable_disable_command_fn``
+
+
+dhcp6 pd client
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    dhcp6 pd client <interface> (prefix group <string> | disable)
+
+
+
+This command is used to enable/disable DHCPv6 PD client
+on particular interface.
+
+Example of how to enable DHCPv6 PD client:
+
+
+.. code-block:: console
+
+    dhcp6 pd client GigabitEthernet2/0/0 prefix group my-pd-group
+
+
+Example of how to disable DHCPv6 PD client:
+
+
+.. code-block:: console
+
+    dhcp6 pd client GigabitEthernet2/0/0 disable
+
+
+
+
+Declaration: ``dhcp6_pd_client_enable_disable_command`` `src/plugins/dhcp/dhcp6_pd_client_cp.c line 1402 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_pd_client_cp.c#L1402>`_
+
+Implementation: ``dhcp6_pd_client_enable_disable_command_fn``
+
+
+set dhcp client
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set dhcp client [del] intfc <interface> [hostname <name>]
+
+
+Declaration: ``dhcp_client_set_command`` `src/plugins/dhcp/client.c line 1233 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/client.c#L1233>`_
+
+Implementation: ``dhcp_client_set_command_fn``
+
+
+set dhcp option-82 vss
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set dhcp option-82 vss [del] table <table id> [oui <n> vpn-id <n> | vpn-ascii-id <text>]
+
+
+Declaration: ``dhcp_proxy_vss_command`` `src/plugins/dhcp/dhcp4_proxy_node.c line 1070 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp4_proxy_node.c#L1070>`_
+
+Implementation: ``dhcp_option_82_vss_fn``
+
+
+set dhcp proxy
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set dhcp proxy [del] server <ip-addr> src-address <ip-addr> [server-fib-id <n>] [rx-fib-id <n>]
+
+
+Declaration: ``dhcp_proxy_set_command`` `src/plugins/dhcp/dhcp4_proxy_node.c line 960 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp4_proxy_node.c#L960>`_
+
+Implementation: ``dhcp4_proxy_set_command_fn``
+
+
+set dhcpv6 proxy
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set dhcpv6 proxy [del] server <ipv6-addr> src-address <ipv6-addr> [server-fib-id <fib-id>] [rx-fib-id <fib-id>] 
+
+
+Declaration: ``dhcpv6_proxy_set_command`` `src/plugins/dhcp/dhcp6_proxy_node.c line 1022 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_proxy_node.c#L1022>`_
+
+Implementation: ``dhcpv6_proxy_set_command_fn``
+
+
+set dhcpv6 vss
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set dhcpv6 vss table <table-id> [oui <n> vpn-id <n> | vpn-ascii-id <text>]
+
+
+Declaration: ``dhcpv6_proxy_vss_command`` `src/plugins/dhcp/dhcp6_proxy_node.c line 1135 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_proxy_node.c#L1135>`_
+
+Implementation: ``dhcpv6_vss_command_fn``
+
+
+set ip6 address
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ip6 address <interface> [prefix group <string>] <address> [del]
+
+
+
+This command is used to add/delete IPv6 address
+potentially using available prefix from specified prefix group
+
+Example of how to add IPv6 address:
+
+
+.. code-block:: console
+
+    set ip6 address GigabitEthernet2/0/0           prefix group my-prefix-group ::7/64
+
+
+Example of how to delete IPv6 address:
+
+
+.. code-block:: console
+
+    set ip6 address GigabitEthernet2/0/0           prefix group my-prefix-group ::7/64 del
+
+
+
+
+Declaration: ``ip6_address_add_del_command`` `src/plugins/dhcp/dhcp6_pd_client_cp.c line 1084 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_pd_client_cp.c#L1084>`_
+
+Implementation: ``cp_ip6_address_add_del_command_function``
+
+
+show dhcp client
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dhcp client [intfc <intfc>][verbose]
+
+
+Declaration: ``show_dhcp_client_command`` `src/plugins/dhcp/client.c line 959 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/client.c#L959>`_
+
+Implementation: ``show_dhcp_client_command_fn``
+
+
+show dhcp option-82-address interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dhcp option-82-address interface <interface>
+
+
+Declaration: ``dhcp_proxy_address_show_command`` `src/plugins/dhcp/dhcp4_proxy_node.c line 1136 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp4_proxy_node.c#L1136>`_
+
+Implementation: ``dhcp_option_82_address_show_command_fn``
+
+
+show dhcp proxy
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Display dhcp proxy server info
+
+
+Declaration: ``dhcp_proxy_show_command`` `src/plugins/dhcp/dhcp4_proxy_node.c line 1019 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp4_proxy_node.c#L1019>`_
+
+Implementation: ``dhcp4_proxy_show_command_fn``
+
+
+show dhcp vss
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dhcp VSS
+
+
+Declaration: ``dhcp_proxy_vss_show_command`` `src/plugins/dhcp/dhcp4_proxy_node.c line 1087 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp4_proxy_node.c#L1087>`_
+
+Implementation: ``dhcp_vss_show_command_fn``
+
+
+show dhcp6 addresses
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dhcp6 addresses
+
+
+Declaration: ``dhcp6_addresses_show_command`` `src/plugins/dhcp/dhcp6_ia_na_client_cp.c line 543 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_ia_na_client_cp.c#L543>`_
+
+Implementation: ``dhcp6_addresses_show_command_function``
+
+
+show dhcp6 clients
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dhcp6 clients
+
+
+Declaration: ``dhcp6_clients_show_command`` `src/plugins/dhcp/dhcp6_ia_na_client_cp.c line 605 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_ia_na_client_cp.c#L605>`_
+
+Implementation: ``dhcp6_clients_show_command_function``
+
+
+show dhcpv6 link-address interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dhcpv6 link-address interface <interface>
+
+
+Declaration: ``dhcpv6_proxy_address_show_command`` `src/plugins/dhcp/dhcp6_proxy_node.c line 1201 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_proxy_node.c#L1201>`_
+
+Implementation: ``dhcpv6_link_address_show_command_fn``
+
+
+show dhcpv6 proxy
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    Display dhcpv6 proxy info
+
+
+Declaration: ``dhcpv6_proxy_show_command`` `src/plugins/dhcp/dhcp6_proxy_node.c line 1086 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_proxy_node.c#L1086>`_
+
+Implementation: ``dhcpv6_proxy_show_command_fn``
+
+
+show dhcpv6 vss
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show dhcpv6 VSS
+
+
+Declaration: ``dhcpv6_proxy_vss_show_command`` `src/plugins/dhcp/dhcp6_proxy_node.c line 1153 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_proxy_node.c#L1153>`_
+
+Implementation: ``dhcpv6_vss_show_command_fn``
+
+
+show ip6 addresses
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 addresses
+
+
+Declaration: ``ip6_addresses_show_command`` `src/plugins/dhcp/dhcp6_pd_client_cp.c line 1123 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_pd_client_cp.c#L1123>`_
+
+Implementation: ``cp_ip6_addresses_show_command_function``
+
+
+show ip6 pd clients
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 pd clients
+
+
+Declaration: ``ip6_pd_clients_show_command`` `src/plugins/dhcp/dhcp6_pd_client_cp.c line 1228 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_pd_client_cp.c#L1228>`_
+
+Implementation: ``ip6_pd_clients_show_command_function``
+
+
+show ip6 prefixes
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show ip6 prefixes
+
+
+Declaration: ``ip6_prefixes_show_command`` `src/plugins/dhcp/dhcp6_pd_client_cp.c line 1161 <https://github.com/FDio/vpp/blob/master//src/plugins/dhcp/dhcp6_pd_client_cp.c#L1161>`_
+
+Implementation: ``cp_ip6_prefixes_show_command_function``
+

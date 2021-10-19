@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release notes for VPP 19.08.2 &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Release notes for VPP 19.08.1" href="v19.08.1.html" />
+    <link rel="prev" title="Release notes for VPP 19.08.3" href="v19.08.3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="v21.10.html">Release notes for VPP 21.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="v21.06.html">Release notes for VPP 21.06</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="past.html">Past releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="v21.01.html">Release notes for VPP 21.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.09.html">Release notes for VPP 20.09</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.05.1.html">Release notes for VPP 20.05.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.05.html">Release notes for VPP 20.05</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v20.01.html">Release notes for VPP 20.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.3.html">Release notes for VPP 19.08.3</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Release notes for VPP 19.08.2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-changes">API changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fixed-issues">Fixed issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.1.html">Release notes for VPP 19.08.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.08.html">Release notes for VPP 19.08</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.3.html">Release notes for VPP 19.04.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.2.html">Release notes for VPP 19.04.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.1.html">Release notes for VPP 19.04.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.04.html">Release notes for VPP 19.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.3.html">Release notes for VPP 19.01.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.2.html">Release notes for VPP 19.01.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.1.html">Release notes for VPP 19.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v19.01.html">Release notes for VPP 19.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.10.html">Release notes for VPP 18.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.07.html">Release notes for VPP 18.07</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.04.html">Release notes for VPP 18.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.2.html">Release notes for VPP 18.01.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.1.html">Release notes for VPP 18.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v18.01.html">Release notes for VPP 18.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.10.html">Release notes for VPP 17.10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.07.html">Release notes for VPP 17.07</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.04.html">Release notes for VPP 17.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.01.1.html">Release notes for VPP 17.01.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v17.01.html">Release notes for VPP 17.01</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v16.09.html">Release notes for VPP 16.09</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v16.06.html">Release notes for VPP 16.06</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Release notes</a> &raquo;</li>
+          <li><a href="past.html">Past releases</a> &raquo;</li>
+      <li>Release notes for VPP 19.08.2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/aboutvpp/releasenotes/v19.08.2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-notes-for-vpp-19-08-2">
+<h1>Release notes for VPP 19.08.2<a class="headerlink" href="#release-notes-for-vpp-19-08-2" title="Permalink to this headline"></a></h1>
+<p>The 19.08.2 is an LTS release. It contains numerous fixes, as well as
+new features and API additions.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>API trace tool</p>
+<ul>
+<li><p>Add text output (c395ff143)</p></li>
+</ul>
+</li>
+<li><p>Binary API Libraries</p>
+<ul>
+<li><p>Add API support for PP2 plugin to stable/1908 (1c3c9f039)</p></li>
+</ul>
+</li>
+<li><p>Build System</p>
+<ul>
+<li><p>Pass ‘no-pci’ to autgenerated config (c0552134e)</p></li>
+<li><p>Add env variable to pass extra cmake args (116e05f57)</p></li>
+</ul>
+</li>
+<li><p>Infrastructure Library</p>
+<ul>
+<li><p>Implement CLIB_PAUSE () for aarch64 platforms (a3c45242b)</p></li>
+<li><p>Create unformat function for data size parsing (cb19100c1)</p></li>
+</ul>
+</li>
+<li><p>Link Bonding</p>
+<ul>
+<li><p>Fix interface deletion (1517d5e72)</p></li>
+<li><p>Add GSO support (a06f68556)</p></li>
+</ul>
+</li>
+<li><p>Physical Memory Allocator</p>
+<ul>
+<li><p>Always lock pages (5b2eea6e0)</p></li>
+</ul>
+</li>
+<li><p>Plugins</p>
+<ul>
+<li><p>AVF Device driver</p>
+<ul>
+<li><p>Print queue id in packet trace (9e028d047)</p></li>
+</ul>
+</li>
+<li><p>DPDK</p>
+<ul>
+<li><p>Ipsec tunnel support for ip6-in-ip4 (2dde5a478)</p></li>
+<li><p>QAT devices update, add c4xxx and xeon d15xx (f5d6c80ac)</p></li>
+<li><p>Add TSO support in DPDK plugin. (5564db853)</p></li>
+</ul>
+</li>
+<li><p>Group Based Policy (GBP)</p>
+<ul>
+<li><p>Add extended SFC unit tests (30f7e4198)</p></li>
+</ul>
+</li>
+<li><p>Host Stack Applications</p>
+<ul>
+<li><p>Make APP_OPTIONS_PREALLOC_FIFO_PAIRS configurable (47c6f36be)</p></li>
+</ul>
+</li>
+<li><p>Internet Key Exchange (IKEv2) Protocol</p>
+<ul>
+<li><p>Add support for GCM cipher (2fa9f679c)</p></li>
+</ul>
+</li>
+<li><p>QUIC protocol</p>
+<ul>
+<li><p>Add cli command for stats (88af6c3f4)</p></li>
+<li><p>Add Tx, Rx and packet drop counters (3a61a40dd)</p></li>
+<li><p>Create custom event logger (2f9ec5001)</p></li>
+<li><p>Make quic fifo size configurable via cli (7fc3d97b8)</p></li>
+</ul>
+</li>
+<li><p>RDMA (ibverb) driver</p>
+<ul>
+<li><p>Add support for input feature arcs (cbae1e1c5)</p></li>
+<li><p>Add support for MAC changes (ffdfe308b)</p></li>
+</ul>
+</li>
+<li><p>Http_static</p>
+<ul>
+<li><p>Add dynamic GET / POST method hooks (faf5195e3)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Python binding for the VPP API</p>
+<ul>
+<li><p>Let async calls return context (e6b29a9df)</p></li>
+<li><p>Introduce read_blocking (1c45b85df)</p></li>
+</ul>
+</li>
+<li><p>SVM Library</p>
+<ul>
+<li><p>Improve fifo segment verbose cli (d2bff0786)</p></li>
+</ul>
+</li>
+<li><p>Statistics Segment</p>
+<ul>
+<li><p>Add /if/&lt;n&gt;/&lt;n&gt;/state for lacp interface state (d5e8ed7be)</p></li>
+</ul>
+</li>
+<li><p>Test Infrastructure</p>
+<ul>
+<li><p>Support worker threads (51699e62c)</p></li>
+<li><p>Support setting random seed (fc000f0e1)</p></li>
+<li><p>Add cli_return_response to vpp_papi_provider (64d744350)</p></li>
+<li><p>Test tls case (87e1bcdd7)</p></li>
+</ul>
+</li>
+<li><p>VNET</p>
+<ul>
+<li><p>Classifier</p>
+<ul>
+<li><p>Use vector code even when data is not aligned (bebbd7f62)</p></li>
+<li><p>VPP packet tracer support (7c5a3536c)</p></li>
+</ul>
+</li>
+<li><p>IPSec</p>
+<ul>
+<li><p>Add ‘detail’ option to ‘sh ipsec sa’ (56417fa94)</p></li>
+<li><p>Add insecure option for format of SA (591aa64e8)</p></li>
+<li><p>Support 4o6 and 6o4 for tunnel protect (2e6d73934)</p></li>
+</ul>
+</li>
+<li><p>IPv4 and IPv6 LPM</p>
+<ul>
+<li><p>Allow addrs from the same prefix on intf (da900b25c)</p></li>
+<li><p>Punt rather than drop unkown IPv6 ICMP packets (fd2f6f89e)</p></li>
+</ul>
+</li>
+<li><p>Session Layer</p>
+<ul>
+<li><p>Add explicit reset api (a267cba29)</p></li>
+<li><p>Improve cli (2ff21af39)</p></li>
+<li><p>Add session enable option in config file (b1ef5567b)</p></li>
+<li><p>Limit pacer bucket size (079895d95)</p></li>
+<li><p>Builtin app rx notifications regardless of state (8e4afc86d)</p></li>
+<li><p>Infra for transports to send buffers (57997c874)</p></li>
+<li><p>Reschedule asap when snd space constrained (89ab1762d)</p></li>
+</ul>
+</li>
+<li><p>TCP</p>
+<ul>
+<li><p>Allow cc algos to set pacing rate (82df1eb90)</p></li>
+<li><p>Set cc_algo on connection alloc (7fe501a4b)</p></li>
+<li><p>Add option for always on event logging (e73bd8503)</p></li>
+<li><p>Track zero rwnd errors (a2c063712)</p></li>
+<li><p>Validate connections in output (ea584d137)</p></li>
+<li><p>Force zero window on full rx fifo (fbe948c81)</p></li>
+<li><p>Send rwnd update only if wnd is large enough (0ad8477ba)</p></li>
+<li><p>Enable gso in tcp hoststack (6f3621d77)</p></li>
+<li><p>Handle SACK reneging (9dba3dbf0)</p></li>
+<li><p>Use rate sample RTT in recovery if possible (6702641f5)</p></li>
+<li><p>Compute snd time for rate sample (69460ae11)</p></li>
+<li><p>Use sacks for timer based recovery (d4aa3d9f8)</p></li>
+<li><p>Custom checksum calculations for Ipv4/Ipv6 (3642782a2)</p></li>
+<li><p>Retry lost retransmits (7b135c639)</p></li>
+<li><p>Improve pacing after idle send periods (abdc7dfb5)</p></li>
+<li><p>Track lost rxt segments in byte tracker (6de46b40d)</p></li>
+<li><p>Validate the IP address while checking TCP connection
+(6c1ce53b4)</p></li>
+<li><p>Improve lost rxt heuristic (04b4204d9)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>VPP Comms Library</p>
+<ul>
+<li><p>Allow non-blocking connects (4767cf24f)</p></li>
+<li><p>Add api to set lcl ip (2c55610e2)</p></li>
+</ul>
+</li>
+<li><p>Vector Library</p>
+<ul>
+<li><p>Add flag to explicitelly mark nodes which can init per-node packet
+trace (29dc11bde)</p></li>
+<li><p>Enhance the “show cli” debug CLI command (b5a0108ac)</p></li>
+</ul>
+</li>
+<li><p>Libmemif</p>
+<ul>
+<li><p>Introduce ‘memif_per_thread_’ namespace (2736fc7fc)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="api-changes">
+<h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline"></a></h2>
+<p>Description of results:</p>
+<ul class="simple">
+<li><p><em>Definition changed</em>: indicates that the API file was modified
+between releases.</p></li>
+<li><p><em>Only in image</em>: indicates the API is new for this release.</p></li>
+<li><p><em>Only in file</em>: indicates the API has been removed in this release.</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Message Name</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>app_attach</p></td>
+<td><p>only in image</p></td>
+</tr>
+<tr class="row-odd"><td><p>app_attach_reply</p></td>
+<td><p>only in image</p></td>
+</tr>
+</tbody>
+</table>
+<p>Found 2 api message signature differences</p>
+</section>
+<section id="fixed-issues">
+<h2>Fixed issues<a class="headerlink" href="#fixed-issues" title="Permalink to this headline"></a></h2>
+<p>For the full list of fixed issues please refer to:</p>
+<ul class="simple">
+<li><p>fd.io <a class="reference external" href="https://jira.fd.io">JIRA</a></p></li>
+<li><p>git <a class="reference external" href="https://git.fd.io/vpp/log/?h=stable/1908">commit log</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="v19.08.3.html" class="btn btn-neutral float-left" title="Release notes for VPP 19.08.3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="v19.08.1.html" class="btn btn-neutral float-right" title="Release notes for VPP 19.08.1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

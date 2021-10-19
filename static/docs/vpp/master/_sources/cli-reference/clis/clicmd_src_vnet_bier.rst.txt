@@ -1,0 +1,109 @@
+.. _clicmd_src_vnet_bier:
+
+===============================================================
+Bier cli reference
+===============================================================
+
+bier route
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bier route [add|del] sd <sud-domain> set <set> bsl <bit-string-length> bp <bit-position> via [next-hop-address] [next-hop-interface] [next-hop-table <value>] [weight <value>] [preference <value>] [udp-encap-id <value>] [ip4-lookup-in-table <value>] [ip6-lookup-in-table <value>] [mpls-lookup-in-table <value>] [resolve-via-host] [resolve-via-connected] [rx-ip4 <interface>] [out-labels <value value value>]
+
+
+Declaration: ``bier_route_command`` `src/vnet/bier/bier_update.c line 130 <https://github.com/FDio/vpp/blob/master//src/vnet/bier/bier_update.c#L130>`_
+
+Implementation: ``vnet_bier_route_cmd``
+
+
+bier table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    bier table [add|del] sd <sub-domain> set <SET> bsl <bit-string-length> [mpls <label>]
+
+
+Declaration: ``bier_table_command`` `src/vnet/bier/bier_update.c line 69 <https://github.com/FDio/vpp/blob/master//src/vnet/bier/bier_update.c#L69>`_
+
+Implementation: ``vnet_bier_table_cmd``
+
+
+show bier bift
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show bier bift [set <value>] [sd <value>] [bsl <value>]
+
+
+Declaration: ``show_bier_bift_command`` `src/vnet/bier/bier_bift_table.c line 287 <https://github.com/FDio/vpp/blob/master//src/vnet/bier/bier_bift_table.c#L287>`_
+
+Implementation: ``show_bier_bift_cmd``
+
+
+show bier disp entry
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show bier disp entry index
+
+
+Declaration: ``show_bier_disp_entry_node`` `src/vnet/bier/bier_disp_entry.c line 391 <https://github.com/FDio/vpp/blob/master//src/vnet/bier/bier_disp_entry.c#L391>`_
+
+Implementation: ``show_bier_disp_entry``
+
+
+show bier disp table
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show bier disp table [index]
+
+
+Declaration: ``show_bier_disp_table_node`` `src/vnet/bier/bier_disp_table.c line 401 <https://github.com/FDio/vpp/blob/master//src/vnet/bier/bier_disp_table.c#L401>`_
+
+Implementation: ``show_bier_disp_table``
+
+
+show bier fib
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show bier fib [table-index] [bit-position]
+
+
+Declaration: ``show_bier_fib_command`` `src/vnet/bier/bier_update.c line 185 <https://github.com/FDio/vpp/blob/master//src/vnet/bier/bier_update.c#L185>`_
+
+Implementation: ``show_bier_fib_command_fn``
+
+
+show bier fmask
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show bier fmask
+
+
+Declaration: ``show_bier_fmask`` `src/vnet/bier/bier_fmask.c line 574 <https://github.com/FDio/vpp/blob/master//src/vnet/bier/bier_fmask.c#L574>`_
+
+Implementation: ``bier_fmask_show``
+
+
+show bier imp
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show bier imp [index]
+
+
+Declaration: ``show_bier_imp_node`` `src/vnet/bier/bier_imp.c line 291 <https://github.com/FDio/vpp/blob/master//src/vnet/bier/bier_imp.c#L291>`_
+
+Implementation: ``show_bier_imp``
+

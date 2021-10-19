@@ -1,0 +1,18 @@
+.. _clicmd_src_plugins_ioam_export:
+
+===============================================================
+Export cli reference
+===============================================================
+
+set ioam export ipfix
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set ioam export ipfix collector <ip4-address> src <ip4-address>
+
+
+Declaration: ``set_ipfix_command`` `src/plugins/ioam/export/ioam_export.c line 141 <https://github.com/FDio/vpp/blob/master//src/plugins/ioam/export/ioam_export.c#L141>`_
+
+Implementation: ``set_ioam_export_ipfix_command_fn``
+

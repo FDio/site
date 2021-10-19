@@ -1,0 +1,18 @@
+.. _clicmd_src_vpp_app:
+
+===============================================================
+App cli reference
+===============================================================
+
+ip virtual
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    ip virtual <addr> <interface> [mac <Mi>]+ [next-hop <ip4_address>]+
+
+
+Declaration: ``virtual_ip_cmd_fn_command`` `src/vpp/app/vpe_cli.c line 123 <https://github.com/FDio/vpp/blob/master//src/vpp/app/vpe_cli.c#L123>`_
+
+Implementation: ``virtual_ip_cmd_fn_command_fn``
+

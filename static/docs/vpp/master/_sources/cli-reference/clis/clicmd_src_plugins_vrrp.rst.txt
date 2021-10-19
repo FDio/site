@@ -1,0 +1,83 @@
+.. _clicmd_src_plugins_vrrp:
+
+===============================================================
+Vrrp cli reference
+===============================================================
+
+show vrrp vr
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show vrrp vr [(<intf_name>|sw_if_index <n>)]
+
+
+Declaration: ``vrrp_show_vr_command`` `src/plugins/vrrp/vrrp_cli.c line 212 <https://github.com/FDio/vpp/blob/master//src/plugins/vrrp/vrrp_cli.c#L212>`_
+
+Implementation: ``vrrp_show_vr_command_fn``
+
+
+vrrp peers
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    vrrp peers (<intf_name>|sw_if_index <n>) vr_id <n> [ipv6] <peer1_addr> [<peer2_addr> ...]
+
+
+Declaration: ``vrrp_peers_command`` `src/plugins/vrrp/vrrp_cli.c line 387 <https://github.com/FDio/vpp/blob/master//src/plugins/vrrp/vrrp_cli.c#L387>`_
+
+Implementation: ``vrrp_peers_command_fn``
+
+
+vrrp proto
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    vrrp proto (start|stop) (<intf_name>|sw_if_index <n>) vr_id <n> [ipv6]
+
+
+Declaration: ``vrrp_proto_start_stop_command`` `src/plugins/vrrp/vrrp_cli.c line 377 <https://github.com/FDio/vpp/blob/master//src/plugins/vrrp/vrrp_cli.c#L377>`_
+
+Implementation: ``vrrp_proto_start_stop_command_fn``
+
+
+vrrp vr add
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    vrrp vr add <interface> [vr_id <n>] [ipv6] [priority <value>] [interval <value>] [no_preempt] [accept_mode] [unicast] [<ip_addr> ...]
+
+
+Declaration: ``vrrp_vr_add_command`` `src/plugins/vrrp/vrrp_cli.c line 155 <https://github.com/FDio/vpp/blob/master//src/plugins/vrrp/vrrp_cli.c#L155>`_
+
+Implementation: ``vrrp_vr_add_command_fn``
+
+
+vrrp vr del
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    vrrp vr del <interface> [vr_id <n>] [ipv6]
+
+
+Declaration: ``vrrp_vr_del_command`` `src/plugins/vrrp/vrrp_cli.c line 172 <https://github.com/FDio/vpp/blob/master//src/plugins/vrrp/vrrp_cli.c#L172>`_
+
+Implementation: ``vrrp_vr_del_command_fn``
+
+
+vrrp vr track-if
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    vrrp vr track-if (add|del) (<intf_name>|sw_if_index <n>) vr_id <n> [ipv6] track-index <n> priority <n> [ track-index <n> priority <n> ...]
+
+
+Declaration: ``vrrp_vr_track_if_command`` `src/plugins/vrrp/vrrp_cli.c line 491 <https://github.com/FDio/vpp/blob/master//src/plugins/vrrp/vrrp_cli.c#L491>`_
+
+Implementation: ``vrrp_vr_track_if_command_fn``
+

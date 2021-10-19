@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interconnecting VPCs with Segment Routing &amp; Performance Evaluation &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VPP in Azure" href="vppinazure.html" />
+    <link rel="prev" title="VPP in AWS" href="vppinaws.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v22.02-rc0-128-g4450b03ba
+
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">VPP in the Cloud</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vppinaws.html">VPP in AWS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interconnecting VPCs with Segment Routing &amp; Performance Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vppinazure.html">VPP in Azure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automatingthedeployment.html">Automating VPP deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../container_test.html">Simulating networks with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration/reference.html">Configuration Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">VPP in the Cloud</a> &raquo;</li>
+      <li>Interconnecting VPCs with Segment Routing &amp; Performance Evaluation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/usecases/vppcloud/ConnectingVPC.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="connectingvpc">
+</div>
+<section id="interconnecting-vpcs-with-segment-routing-performance-evaluation">
+<h1>Interconnecting VPCs with Segment Routing &amp; Performance Evaluation<a class="headerlink" href="#interconnecting-vpcs-with-segment-routing-performance-evaluation" title="Permalink to this headline"></a></h1>
+<p>Before reading this part, you should have a minimum understanding of AWS, especially on <a class="reference external" href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">VPC concepts</a>.</p>
+<figure class="align-default">
+<img alt="../../_images/Connecting_VPC.svg" src="../../_images/Connecting_VPC.svg" /></figure>
+<p>Figure 1:  Simplified view of our final configuration.</p>
+<p>In this section we will set VPP as Gateway of our VPC and, thanks to its support to Segment Routing per IPV6, we will interconnect several VPCs together. Figure 1 shows what will be our final configuration. We are interested in interconnecting several VPCs together since we could perform Service Chaining inside AWS.</p>
+<p>Now we focus on the basic elements you should deploy inside the VPC in order to make  this configuration works. Here you can find some scripts <a class="reference external" href="https://github.com/francescospinelli94/Automating-Deployment-VPP">to automate the deployment of these resources</a>.
+In our VPC we will have two instances: one, in which we will install VPP and the other one which will be our Client/Server machine. We suggest you to create 3 subnets inside your VPC: one associated with IPv4 addresses, for reaching your VMs through SSH. The second one, also with IPV4 addresses, that allows connectivity between the Client/Server machine and the VPP machine. Finally you need a third one, with both IPv4 and IPv6 address, to connect VPP with the Amazon IGW and we will use IPv6 addresses to implement Segment Routing. Moreover you have to attach to the Client/Server machine one additional NIC, while instead to the VPP machine you have to attach 2 different NIC. One will be used inside the IPv6 subnet while the other one will allow communications with the other VM. you can find an example in Figure 2</p>
+<figure class="align-default">
+<img alt="../../_images/vpc_scheme.svg" src="../../_images/vpc_scheme.svg" /></figure>
+<p>Figure 2: Example of the resources present inside our VPC</p>
+<p>Notice that the following example works with two VPCs, where in each of them there are a VM with VPP and a VM. Hence,  you will have to execute the same commands also in the other VPC to make the connection between the two VPC possible.</p>
+<p>Now, create a new VM instance (you can use same setting as before (Ubuntu Server 16.04 and m5 type)) and attach a NIC. Remember that the two Client/Server machine’s NICs should stay in two different IPv4 Subnet. Afterwards, on the VM’s terminal execute these commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo /sbin/ip -4 addr add <span class="m">10</span>.1.2.113/24 dev ens6
+<span class="gp">$ </span>sudo ifconfig ens6 up
+<span class="gp">$ </span>sudo /sbin/ip -4 route add <span class="m">10</span>.2.0.0/16 via <span class="m">10</span>.1.4.117
+</pre></div>
+</div>
+<p>Basically you are setting up the interface which you will use to reach VPP and telling that all the traffic belonging to the subnet 10.2.0.0/16, which in our case is the one of the other VPC, should go through VPP’s interface. Remember also to do the same thing in the route table menu of the Amazon Console Management.</p>
+<p>Now go to the terminal of VPP, enter in the VPP CLI and type these commands to  set up the two virtual interfaces. To see how to bind the NICs to VPP, see here (Link AWS in VPP).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# set int state VirtualFunctionEthernet0/6/0 up</span>
+<span class="go">vpp# set int state VirtualFunctionEthernet0/7/0 up</span>
+</pre></div>
+</div>
+<p>Here instead you are assigning the IP addresses to the network interfaces.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# set int ip address VirtualFunctionEthernet0/6/0 10.1.4.117/24</span>
+<span class="go">vpp# set int ip address VirtualFunctionEthernet0/7/0 2600:1f14:e0e:7f00:f672:1039:4e41:e68/64</span>
+</pre></div>
+</div>
+<p>Afterwards, you should use the Segment Routing’s functionalities. Note that for the localsid address we are using a different IPv6 address (you can generate another one through the Amazon console)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# set sr encaps source addr 2600:1f14:e0e:7f00:f672:1039:4e41:e68</span>
+<span class="go">vpp# sr localsid address 2600:1f14:e0e:7f00:8da1:c8fa:5301:1d1f behavior end.dx4       VirtualFunctionEthernet0/6/0 10.1.4.117</span>
+<span class="go">vpp# sr policy add bsid c:1::999:1  next 2600:1f14:135:cc00:43c1:e860:7ce9:e94a encap</span>
+<span class="go">vpp# sr steer l3 10.2.5.0/24 via  bsid c:1::999:1</span>
+</pre></div>
+</div>
+<p>Finally, you are setting the ip6 discovery, telling which is the next hop (the IGW). Notice that the MAC address is the MAC address of the IGW.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# set ip6 neighbor VirtualFunctionEthernet0/7/0 fe80::84f:3fff:fe2a:aaf0 0a:4f:3f:2a:aa:f0</span>
+<span class="go">vpp# ip route add ::/0 via fe80::84f:3fff:fe2a:aaf0 VirtualFunctionEthernet0/7/0</span>
+</pre></div>
+</div>
+<p>Now go in the other VM instance in the other VPC, which could be located in another Amazon Region, and do the same commands. First in the VM:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sudo /sbin/ip -4 addr add 10.2.5.190/24 dev ens6</span>
+<span class="go">vpp# sudo ifconfig ens6 up</span>
+<span class="go">vpp# sudo /sbin/ip -4 route add 10.2.0.0/16 via 10.2.5.21</span>
+</pre></div>
+</div>
+<p>Then, in VPP:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# set int state VirtualFunctionEthernet0/6/0 up</span>
+<span class="go">vpp# set int state VirtualFunctionEthernet0/7/0 up</span>
+<span class="go">vpp# set int ip address VirtualFunctionEthernet0/6/0 10.2.5.21/24</span>
+<span class="go">vpp# set int ip address VirtualFunctionEthernet0/7/0 2600:1f14:135:cc00:13b9:ff74:348d:7642/64</span>
+<span class="go">vpp# set sr encaps source addr 2600:1f14:135:cc00:13b9:ff74:348d:7642</span>
+<span class="go">vpp# sr policy add bsid c:3::999:1  next 2600:1f14:e0e:7f00:8da1:c8fa:5301:1d1f encap</span>
+<span class="go">vpp# sr steer l3 10.1.4.0/24 via bsid c:3::999:1</span>
+<span class="go">vpp# set ip6 neighbor VirtualFunctionEthernet0/7/0 fe80::86a:b7ff:fe5d:73c0 0a:4c:fd:b8:c1:3e</span>
+<span class="go">vpp# ip route add ::/0 via fe80::86a:b7ff:fe5d:73c0 VirtualFunctionEthernet0/7/0</span>
+</pre></div>
+</div>
+<p>Now if you try ping your Server machine from your Client Machine you should be able to reach it.</p>
+<p>If you are interested in Performance evaluation inside this scenario, we will present a poster at INFOCOM’19, in which will be present our performance evaluation of Segment routing inside AWS:</p>
+<p><em>Francesco  Spinelli,  Luigi  Iannone,  and  Jerome  Tollet. “Chaining  your  Virtual  Private  Clouds  with  Segment Routing”. In:2019 IEEE INFOCOM Poster (INFOCOM2019 Poster). Paris, France, Apr. 2019</em></p>
+<p><strong>Troubleshooting</strong></p>
+<ul class="simple">
+<li><p>Remember to disable source/dest check on the VPP and VMs Network Card interfaces. You can do it through the Amazon Console.</p></li>
+<li><p>The commands work with VPP version 18.07. If you’re using a different version, probably the syntax of some VPP commands will be slightly different.</p></li>
+<li><p>Be careful: if you stop your VM with VPP you will need to attach again the two NICs to VPP.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="vppinaws.html" class="btn btn-neutral float-left" title="VPP in AWS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="vppinazure.html" class="btn btn-neutral float-right" title="VPP in Azure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

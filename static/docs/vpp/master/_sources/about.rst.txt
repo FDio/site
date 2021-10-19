@@ -1,9 +1,0 @@
-.. _about:
-
-=====
-About
-=====
-
-**VPP Version:** 21.10-rc0~192-g05b5a5b3b
-
-**Built on:** Tue Jul 20 11:45:50 GMT 2021

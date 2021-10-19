@@ -1,76 +1,41 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Container-based network simulation &mdash; The Vector Packet Processor master documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulating networks with VPP &mdash; The Vector Packet Processor v22.02-rc0-128-g4450b03ba
+ documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
-    <link rel="author" title="About these documents" href="../about.html" />
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Vpp Stateless Traffic Generation" href="trafficgen.html" />
-    <link rel="prev" title="Building VPP web applications" href="webapp.html" /> 
+    <link rel="next" title="Stateless Traffic Gen with VPP" href="trafficgen.html" />
+    <link rel="prev" title="Web applications with VPP" href="webapp.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
-          
-
-          
-            
             <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                master
-              </div>
-            
-          
+                v22.02-rc0-128-g4450b03ba
 
-          
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,609 +43,608 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">About VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/scalar-vs-vector-packet-processing.html">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/networkstack.html">Network Stack Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/hoststack.html">Host Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/developer.html">Additional features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/supported.html">Supported archs and OS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/releasenotes/index.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aboutvpp/featurelist.html">VPP Supported Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Use Cases</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="containers/index.html">VPP with Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vppcloud/index.html">VPP in the Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vhost/index.html">VPP with Virtual Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="home_gateway.html">VPP as a Home Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acls.html">Access Control Lists with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networksim.html">Generating traffic with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webapp.html">Web applications with VPP</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulating networks with VPP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#os-distro-test-results">OS / Distro test results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proxy-server">Proxy Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-and-configure-lxd">Install and configure lxd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-three-network-segments">Create three network segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-the-default-container-profile">Set up the default container profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-the-network-configurations">Set up the network configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#respond-network-configuration">respond network configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initiate-network-configuration">initiate network configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-master-container-image">Create a “master” container image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#duplicate-the-master-container-image">Duplicate the “master” container image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-handy-script">Install handy script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-topology">Test topology</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-topology-discussion">Test topology discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#end-station-configs">End station configs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#respondhost-configuration">respondhost configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initiatehost-configuration">initiatehost configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vpp-configs">VPP configs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#respond-configuration">respond configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initiate-configuration">initiate configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ikev2-certificate-setup">IKEv2 certificate setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dhcpv6-server-setup">DHCPv6 server setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#etc-dhcp-dhcpd6-conf">/etc/dhcp/dhcpd6.conf</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#container-host-interoperation">Container / Host Interoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-custom-root-filesystem-image">Create a custom root filesystem image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-container-which-uses-the-customized-base-image">Create a container which uses the customized base image:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-container-networking">Configure container networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-apt">Configure apt</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="trafficgen.html">Stateless Traffic Gen with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ikev2/index.html">IKEv2 with VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contiv/index.html">VPP in kubernetes (Contiv/Deprecated)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/running/index.html">Running VPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/troubleshooting/index.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer/build-run-debug/index.html">Build, Run &amp; Debug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corearchitecture/index.html">Core Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/corefeatures/index.html">Core Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugindoc/index.html">Adding a new plugin or feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/devicedrivers/index.html">Device drivers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/tests/overview.html">VPP Test Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/extras/index.html">VPP extra tools</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfacing with VPP</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/binapi/index.html">The binary API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/c/index.html">C api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/cpp/index.html">C++ api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/go/index.html">Go api (govpp)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/rust/index.html">Rust api client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfacing/libmemif/index.html">Memif library (libmemif)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/writingdocs.html">Writing VPP Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/reportingissues/index.html">Reporting Bugs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Debug CLI</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/gettingstarted/index.html">Getting Started with the debug CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/interface/index.html">Interface Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli-reference/index.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration file</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/config_getting_started.html">Getting started with the configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/reference.html">Configuration Reference</a></li>
+</ul>
 
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="containers.html">VPP with Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vhost/index.html">FD.io VPP with Virtual Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vppcloud.html">VPP inside the Cloud</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hgw.html">Using VPP as a Home Gateway</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="networksim.html">Network Simulator Plugin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="webapp.html">Building VPP web applications</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Container-based network simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#os-distro-test-results">OS / Distro test results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#proxy-server">Proxy Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-and-configure-lxd">Install and configure lxd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-three-network-segments">Create three network segments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-the-default-container-profile">Set up the default container profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-the-network-configurations">Set up the network configurations</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#respond-network-configuration">respond network configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#initiate-network-configuration">initiate network configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#create-a-master-container-image">Create a “master” container image</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#duplicate-the-master-container-image">Duplicate the “master” container image</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-handy-script">Install handy script</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test-topology">Test topology</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#test-topology-discussion">Test topology discussion</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#end-station-configs">End station configs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#respondhost-configuration">respondhost configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#initiatehost-configuration">initiatehost configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#vpp-configs">VPP configs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#respond-configuration">respond configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#initiate-configuration">initiate configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#ikev2-certificate-setup">IKEv2 certificate setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dhcpv6-server-setup">DHCPv6 server setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#etc-dhcp-dhcpd6-conf">/etc/dhcp/dhcpd6.conf</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#container-host-interoperation">Container / Host Interoperation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#create-a-custom-root-filesystem-image">Create a custom root filesystem image</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#create-a-container-which-uses-the-customized-base-image">Create a container which uses the customized base image:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#configure-container-networking">Configure container networking</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#configure-apt">Configure apt</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="trafficgen.html">Vpp Stateless Traffic Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ikev2.html">IKEv2 in VPP</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related FD.IO Projects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
-</ul>
-
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">The Vector Packet Processor</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="index.html">Use Cases</a> &raquo;</li>
-        
-      <li>Container-based network simulation</li>
-    
-    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Simulating networks with VPP</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/usecases/container_test.md.txt" rel="nofollow"> View page source</a>
-          
-        
+            <a href="../_sources/usecases/container_test.rst.txt" rel="nofollow"> View page source</a>
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="container-based-network-simulation">
-<h1>Container-based network simulation<a class="headerlink" href="#container-based-network-simulation" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="simulating-networks-with-vpp">
+<h1>Simulating networks with VPP<a class="headerlink" href="#simulating-networks-with-vpp" title="Permalink to this headline"></a></h1>
 <p>The “make test” framework provides a good way to test individual
-features. However, when testing several features at once - or
-validating nontrivial configurations - it may prove difficult or
-impossible to use the unit-test framework.</p>
+features. However, when testing several features at once - or validating
+nontrivial configurations - it may prove difficult or impossible to use
+the unit-test framework.</p>
 <p>This note explains how to set up lxc/lxd, and a 5-container testbed to
 test a split-tunnel nat + ikev2 + ipsec + ipv6 prefix-delegation
 scenario.</p>
-<div class="section" id="os-distro-test-results">
-<h2>OS / Distro test results<a class="headerlink" href="#os-distro-test-results" title="Permalink to this headline">¶</a></h2>
+<section id="os-distro-test-results">
+<h2>OS / Distro test results<a class="headerlink" href="#os-distro-test-results" title="Permalink to this headline"></a></h2>
 <p>This setup has been tested on an Ubuntu 18.04 LTS system. If you’re
 feeling adventurous, the same scenario also worked on a recent Ubuntu
 20.04 “preview” daily build.</p>
 <p>Other distros may work fine, or not at all.</p>
-</div>
-<div class="section" id="proxy-server">
-<h2>Proxy Server<a class="headerlink" href="#proxy-server" title="Permalink to this headline">¶</a></h2>
-<p>If you need to use a proxy server e.g. from a lab system, you’ll
-probably need to set HTTP_PROXY, HTTPS_PROXY, http_proxy and
-https_proxy in /etc/environment. Directly setting variables in the
-environment doesn’t work. The lxd snap <em>daemon</em> needs the proxy settings,
-not the user interface.</p>
+</section>
+<section id="proxy-server">
+<h2>Proxy Server<a class="headerlink" href="#proxy-server" title="Permalink to this headline"></a></h2>
+<p>If you need to use a proxy server e.g. from a lab system, you’ll
+probably need to set HTTP_PROXY, HTTPS_PROXY, http_proxy and https_proxy
+in /etc/environment. Directly setting variables in the environment
+doesn’t work. The lxd snap <em>daemon</em> needs the proxy settings, not the
+user interface.</p>
 <p>Something like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="mi">8080</span>
-    <span class="n">HTTPS_PROXY</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="mi">4333</span>
-    <span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="mi">8080</span>
-    <span class="n">https_proxy</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="mi">4333</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP_PROXY</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="mi">8080</span>
+<span class="n">HTTPS_PROXY</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="mi">4333</span>
+<span class="n">http_proxy</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="mi">8080</span>
+<span class="n">https_proxy</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">server</span><span class="p">:</span><span class="mi">4333</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="install-and-configure-lxd">
-<h2>Install and configure lxd<a class="headerlink" href="#install-and-configure-lxd" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="install-and-configure-lxd">
+<h2>Install and configure lxd<a class="headerlink" href="#install-and-configure-lxd" title="Permalink to this headline"></a></h2>
 <p>Install the lxd snap. The lxd snap is up to date, as opposed to the
 results of “sudo apt-get install lxd”.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># snap install lxd</span>
-    <span class="c1"># lxd init</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># snap install lxd</span>
+<span class="c1"># lxd init</span>
 </pre></div>
 </div>
 <p>“lxd init” asks several questions. With the exception of the storage
 pool, take the defaults. To match the configs shown below, create a
 storage pool named “vpp.” Storage pools of type “zfs” and “files” have
 been tested successfully.</p>
-<p>zfs is more space-efficient. “lxc copy” is infinitely faster with
-zfs. The path for the zfs storage pool is under /var. Do not replace
-it with a symbolic link, unless you want to rebuild all of your
-containers from scratch. Ask me how I know that.</p>
-</div>
-<div class="section" id="create-three-network-segments">
-<h2>Create three network segments<a class="headerlink" href="#create-three-network-segments" title="Permalink to this headline">¶</a></h2>
+<p>zfs is more space-efficient. “lxc copy” is infinitely faster with zfs.
+The path for the zfs storage pool is under /var. Do not replace it with
+a symbolic link, unless you want to rebuild all of your containers from
+scratch. Ask me how I know that.</p>
+</section>
+<section id="create-three-network-segments">
+<h2>Create three network segments<a class="headerlink" href="#create-three-network-segments" title="Permalink to this headline"></a></h2>
 <p>Aka, linux bridges.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># lxc network create respond</span>
-    <span class="c1"># lxc network create internet</span>
-    <span class="c1"># lxc network create initiate</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lxc network create respond</span>
+<span class="c1"># lxc network create internet</span>
+<span class="c1"># lxc network create initiate</span>
 </pre></div>
 </div>
 <p>We’ll explain the test topology in a bit. Stay tuned.</p>
-</div>
-<div class="section" id="set-up-the-default-container-profile">
-<h2>Set up the default container profile<a class="headerlink" href="#set-up-the-default-container-profile" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="set-up-the-default-container-profile">
+<h2>Set up the default container profile<a class="headerlink" href="#set-up-the-default-container-profile" title="Permalink to this headline"></a></h2>
 <p>Execute “lxc profile edit default”, and install the following
 configuration. Note that the “shared” directory should mount your vpp
 workspaces. With that trick, you can edit code from any of the
 containers, run vpp without installing it, etc.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">config</span><span class="p">:</span> <span class="p">{}</span>
-    <span class="n">description</span><span class="p">:</span> <span class="n">Default</span> <span class="n">LXD</span> <span class="n">profile</span>
-    <span class="n">devices</span><span class="p">:</span>
-      <span class="n">eth0</span><span class="p">:</span>
-        <span class="n">name</span><span class="p">:</span> <span class="n">eth0</span>
-        <span class="n">network</span><span class="p">:</span> <span class="n">lxdbr0</span>
-        <span class="nb">type</span><span class="p">:</span> <span class="n">nic</span>
-      <span class="n">eth1</span><span class="p">:</span>
-        <span class="n">name</span><span class="p">:</span> <span class="n">eth1</span>
-        <span class="n">nictype</span><span class="p">:</span> <span class="n">bridged</span>
-        <span class="n">parent</span><span class="p">:</span> <span class="n">internet</span>
-        <span class="nb">type</span><span class="p">:</span> <span class="n">nic</span>
-      <span class="n">eth2</span><span class="p">:</span>
-        <span class="n">name</span><span class="p">:</span> <span class="n">eth2</span>
-        <span class="n">nictype</span><span class="p">:</span> <span class="n">bridged</span>
-        <span class="n">parent</span><span class="p">:</span> <span class="n">respond</span>
-        <span class="nb">type</span><span class="p">:</span> <span class="n">nic</span>
-      <span class="n">eth3</span><span class="p">:</span>
-        <span class="n">name</span><span class="p">:</span> <span class="n">eth3</span>
-        <span class="n">nictype</span><span class="p">:</span> <span class="n">bridged</span>
-        <span class="n">parent</span><span class="p">:</span> <span class="n">initiate</span>
-        <span class="nb">type</span><span class="p">:</span> <span class="n">nic</span>
-      <span class="n">root</span><span class="p">:</span>
-        <span class="n">path</span><span class="p">:</span> <span class="o">/</span>
-        <span class="n">pool</span><span class="p">:</span> <span class="n">vpp</span>
-        <span class="nb">type</span><span class="p">:</span> <span class="n">disk</span>
-      <span class="n">shared</span><span class="p">:</span>
-        <span class="n">path</span><span class="p">:</span> <span class="o">/</span><span class="n">scratch</span>
-        <span class="n">source</span><span class="p">:</span> <span class="o">/</span><span class="n">scratch</span>
-        <span class="nb">type</span><span class="p">:</span> <span class="n">disk</span>
-    <span class="n">name</span><span class="p">:</span> <span class="n">default</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">:</span> <span class="p">{}</span>
+<span class="n">description</span><span class="p">:</span> <span class="n">Default</span> <span class="n">LXD</span> <span class="n">profile</span>
+<span class="n">devices</span><span class="p">:</span>
+  <span class="n">eth0</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">eth0</span>
+    <span class="n">network</span><span class="p">:</span> <span class="n">lxdbr0</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">nic</span>
+  <span class="n">eth1</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">eth1</span>
+    <span class="n">nictype</span><span class="p">:</span> <span class="n">bridged</span>
+    <span class="n">parent</span><span class="p">:</span> <span class="n">internet</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">nic</span>
+  <span class="n">eth2</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">eth2</span>
+    <span class="n">nictype</span><span class="p">:</span> <span class="n">bridged</span>
+    <span class="n">parent</span><span class="p">:</span> <span class="n">respond</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">nic</span>
+  <span class="n">eth3</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">eth3</span>
+    <span class="n">nictype</span><span class="p">:</span> <span class="n">bridged</span>
+    <span class="n">parent</span><span class="p">:</span> <span class="n">initiate</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">nic</span>
+  <span class="n">root</span><span class="p">:</span>
+    <span class="n">path</span><span class="p">:</span> <span class="o">/</span>
+    <span class="n">pool</span><span class="p">:</span> <span class="n">vpp</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">disk</span>
+  <span class="n">shared</span><span class="p">:</span>
+    <span class="n">path</span><span class="p">:</span> <span class="o">/</span><span class="n">scratch</span>
+    <span class="n">source</span><span class="p">:</span> <span class="o">/</span><span class="n">scratch</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">disk</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">default</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="set-up-the-network-configurations">
-<h2>Set up the network configurations<a class="headerlink" href="#set-up-the-network-configurations" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="set-up-the-network-configurations">
+<h2>Set up the network configurations<a class="headerlink" href="#set-up-the-network-configurations" title="Permalink to this headline"></a></h2>
 <p>Edit the fake “internet” backbone:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="c1"># lxc network edit internet</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lxc network edit internet</span>
 </pre></div>
 </div>
 <p>Install the ip addresses shown below, to avoid having to rebuild the vpp
 and host configuration:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">config</span><span class="p">:</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.1</span><span class="o">/</span><span class="mi">24</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">dhcp</span><span class="o">.</span><span class="n">ranges</span><span class="p">:</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.10</span><span class="o">-</span><span class="mf">10.26</span><span class="o">.</span><span class="mf">68.50</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
-      <span class="n">ipv6</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="n">none</span>
-      <span class="n">ipv6</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span>
-    <span class="n">description</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">name</span><span class="p">:</span> <span class="n">internet</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">bridge</span>
-    <span class="n">used_by</span><span class="p">:</span>
-    <span class="n">managed</span><span class="p">:</span> <span class="n">true</span>
-    <span class="n">status</span><span class="p">:</span> <span class="n">Created</span>
-    <span class="n">locations</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">none</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">:</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="mf">10.26.68.1</span><span class="o">/</span><span class="mi">24</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">dhcp</span><span class="o">.</span><span class="n">ranges</span><span class="p">:</span> <span class="mf">10.26.68.10</span><span class="o">-</span><span class="mf">10.26.68.50</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
+  <span class="n">ipv6</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="n">none</span>
+  <span class="n">ipv6</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span>
+<span class="n">description</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">internet</span>
+<span class="nb">type</span><span class="p">:</span> <span class="n">bridge</span>
+<span class="n">used_by</span><span class="p">:</span>
+<span class="n">managed</span><span class="p">:</span> <span class="n">true</span>
+<span class="n">status</span><span class="p">:</span> <span class="n">Created</span>
+<span class="n">locations</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">none</span>
 </pre></div>
 </div>
-<p>Repeat the process with the “respond” and “initiate” networks, using these
-configurations:</p>
-<div class="section" id="respond-network-configuration">
-<h3>respond network configuration<a class="headerlink" href="#respond-network-configuration" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">config</span><span class="p">:</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.1</span><span class="o">/</span><span class="mi">24</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">dhcp</span><span class="o">.</span><span class="n">ranges</span><span class="p">:</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.10</span><span class="o">-</span><span class="mf">10.166</span><span class="o">.</span><span class="mf">14.50</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
-      <span class="n">ipv6</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="n">none</span>
-      <span class="n">ipv6</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span>
-    <span class="n">description</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">name</span><span class="p">:</span> <span class="n">respond</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">bridge</span>
-    <span class="n">used_by</span><span class="p">:</span>
-    <span class="n">managed</span><span class="p">:</span> <span class="n">true</span>
-    <span class="n">status</span><span class="p">:</span> <span class="n">Created</span>
-    <span class="n">locations</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">none</span>
+<p>Repeat the process with the “respond” and “initiate” networks, using
+these configurations:</p>
+<section id="respond-network-configuration">
+<h3>respond network configuration<a class="headerlink" href="#respond-network-configuration" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">:</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="mf">10.166.14.1</span><span class="o">/</span><span class="mi">24</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">dhcp</span><span class="o">.</span><span class="n">ranges</span><span class="p">:</span> <span class="mf">10.166.14.10</span><span class="o">-</span><span class="mf">10.166.14.50</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
+  <span class="n">ipv6</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="n">none</span>
+  <span class="n">ipv6</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span>
+<span class="n">description</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">respond</span>
+<span class="nb">type</span><span class="p">:</span> <span class="n">bridge</span>
+<span class="n">used_by</span><span class="p">:</span>
+<span class="n">managed</span><span class="p">:</span> <span class="n">true</span>
+<span class="n">status</span><span class="p">:</span> <span class="n">Created</span>
+<span class="n">locations</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">none</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="initiate-network-configuration">
-<h3>initiate network configuration<a class="headerlink" href="#initiate-network-configuration" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">config</span><span class="p">:</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.1</span><span class="o">/</span><span class="mi">24</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">dhcp</span><span class="o">.</span><span class="n">ranges</span><span class="p">:</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.10</span><span class="o">-</span><span class="mf">10.219</span><span class="o">.</span><span class="mf">188.50</span>
-      <span class="n">ipv4</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
-      <span class="n">ipv6</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="n">none</span>
-      <span class="n">ipv6</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span>
-    <span class="n">description</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">name</span><span class="p">:</span> <span class="n">initiate</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">bridge</span>
-    <span class="n">used_by</span><span class="p">:</span>
-    <span class="n">managed</span><span class="p">:</span> <span class="n">true</span>
-    <span class="n">status</span><span class="p">:</span> <span class="n">Created</span>
-    <span class="n">locations</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">none</span>
+</section>
+<section id="initiate-network-configuration">
+<h3>initiate network configuration<a class="headerlink" href="#initiate-network-configuration" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">:</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="mf">10.219.188.1</span><span class="o">/</span><span class="mi">24</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">dhcp</span><span class="o">.</span><span class="n">ranges</span><span class="p">:</span> <span class="mf">10.219.188.10</span><span class="o">-</span><span class="mf">10.219.188.50</span>
+  <span class="n">ipv4</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span>
+  <span class="n">ipv6</span><span class="o">.</span><span class="n">address</span><span class="p">:</span> <span class="n">none</span>
+  <span class="n">ipv6</span><span class="o">.</span><span class="n">nat</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span>
+<span class="n">description</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">initiate</span>
+<span class="nb">type</span><span class="p">:</span> <span class="n">bridge</span>
+<span class="n">used_by</span><span class="p">:</span>
+<span class="n">managed</span><span class="p">:</span> <span class="n">true</span>
+<span class="n">status</span><span class="p">:</span> <span class="n">Created</span>
+<span class="n">locations</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">none</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="create-a-master-container-image">
-<h2>Create a “master” container image<a class="headerlink" href="#create-a-master-container-image" title="Permalink to this headline">¶</a></h2>
-<p>The master container image should be set up so that you can
-build vpp, ssh into the container, edit source code, run gdb, etc.</p>
-<p>Make sure that e.g. public key auth ssh works.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># lxd launch ubuntu:18.04 respond</span>
-    <span class="o">&lt;</span><span class="n">spew</span><span class="o">&gt;</span>
-    <span class="c1"># lxc exec respond bash</span>
-    <span class="n">respond</span><span class="c1"># cd /scratch/my-vpp-workspace</span>
-    <span class="n">respond</span><span class="c1"># apt-get install make ssh</span>
-    <span class="n">respond</span><span class="c1"># make install-dep</span>
-    <span class="n">respond</span><span class="c1"># exit</span>
-    <span class="c1"># lxc stop respond</span>
+</section>
+</section>
+<section id="create-a-master-container-image">
+<h2>Create a “master” container image<a class="headerlink" href="#create-a-master-container-image" title="Permalink to this headline"></a></h2>
+<p>The master container image should be set up so that you can build vpp,
+ssh into the container, edit source code, run gdb, etc.</p>
+<p>Make sure that e.g. public key auth ssh works.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lxd launch ubuntu:18.04 respond</span>
+<span class="o">&lt;</span><span class="n">spew</span><span class="o">&gt;</span>
+<span class="c1"># lxc exec respond bash</span>
+<span class="n">respond</span><span class="c1"># cd /scratch/my-vpp-workspace</span>
+<span class="n">respond</span><span class="c1"># apt-get install make ssh</span>
+<span class="n">respond</span><span class="c1"># make install-dep</span>
+<span class="n">respond</span><span class="c1"># exit</span>
+<span class="c1"># lxc stop respond</span>
 </pre></div>
 </div>
 <p>Mark the container image privileged. If you forget this step, you’ll
 trip over a netlink error (-11) aka EAGAIN when you try to roll in the
 vpp configurations.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># lxc config set respond security.privileged &quot;true&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lxc config set respond security.privileged &quot;true&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="duplicate-the-master-container-image">
-<h2>Duplicate the “master” container image<a class="headerlink" href="#duplicate-the-master-container-image" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="duplicate-the-master-container-image">
+<h2>Duplicate the “master” container image<a class="headerlink" href="#duplicate-the-master-container-image" title="Permalink to this headline"></a></h2>
 <p>To avoid having to configure N containers, be sure that the master
 container image is fully set up before you help it have children:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># lxc copy respond respondhost</span>
-    <span class="c1"># lxc copy respond initiate</span>
-    <span class="c1"># lxc copy respond initiatehost</span>
-    <span class="c1"># lxc copy respond dhcpserver    # optional, to test ipv6 prefix delegation</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># lxc copy respond respondhost</span>
+<span class="c1"># lxc copy respond initiate</span>
+<span class="c1"># lxc copy respond initiatehost</span>
+<span class="c1"># lxc copy respond dhcpserver    # optional, to test ipv6 prefix delegation</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="install-handy-script">
-<h2>Install handy script<a class="headerlink" href="#install-handy-script" title="Permalink to this headline">¶</a></h2>
-<p>See below for a handly script which executes lxc commands across the
-current set of running containers. I call it “lxc-foreach,” feel free
-to call the script Ishmael if you like.</p>
+</section>
+<section id="install-handy-script">
+<h2>Install handy script<a class="headerlink" href="#install-handy-script" title="Permalink to this headline"></a></h2>
+<p>See below for a handy script which executes lxc commands across the
+current set of running containers. I call it “lxc-foreach,” feel free to
+call the script Ishmael if you like.</p>
 <p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ lxc-foreach start
-    &lt;issues &quot;lxc start&quot; for each container in the list&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc-foreach start
+&lt;issues &quot;lxc start&quot; for each container in the list&gt;
 </pre></div>
 </div>
 <p>After a few seconds, use this one to open an ssh connection to each
 container. The ssh command parses the output of “lxc info,” which
 displays container ip addresses.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ lxc-foreach ssh
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc-foreach ssh
 </pre></div>
 </div>
 <p>Here’s the script:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    #!/bin/bash
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
 
-    set -u
-    export containers=&quot;respond respondhost initiate initiatehost dhcpserver&quot;
+set -u
+export containers=&quot;respond respondhost initiate initiatehost dhcpserver&quot;
 
-    if [ x$1 = &quot;x&quot; ] ; then
-        echo missing command
-        exit 1
-    fi
+if [ x$1 = &quot;x&quot; ] ; then
+    echo missing command
+    exit 1
+fi
 
-    if [ $1 = &quot;ssh&quot; ] ; then
-        for c in $containers
-        do
-            inet=`lxc info $c | grep eth0 | grep -v inet6 | head -1 | cut -f 3`
-            if [ x$inet = &quot;x&quot; ] ; then
-                echo $c not started
-            else
-                gnome-terminal --command &quot;/usr/bin/ssh $inet&quot;
-            fi
-        done
-    exit 0
-    fi
-
+if [ $1 = &quot;ssh&quot; ] ; then
     for c in $containers
     do
-        echo lxc $1 $c
-        lxc $1 $c
+        inet=`lxc info $c | grep eth0 | grep -v inet6 | head -1 | cut -f 3`
+        if [ x$inet = &quot;x&quot; ] ; then
+            echo $c not started
+        else
+            gnome-terminal --command &quot;/usr/bin/ssh $inet&quot;
+        fi
     done
+exit 0
+fi
 
-    exit 0
+for c in $containers
+do
+    echo lxc $1 $c
+    lxc $1 $c
+done
+
+exit 0
 </pre></div>
 </div>
-</div>
-<div class="section" id="test-topology">
-<h2>Test topology<a class="headerlink" href="#test-topology" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="test-topology">
+<h2>Test topology<a class="headerlink" href="#test-topology" title="Permalink to this headline"></a></h2>
 <p>Finally, we’re ready to describe a test topology. First, a picture:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">===+========</span> <span class="n">management</span> <span class="n">lan</span><span class="o">/</span><span class="n">bridge</span> <span class="n">lxdbr0</span> <span class="p">(</span><span class="n">dhcp</span><span class="p">)</span> <span class="o">===========+===</span>
-       <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
-       <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
-       <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
-       <span class="n">v</span>                             <span class="o">|</span>                          <span class="n">v</span>
-      <span class="n">eth0</span>                           <span class="o">|</span>                         <span class="n">eth0</span>
-    <span class="o">+------+</span> <span class="n">eth1</span>                                       <span class="n">eth1</span> <span class="o">+------+</span>
-    <span class="o">|</span> <span class="n">respond</span> <span class="o">|</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">88.100</span> <span class="o">&lt;=</span> <span class="n">internet</span> <span class="n">bridge</span> <span class="o">=&gt;</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">88.101</span> <span class="o">|</span> <span class="n">initiate</span> <span class="o">|</span>
-    <span class="o">+------+</span>                                                 <span class="o">+------+</span>
-      <span class="n">eth2</span> <span class="o">/</span> <span class="n">bvi0</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.2</span>        <span class="o">|</span>       <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.2</span> <span class="n">eth3</span> <span class="o">/</span> <span class="n">bvi0</span>
-       <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
-       <span class="o">|</span> <span class="p">(</span><span class="s2">&quot;respond&quot;</span> <span class="n">bridge</span><span class="p">)</span>             <span class="o">|</span>          <span class="p">(</span><span class="s2">&quot;initiate&quot;</span> <span class="n">bridge</span><span class="p">)</span> <span class="o">|</span>
-       <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
-       <span class="n">v</span>                             <span class="o">|</span>                          <span class="n">v</span>
-      <span class="n">eth2</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.3</span>               <span class="o">|</span>           <span class="n">eth3</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.3</span>
-    <span class="o">+----------+</span>                     <span class="o">|</span>                   <span class="o">+----------+</span>
-    <span class="o">|</span> <span class="n">respondhost</span> <span class="o">|</span>                     <span class="o">|</span>                   <span class="o">|</span> <span class="n">respondhost</span> <span class="o">|</span>
-    <span class="o">+----------+</span>                     <span class="o">|</span>                   <span class="o">+----------+</span>
-      <span class="n">eth0</span> <span class="p">(</span><span class="n">management</span> <span class="n">lan</span><span class="p">)</span> <span class="o">&lt;========+========&gt;</span> <span class="n">eth0</span> <span class="p">(</span><span class="n">management</span> <span class="n">lan</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">===+========</span> <span class="n">management</span> <span class="n">lan</span><span class="o">/</span><span class="n">bridge</span> <span class="n">lxdbr0</span> <span class="p">(</span><span class="n">dhcp</span><span class="p">)</span> <span class="o">===========+===</span>
+   <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
+   <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
+   <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
+   <span class="n">v</span>                             <span class="o">|</span>                          <span class="n">v</span>
+  <span class="n">eth0</span>                           <span class="o">|</span>                         <span class="n">eth0</span>
+<span class="o">+------+</span> <span class="n">eth1</span>                                       <span class="n">eth1</span> <span class="o">+------+</span>
+<span class="o">|</span> <span class="n">respond</span> <span class="o">|</span> <span class="mf">10.26.88.100</span> <span class="o">&lt;=</span> <span class="n">internet</span> <span class="n">bridge</span> <span class="o">=&gt;</span> <span class="mf">10.26.88.101</span> <span class="o">|</span> <span class="n">initiate</span> <span class="o">|</span>
+<span class="o">+------+</span>                                                 <span class="o">+------+</span>
+  <span class="n">eth2</span> <span class="o">/</span> <span class="n">bvi0</span> <span class="mf">10.166.14.2</span>        <span class="o">|</span>       <span class="mf">10.219.188.2</span> <span class="n">eth3</span> <span class="o">/</span> <span class="n">bvi0</span>
+   <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
+   <span class="o">|</span> <span class="p">(</span><span class="s2">&quot;respond&quot;</span> <span class="n">bridge</span><span class="p">)</span>             <span class="o">|</span>          <span class="p">(</span><span class="s2">&quot;initiate&quot;</span> <span class="n">bridge</span><span class="p">)</span> <span class="o">|</span>
+   <span class="o">|</span>                             <span class="o">|</span>                          <span class="o">|</span>
+   <span class="n">v</span>                             <span class="o">|</span>                          <span class="n">v</span>
+  <span class="n">eth2</span> <span class="mf">10.166.14.3</span>               <span class="o">|</span>           <span class="n">eth3</span> <span class="mf">10.219.188.3</span>
+<span class="o">+----------+</span>                     <span class="o">|</span>                   <span class="o">+----------+</span>
+<span class="o">|</span> <span class="n">respondhost</span> <span class="o">|</span>                     <span class="o">|</span>                   <span class="o">|</span> <span class="n">respondhost</span> <span class="o">|</span>
+<span class="o">+----------+</span>                     <span class="o">|</span>                   <span class="o">+----------+</span>
+  <span class="n">eth0</span> <span class="p">(</span><span class="n">management</span> <span class="n">lan</span><span class="p">)</span> <span class="o">&lt;========+========&gt;</span> <span class="n">eth0</span> <span class="p">(</span><span class="n">management</span> <span class="n">lan</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="test-topology-discussion">
-<h3>Test topology discussion<a class="headerlink" href="#test-topology-discussion" title="Permalink to this headline">¶</a></h3>
+<section id="test-topology-discussion">
+<h3>Test topology discussion<a class="headerlink" href="#test-topology-discussion" title="Permalink to this headline"></a></h3>
 <p>This topology is suitable for testing almost any tunnel encap/decap
-scenario.  The two containers “respondhost” and “initiatehost” are end-stations
-connected to two vpp instances running on “respond” and “initiate”.</p>
-<p>We leverage the Linux end-station network stacks to generate traffic
-of all sorts.</p>
-<p>The so-called “internet” bridge models the public internet. The “respond” and
-“initiate” bridges connect vpp instances to local hosts</p>
-</div>
-</div>
-<div class="section" id="end-station-configs">
-<h2>End station configs<a class="headerlink" href="#end-station-configs" title="Permalink to this headline">¶</a></h2>
+scenario. The two containers “respondhost” and “initiatehost” are
+end-stations connected to two vpp instances running on “respond” and
+“initiate”.</p>
+<p>We leverage the Linux end-station network stacks to generate traffic of
+all sorts.</p>
+<p>The so-called “internet” bridge models the public internet. The
+“respond” and “initiate” bridges connect vpp instances to local hosts</p>
+</section>
+</section>
+<section id="end-station-configs">
+<h2>End station configs<a class="headerlink" href="#end-station-configs" title="Permalink to this headline"></a></h2>
 <p>The end-station Linux configurations set up the eth2 and eth3 ip
-addresses shown above, and add tunnel routes to the opposite
-end-station networks.</p>
-<div class="section" id="respondhost-configuration">
-<h3>respondhost configuration<a class="headerlink" href="#respondhost-configuration" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">ifconfig</span> <span class="n">eth2</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.3</span><span class="o">/</span><span class="mi">24</span> <span class="n">up</span>
-    <span class="n">route</span> <span class="n">add</span> <span class="o">-</span><span class="n">net</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">gw</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.2</span>
+addresses shown above, and add tunnel routes to the opposite end-station
+networks.</p>
+<section id="respondhost-configuration">
+<h3>respondhost configuration<a class="headerlink" href="#respondhost-configuration" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ifconfig</span> <span class="n">eth2</span> <span class="mf">10.166.14.3</span><span class="o">/</span><span class="mi">24</span> <span class="n">up</span>
+<span class="n">route</span> <span class="n">add</span> <span class="o">-</span><span class="n">net</span> <span class="mf">10.219.188.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">gw</span> <span class="mf">10.166.14.2</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="initiatehost-configuration">
-<h3>initiatehost configuration<a class="headerlink" href="#initiatehost-configuration" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">ifconfig</span> <span class="n">eth3</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.3</span><span class="o">/</span><span class="mi">24</span> <span class="n">up</span>
-    <span class="n">sudo</span> <span class="n">route</span> <span class="n">add</span> <span class="o">-</span><span class="n">net</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">gw</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.2</span>
+</section>
+<section id="initiatehost-configuration">
+<h3>initiatehost configuration<a class="headerlink" href="#initiatehost-configuration" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">ifconfig</span> <span class="n">eth3</span> <span class="mf">10.219.188.3</span><span class="o">/</span><span class="mi">24</span> <span class="n">up</span>
+<span class="n">sudo</span> <span class="n">route</span> <span class="n">add</span> <span class="o">-</span><span class="n">net</span> <span class="mf">10.166.14.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">gw</span> <span class="mf">10.219.188.2</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="vpp-configs">
-<h2>VPP configs<a class="headerlink" href="#vpp-configs" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="vpp-configs">
+<h2>VPP configs<a class="headerlink" href="#vpp-configs" title="Permalink to this headline"></a></h2>
 <p>Split nat44 / ikev2 + ipsec tunneling, with ipv6 prefix delegation in
 the “respond” config.</p>
-<div class="section" id="respond-configuration">
-<h3>respond configuration<a class="headerlink" href="#respond-configuration" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="nb">set</span> <span class="n">term</span> <span class="n">pag</span> <span class="n">off</span>
+<section id="respond-configuration">
+<h3>respond configuration<a class="headerlink" href="#respond-configuration" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">term</span> <span class="n">pag</span> <span class="n">off</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;internet&quot;</span> <span class="p">}</span>
-    <span class="n">create</span> <span class="n">host</span><span class="o">-</span><span class="n">interface</span> <span class="n">name</span> <span class="n">eth1</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.100</span><span class="o">/</span><span class="mi">24</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip6</span> <span class="n">table</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="mi">0</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">up</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;internet&quot;</span> <span class="p">}</span>
+<span class="n">create</span> <span class="n">host</span><span class="o">-</span><span class="n">interface</span> <span class="n">name</span> <span class="n">eth1</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="mf">10.26.68.100</span><span class="o">/</span><span class="mi">24</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">ip6</span> <span class="n">table</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="mi">0</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">up</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="n">default</span> <span class="n">route</span> <span class="n">via</span> <span class="n">initiate</span> <span class="p">}</span>
-    <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">0</span> <span class="n">via</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.101</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="n">default</span> <span class="n">route</span> <span class="n">via</span> <span class="n">initiate</span> <span class="p">}</span>
+<span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">0.0.0.0</span><span class="o">/</span><span class="mi">0</span> <span class="n">via</span> <span class="mf">10.26.68.101</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;respond-private-net&quot;</span> <span class="p">}</span>
-    <span class="n">create</span> <span class="n">host</span><span class="o">-</span><span class="n">interface</span> <span class="n">name</span> <span class="n">eth2</span>
-    <span class="n">bvi</span> <span class="n">create</span> <span class="n">instance</span> <span class="mi">0</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">l2</span> <span class="n">bridge</span> <span class="n">bvi0</span> <span class="mi">1</span> <span class="n">bvi</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">bvi0</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.2</span><span class="o">/</span><span class="mi">24</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">bvi0</span> <span class="n">up</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">l2</span> <span class="n">bridge</span> <span class="n">host</span><span class="o">-</span><span class="n">eth2</span> <span class="mi">1</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">host</span><span class="o">-</span><span class="n">eth2</span> <span class="n">up</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;respond-private-net&quot;</span> <span class="p">}</span>
+<span class="n">create</span> <span class="n">host</span><span class="o">-</span><span class="n">interface</span> <span class="n">name</span> <span class="n">eth2</span>
+<span class="n">bvi</span> <span class="n">create</span> <span class="n">instance</span> <span class="mi">0</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">l2</span> <span class="n">bridge</span> <span class="n">bvi0</span> <span class="mi">1</span> <span class="n">bvi</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">bvi0</span> <span class="mf">10.166.14.2</span><span class="o">/</span><span class="mi">24</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">bvi0</span> <span class="n">up</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">l2</span> <span class="n">bridge</span> <span class="n">host</span><span class="o">-</span><span class="n">eth2</span> <span class="mi">1</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">host</span><span class="o">-</span><span class="n">eth2</span> <span class="n">up</span>
 
 
-    <span class="n">nat44</span> <span class="n">add</span> <span class="n">interface</span> <span class="n">address</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
-    <span class="nb">set</span> <span class="n">interface</span> <span class="n">nat44</span> <span class="ow">in</span> <span class="n">host</span><span class="o">-</span><span class="n">eth2</span> <span class="n">out</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
-    <span class="n">nat44</span> <span class="n">add</span> <span class="n">identity</span> <span class="n">mapping</span> <span class="n">external</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">udp</span> <span class="mi">500</span>
-    <span class="n">nat44</span> <span class="n">add</span> <span class="n">identity</span> <span class="n">mapping</span> <span class="n">external</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">udp</span> <span class="mi">4500</span>
-    <span class="n">comment</span> <span class="p">{</span> <span class="n">nat44</span> <span class="n">untranslated</span> <span class="n">subnet</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.0</span><span class="o">/</span><span class="mi">24</span> <span class="p">}</span>
+<span class="n">nat44</span> <span class="n">add</span> <span class="n">interface</span> <span class="n">address</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
+<span class="nb">set</span> <span class="n">interface</span> <span class="n">nat44</span> <span class="ow">in</span> <span class="n">host</span><span class="o">-</span><span class="n">eth2</span> <span class="n">out</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
+<span class="n">nat44</span> <span class="n">add</span> <span class="n">identity</span> <span class="n">mapping</span> <span class="n">external</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">udp</span> <span class="mi">500</span>
+<span class="n">nat44</span> <span class="n">add</span> <span class="n">identity</span> <span class="n">mapping</span> <span class="n">external</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">udp</span> <span class="mi">4500</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="n">nat44</span> <span class="n">untranslated</span> <span class="n">subnet</span> <span class="mf">10.219.188.0</span><span class="o">/</span><span class="mi">24</span> <span class="p">}</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="n">responder</span> <span class="n">profile</span> <span class="p">}</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="n">add</span> <span class="n">initiate</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">udp</span><span class="o">-</span><span class="n">encap</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">auth</span> <span class="n">rsa</span><span class="o">-</span><span class="n">sig</span> <span class="n">cert</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">setups</span><span class="o">/</span><span class="n">respondcert</span><span class="o">.</span><span class="n">pem</span>
-    <span class="nb">set</span> <span class="n">ikev2</span> <span class="n">local</span> <span class="n">key</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">setups</span><span class="o">/</span><span class="n">initiatekey</span><span class="o">.</span><span class="n">pem</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="nb">id</span> <span class="n">local</span> <span class="n">fqdn</span> <span class="n">initiator</span><span class="o">.</span><span class="n">my</span><span class="o">.</span><span class="n">net</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="nb">id</span> <span class="n">remote</span> <span class="n">fqdn</span> <span class="n">responder</span><span class="o">.</span><span class="n">my</span><span class="o">.</span><span class="n">net</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">traffic</span><span class="o">-</span><span class="n">selector</span> <span class="n">remote</span> <span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.0</span> <span class="o">-</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.255</span> <span class="n">port</span><span class="o">-</span><span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">65535</span> <span class="n">protocol</span> <span class="mi">0</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">traffic</span><span class="o">-</span><span class="n">selector</span> <span class="n">local</span> <span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.0</span> <span class="o">-</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.255</span> <span class="n">port</span><span class="o">-</span><span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">65535</span> <span class="n">protocol</span> <span class="mi">0</span>
-    <span class="n">create</span> <span class="n">ipip</span> <span class="n">tunnel</span> <span class="n">src</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.100</span> <span class="n">dst</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.101</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">tunnel</span> <span class="n">ipip0</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="n">responder</span> <span class="n">profile</span> <span class="p">}</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="n">add</span> <span class="n">initiate</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">udp</span><span class="o">-</span><span class="n">encap</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">auth</span> <span class="n">rsa</span><span class="o">-</span><span class="n">sig</span> <span class="n">cert</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">setups</span><span class="o">/</span><span class="n">respondcert</span><span class="o">.</span><span class="n">pem</span>
+<span class="nb">set</span> <span class="n">ikev2</span> <span class="n">local</span> <span class="n">key</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">setups</span><span class="o">/</span><span class="n">initiatekey</span><span class="o">.</span><span class="n">pem</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="nb">id</span> <span class="n">local</span> <span class="n">fqdn</span> <span class="n">initiator</span><span class="o">.</span><span class="n">my</span><span class="o">.</span><span class="n">net</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="nb">id</span> <span class="n">remote</span> <span class="n">fqdn</span> <span class="n">responder</span><span class="o">.</span><span class="n">my</span><span class="o">.</span><span class="n">net</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">traffic</span><span class="o">-</span><span class="n">selector</span> <span class="n">remote</span> <span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="mf">10.219.188.0</span> <span class="o">-</span> <span class="mf">10.219.188.255</span> <span class="n">port</span><span class="o">-</span><span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">65535</span> <span class="n">protocol</span> <span class="mi">0</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">traffic</span><span class="o">-</span><span class="n">selector</span> <span class="n">local</span> <span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="mf">10.166.14.0</span> <span class="o">-</span> <span class="mf">10.166.14.255</span> <span class="n">port</span><span class="o">-</span><span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">65535</span> <span class="n">protocol</span> <span class="mi">0</span>
+<span class="n">create</span> <span class="n">ipip</span> <span class="n">tunnel</span> <span class="n">src</span> <span class="mf">10.26.68.100</span> <span class="n">dst</span> <span class="mf">10.26.68.101</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">initiate</span> <span class="n">tunnel</span> <span class="n">ipip0</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="n">ipv6</span> <span class="n">prefix</span> <span class="n">delegation</span> <span class="p">}</span>
-    <span class="n">ip6</span> <span class="n">nd</span> <span class="n">address</span> <span class="n">autoconfig</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">default</span><span class="o">-</span><span class="n">route</span>
-    <span class="n">dhcp6</span> <span class="n">client</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
-    <span class="n">dhcp6</span> <span class="n">pd</span> <span class="n">client</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">prefix</span> <span class="n">group</span> <span class="n">hgw</span>
-    <span class="nb">set</span> <span class="n">ip6</span> <span class="n">address</span> <span class="n">bvi0</span> <span class="n">prefix</span> <span class="n">group</span> <span class="n">hgw</span> <span class="p">::</span><span class="mi">2</span><span class="o">/</span><span class="mi">56</span>
-    <span class="n">ip6</span> <span class="n">nd</span> <span class="n">address</span> <span class="n">autoconfig</span> <span class="n">bvi0</span> <span class="n">default</span><span class="o">-</span><span class="n">route</span>
-    <span class="n">ip6</span> <span class="n">nd</span> <span class="n">bvi0</span> <span class="n">ra</span><span class="o">-</span><span class="n">interval</span> <span class="mi">5</span> <span class="mi">3</span> <span class="n">ra</span><span class="o">-</span><span class="n">lifetime</span> <span class="mi">180</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="n">ipv6</span> <span class="n">prefix</span> <span class="n">delegation</span> <span class="p">}</span>
+<span class="n">ip6</span> <span class="n">nd</span> <span class="n">address</span> <span class="n">autoconfig</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">default</span><span class="o">-</span><span class="n">route</span>
+<span class="n">dhcp6</span> <span class="n">client</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
+<span class="n">dhcp6</span> <span class="n">pd</span> <span class="n">client</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">prefix</span> <span class="n">group</span> <span class="n">hgw</span>
+<span class="nb">set</span> <span class="n">ip6</span> <span class="n">address</span> <span class="n">bvi0</span> <span class="n">prefix</span> <span class="n">group</span> <span class="n">hgw</span> <span class="p">::</span><span class="mi">2</span><span class="o">/</span><span class="mi">56</span>
+<span class="n">ip6</span> <span class="n">nd</span> <span class="n">address</span> <span class="n">autoconfig</span> <span class="n">bvi0</span> <span class="n">default</span><span class="o">-</span><span class="n">route</span>
+<span class="n">ip6</span> <span class="n">nd</span> <span class="n">bvi0</span> <span class="n">ra</span><span class="o">-</span><span class="n">interval</span> <span class="mi">5</span> <span class="mi">3</span> <span class="n">ra</span><span class="o">-</span><span class="n">lifetime</span> <span class="mi">180</span>
 
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">mtu</span> <span class="n">packet</span> <span class="mi">1390</span> <span class="n">ipip0</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">unnum</span> <span class="n">ipip0</span> <span class="n">use</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
-    <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">via</span> <span class="n">ipip0</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">mtu</span> <span class="n">packet</span> <span class="mi">1390</span> <span class="n">ipip0</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">unnum</span> <span class="n">ipip0</span> <span class="n">use</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
+<span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">10.219.188.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">via</span> <span class="n">ipip0</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="initiate-configuration">
-<h3>initiate configuration<a class="headerlink" href="#initiate-configuration" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="nb">set</span> <span class="n">term</span> <span class="n">pag</span> <span class="n">off</span>
+</section>
+<section id="initiate-configuration">
+<h3>initiate configuration<a class="headerlink" href="#initiate-configuration" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">term</span> <span class="n">pag</span> <span class="n">off</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;internet&quot;</span> <span class="p">}</span>
-    <span class="n">create</span> <span class="n">host</span><span class="o">-</span><span class="n">interface</span> <span class="n">name</span> <span class="n">eth1</span>
-    <span class="n">comment</span> <span class="p">{</span> <span class="nb">set</span> <span class="n">dhcp</span> <span class="n">client</span> <span class="n">intfc</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">hostname</span> <span class="n">initiate</span> <span class="p">}</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.101</span><span class="o">/</span><span class="mi">24</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">up</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;internet&quot;</span> <span class="p">}</span>
+<span class="n">create</span> <span class="n">host</span><span class="o">-</span><span class="n">interface</span> <span class="n">name</span> <span class="n">eth1</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="nb">set</span> <span class="n">dhcp</span> <span class="n">client</span> <span class="n">intfc</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">hostname</span> <span class="n">initiate</span> <span class="p">}</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="mf">10.26.68.101</span><span class="o">/</span><span class="mi">24</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">up</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="n">default</span> <span class="n">route</span> <span class="n">via</span> <span class="s2">&quot;internet gateway&quot;</span> <span class="p">}</span>
-    <span class="n">comment</span> <span class="p">{</span> <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">0</span> <span class="n">via</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.1</span> <span class="p">}</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="n">default</span> <span class="n">route</span> <span class="n">via</span> <span class="s2">&quot;internet gateway&quot;</span> <span class="p">}</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">0.0.0.0</span><span class="o">/</span><span class="mi">0</span> <span class="n">via</span> <span class="mf">10.26.68.1</span> <span class="p">}</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;initiate-private-net&quot;</span> <span class="p">}</span>
-    <span class="n">create</span> <span class="n">host</span><span class="o">-</span><span class="n">interface</span> <span class="n">name</span> <span class="n">eth3</span>
-    <span class="n">bvi</span> <span class="n">create</span> <span class="n">instance</span> <span class="mi">0</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">l2</span> <span class="n">bridge</span> <span class="n">bvi0</span> <span class="mi">1</span> <span class="n">bvi</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">bvi0</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.2</span><span class="o">/</span><span class="mi">24</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">bvi0</span> <span class="n">up</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">l2</span> <span class="n">bridge</span> <span class="n">host</span><span class="o">-</span><span class="n">eth3</span> <span class="mi">1</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">host</span><span class="o">-</span><span class="n">eth3</span> <span class="n">up</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="s2">&quot;initiate-private-net&quot;</span> <span class="p">}</span>
+<span class="n">create</span> <span class="n">host</span><span class="o">-</span><span class="n">interface</span> <span class="n">name</span> <span class="n">eth3</span>
+<span class="n">bvi</span> <span class="n">create</span> <span class="n">instance</span> <span class="mi">0</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">l2</span> <span class="n">bridge</span> <span class="n">bvi0</span> <span class="mi">1</span> <span class="n">bvi</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">bvi0</span> <span class="mf">10.219.188.2</span><span class="o">/</span><span class="mi">24</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">bvi0</span> <span class="n">up</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">l2</span> <span class="n">bridge</span> <span class="n">host</span><span class="o">-</span><span class="n">eth3</span> <span class="mi">1</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">host</span><span class="o">-</span><span class="n">eth3</span> <span class="n">up</span>
 
-    <span class="n">nat44</span> <span class="n">add</span> <span class="n">interface</span> <span class="n">address</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
-    <span class="nb">set</span> <span class="n">interface</span> <span class="n">nat44</span> <span class="ow">in</span> <span class="n">bvi0</span> <span class="n">out</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
-    <span class="n">nat44</span> <span class="n">add</span> <span class="n">identity</span> <span class="n">mapping</span> <span class="n">external</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">udp</span> <span class="mi">500</span>
-    <span class="n">nat44</span> <span class="n">add</span> <span class="n">identity</span> <span class="n">mapping</span> <span class="n">external</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">udp</span> <span class="mi">4500</span>
-    <span class="n">comment</span> <span class="p">{</span> <span class="n">nat44</span> <span class="n">untranslated</span> <span class="n">subnet</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.0</span><span class="o">/</span><span class="mi">24</span> <span class="p">}</span>
+<span class="n">nat44</span> <span class="n">add</span> <span class="n">interface</span> <span class="n">address</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
+<span class="nb">set</span> <span class="n">interface</span> <span class="n">nat44</span> <span class="ow">in</span> <span class="n">bvi0</span> <span class="n">out</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
+<span class="n">nat44</span> <span class="n">add</span> <span class="n">identity</span> <span class="n">mapping</span> <span class="n">external</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">udp</span> <span class="mi">500</span>
+<span class="n">nat44</span> <span class="n">add</span> <span class="n">identity</span> <span class="n">mapping</span> <span class="n">external</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="n">udp</span> <span class="mi">4500</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="n">nat44</span> <span class="n">untranslated</span> <span class="n">subnet</span> <span class="mf">10.166.14.0</span><span class="o">/</span><span class="mi">24</span> <span class="p">}</span>
 
-    <span class="n">comment</span> <span class="p">{</span> <span class="n">initiator</span> <span class="n">profile</span> <span class="p">}</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="n">add</span> <span class="n">respond</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">udp</span><span class="o">-</span><span class="n">encap</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">auth</span> <span class="n">rsa</span><span class="o">-</span><span class="n">sig</span> <span class="n">cert</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">setups</span><span class="o">/</span><span class="n">initiatecert</span><span class="o">.</span><span class="n">pem</span>
-    <span class="nb">set</span> <span class="n">ikev2</span> <span class="n">local</span> <span class="n">key</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">setups</span><span class="o">/</span><span class="n">respondkey</span><span class="o">.</span><span class="n">pem</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="nb">id</span> <span class="n">local</span> <span class="n">fqdn</span> <span class="n">responder</span><span class="o">.</span><span class="n">my</span><span class="o">.</span><span class="n">net</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="nb">id</span> <span class="n">remote</span> <span class="n">fqdn</span> <span class="n">initiator</span><span class="o">.</span><span class="n">my</span><span class="o">.</span><span class="n">net</span>
+<span class="n">comment</span> <span class="p">{</span> <span class="n">initiator</span> <span class="n">profile</span> <span class="p">}</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="n">add</span> <span class="n">respond</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">udp</span><span class="o">-</span><span class="n">encap</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">auth</span> <span class="n">rsa</span><span class="o">-</span><span class="n">sig</span> <span class="n">cert</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">setups</span><span class="o">/</span><span class="n">initiatecert</span><span class="o">.</span><span class="n">pem</span>
+<span class="nb">set</span> <span class="n">ikev2</span> <span class="n">local</span> <span class="n">key</span> <span class="o">/</span><span class="n">scratch</span><span class="o">/</span><span class="n">setups</span><span class="o">/</span><span class="n">respondkey</span><span class="o">.</span><span class="n">pem</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="nb">id</span> <span class="n">local</span> <span class="n">fqdn</span> <span class="n">responder</span><span class="o">.</span><span class="n">my</span><span class="o">.</span><span class="n">net</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="nb">id</span> <span class="n">remote</span> <span class="n">fqdn</span> <span class="n">initiator</span><span class="o">.</span><span class="n">my</span><span class="o">.</span><span class="n">net</span>
 
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">traffic</span><span class="o">-</span><span class="n">selector</span> <span class="n">remote</span> <span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.0</span> <span class="o">-</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.255</span> <span class="n">port</span><span class="o">-</span><span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">65535</span> <span class="n">protocol</span> <span class="mi">0</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">traffic</span><span class="o">-</span><span class="n">selector</span> <span class="n">local</span> <span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.0</span> <span class="o">-</span> <span class="mf">10.219</span><span class="o">.</span><span class="mf">188.255</span> <span class="n">port</span><span class="o">-</span><span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">65535</span> <span class="n">protocol</span> <span class="mi">0</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">traffic</span><span class="o">-</span><span class="n">selector</span> <span class="n">remote</span> <span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="mf">10.166.14.0</span> <span class="o">-</span> <span class="mf">10.166.14.255</span> <span class="n">port</span><span class="o">-</span><span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">65535</span> <span class="n">protocol</span> <span class="mi">0</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">traffic</span><span class="o">-</span><span class="n">selector</span> <span class="n">local</span> <span class="n">ip</span><span class="o">-</span><span class="nb">range</span> <span class="mf">10.219.188.0</span> <span class="o">-</span> <span class="mf">10.219.188.255</span> <span class="n">port</span><span class="o">-</span><span class="nb">range</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">65535</span> <span class="n">protocol</span> <span class="mi">0</span>
 
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">responder</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.100</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">ike</span><span class="o">-</span><span class="n">crypto</span><span class="o">-</span><span class="n">alg</span> <span class="n">aes</span><span class="o">-</span><span class="n">cbc</span> <span class="mi">256</span>  <span class="n">ike</span><span class="o">-</span><span class="n">integ</span><span class="o">-</span><span class="n">alg</span> <span class="n">sha1</span><span class="o">-</span><span class="mi">96</span>  <span class="n">ike</span><span class="o">-</span><span class="n">dh</span> <span class="n">modp</span><span class="o">-</span><span class="mi">2048</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">esp</span><span class="o">-</span><span class="n">crypto</span><span class="o">-</span><span class="n">alg</span> <span class="n">aes</span><span class="o">-</span><span class="n">cbc</span> <span class="mi">256</span>  <span class="n">esp</span><span class="o">-</span><span class="n">integ</span><span class="o">-</span><span class="n">alg</span> <span class="n">sha1</span><span class="o">-</span><span class="mi">96</span>  <span class="n">esp</span><span class="o">-</span><span class="n">dh</span> <span class="n">ecp</span><span class="o">-</span><span class="mi">256</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">sa</span><span class="o">-</span><span class="n">lifetime</span> <span class="mi">3600</span> <span class="mi">10</span> <span class="mi">5</span> <span class="mi">0</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">responder</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span> <span class="mf">10.26.68.100</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">ike</span><span class="o">-</span><span class="n">crypto</span><span class="o">-</span><span class="n">alg</span> <span class="n">aes</span><span class="o">-</span><span class="n">cbc</span> <span class="mi">256</span>  <span class="n">ike</span><span class="o">-</span><span class="n">integ</span><span class="o">-</span><span class="n">alg</span> <span class="n">sha1</span><span class="o">-</span><span class="mi">96</span>  <span class="n">ike</span><span class="o">-</span><span class="n">dh</span> <span class="n">modp</span><span class="o">-</span><span class="mi">2048</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">esp</span><span class="o">-</span><span class="n">crypto</span><span class="o">-</span><span class="n">alg</span> <span class="n">aes</span><span class="o">-</span><span class="n">cbc</span> <span class="mi">256</span>  <span class="n">esp</span><span class="o">-</span><span class="n">integ</span><span class="o">-</span><span class="n">alg</span> <span class="n">sha1</span><span class="o">-</span><span class="mi">96</span>  <span class="n">esp</span><span class="o">-</span><span class="n">dh</span> <span class="n">ecp</span><span class="o">-</span><span class="mi">256</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">sa</span><span class="o">-</span><span class="n">lifetime</span> <span class="mi">3600</span> <span class="mi">10</span> <span class="mi">5</span> <span class="mi">0</span>
 
-    <span class="n">create</span> <span class="n">ipip</span> <span class="n">tunnel</span> <span class="n">src</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.101</span> <span class="n">dst</span> <span class="mf">10.26</span><span class="o">.</span><span class="mf">68.100</span>
-    <span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">tunnel</span> <span class="n">ipip0</span>
-    <span class="n">ikev2</span> <span class="n">initiate</span> <span class="n">sa</span><span class="o">-</span><span class="n">init</span> <span class="n">respond</span>
+<span class="n">create</span> <span class="n">ipip</span> <span class="n">tunnel</span> <span class="n">src</span> <span class="mf">10.26.68.101</span> <span class="n">dst</span> <span class="mf">10.26.68.100</span>
+<span class="n">ikev2</span> <span class="n">profile</span> <span class="nb">set</span> <span class="n">respond</span> <span class="n">tunnel</span> <span class="n">ipip0</span>
+<span class="n">ikev2</span> <span class="n">initiate</span> <span class="n">sa</span><span class="o">-</span><span class="n">init</span> <span class="n">respond</span>
 
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">mtu</span> <span class="n">packet</span> <span class="mi">1390</span> <span class="n">ipip0</span>
-    <span class="nb">set</span> <span class="nb">int</span> <span class="n">unnum</span> <span class="n">ipip0</span> <span class="n">use</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
-    <span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">10.166</span><span class="o">.</span><span class="mf">14.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">via</span> <span class="n">ipip0</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">mtu</span> <span class="n">packet</span> <span class="mi">1390</span> <span class="n">ipip0</span>
+<span class="nb">set</span> <span class="nb">int</span> <span class="n">unnum</span> <span class="n">ipip0</span> <span class="n">use</span> <span class="n">host</span><span class="o">-</span><span class="n">eth1</span>
+<span class="n">ip</span> <span class="n">route</span> <span class="n">add</span> <span class="mf">10.166.14.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">via</span> <span class="n">ipip0</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="ikev2-certificate-setup">
-<h2>IKEv2 certificate setup<a class="headerlink" href="#ikev2-certificate-setup" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="ikev2-certificate-setup">
+<h2>IKEv2 certificate setup<a class="headerlink" href="#ikev2-certificate-setup" title="Permalink to this headline"></a></h2>
 <p>In both of the vpp configurations, you’ll see “/scratch/setups/xxx.pem”
 mentioned. These certificates are used in the ikev2 key exchange.</p>
 <p>Here’s how to generate the certificates:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">4096</span> <span class="o">-</span><span class="n">keyout</span> <span class="n">respondkey</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">respondcert</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">days</span> <span class="mi">3560</span>
-    <span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">text</span> <span class="o">-</span><span class="n">noout</span> <span class="o">-</span><span class="ow">in</span> <span class="n">respondcert</span><span class="o">.</span><span class="n">pem</span>
-    <span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">4096</span> <span class="o">-</span><span class="n">keyout</span> <span class="n">initiatekey</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">initiatecert</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">days</span> <span class="mi">3560</span>
-    <span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">text</span> <span class="o">-</span><span class="n">noout</span> <span class="o">-</span><span class="ow">in</span> <span class="n">initiatecert</span><span class="o">.</span><span class="n">pem</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">4096</span> <span class="o">-</span><span class="n">keyout</span> <span class="n">respondkey</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">respondcert</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">days</span> <span class="mi">3560</span>
+<span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">text</span> <span class="o">-</span><span class="n">noout</span> <span class="o">-</span><span class="ow">in</span> <span class="n">respondcert</span><span class="o">.</span><span class="n">pem</span>
+<span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">4096</span> <span class="o">-</span><span class="n">keyout</span> <span class="n">initiatekey</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">initiatecert</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">days</span> <span class="mi">3560</span>
+<span class="n">openssl</span> <span class="n">x509</span> <span class="o">-</span><span class="n">text</span> <span class="o">-</span><span class="n">noout</span> <span class="o">-</span><span class="ow">in</span> <span class="n">initiatecert</span><span class="o">.</span><span class="n">pem</span>
 </pre></div>
 </div>
-<p>Make sure that the “respond” and “initiate” configurations point to the certificates.</p>
-</div>
-<div class="section" id="dhcpv6-server-setup">
-<h2>DHCPv6 server setup<a class="headerlink" href="#dhcpv6-server-setup" title="Permalink to this headline">¶</a></h2>
-<p>If you need an ipv6 dhcp server to test ipv6 prefix delegation,
-create the “dhcpserver” container as shown above.</p>
+<p>Make sure that the “respond” and “initiate” configurations point to the
+certificates.</p>
+</section>
+<section id="dhcpv6-server-setup">
+<h2>DHCPv6 server setup<a class="headerlink" href="#dhcpv6-server-setup" title="Permalink to this headline"></a></h2>
+<p>If you need an ipv6 dhcp server to test ipv6 prefix delegation, create
+the “dhcpserver” container as shown above.</p>
 <p>Install the “isc-dhcp-server” Debian package:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">isc</span><span class="o">-</span><span class="n">dhcp</span><span class="o">-</span><span class="n">server</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">isc</span><span class="o">-</span><span class="n">dhcp</span><span class="o">-</span><span class="n">server</span>
 </pre></div>
 </div>
-<div class="section" id="etc-dhcp-dhcpd6-conf">
-<h3>/etc/dhcp/dhcpd6.conf<a class="headerlink" href="#etc-dhcp-dhcpd6-conf" title="Permalink to this headline">¶</a></h3>
+<section id="etc-dhcp-dhcpd6-conf">
+<h3>/etc/dhcp/dhcpd6.conf<a class="headerlink" href="#etc-dhcp-dhcpd6-conf" title="Permalink to this headline"></a></h3>
 <p>Edit the dhcpv6 configuration and add an ipv6 subnet with prefix
 delegation. For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">subnet6</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">64</span> <span class="p">{</span>
-            <span class="n">range6</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="mi">1</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="mi">9</span><span class="p">;</span>
-            <span class="n">prefix6</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">::</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">::</span><span class="o">/</span><span class="mi">56</span><span class="p">;</span>
-    <span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subnet6</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="o">/</span><span class="mi">64</span> <span class="p">{</span>
+        <span class="n">range6</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="mi">1</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="mi">9</span><span class="p">;</span>
+        <span class="n">prefix6</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">::</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">::</span><span class="o">/</span><span class="mi">56</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Add an ipv6 address on eth1, which is connected to the “internet”
 bridge, and start the dhcp server. I use the following trivial bash
-script, which runs the dhcp6 server in the foreground and produces
-dhcp traffic spew:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1">#!/bin/bash</span>
-    <span class="n">ifconfig</span> <span class="n">eth1</span> <span class="n">inet6</span> <span class="n">add</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="mi">10</span><span class="o">/</span><span class="mi">64</span> <span class="o">||</span> <span class="n">true</span>
-    <span class="n">dhcpd</span> <span class="o">-</span><span class="mi">6</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">cf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">dhcp</span><span class="o">/</span><span class="n">dhcpd6</span><span class="o">.</span><span class="n">conf</span>
+script, which runs the dhcp6 server in the foreground and produces dhcp
+traffic spew:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="n">ifconfig</span> <span class="n">eth1</span> <span class="n">inet6</span> <span class="n">add</span> <span class="mi">2001</span><span class="p">:</span><span class="n">db01</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="mi">10</span><span class="o">/</span><span class="mi">64</span> <span class="o">||</span> <span class="n">true</span>
+<span class="n">dhcpd</span> <span class="o">-</span><span class="mi">6</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">cf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">dhcp</span><span class="o">/</span><span class="n">dhcpd6</span><span class="o">.</span><span class="n">conf</span>
 </pre></div>
 </div>
 <p>The “|| true” bit keeps going if eth1 already has the indicated ipv6
 address.</p>
-</div>
-</div>
-<div class="section" id="container-host-interoperation">
-<h2>Container / Host Interoperation<a class="headerlink" href="#container-host-interoperation" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="container-host-interoperation">
+<h2>Container / Host Interoperation<a class="headerlink" href="#container-host-interoperation" title="Permalink to this headline"></a></h2>
 <p>Host / container interoperation is highly desirable. If the host and a
 set of containers don’t run the same distro <em>and distro version</em>, it’s
 reasonably likely that the glibc versions won’t match. That, in turn,
@@ -691,148 +655,130 @@ glibc, either. The dynamic loader ld-linux-xxx-so.2 is glibc version
 specific.</p>
 <p>Fortunately, it’s reasonable easy to build lxd container images based on
 specific Ubuntu or Debian versions.</p>
-<div class="section" id="create-a-custom-root-filesystem-image">
-<h3>Create a custom root filesystem image<a class="headerlink" href="#create-a-custom-root-filesystem-image" title="Permalink to this headline">¶</a></h3>
+<section id="create-a-custom-root-filesystem-image">
+<h3>Create a custom root filesystem image<a class="headerlink" href="#create-a-custom-root-filesystem-image" title="Permalink to this headline"></a></h3>
 <p>First, install the “debootstrap” tool:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">debootstrap</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">debootstrap</span>
 </pre></div>
 </div>
 <p>Make a temp directory, and use debootstrap to populate it. In this
 example, we create an Ubuntu 20.04 (focal fossa) base image:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># mkdir /tmp/myroot</span>
-    <span class="c1"># debootstrap focal /tmp/myroot http://archive.ubuntu.com/ubuntu</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># mkdir /tmp/myroot</span>
+<span class="c1"># debootstrap focal /tmp/myroot http://archive.ubuntu.com/ubuntu</span>
 </pre></div>
 </div>
 <p>To tinker with the base image (if desired):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># chroot /tmp/myroot</span>
-    <span class="o">&lt;</span><span class="n">add</span> <span class="n">packages</span><span class="p">,</span> <span class="n">etc</span><span class="o">.&gt;</span>
-    <span class="c1"># exit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># chroot /tmp/myroot</span>
+<span class="o">&lt;</span><span class="n">add</span> <span class="n">packages</span><span class="p">,</span> <span class="n">etc</span><span class="o">.&gt;</span>
+<span class="c1"># exit</span>
 </pre></div>
 </div>
 <p>Make a compressed tarball of the base image:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># tar zcf /tmp/rootfs.tar.gz -C /tmp/myroot .</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># tar zcf /tmp/rootfs.tar.gz -C /tmp/myroot .</span>
 </pre></div>
 </div>
 <p>Create a “metadata.yaml” file which describes the base image:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">architecture</span><span class="p">:</span> <span class="s2">&quot;x86_64&quot;</span>
-    <span class="c1"># To get current date in Unix time, use `date +%s` command</span>
-    <span class="n">creation_date</span><span class="p">:</span> <span class="mi">1458040200</span>
-    <span class="n">properties</span><span class="p">:</span>
-    <span class="n">architecture</span><span class="p">:</span> <span class="s2">&quot;x86_64&quot;</span>
-    <span class="n">description</span><span class="p">:</span> <span class="s2">&quot;My custom Focal Fossa image&quot;</span>
-    <span class="n">os</span><span class="p">:</span> <span class="s2">&quot;Ubuntu&quot;</span>
-    <span class="n">release</span><span class="p">:</span> <span class="s2">&quot;focal&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">architecture</span><span class="p">:</span> <span class="s2">&quot;x86_64&quot;</span>
+<span class="c1"># To get current date in Unix time, use `date +%s` command</span>
+<span class="n">creation_date</span><span class="p">:</span> <span class="mi">1458040200</span>
+<span class="n">properties</span><span class="p">:</span>
+<span class="n">architecture</span><span class="p">:</span> <span class="s2">&quot;x86_64&quot;</span>
+<span class="n">description</span><span class="p">:</span> <span class="s2">&quot;My custom Focal Fossa image&quot;</span>
+<span class="n">os</span><span class="p">:</span> <span class="s2">&quot;Ubuntu&quot;</span>
+<span class="n">release</span><span class="p">:</span> <span class="s2">&quot;focal&quot;</span>
 </pre></div>
 </div>
 <p>Make a compressed tarball of metadata.yaml:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># tar zcf metadata.tar.gz metadata.yaml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># tar zcf metadata.tar.gz metadata.yaml</span>
 </pre></div>
 </div>
 <p>Import the image into lxc / lxd:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ lxc image import metadata.tar.gz rootfd.tar.gz --alias focal-base
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image import metadata.tar.gz rootfd.tar.gz --alias focal-base
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-a-container-which-uses-the-customized-base-image">
-<h3>Create a container which uses the customized base image:<a class="headerlink" href="#create-a-container-which-uses-the-customized-base-image" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ lxc launch focal-base focaltest
-    $ lxc exec focaltest bash
+</section>
+<section id="create-a-container-which-uses-the-customized-base-image">
+<h3>Create a container which uses the customized base image:<a class="headerlink" href="#create-a-container-which-uses-the-customized-base-image" title="Permalink to this headline"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc launch focal-base focaltest
+$ lxc exec focaltest bash
 </pre></div>
 </div>
-<p>The next several steps should be executed in the container, in the
-bash shell spun up by “lxc exec…”</p>
-</div>
-<div class="section" id="configure-container-networking">
-<h3>Configure container networking<a class="headerlink" href="#configure-container-networking" title="Permalink to this headline">¶</a></h3>
+<p>The next several steps should be executed in the container, in the bash
+shell spun up by “lxc exec…”</p>
+</section>
+<section id="configure-container-networking">
+<h3>Configure container networking<a class="headerlink" href="#configure-container-networking" title="Permalink to this headline"></a></h3>
 <p>In the container, create /etc/netplan/50-cloud-init.yaml:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">network</span><span class="p">:</span>
-        <span class="n">version</span><span class="p">:</span> <span class="mi">2</span>
-        <span class="n">ethernets</span><span class="p">:</span>
-            <span class="n">eth0</span><span class="p">:</span>
-                <span class="n">dhcp4</span><span class="p">:</span> <span class="n">true</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">network</span><span class="p">:</span>
+    <span class="n">version</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="n">ethernets</span><span class="p">:</span>
+        <span class="n">eth0</span><span class="p">:</span>
+            <span class="n">dhcp4</span><span class="p">:</span> <span class="n">true</span>
 </pre></div>
 </div>
-<p>Use “cat &gt; /etc/netplan/50-cloud-init.yaml”, and cut-‘n-paste if your
+<p>Use “cat &gt; /etc/netplan/50-cloud-init.yaml”, and cut-’n-paste if your
 favorite text editor is AWOL.</p>
 <p>Apply the configuration:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># netplan apply</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># netplan apply</span>
 </pre></div>
 </div>
-<p>At this point, eth0 should have an ip address, and you should see
-a default route with “route -n”.</p>
-</div>
-<div class="section" id="configure-apt">
-<h3>Configure apt<a class="headerlink" href="#configure-apt" title="Permalink to this headline">¶</a></h3>
-<p>Again, in the container, set up /etc/apt/sources.list via cut-‘n-paste
+<p>At this point, eth0 should have an ip address, and you should see a
+default route with “route -n”.</p>
+</section>
+<section id="configure-apt">
+<h3>Configure apt<a class="headerlink" href="#configure-apt" title="Permalink to this headline"></a></h3>
+<p>Again, in the container, set up /etc/apt/sources.list via cut-’n-paste
 from a recently update “focal fossa” host. Something like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span> <span class="n">main</span> <span class="n">restricted</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span><span class="o">-</span><span class="n">updates</span> <span class="n">main</span> <span class="n">restricted</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span> <span class="n">universe</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span><span class="o">-</span><span class="n">updates</span> <span class="n">universe</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span> <span class="n">multiverse</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span><span class="o">-</span><span class="n">updates</span> <span class="n">multiverse</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span><span class="o">-</span><span class="n">backports</span> <span class="n">main</span> <span class="n">restricted</span> <span class="n">universe</span> <span class="n">multiverse</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">security</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">focal</span><span class="o">-</span><span class="n">security</span> <span class="n">main</span> <span class="n">restricted</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">security</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">focal</span><span class="o">-</span><span class="n">security</span> <span class="n">universe</span>
-    <span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">security</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">focal</span><span class="o">-</span><span class="n">security</span> <span class="n">multiverse</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span> <span class="n">main</span> <span class="n">restricted</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span><span class="o">-</span><span class="n">updates</span> <span class="n">main</span> <span class="n">restricted</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span> <span class="n">universe</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span><span class="o">-</span><span class="n">updates</span> <span class="n">universe</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span> <span class="n">multiverse</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span><span class="o">-</span><span class="n">updates</span> <span class="n">multiverse</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">us</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">focal</span><span class="o">-</span><span class="n">backports</span> <span class="n">main</span> <span class="n">restricted</span> <span class="n">universe</span> <span class="n">multiverse</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">security</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">focal</span><span class="o">-</span><span class="n">security</span> <span class="n">main</span> <span class="n">restricted</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">security</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">focal</span><span class="o">-</span><span class="n">security</span> <span class="n">universe</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">security</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span> <span class="n">focal</span><span class="o">-</span><span class="n">security</span> <span class="n">multiverse</span>
 </pre></div>
 </div>
 <p>“apt-get update” and “apt-install” should produce reasonable results.
 Suggest “apt-get install make git”.</p>
 <p>At this point, you can use the “/scratch” sharepoint (or similar) to
-execute “make install-dep install-ext-deps” to set up the container
-with the vpp toolchain; proceed as desired.</p>
-</div>
-</div>
-</div>
+execute “make install-dep install-ext-deps” to set up the container with
+the vpp toolchain; proceed as desired.</p>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="trafficgen.html" class="btn btn-neutral float-right" title="Vpp Stateless Traffic Generation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="webapp.html" class="btn btn-neutral float-left" title="Building VPP web applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="webapp.html" class="btn btn-neutral float-left" title="Web applications with VPP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="trafficgen.html" class="btn btn-neutral float-right" title="Stateless Traffic Gen with VPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2018-2021, Linux Foundation
-
-    </p>
+    <p>&#169; Copyright 2018-2021, Linux Foundation.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

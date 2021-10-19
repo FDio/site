@@ -1,0 +1,57 @@
+.. _clicmd_src_plugins_vmxnet3:
+
+===============================================================
+Vmxnet3 cli reference
+===============================================================
+
+create interface vmxnet3
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create interface vmxnet3 <pci-address> [rx-queue-size <size>] [tx-queue-size <size>] [num-tx-queues <number>] [num-rx-queues <number>] [bind] [gso]
+
+
+Declaration: ``vmxnet3_create_command`` `src/plugins/vmxnet3/cli.c line 76 <https://github.com/FDio/vpp/blob/master//src/plugins/vmxnet3/cli.c#L76>`_
+
+Implementation: ``vmxnet3_create_command_fn``
+
+
+delete interface vmxnet3
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete interface vmxnet3 {<interface> | sw_if_index <sw_idx>}
+
+
+Declaration: ``vmxnet3_delete_command`` `src/plugins/vmxnet3/cli.c line 130 <https://github.com/FDio/vpp/blob/master//src/plugins/vmxnet3/cli.c#L130>`_
+
+Implementation: ``vmxnet3_delete_command_fn``
+
+
+show vmxnet3
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show vmxnet3 [[<interface>] ([desc] | ([rx-comp] | [rx-desc-0] | [rx-desc-1] | [tx-comp] | [tx-desc]) [<slot>])]
+
+
+Declaration: ``show_vmxnet3_command`` `src/plugins/vmxnet3/cli.c line 581 <https://github.com/FDio/vpp/blob/master//src/plugins/vmxnet3/cli.c#L581>`_
+
+Implementation: ``show_vmxnet3_fn``
+
+
+test vmxnet3
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    test vmxnet3 <interface> | sw_if_index <sw_idx> [irq] [elog-on] [elog-off]
+
+
+Declaration: ``vmxnet3_test_command`` `src/plugins/vmxnet3/cli.c line 191 <https://github.com/FDio/vpp/blob/master//src/plugins/vmxnet3/cli.c#L191>`_
+
+Implementation: ``vmxnet3_test_command_fn``
+

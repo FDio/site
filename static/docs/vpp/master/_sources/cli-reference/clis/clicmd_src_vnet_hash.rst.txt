@@ -1,0 +1,18 @@
+.. _clicmd_src_vnet_hash:
+
+===============================================================
+Hash cli reference
+===============================================================
+
+show hash
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    show hash
+
+
+Declaration: ``cmd_show_hash`` `src/vnet/hash/cli.c line 29 <https://github.com/FDio/vpp/blob/master//src/vnet/hash/cli.c#L29>`_
+
+Implementation: ``show_hash``
+

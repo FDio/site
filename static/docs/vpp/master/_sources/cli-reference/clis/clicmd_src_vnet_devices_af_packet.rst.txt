@@ -1,0 +1,115 @@
+.. _clicmd_src_vnet_devices_af_packet:
+
+===============================================================
+Host Interface
+===============================================================
+
+create host-interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    create host-interface name <ifname> [hw-addr <mac-addr>]
+
+
+
+Create a host interface that will attach to a linux AF_PACKET
+interface, one side of a veth pair. The veth pair must already
+exist. Once created, a new host interface will exist in VPP
+with the name ``host-<ifname>``, where ``<ifname>``
+is the name of the specified veth pair. Use the
+``show interface`` command to display host interface details.
+
+This command has the following optional parameters:
+
+- **hw-addr <mac-addr>** - Optional ethernet address, can be in either
+  X:X:X:X:X:X unix or X.X.X cisco format.
+
+
+Example of how to create a host interface tied to one side of an
+existing linux veth pair named vpp1:
+
+
+.. code-block:: console
+
+    create host-interface name vpp1
+    
+    host-vpp1
+    
+
+
+Once the host interface is created, enable the interface using:
+
+
+.. code-block:: console
+
+    set interface state host-vpp1 up
+
+
+
+Declaration: ``af_packet_create_command`` `src/vnet/devices/af_packet/cli.c line 141 <https://github.com/FDio/vpp/blob/master//src/vnet/devices/af_packet/cli.c#L141>`_
+
+Implementation: ``af_packet_create_command_fn``
+
+
+delete host-interface
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    delete host-interface name <ifname>
+
+
+
+Delete a host interface. Use the linux interface name to identify
+the host interface to be deleted. In VPP, host interfaces are
+named as ``host-<ifname>``, where ``<ifname>``
+is the name of the linux interface.
+
+Example of how to delete a host interface named host-vpp1:
+
+
+.. code-block:: console
+
+    delete host-interface name vpp1
+
+
+
+Declaration: ``af_packet_delete_command`` `src/vnet/devices/af_packet/cli.c line 196 <https://github.com/FDio/vpp/blob/master//src/vnet/devices/af_packet/cli.c#L196>`_
+
+Implementation: ``af_packet_delete_command_fn``
+
+
+set host-interface l4-cksum-offload
+-------------------------------------------------------------------------
+
+.. code-block:: console
+
+    set host-interface l4-cksum-offload <host-if-name> <on|off>
+
+
+
+Set TCP/UDP offload checksum calculation. Use interface
+name to identify the interface to set TCP/UDP offload checksum
+calculation.
+
+Example of how to set TCP/UDP offload checksum calculation on host-vpp0:
+
+
+.. code-block:: console
+
+    set host-interface l4-cksum-offload host-vpp0 off
+
+
+
+
+.. code-block:: console
+
+    set host-interface l4-cksum-offload host-vpp0 on
+
+
+
+Declaration: ``af_packet_set_l4_cksum_offload_command`` `src/vnet/devices/af_packet/cli.c line 251 <https://github.com/FDio/vpp/blob/master//src/vnet/devices/af_packet/cli.c#L251>`_
+
+Implementation: ``af_packet_set_l4_cksum_offload_command_fn``
+
