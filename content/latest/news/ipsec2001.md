@@ -1,8 +1,8 @@
 +++
 title = "FD.io Release 20.01 Improves Multicore IPSec"
 author = "Linux Foundation Networking"
-newslink = "https://www.lfnetworking.org/blog/2020/03/23/how-fd-io-20-01-release-improves-multicore-ipsec/"
-newsbuttontxt = "How FD.io Improves Multicore IPSec"
+link = "https://www.lfnetworking.org/blog/2020/03/23/how-fd-io-20-01-release-improves-multicore-ipsec/"
+linkText = "How FD.io Improves Multicore IPSec"
 
 date = "2020-03-23"
 +++

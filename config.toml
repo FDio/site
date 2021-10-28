@@ -7,30 +7,158 @@ publishDir = "public"
 
 [menu]
 
+  #
+  # ------ Use Cases ------
+  #
+
   [[menu.header]]
     weight = 1
     name = "Use Cases"
-    url = "/overview/fdiousecases"
+    identifier = "usecases"
+    url = ""
+
+  [[menu.header]]
+    weight = 10
+    name = "Use Cases"
+    parent = "usecases"
+    url = "/overview/usecases"
+
+  [[menu.header]]
+    weight = 11
+    name = "Solutions"
+    parent = "usecases"
+    url = "/overview/solutions"
+
+  [[menu.header]]
+    weight = 12
+    name = "User Feedback"
+    parent = "usecases"
+    url = "/overview/userfeedback"
+
+  #
+  # ------ Getting Started ------
+  #
 
   [[menu.header]]
     weight = 2
-    name = "Get Started With VPP"
-    url = "/vppproject/vpptech"
+    identifier = "gettingstarted"
+    name = "Get Started"
+    url = ""
+
+  [[menu.header]]
+    weight = 21
+    parent = "gettingstarted"
+    name = "Technology"
+    url = "/gettingstarted/technology"
+
+  [[menu.header]]
+    weight = 22
+    parent = "gettingstarted"
+    name = "Installing"
+    url = "/gettingstarted/installing"
+
+  [[menu.header]]
+    weight = 23
+    parent = "gettingstarted"
+    name = "Building"
+    url = "/gettingstarted/building"
+
+  [[menu.header]]
+    weight = 24
+    parent = "gettingstarted"
+    name = "Videos"
+    url = "/gettingstarted/videos"
+
+  #
+  # ------ Documentation ------
+  #
 
   [[menu.header]]
     weight = 3
     name = "Documentation"
-    url = "/documentation"
+    identifier = "documentation"
+    url = ""
+
+  [[menu.header]]
+    weight = 31
+    name = "VPP documentation"
+    url = "/docs/vpp/master"
+    parent = "documentation"
+
+  [[menu.header]]
+    weight = 32
+    name = "CSIT documentation"
+    url = "/documentation/csit"
+    parent = "documentation"
+
+  [[menu.header]]
+    weight = 33
+    name = "HICN documentation"
+    url = "/documentation/hicn"
+    parent = "documentation"
+
+  [[menu.header]]
+    weight = 34
+    name = "Other projects"
+    url = "/documentation/others"
+    parent = "documentation"
+
+  #
+  # ------ The Latest ------
+  #
 
   [[menu.header]]
     weight = 4
     name = "The Latest"
+    identifier = "latest"
+    url = ""
+
+  [[menu.header]]
+    weight = 41
+    name = "Latest news"
+    parent = "latest"
     url = "/latest/news"
+
+  [[menu.header]]
+    weight = 42
+    name = "Webinars"
+    parent = "latest"
+    url = "/latest/webinars"
+
+  [[menu.header]]
+    weight = 43
+    name = "Whitepapers"
+    parent = "latest"
+    url = "/latest/whitepapers"
+
+  #
+  # ------ Get Involved ------
+  #
 
   [[menu.header]]
     weight = 5
     name = "Get Involved"
-    url = "/community/join"
+    identifier = "getinvolved"
+    url = ""
+
+  [[menu.header]]
+    weight = 51
+    name = "Community"
+    parent = "getinvolved"
+    url = "/getinvolved/community"
+
+  [[menu.header]]
+    weight = 52
+    name = "Technical Steering Commitee (TSC)"
+    parent = "getinvolved"
+    url = "/getinvolved/tsc"
+
+  [[menu.header]]
+    weight = 53
+    name = "TSC Documentation"
+    parent = "getinvolved"
+    url = "/getinvolved/tscdocs"
+
 
 [markup]
   defaultMarkdownHandler = "goldmark"
@@ -56,89 +184,10 @@ publishDir = "public"
   # For information see https://github.com/gohugoio/hugoThemes/issues/260
 
   dateFormat = "6 January 2006"
+  bgImage = "img/fdio_bg.jpg"
 
   home = "Home"
   fontawesomeversion = "5.8.1"
-  [params.slider]
-    enable = true
-    bgImage = "img/fdio_bg.jpg"
-    title = "FD.io <br> The World’s Secure Networking Data Plane"
-    subtitle = """
-An Open Source Terabit Software Dataplane <br>
-The world moves at light speed. <br>
-Make sure your packet traffic keeps up.
-<br><br>
-Enriching Data Plane Leadership and Deployment Efficiency.
-<br>
-The Fast Data Project's VPP Release 20.01 is here!
-"""
-    btnText = "Read about the Features and Perfomance of FD.io VPP Release 20.05"
-    url = "https://www.lfnetworking.org/blog/2020/07/27/fd-io-introduces-vpp-release-20-05/"
-
-
-  [params.wrapper]
-    enable = true
-    image = "img/universal-network-function.png"
-    title = "Why FD.io?"
-    content = """
-### Lowers the Barrier to Entry
-#### Industry-standard, cross-platform, network Stack - supported by multiple hardware vendors
-### Increases Velocity
-#### Encourages industry disruption and fosters innovation
-### Platform optimized
-#### Built using same super-scalar optimizations as [DPDK](http://www.dpdk.org)
-### Broad adoption
-#### Supported by a broad community of industry contributors
-"""
-    wbtnText = "Some FD.io Use Cases"
-    wurl = "/overview/fdiousecases"
-
-  [params.feature]
-    enable = true
-    bgImage = "img/fdio_bg.jpg"
-    title = "What is Vector Packet Processing (VPP)?"
-    content = """
-FD.io VPP is the Swiss Army knife of networking toolchains - enabling astounding software packet processing.
-<br></br>
-<b>Relentless speed and scale.</b>
-<br />
-Up to two orders of magnitude greater packet processing throughput.
-<br />
-VPP's host stack comprises packet, transport, session, and application layer protocols enabling entire networking and security functions to be injected into software packet processing.
-<br /><br />
-<b>Easily programmable.</b>
-<br />
-FD.io is easily extensible through plugins or by building applications on top of
-the FD.io VPP API.
-<br /><br />
-<b>Deploy anywhere.</b>
-<br />
-Bare metal, VM or container.
-x86, ARM, and PowerPC architectures.<br /> <br />
-<b>The future of packet processing. Now.</b>
-"""
-    [params.feature.button]
-      caption = "VPP Technology"
-      url = "/vppproject/vpptech"
-    [params.feature.button2]
-      caption = "VPP Performance"
-      url = "/performance/scaling"
-    [params.feature.button3]
-      caption = "Get Started"
-      url = "/vppproject/vppinstalling"
-
-  [params.prjcomnews]
-    enable=true
-    pimage = "img/prj.png"
-    title = "The FD.io Community"
-    content = """
-#### The Fast Data Project (FD.io) is a collaborative open-source project aimed at establishing a high-performance IO services framework for dynamic compute environments.
-#### For the latest news or how you can get involved please see the links below.
-"""
-    btnText1 = "The Latest News"
-    url1 = "/latest/news"
-    btnText2 = "Get Involved"
-    url2 = "/community/join"
 
 [[params.fonts]]
 name = "Nunito Sans"

@@ -1,8 +1,8 @@
 +++
 title = "Building fast QUIC sockets in FD.io VPP"
 author = "Aloys Augustin"
-newslink = "https://blogs.cisco.com/cloud/building-fast-quic-sockets-in-vpp"
-newsbuttontxt = "Read more about FD.io VPP QUIC"
+link = "https://blogs.cisco.com/cloud/building-fast-quic-sockets-in-vpp"
+linkText = "Read more about FD.io VPP QUIC"
 
 date = "2020-03-30"
 +++

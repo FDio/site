@@ -1,8 +1,6 @@
 +++
 title = "CuVPP: Filter-based Longest Prefix Matching in Software Data Planes"
 author = "Minseok Kwon, Krishna Prasad Neupane, John Marshall, M. Mustafa Rafique"
-newslink = "https://www.cs.rit.edu/~jmk/papers/cuvpp.pdf"
-newsbuttontxt = "Read the CuVPP White Paper"
 
 date = "2020-09-15"
 +++
@@ -22,4 +20,9 @@ We implement CuVPP as part of the **Real Software Switch VPP** and provide a com
 evaluation using popular alternative approaches with realistic data sets for network
 prefixes and traffic.
 
-The video presentation can be found here: [CuVPP Video](https://www.youtube.com/watch?v=aVhr3k3gHGs&feature=youtu.be). The paper can be found here: [CuVPP Paper](https://www.cs.rit.edu/~jmk/papers/cuvpp.pdf).
+
+The video presentation can be found here: 
+{{% btn txt="CuVPP Video" link="https://www.youtube.com/watch?v=aVhr3k3gHGs&feature=youtu.be" %}} 
+
+The paper can be found here: 
+{{% btn txt="CuVPP Paper" link="https://www.cs.rit.edu/~jmk/papers/cuvpp.pdf" %}} 
