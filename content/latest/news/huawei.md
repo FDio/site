@@ -15,8 +15,6 @@ FD.io offers the software-defined infrastructure developer community a landing s
 
 Huawei’s Platinum upgrade comes following the project’s recent Mini Summit, co-located with CloudNativeCon + KubeCon North America, held in Austin, Texas, on December 5. Slides and video content from the event–which included presentations from FD.io community experts on related projects, use cases, capabilities, tools, and integration between FD.io and other open source communities–will be available in the coming weeks via the FD.io website.  
 
-To learn more about FD.io or how to participate, please visit https://fd.io.
-
 About Huawei
 Huawei is a leading global information and communications technology (ICT) solutions provider. Driven by responsible operations, ongoing innovation, and open collaboration, it has established a competitive ICT portfolio of end-to-end solutions in telecom and enterprise networks, devices, and cloud computing. Its ICT solutions, products, and services are used in more than 170 countries and regions, serving over one-third of the world’s population. With more than 170,000 employees, Huawei is committed to enabling the future information society, and building a Better Connected World.
 

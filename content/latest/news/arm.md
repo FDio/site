@@ -16,7 +16,7 @@ The newest members are coming on following the project’s recent FD.io 17.07 re
 
 Learn more about the Universal Dataplane – including recent performance gains, the latest release, and VNF interoperability – in the recent webinar, “Acceleration with the Universal Dataplane – FD.io” which is available for viewing on-demand: https://www.brighttalk.com/webcast/12229/274463
 
-FD.io will hold a Mini-Summit co-located with CloudNativeCon + KubeCon North America, 5 December in Austin, Texas. Join the community and learn about FD.io projects, use cases, capabilities, integration between FD.io and Kubernetes/OpenStack/ODL/OPNFV/other communities, tools, and many more exciting topics. More details, including how to submit a talk, are available here: https://fd.io/event/kubecon-north-america-dec-5-2017/
+FD.io will hold a Mini-Summit co-located with CloudNativeCon + KubeCon North America, 5 December in Austin, Texas. Join the community and learn about FD.io projects, use cases, capabilities, integration between FD.io and Kubernetes/OpenStack/ODL/OPNFV/other communities, tools, and many more exciting topics.
 
 More about the newest members
 

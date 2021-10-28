@@ -32,8 +32,6 @@ Since launching two years ago, FD.io has brought together more than 251 contribu
 
 FD.io will hold a Mini-Summit co-located with Open Networking Summit North America on March 26 in Los Angeles, Calif. Join the community and learn about the projects, use cases, capabilities, integration between FD.io and Kubernetes/ODL/OPNFV/other communities, tools and many more exciting topics. More details, including how to submit a talk, are available here.
 
-For more information or details on how to participate in FD.io, please visit: https://fd.io.
-
 About The Linux Foundation
 
 The Linux Foundation is the organization of choice for the world’s top developers and companies to build ecosystems that accelerate open technology development and industry adoption. Together with the worldwide open source community, it is solving the hardest technology problems by creating the largest shared technology investment in history. Founded in 2000, The Linux Foundation today provides tools, training and events to scale any open source project, which together deliver an economic impact not achievable by any one company. More information can be found at www.linuxfoundation.org.
