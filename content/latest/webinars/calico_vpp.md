@@ -2,9 +2,9 @@
 title = "Calico/VPP : Kubernetes networking with boosters"
 
 publishDate = "2021-06-22"
-date = "2021-07-22T09:00:00-08:00"
+date = "2021-07-22"
+time_slot = "09:00am - 08:00am PST"
 type = "webinar"
-registrationurl = "https://zoom.platform.linuxfoundation.org/webinar/register?project=lfn&id=AEltd2Ny5jXgn%2FUmQ%2FueI3%2BZXYuUOnbQN%2BFBn1eov9oSozG8JrdqqQ%3D%3D&logo=lfn.svg&zoomID=95927465619"
 youtubeurl = "https://www.youtube.com/watch?v=G67K28f5htg"
 pdfurl =  "https://drive.google.com/file/d/1pZh2BJlc5ZZYR6lnfH1KHQWKU4FgLti6/view?usp=sharing"
 ppturl = "https://drive.google.com/file/d/1c9KwZQFS98DX4q7JfXfjgi52P5nMgYtz/view?usp=sharing"
@@ -17,6 +17,8 @@ Typically applications that are used to having dedicated NICs and physical hardw
 the best of both worlds, combining Calico, the popular cloud native Kubernetes network plugin, with VPP, a very fast
 and scalable userspace packet processing software. In this talk we will cover how we provide line rate networking
 for those applications while keeping kubernetes benefits, and what super powers this enables us to bring to the pods.
+
+{{% btn txt="Register" link="https://zoom.platform.linuxfoundation.org/webinar/register?project=lfn&id=AEltd2Ny5jXgn%2FUmQ%2FueI3%2BZXYuUOnbQN%2BFBn1eov9oSozG8JrdqqQ%3D%3D&logo=lfn.svg&zoomID=95927465619" %}}
 
 ### Speakers
 

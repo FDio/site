@@ -1,18 +1,3 @@
-{{- $registrationIcon := (dict "iconClass" "fas fa-desktop" "text" "Register" "url" .Params.Registrationurl) }}
-{{- $youtubeIcon := (dict "iconClass" "fab fa-youtube" "text" "YouTube" "url" .Params.Youtubeurl) }}
-{{- $pdfIcon := (dict "iconClass" "far fa-file-pdf" "text" "PDF" "url" .Params.Pdfurl) }}
-{{- $pptIcon := (dict "iconClass" "fas fa-file-powerpoint" "text" "PPT" "url" .Params.Ppturl) }}
-{{- $icons := slice }}
-{{ if now.Before .Params.Date }}
-{{- $icons = $icons | append $registrationIcon }}
-{{ end }}
-{{- $icons = $icons | append $youtubeIcon }}
-{{- $icons = $icons | append $pdfIcon }}
-{{- $icons = $icons | append $pptIcon }}
-
-
-{{ if now.Before .Params.Date }}
-{{ end }}
 <article class="media">
     <figure class="media-left">
         <div class="image is-128x128 mt-0">
@@ -21,30 +6,29 @@
     </figure>
     <div class="media-content">
         <h2>{{.Params.title}}</h2>
-        <h4>
-            {{.Params.Date.Format "January 2, 2006" }} <span class="localtime">{{.Params.Date.Format "08:00:00-07"}}</span>
-        </h4>
+        <h4>{{.Params.Date.Format "January 2, 2006" }} <span class="localtime">{{.Params.time_slot}}</span></h4>
         <h5>
-            {{ range $index,$item := $icons }}
-            {{ if $item.url }}
-            {{ if ne $index 0 }}
-            <span class="icon">
-                <i class="fas fa-grip-lines-vertical"></i>
-            </span>
+            {{ with .Params.Youtubeurl }}
+            <a href="{{.}}"><span class="icon-text">
+                <span class="icon"><i class="fab fa-youtube"></i></span>
+                <span class="divider is-vertical"></span>
+                <span>YouTube</span>
+            </span></a>
             {{ end }}
-            <a href="{{$item.url}}">
-                <span class="icon-text">
-                    <span class="icon">
-                        <i class="{{$item.iconClass}}"></i>
-                    </span>
-                    <span class="divider is-vertical"></span>
-                    <span>
-                        {{$item.text}}
-                    </span>
-                </span>
-            </a>
-            {{end}}
-            {{end}}
+            {{ with .Params.Pdfurl }}
+            <a href="{{.}}"><span class="icon-text">
+                <span class="icon"><i class="far fa-file-pdf"></i></span>
+                <span class="divider is-vertical"></span>
+                <span>PDF</span>
+            </span></a>
+            {{ end }}
+            {{ with .Params.Ppturl }}
+            <a href="{{.}}"><span class="icon-text">
+                <span class="icon"><i class="fas fa-file-powerpoint"></i></span>
+                <span class="divider is-vertical"></span>
+                <span>PPT</span>
+            </span></a>
+            {{ end }}
         </h5>
     </div>
 </article>
