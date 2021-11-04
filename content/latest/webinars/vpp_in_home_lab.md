@@ -2,9 +2,10 @@
 title = "VPP in your home lab? Yep. Right now."
 
 publishDate = "2021-02-24"
-date = "2021-03-24T08:00:00-07:00"
+date = "2021-03-24"
+time_slot = "08:00am - 07:00am PST"
 type = "webinar"
-registrationurl = "https://zoom.platform.linuxfoundation.org/webinar/register?project=lfn&id=9LezoxnkXNfCmD996i1xkiMRQzcDloi2kcSLsu2fHYh1WH%2FVs2DTow%3D%3D&logo=lfn.svg&zoomID=95265267758"
+
 youtubeurl = "https://www.youtube.com/watch?v=t_QntvXFaNI"
 pdfurl = "https://drive.google.com/file/d/1vsDQFYiIUvzyVl2jypZXynQy0_WHjlGr/view?usp=sharing"
 ppturl = "https://drive.google.com/file/d/1Gn3jb39lkbnriQhCZgINZ1tlLVauj1OV/view?usp=sharing"

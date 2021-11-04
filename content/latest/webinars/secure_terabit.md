@@ -2,12 +2,12 @@
 title = "How to build Secure Terabit Network Services with FD.io technologies."
 
 publishDate = "2021-06-22"
-date = "2021-07-01T09:00:00-08:00"
+date = "2021-07-01"
+time_slot = "09:00am - 08:00am PST"
 type = "webinar"
 youtubeurl = "https://www.youtube.com/watch?v=x3IJvEcOgDQ"
 pdfurl =  "https://drive.google.com/file/d/1dqLOzGJLbU-gVEqHU0lmASjdY9bx2Dx0/view?usp=sharing"
 ppturl = "https://drive.google.com/file/d/1ApBCu93nB71udcomfDVFLCfD7DF_bKeL/view?usp=sharing"
-registrationurl = "https://zoom.platform.linuxfoundation.org/webinar/register?project=lfn&id=8NyApcNnVp05NssbtlAwxzM9M4RMCrjfdRbep93XYfliU%2Fv1w6aFMw%3D%3D&logo=lfn.svg&zoomID=97929208420&sessionid=3fcc8396-5887-405e-88c0-bf4ba660c134"
 +++
 
 Learn how FD.io is used to build secure Terabit NaaS cloud
