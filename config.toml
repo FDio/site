@@ -5,6 +5,15 @@ theme = "airspace-hugo"
 
 publishDir = "public"
 
+#
+# This configuration only applies to hugo server
+#
+
+[[server.headers]]
+  for = '/vpp_versions.json'
+  [server.headers.values]
+    Access-Control-Allow-Origin = '*'
+
 [menu]
 
   #
