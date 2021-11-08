@@ -50,10 +50,12 @@ Lijian Zhang is a staff software engineer from Arm open source software group, w
 
 --------------------------
 
+## <img src="/img/dm.jpg" width=10% > 
 **Damjan Marion**, *Principal Engineer - Cisco*
 
 --------------------------
 
+## <img src="/img/mk.jpg" width=10% > 
 **Maciek Konstantynowicz**, *Distinguished Engineer - Cisco*
 
 --------------------------
