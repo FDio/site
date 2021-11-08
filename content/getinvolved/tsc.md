@@ -6,19 +6,9 @@ The TSC is responsible for all technical oversight of the FD.io open source Proj
 
 ### The TSC Members
 
-## <img src="/img/db.png" width=10% > 
-**Dave Barach**, *Cisco Fellow*
-
-Dave Barach is a Cisco Fellow specializing in high-speed packet processing on
-commodity hardware. Dave has worked on the fd.io vpp stack for more than a
-dozen years (and counting). Dave started programming in 1968, and has written
-all sorts of high performance software as well as highly scalable performance analysis
-tooling.
-
---------------------------
 
 ## <img src="/img/ew.jpg" width=10% > 
-**Ed Warnicke**, *Distinguished Consulting Engineer - Cisco Systems*
+**Ed Warnicke**, *Distinguished Engineer - Cisco Systems*
 
 Ed Warnicke is a Distinguished Consulting Engineer in the Chief Technology
 and Architecture Office (CTAO) office at Cisco Systems. He has been working
@@ -29,16 +19,6 @@ member at ONAP. Ed has a masters in Physics (String Theory) from Rutgers Univers
 
 --------------------------
 
-## <img src="/img/gz.jpg" width=10% > 
-**George Zhao**, *Director of Open Source and Ecosystem, Huawei Technologies Co., Ltd.*
-
-George has 25 years of working experience in networking, software architecture
-and has been an open source evangelist for the past 4 years. He currently
-is director of open source and ecosystem at Huawei Technologies Co., Ltd.
-George received a bachelor in E.E. from McGill University and master’s on
-computer engineering from the University of Toronto.
-
---------------------------
 
 ## <img src="/img/rk.png" width=10% > 
 **Ray Kinsella**, *Platform Solutions Architect, Intel Corporation*
@@ -60,6 +40,54 @@ with Router implementation, architecture, and design since the late 1980s. He
 has been an active member of the IETF, and has written or coauthored RFCs
 across a range of topics. He has significant experience with many different
 protocols for forwarding plane control dating back to the mid 1990s.
+
+--------------------------
+
+## <img src="/img/lz.png" width=10% > 
+**Lijian Zhang**, *Staff Software Engineer - Arm China*
+
+Lijian Zhang is a staff software engineer from Arm open source software group, where he works on networking open source projects on Arm ecosystem. He has been working on supporting FD.io projects on various aarch64 architectures since 2018. Prior to working on open source software, he developed ASIC based software for Switch and Router for more than 10 years. Lijian has a master's degree in Mechatronics from Zhejiang University.
+
+--------------------------
+
+**Damjan Marion**, *Principal Engineer - Cisco*
+
+--------------------------
+
+**Maciek Konstantynowicz**, *Distinguished Engineer - Cisco*
+
+--------------------------
+
+**Matthew Smith**, *Netgate*
+
+--------------------------
+
+**Neale Ranns**, *Graphiant*
+
+--------------------------
+
+
+
+### Past members
+
+## <img src="/img/db.png" width=10% > 
+**Dave Barach**, *Cisco Fellow*
+
+Dave Barach is a Cisco Fellow specializing in high-speed packet processing on
+commodity hardware. Dave has worked on the fd.io vpp stack for more than a
+dozen years (and counting). Dave started programming in 1968, and has written
+all sorts of high performance software as well as highly scalable performance analysis
+tooling.
+
+--------------------------
+## <img src="/img/gz.jpg" width=10% > 
+**George Zhao**, *Director of Open Source and Ecosystem, Huawei Technologies Co., Ltd.*
+
+George has 25 years of working experience in networking, software architecture
+and has been an open source evangelist for the past 4 years. He currently
+is director of open source and ecosystem at Huawei Technologies Co., Ltd.
+George received a bachelor in E.E. from McGill University and master’s on
+computer engineering from the University of Toronto.
 
 --------------------------
 
