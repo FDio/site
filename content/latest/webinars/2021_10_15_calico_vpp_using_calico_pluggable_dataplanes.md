@@ -4,6 +4,7 @@ title = "Calico/VPP: Using Calico’s Pluggable Dataplanes for Fun and Fast Netw
 date = "2021-10-15"
 time_slot = "11:55am - 12:30am PST"
 type = "webinar"
+youtubeurl = "https://www.youtube.com/watch?v=tPnqFx32rW4"
 pdfurl =  "https://static.sched.com/hosted_files/kccncna2021/4c/Calico_VPP%20KCNA%202021.pdf"
 ppturl = "https://static.sched.com/hosted_files/kccncna2021/21/Calico_VPP-KCNA2021.pptx"
 +++

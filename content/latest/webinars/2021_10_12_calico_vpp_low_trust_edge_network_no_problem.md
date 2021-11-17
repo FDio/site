@@ -4,6 +4,7 @@ title = "Low Trust Edge Network? No Problem - Get Great Performance and Security
 date = "2021-10-12"
 time_slot = "11:20am - 11:50am PST"
 type = "webinar"
+youtubeurl = "https://www.youtube.com/watch?v=oTuiWPb5P0g"
 pdfurl =  "https://static.sched.com/hosted_files/onesummit2021/ff/Low_trust_edge_k8s_Calico_VPP_ONE_summit.pdf"
 ppturl = "https://static.sched.com/hosted_files/onesummit2021/3e/Low%20trust%20edge%20k8s%20Calico%20VPP%20ONE%20summit.pptx"
 +++
