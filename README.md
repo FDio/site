@@ -137,20 +137,10 @@ $ cd site
 
 ### Work Locally with Hugo
 
-To make your changes locally initialize the git submodules.
-
-``` console
-$ git submodule update --init --recursive
-Submodule 'themes/airspace-hugo' (https://github.com/themefisher/airspace-hugo.git) registered for path 'themes/airspace-hugo'
-Cloning into '/Developer/hugo/site/themes/airspace-hugo'...
-Submodule path 'themes/airspace-hugo': checked out '207d048784e04bfef6564615ff6addfb35480611'
-$
-```
-
 Then run the Hugo server locally.
 
 ``` console
-$ hugo server --disableFastRender
+$ hugo server
 
                    | EN
 +------------------+----+

@@ -1,8 +1,7 @@
 {
-  "devDependencies": {
-    "bulma": "^0.7.4"
-  },
   "dependencies": {
-    "bulma-divider": "^0.2.0"
+    "@popperjs/core": "^2.11.0",
+    "bootstrap": "^5.1.3",
+    "jquery": "^3.6.0"
   }
 }

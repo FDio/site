@@ -1,6 +1,7 @@
 # Proxy legacy doxygen documentation
 # options available here :
 # https://docs.netlify.com/routing/redirects/redirect-options/
+/docs/tsc/FD.IO-Technical-Community-Document-12-12-2017.pdf /getinvolved/tscdocs/ 302
 /docs/vpp/master/*     https://s3-docs.fd.io/vpp/23.02/:splat            302
 /docs/vpp/v2206/*      https://s3-docs.fd.io/vpp/22.06/:splat            302
 /docs/vpp/v2202/*      https://s3-docs.fd.io/vpp/22.02/:splat            302

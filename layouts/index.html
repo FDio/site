@@ -9,101 +9,310 @@
 	{{ partial "header.html" . }}
 
 	<!-- Slider Start -->
-	<section id="slider" style="background-image: url('{{.Site.Params.bgImage | absURL }}');">
+	<section class="section py-5" style="background-image: url('{{ .Site.Params.bgImage | absURL }}');">
     	<div class="container">
         	<div class="row">
-            	<div class="col-md-10 col-md-offset-1">
-                	<div class="block text-center">
-                    	<h1 class="animated fadeInUp">FD.io <br> The World’s Secure Networking Data Plane</h1>
-                    	<p class="animated fadeInUp">
-                    		An Open Source Terabit Software Dataplane <br>
-							The world moves at light speed. <br>
-							Make sure your packet traffic keeps up.
-							<br><br>
-							Enriching Data Plane Leadership and Deployment Efficiency.
-                    	</p>
+                <div class="col-md-12">
+                	<div class="text-center text-white">
+                		<h1>FD.io</h1>
+                		<h1>The World’s Secure Networking Data Plane</h1>
+                	</div>
+                </div>
+                <div class="col-md-6 offset-md-3 pt-4 pb-4">
+                	<div class="text-center text-white fs-4 fw-lighter">
+                		  An Open Source Terabit Software Dataplane
+				  The world moves at light speed.
+				  Make sure your packet traffic keeps up.
+				  Enriching Data Plane Leadership and Deployment Efficiency.
                 	</div>
             	</div>
         	</div>
     	</div>
 	</section>
 
-	<!-- Wrapper Start -->
-	<section id="intro">
-    	<div class="container">
-		<div class="col-md-10 col-md-offset-1 ">
-	    	<div class="block">
-			<h2 class="text-uppercase">Why FD.io?</h2>
-			<div class=content>
-				<h3>Lowers the Barrier to Entry</h3>
-				Industry-standard, cross-platform, network Stack - supported by multiple hardware vendors
-				<h3>Increases Velocity</h3>
-				Encourages industry disruption and fosters innovation
-				<h3>Platform optimized</h3>
-				Built using same super-scalar optimizations as <a href="http://www.dpdk.org/">DPDK</a>
-				<h3>Broad adoption</h3>
-				Supported by a broad community of industry contributors
+	<section class="section py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h4 class="pb-4">The Fast Data Project (FD.io) is an open-source project aimed at providing the world's fastest and most secure networking data plane through Vector Packet Processing (VPP).</h4>
+				</div>
 			</div>
-			<p>
-			{{ with .Site.GetPage "/overview/usecases" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
-			</p>
-        	</div>
-		</div>
+			<div class="row">
+				<div class="action-widget col-sm-2 offset-sm-1 col-4">
+					<a class="text-decoration-none text-black" href="/technology">
+						<div class="circle"><i class="fas fa-graduation-cap"></i></div>
+						<i class="d-none d-lg-inline fas fa-arrow-right arrow"></i>
+						<div class="widget-title">Learn about the technology</div>
+					</a>
+				</div>
+				<div class="action-widget col-sm-2 col-4">
+					<a class="text-decoration-none text-black" href="/usecases">
+						<div class="circle"><i class="far fa-lightbulb"></i></div>
+						<i class="d-none d-lg-inline fas fa-arrow-right arrow"></i>
+						<div class="widget-title">Find Use Cases</div>
+					</a>
+				</div>
+				<div class="action-widget col-sm-2 col-4">
+					<a class="text-decoration-none text-black" href="/docs/vpp/master/gettingstarted/installing">
+						<div class="circle"><i class="fas fa-download"></i></div>
+						<i class="d-none d-lg-inline fas fa-arrow-right arrow"></i>
+						<div class="widget-title">Install VPP</div>
+					</a>
+				</div>
+				<div class="action-widget col-sm-2 col-4">
+					<a class="text-decoration-none text-black" href="/docs/vpp/master">
+						<div class="circle"><i class="fas fa-book"></i></div>
+						<i class="d-none d-lg-inline fas fa-arrow-right arrow"></i>
+						<div class="widget-title">View the Documentation</div>
+					</a>
+				</div>
+				<div class="action-widget col-sm-2 col-4">
+					<a class="text-decoration-none text-black" href="/community">
+						<div class="circle"><i class="fas fa-users"></i></div>
+						<div class="widget-title">Contribute</div>
+					</a>
+				</div>
+			</div>
     	</div>
 	</section>
 
-	<section id="feature" style="background-image: url('{{ .Site.Params.bgImage | absURL }}');">
-    	<div class="container">
-		<div class="col-md-10 col-md-offset-1 ">
-	    	<div class="block">
-			<h2 class="text-uppercase">What is Vector Packet Processing (VPP)?</h2>
-			<div class=content>
-		    	<p>
-		    	FD.io VPP is the Swiss Army knife of networking toolchains - enabling astounding software packet processing.
-				<br></br>
-				<b>Relentless speed and scale.</b>
-				<br />
-				Up to two orders of magnitude greater packet processing throughput.
-				<br />
-				VPP's host stack comprises packet, transport, session, and application layer protocols enabling entire networking and security functions to be injected into software packet processing.
-				<br /><br />
-				<b>Easily programmable.</b>
-				<br />
-				FD.io is easily extensible through plugins or by building applications on top of
-				the FD.io VPP API.
-				<br /><br />
-				<b>Deploy anywhere.</b>
-				<br />
-				Bare metal, VM or container.
-				x86, ARM, and PowerPC architectures.<br /> <br />
-				<b>The future of packet processing. Now.</b>
-		    	</p>
+	<section class="section py-5 text-white" style="background-image: url('{{ .Site.Params.bgImage | absURL }}');">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="pb-4">FD.io Users</h2>
+				</div>
 			</div>
-			<br/>
-			{{ with .Site.GetPage "/gettingstarted/technology" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
-			{{ with .Site.GetPage "/documentation/csit" }}<a href="{{ .Permalink }}" class="btn btn-main">VPP Performance</a>{{ end }}
-			{{ with .Site.GetPage "/gettingstarted/installing" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
-	    	</div>
+
+			<div class="row">
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/cisco.png" class="card-img-top" alt="Cisco Systems (image)" height="100">
+					<div class="card-body">
+    					<h5 class="card-title">Cisco Systems</h5>
+    					<p class="card-text">
+							ASR 9000 - Router<br>
+							Carrier Grade Services Engine
+    					</p>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/alibaba.png" class="card-img-top" alt="Alibaba (image)">
+					<div class="card-body">
+    					<h5 class="card-title">Alibaba Cloud</h5>
+    					<p class="card-text">
+							uCPE<br>
+							Network Virtual Functions<br>
+							Load Balancer
+    					</p>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/netgate.png" class="card-img-top" alt="Netgate (image)">
+					<div class="card-body">
+    					<h5 class="card-title">Netgate</h5>
+    					<p class="card-text">
+							TNSR : High-performance Secure Networking Software
+    					</p>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/inocybe.png" class="card-img-top" alt="Inocybe (image)">
+					<div class="card-body">
+    					<h5 class="card-title">Inocybe</h5>
+    					<p class="card-text">
+							An Open Networking Platform
+    					</p>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/openstack02.png" class="card-img-top" alt="Openstack (image)">
+					<div class="card-body">
+    					<h5 class="card-title">Openstack</h5>
+    					<p class="card-text">
+    						Cisco VIM (CVIM) using VPP
+    					</p>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/pantheontech.png" class="card-img-top" alt="PANTHEON.tech (image)">
+					<div class="card-body">
+    					<h5 class="card-title">PANTHEON.tech</h5>
+    					<p class="card-text">
+    						StoneWork Enterprise - performant & modular networking solution
+    					</p>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/yahoo.png" class="card-img-top" alt="Yahoo (image)">
+					<div class="card-body">
+    					<h5 class="card-title">Yahoo</h5>
+    					<p class="card-text">
+    						The JP Cloud Balancer
+    					</p>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/zte.png" class="card-img-top" alt="ZTE (image)">
+					<div class="card-body">
+    					<h5 class="card-title">ZTE</h5>
+    					<p class="card-text">
+							IoT Gateway<br>
+							MEC Platform<br>
+							PaaS Platform
+    					</p>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-6">
+					<div class="card usecase text-dark">
+					<img src="/img/kubernetes.png" class="card-img-top" alt="Kubernetes (image)">
+					<div class="card-body">
+    					<h5 class="card-title">Kubernetes</h5>
+    					<p class="card-text">
+    						A Cisco Container Platform
+    					</p>
+					</div>
+					</div>
+				</div>
+
+			</div>
 		</div>
-    	</div>
 	</section>
 
-	<!-- prjcomnews Start -->
-	<section id="intro">
-    	<div class="container">
-		<div class="col-md-10 col-md-offset-1 ">
-	    	<div class="block">
-			<h2 class="text-uppercase">The FD.io Community</h2>
-			<div class=content>
-		    	<p>The Fast Data Project (FD.io) is a collaborative open-source project aimed at establishing a high-performance IO services framework for dynamic compute environments.</p>
-		    	<br>
-				{{ with .Site.GetPage "/latest/news" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
-				{{ with .Site.GetPage "/getinvolved/community" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
-		    	<br></br>
+	<section class="section py-5" >
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="pb-4">Users say</h2>
+				</div>
+
+				<div class="col-md-2"><img class="img-fluid" src="/img/cisco.png"></div>
+				<div class="col-md-10">
+					<h5>David Ward, CTO and Chief architect of Engineering, Cisco</h5>
+					Cisco FD.io VPP, in deployment at Cisco since 2002.<br>
+					<i>Source: FD.io Press Release – Forth Release Announcement</i>
+				</div>
+				<div class="col-md-12 py-5 text-bold">
+					“FD.io is helping enable the developer community achieve the highest performance, throughput, and resource efficiency in networking across all deployment environments."
+				</div>
+
+				<hr>
+
+				<div class="col-md-2"><img class="img-fluid" src="/img/zte.png"></div>
+				<div class="col-md-10">
+					<h5>Binbin Xu, ZTE Software Engineer</h5>
+					FD.io VPP, in deployment at ZTE since 2017.<br>
+					<i>Source: ZTE's Experience of VPP in PaaS, OpenStack Summit Boston 2017</i>
+				</div>
+				<div class="col-md-12 py-5">
+					“VPP/DPDK is a fantastic development platform.”
+				</div>
+
+				<hr>
+
+				<div class="col-md-2"><img class="img-fluid" src="/img/huawei.png"></div>
+				<div class="col-md-10">
+					<h4>Chenxi Wang, VP, Network Strategy and Ecosystem, Huawei</h4>
+					FD.io DMM, in deployment at Huawei since 2015.<br>
+					<i>Source: FD.io Press Release - Huawei Deepens Commitment to FD.io, as Newest Platinum Member</i>
+				</div>
+				<div class="col-md-12 py-5">
+					“One of our focuses is to build a sound ecosystem with our community partners in order to enable Cloud Native Networking, and we truly believe that community collaboration will drive FD.io to a new level."
+				</div>
 			</div>
-	    	</div>
 		</div>
-    	</div>
+	</section>
+
+	<section class="section py-5 text-white" style="background-image: url('{{ .Site.Params.bgImage | absURL }}');">
+    	<div class="container">
+    		<div class="row">
+				<div class="col-md-6">
+					<h2 class="pb-4">Latest FD.io News</h2>
+					{{ with .Site.GetPage "/news/press" }}<a href="{{ .Permalink }}" class="btn btn-main">View All FD.io News</a>{{ end }}
+					<div class="horizontal-space"></div>
+				</div>
+				<div class="clearfix hidden-sm"></div>
+				{{ with .Site.GetPage "/news/press" }}
+	    		{{ range .Pages.ByDate.Reverse | first 3 }}
+				<div class="col-md-4">
+				<a class="text-decoration-none text-white" href="{{ .Permalink }}">
+					<h4>{{ .Title }}</h4>
+					<p>{{ .Date.Format "1 January 2006" }}</p>
+					<p>{{ .Content | truncate 200 | plainify | htmlUnescape }}</p>
+    			</a>
+    			</div>
+    			{{ end }}
+    			{{ end }}
+    		</div>
+	</section>
+
+	<section class="section py-5">
+		<div class="container">
+    		<div class="row">
+    			<div class="col-md-12">
+    				<h2 class="pb-4">Community</h2>
+    			</div>
+				<div class="col-md-3">
+					<div class="card">
+						<a class="text-decoration-none text-black" href="https://www.youtube.com/channel/UCIJ2OP6_i1npoHM39kxvwyg/videos">
+						<div class="card-body text-center">
+							<i class="fab fa-youtube" style="font-size: 3rem; color: #f20000"></i>
+						</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card">
+						<a class="text-decoration-none text-black" href="https://twitter.com/FDioProject">
+						<div class="card-body text-center">
+							<i class="fab fa-twitter" style="font-size: 3rem; color: rgb(29, 161, 242)"></i>
+						</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card">
+						<a class="text-decoration-none text-black" href="https://gerrit.fd.io/">
+						<div class="card-body text-center">
+							<i class="fas fa-code-branch" style="font-size: 3rem; color: #a1f2a1"></i>
+						</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card">
+						<a class="text-decoration-none text-black" href="/community">
+						<div class="card-body text-center">
+							<i class="fas fa-plus" style="font-size: 3rem; color: #aaa"></i>
+						</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 
 	{{ partial "footer.html" . }}

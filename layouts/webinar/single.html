@@ -3,17 +3,26 @@
     <head>
 	{{ partial "head.html" . }}
     </head>
-    <body>
-	{{ partial "header.html" . }}
-	{{ partial "page_title.html" . }}
-	<div class="container">
-		<div class="row">
-		<div class="col-md-12">
-			{{ partial "webinar-header.html" . }}
-			<p>{{ .Content  }}</p>
+    <body class="d-flex flex-column h-100">
+		{{ partial "header.html" . }}
+		{{ partial "page_title.html" . }}
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-4">
+    				<a href="{{ .Params.Youtubeurl }}">
+    				<img class="img-fluid" src="{{ .Params.Previewimage | default "/img/webinars/fdio-webinar.svg" }}">
+    				</a>
+				</div>
+				<div class="col-md-9 col-sm-8">
+    				<h2>{{.Params.title}}</h2>
+    				<div>{{.Params.Date.Format "January 2, 2006" }} {{.Params.time_slot}}</div>
+					{{ partial "webinar-buttons.html" . }}
+    			</div>
+				<div class="col-md-12">
+					<p>{{ .Content  }}</p>
+				</div>
+	    	</div>
 		</div>
-	    </div>
-	</div>
-	{{ partial "footer.html" . }}
+		{{ partial "footer.html" . }}
     </body>
 </html>

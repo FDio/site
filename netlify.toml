@@ -8,20 +8,20 @@ HUGO_ENV = "production"
 HUGO_ENABLEGITINFO = "true"
 
 [context.split1]
-command = "hugo  --gc --minify --enableGitInfo"
+command = "hugo --gc --minify --enableGitInfo"
 
 [context.split1.environment]
 HUGO_VERSION = "0.104.0"
 HUGO_ENV = "production"
 
 [context.deploy-preview]
-command = "hugo  --gc --minify --buildFuture"
+command = "hugo --gc --minify --buildFuture"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.104.0"
 
 [context.branch-deploy]
-command = "hugo  --gc --minify"
+command = "hugo --gc --minify"
 
 [context.branch-deploy.environment]
 HUGO_VERSION = "0.104.0"

@@ -8,7 +8,7 @@ It is largely inspired by the pioneer work of Van Jacobson on Content-Centric Ne
 
 The project implements novel transport protocols, with a socket API, for real-time and capacity seeking applications. A scalable stack is available based on VPP and a client stack is provided to support any mobile and desktop operating system.
 
-To get started with hICN check out the [Blog post](/latest/news/hicn).
+To get started with hICN check out the [Blog post](/news/press/hicn).
 
 The Developer Wiki is at [hICN Wiki](https://wiki.fd.io/view/HICN).
 

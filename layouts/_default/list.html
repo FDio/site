@@ -1,62 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
 	{{ partial "head.html" . }}
     </head>
-    <body>
-	{{ partial "header.html" . }}
-	{{ partial "page_title.html" . }}
+    <body class="d-flex flex-column h-100">
+    	<div class="flex-shrink-0">
+			{{ partial "header.html" . }}
+			{{ partial "page_title.html" . }}
 
-	{{ $colsize := .Params.colsize | default 12  }}
-	{{ $truncate := .Params.truncate | default 0  }}
-	{{ $disable_readmore := .Params.disable_readmore | default false  }}
-	<div class="container">
-	    <div class="col-md-12">
-			{{ .Content | markdownify }}
-		</div>
+			{{ $colsize := .Params.colsize | default 12  }}
+			{{ $truncate := .Params.truncate | default 0  }}
+			{{ $disable_readmore := .Params.disable_readmore | default false  }}
+			{{ $disable_list := .Params.disable_list | default false  }}
+			<div class="container">
+				<div class="row g-2">
+	    			<div class="col-md-12">
+						{{ .Content | markdownify }}
+					</div>
+					{{ if not $disable_list }}
+	    			{{ range (.Paginator 12).Pages.ByDate.Reverse }}
+	    			<div class="col-md-{{ $colsize }}">
+		    			<h3>{{ .Params.title }}</h3>
 
-	    {{ range (.Paginator 6).Pages.ByDate.Reverse }}
-	    <div class="col-md-{{ $colsize }}">
-		<article class="blog-post">
+		    			{{ if or (isset .Params "author") (isset .Params "date") }}
+		    			<div class="text-muted">By {{ .Params.author | default "The linux foundation" }} | {{ .Date.Format "Jan 2 2006" }}, {{ .Params.location }}</div>
+		    			{{ end }}
 
-		    <h3>{{ .Params.title }}</h3>
+		    			<p>
+		    			{{ if $truncate }}
+		    			{{ .Plain | markdownify | truncate $truncate }}
+		    			{{ else }}
+		    			{{ .Content | markdownify }}
+		    			{{ end }}
+						</p>
 
-		    {{ if or (isset .Params "author") (isset .Params "date") }}
-		    <h4>By {{ .Params.author | default "The linux foundation" }} | {{ .Date.Format "Jan 2 2006" }}, {{ .Params.location }}</h4>
-		    {{ end }}
-
-		    <p>
-		    {{ if $truncate }}
-		    {{ .Plain | markdownify | truncate $truncate }}
-		    {{ else }}
-		    {{ .Content | markdownify }}
-		    {{ end }}
-			</p>
-
-			<p>
-			{{ if not $disable_readmore }}
-				<div class="btn-group" role="group">
-		    	{{ if isset .Params "link" }}
-					{{ $linkText := .Params.linkText | default "Read more..."  }}
-					{{ $length := .Plain | len  }}
-		    		<a href="{{ .Params.link }}" class="btn btn-main">{{ $linkText }}</a>
-		    		{{ if and (ge $length $truncate) (gt $truncate 0) }}
-		    			<a href="{{ .Page.Permalink }}" class="btn btn-main">Read full article</a>
-		    		{{ end }}
-		    	{{ else }}
-					{{ $linkText := .Params.linkText | default "Read more..."  }}
-		    		<a href="{{ .Page.Permalink }}" class="btn btn-main">{{ $linkText }}</a>
-		    	{{ end }}
+						<p>
+						{{ if not $disable_readmore }}
+							<div class="btn-group" role="group">
+		    				{{ if isset .Params "link" }}
+								{{ $linkText := .Params.linkText | default "Read more..."  }}
+								{{ $length := .Plain | len  }}
+		    					<a href="{{ .Params.link }}" class="btn btn-main">{{ $linkText }}</a>
+		    					{{ if and (ge $length $truncate) (gt $truncate 0) }}
+		    						<a href="{{ .Page.Permalink }}" class="btn btn-main">Read full article</a>
+		    					{{ end }}
+		    				{{ else }}
+								{{ $linkText := .Params.linkText | default "Read more..."  }}
+		    					<a href="{{ .Page.Permalink }}" class="btn btn-main">{{ $linkText }}</a>
+		    				{{ end }}
+							</div>
+		    			{{ end }}
+						</p>
+					</div>
+					{{ if (eq $colsize 12) }}<hr>{{ end}}
+	    			{{ end }}
+	    			{{ end }}
 				</div>
-		    {{ end }}
-			</p>
-		</article>
-	    </div>
-	    {{ end }}
-	</div>
-	<div class="col-12 text-center">
-	    {{ template "_internal/pagination.html" . }}
-	</div>
-	{{ partial "footer.html" . }}
-</body>
+				<nav class="pagination-center">
+	    			{{ template "_internal/pagination.html" . }}
+	    		</nav>
+				</div><!-- row -->
+			</div><!-- container -->
+		</div>
+		{{ partial "footer.html" . }}
+	</body>
 </html>

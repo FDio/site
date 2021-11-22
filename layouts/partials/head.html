@@ -3,8 +3,6 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- robots -->
-<!-- you may configure it in the front matter of the page or in site params -->
 {{ if or (isset .Params "robots") (isset .Site.Params "robots") }}
 <meta name="robots" content="{{ with .Params.robots }}{{ . }}{{ else }}{{ .Site.Params.robots }}{{ end }}">
 {{ end }}
@@ -15,37 +13,11 @@
 
 <meta name="hugo.type" content="{{ .Type }}">
 
-{{ partial "css.html" }}
-
-<!-- CSS -->
 {{ $bootstrap := resources.Get "css/bootstrap.min.css"}}
 {{ $fontawesome := resources.Get "css/font-awesome.min.css"}}
-{{ $airspacelocalfonts := resources.Get "css/airspace-local-fonts.css"}}
-{{ $airspace := resources.Get "css/airspace.css"}}
-{{ $ionicons := resources.Get "css/ionicons.min.css"}}
-{{ $animate := resources.Get "css/animate.css"}}
-{{ $syntax := resources.Get "css/syntax.css"}}
-{{ $override := resources.Get "css/override.css"}}
-{{ $githubmarkdown := resources.Get "css/github-markdown.min.css"}}
-{{ $unicss := slice $bootstrap $fontawesome $airspacelocalfonts $airspace $ionicons $animate $syntax $override $githubmarkdown | resources.Concat "bundle.css" | minify | fingerprint}}
-<link rel="stylesheet"
-      href="{{ $unicss.RelPermalink }}"
-      integrity="{{ $unicss.Data.Integrity }}">
-<!-- Js -->
-{{ $jqueryjs := resources.Get "js/jquery.min.js"}}
-{{ $bootstrapjs := resources.Get "js/bootstrap.min.js"}}
-{{ $unijs := slice $jqueryjs $bootstrapjs | resources.Concat "bundle.js" | minify | fingerprint}}
-<script defer src="{{ $unijs.RelPermalink }}"
-        integrity="{{ $unijs.Data.Integrity}}"></script>
-<!--
-/*
- * Airspace
- * Ported to Hugo by Giacomo Mariani
- * https://github.com/karju-dev/airspace-hugo
- * Based on the original Jakyll porting by Andrew Lee
- * https://github.com/luminousrubyist/airspace-jekyll
- * Designed and Developed by ThemeFisher
- * https://themefisher.com/
- *
- */
--->
+{{ $maincss := resources.Get "css/main.css"}}
+{{ $unicss := slice $bootstrap $fontawesome $maincss | resources.Concat "bundle.css" | minify | fingerprint}}
+<link rel="stylesheet" href="{{ $unicss.RelPermalink }}" integrity="{{ $unicss.Data.Integrity }}">
+
+{{ $js := resources.Get "js/main.js" | js.Build | minify | fingerprint }}
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
