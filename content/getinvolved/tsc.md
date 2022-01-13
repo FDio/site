@@ -67,7 +67,10 @@ Matthew Smith is a Software Engineer at Netgate, where he designs and implements
 
 --------------------------
 
+## <img src="/img/nr.jpg" width=10% > 
 **Neale Ranns**, *Graphiant*
+
+Neale Ranns is a data-plane software engineer at Graphiant. He has spent 20+ years in the networking world building low level router functions and data-planes. He has contributed to VPP since 2016 and been a committer since 2017.
 
 --------------------------
 
