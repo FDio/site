@@ -60,7 +60,10 @@ Lijian Zhang is a staff software engineer from Arm open source software group, w
 
 --------------------------
 
+## <img src="/img/ms.jpg" width=10% > 
 **Matthew Smith**, *Netgate*
+
+Matthew Smith is a Software Engineer at Netgate, where he designs and implements firewall and router appliances which are based on open-source software. He has been a contributor to VPP since 2016 and a committer since 2020.
 
 --------------------------
 
