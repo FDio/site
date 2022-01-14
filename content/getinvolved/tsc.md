@@ -58,6 +58,7 @@ Lijian Zhang is a staff software engineer from Arm open source software group, w
 ## <img src="/img/mk.jpg" width=10% > 
 **Maciek Konstantynowicz**, *Distinguished Engineer - Cisco*
 
+Maciek Konstantynowicz, Distinguished Engineer at Cisco, focuses on developing Internet technologies and systems that enable deployments of distributed applications. His work areas include performance-centric design engineering, IP networking, cloud-networking, compute x86/Arm optimizations for network data planes and benchmarking. Active in IETF and LFN FD.io open-source. Technical project lead of FD.io CSIT open-source benchmarking project.
 --------------------------
 
 ## <img src="/img/ms.jpg" width=10% > 
