@@ -50,8 +50,12 @@ Lijian Zhang is a staff software engineer from Arm open source software group, w
 
 --------------------------
 
-## <img src="/img/dm.jpg" width=10% > 
-**Damjan Marion**, *Principal Engineer - Cisco*
+## <img src="/img/dw.jpg" width=10% > 
+**Dave Wallace**, *Technical Leader - Cisco*
+
+Dave Wallace is a software technical leader at Cisco with 30+ years of software development experience in the communications industry. He has
+worked on the vpp codebase since 2013 and is a contributor and committer on the VPP, CSIT, Honeycomb (archived), and ci-management projects in the
+FD.io community. Appointed by Damjan Marion, VPP Project Technical Lead, to represent the VPP project on the TSC.
 
 --------------------------
 
@@ -79,6 +83,13 @@ Neale Ranns is a data-plane software engineer at Graphiant. He has spent 20+ yea
 
 
 ### Past members
+
+## <img src="/img/dm.jpg" width=10% >
+**Damjan Marion**, *Principal Engineer - Cisco*
+
+Damjan Marion is a Principal Engineer at Cisco and is the Project Technical Leader for the FD.io VPP project.
+
+--------------------------
 
 ## <img src="/img/db.png" width=10% > 
 **Dave Barach**, *Cisco Fellow*
