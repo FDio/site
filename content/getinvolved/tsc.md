@@ -6,6 +6,9 @@ The TSC is responsible for all technical oversight of the FD.io open source Proj
 
 ### The TSC Members
 
+**TSC Chairperson** (elected March 2022): Dave Wallace
+
+--------------------------
 
 ## <img src="/img/ew.jpg" width=10% > 
 **Ed Warnicke**, *Distinguished Engineer - Cisco Systems*
