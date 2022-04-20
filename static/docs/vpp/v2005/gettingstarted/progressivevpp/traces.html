@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using the trace command &mdash; The Vector Packet Processor 20.05 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Connecting Two FD.io VPP Instances" href="twovppinstances.html" />
+    <link rel="prev" title="Creating an Interface" href="interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.05
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Progressive VPP Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="settingupenvironment.html">Setting up your environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="runningvpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html">Creating an Interface</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using the trace command</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#skills-to-be-learned">Skills to be Learned</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-trace-commands">Basic Trace Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-trace">Add Trace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ping-from-host-to-vpp">Ping from Host to VPP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examine-trace-of-ping-from-host-to-vpp">Examine Trace of ping from host to VPP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clear-trace-buffer">Clear trace buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ping-from-vpp-to-host">Ping from VPP to Host</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examine-trace-of-ping-from-vpp-to-host">Examine Trace of ping from VPP to host</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examine-arp-tables">Examine arp tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examine-routing-tables">Examine routing tables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="twovppinstances.html">Connecting Two FD.io VPP Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switching.html">Switching</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers/index.html">For Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">Progressive VPP Tutorial</a> &raquo;</li>
+        
+      <li>Using the trace command</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/progressivevpp/traces.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="traces">
+</div>
+<div class="section" id="using-the-trace-command">
+<h1>Using the trace command<a class="headerlink" href="#using-the-trace-command" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="skills-to-be-learned">
+<h2>Skills to be Learned<a class="headerlink" href="#skills-to-be-learned" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Setup a ‘trace’</p></li>
+<li><p>View a ‘trace’</p></li>
+<li><p>Clear a ‘trace’</p></li>
+<li><p>Verify using ping from host</p></li>
+<li><p>Ping from vpp</p></li>
+<li><p>Examine Arp Table</p></li>
+<li><p>Examine ip fib</p></li>
+</ol>
+</div>
+<div class="section" id="basic-trace-commands">
+<h2>Basic Trace Commands<a class="headerlink" href="#basic-trace-commands" title="Permalink to this headline">¶</a></h2>
+<p>Show trace buffer [max COUNT].</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# show trace</span>
+</pre></div>
+</div>
+<p>Clear trace buffer and free memory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# clear trace</span>
+</pre></div>
+</div>
+<p>filter trace output - include NODE COUNT | exclude NODE COUNT | none.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# trace filter &lt;include NODE COUNT | exclude NODE COUNT | none&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-trace">
+<h2>Add Trace<a class="headerlink" href="#add-trace" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# trace add af-packet-input 10</span>
+</pre></div>
+</div>
+<p>The following list of nodes are supported under trace add:</p>
+<ul class="simple">
+<li><p>af-packet-input</p></li>
+<li><p>avf-input</p></li>
+<li><p>bond-process</p></li>
+<li><p>dpdk-crypto-input</p></li>
+<li><p>dpdk-input</p></li>
+<li><p>handoff-trace</p></li>
+<li><p>ixge-input</p></li>
+<li><p>memif-input</p></li>
+<li><p>mrvl-pp2-input</p></li>
+<li><p>netmap-input</p></li>
+<li><p>p2p-ethernet-input</p></li>
+<li><p>pg-input</p></li>
+<li><p>punt-socket-rx</p></li>
+<li><p>rdma-input</p></li>
+<li><p>session-queue</p></li>
+<li><p>tuntap-rx</p></li>
+<li><p>vhost-user-input</p></li>
+<li><p>virtio-input</p></li>
+<li><p>vmxnet3-input</p></li>
+</ul>
+</div>
+<div class="section" id="ping-from-host-to-vpp">
+<h2>Ping from Host to VPP<a class="headerlink" href="#ping-from-host-to-vpp" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# q</span>
+<span class="gp">$</span> ping -c <span class="m">1</span> <span class="m">10</span>.10.1.2
+<span class="go">PING 10.10.1.2 (10.10.1.2) 56(84) bytes of data.</span>
+<span class="go">64 bytes from 10.10.1.2: icmp_seq=1 ttl=64 time=0.283 ms</span>
+
+<span class="go">--- 10.10.1.2 ping statistics ---</span>
+<span class="go">1 packets transmitted, 1 received, 0% packet loss, time 0ms</span>
+<span class="go">rtt min/avg/max/mdev = 0.283/0.283/0.283/0.000 ms</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examine-trace-of-ping-from-host-to-vpp">
+<h2>Examine Trace of ping from host to VPP<a class="headerlink" href="#examine-trace-of-ping-from-host-to-vpp" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl -s /run/vpp/cli-vpp1.sock
+<span class="go">vpp# show trace</span>
+<span class="go">------------------- Start of thread 0 vpp_main -------------------</span>
+<span class="go">Packet 1</span>
+
+<span class="go">00:17:04:099260: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 98 snaplen 98 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e370 nsec 0x3af2736f vlan 0 vlan_tpid 0</span>
+<span class="go">00:17:04:099269: ethernet-input</span>
+<span class="go">IP4: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:17:04:099285: ip4-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">  fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099290: ip4-lookup</span>
+<span class="go">fib 0 dpo-idx 5 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">  fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099296: ip4-local</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">    fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">  ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099300: ip4-icmp-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">  fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099301: ip4-icmp-echo-request</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">  fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099303: ip4-load-balance</span>
+<span class="go">fib 0 dpo-idx 13 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.2 -&gt; 10.10.1.1</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x4437</span>
+<span class="go">  fragment id 0xe05b, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_reply checksum 0xc843</span>
+<span class="go">00:17:04:099305: ip4-rewrite</span>
+<span class="go">tx_sw_if_index 1 dpo-idx 1 : ipv4 via 10.10.1.1 host-vpp1out: mtu:9000 e20f1e59ecf702fed975d5b40800 flow hash: 0x00000000</span>
+<span class="go">00000000: e20f1e59ecf702fed975d5b4080045000054e05b4000400144370a0a01020a0a</span>
+<span class="go">00000020: 01010000c8437c92000170e3605b000000001c170f00000000001011</span>
+<span class="go">00:17:04:099307: host-vpp1out-output</span>
+<span class="go">host-vpp1out</span>
+<span class="go">IP4: 02:fe:d9:75:d5:b4 -&gt; e2:0f:1e:59:ec:f7</span>
+<span class="go">ICMP: 10.10.1.2 -&gt; 10.10.1.1</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x4437</span>
+<span class="go">  fragment id 0xe05b, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_reply checksum 0xc843</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clear-trace-buffer">
+<h2>Clear trace buffer<a class="headerlink" href="#clear-trace-buffer" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# clear trace</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ping-from-vpp-to-host">
+<h2>Ping from VPP to Host<a class="headerlink" href="#ping-from-vpp-to-host" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# ping 10.10.1.1</span>
+<span class="go">64 bytes from 10.10.1.1: icmp_seq=1 ttl=64 time=.0789 ms</span>
+<span class="go">64 bytes from 10.10.1.1: icmp_seq=2 ttl=64 time=.0619 ms</span>
+<span class="go">64 bytes from 10.10.1.1: icmp_seq=3 ttl=64 time=.0519 ms</span>
+<span class="go">64 bytes from 10.10.1.1: icmp_seq=4 ttl=64 time=.0514 ms</span>
+<span class="go">64 bytes from 10.10.1.1: icmp_seq=5 ttl=64 time=.0526 ms</span>
+
+<span class="go">Statistics: 5 sent, 5 received, 0% packet loss</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examine-trace-of-ping-from-vpp-to-host">
+<h2>Examine Trace of ping from VPP to host<a class="headerlink" href="#examine-trace-of-ping-from-vpp-to-host" title="Permalink to this headline">¶</a></h2>
+<p>The output will demonstrate FD.io VPP’s trace of ping for all packets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# show trace</span>
+<span class="go">------------------- Start of thread 0 vpp_main -------------------</span>
+<span class="go">Packet 1</span>
+
+<span class="go">00:17:04:099260: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 98 snaplen 98 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e370 nsec 0x3af2736f vlan 0 vlan_tpid 0</span>
+<span class="go">00:17:04:099269: ethernet-input</span>
+<span class="go">IP4: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:17:04:099285: ip4-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">  fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099290: ip4-lookup</span>
+<span class="go">fib 0 dpo-idx 5 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">  fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099296: ip4-local</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">    fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">  ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099300: ip4-icmp-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">  fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099301: ip4-icmp-echo-request</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f7c</span>
+<span class="go">  fragment id 0xe516, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_request checksum 0xc043</span>
+<span class="go">00:17:04:099303: ip4-load-balance</span>
+<span class="go">fib 0 dpo-idx 13 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.2 -&gt; 10.10.1.1</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x4437</span>
+<span class="go">  fragment id 0xe05b, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_reply checksum 0xc843</span>
+<span class="go">00:17:04:099305: ip4-rewrite</span>
+<span class="go">tx_sw_if_index 1 dpo-idx 1 : ipv4 via 10.10.1.1 host-vpp1out: mtu:9000 e20f1e59ecf702fed975d5b40800 flow hash: 0x00000000</span>
+<span class="go">00000000: e20f1e59ecf702fed975d5b4080045000054e05b4000400144370a0a01020a0a</span>
+<span class="go">00000020: 01010000c8437c92000170e3605b000000001c170f00000000001011</span>
+<span class="go">00:17:04:099307: host-vpp1out-output</span>
+<span class="go">host-vpp1out</span>
+<span class="go">IP4: 02:fe:d9:75:d5:b4 -&gt; e2:0f:1e:59:ec:f7</span>
+<span class="go">ICMP: 10.10.1.2 -&gt; 10.10.1.1</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x4437</span>
+<span class="go">  fragment id 0xe05b, flags DONT_FRAGMENT</span>
+<span class="go">ICMP echo_reply checksum 0xc843</span>
+
+<span class="go">Packet 2</span>
+
+<span class="go">00:17:09:113964: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 42 snaplen 42 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e375 nsec 0x3b3bd57d vlan 0 vlan_tpid 0</span>
+<span class="go">00:17:09:113974: ethernet-input</span>
+<span class="go">ARP: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:17:09:113986: arp-input</span>
+<span class="go">request, type ethernet/IP4, address size 6/4</span>
+<span class="go">e2:0f:1e:59:ec:f7/10.10.1.1 -&gt; 00:00:00:00:00:00/10.10.1.2</span>
+<span class="go">00:17:09:114003: host-vpp1out-output</span>
+<span class="go">host-vpp1out</span>
+<span class="go">ARP: 02:fe:d9:75:d5:b4 -&gt; e2:0f:1e:59:ec:f7</span>
+<span class="go">reply, type ethernet/IP4, address size 6/4</span>
+<span class="go">02:fe:d9:75:d5:b4/10.10.1.2 -&gt; e2:0f:1e:59:ec:f7/10.10.1.1</span>
+
+<span class="go">Packet 3</span>
+
+<span class="go">00:18:16:407079: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 98 snaplen 98 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e3b9 nsec 0x90b7566 vlan 0 vlan_tpid 0</span>
+<span class="go">00:18:16:407085: ethernet-input</span>
+<span class="go">IP4: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:18:16:407090: ip4-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3fe8</span>
+<span class="go">  fragment id 0x24ab</span>
+<span class="go">ICMP echo_reply checksum 0x37eb</span>
+<span class="go">00:18:16:407094: ip4-lookup</span>
+<span class="go">fib 0 dpo-idx 5 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3fe8</span>
+<span class="go">  fragment id 0x24ab</span>
+<span class="go">ICMP echo_reply checksum 0x37eb</span>
+<span class="go">00:18:16:407097: ip4-local</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3fe8</span>
+<span class="go">    fragment id 0x24ab</span>
+<span class="go">  ICMP echo_reply checksum 0x37eb</span>
+<span class="go">00:18:16:407101: ip4-icmp-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3fe8</span>
+<span class="go">  fragment id 0x24ab</span>
+<span class="go">ICMP echo_reply checksum 0x37eb</span>
+<span class="go">00:18:16:407104: ip4-icmp-echo-reply</span>
+<span class="go">ICMP echo id 7531 seq 1</span>
+<span class="go">00:18:16:407108: ip4-drop</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3fe8</span>
+<span class="go">    fragment id 0x24ab</span>
+<span class="go">  ICMP echo_reply checksum 0x37eb</span>
+<span class="go">00:18:16:407111: error-drop</span>
+<span class="go">ip4-icmp-input: unknown type</span>
+
+<span class="go">Packet 4</span>
+
+<span class="go">00:18:17:409084: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 98 snaplen 98 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e3ba nsec 0x90b539f vlan 0 vlan_tpid 0</span>
+<span class="go">00:18:17:409088: ethernet-input</span>
+<span class="go">IP4: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:18:17:409092: ip4-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f40</span>
+<span class="go">  fragment id 0x2553</span>
+<span class="go">ICMP echo_reply checksum 0xcc6d</span>
+<span class="go">00:18:17:409095: ip4-lookup</span>
+<span class="go">fib 0 dpo-idx 5 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f40</span>
+<span class="go">  fragment id 0x2553</span>
+<span class="go">ICMP echo_reply checksum 0xcc6d</span>
+<span class="go">00:18:17:409097: ip4-local</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3f40</span>
+<span class="go">    fragment id 0x2553</span>
+<span class="go">  ICMP echo_reply checksum 0xcc6d</span>
+<span class="go">00:18:17:409099: ip4-icmp-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3f40</span>
+<span class="go">  fragment id 0x2553</span>
+<span class="go">ICMP echo_reply checksum 0xcc6d</span>
+<span class="go">00:18:17:409101: ip4-icmp-echo-reply</span>
+<span class="go">ICMP echo id 7531 seq 2</span>
+<span class="go">00:18:17:409104: ip4-drop</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3f40</span>
+<span class="go">    fragment id 0x2553</span>
+<span class="go">  ICMP echo_reply checksum 0xcc6d</span>
+<span class="go">00:18:17:409104: error-drop</span>
+<span class="go">ip4-icmp-input: unknown type</span>
+
+<span class="go">Packet 5</span>
+
+<span class="go">00:18:18:409082: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 98 snaplen 98 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e3bb nsec 0x8ecad24 vlan 0 vlan_tpid 0</span>
+<span class="go">00:18:18:409087: ethernet-input</span>
+<span class="go">IP4: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:18:18:409091: ip4-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e66</span>
+<span class="go">  fragment id 0x262d</span>
+<span class="go">ICMP echo_reply checksum 0x8e59</span>
+<span class="go">00:18:18:409093: ip4-lookup</span>
+<span class="go">fib 0 dpo-idx 5 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e66</span>
+<span class="go">  fragment id 0x262d</span>
+<span class="go">ICMP echo_reply checksum 0x8e59</span>
+<span class="go">00:18:18:409096: ip4-local</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3e66</span>
+<span class="go">    fragment id 0x262d</span>
+<span class="go">  ICMP echo_reply checksum 0x8e59</span>
+<span class="go">00:18:18:409098: ip4-icmp-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e66</span>
+<span class="go">  fragment id 0x262d</span>
+<span class="go">ICMP echo_reply checksum 0x8e59</span>
+<span class="go">00:18:18:409099: ip4-icmp-echo-reply</span>
+<span class="go">ICMP echo id 7531 seq 3</span>
+<span class="go">00:18:18:409102: ip4-drop</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3e66</span>
+<span class="go">    fragment id 0x262d</span>
+<span class="go">  ICMP echo_reply checksum 0x8e59</span>
+<span class="go">00:18:18:409102: error-drop</span>
+<span class="go">ip4-icmp-input: unknown type</span>
+
+<span class="go">Packet 6</span>
+
+<span class="go">00:18:19:414750: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 98 snaplen 98 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e3bc nsec 0x92450f2 vlan 0 vlan_tpid 0</span>
+<span class="go">00:18:19:414754: ethernet-input</span>
+<span class="go">IP4: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:18:19:414757: ip4-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e52</span>
+<span class="go">  fragment id 0x2641</span>
+<span class="go">ICMP echo_reply checksum 0x9888</span>
+<span class="go">00:18:19:414760: ip4-lookup</span>
+<span class="go">fib 0 dpo-idx 5 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e52</span>
+<span class="go">  fragment id 0x2641</span>
+<span class="go">ICMP echo_reply checksum 0x9888</span>
+<span class="go">00:18:19:414762: ip4-local</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3e52</span>
+<span class="go">    fragment id 0x2641</span>
+<span class="go">  ICMP echo_reply checksum 0x9888</span>
+<span class="go">00:18:19:414764: ip4-icmp-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e52</span>
+<span class="go">  fragment id 0x2641</span>
+<span class="go">ICMP echo_reply checksum 0x9888</span>
+<span class="go">00:18:19:414765: ip4-icmp-echo-reply</span>
+<span class="go">ICMP echo id 7531 seq 4</span>
+<span class="go">00:18:19:414768: ip4-drop</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3e52</span>
+<span class="go">    fragment id 0x2641</span>
+<span class="go">  ICMP echo_reply checksum 0x9888</span>
+<span class="go">00:18:19:414769: error-drop</span>
+<span class="go">ip4-icmp-input: unknown type</span>
+
+<span class="go">Packet 7</span>
+
+<span class="go">00:18:20:418038: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 98 snaplen 98 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e3bd nsec 0x937bcc2 vlan 0 vlan_tpid 0</span>
+<span class="go">00:18:20:418042: ethernet-input</span>
+<span class="go">IP4: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:18:20:418045: ip4-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e47</span>
+<span class="go">  fragment id 0x264c</span>
+<span class="go">ICMP echo_reply checksum 0xc0e8</span>
+<span class="go">00:18:20:418048: ip4-lookup</span>
+<span class="go">fib 0 dpo-idx 5 flow hash: 0x00000000</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e47</span>
+<span class="go">  fragment id 0x264c</span>
+<span class="go">ICMP echo_reply checksum 0xc0e8</span>
+<span class="go">00:18:20:418049: ip4-local</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3e47</span>
+<span class="go">    fragment id 0x264c</span>
+<span class="go">  ICMP echo_reply checksum 0xc0e8</span>
+<span class="go">00:18:20:418054: ip4-icmp-input</span>
+<span class="go">ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">  tos 0x00, ttl 64, length 84, checksum 0x3e47</span>
+<span class="go">  fragment id 0x264c</span>
+<span class="go">ICMP echo_reply checksum 0xc0e8</span>
+<span class="go">00:18:20:418054: ip4-icmp-echo-reply</span>
+<span class="go">ICMP echo id 7531 seq 5</span>
+<span class="go">00:18:20:418057: ip4-drop</span>
+<span class="go">  ICMP: 10.10.1.1 -&gt; 10.10.1.2</span>
+<span class="go">    tos 0x00, ttl 64, length 84, checksum 0x3e47</span>
+<span class="go">    fragment id 0x264c</span>
+<span class="go">  ICMP echo_reply checksum 0xc0e8</span>
+<span class="go">00:18:20:418058: error-drop</span>
+<span class="go">ip4-icmp-input: unknown type</span>
+
+<span class="go">Packet 8</span>
+
+<span class="go">00:18:21:419208: af-packet-input</span>
+<span class="go">af_packet: hw_if_index 1 next-index 4</span>
+<span class="go">  tpacket2_hdr:</span>
+<span class="go">    status 0x20000001 len 42 snaplen 42 mac 66 net 80</span>
+<span class="go">    sec 0x5b60e3be nsec 0x92a9429 vlan 0 vlan_tpid 0</span>
+<span class="go">00:18:21:419876: ethernet-input</span>
+<span class="go">ARP: e2:0f:1e:59:ec:f7 -&gt; 02:fe:d9:75:d5:b4</span>
+<span class="go">00:18:21:419881: arp-input</span>
+<span class="go">request, type ethernet/IP4, address size 6/4</span>
+<span class="go">e2:0f:1e:59:ec:f7/10.10.1.1 -&gt; 00:00:00:00:00:00/10.10.1.2</span>
+<span class="go">00:18:21:419896: host-vpp1out-output</span>
+<span class="go">host-vpp1out</span>
+<span class="go">ARP: 02:fe:d9:75:d5:b4 -&gt; e2:0f:1e:59:ec:f7</span>
+<span class="go">reply, type ethernet/IP4, address size 6/4</span>
+<span class="go">02:fe:d9:75:d5:b4/10.10.1.2 -&gt; e2:0f:1e:59:ec:f7/10.10.1.1</span>
+</pre></div>
+</div>
+<p>After examining the trace, clear it again using vpp# clear trace.</p>
+</div>
+<div class="section" id="examine-arp-tables">
+<h2>Examine arp tables<a class="headerlink" href="#examine-arp-tables" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# show ip arp</span>
+<span class="go">Time           IP4       Flags      Ethernet              Interface</span>
+<span class="go">1101.5636    10.10.1.1      D    e2:0f:1e:59:ec:f7 host-vpp1out</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examine-routing-tables">
+<h2>Examine routing tables<a class="headerlink" href="#examine-routing-tables" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# show ip fib</span>
+<span class="go">  ipv4-VRF:0, fib_index:0, flow hash:[src dst sport dport proto ] locks:[src:plugin-hi:2, src:adjacency:1, src:default-route:1, ]</span>
+<span class="go">0.0.0.0/0</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:1 buckets:1 uRPF:0 to:[0:0]]</span>
+<span class="go">  [0] [@0]: dpo-drop ip4</span>
+<span class="go">0.0.0.0/32</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:2 buckets:1 uRPF:1 to:[0:0]]</span>
+<span class="go">  [0] [@0]: dpo-drop ip4</span>
+<span class="go">10.10.1.0/32</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:10 buckets:1 uRPF:9 to:[0:0]]</span>
+<span class="go">  [0] [@0]: dpo-drop ip4</span>
+<span class="go">10.10.1.1/32</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:13 buckets:1 uRPF:12 to:[5:420] via:[2:168]]</span>
+<span class="go">  [0] [@5]: ipv4 via 10.10.1.1 host-vpp1out: mtu:9000 e20f1e59ecf702fed975d5b40800</span>
+<span class="go">10.10.1.0/24</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:9 buckets:1 uRPF:8 to:[0:0]]</span>
+<span class="go">  [0] [@4]: ipv4-glean: host-vpp1out: mtu:9000 ffffffffffff02fed975d5b40806</span>
+<span class="go">10.10.1.2/32</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:12 buckets:1 uRPF:13 to:[7:588]]</span>
+<span class="go">  [0] [@2]: dpo-receive: 10.10.1.2 on host-vpp1out</span>
+<span class="go">10.10.1.255/32</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:11 buckets:1 uRPF:11 to:[0:0]]</span>
+<span class="go">  [0] [@0]: dpo-drop ip4</span>
+<span class="go">224.0.0.0/4</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:4 buckets:1 uRPF:3 to:[0:0]]</span>
+<span class="go">  [0] [@0]: dpo-drop ip4</span>
+<span class="go">240.0.0.0/4</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:3 buckets:1 uRPF:2 to:[0:0]]</span>
+<span class="go">  [0] [@0]: dpo-drop ip4</span>
+<span class="go">255.255.255.255/32</span>
+<span class="go">unicast-ip4-chain</span>
+<span class="go">[@0]: dpo-load-balance: [proto:ip4 index:5 buckets:1 uRPF:4 to:[0:0]]</span>
+<span class="go">  [0] [@0]: dpo-drop ip4</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="twovppinstances.html" class="btn btn-neutral float-right" title="Connecting Two FD.io VPP Instances" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="interface.html" class="btn btn-neutral float-left" title="Creating an Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.05
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

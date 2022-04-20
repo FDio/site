@@ -1,9 +1,9 @@
 #slider .block h1 {
     font-family: 'Roboto', sans-serif;
-    font-weight: 100;
+    font-weight: 400;
     font-size: 45px;
     line-height: 60px;
-    letter-spacing: 10px;
+    letter-spacing: 0px;
     padding-bottom: 50px;
   }
 
@@ -12,7 +12,7 @@
     line-height: 40px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 0px;
 }
 
 #slider {
@@ -46,10 +46,11 @@
 }
 
 #docs-header {
-    background: url("../img/fdio_bg_tech2.jpg") no-repeat;
+    background: url("../img/fdio_bg.jpg") no-repeat;
     background-size: cover;
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-bottom: 20px;
     position: relative;
     background-attachment: fixed;
 }
@@ -117,50 +118,8 @@
     text-align: center;
 }
 
-header .navbar-brand img {
-    height: 80px;
-    object-fit:contain;
-}
-
-header {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    height: 90px;
-}
-
-header .container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.container img.img-responsive {
-    padding-top: 10px;
-    max-height: 580px;
-    margin: auto;
-}
-
-#bs-example-navbar-collapse-1 {
-    background: white;
-}
-
-.fix-navbar-zindex {
-    z-index: 2;
-}
-
-.row-fluid {
-    display: flex;
-    flex-wrap: wrap;
-    max-height:80px;
-}
-.row-fluid > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.navbar-brand {
-    height: 80px;
-    width: 130px;
+.navbar-brand img {
+    height: 150%;
 }
 
 .eventsection {
@@ -169,4 +128,96 @@ header .container {
     padding-right: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
+}
+
+#feature div.block {
+    color: #FFFFFF;
+    text-align: center;
+    padding: 2em;
+}
+#feature div.block b {
+    font-size: 1.25em;
+}
+#feature div.block h2 {
+    font-size: 1.5em;
+}
+
+#intro div.block {
+    text-align: center;
+}
+
+#intro div.block h2 {
+    text-transform: none;
+}
+
+#intro .block p {
+    font-family: roboto,sans-serif;
+    font-style: normal;
+}
+
+#intro .block .section-title p {
+    font-size: 1.5em;
+}
+
+.btn-main {
+    background: #ED1C24;
+    margin-right: 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+.blog-post p {
+  text-align: justify;
+}
+
+.btn-main, .btn-transparent, .btn-small {
+    text-transform: none;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+#docs-header h1 {
+    color: #fff;
+    font-family: 'open', sans-serif;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 767px) {
+        img.centered {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 25%;
+        width: 50%;
+    }
+}
+
+.img-widget img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.img-widget span {
+    font-size: large;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* this ensures the menu still fits on smaller
+ * screens e.g. tablets */
+@media (max-width: 900px) {
+    header .navbar-default .navbar-nav li a {
+        padding: 10px 15px;
+    }
 }

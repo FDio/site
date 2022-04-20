@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Multi-Architecture Arbitrary Function Cookbook &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Bounded-index Extensible Hashing (bihash)" href="../bihash.html" />
+    <link rel="prev" title="Multi-Architecture Graph Node Cookbook" href="nodefns.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Multi-architecture support</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nodefns.html">Multi-Architecture Graph Node Cookbook</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Multi-Architecture Arbitrary Function Cookbook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Developers</a> &raquo;</li>
+        
+          <li><a href="index.html">Multi-architecture support</a> &raquo;</li>
+        
+      <li>Multi-Architecture Arbitrary Function Cookbook</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/developers/multiarch/arbfns.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="multi-architecture-arbitrary-function-cookbook">
+<h1>Multi-Architecture Arbitrary Function Cookbook<a class="headerlink" href="#multi-architecture-arbitrary-function-cookbook" title="Permalink to this headline">¶</a></h1>
+<p>Optimizing arbitrary functions for multiple architectures is simple
+enough, and very similar to process used to produce multi-architecture
+graph node dispatch functions.</p>
+<p>As with multi-architecture graph nodes, we compile source files
+multiple times, generating multiple implementations of the original
+function, and a public selector function.</p>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Decorate function definitions with CLIB_MARCH_FN macros. For example:</p>
+<p>Change the original function prototype…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u32</span> <span class="n">vlib_frame_alloc_to_node</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span>
+                              <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>…by recasting the function name and return type as the first two
+arguments to the CLIB_MARCH_FN macro:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLIB_MARCH_FN</span> <span class="p">(</span><span class="n">vlib_frame_alloc_to_node</span><span class="p">,</span> <span class="n">u32</span><span class="p">,</span> <span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span>
+               <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span> <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the actual vpp image, several versions of vlib_frame_alloc_to_node
+will appear: vlib_frame_alloc_to_node_avx2,
+vlib_frame_alloc_to_node_avx512, and so forth.</p>
+<p>For each multi-architecture function, use the CLIB_MARCH_FN_SELECT
+macro to help generate the one-and-only multi-architecture selector
+function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifndef CLIB_MARCH_VARIANT</span>
+<span class="n">u32</span>
+<span class="n">vlib_frame_alloc_to_node</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="n">u32</span> <span class="n">to_node_index</span><span class="p">,</span>
+                      <span class="n">u32</span> <span class="n">frame_flags</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">CLIB_MARCH_FN_SELECT</span> <span class="p">(</span><span class="n">vlib_frame_alloc_to_node</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">to_node_index</span><span class="p">,</span> <span class="n">frame_flags</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">#endif /* CLIB_MARCH_VARIANT */</span>
+</pre></div>
+</div>
+<p>Once bound, the multi-architecture selector function is about as
+expensive as an indirect function call; which is to say: not very
+expensive.</p>
+</div>
+<div class="section" id="modify-cmakelists-txt">
+<h2>Modify CMakeLists.txt<a class="headerlink" href="#modify-cmakelists-txt" title="Permalink to this headline">¶</a></h2>
+<p>If the component in question already lists “MULTIARCH_SOURCES”, simply
+add the indicated .c file to the list.  Otherwise, add as shown
+below. Note that the added file “new_multiarch_node.c” should appear in
+<em>both</em> SOURCES and MULTIARCH_SOURCES:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_vpp_plugin</span><span class="p">(</span><span class="n">myplugin</span>
+  <span class="n">SOURCES</span>
+  <span class="n">multiarch_code</span><span class="o">.</span><span class="n">c</span>
+  <span class="o">...</span>
+
+  <span class="n">MULTIARCH_SOURCES</span>
+  <span class="n">multiarch_code</span><span class="o">.</span><span class="n">c</span>
+  <span class="o">...</span>
+ <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-word-to-the-wise">
+<h2>A Word to the Wise<a class="headerlink" href="#a-word-to-the-wise" title="Permalink to this headline">¶</a></h2>
+<p>A file which liberally mixes functions worth compiling for multiple
+architectures and functions which are not will end up full of
+#ifndef CLIB_MARCH_VARIANT conditionals. This won’t do a thing to make
+the code look any better.</p>
+<p>Depending on requirements, it may make sense to move functions to
+(new) files to reduce complexity and/or improve legibility of the
+resulting code.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../bihash.html" class="btn btn-neutral float-right" title="Bounded-index Extensible Hashing (bihash)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nodefns.html" class="btn btn-neutral float-left" title="Multi-Architecture Graph Node Cookbook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

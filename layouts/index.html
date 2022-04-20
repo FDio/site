@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+	{{ partial "head.html" . }}
+
+    </head>
+    <body>
+	{{ partial "header.html" . }}
+
+	<!-- Slider Start -->
+	<section id="slider" style="background-image: url('{{.Site.Params.bgImage | absURL }}');">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-10 col-md-offset-1">
+                	<div class="block text-center">
+                    	<h1 class="animated fadeInUp">FD.io <br> The World’s Secure Networking Data Plane</h1>
+                    	<p class="animated fadeInUp">
+                    		An Open Source Terabit Software Dataplane <br>
+							The world moves at light speed. <br>
+							Make sure your packet traffic keeps up.
+							<br><br>
+							Enriching Data Plane Leadership and Deployment Efficiency.
+							<br>
+							The Fast Data Project's VPP Release 20.01 is here!
+                    	</p>
+		    	<br>
+		    	<a href="https://www.lfnetworking.org/blog/2020/07/27/fd-io-introduces-vpp-release-20-05/" class="btn btn-main">
+				Features and Perfomance of the VPP Release</a>
+                	</div>
+            	</div>
+        	</div>
+    	</div>
+	</section>
+
+	<!-- Wrapper Start -->
+	<section id="intro">
+    	<div class="container">
+		<div class="col-md-10 col-md-offset-1 ">
+	    	<div class="block">
+			<h2 class="text-uppercase">Why FD.io?</h2>
+			<div class=content>
+				<h3>Lowers the Barrier to Entry</h3>
+				Industry-standard, cross-platform, network Stack - supported by multiple hardware vendors
+				<h3>Increases Velocity</h3>
+				Encourages industry disruption and fosters innovation
+				<h3>Platform optimized</h3>
+				Built using same super-scalar optimizations as <a href="http://www.dpdk.org/">DPDK</a>
+				<h3>Broad adoption</h3>
+				Supported by a broad community of industry contributors
+			</div>
+			<p>
+			{{ with .Site.GetPage "/overview/usecases" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
+			</p>
+        	</div>
+		</div>
+    	</div>
+	</section>
+
+	<section id="feature" style="background-image: url('{{ .Site.Params.bgImage | absURL }}');">
+    	<div class="container">
+		<div class="col-md-10 col-md-offset-1 ">
+	    	<div class="block">
+			<h2 class="text-uppercase">What is Vector Packet Processing (VPP)?</h2>
+			<div class=content>
+		    	<p>
+		    	FD.io VPP is the Swiss Army knife of networking toolchains - enabling astounding software packet processing.
+				<br></br>
+				<b>Relentless speed and scale.</b>
+				<br />
+				Up to two orders of magnitude greater packet processing throughput.
+				<br />
+				VPP's host stack comprises packet, transport, session, and application layer protocols enabling entire networking and security functions to be injected into software packet processing.
+				<br /><br />
+				<b>Easily programmable.</b>
+				<br />
+				FD.io is easily extensible through plugins or by building applications on top of
+				the FD.io VPP API.
+				<br /><br />
+				<b>Deploy anywhere.</b>
+				<br />
+				Bare metal, VM or container.
+				x86, ARM, and PowerPC architectures.<br /> <br />
+				<b>The future of packet processing. Now.</b>
+		    	</p>
+			</div>
+			<br/>
+			{{ with .Site.GetPage "/gettingstarted/technology" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
+			{{ with .Site.GetPage "/documentation/csit" }}<a href="{{ .Permalink }}" class="btn btn-main">VPP Performance</a>{{ end }}
+			{{ with .Site.GetPage "/gettingstarted/installing" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
+	    	</div>
+		</div>
+    	</div>
+	</section>
+
+	<!-- prjcomnews Start -->
+	<section id="intro">
+    	<div class="container">
+		<div class="col-md-10 col-md-offset-1 ">
+	    	<div class="block">
+			<h2 class="text-uppercase">The FD.io Community</h2>
+			<div class=content>
+		    	<p>The Fast Data Project (FD.io) is a collaborative open-source project aimed at establishing a high-performance IO services framework for dynamic compute environments.</p>
+		    	<br>
+				{{ with .Site.GetPage "/latest/news" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
+				{{ with .Site.GetPage "/getinvolved/community" }}<a href="{{ .Permalink }}" class="btn btn-main">{{ .Title }}</a>{{ end }}
+		    	<br></br>
+			</div>
+	    	</div>
+		</div>
+    	</div>
+	</section>
+
+	{{ partial "footer.html" . }}
+
+</body>
+</html>

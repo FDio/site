@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Connecting the two Containers &mdash; The Vector Packet Processor 20.05 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="VPP with Iperf3 and TRex" href="simpleperf/index.html" />
+    <link rel="prev" title="Container packages" href="containerSetup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.05
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="containers.html">VPP with Containers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="containerCreation.html">Creating Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="containerSetup.html">Container packages</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Connecting the two Containers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homegateway.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contiv/index.html">Contiv/VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="container_test.html">Container-based network simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Use Cases</a> &raquo;</li>
+        
+          <li><a href="containers.html">VPP with Containers</a> &raquo;</li>
+        
+      <li>Connecting the two Containers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usecases/Routing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="routing">
+</div>
+<div class="section" id="connecting-the-two-containers">
+<h1>Connecting the two Containers<a class="headerlink" href="#connecting-the-two-containers" title="Permalink to this headline">¶</a></h1>
+<p>Now for connecting these two linux containers to VPP and pinging between them.</p>
+<p>Enter container <em>cone</em>, and check the current network configuration:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@cone:/#</span> ip -o a
+<span class="go">1: lo    inet 127.0.0.1/8 scope host lo\       valid_lft forever preferred_lft forever</span>
+<span class="go">1: lo    inet6 ::1/128 scope host \       valid_lft forever preferred_lft forever</span>
+<span class="go">30: veth0    inet 10.0.3.157/24 brd 10.0.3.255 scope global veth0\       valid_lft forever preferred_lft forever</span>
+<span class="go">30: veth0    inet6 fe80::216:3eff:fee2:d0ba/64 scope link \       valid_lft forever preferred_lft forever</span>
+<span class="go">32: veth_link1    inet6 fe80::2c9d:83ff:fe33:37e/64 scope link \       valid_lft forever preferred_lft forever</span>
+</pre></div>
+</div>
+<p>You can see that there are three network interfaces, <em>lo, veth0</em>, and <em>veth_link1</em>.</p>
+<p>Notice that <em>veth_link1</em> has no assigned IP.</p>
+<p>Check if the interfaces are down or up:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@cone:/#</span> ip link
+<span class="go">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1</span>
+<span class="go">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span class="go">30: veth0@if31: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether 00:16:3e:e2:d0:ba brd ff:ff:ff:ff:ff:ff link-netnsid 0</span>
+<span class="go">32: veth_link1@if33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether 2e:9d:83:33:03:7e brd ff:ff:ff:ff:ff:ff link-netnsid 0</span>
+</pre></div>
+</div>
+<div class="admonition note" id="networknote">
+<p class="admonition-title">Note</p>
+<p>Take note of the network index for <strong>veth_link1</strong>. In our case, it 32, and its parent index (the host machine, not the containers) is 33, shown by <strong>veth_link1&#64;if33</strong>. Yours will most likely be different, but <strong>please take note of these index’s</strong>.</p>
+</div>
+<p>Make sure your loopback interface is up, and assign an IP and gateway to veth_link1.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@cone:/#</span> ip link <span class="nb">set</span> dev lo up
+<span class="gp">root@cone:/#</span> ip addr add <span class="m">172</span>.16.1.2/24 dev veth_link1
+<span class="gp">root@cone:/#</span> ip link <span class="nb">set</span> dev veth_link1 up
+<span class="gp">root@cone:/#</span> dhclient -r
+<span class="gp">root@cone:/#</span> ip route add default via <span class="m">172</span>.16.1.1 dev veth_link1
+</pre></div>
+</div>
+<p>Here, the IP is 172.16.1.2/24 and the gateway is 172.16.1.1.</p>
+<p>Run some commands to verify the changes:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@cone:/#</span> ip -o a
+<span class="go">1: lo    inet 127.0.0.1/8 scope host lo\       valid_lft forever preferred_lft forever</span>
+<span class="go">1: lo    inet6 ::1/128 scope host \       valid_lft forever preferred_lft forever</span>
+<span class="go">30: veth0    inet6 fe80::216:3eff:fee2:d0ba/64 scope link \       valid_lft forever preferred_lft forever</span>
+<span class="go">32: veth_link1    inet 172.16.1.2/24 scope global veth_link1\       valid_lft forever preferred_lft forever</span>
+<span class="go">32: veth_link1    inet6 fe80::2c9d:83ff:fe33:37e/64 scope link \       valid_lft forever preferred_lft forever</span>
+
+<span class="gp">root@cone:/#</span> route
+<span class="go">Kernel IP routing table</span>
+<span class="go">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</span>
+<span class="go">default         172.16.1.1      0.0.0.0         UG    0      0        0 veth_link1</span>
+<span class="go">172.16.1.0      *               255.255.255.0   U     0      0        0 veth_link1</span>
+</pre></div>
+</div>
+<p>We see that the IP has been assigned, as well as our default gateway.</p>
+<p>Now exit this container and repeat this process with container <em>ctwo</em>, except with IP 172.16.2.2/24 and gateway 172.16.2.1.</p>
+<p>After that’s done for <em>both</em> containers, exit from the container if you’re in one:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@ctwo:/#</span> <span class="nb">exit</span>
+<span class="go">exit</span>
+<span class="gp">root@localhost:~#</span>
+</pre></div>
+</div>
+<p>In the machine running the containers, run <strong>ip link</strong> to see the host <em>veth</em> network interfaces, and their link with their respective <em>container veth’s</em>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> ip link
+<span class="go">1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noqueue state DOWN mode DEFAULT group default qlen 1</span>
+<span class="go">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span>
+<span class="go">2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether 08:00:27:33:82:8a brd ff:ff:ff:ff:ff:ff</span>
+<span class="go">3: enp0s8: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether 08:00:27:d9:9f:ac brd ff:ff:ff:ff:ff:ff</span>
+<span class="go">4: enp0s9: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether 08:00:27:78:84:9d brd ff:ff:ff:ff:ff:ff</span>
+<span class="go">5: lxcbr0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether 00:16:3e:00:00:00 brd ff:ff:ff:ff:ff:ff</span>
+<span class="go">19: veth0C2FL7@if18: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master lxcbr0 state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether fe:0d:da:90:c1:65 brd ff:ff:ff:ff:ff:ff link-netnsid 1</span>
+<span class="go">21: veth8NA72P@if20: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether fe:1c:9e:01:9f:82 brd ff:ff:ff:ff:ff:ff link-netnsid 1</span>
+<span class="go">31: vethXQMY4C@if30: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master lxcbr0 state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether fe:9a:d9:29:40:bb brd ff:ff:ff:ff:ff:ff link-netnsid 0</span>
+<span class="go">33: vethQL7KOC@if32: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000</span>
+<span class="go">    link/ether fe:ed:89:54:47:a2 brd ff:ff:ff:ff:ff:ff link-netnsid 0</span>
+</pre></div>
+</div>
+<p>Remember our network interface index 32 in <em>cone</em> from this <a class="reference internal" href="#networknote"><span class="std std-ref">note</span></a>? We can see at the bottom the name of the 33rd index <strong>vethQL7KOC&#64;if32</strong>. Keep note of this network interface name for the veth connected to <em>cone</em> (ex. vethQL7KOC), and the other network interface name for <em>ctwo</em>.</p>
+<p>With VPP in the host machine, show current VPP interfaces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> vppctl show inter
+<span class="go">          Name               Idx    State  MTU (L3/IP4/IP6/MPLS)     Counter          Count</span>
+<span class="go">local0                        0     down          0/0/0/0</span>
+</pre></div>
+</div>
+<p>Which should only output local0.</p>
+<p>Based on the names of the network interfaces discussed previously, which are specific to my systems, we can create VPP host-interfaces:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> vppctl create host-interface name vethQL7K0C
+<span class="gp">root@localhost:~#</span> vppctl create host-interface name veth8NA72P
+</pre></div>
+</div>
+<p>Verify they have been set up properly:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> vppctl show inter
+<span class="go">          Name               Idx    State  MTU (L3/IP4/IP6/MPLS)     Counter          Count</span>
+<span class="go">host-vethQL7K0C               1     down         9000/0/0/0</span>
+<span class="go">host-veth8NA72P               2     down         9000/0/0/0</span>
+<span class="go">local0                        0     down          0/0/0/0</span>
+</pre></div>
+</div>
+<p>Which should output <em>three network interfaces</em>, local0, and the other two host network interfaces linked to the container veth’s.</p>
+<p>Set their state to up:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> vppctl <span class="nb">set</span> interface state host-vethQL7K0C up
+<span class="gp">root@localhost:~#</span> vppctl <span class="nb">set</span> interface state host-veth8NA72P up
+</pre></div>
+</div>
+<p>Verify they are now up:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> vppctl show inter
+<span class="go">          Name               Idx    State  MTU (L3/IP4/IP6/MPLS)     Counter          Count</span>
+<span class="go">host-vethQL7K0C               1      up          9000/0/0/0</span>
+<span class="go">host-veth8NA72P               2      up          9000/0/0/0</span>
+<span class="go">local0                        0     down          0/0/0/0</span>
+</pre></div>
+</div>
+<p>Add IP addresses for the other end of each veth link:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> vppctl <span class="nb">set</span> interface ip address host-vethQL7K0C <span class="m">172</span>.16.1.1/24
+<span class="gp">root@localhost:~#</span> vppctl <span class="nb">set</span> interface ip address host-veth8NA72P <span class="m">172</span>.16.2.1/24
+</pre></div>
+</div>
+<p>Verify the addresses are set properly by looking at the L3 table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> vppctl show inter addr
+<span class="go">host-vethQL7K0C (up):</span>
+<span class="go">  L3 172.16.1.1/24</span>
+<span class="go">host-veth8NA72P (up):</span>
+<span class="go">  L3 172.16.2.1/24</span>
+<span class="go">local0 (dn):</span>
+</pre></div>
+</div>
+<p>Or looking at the FIB by doing:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> vppctl show ip fib
+<span class="go">ipv4-VRF:0, fib_index:0, flow hash:[src dst sport dport proto ] locks:[src:plugin-hi:2, src:default-route:1, ]</span>
+<span class="go">0.0.0.0/0</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:1 buckets:1 uRPF:0 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+<span class="go">0.0.0.0/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:2 buckets:1 uRPF:1 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+<span class="go">172.16.1.0/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:10 buckets:1 uRPF:9 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+<span class="go">172.16.1.0/24</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:9 buckets:1 uRPF:8 to:[0:0]]</span>
+<span class="go">    [0] [@4]: ipv4-glean: host-vethQL7K0C: mtu:9000 ffffffffffff02fec953f98c0806</span>
+<span class="go">172.16.1.1/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:12 buckets:1 uRPF:13 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive: 172.16.1.1 on host-vethQL7K0C</span>
+<span class="go">172.16.1.255/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:11 buckets:1 uRPF:11 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+<span class="go">172.16.2.0/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:14 buckets:1 uRPF:15 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+<span class="go">172.16.2.0/24</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:13 buckets:1 uRPF:14 to:[0:0]]</span>
+<span class="go">    [0] [@4]: ipv4-glean: host-veth8NA72P: mtu:9000 ffffffffffff02fe305400e80806</span>
+<span class="go">172.16.2.1/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:16 buckets:1 uRPF:19 to:[0:0]]</span>
+<span class="go">    [0] [@2]: dpo-receive: 172.16.2.1 on host-veth8NA72P</span>
+<span class="go">172.16.2.255/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:15 buckets:1 uRPF:17 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+<span class="go">224.0.0.0/4</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:4 buckets:1 uRPF:3 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+<span class="go">240.0.0.0/4</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:3 buckets:1 uRPF:2 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+<span class="go">255.255.255.255/32</span>
+<span class="go">  unicast-ip4-chain</span>
+<span class="go">  [@0]: dpo-load-balance: [proto:ip4 index:5 buckets:1 uRPF:4 to:[0:0]]</span>
+<span class="go">    [0] [@0]: dpo-drop ip4</span>
+</pre></div>
+</div>
+<p>At long last you probably want to see some pings:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@localhost:~#</span> lxc-attach -n cone -- ping -c3 <span class="m">172</span>.16.2.2
+<span class="go">PING 172.16.2.2 (172.16.2.2) 56(84) bytes of data.</span>
+<span class="go">64 bytes from 172.16.2.2: icmp_seq=1 ttl=63 time=0.102 ms</span>
+<span class="go">64 bytes from 172.16.2.2: icmp_seq=2 ttl=63 time=0.189 ms</span>
+<span class="go">64 bytes from 172.16.2.2: icmp_seq=3 ttl=63 time=0.150 ms</span>
+
+<span class="go">--- 172.16.2.2 ping statistics ---</span>
+<span class="go">3 packets transmitted, 3 received, 0% packet loss, time 1999ms</span>
+<span class="go">rtt min/avg/max/mdev = 0.102/0.147/0.189/0.035 ms</span>
+
+<span class="gp">root@localhost:~#</span> lxc-attach -n ctwo -- ping -c3 <span class="m">172</span>.16.1.2
+<span class="go">PING 172.16.1.2 (172.16.1.2) 56(84) bytes of data.</span>
+<span class="go">64 bytes from 172.16.1.2: icmp_seq=1 ttl=63 time=0.111 ms</span>
+<span class="go">64 bytes from 172.16.1.2: icmp_seq=2 ttl=63 time=0.089 ms</span>
+<span class="go">64 bytes from 172.16.1.2: icmp_seq=3 ttl=63 time=0.096 ms</span>
+
+<span class="go">--- 172.16.1.2 ping statistics ---</span>
+<span class="go">3 packets transmitted, 3 received, 0% packet loss, time 1998ms</span>
+<span class="go">rtt min/avg/max/mdev = 0.089/0.098/0.111/0.014 ms</span>
+</pre></div>
+</div>
+<p>Which should send/receive three packets for each command.</p>
+<p>This is the end of this guide. Great work!</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="simpleperf/index.html" class="btn btn-neutral float-right" title="VPP with Iperf3 and TRex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="containerSetup.html" class="btn btn-neutral float-left" title="Container packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.05
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Packet Processed Storage in a Software Defined World &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="February 2016 - OpenDaylight Design Forum" href="../OpenDaylight/index.html" />
+    <link rel="prev" title="Introduction to FD.io" href="2016_03_15_introfdio.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Events</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#conferences">Conferences</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#summits">Summits</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../FDioMiniSummit/KubeCon_2017/index.html">December 2017 - FD.io Mini Summit at KubeCon 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DPDKSummit/index.html">DPDK Summit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../OpensourceSummit/index.html">September 2017 - Open Source Summit 2017</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FDioMiniSummit/index.html">FD.io Mini Summit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../UKNO/index.html">April 2017 - UKNOF37</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../OpNFV/index.html">OPNFV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DPDKSummit/2016/index.html">August 2016 - DPDK Summit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../OpNFV/OpNFVtechnicalwork/index.html">March 2016 - OpNFV Technical Workstream</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">March 2016 - Open Network Summit</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="2016_03_15_fdiofuture.html">FD.io is the Future</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2016_03_15_introfdio.html">Introduction to FD.io</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Packet Processed Storage in a Software Defined World</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../OpNFV/OPNFVSummit/index.html">June 2016 - OPNFV Summit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../OpenDaylight/index.html">February 2016 - OpenDaylight Design Forum</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#meetings">Meetings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#community">Community</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Events</a> &raquo;</li>
+        
+          <li><a href="index.html">March 2016 - Open Network Summit</a> &raquo;</li>
+        
+      <li>Packet Processed Storage in a Software Defined World</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/events/Summits/OpenNetworkSummit/2016_03_17_PacketProcess.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="packetprocess"></span><div class="section" id="packet-processed-storage-in-a-software-defined-world">
+<h1>Packet Processed Storage in a Software Defined World<a class="headerlink" href="#packet-processed-storage-in-a-software-defined-world" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h2>
+<p>This presentation was held during the Open Network Summit on March 17th, 2016.</p>
+</div>
+<div class="section" id="speakers">
+<h2>Speakers<a class="headerlink" href="#speakers" title="Permalink to this headline">¶</a></h2>
+<p>Ash Young</p>
+</div>
+<div class="section" id="slideshow">
+<h2>Slideshow<a class="headerlink" href="#slideshow" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://wiki.fd.io/images/a/aa/Packet_Processed_Storage_in_a_Software_Defined_World.pptx">Presentation Powerpoint</a></p>
+</div>
+<div class="section" id="video">
+<h2>Video<a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=pMU9ghBkSF8&amp;index=148&amp;list=PLGeM09tlguZQo9qAFIxF_TpNxlfGgJVUN">Ash Young’s Video Presentation</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../OpenDaylight/index.html" class="btn btn-neutral float-right" title="February 2016 - OpenDaylight Design Forum" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="2016_03_15_introfdio.html" class="btn btn-neutral float-left" title="Introduction to FD.io" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

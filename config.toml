@@ -5,21 +5,185 @@ theme = "airspace-hugo"
 
 publishDir = "public"
 
+#
+# This configuration only applies to hugo server
+#
+
+[[server.headers]]
+  for = '/vpp_versions.json'
+  [server.headers.values]
+    Access-Control-Allow-Origin = '*'
+
 [menu]
+
+  #
+  # ------ Use Cases ------
+  #
 
   [[menu.header]]
     weight = 1
-    name = "PROJECTS"
-    url = "/projects"
+    name = "Use Cases"
+    identifier = "usecases"
+    url = ""
+
+  [[menu.header]]
+    weight = 10
+    name = "Use Cases"
+    parent = "usecases"
+    url = "/overview/usecases"
+
+  [[menu.header]]
+    weight = 11
+    name = "Solutions"
+    parent = "usecases"
+    url = "/overview/solutions"
+
+  [[menu.header]]
+    weight = 12
+    name = "User Feedback"
+    parent = "usecases"
+    url = "/overview/userfeedback"
+
+  #
+  # ------ Getting Started ------
+  #
+
+  [[menu.header]]
+    weight = 2
+    identifier = "gettingstarted"
+    name = "Get Started"
+    url = ""
+
+  [[menu.header]]
+    weight = 21
+    parent = "gettingstarted"
+    name = "Technology"
+    url = "/gettingstarted/technology"
+
+  [[menu.header]]
+    weight = 22
+    parent = "gettingstarted"
+    name = "Installing"
+    url = "/gettingstarted/installing"
+
+  [[menu.header]]
+    weight = 23
+    parent = "gettingstarted"
+    name = "Building"
+    url = "/gettingstarted/building"
+
+  [[menu.header]]
+    weight = 24
+    parent = "gettingstarted"
+    name = "Videos"
+    url = "/gettingstarted/videos"
+
+  #
+  # ------ Documentation ------
+  #
+
+  [[menu.header]]
+    weight = 3
+    name = "Documentation"
+    identifier = "documentation"
+    url = ""
+
+  [[menu.header]]
+    weight = 31
+    name = "VPP documentation"
+    url = "/docs/vpp/master"
+    parent = "documentation"
+
+  [[menu.header]]
+    weight = 32
+    name = "CSIT documentation"
+    url = "/documentation/csit"
+    parent = "documentation"
+
+  [[menu.header]]
+    weight = 33
+    name = "HICN documentation"
+    url = "/documentation/hicn"
+    parent = "documentation"
+
+  [[menu.header]]
+    weight = 34
+    name = "Other projects"
+    url = "/documentation/others"
+    parent = "documentation"
+
+  #
+  # ------ The Latest ------
+  #
 
   [[menu.header]]
     weight = 4
-    name = "COMMUNITY"
-    url = "/community"
+    name = "The Latest"
+    identifier = "latest"
+    url = ""
+
+  [[menu.header]]
+    weight = 41
+    name = "Latest news"
+    parent = "latest"
+    url = "/latest/news"
+
+  [[menu.header]]
+    weight = 42
+    name = "Webinars"
+    parent = "latest"
+    url = "/latest/webinars"
+
+  [[menu.header]]
+    weight = 43
+    name = "Whitepapers"
+    parent = "latest"
+    url = "/latest/whitepapers"
+
+  #
+  # ------ Get Involved ------
+  #
+
   [[menu.header]]
     weight = 5
-    name = "EVENTS"
-    url = "/events"
+    name = "Get Involved"
+    identifier = "getinvolved"
+    url = ""
+
+  [[menu.header]]
+    weight = 51
+    name = "Community"
+    parent = "getinvolved"
+    url = "/getinvolved/community"
+
+  [[menu.header]]
+    weight = 52
+    name = "Technical Steering Commitee (TSC)"
+    parent = "getinvolved"
+    url = "/getinvolved/tsc"
+
+  [[menu.header]]
+    weight = 53
+    name = "TSC Documentation"
+    parent = "getinvolved"
+    url = "/getinvolved/tscdocs"
+
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Enable user to embed HTML snippets in Markdown content.
+
+
+[module]
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+
+  [[module.mounts]]
+    source = "static/docs/vpp/v2106"
+    target = "static/docs/vpp/latest"
 
 # The site's parameters
 [params]
@@ -29,32 +193,17 @@ publishDir = "public"
   # For information see https://github.com/gohugoio/hugoThemes/issues/260
 
   dateFormat = "6 January 2006"
+  bgImage = "img/fdio_bg.jpg"
 
   home = "Home"
+  fontawesomeversion = "5.8.1"
 
-  [params.slider]
-    enable = true
-    bgImage = "img/fdio_bg_tech2.jpg"
-    title = "FD.io <br/>(Fast data - Input/Output)<br/>The Fast Data Project"
-    subtitle = "Relentlessly focused on data IO and efficiency for more flexable and scalable networks and storage<br/>"
-    btnText = "The FD.io Projects"
-    url = "/projects"
+[[params.fonts]]
+name = "Nunito Sans"
+sizes = [300, 400, 600, 700]
+type = "sans_serif"
 
-  [params.wrapper]
-    enable = true
-    image = "img/logo_fdio_header.png"
-    title = "The Fast Data Project"
-    italic = "FD.io is a collection of several projects and libraries"
-    paragraph = "FD.io offers the Software Defined Infrastructure developer community a landing site with multiple projects fostering innovations in software-based packet processing towards the creation of high-throughput, low-latency and resource-efficient IO services suitable to many architectures (x86, ARM, and PowerPC) and deployment environments (bare metal, VM, container)."
-
-  [params.feature]
-    enable = true
-    title = "What is the Vector Packet Processor (VPP)?"
-    content = """
-VPP is the core technolgy behind the FD.io projects. It is a fast, scalable and multi-platform network stack built over the Data Plane Development Kit (DPDK).
-
-VPP is, at it’s core, it is a scalable layer 2-4 network stack. It supports integration into both Open Stack and Kubernetes environments. It supports network management features including configuration, counters and sampling. VPP supports extending with plugins, tracing and debugging. Use cases include vSwitch, vRouter, Gateways, Firewalls and Load Balancers, to name but a few. Finally it is useful both a software development kit or an appliance out of the box.
-"""
-    [params.feature.button]
-      caption = "Get Started With VPP"
-      url = "/vppproject"
+[[params.fonts]]
+name = "Roboto Mono"
+sizes = [300, 400, 600, 700]
+type = "monospace"

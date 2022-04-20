@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setting up your environment &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Running VPP" href="runningvpp.html" />
+    <link rel="prev" title="Progressive VPP Tutorial" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Progressive VPP Tutorial</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up your environment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-virtual-box-and-vagrant">Install Virtual Box and Vagrant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-vagrant-directory">Create a Vagrant Directory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-vagrant">Running Vagrant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-up-vpp-environment-with-vagrant">Setting up VPP environment with Vagrant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-vpp">Install VPP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-some-startup-files">Create some startup files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="runningvpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html">Creating an Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traces.html">Using the trace command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="twovppinstances.html">Connecting Two FD.io VPP Instances</a></li>
+<li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switching.html">Switching</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers/index.html">For Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">Progressive VPP Tutorial</a> &raquo;</li>
+        
+      <li>Setting up your environment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/progressivevpp/settingupenvironment.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setting-up-your-environment">
+<span id="settingupenvironment"></span><h1>Setting up your environment<a class="headerlink" href="#setting-up-your-environment" title="Permalink to this headline">¶</a></h1>
+<p>All of these exercises are designed to be performed on an Ubuntu 16.04 (Xenial) box.</p>
+<ul class="simple">
+<li><p>If you have an Ubuntu 16.04 box on which you have sudo or root access, you can feel free to use that.</p></li>
+<li><p>If you do not, a Vagrantfile is provided to setup a basic Ubuntu 16.04 box for you in the the steps below.</p></li>
+</ul>
+<div class="section" id="install-virtual-box-and-vagrant">
+<h2>Install Virtual Box and Vagrant<a class="headerlink" href="#install-virtual-box-and-vagrant" title="Permalink to this headline">¶</a></h2>
+<p>You will need to install Virtual Box and Vagrant. If you have not installed Virtual Box or Vagrant please
+refer to <a class="reference internal" href="../../reference/vppvagrant/installingVboxVagrant.html#installingvboxvagrant"><span class="std std-ref">Installing Vbox and Vagrant</span></a> to install Virtual Box and Vagrant.</p>
+</div>
+<div class="section" id="create-a-vagrant-directory">
+<h2>Create a Vagrant Directory<a class="headerlink" href="#create-a-vagrant-directory" title="Permalink to this headline">¶</a></h2>
+<p>To get started create a directory for vagrant</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir vpp-tutorial
+<span class="gp">$</span> <span class="nb">cd</span> vpp-tutorial
+</pre></div>
+</div>
+<p>Create a file called <strong>Vagrantfile</strong> with the following contents:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: ruby -*-</span>
+<span class="c1"># vi: set ft=ruby :</span>
+
+<span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;puppetlabs/ubuntu-16.04-64-nocm&quot;</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_check_update</span> <span class="o">=</span> <span class="kp">false</span>
+
+  <span class="n">vmcpu</span><span class="o">=</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;VPP_VAGRANT_VMCPU&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="n">vmram</span><span class="o">=</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;VPP_VAGRANT_VMRAM&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">4096</span><span class="p">)</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">forward_agent</span> <span class="o">=</span> <span class="kp">true</span>
+
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provider</span> <span class="s2">&quot;virtualbox&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">vb</span><span class="o">|</span>
+      <span class="n">vb</span><span class="o">.</span><span class="n">customize</span> <span class="o">[</span><span class="s2">&quot;modifyvm&quot;</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">&quot;--ioapic&quot;</span><span class="p">,</span> <span class="s2">&quot;on&quot;</span><span class="o">]</span>
+      <span class="n">vb</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">vmram</span><span class="si">}</span><span class="s2">&quot;</span>
+      <span class="n">vb</span><span class="o">.</span><span class="n">cpus</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">vmcpu</span><span class="si">}</span><span class="s2">&quot;</span>
+      <span class="c1">#support for the SSE4.x instruction is required in some versions of VB.</span>
+      <span class="n">vb</span><span class="o">.</span><span class="n">customize</span> <span class="o">[</span><span class="s2">&quot;setextradata&quot;</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">&quot;VBoxInternal/CPUM/SSE4.1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="o">]</span>
+      <span class="n">vb</span><span class="o">.</span><span class="n">customize</span> <span class="o">[</span><span class="s2">&quot;setextradata&quot;</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="s2">&quot;VBoxInternal/CPUM/SSE4.2&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="o">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-vagrant">
+<h2>Running Vagrant<a class="headerlink" href="#running-vagrant" title="Permalink to this headline">¶</a></h2>
+<p>VPP runs in userspace.  In a production environment you will often run it with
+DPDK to connect to real NICs or vhost to connect to VMs.mIn those circumstances
+you usually run a single instance of VPP.</p>
+<p>For purposes of this tutorial, it is going to be extremely useful to run multiple
+instances of vpp, and connect them to each other to form a topology.  Fortunately,
+VPP supports this.</p>
+<p>When running multiple VPP instances, each instance needs to have specified a ‘name’
+or ‘prefix’.  In the example below, the ‘name’ or ‘prefix’ is “vpp1”. Note that only
+one instance can use the dpdk plugin, since this plugin is trying to acquire a lock
+on a file.</p>
+</div>
+<div class="section" id="setting-up-vpp-environment-with-vagrant">
+<h2>Setting up VPP environment with Vagrant<a class="headerlink" href="#setting-up-vpp-environment-with-vagrant" title="Permalink to this headline">¶</a></h2>
+<p>After setting up Vagrant, use these commands on your Vagrant directory to boot the VM:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> vagrant up
+<span class="gp">$</span> vagrant ssh
+<span class="gp">$</span> sudo apt-get update
+<span class="gp">$</span> sudo reboot -n
+<span class="gp">$</span> <span class="c1"># Wait for the VM to reboot</span>
+<span class="gp">$</span> vagrant ssh
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-vpp">
+<h2>Install VPP<a class="headerlink" href="#install-vpp" title="Permalink to this headline">¶</a></h2>
+<p>Now that the VM is updated, we will install the VPP packages.</p>
+<p>For more on installing VPP please refer to <a class="reference internal" href="../installing/index.html#installingvpp"><span class="std std-ref">Downloading and Installing VPP</span></a>.</p>
+<p>For this tutorial we need to install VPP by modifying the file
+<strong>/etc/apt/sources.list.d/99fd.io.list</strong>.</p>
+<p>Write this file with the following contents:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">deb [trusted=yes] https://nexus.fd.io/content/repositories/fd.io.ubuntu.xenial.main/ ./</span>
+</pre></div>
+</div>
+<p>Then execute the following commands.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo bash
+<span class="gp">#</span> apt-get update
+<span class="gp">#</span> apt-get install vpp-lib vpp vpp-plugins
+<span class="gp">#</span>
+</pre></div>
+</div>
+<p>Stop VPP for this tutorial. We will be creating our own instances of VPP.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> service vpp stop
+<span class="gp">#</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-some-startup-files">
+<h2>Create some startup files<a class="headerlink" href="#create-some-startup-files" title="Permalink to this headline">¶</a></h2>
+<p>We will create some startup files for the use of this tutorial. Typically you will
+modify the startup.conf file found in /etc/vpp/startup.conf. For more information
+on this file refer to <a class="reference internal" href="../users/configuring/startup.html#startup"><span class="std std-ref">VPP Configuration - CLI and ‘startup.conf’</span></a>.</p>
+<p>When running multiple VPP instances, each instance needs to have
+specified a ‘name’ or ‘prefix’. In the example below, the ‘name’ or ‘prefix’
+is “vpp1”. Note that only one instance can use the dpdk plugin, since this
+plugin is trying to acquire a lock on a file. These startup files we create will
+disable the dpdk plugin.</p>
+<p>Also in our startup files notice <strong>api-segment</strong>. <strong>api-segment {prefix vpp1}</strong>
+tells FD.io VPP how to name the files in /dev/shm/ for your VPP instance
+differently from the default. <strong>unix {cli-listen /run/vpp/cli-vpp1.sock}</strong>
+tells vpp to use a non-default socket file when being addressed by vppctl.</p>
+<p>Now create 2 files named startup1.conf and startup2.conf with the following
+content. These files can be located anywhere. We specify the location when we
+start VPP.</p>
+<p>startup1.conf:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">unix {cli-listen /run/vpp/cli-vpp1.sock}</span>
+<span class="go">api-segment { prefix vpp1 }</span>
+<span class="go">plugins { plugin dpdk_plugin.so { disable } }</span>
+</pre></div>
+</div>
+<p>startup2.conf:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">unix {cli-listen /run/vpp/cli-vpp2.sock}</span>
+<span class="go">api-segment { prefix vpp2 }</span>
+<span class="go">plugins { plugin dpdk_plugin.so { disable } }</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="runningvpp.html" class="btn btn-neutral float-right" title="Running VPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Progressive VPP Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

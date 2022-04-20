@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Memory leaks &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Events" href="../events/index.html" />
+    <link rel="prev" title="Google Sanitizers" href="sanitizer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Troubleshooting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="reportingissues/index.html">How to Report an Issue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpuusage.html">CPU Load/Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sanitizer.html">Google Sanitizers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Memory leaks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-traces">Memory traces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libc-memory-traces">libc memory traces</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Troubleshooting</a> &raquo;</li>
+        
+      <li>Memory leaks</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/troubleshooting/mem.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="memory-leaks">
+<span id="memleak"></span><h1>Memory leaks<a class="headerlink" href="#memory-leaks" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="memory-traces">
+<h2>Memory traces<a class="headerlink" href="#memory-traces" title="Permalink to this headline">¶</a></h2>
+<p>VPP supports memory traces to help debug (suspected) memory leaks. Each
+allocation/deallocation is instrumented so that the number of allocations and
+current global allocated size is maintained for each unique allocation stack
+trace.</p>
+<p>Looking at a memory trace can help diagnose where memory is (over-)used, and
+comparing memory traces at different point in time can help diagnose if and
+where memory leaks happen.</p>
+<p>To enable memory traces on main-heap:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> vppctl memory-trace on main-heap
+</pre></div>
+</div>
+<p>To dump memory traces for analysis:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> vppctl show memory-trace on main-heap
+<span class="go">Thread 0 vpp_main</span>
+<span class="go">  base 0x7fffb6422000, size 1g, locked, unmap-on-destroy, name &#39;main heap&#39;</span>
+<span class="go">    page stats: page-size 4K, total 262144, mapped 30343, not-mapped 231801</span>
+<span class="go">      numa 0: 30343 pages, 118.53m bytes</span>
+<span class="go">    total: 1023.99M, used: 115.49M, free: 908.50M, trimmable: 908.48M</span>
+<span class="go">      free chunks 451 free fastbin blks 0</span>
+<span class="go">      max total allocated 1023.99M</span>
+
+<span class="go">  Bytes    Count     Sample   Traceback</span>
+<span class="go"> 31457440        1 0x7fffbb31ad00 clib_mem_alloc_aligned_at_offset + 0x80</span>
+<span class="go">                                  clib_mem_alloc_aligned + 0x26</span>
+<span class="go">                                  alloc_aligned_8_8 + 0xe1</span>
+<span class="go">                                  clib_bihash_instantiate_8_8 + 0x76</span>
+<span class="go">                                  clib_bihash_init2_8_8 + 0x2ec</span>
+<span class="go">                                  clib_bihash_init_8_8 + 0x6a</span>
+<span class="go">                                  l2fib_table_init + 0x54</span>
+<span class="go">                                  set_int_l2_mode + 0x89</span>
+<span class="go">                                  int_l3 + 0xb4</span>
+<span class="go">                                  vlib_cli_dispatch_sub_commands + 0xeee</span>
+<span class="go">                                  vlib_cli_dispatch_sub_commands + 0xc62</span>
+<span class="go">                                  vlib_cli_dispatch_sub_commands + 0xc62</span>
+<span class="go">   266768     5222 0x7fffbd79f978 clib_mem_alloc_aligned_at_offset + 0x80</span>
+<span class="go">                                  vec_resize_allocate_memory + 0xa8</span>
+<span class="go">                                  _vec_resize_inline + 0x240</span>
+<span class="go">                                  unix_cli_file_add + 0x83d</span>
+<span class="go">                                  unix_cli_listen_read_ready + 0x10b</span>
+<span class="go">                                  linux_epoll_input_inline + 0x943</span>
+<span class="go">                                  linux_epoll_input + 0x39</span>
+<span class="go">                                  dispatch_node + 0x336</span>
+<span class="go">                                  vlib_main_or_worker_loop + 0xbf1</span>
+<span class="go">                                  vlib_main_loop + 0x1a</span>
+<span class="go">                                  vlib_main + 0xae7</span>
+<span class="go">                                  thread0 + 0x3e</span>
+<span class="go">....</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="libc-memory-traces">
+<h2>libc memory traces<a class="headerlink" href="#libc-memory-traces" title="Permalink to this headline">¶</a></h2>
+<p>Internal VPP memory allocations rely on VPP main-heap, however when using
+external libraries, esp. in plugins (eg. OpenSSL library used by the IKEv2
+plugin), those external libraries usually manages memory using the standard
+libc malloc()/free()/… calls. This, in turn, makes use of the default
+libc heap.</p>
+<p>VPP has no knowledge of this heap and tools such as memory traces cannot be
+used.</p>
+<p>In order to enable the use of standard VPP debugging tools, this library
+replaces standard libc memory management calls with version using VPP
+main-heap.</p>
+<p>To use it, you need to use the <cite>LD_PRELOAD</cite> mechanism, eg.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">~# LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libvppmem_preload.so /usr/bin/vpp -c /etc/vpp/startup.conf</span>
+</pre></div>
+</div>
+<p>You can then use tools such as memory traces as usual.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../events/index.html" class="btn btn-neutral float-right" title="Events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sanitizer.html" class="btn btn-neutral float-left" title="Google Sanitizers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v21.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

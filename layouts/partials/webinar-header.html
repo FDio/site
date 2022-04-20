@@ -1,0 +1,34 @@
+<article class="media">
+    <figure class="media-left">
+        <div class="image is-128x128 mt-0">
+            <img src="/img/webinars/fdio-webinar.svg">
+        </div>
+    </figure>
+    <div class="media-content">
+        <h2>{{.Params.title}}</h2>
+        <h4>{{.Params.Date.Format "January 2, 2006" }} <span class="localtime">{{.Params.time_slot}}</span></h4>
+        <h5>
+            {{ with .Params.Youtubeurl }}
+            <a href="{{.}}"><span class="icon-text">
+                <span class="icon"><i class="fab fa-youtube"></i></span>
+                <span class="divider is-vertical"></span>
+                <span>YouTube</span>
+            </span></a>
+            {{ end }}
+            {{ with .Params.Pdfurl }}
+            <a href="{{.}}"><span class="icon-text">
+                <span class="icon"><i class="far fa-file-pdf"></i></span>
+                <span class="divider is-vertical"></span>
+                <span>PDF</span>
+            </span></a>
+            {{ end }}
+            {{ with .Params.Ppturl }}
+            <a href="{{.}}"><span class="icon-text">
+                <span class="icon"><i class="fas fa-file-powerpoint"></i></span>
+                <span class="divider is-vertical"></span>
+                <span>PPT</span>
+            </span></a>
+            {{ end }}
+        </h5>
+    </div>
+</article>

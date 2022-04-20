@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	{{ partial "head.html" . }}
+    </head>
+    <body>
+	{{ partial "header.html" . }}
+	{{ partial "page_title.html" . }}
+	<div class="container">
+		<div class="row">
+		<div class="col-md-12">
+			{{ partial "webinar-header.html" . }}
+			<p>{{ .Content  }}</p>
+		</div>
+	    </div>
+	</div>
+	{{ partial "footer.html" . }}
+    </body>
+</html>

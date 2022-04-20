@@ -1,0 +1,1634 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VPP Configuration - CLI and ‘startup.conf’ &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Running VPP" href="../running/index.html" />
+    <link rel="prev" title="Huge Pages" href="hugepages.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Users</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Configuring VPP</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="hugepages.html">Huge Pages</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">VPP Configuration - CLI and ‘startup.conf’</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../running/index.html">Running VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../developers/index.html">For Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Users</a> &raquo;</li>
+        
+          <li><a href="index.html">Configuring VPP</a> &raquo;</li>
+        
+      <li>VPP Configuration - CLI and ‘startup.conf’</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/users/configuring/startup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vpp-configuration-cli-and-startup-conf">
+<span id="startup"></span><h1>VPP Configuration - CLI and ‘startup.conf’<a class="headerlink" href="#vpp-configuration-cli-and-startup-conf" title="Permalink to this headline">¶</a></h1>
+<p>After a successful installation, VPP installs a startup config file named
+<em>startup.conf</em> in the <em>/etc/vpp/</em> directory. This file can be tailored to
+make VPP run as desired, but contains default values for typical installations.</p>
+<p>Below are more details about this file and some of the the parameters and values
+it contains.</p>
+<div class="section" id="command-line-arguments">
+<h2>Command-line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Before we describe details of the startup configuration file (startup.conf) it
+should be mentioned that VPP can be started without a startup configuration
+file.</p>
+<p>Parameters are grouped by a section name. When providing more than one
+parameter to a section, all parameters for that section must be wrapped in
+curly braces. For example, to start VPP with configuration data via the
+command line with the section name <em>‘unix’</em>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /usr/bin/vpp unix <span class="o">{</span> interactive cli-listen <span class="m">127</span>.0.0.1:5002 <span class="o">}</span>
+</pre></div>
+</div>
+<p>The command line can be presented as a single string or as several; anything
+given on the command line is concatenated with spaces into a single string
+before parsing. VPP applications must be able to locate their own executable
+images. The simplest way to ensure this will work is to invoke a VPP
+application by giving its absolute path. For example:
+<em>‘/usr/bin/vpp &lt;options&gt;’</em>  At startup, VPP applications parse through their
+own ELF-sections [primarily] to make lists of init, configuration, and exit
+handlers.</p>
+<p>When developing with VPP, in gdb it’s often sufficient to start an application
+like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(gdb)</span> <span class="go">run unix interactive</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="startup-configuration-file-startup-conf">
+<h2>Startup Configuration File (startup.conf)<a class="headerlink" href="#startup-configuration-file-startup-conf" title="Permalink to this headline">¶</a></h2>
+<p>The more typical way to specify the startup configuration to VPP is with the
+startup configuration file (startup.conf).</p>
+<p>The path of the file is provided to the VPP application on the command line.
+This is typically at /etc/vpp/startup.conf. If VPP is installed as a package
+a default startup.conf file is provided at this location.</p>
+<p>The format of the configuration file is a simple text file with the same content
+as the command line.</p>
+<p><strong>A very simple startup.conf file:</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat /etc/vpp/startup.conf
+<span class="go">unix {</span>
+<span class="go">  nodaemon</span>
+<span class="go">  log /var/log/vpp/vpp.log</span>
+<span class="go">  full-coredump</span>
+<span class="go">  cli-listen localhost:5002</span>
+<span class="go">}</span>
+
+<span class="go">api-trace {</span>
+<span class="go">  on</span>
+<span class="go">}</span>
+
+<span class="go">dpdk {</span>
+<span class="go">  dev 0000:03:00.0</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>VPP is instructed to load this file with the -c option. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /usr/bin/vpp -c /etc/vpp/startup.conf
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-parameters">
+<h2>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Below is the list of some section names and their associated parameters.
+This is not an exhaustive list, but should give you an idea of how VPP can be configured.</p>
+<p>For all of the configuration parameters search the source code for instances of
+<strong>VLIB_CONFIG_FUNCTION</strong> and <strong>VLIB_EARLY_CONFIG_FUNCTION</strong>.</p>
+<p>For example, the invocation <em>‘VLIB_CONFIG_FUNCTION (foo_config, “foo”)’</em> will
+cause the function <em>‘foo_config’</em> to receive all parameters given in a
+parameter block named “foo”: “foo { arg1 arg2 arg3 … }”.</p>
+</div>
+<div class="section" id="the-unix-section">
+<h2>The unix section<a class="headerlink" href="#the-unix-section" title="Permalink to this headline">¶</a></h2>
+<p>Configures VPP startup and behavior type attributes, as well and any OS based
+attributes.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">unix {</span>
+<span class="go">  nodaemon</span>
+<span class="go">  log /var/log/vpp/vpp.log</span>
+<span class="go">  full-coredump</span>
+<span class="go">  cli-listen /run/vpp/cli.sock</span>
+<span class="go">  gid vpp</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="section" id="nodaemon">
+<h3>nodaemon<a class="headerlink" href="#nodaemon" title="Permalink to this headline">¶</a></h3>
+<p>Do not fork / background the vpp process. Typical when invoking VPP
+applications from a process monitor. Set by default in the default
+<em>‘startup.conf’</em> file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nodaemon</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interactive">
+<h3>interactive<a class="headerlink" href="#interactive" title="Permalink to this headline">¶</a></h3>
+<p>Attach CLI to stdin/out and provide a debugging command line interface.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">interactive</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="log-filename">
+<h3>log &lt;filename&gt;<a class="headerlink" href="#log-filename" title="Permalink to this headline">¶</a></h3>
+<p>Logs the startup configuration and all subsequent CLI commands in filename.
+Very useful in situations where folks don’t remember or can’t be bothered
+to include CLI commands in bug reports. The default <em>‘startup.conf’</em> file
+is to write to <em>‘/var/log/vpp/vpp.log’</em>.</p>
+<p>In VPP 18.04, the default log file location was moved from ‘/tmp/vpp.log’
+to ‘/var/log/vpp/vpp.log’ . The VPP code is indifferent to the file location.
+However, if SELinux is enabled, then the new location is required for the file
+to be properly labeled. Check your local <em>‘startup.conf’</em> file for the log file
+location on your system.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">log /var/log/vpp/vpp-debug.log</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exec-startup-config-filename">
+<h3>exec | startup-config &lt;filename&gt;<a class="headerlink" href="#exec-startup-config-filename" title="Permalink to this headline">¶</a></h3>
+<p>Read startup operational configuration from filename. The contents of the file
+will be performed as though entered at the CLI. The two keywords are aliases
+for the same function; if both are specified, only the last will have an effect.</p>
+<p>A file of CLI commands might look like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat /usr/share/vpp/scripts/interface-up.txt
+<span class="go">set interface state TenGigabitEthernet1/0/0 up</span>
+<span class="go">set interface state TenGigabitEthernet1/0/1 up</span>
+</pre></div>
+</div>
+<p>Parameter Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">startup-config /usr/share/vpp/scripts/interface-up.txt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gid-number-name">
+<h3>gid &lt;number | name&gt;<a class="headerlink" href="#gid-number-name" title="Permalink to this headline">¶</a></h3>
+<p>Sets the effective group ID to the input group ID or group name of the calling
+process.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">gid vpp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="full-coredump">
+<h3>full-coredump<a class="headerlink" href="#full-coredump" title="Permalink to this headline">¶</a></h3>
+<p>Ask the Linux kernel to dump all memory-mapped address regions, instead of
+just text+data+bss.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">full-coredump</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="coredump-size-unlimited-n-g-n-m-n-k-n">
+<h3>coredump-size unlimited | &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt;K | &lt;n&gt;<a class="headerlink" href="#coredump-size-unlimited-n-g-n-m-n-k-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Set the maximum size of the coredump file. The input value can be set in
+GB, MB, KB or bytes, or set to <em>‘unlimited’</em>.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">coredump-size unlimited</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cli-listen-ipaddress-port-socket-path">
+<h3>cli-listen &lt;ipaddress:port&gt; | &lt;socket-path&gt;<a class="headerlink" href="#cli-listen-ipaddress-port-socket-path" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Bind the CLI to listen at address localhost on TCP port 5002. This will
+accept an ipaddress:port pair or a filesystem path; in the latter case a
+local Unix socket is opened instead. The default <em>‘startup.conf’</em> file
+is to open the socket <em>‘/run/vpp/cli.sock’</em>.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cli-listen localhost:5002</span>
+<span class="go">cli-listen /run/vpp/cli.sock</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cli-line-mode">
+<h3>cli-line-mode<a class="headerlink" href="#cli-line-mode" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Disable character-by-character I/O on stdin. Useful when combined with,
+for example, emacs M-x gud-gdb.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cli-line-mode</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cli-prompt-string">
+<h3>cli-prompt &lt;string&gt;<a class="headerlink" href="#cli-prompt-string" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Configure the CLI prompt to be string.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cli-prompt vpp-2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cli-history-limit-n">
+<h3>cli-history-limit &lt;n&gt;<a class="headerlink" href="#cli-history-limit-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Limit command history to &lt;n&gt; lines. A value of 0 disables command history.
+Default value: 50</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cli-history-limit 100</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cli-no-banner">
+<h3>cli-no-banner<a class="headerlink" href="#cli-no-banner" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Disable the login banner on stdin and Telnet connections.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cli-no-banner</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cli-no-pager">
+<h3>cli-no-pager<a class="headerlink" href="#cli-no-pager" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Disable the output pager.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cli-no-pager</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cli-pager-buffer-limit-n">
+<h3>cli-pager-buffer-limit &lt;n&gt;<a class="headerlink" href="#cli-pager-buffer-limit-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Limit pager buffer to &lt;n&gt; lines of output. A value of 0 disables the
+pager. Default value: 100000</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cli-pager-buffer-limit 5000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="runtime-dir-dir">
+<h3>runtime-dir &lt;dir&gt;<a class="headerlink" href="#runtime-dir-dir" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Set the runtime directory, which is the default location for certain
+files, like socket files. Default is based on User ID used to start VPP.
+Typically it is <em>‘root’</em>, which defaults to <em>‘/run/vpp/’</em>. Otherwise,
+defaults to <em>‘/run/user/&lt;uid&gt;/vpp/’</em>.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">runtime-dir /tmp/vpp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="poll-sleep-usec-n">
+<h3>poll-sleep-usec &lt;n&gt;<a class="headerlink" href="#poll-sleep-usec-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Add a fixed-sleep between main loop poll. Default is 0, which is not to
+sleep.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">poll-sleep-usec 100</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pidfile-filename">
+<h3>pidfile &lt;filename&gt;<a class="headerlink" href="#pidfile-filename" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Writes the pid of the main thread in the given filename.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pidfile /run/vpp/vpp1.pid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-api-trace-section">
+<h2>The api-trace Section<a class="headerlink" href="#the-api-trace-section" title="Permalink to this headline">¶</a></h2>
+<p>The ability to trace, dump, and replay control-plane API traces makes all the
+difference in the world when trying to understand what the control-plane has
+tried to ask the forwarding-plane to do.</p>
+<p>Typically, one simply enables the API message trace scheme:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">api-trace {</span>
+<span class="go">  api-trace on</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="section" id="on-enable">
+<h3>on | enable<a class="headerlink" href="#on-enable" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Enable API trace capture from the beginning of time, and arrange for a
+post-mortem dump of the API trace if the application terminates abnormally.
+By default, the (circular) trace buffer will be configured to capture
+256K traces. The default <em>‘startup.conf’</em> file has trace enabled by default,
+and unless there is a very strong reason, it should remain enabled.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">on</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nitems-n">
+<h3>nitems &lt;n&gt;<a class="headerlink" href="#nitems-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Configure the circular trace buffer to contain the last &lt;n&gt; entries. By
+default, the trace buffer captures the last 256K API messages received.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nitems 524288</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="save-api-table-filename">
+<h3>save-api-table &lt;filename&gt;<a class="headerlink" href="#save-api-table-filename" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Dumps the API message table to /tmp/&lt;filename&gt;.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">save-api-table apiTrace-07-04.txt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-api-segment-section">
+<h2>The api-segment Section<a class="headerlink" href="#the-api-segment-section" title="Permalink to this headline">¶</a></h2>
+<p>These values control various aspects of the binary API interface to VPP.</p>
+<p>The default looks like the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">api-segment {</span>
+<span class="go">  gid vpp</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="section" id="prefix-path">
+<h3>prefix &lt;path&gt;<a class="headerlink" href="#prefix-path" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Sets the prefix prepended to the name used for shared memory (SHM)
+segments. The default is empty, meaning shared memory segments are created
+directly in the SHM directory <em>‘/dev/shm’</em>. It is worth noting that on
+many systems <em>‘/dev/shm’</em> is a symbolic link to somewhere else in the file
+system; Ubuntu links it to <em>‘/run/shm’</em>.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">prefix /run/shm</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uid-number-name">
+<h3>uid &lt;number | name&gt;<a class="headerlink" href="#uid-number-name" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Sets the user ID or name that should be used to set the ownership of the
+shared memory segments. Defaults to the same user that VPP is started
+with, probably root.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">uid root</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>gid &lt;number | name&gt;<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Sets the group ID or name that should be used to set the ownership of the
+shared memory segments. Defaults to the same group that VPP is started
+with, probably root.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">gid vpp</span>
+</pre></div>
+</div>
+<p><strong>The following parameters should only be set by those that are familiar with the
+interworkings of VPP.</strong></p>
+</div>
+<div class="section" id="baseva-x">
+<h3>baseva &lt;x&gt;<a class="headerlink" href="#baseva-x" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Set the base address for SVM global region. If not set, on AArch64, the
+code will try to determine the base address. All other default to
+0x30000000.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">baseva 0x20000000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="global-size-n-g-n-m-n">
+<h3>global-size &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt;<a class="headerlink" href="#global-size-n-g-n-m-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Set the global memory size, memory shared across all router instances,
+packet buffers, etc. If not set, defaults to 64M. The input value can be
+set in GB, MB or bytes.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">global-size 2G</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="global-pvt-heap-size-n-m-size-n">
+<h3>global-pvt-heap-size &lt;n&gt;M | size &lt;n&gt;<a class="headerlink" href="#global-pvt-heap-size-n-m-size-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Set the size of the global VM private mheap. If not set, defaults to 128k.
+The input value can be set in MB or bytes.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">global-pvt-heap-size size 262144</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-pvt-heap-size-n-m-size-n">
+<h3>api-pvt-heap-size &lt;n&gt;M | size &lt;n&gt;<a class="headerlink" href="#api-pvt-heap-size-n-m-size-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Set the size of the api private mheap. If not set, defaults to 128k.
+The input value can be set in MB or bytes.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">api-pvt-heap-size 1M</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-size-n-m-n-g-n">
+<h3>api-size &lt;n&gt;M | &lt;n&gt;G | &lt;n&gt;<a class="headerlink" href="#api-size-n-m-n-g-n" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Set the size of the API region. If not set, defaults to 16M. The input
+value can be set in GB, MB or bytes.</p>
+</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">api-size 64M</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-socksvr-section">
+<h2>The socksvr Section<a class="headerlink" href="#the-socksvr-section" title="Permalink to this headline">¶</a></h2>
+<p>Enables a Unix domain socket which processes binary API messages. See
+…/vlibmemory/socket_api.c.  If this parameter is not set, vpp
+won’t process binary API messages over sockets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">socksvr {</span>
+<span class="gp">   #</span> Explicitly name a socket file
+<span class="go">   socket-name /run/vpp/api.sock</span>
+<span class="go">   or</span>
+<span class="gp">   #</span> Use defaults as described below
+<span class="go">   default</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>The “default” keyword instructs vpp to use /run/vpp/api.sock when
+running as root, otherwise to use /run/user/&lt;uid&gt;/api.sock.</p>
+</div>
+<div class="section" id="the-cpu-section">
+<h2>The cpu Section<a class="headerlink" href="#the-cpu-section" title="Permalink to this headline">¶</a></h2>
+<p>In the VPP there is one main thread and optionally the user can create worker(s)
+The main thread and worker thread(s) can be pinned to CPU core(s) manually or automatically</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cpu {</span>
+<span class="go">   main-core 1</span>
+<span class="go">   corelist-workers 2-3,18-19</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="section" id="manual-pinning-of-thread-s-to-cpu-core-s">
+<h3>Manual pinning of thread(s) to CPU core(s)<a class="headerlink" href="#manual-pinning-of-thread-s-to-cpu-core-s" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="main-core">
+<h3>main-core<a class="headerlink" href="#main-core" title="Permalink to this headline">¶</a></h3>
+<p>Set logical CPU core where main thread runs, if main core is not set VPP will use
+core 1 if available</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">main-core 1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="corelist-workers">
+<h3>corelist-workers<a class="headerlink" href="#corelist-workers" title="Permalink to this headline">¶</a></h3>
+<p>Set logical CPU core(s) where worker threads are running</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">corelist-workers 2-3,18-19</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="automatic-pinning-of-thread-s-to-cpu-core-s">
+<h3>Automatic pinning of thread(s) to CPU core(s)<a class="headerlink" href="#automatic-pinning-of-thread-s-to-cpu-core-s" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="skip-cores-number">
+<h3>skip-cores number<a class="headerlink" href="#skip-cores-number" title="Permalink to this headline">¶</a></h3>
+<p>Sets number of CPU core(s) to be skipped (1 … N-1), Skipped CPU core(s) are
+not used for pinning main thread and working thread(s).</p>
+<p>The main thread is automatically pinned to the first available CPU core and worker(s)
+are pinned to next free CPU core(s) after core assigned to main thread</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">skip-cores 4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="workers-number">
+<h3>workers number<a class="headerlink" href="#workers-number" title="Permalink to this headline">¶</a></h3>
+<p>Specify a number of workers to be created Workers are pinned to N consecutive
+CPU cores while skipping “skip-cores” CPU core(s) and main thread’s CPU core</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">workers 2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scheduler-policy-other-batch-idle-fifo-rr">
+<h3>scheduler-policy other | batch | idle | fifo | rr<a class="headerlink" href="#scheduler-policy-other-batch-idle-fifo-rr" title="Permalink to this headline">¶</a></h3>
+<p>Set scheduling policy and priority of main and worker threads</p>
+<p>Scheduling policy options are: other (SCHED_OTHER), batch (SCHED_BATCH)
+idle (SCHED_IDLE), fifo (SCHED_FIFO), rr (SCHED_RR)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">scheduler-policy fifo</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scheduler-priority-number">
+<h3>scheduler-priority number<a class="headerlink" href="#scheduler-priority-number" title="Permalink to this headline">¶</a></h3>
+<p>Scheduling priority is used only for “real-time policies (fifo and rr),
+and has to be in the range of priorities supported for a particular policy</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">scheduler-priority 50</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-buffers-section">
+<h2>The buffers Section<a class="headerlink" href="#the-buffers-section" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">buffers {</span>
+<span class="go">   buffers-per-numa 128000</span>
+<span class="go">   default data-size 2048</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="section" id="buffers-per-numa-number">
+<h3>buffers-per-numa number<a class="headerlink" href="#buffers-per-numa-number" title="Permalink to this headline">¶</a></h3>
+<p>Increase number of buffers allocated, needed only in scenarios with
+large number of interfaces and worker threads. Value is per numa node.
+Default is 16384 (8192 if running unpriviledged)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">buffers-per-numa 128000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-data-size-number">
+<h3>default data-size number<a class="headerlink" href="#default-data-size-number" title="Permalink to this headline">¶</a></h3>
+<p>Size of buffer data area, default is 2048</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">default data-size 2048</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-dpdk-section">
+<h2>The dpdk Section<a class="headerlink" href="#the-dpdk-section" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dpdk {</span>
+<span class="go">   dev default {</span>
+<span class="go">      num-rx-desc 512</span>
+<span class="go">      num-tx-desc 512</span>
+<span class="go">   }</span>
+
+<span class="go">   dev 0000:02:00.1 {</span>
+<span class="go">      num-rx-queues 2</span>
+<span class="go">      name eth0</span>
+<span class="go">   }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="section" id="dev-pci-dev-default">
+<h3>dev &lt;pci-dev&gt; | default { .. }<a class="headerlink" href="#dev-pci-dev-default" title="Permalink to this headline">¶</a></h3>
+<p>White-list [as in, attempt to drive] a specific PCI device. PCI-dev is a
+string of the form “DDDD:BB:SS.F” where:</p>
+<ul class="simple">
+<li><p>DDDD = Domain</p></li>
+<li><p>BB = Bus Number</p></li>
+<li><p>SS = Slot number</p></li>
+<li><p>F = Function</p></li>
+</ul>
+<p>If the keywork <strong>default</strong> is used the values will apply to all the devices.</p>
+<p>This is the same format used in the linux sysfs tree (i.e./sys/bus/pci/devices)
+for PCI device directory names.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dpdk {</span>
+<span class="go">   dev default {</span>
+<span class="go">      num-rx-desc 512</span>
+<span class="go">      num-tx-desc 512</span>
+<span class="go">   }</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dev-pci-dev">
+<h3>dev &lt;pci-dev&gt; { .. }<a class="headerlink" href="#dev-pci-dev" title="Permalink to this headline">¶</a></h3>
+<p>Whitelist specific interface by specifying PCI address. When whitelisting specific
+interfaces by specifying PCI address, additional custom parameters can also be
+specified. Valid options include:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dev 0000:02:00.0</span>
+<span class="go">dev 0000:03:00.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="blacklist-pci-dev">
+<h3>blacklist &lt;pci-dev&gt;<a class="headerlink" href="#blacklist-pci-dev" title="Permalink to this headline">¶</a></h3>
+<p>Blacklist specific device type by specifying PCI vendor:device Whitelist entries
+take precedence</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">blacklist 8086:10fb</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="name-interface-name">
+<h3>name interface-name<a class="headerlink" href="#name-interface-name" title="Permalink to this headline">¶</a></h3>
+<p>Set interface name</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dev 0000:02:00.1 {</span>
+<span class="go">   name eth0</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="num-rx-queues-n">
+<h3>num-rx-queues &lt;n&gt;<a class="headerlink" href="#num-rx-queues-n" title="Permalink to this headline">¶</a></h3>
+<p>Number of receive queues. Also enables RSS. Default value is 1.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dev 0000:02:00.1 {</span>
+<span class="go">   num-tx-queues &lt;n&gt;</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="num-tx-queues-n">
+<h3>num-tx-queues &lt;n&gt;<a class="headerlink" href="#num-tx-queues-n" title="Permalink to this headline">¶</a></h3>
+<p>Number of transmit queues. Default is equal to number of worker threads
+or 1 if no workers treads.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dev 000:02:00.1 {</span>
+<span class="go">   num-tx-queues &lt;n&gt;</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="num-rx-desc-n">
+<h3>num-rx-desc &lt;n&gt;<a class="headerlink" href="#num-rx-desc-n" title="Permalink to this headline">¶</a></h3>
+<p>Number of descriptors in receive ring. Increasing or reducing number
+can impact performance. Default is 1024.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dev 000:02:00.1 {</span>
+<span class="go">   num-rx-desc &lt;n&gt;</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="vlan-strip-offload-on-off">
+<h3>vlan-strip-offload on | off<a class="headerlink" href="#vlan-strip-offload-on-off" title="Permalink to this headline">¶</a></h3>
+<p>VLAN strip offload mode for interface. VLAN stripping is off by default
+for all NICs except VICs, using ENIC driver, which has VLAN stripping on
+by default.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dev 000:02:00.1 {</span>
+<span class="go">   vlan-strip-offload on|off</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uio-driver-driver-name">
+<h3>uio-driver driver-name<a class="headerlink" href="#uio-driver-driver-name" title="Permalink to this headline">¶</a></h3>
+<p>Change UIO driver used by VPP, Options are: igb_uio, vfio-pci, uio_pci_generic
+or auto (default)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">uio-driver vfio-pci</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="no-multi-seg">
+<h3>no-multi-seg<a class="headerlink" href="#no-multi-seg" title="Permalink to this headline">¶</a></h3>
+<p>Disable multi-segment buffers, improves performance but disables Jumbo MTU support</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">no-multi-seg</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="socket-mem-n">
+<h3>socket-mem &lt;n&gt;<a class="headerlink" href="#socket-mem-n" title="Permalink to this headline">¶</a></h3>
+<p>Change hugepages allocation per-socket, needed only if there is need for
+larger number of mbufs. Default is 256M on each detected CPU socket</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">socket-mem 2048,2048</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="no-tx-checksum-offload">
+<h3>no-tx-checksum-offload<a class="headerlink" href="#no-tx-checksum-offload" title="Permalink to this headline">¶</a></h3>
+<p>Disables UDP / TCP TX checksum offload. Typically needed for use faster
+vector PMDs (together with no-multi-seg)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">no-tx-checksum-offload</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enable-tcp-udp-checksum">
+<h3>enable-tcp-udp-checksum<a class="headerlink" href="#enable-tcp-udp-checksum" title="Permalink to this headline">¶</a></h3>
+<p>Enable UDP / TCP TX checksum offload This is the reversed option of
+‘no-tx-checksum-offload’</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">enable-tcp-udp-checksum</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-plugins-section">
+<h2>The plugins Section<a class="headerlink" href="#the-plugins-section" title="Permalink to this headline">¶</a></h2>
+<p>Configure VPP plugins.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">plugins {</span>
+<span class="go">   path /ws/vpp/build-root/install-vpp-native/vpp/lib/vpp_plugins</span>
+<span class="go">   plugin dpdk_plugin.so enable</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="section" id="path-pathname">
+<h3>path pathname<a class="headerlink" href="#path-pathname" title="Permalink to this headline">¶</a></h3>
+<p>Adjust the plugin path depending on where the VPP plugins are.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">path /ws/vpp/build-root/install-vpp-native/vpp/lib/vpp_plugins</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plugin-plugin-name-default-enable-disable">
+<h3>plugin plugin-name | default enable | disable<a class="headerlink" href="#plugin-plugin-name-default-enable-disable" title="Permalink to this headline">¶</a></h3>
+<p>Disable all plugins by default and then selectively enable specific plugins</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">plugin default disable</span>
+<span class="go">plugin dpdk_plugin.so enable</span>
+<span class="go">plugin acl_plugin.so enable</span>
+</pre></div>
+</div>
+<p>Enable all plugins by default and then selectively disable specific plugins</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">plugin dpdk_plugin.so disable</span>
+<span class="go">plugin acl_plugin.so disable</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="th-statseg-section">
+<h3>Th statseg Section<a class="headerlink" href="#th-statseg-section" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">statseg {</span>
+<span class="go">   per-node-counters on</span>
+<span class="go"> }</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="socket-name-filename">
+<h3>socket-name &lt;filename&gt;<a class="headerlink" href="#socket-name-filename" title="Permalink to this headline">¶</a></h3>
+<p>Name of the stats segment socket defaults to /run/vpp/stats.sock.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">socket-name /run/vpp/stats.sock</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="size-nnn-kmg">
+<h3>size &lt;nnn&gt;[KMG]<a class="headerlink" href="#size-nnn-kmg" title="Permalink to this headline">¶</a></h3>
+<p>The size of the stats segment, defaults to 32mb</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">size 1024M</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="per-node-counters-on-off">
+<h3>per-node-counters on | off<a class="headerlink" href="#per-node-counters-on-off" title="Permalink to this headline">¶</a></h3>
+<p>Defaults to none</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">per-node-counters on</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="update-interval-f64-seconds">
+<h3>update-interval &lt;f64-seconds&gt;<a class="headerlink" href="#update-interval-f64-seconds" title="Permalink to this headline">¶</a></h3>
+<p>Sets the segment scrape / update interval</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">update-interval 300</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="some-advanced-parameters">
+<h2>Some Advanced Parameters:<a class="headerlink" href="#some-advanced-parameters" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="acl-plugin-section">
+<h2>acl-plugin Section<a class="headerlink" href="#acl-plugin-section" title="Permalink to this headline">¶</a></h2>
+<p>These parameters change the configuration of the ACL (access control list) plugin,
+such as how the ACL bi-hash tables are initialized.</p>
+<p>They should only be set by those that are familiar with the interworkings of VPP
+and the ACL Plugin.</p>
+<p>The first three parameters, <em>connection hash buckets</em>, <em>connection hash memory</em>,
+and <em>connection count max</em>, set the <strong>connection table per-interface parameters</strong>
+for modifying how the two bounded-index extensible hash tables for
+IPv6 (40*8 bit key and 8*8 bit value pairs) and IPv4
+(16*8 bit key and 8*8 bit value pairs) <strong>ACL plugin FA interface sessions</strong>
+are initialized.</p>
+<div class="section" id="connection-hash-buckets-n">
+<h3>connection hash buckets &lt;n&gt;<a class="headerlink" href="#connection-hash-buckets-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of hash buckets (rounded up to a power of 2) in each
+of the two bi-hash tables. Defaults to 64*1024 (65536) hash buckets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">connection hash buckets 65536</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="connection-hash-memory-n">
+<h3>connection hash memory &lt;n&gt;<a class="headerlink" href="#connection-hash-memory-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the allocated memory size (in bytes) for each of the two bi-hash tables.
+Defaults to 1073741824 bytes.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">connection hash memory 1073741824</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="connection-count-max-n">
+<h3>connection count max &lt;n&gt;<a class="headerlink" href="#connection-count-max-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the maximum number of pool elements when allocating each per-worker
+pool of sessions for both bi-hash tables. Defaults to 500000 elements in each pool.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">connection count max 500000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="main-heap-size-n-g-n-m-n-k-n">
+<h3>main heap size &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt;K | &lt;n&gt;<a class="headerlink" href="#main-heap-size-n-g-n-m-n-k-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the size of the main memory heap that holds all the ACL module related
+allocations (other than hash.) Default size is 0, but during
+ACL heap initialization is equal to
+<em>per_worker_size_with_slack * tm-&gt;n_vlib_mains + bihash_size + main_slack</em>.
+Note that these variables are partially based on the
+<strong>connection table per-interface parameters</strong> mentioned above.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">main heap size 3G</span>
+</pre></div>
+</div>
+<p>The next three parameters, <em>hash lookup heap size</em>, <em>hash lookup hash buckets</em>,
+and <em>hash lookup hash memory</em>, modify the initialization of the bi-hash lookup
+table used by the ACL plugin. This table is initialized when attempting to apply
+an ACL to the existing vector of ACLs looked up during packet processing
+(but it is found that the table does not exist / has not been initialized yet.)</p>
+</div>
+<div class="section" id="hash-lookup-heap-size-n-g-n-m-n-k-n">
+<h3>hash lookup heap size  &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt; K | &lt;n&gt;<a class="headerlink" href="#hash-lookup-heap-size-n-g-n-m-n-k-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the size of the memory heap that holds all the miscellaneous allocations
+related to hash-based lookups. Default size is 67108864 bytes.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hash lookup heap size 70M</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hash-lookup-hash-buckets-n">
+<h3>hash lookup hash buckets &lt;n&gt;<a class="headerlink" href="#hash-lookup-hash-buckets-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of hash buckets (rounded up to a power of 2) in the bi-hash
+lookup table. Defaults to 65536 hash buckets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hash lookup hash buckets 65536</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hash-lookup-hash-memory-n">
+<h3>hash lookup hash memory &lt;n&gt;<a class="headerlink" href="#hash-lookup-hash-memory-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the allocated memory size (in bytes) for the bi-hash lookup table.
+Defaults to 67108864 bytes.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hash lookup hash memory 67108864</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-tuple-merge-n">
+<h3>use tuple merge &lt;n&gt;<a class="headerlink" href="#use-tuple-merge-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets a boolean value indicating whether or not to use TupleMerge
+for hash ACL’s. Defaults to 1 (true), meaning the default implementation
+of hashing ACL’s does use TupleMerge.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">use tuple merge 1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tuple-merge-split-threshold-n">
+<h3>tuple merge split threshold &lt;n&gt;<a class="headerlink" href="#tuple-merge-split-threshold-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the maximum amount of rules (ACE’s) that can collide in a bi-hash
+lookup table before the table is split into two new tables. Splitting ensures
+less rule collisions by hashing colliding rules based on their common tuple
+(usually their maximum common tuple.) Splitting occurs when the
+<em>length of the colliding rules vector</em> is greater than this threshold amount.
+Defaults to a maximum of 39 rule collisions per table.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tuple merge split threshold 30</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reclassify-sessions-n">
+<h3>reclassify sessions &lt;n&gt;<a class="headerlink" href="#reclassify-sessions-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets a boolean value indicating whether or not to take the epoch of the session
+into account when dealing with re-applying ACL’s or changing already applied ACL’s.
+Defaults to 0 (false), meaning the default implementation does NOT take the
+epoch of the session into account.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">reclassify sessions 1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="api-queue-section">
+<span id="api-queue"></span><h2>api-queue Section<a class="headerlink" href="#api-queue-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="length-n">
+<h3>length  &lt;n&gt;<a class="headerlink" href="#length-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the api queue length. Minimum valid queue length is 1024, which is
+also the default.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">length 2048</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cj-section">
+<span id="cj"></span><h2>cj Section<a class="headerlink" href="#cj-section" title="Permalink to this headline">¶</a></h2>
+<p>The circular journal (CJ) thread-safe circular log buffer scheme is
+occasionally useful when chasing bugs. Calls to it should not be checked in.
+See …/vlib/vlib/unix/cj.c. The circular journal is disables by default.
+When enabled, the number of records must be provided, there is no default
+value.</p>
+<div class="section" id="records-n">
+<h3>records &lt;n&gt;<a class="headerlink" href="#records-n" title="Permalink to this headline">¶</a></h3>
+<p>Configure the number of circular journal records in the circular buffer.
+The number of records should be a power of 2.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">records 131072</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="on">
+<h3>on<a class="headerlink" href="#on" title="Permalink to this headline">¶</a></h3>
+<p>Turns on logging at the earliest possible moment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">on</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dns-section">
+<h2>dns Section<a class="headerlink" href="#dns-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="max-cache-size-n">
+<h3>max-cache-size &lt;n&gt;<a class="headerlink" href="#max-cache-size-n" title="Permalink to this headline">¶</a></h3>
+<p>Set the maximum number of active elements allowed in the pool of
+dns cache entries. When resolving an expired entry or adding a new
+static entry and the max number of active entries is reached,
+a random, non-static entry is deleted. Defaults to 65535 entries.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">max-cache-size 65535</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="heapsize-section">
+<h2>heapsize Section<a class="headerlink" href="#heapsize-section" title="Permalink to this headline">¶</a></h2>
+<p>Heapsize configuration controls the size of the main heap. The heap size is
+configured very early in the boot sequence, before loading plug-ins or doing
+much of anything else.</p>
+<div class="section" id="heapsize-n-m-n-g">
+<h3>heapsize &lt;n&gt;M | &lt;n&gt;G<a class="headerlink" href="#heapsize-n-m-n-g" title="Permalink to this headline">¶</a></h3>
+<p>Specifies the size of the heap in MB or GB. The default is 1GB. Setting the
+main heap size to 4GB or more requires recompilation of the entire system
+with CLIB_VEC64 &gt; 0. See …/clib/clib/vec_bootstrap.h.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">heapsize 2G</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ip-section">
+<h2>ip Section<a class="headerlink" href="#ip-section" title="Permalink to this headline">¶</a></h2>
+<p>IPv4 heap configuration. he heap size is configured very early in the boot
+sequence, before loading plug-ins or doing much of anything else.</p>
+<div class="section" id="heap-size-n-g-n-m-n-k-n">
+<h3>heap-size &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt;K | &lt;n&gt;<a class="headerlink" href="#heap-size-n-g-n-m-n-k-n" title="Permalink to this headline">¶</a></h3>
+<p>Set the IPv4 mtrie heap size, which is the amount of memory dedicated to
+the destination IP lookup table. The input value can be set in GB, MB, KB
+or bytes. The default value is 32MB.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">heap-size 64M</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ip6-section">
+<h2>ip6 Section<a class="headerlink" href="#ip6-section" title="Permalink to this headline">¶</a></h2>
+<p>IPv6 heap configuration. he heap size is configured very early in the boot
+sequence, before loading plug-ins or doing much of anything else.</p>
+<div class="section" id="id2">
+<h3>heap-size &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt;K | &lt;n&gt;<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Set the IPv6 forwarding table heap size. The input value can be set in GB,
+MB, KB or bytes. The default value is 32MB.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">heap-size 64M</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hash-buckets-n">
+<h3>hash-buckets &lt;n&gt;<a class="headerlink" href="#hash-buckets-n" title="Permalink to this headline">¶</a></h3>
+<p>Set the number of IPv6 forwarding table hash buckets. The default value is
+64K (65536).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">hash-buckets 131072</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="l2learn-section">
+<h2>l2learn Section<a class="headerlink" href="#l2learn-section" title="Permalink to this headline">¶</a></h2>
+<p>Configure Layer 2 MAC Address learning parameters.</p>
+<div class="section" id="limit-n">
+<h3>limit &lt;n&gt;<a class="headerlink" href="#limit-n" title="Permalink to this headline">¶</a></h3>
+<p>Configures the number of L2 (MAC) addresses in the L2 FIB at any one time,
+which limits the size of the L2 FIB to &lt;n&gt; concurrent entries.  Defaults to
+4M entries (4194304).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">limit 8388608</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="l2tp-section">
+<h2>l2tp Section<a class="headerlink" href="#l2tp-section" title="Permalink to this headline">¶</a></h2>
+<p>IPv6 Layer 2 Tunnelling Protocol Version 3 (IPv6-L2TPv3) configuration controls
+the method used to locate a specific IPv6-L2TPv3 tunnel. The following settings
+are mutually exclusive:</p>
+<div class="section" id="lookup-v6-src">
+<h3>lookup-v6-src<a class="headerlink" href="#lookup-v6-src" title="Permalink to this headline">¶</a></h3>
+<p>Lookup tunnel by IPv6 source address.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">lookup-v6-src</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lookup-v6-dst">
+<h3>lookup-v6-dst<a class="headerlink" href="#lookup-v6-dst" title="Permalink to this headline">¶</a></h3>
+<p>Lookup tunnel by IPv6 destination address.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">lookup-v6-dst</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lookup-session-id">
+<h3>lookup-session-id<a class="headerlink" href="#lookup-session-id" title="Permalink to this headline">¶</a></h3>
+<p>Lookup tunnel by L2TPv3 session identifier.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">lookup-session-id</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="logging-section">
+<h2>logging Section<a class="headerlink" href="#logging-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="size-n">
+<h3>size &lt;n&gt;<a class="headerlink" href="#size-n" title="Permalink to this headline">¶</a></h3>
+<p>Number of entries in the global logging buffer. Defaults to 512.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">size 512</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nthrottle-time-n">
+<h3>nthrottle-time &lt;n&gt;<a class="headerlink" href="#nthrottle-time-n" title="Permalink to this headline">¶</a></h3>
+<p>Set the global value for the time to wait (in seconds) before resuming
+logging of a log subclass that exceeded the per-subclass message-per-second
+threshold.  Defaults to 3.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">unthrottle-time 3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-log-level-emerg-alert-crit-err-warn-notice-info-debug-disabled">
+<h3>default-log-level emerg|alert | crit | err | warn | notice | info | debug | disabled<a class="headerlink" href="#default-log-level-emerg-alert-crit-err-warn-notice-info-debug-disabled" title="Permalink to this headline">¶</a></h3>
+<p>Set the default logging level of the system log.  Defaults to notice.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">default-log-level notice</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-syslog-log-level-emerg-alert-crit-err-warn-notice-info-debug-disabled">
+<h3>default-syslog-log-level emerg|alert | crit | err | warn | notice | info | debug | disabled<a class="headerlink" href="#default-syslog-log-level-emerg-alert-crit-err-warn-notice-info-debug-disabled" title="Permalink to this headline">¶</a></h3>
+<p>Set the default logging level of the syslog target.  Defaults to warning.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">default-syslog-log-level warning</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mactime-section">
+<h2>mactime Section<a class="headerlink" href="#mactime-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lookup-table-buckets-n">
+<h3>lookup-table-buckets &lt;n&gt;<a class="headerlink" href="#lookup-table-buckets-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of hash buckets in the mactime bi-hash lookup table.
+Defaults to 128 buckets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">lookup-table-buckets 128</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lookup-table-memory-n-g-n-m-n-k-n">
+<h3>lookup-table-memory &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt;K | &lt;n&gt;<a class="headerlink" href="#lookup-table-memory-n-g-n-m-n-k-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the allocated memory size (in bytes) for the mactime bi-hash lookup table.
+The input value can be set in GB, MB, KB or bytes. The default value is 262144
+(256 &lt;&lt; 10) bytes or roughly 256KB.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">lookup-table-memory 300K</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="timezone-offset-n">
+<h3>timezone_offset &lt;n&gt;<a class="headerlink" href="#timezone-offset-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the timezone offset from UTC. Defaults to an offset of -5 hours
+from UTC (US EST / EDT.)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">timezone_offset -5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="map-parameters">
+<h2>“map” Parameters<a class="headerlink" href="#map-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="customer-edge">
+<h3>customer edge<a class="headerlink" href="#customer-edge" title="Permalink to this headline">¶</a></h3>
+<p>Sets a boolean true to indicate that the MAP node is a Customer Edge (CE)
+router. The boolean defaults to false, meaning the MAP node is not treated
+as a CE router.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">customer edge</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="nat-section">
+<h2>nat Section<a class="headerlink" href="#nat-section" title="Permalink to this headline">¶</a></h2>
+<p>These parameters change the configuration of the NAT (Network address translation)
+plugin, such as how the NAT &amp; NAT64 bi-hash tables are initialized, if the NAT is
+endpoint dependent, or if the NAT is deterministic.</p>
+<p>For each NAT per thread data, the following 4 parameters change how certain
+bi-hash tables are initialized.</p>
+<div class="section" id="translation-hash-buckets-n">
+<h3>translation hash buckets &lt;n&gt;<a class="headerlink" href="#translation-hash-buckets-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of hash buckets in each of the two in/out NAT bi-hash lookup
+tables. Defaults to 1024 buckets.</p>
+<p>If the NAT is indicated to be endpoint dependent, which can be set with the
+<a class="reference internal" href="#endpointlabel"><span class="std std-ref">endpoint-dependent parameter</span></a>, then this parameter sets
+the number of hash buckets in each of the two endpoint dependent sessions
+NAT bi-hash lookup tables.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">translation hash buckets 1024</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="translation-hash-memory-n">
+<h3>translation hash memory &lt;n&gt;<a class="headerlink" href="#translation-hash-memory-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the allocated memory size (in bytes) for each of the two in/out NAT
+bi-hash tables. Defaults to 134217728 (128 &lt;&lt; 20) bytes, which is roughly 128 MB.</p>
+<p>If the NAT is indicated to be endpoint dependent, which can be set with the
+<a class="reference internal" href="#endpointlabel"><span class="std std-ref">endpoint-dependent parameter</span></a>, then this parameter sets the
+allocated memory size for each of the two endpoint dependent sessions NAT bi-hash
+lookup tables.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">translation hash memory 134217728</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="user-hash-buckets-n">
+<h3>user hash buckets &lt;n&gt;<a class="headerlink" href="#user-hash-buckets-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of hash buckets in the user bi-hash lookup table
+(src address lookup for a user.) Defaults to 128 buckets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">user hash buckets 128</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="user-hash-memory-n">
+<h3>user hash memory &lt;n&gt;<a class="headerlink" href="#user-hash-memory-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the allocated memory size (in bytes) for the user bi-hash lookup table
+(src address lookup for a user.) Defaults to 67108864 (64 &lt;&lt; 20) bytes,
+which is roughly 64 MB.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">user hash memory 67108864</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="max-translations-per-user-n">
+<h3>max translations per user &lt;n&gt;<a class="headerlink" href="#max-translations-per-user-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the maximum amount of dynamic and/or static NAT sessions each user can have.
+Defaults to 100. When this limit is reached, the least recently used translation
+is recycled.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">max translations per user 50</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deterministic">
+<h3>deterministic<a class="headerlink" href="#deterministic" title="Permalink to this headline">¶</a></h3>
+<p>Sets a boolean value to 1 indicating that the NAT is deterministic. Defaults to 0,
+meaning the NAT is not deterministic.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">deterministic</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nat64-bib-hash-buckets-n">
+<h3>nat64 bib hash buckets &lt;n&gt;<a class="headerlink" href="#nat64-bib-hash-buckets-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of hash buckets in each of the two in/out NAT64 BIB bi-hash
+tables. Defaults to 1024 buckets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat64 bib hash buckets 1024</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nat64-bib-hash-memory-n">
+<h3>nat64 bib hash memory &lt;n&gt;<a class="headerlink" href="#nat64-bib-hash-memory-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the allocated memory size (in bytes) for each of the two in/out NAT64
+BIB bi-hash tables. Defaults to 134217728 (128 &lt;&lt; 20) bytes,
+which is roughly 128 MB.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat64 bib hash memory 134217728</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nat64-st-hash-buckets-n">
+<h3>nat64 st hash buckets &lt;n&gt;<a class="headerlink" href="#nat64-st-hash-buckets-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of hash buckets in each of the two in/out NAT64 session table
+bi-hash tables. Defaults to 2048 buckets.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat64 st hash buckets 2048</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nat64-st-hash-memory-n">
+<h3>nat64 st hash memory &lt;n&gt;<a class="headerlink" href="#nat64-st-hash-memory-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the allocated memory size (in bytes) for each of the two in/out NAT64 session
+table bi-hash tables. Defaults to 268435456 (256 &lt;&lt; 20) bytes, which is roughly
+256 MB.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nat64 st hash memory 268435456</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="endpoint-dependent">
+<span id="endpointlabel"></span><h3>endpoint-dependent<a class="headerlink" href="#endpoint-dependent" title="Permalink to this headline">¶</a></h3>
+<p>Sets a boolean value to 1, indicating that the NAT is endpoint dependent.
+Defaults to 0, meaning the NAT is not endpoint dependent.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">endpoint-dependent</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="oam-section">
+<h2>oam Section<a class="headerlink" href="#oam-section" title="Permalink to this headline">¶</a></h2>
+<p>OAM configuration controls the (ip4-icmp) interval, and number of misses
+allowed before reporting an oam target down to any registered listener.</p>
+<div class="section" id="interval-n-n">
+<h3>interval &lt;n.n&gt;<a class="headerlink" href="#interval-n-n" title="Permalink to this headline">¶</a></h3>
+<p>Interval, floating-point seconds, between sending OAM IPv4 ICMP messages.
+Default is 2.04 seconds.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">interval 3.5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="physmem-section">
+<h2>physmem Section<a class="headerlink" href="#physmem-section" title="Permalink to this headline">¶</a></h2>
+<p>Configuration parameters used to specify base address and maximum size of
+the memory allocated for the pmalloc module in VPP. pmalloc is a NUMA-aware,
+growable physical memory allocator. pmalloc allocates memory for the DPDK
+memory pool.</p>
+<div class="section" id="base-addr-address">
+<h3>base-addr &lt;address&gt;<a class="headerlink" href="#base-addr-address" title="Permalink to this headline">¶</a></h3>
+<p>Specify the base address for pmalloc memory space.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">base-addr 0xfffe00000000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="max-size-n-g-n-m-n-k-n">
+<h3>max-size &lt;n&gt;G | &lt;n&gt;M | &lt;n&gt;K | &lt;n&gt;<a class="headerlink" href="#max-size-n-g-n-m-n-k-n" title="Permalink to this headline">¶</a></h3>
+<p>Set the memory size for pmalloc memory space. The default is 16G.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">max-size 4G</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tapcli-section">
+<h2>tapcli Section<a class="headerlink" href="#tapcli-section" title="Permalink to this headline">¶</a></h2>
+<p>Configuration parameters for TAPCLI (dynamic tap interface hookup.)</p>
+<div class="section" id="mtu-n">
+<h3>mtu &lt;n&gt;<a class="headerlink" href="#mtu-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets interface MTU (maximum transmission unit) size in bytes. This size
+is also related to the number of MTU buffers. Defaults to 1500 bytes.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mtu 1500</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="disable">
+<h3>disable<a class="headerlink" href="#disable" title="Permalink to this headline">¶</a></h3>
+<p>Disables TAPCLI. Default is that TAPCLI is enabled.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">disable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tcp-section">
+<h2>tcp Section<a class="headerlink" href="#tcp-section" title="Permalink to this headline">¶</a></h2>
+<p>Configuration parameters for TCP host stack utilities. The following
+preallocation parameters are related to the initialization of fixed-size,
+preallocation pools.</p>
+<div class="section" id="preallocated-connections-n">
+<h3>preallocated-connections &lt;n&gt;<a class="headerlink" href="#preallocated-connections-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of preallocated TCP connections. Defaults to 0.
+The preallocated connections per thread is related to this value,
+equal to (preallocated_connections / (num_threads - 1)).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">preallocated-connections 5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="preallocated-half-open-connections-n">
+<h3>preallocated-half-open-connections &lt;n&gt;<a class="headerlink" href="#preallocated-half-open-connections-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of preallocated TCP half-open connections. Defaults to 0.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">preallocated-half-open-connections 5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="buffer-fail-fraction-n-n">
+<h3>buffer-fail-fraction &lt;n.n&gt;<a class="headerlink" href="#buffer-fail-fraction-n-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the TCP buffer fail fraction (a float) used for fault-injection
+when debugging TCP buffer allocation. Its use is found in <em>tcp_debug.h</em>.
+Defaults to 0.0.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">buffer-fail-fraction 0.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tls-section">
+<h2>tls Section<a class="headerlink" href="#tls-section" title="Permalink to this headline">¶</a></h2>
+<p>Configures TLS parameters, such as enabling the use of test certificates.
+These parameters affect the tlsmbedtls and tlsopenssl plugins.</p>
+<div class="section" id="use-test-cert-in-ca">
+<h3>use-test-cert-in-ca<a class="headerlink" href="#use-test-cert-in-ca" title="Permalink to this headline">¶</a></h3>
+<p>Sets a boolean value to 1 to indicate during the initialization of a
+TLS CA chain to attempt to parse and add test certificates to the chain.
+Defaults to 0, meaning test certificates are not used.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">use-test-cert-in-ca</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ca-cert-path-filename">
+<h3>ca-cert-path &lt;filename&gt;<a class="headerlink" href="#ca-cert-path-filename" title="Permalink to this headline">¶</a></h3>
+<p>Sets the filename path of the location of TLS CA certificates, used when
+initializing and loading TLS CA certificates during the initialization
+of a TLS CA chain. If not set, the default filename path is
+<em>/etc/ssl/certs/ca-certificates.crt</em>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ca-cert-path /etc/ssl/certs/ca-certificates.crt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tuntap-section">
+<h2>tuntap Section<a class="headerlink" href="#tuntap-section" title="Permalink to this headline">¶</a></h2>
+<p>The “tuntap” driver configures a point-to-point interface between the vpp
+engine and the local Linux kernel stack. This allows e.g. users to ssh to the
+host | VM | container via vpp “revenue” interfaces. It’s marginally useful, and
+is currently disabled by default. To [dynamically] create TAP interfaces - the
+preferred scheme - see the “tap_connect” binary API. The Linux network stack
+“vnet” interface needs to manually configure, and VLAN and other settings if
+desired.</p>
+<div class="section" id="enable-disable">
+<h3>enable|disable<a class="headerlink" href="#enable-disable" title="Permalink to this headline">¶</a></h3>
+<p>Enable or disable the tun/tap driver.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">enable</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ethernet-ether">
+<h3>ethernet|ether<a class="headerlink" href="#ethernet-ether" title="Permalink to this headline">¶</a></h3>
+<p>Create a tap device (ethernet MAC) instead of a tun device (point-to-point
+tunnel). The two keywords are aliases for the same function.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ethernet</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="have-normal-interface-have-normal">
+<h3>have-normal-interface|have-normal<a class="headerlink" href="#have-normal-interface-have-normal" title="Permalink to this headline">¶</a></h3>
+<p>Treat the host Linux stack as a routing peer instead of programming VPP
+interface L3 addresses onto the tun/tap devices. The two keywords are
+aliases for the same function.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">have-normal-interface</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="name-name">
+<h3>name &lt;name&gt;<a class="headerlink" href="#name-name" title="Permalink to this headline">¶</a></h3>
+<p>Assign name to the tun/tap device.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">name vpp1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="vhost-user-section">
+<h2>vhost-user Section<a class="headerlink" href="#vhost-user-section" title="Permalink to this headline">¶</a></h2>
+<p>Vhost-user configuration parameters control the vhost-user driver.</p>
+<div class="section" id="coalesce-frames-n">
+<h3>coalesce-frames &lt;n&gt;<a class="headerlink" href="#coalesce-frames-n" title="Permalink to this headline">¶</a></h3>
+<p>Subject to deadline-timer expiration - see next item - attempt to transmit
+at least &lt;n&gt; packet frames. Default is 32 frames.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">coalesce-frames 64</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="coalesce-time-seconds">
+<h3>coalesce-time &lt;seconds&gt;<a class="headerlink" href="#coalesce-time-seconds" title="Permalink to this headline">¶</a></h3>
+<p>Hold packets no longer than (floating-point) seconds before transmitting
+them. Default is 0.001 seconds</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">coalesce-time 0.002</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dont-dump-memory">
+<h3>dont-dump-memory<a class="headerlink" href="#dont-dump-memory" title="Permalink to this headline">¶</a></h3>
+<p>vhost-user shared-memory segments can add up to a large amount of memory, so
+it’s handy to avoid adding them to corefiles when using a significant number
+of such interfaces.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dont-dump-memory</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="vlib-section">
+<h2>vlib Section<a class="headerlink" href="#vlib-section" title="Permalink to this headline">¶</a></h2>
+<p>These parameters configure VLIB, such as allowing you to choose whether to
+enable memory traceback or a post-mortem elog dump.</p>
+<div class="section" id="memory-trace">
+<h3>memory-trace<a class="headerlink" href="#memory-trace" title="Permalink to this headline">¶</a></h3>
+<p>Enables memory trace (mheap traceback.) Defaults to 0, meaning memory
+trace is disabled.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">memory-trace</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="elog-events-n">
+<h3>elog-events &lt;n&gt;<a class="headerlink" href="#elog-events-n" title="Permalink to this headline">¶</a></h3>
+<p>Sets the number of elements/events (the size) of the event ring
+(a circular buffer of events.) This number rounds to a power of 2.
+Defaults to 131072 (128 &lt;&lt; 10) elements.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">elog-events 4096</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="elog-post-mortem-dump">
+<h3>elog-post-mortem-dump<a class="headerlink" href="#elog-post-mortem-dump" title="Permalink to this headline">¶</a></h3>
+<p>Enables the attempt of a post-mortem elog dump to
+<em>/tmp/elog_post_mortem.&lt;PID_OF_CALLING_PROCESS&gt;</em> if os_panic or
+os_exit is called.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">elog-post-mortem-dump</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../running/index.html" class="btn btn-neutral float-right" title="Running VPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hugepages.html" class="btn btn-neutral float-left" title="Huge Pages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

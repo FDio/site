@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Features for Release VPP 19.08 &mdash; The Vector Packet Processor 20.05 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Features for Release VPP 19.04" href="vpp1904.html" />
+    <link rel="prev" title="Features by Release" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.05
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Features by Release</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Features for Release VPP 19.08</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#infrastructure">Infrastructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vnet-plugins">VNET &amp; Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#host-stack">Host stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vpp1904.html">Features for Release VPP 19.04</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp1901.html">Features for Release VPP 19.01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp18.10.html">Features for Release VPP 18.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp18.07.html">Features for Release VPP 18.07</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp18.04.html">Features for Release VPP 18.04</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp18.01.html">Features for Release VPP 18.01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp17.10.html">Features for Release VPP 17.10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp17.07.html">Features for Release VPP 17.07</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp17.04.html">Features for Release VPP 17.04</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp17.01.html">Features for Release VPP 17.01</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp16.09.html">Features for Release VPP 16.09</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpp16.06.html">Features for Release VPP 16.06</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Features by Release</a> &raquo;</li>
+        
+      <li>Features for Release VPP 19.08</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/featuresbyrelease/vpp1908.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="features-for-release-vpp-19-08">
+<h1>Features for Release VPP 19.08<a class="headerlink" href="#features-for-release-vpp-19-08" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="infrastructure">
+<h2>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>API</p>
+<ul>
+<li><p>API language: new types and limits support</p></li>
+<li><p>Python API - add support for defaults</p></li>
+<li><p>Export ip_types.api for out-of-tree plugins use</p></li>
+<li><p>Refactor ipip.api with explicit types</p></li>
+</ul>
+</li>
+<li><p>DPDK</p>
+<ul>
+<li><p>19.05 integration</p></li>
+<li><p>Remove bonding code</p></li>
+<li><p>Rework extended stats</p></li>
+</ul>
+</li>
+<li><p>Debugging &amp; Serviceability</p>
+<ul>
+<li><p>debug CLI leak-checker</p></li>
+<li><p>vlib: add “memory-trace stats-segment”</p></li>
+<li><p>vppapitrace JSON/API trace converter</p></li>
+<li><p>ARP: add arp-disabled node</p></li>
+<li><p>igmp: Trace more data from input packets</p></li>
+<li><p>ip: Trace the packet from the punt node</p></li>
+<li><p>Python API debug introspection improvements</p></li>
+<li><p>Pin dependencies for make test infra</p></li>
+<li><p>FEATURE.yaml meta-data infrastructure</p></li>
+<li><p>tcp: add cc stats plotting tools</p></li>
+<li><p>Packet tracer support for thread handoffs</p></li>
+</ul>
+</li>
+<li><p>libmemif: support for multi-thread connection establishment</p></li>
+<li><p>svm</p>
+<ul>
+<li><p>fifo ooo reads/writes with multiple chunks</p></li>
+<li><p>support addition/removal of chunks to fifos</p></li>
+</ul>
+</li>
+<li><p>vppinfra</p>
+<ul>
+<li><p>Mapped pcap file support</p></li>
+<li><p>More AVX2 and AVX512 inlines</p></li>
+<li><p>VLIB_INIT_FUNCTION sequencing rework</p></li>
+<li><p>refactor spinlocks and rwlocks</p></li>
+<li><p>add rbtree</p></li>
+<li><p>add doubly linked list</p></li>
+</ul>
+</li>
+<li><p>rdma: bump rdma-core to v25.0</p></li>
+<li><p>stats</p>
+<ul>
+<li><p>Add the number of worker threads and per worker thread vector rates</p></li>
+<li><p>Support multiple workers for error counters</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="vnet-plugins">
+<h2>VNET &amp; Plugins<a class="headerlink" href="#vnet-plugins" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>New Plugins</p>
+<ul>
+<li><p>HTTP static page server with TLS support</p></li>
+<li><p>L3 cross connect</p></li>
+</ul>
+</li>
+<li><p>acl: implement stat-segment counters</p></li>
+<li><p>arp: add feature arcs: arp-reply, arp-input, arp-proxy</p></li>
+<li><p>avf: improved logging and added 2.5/5 Gbps speeds</p></li>
+<li><p>bonding: NUMA-related improvements</p></li>
+<li><p>crypto: add support for AES-CTR cipher</p></li>
+<li><p>fib</p>
+<ul>
+<li><p>FIB Entry tracking</p></li>
+<li><p>Support the POP of a Pseudo Wire Control Word</p></li>
+</ul>
+</li>
+<li><p>gbp</p>
+<ul>
+<li><p>Anonymous l3-out subnets support</p></li>
+<li><p>ARP unicast forward in gbp bridge domain</p></li>
+<li><p>An Endpoint can change sclass</p></li>
+<li><p>Consider data-plane learnt source better than control-plane</p></li>
+<li><p>VRF scoped contracts</p></li>
+</ul>
+</li>
+<li><p>gso (experimental)</p>
+<ul>
+<li><p>Add support to pg interfaces</p></li>
+<li><p>Add support to vhost user</p></li>
+<li><p>Add support to native virtio</p></li>
+<li><p>Add support for tagged interfaces</p></li>
+</ul>
+</li>
+<li><p>punt: allow to specify packets by IP protocol Type</p></li>
+<li><p>ip6-local: hop-by-hop protocol demux table</p></li>
+<li><p>ipsec</p>
+<ul>
+<li><p>intel-ipsec-mb version 0.52</p></li>
+<li><p>AH encrypt rework</p></li>
+<li><p>handle UDP keepalives</p></li>
+<li><p>support GCM in ESP</p></li>
+</ul>
+</li>
+<li><p>virtio</p>
+<ul>
+<li><p>Refactor control queue support</p></li>
+</ul>
+</li>
+<li><p>dhcp-client: DSCP marking for transmitted packets</p></li>
+<li><p>Idle resource usage improvements</p>
+<ul>
+<li><p>Allocate bihash virtual space on demand</p></li>
+<li><p>gre: don’t register gre input nodes unless a gre tunnel is created</p></li>
+<li><p>gtpu: don’t register udp ports unless a tunnel is created</p></li>
+<li><p>lacp: create lacp-process on demand</p></li>
+<li><p>lisp-cp: start lisp retry service on demand</p></li>
+<li><p>start the cdp period and dns resolver process on demand</p></li>
+<li><p>vat: unload unused vat plugins</p></li>
+</ul>
+</li>
+<li><p>nat: api cleanup &amp; update</p></li>
+<li><p>nsim: make available as an output feature</p></li>
+<li><p>load-balance performance improvements</p></li>
+<li><p>l2: Add support for arp unicast forwarding</p></li>
+<li><p>mactime</p>
+<ul>
+<li><p>Mini-ACLs</p></li>
+<li><p>Per-MAC allow-with-quota feature</p></li>
+</ul>
+</li>
+<li><p>qos</p>
+<ul>
+<li><p>QoS dump APIs</p></li>
+<li><p>Store function</p></li>
+</ul>
+</li>
+<li><p>rdma: add support for promiscuous mode (l2-switching and xconnect)</p></li>
+<li><p>sr: update the Segment Routing definition to be compliant with current in IETF</p></li>
+<li><p>udp-ping: disable due to conflict with mldv2</p></li>
+<li><p>vxlan-gpe: improve encap performance</p></li>
+<li><p>vom</p>
+<ul>
+<li><p>QoS support</p></li>
+<li><p>Bridge domain arp unicast forwarding flag</p></li>
+<li><p>Bridge domain unknown unicast flooding flag</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="host-stack">
+<h2>Host stack<a class="headerlink" href="#host-stack" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>session</p>
+<ul>
+<li><p>API to support manual svm fifo resizing</p></li>
+<li><p>Improved session output scheduler and close state machine</p></li>
+<li><p>Transport and session cleanup notifications for builtin apps</p></li>
+<li><p>Session migration notifications for builtin apps</p></li>
+<li><p>Support for no session layer lookup transports (quic and tls)</p></li>
+<li><p>Ability to retrieve local/remote endpoint in transport vft</p></li>
+<li><p>Cleanup segment manager and fifo segment</p></li>
+<li><p>Fix vpp to app msg generation on enqueue fail</p></li>
+<li><p>Improve event logging</p></li>
+<li><p>Moved test applications to hsa plugin</p></li>
+</ul>
+</li>
+<li><p>tcp</p>
+<ul>
+<li><p>Congestion control algorithm enhancements</p></li>
+<li><p>Delivery rate estimator</p></li>
+<li><p>ACK/retransmission refactor and pacing</p></li>
+<li><p>Add tcp-input sibling nodes without full 6-tuple lookup</p></li>
+<li><p>More RFC4898 connection statistics</p></li>
+<li><p>Allow custom output next node</p></li>
+<li><p>Allow custom congestion control algorithms</p></li>
+</ul>
+</li>
+<li><p>quic</p>
+<ul>
+<li><p>Multi-thread support</p></li>
+<li><p>Logs readability improvements</p></li>
+<li><p>Multistream support</p></li>
+</ul>
+</li>
+<li><p>tls</p>
+<ul>
+<li><p>Fix close with data and listen failures</p></li>
+<li><p>Handle TCP transport rests</p></li>
+<li><p>Support endpoint retrieval interface</p></li>
+</ul>
+</li>
+<li><p>vcl</p>
+<ul>
+<li><p>support quic streams and “connectable listeners”</p></li>
+<li><p>worker unregister api</p></li>
+<li><p>fix epoll with large events batch</p></li>
+<li><p>ldp: add option to enable transparent TLS connections</p></li>
+</ul>
+</li>
+<li><p>udp:</p>
+<ul>
+<li><p>support close with data</p></li>
+<li><p>fixed session migration</p></li>
+</ul>
+</li>
+<li><p>sctp</p>
+<ul>
+<li><p>add option to enable/disable default to disable</p></li>
+<li><p>moved from vnet to plugins</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vpp1904.html" class="btn btn-neutral float-right" title="Features for Release VPP 19.04" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Features by Release" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.05
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

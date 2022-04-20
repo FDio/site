@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contiv-VPP Vagrant Installation &mdash; The Vector Packet Processor 20.05 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Manual Installation" href="MANUAL_INSTALL.html" />
+    <link rel="prev" title="Security" href="SECURITY.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.05
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../containers.html">VPP with Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homegateway.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Contiv/VPP</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="K8s_Overview.html">Contiv/VPP Kubernetes Network Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SECURITY.html">Security</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Contiv-VPP Vagrant Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-shutting-down-destroying-the-cluster">Creating / Shutting Down / Destroying the Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-and-deploying-the-dev-contiv-vswitch-image">Building and Deploying the dev-contiv-vswitch Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exploring-the-cluster">Exploring the Cluster</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="MANUAL_INSTALL.html">Manual Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPP_CONFIG.html">Creating VPP Startup Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VMWARE_FUSION_HOST.html">Preparing a VmWare Fusion Host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NETWORKING.html">Contiv/VPP Network Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SINGLE_NIC_SETUP.html">Setting up a Node with a Single NIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MULTI_NIC_SETUP.html">Setting Up a Node with Multiple NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUSTOM_MGMT_NETWORK.html">Setting Up a Custom Management Network on Multi-Homed Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Prometheus.html">Prometheus Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPP_PACKET_TRACING_K8S.html">How to do VPP Packet Tracing in Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPTRACE.html">Using vpptrace.sh for VPP Packet Tracing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CORE_FILES.html">Capturing VPP core dumps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BUG_REPORTS.html">Debugging and Reporting Bugs in Contiv-VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container_test.html">Container-based network simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Use Cases</a> &raquo;</li>
+        
+          <li><a href="index.html">Contiv/VPP</a> &raquo;</li>
+        
+      <li>Contiv-VPP Vagrant Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usecases/contiv/Vagrant.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contiv-vpp-vagrant-installation">
+<h1>Contiv-VPP Vagrant Installation<a class="headerlink" href="#contiv-vpp-vagrant-installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>The following items are prerequisites before installing vagrant:</p>
+<ul class="simple">
+<li><p>Vagrant 2.0.1 or later</p></li>
+<li><p>Hypervisors:</p>
+<ul>
+<li><p>VirtualBox 5.2.8 or later</p></li>
+<li><p>VMWare Fusion 10.1.0 or later or VmWare Workstation 14</p>
+<ul>
+<li><p>For VmWare Fusion, you will need the <a class="reference external" href="https://www.vagrantup.com/vmware/index.html">Vagrant VmWare Fusion plugin</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Laptop or server with at least 4 CPU cores and 16 Gig of RAM</p></li>
+</ul>
+</div>
+<div class="section" id="creating-shutting-down-destroying-the-cluster">
+<h2>Creating / Shutting Down / Destroying the Cluster<a class="headerlink" href="#creating-shutting-down-destroying-the-cluster" title="Permalink to this headline">¶</a></h2>
+<p>This folder contains the Vagrant file that is used to create a single or multi-node
+Kubernetes cluster using Contiv-VPP as a Network Plugin.</p>
+<p>The folder is organized into two subfolders:</p>
+<ul class="simple">
+<li><p>(config) - contains the files that share cluster information, which are used
+during the provisioning stage (master IP address, Certificates, hash-keys).
+<strong>CAUTION:</strong> Editing is not recommended!</p></li>
+<li><p>(vagrant) - contains scripts that are used for creating, destroying, rebooting
+and shutting down the VMs that host the K8s cluster.</p></li>
+</ul>
+<p>To create and run a K8s cluster with a <em>contiv-vpp CNI</em> plugin, run the
+<code class="docutils literal notranslate"><span class="pre">vagrant-start</span></code> script, located in the <a class="reference external" href="https://github.com/contiv/vpp/tree/master/vagrant">vagrant folder</a>. The <code class="docutils literal notranslate"><span class="pre">vagrant-start</span></code>
+script prompts the user to select the number of worker nodes for the kubernetes cluster.
+Zero (0) worker nodes mean that a single-node cluster (with one kubernetes master node) will be deployed.</p>
+<p>Next, the user is prompted to select either the <em>production environment</em> or the <em>development environment</em>.
+Instructions on how to build the development <em>contiv/vpp-vswitch</em> image can be found below in the
+<a class="reference external" href="#building-and-deploying-the-dev-contiv-vswitch-image">development environment</a> command section.</p>
+<p>The last option asks the user to select either <em>Without StealTheNIC</em> or <em>With StealTheNIC</em>.
+Using option <em>With StealTheNIC</em> has the plugin “steal” interfaces owned by Linux and uses their configuration in VPP.</p>
+<p>For the production environment, enter the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="o">=&gt;</span> <span class="o">./</span><span class="n">vagrant</span><span class="o">-</span><span class="n">start</span>
+<span class="n">Please</span> <span class="n">provide</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">workers</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kubernetes</span> <span class="n">cluster</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span> <span class="ow">or</span> <span class="n">enter</span> <span class="p">[</span><span class="n">Q</span><span class="o">/</span><span class="n">q</span><span class="p">]</span> <span class="n">to</span> <span class="n">exit</span><span class="p">:</span> <span class="mi">1</span>
+
+<span class="n">Please</span> <span class="n">choose</span> <span class="n">Kubernetes</span> <span class="n">environment</span><span class="p">:</span>
+<span class="mi">1</span><span class="p">)</span> <span class="n">Production</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">Development</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">Quit</span>
+<span class="o">--&gt;</span> <span class="mi">1</span>
+<span class="n">You</span> <span class="n">chose</span> <span class="n">Development</span> <span class="n">environment</span>
+
+<span class="n">Please</span> <span class="n">choose</span> <span class="n">deployment</span> <span class="n">scenario</span><span class="p">:</span>
+<span class="mi">1</span><span class="p">)</span> <span class="n">Without</span> <span class="n">StealTheNIC</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">With</span> <span class="n">StealTheNIC</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">Quit</span>
+<span class="o">--&gt;</span> <span class="mi">1</span> 
+<span class="n">You</span> <span class="n">chose</span> <span class="n">deployment</span> <span class="n">without</span> <span class="n">StealTheNIC</span>
+
+<span class="n">Creating</span> <span class="n">a</span> <span class="n">production</span> <span class="n">environment</span><span class="p">,</span> <span class="n">without</span> <span class="n">STN</span> <span class="ow">and</span> <span class="mi">1</span> <span class="n">worker</span> <span class="n">node</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the development environment, enter the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="o">=&gt;</span> <span class="o">./</span><span class="n">vagrant</span><span class="o">-</span><span class="n">start</span>
+<span class="n">Please</span> <span class="n">provide</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">workers</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Kubernetes</span> <span class="n">cluster</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span> <span class="ow">or</span> <span class="n">enter</span> <span class="p">[</span><span class="n">Q</span><span class="o">/</span><span class="n">q</span><span class="p">]</span> <span class="n">to</span> <span class="n">exit</span><span class="p">:</span> <span class="mi">1</span>
+
+<span class="n">Please</span> <span class="n">choose</span> <span class="n">Kubernetes</span> <span class="n">environment</span><span class="p">:</span>
+<span class="mi">1</span><span class="p">)</span> <span class="n">Production</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">Development</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">Quit</span>
+<span class="o">--&gt;</span> <span class="mi">2</span>
+<span class="n">You</span> <span class="n">chose</span> <span class="n">Development</span> <span class="n">environment</span>
+
+<span class="n">Please</span> <span class="n">choose</span> <span class="n">deployment</span> <span class="n">scenario</span><span class="p">:</span>
+<span class="mi">1</span><span class="p">)</span> <span class="n">Without</span> <span class="n">StealTheNIC</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">With</span> <span class="n">StealTheNIC</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">Quit</span>
+<span class="o">--&gt;</span> <span class="mi">1</span>
+<span class="n">You</span> <span class="n">chose</span> <span class="n">deployment</span> <span class="n">without</span> <span class="n">StealTheNIC</span>
+
+<span class="n">Creating</span> <span class="n">a</span> <span class="n">development</span> <span class="n">environment</span><span class="p">,</span> <span class="n">without</span> <span class="n">STN</span> <span class="ow">and</span> <span class="mi">1</span> <span class="n">worker</span> <span class="n">node</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To destroy and clean-up the cluster, run the <em>vagrant-cleanup</em> script, located
+<a class="reference external" href="https://github.com/contiv/vpp/tree/master/vagrant">inside the vagrant folder</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">vagrant</span><span class="o">/</span>
+<span class="o">./</span><span class="n">vagrant</span><span class="o">-</span><span class="n">cleanup</span>
+</pre></div>
+</div>
+<p>To shutdown the cluster, run the <em>vagrant-shutdown</em> script, located <a class="reference external" href="https://github.com/contiv/vpp/tree/master/vagrant">inside the vagrant folder</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">vagrant</span><span class="o">/</span>
+<span class="o">./</span><span class="n">vagrant</span><span class="o">-</span><span class="n">shutdown</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To reboot the cluster, run the <em>vagrant-reload</em> script, located <a class="reference external" href="https://github.com/contiv/vpp/tree/master/vagrant">inside the vagrant folder</a>:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">vagrant</span><span class="o">/</span>
+<span class="o">./</span><span class="n">vagrant</span><span class="o">-</span><span class="n">reload</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>From a suspended state, or after a reboot of the host machine, the cluster
+can be brought up by running the <em>vagrant-up</em> script.</p></li>
+</ul>
+</div>
+<div class="section" id="building-and-deploying-the-dev-contiv-vswitch-image">
+<h2>Building and Deploying the dev-contiv-vswitch Image<a class="headerlink" href="#building-and-deploying-the-dev-contiv-vswitch-image" title="Permalink to this headline">¶</a></h2>
+<p>If you chose the optional development-environment-deployment option, then perform the
+following instructions on how to build a modified <em>contivvpp/vswitch</em> image:</p>
+<ul class="simple">
+<li><p>Make sure changes in the code have been saved. From the k8s-master node,
+build the new <em>contivvpp/vswitch</em> image (run as sudo):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">ssh</span> <span class="n">k8s</span><span class="o">-</span><span class="n">master</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">vagrant</span><span class="o">/</span><span class="n">config</span>
+<span class="n">sudo</span> <span class="o">./</span><span class="n">save</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">image</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The newly built <em>contivvpp/vswitch</em> image is now tagged as <em>latest</em>. Verify the
+build with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">docker</span> <span class="pre">images</span></code>; the <em>contivvpp/vswitch</em> should have been created a few
+seconds ago. The new image with all the changes must become available to all
+the nodes in the K8s cluster. To make the changes available to all, load the docker image into the running
+worker nodes (run as sudo):</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vagrant</span> <span class="n">ssh</span> <span class="n">k8s</span><span class="o">-</span><span class="n">worker1</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">vagrant</span><span class="o">/</span><span class="n">config</span>
+<span class="n">sudo</span> <span class="o">./</span><span class="n">load</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">image</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">docker</span> <span class="pre">images</span></code>; the old <em>contivvpp/vswitch</em> should now be tagged as
+<code class="docutils literal notranslate"><span class="pre">&lt;none&gt;</span></code> and the latest tagged  <em>contivvpp/vswitch</em> should have been created a
+few seconds ago.</p></li>
+</ul>
+</div>
+<div class="section" id="exploring-the-cluster">
+<h2>Exploring the Cluster<a class="headerlink" href="#exploring-the-cluster" title="Permalink to this headline">¶</a></h2>
+<p>Once the cluster is up, perform the following steps:</p>
+<ul class="simple">
+<li><p>Log into the master:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd vagrant
+
+vagrant ssh k8s-master
+
+Welcome to Ubuntu 16.04 LTS (GNU/Linux 4.4.0-21-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+vagrant@k8s-master:~$ 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify the Kubernetes/Contiv-VPP installation. First, verify the nodes
+in the cluster:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vagrant@k8s-master:~$ kubectl get nodes -o wide
+
+NAME          STATUS    ROLES     AGE       VERSION   EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION     CONTAINER-RUNTIME
+k8s-master    Ready     master    22m       v1.9.2    &lt;none&gt;        Ubuntu 16.04 LTS   4.4.0-21-generic   docker://17.12.0-ce
+k8s-worker1   Ready     &lt;none&gt;    15m       v1.9.2    &lt;none&gt;        Ubuntu 16.04 LTS   4.4.0-21-generic   docker://17.12.0-ce
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Next, verify that all pods are running correctly:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vagrant@k8s-master:~$ kubectl get pods -n kube-system -o wide
+
+NAME                                 READY     STATUS             RESTARTS   AGE       IP             NODE
+contiv-etcd-2ngdc                    1/1       Running            0          17m       192.169.1.10   k8s-master
+contiv-ksr-x7gsq                     1/1       Running            3          17m       192.169.1.10   k8s-master
+contiv-vswitch-9bql6                 2/2       Running            0          17m       192.169.1.10   k8s-master
+contiv-vswitch-hpt2x                 2/2       Running            0          10m       192.169.1.11   k8s-worker1
+etcd-k8s-master                      1/1       Running            0          16m       192.169.1.10   k8s-master
+kube-apiserver-k8s-master            1/1       Running            0          16m       192.169.1.10   k8s-master
+kube-controller-manager-k8s-master   1/1       Running            0          15m       192.169.1.10   k8s-master
+kube-dns-6f4fd4bdf-62rv4             2/3       CrashLoopBackOff   14         17m       10.1.1.2       k8s-master
+kube-proxy-bvr74                     1/1       Running            0          10m       192.169.1.11   k8s-worker1
+kube-proxy-v4fzq                     1/1       Running            0          17m       192.169.1.10   k8s-master
+kube-scheduler-k8s-master            1/1       Running            0          16m       192.169.1.10   k8s-master
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If you want your pods to be scheduled on both the master and the workers,
+you have to untaint the master node:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check VPP and its interfaces:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vagrant@k8s-master:~$ sudo vppctl
+    _______    _        _   _____  ___ 
+ __/ __/ _ \  (_)__    | | / / _ \/ _ \
+ _/ _// // / / / _ \   | |/ / ___/ ___/
+ /_/ /____(_)_/\___/   |___/_/  /_/    
+
+vpp# sh interface
+              Name               Idx       State          Counter          Count     
+GigabitEthernet0/8/0              1         up       rx packets                    14
+                                                     rx bytes                    3906
+                                                     tx packets                    18
+                                                     tx bytes                    2128
+                                                     drops                          3
+                                                     ip4                           13
+...
+                                                     
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Make sure that <code class="docutils literal notranslate"><span class="pre">GigabitEthernet0/8/0</span></code> is listed and that its status is <code class="docutils literal notranslate"><span class="pre">up</span></code>.</p></li>
+<li><p>Next, create an example deployment of nginx pods:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vagrant@k8s-master:~$ kubectl run nginx --image=nginx --replicas=2
+deployment &quot;nginx&quot; created
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check the status of the deployment:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vagrant@k8s-master:~$ kubectl get deploy -o wide
+
+NAME      DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE       CONTAINERS   IMAGES    SELECTOR
+nginx     2         2         2            2           2h        nginx        nginx     run=nginx
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Verify that the pods in the deployment are up and running:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vagrant@k8s-master:~$ kubectl get pods -o wide
+
+NAME                   READY     STATUS    RESTARTS   AGE       IP         NODE
+nginx-8586cf59-6kx2m   1/1       Running   1          1h        10.1.2.3   k8s-worker1
+nginx-8586cf59-j5vf9   1/1       Running   1          1h        10.1.2.2   k8s-worker1
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Issue an HTTP GET request to a pod in the deployment:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vagrant@k8s-master:~$ wget 10.1.2.2
+
+--2018-01-19 12:34:08--  http://10.1.2.2/
+Connecting to 10.1.2.2:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 612 [text/html]
+Saving to: ‘index.html.1’
+
+index.html.1                100%[=========================================&gt;]     612  --.-KB/s    in 0s      
+
+2018-01-19 12:34:08 (1.78 MB/s) - ‘index.html.1’ saved [612/612]
+</pre></div>
+</div>
+<div class="section" id="how-to-ssh-into-k8s-worker-node">
+<h3>How to SSH into k8s Worker Node<a class="headerlink" href="#how-to-ssh-into-k8s-worker-node" title="Permalink to this headline">¶</a></h3>
+<p>To SSH into k8s Worker Node, perform the following steps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">vagrant</span>
+
+<span class="n">vagrant</span> <span class="n">status</span>
+
+<span class="n">vagrant</span> <span class="n">ssh</span> <span class="n">k8s</span><span class="o">-</span><span class="n">worker1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MANUAL_INSTALL.html" class="btn btn-neutral float-right" title="Manual Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SECURITY.html" class="btn btn-neutral float-left" title="Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.05
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

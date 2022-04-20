@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using VPP with Iperf3" href="iperf31.html" />
+    <link rel="prev" title="VPP with Iperf3 and TRex" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../containers.html">VPP with Containers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">VPP with Iperf3 and TRex</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-kernel-packet-forwarding-with-iperf3">Using Kernel Packet Forwarding with Iperf3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iperf31.html">Using VPP with Iperf3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex.html">Using VPP with TRex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex1.html">Using VPP with TRex Mixed Traffic Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex2.html">TRex Stateless Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex3.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trex3.html#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hgw.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contiv/index.html">Contiv/VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container_test.html">Container-based network simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trafficgen.html">Vpp Stateless Traffic Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Use Cases</a> &raquo;</li>
+        
+          <li><a href="index.html">VPP with Iperf3 and TRex</a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usecases/simpleperf/iperf3.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<span id="iperf3"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial shows how to use VPP use iperf3 and TRex to get some basic performance
+numbers from a few basic configurations. Four examples are shown. In the first two
+examples, the <strong>iperf3</strong> tool is used to generate traffic, and in the last two examples
+the Cisco’s <a class="reference external" href="http://trex-tgn.cisco.com/">TRex Realistic Traffic Generator</a> is used. For
+comparison purposes, the first example shows packet forwarding using ordinary kernel
+IP forwarding, and the second example shows packet forwarding using VPP.</p>
+<p>Three Intel Xeon processor platform systems are used to connect to the VPP host to pass traffic
+using <strong>iperf3</strong> and Cisco’s <a class="reference external" href="http://trex-tgn.cisco.com/">TRex</a>.</p>
+<p>Intel 40 Gigabit Ethernet (GbE) network interface cards (NICs) are used to connect the hosts.</p>
+</div>
+<div class="section" id="using-kernel-packet-forwarding-with-iperf3">
+<h1>Using Kernel Packet Forwarding with Iperf3<a class="headerlink" href="#using-kernel-packet-forwarding-with-iperf3" title="Permalink to this headline">¶</a></h1>
+<p>In this test, 40 GbE Intel Ethernet Network Adapters are used to connect the three
+systems. Figure 1 illustrates this configuration.</p>
+<div class="figure align-default">
+<img alt="../../_images/iperf3fig1.png" src="../../_images/iperf3fig1.png" />
+</div>
+<p>Figure 1: VPP runs on a host that connects to two other systems via 40 GbE NICs.</p>
+<p>For comparison purposes, in the first example, we configure kernel forwarding in
+<em>csp2s22c03</em> and use the <strong>iperf3</strong> tool to measure network bandwidth between
+<em>csp2s22c03</em> and <em>net2s22c05</em>.</p>
+<p>In the second example, we start the VPP engine in <em>csp2s22c03</em> instead of using
+kernel forwarding. On <em>csp2s22c03</em>, we configure the system to have the addresses
+10.10.1.1/24 and 10.10.2.1/24 on the two 40-GbE NICs. To find all network interfaces
+available on the system, use the lshw Linux command to list all network interfaces
+and the corresponding slots <em>[0000:xx:yy.z]</em>.</p>
+<p>In this example, the 40-GbE interfaces are <em>ens802f0</em> and <em>ens802f1</em>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ sudo lshw -class network -businfo</span>
+<span class="go">Bus info         Device        Class         Description</span>
+<span class="go">========================================================</span>
+<span class="go">pci@0000:03:00.0  enp3s0f0     network       Ethernet Controller 10-Gig</span>
+<span class="go">pci@0000:03:00.1  enp3s0f1     network       Ethernet Controller 10-Gig</span>
+<span class="go">pci@0000:82:00.0  ens802f0     network       Ethernet Controller XL710</span>
+<span class="go">pci@0000:82:00.1  ens802f1     network       Ethernet Controller XL710</span>
+<span class="go">pci@0000:82:00.0  ens802f0d1   network       Ethernet interface</span>
+<span class="go">pci@0000:82:00.1  ens802f1d1   network       Ethernet interface</span>
+</pre></div>
+</div>
+<p>Configure the system <em>csp2s22c03</em> to have 10.10.1.1 and 10.10.2.1 on the two 40-GbE NICs
+<em>ens802f0</em> and <em>ens802f1</em>, respectively.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ sudo ip addr add 10.10.1.1/24 dev ens802f0</span>
+<span class="go">csp2s22c03$ sudo ip link set dev ens802f0 up</span>
+<span class="go">csp2s22c03$ sudo ip addr add 10.10.2.1/24 dev ens802f1</span>
+<span class="go">csp2s22c03$ sudo ip link set dev ens802f1 up</span>
+</pre></div>
+</div>
+<p>List the route table:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ route</span>
+<span class="go">Kernel IP routing table</span>
+<span class="go">Destination     Gateway         Genmask         Flags Metric Ref    Use Iface</span>
+<span class="go">default         jf111-ldr1a-530 0.0.0.0         UG    0      0        0 enp3s0f1</span>
+<span class="go">default         192.168.0.50    0.0.0.0         UG    100    0        0 enp3s0f0</span>
+<span class="go">10.10.1.0       *               255.255.255.0   U     0      0        0 ens802f0</span>
+<span class="go">10.10.2.0       *               255.255.255.0   U     0      0        0 ens802f1</span>
+<span class="go">10.23.3.0       *               255.255.255.0   U     0      0        0 enp3s0f1</span>
+<span class="go">link-local      *               255.255.0.0     U     1000   0        0 enp3s0f1</span>
+<span class="go">192.168.0.0     *               255.255.255.0   U     100    0        0 enp3s0f0</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ ip route</span>
+<span class="go">default via 10.23.3.1 dev enp3s0f1</span>
+<span class="go">default via 192.168.0.50 dev enp3s0f0  proto static  metric 100</span>
+<span class="go">10.10.1.0/24 dev ens802f0  proto kernel  scope link  src 10.10.1.1</span>
+<span class="go">10.10.2.0/24 dev ens802f1  proto kernel  scope link  src 10.10.2.1</span>
+<span class="go">10.23.3.0/24 dev enp3s0f1  proto kernel  scope link  src 10.23.3.67</span>
+<span class="go">169.254.0.0/16 dev enp3s0f1  scope link  metric 1000</span>
+<span class="go">192.168.0.0/24 dev enp3s0f0  proto kernel scope link src 192.168.0.142 metric 100</span>
+</pre></div>
+</div>
+<p>On <em>csp2s22c04</em>, we configure the system to have the address 10.10.1.2 and use
+the interface <em>ens802</em> to route IP packets 10.10.2.0/24. Use the lshw Linux
+command to list all network interfaces and the corresponding slots <em>[0000:xx:yy.z]</em>.</p>
+<p>For example, the interface <em>ens802d1</em> <em>(ens802)</em> is connected to slot <em>[82:00.0]</em>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c04$ sudo lshw -class network -businfo</span>
+<span class="go">Bus info          Device      Class       Description</span>
+<span class="go">=====================================================</span>
+<span class="go">pci@0000:03:00.0  enp3s0f0    network     Ethernet Controller 10-Gigabit X540-AT2</span>
+<span class="go">pci@0000:03:00.1  enp3s0f1    network     Ethernet Controller 10-Gigabit X540-AT2</span>
+<span class="go">pci@0000:82:00.0  ens802d1    network     Ethernet Controller XL710 for 40GbE QSFP+</span>
+<span class="go">pci@0000:82:00.0  ens802      network     Ethernet interface</span>
+</pre></div>
+</div>
+<p>For kernel forwarding, set 10.10.1.2 to the interface <em>ens802</em>, and add a static
+route for IP packet 10.10.2.0/24:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c04$ sudo ip addr add 10.10.1.2/24 dev ens802</span>
+<span class="go">csp2s22c04$ sudo ip link set dev ens802 up</span>
+<span class="go">csp2s22c04$ sudo ip route add 10.10.2.0/24 via 10.10.1.1</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c04$ ifconfig</span>
+<span class="go">enp3s0f0  Link encap:Ethernet  HWaddr a4:bf:01:00:92:73</span>
+<span class="go">          inet addr:10.23.3.62  Bcast:10.23.3.255  Mask:255.255.255.0</span>
+<span class="go">          inet6 addr: fe80::a6bf:1ff:fe00:9273/64 Scope:Link</span>
+<span class="go">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span class="go">          RX packets:3411 errors:0 dropped:0 overruns:0 frame:0</span>
+<span class="go">          TX packets:1179 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span class="go">          collisions:0 txqueuelen:1000</span>
+<span class="go">          RX bytes:262230 (262.2 KB)  TX bytes:139975 (139.9 KB)</span>
+
+<span class="go">ens802    Link encap:Ethernet  HWaddr 68:05:ca:2e:76:e0</span>
+<span class="go">          inet addr:10.10.1.2  Bcast:0.0.0.0  Mask:255.255.255.0</span>
+<span class="go">          inet6 addr: fe80::6a05:caff:fe2e:76e0/64 Scope:Link</span>
+<span class="go">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span class="go">          RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
+<span class="go">          TX packets:40 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span class="go">          collisions:0 txqueuelen:1000</span>
+<span class="go">          RX bytes:0 (0.0 B)  TX bytes:5480 (5.4 KB)</span>
+
+<span class="go">lo        Link encap:Local Loopback</span>
+<span class="go">          inet addr:127.0.0.1  Mask:255.0.0.0</span>
+<span class="go">          inet6 addr: ::1/128 Scope:Host</span>
+<span class="go">          UP LOOPBACK RUNNING  MTU:65536  Metric:1</span>
+<span class="go">          RX packets:31320 errors:0 dropped:0 overruns:0 frame:0</span>
+<span class="go">          TX packets:31320 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span class="go">          collisions:0 txqueuelen:1</span>
+<span class="go">          RX bytes:40301788 (40.3 MB)  TX bytes:40301788 (40.3 MB)</span>
+</pre></div>
+</div>
+<p>After setting the route, we can ping from <em>csp2s22c03</em> to <em>csp2s22c04</em>, and vice versa:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ ping 10.10.1.2 -c 3</span>
+<span class="go">PING 10.10.1.2 (10.10.1.2) 56(84) bytes of data.</span>
+<span class="go">64 bytes from 10.10.1.2: icmp_seq=1 ttl=64 time=0.122 ms</span>
+<span class="go">64 bytes from 10.10.1.2: icmp_seq=2 ttl=64 time=0.109 ms</span>
+<span class="go">64 bytes from 10.10.1.2: icmp_seq=3 ttl=64 time=0.120 ms</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c04$ ping 10.10.1.1 -c 3</span>
+<span class="go">PING 10.10.1.1 (10.10.1.1) 56(84) bytes of data.</span>
+<span class="go">64 bytes from 10.10.1.1: icmp_seq=1 ttl=64 time=0.158 ms</span>
+<span class="go">64 bytes from 10.10.1.1: icmp_seq=2 ttl=64 time=0.096 ms</span>
+<span class="go">64 bytes from 10.10.1.1: icmp_seq=3 ttl=64 time=0.102 ms</span>
+</pre></div>
+</div>
+<p>Similarly, on <em>net2s22c05</em>, we configure the system to have the address <em>10.10.2.2</em>
+and use the interface <em>ens803f0</em> to route IP packets <em>10.10.1.0/24</em>. Use the lshw
+Linux command to list all network interfaces and the corresponding slots
+<em>[0000:xx:yy.z]</em>. For example, the interface <em>ens803f0</em> is connected to slot <em>[87:00.0]</em>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">NET2S22C05$ sudo lshw -class network -businfo</span>
+<span class="go">Bus info          Device      Class          Description</span>
+<span class="go">========================================================</span>
+<span class="go">pci@0000:03:00.0  enp3s0f0    network    Ethernet Controller 10-Gigabit X540-AT2</span>
+<span class="go">pci@0000:03:00.1  enp3s0f1    network    Ethernet Controller 10-Gigabit X540-AT2</span>
+<span class="go">pci@0000:81:00.0  ens787f0    network    82599 10 Gigabit TN Network Connection</span>
+<span class="go">pci@0000:81:00.1  ens787f1    network    82599 10 Gigabit TN Network Connection</span>
+<span class="go">pci@0000:87:00.0  ens803f0    network    Ethernet Controller XL710 for 40GbE QSFP+</span>
+<span class="go">pci@0000:87:00.1  ens803f1    network    Ethernet Controller XL710 for 40GbE QSFP+</span>
+</pre></div>
+</div>
+<p>For kernel forwarding, set 10.10.2.2 to the interface ens803f0, and add a static
+route for IP packet 10.10.1.0/24:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">NET2S22C05$ sudo ip addr add 10.10.2.2/24 dev ens803f0</span>
+<span class="go">NET2S22C05$ sudo ip link set dev ens803f0 up</span>
+<span class="go">NET2S22C05$ sudo ip route add 10.10.1.0/24 via 10.10.2.1</span>
+</pre></div>
+</div>
+<p>After setting the route, you can ping from <em>csp2s22c03</em> to <em>net2s22c05</em>, and vice
+versa. However, in order to ping between <em>net2s22c05</em> and <em>csp2s22c04</em>, kernel IP
+forwarding in <em>csp2s22c03</em> has to be enabled:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">csp2s22c03$ sysctl net.ipv4.ip_forward</span>
+<span class="go">net.ipv4.ip_forward = 0</span>
+<span class="go">csp2s22c03$ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward</span>
+<span class="go">csp2s22c03$ sysctl net.ipv4.ip_forward</span>
+<span class="go">net.ipv4.ip_forward = 1</span>
+</pre></div>
+</div>
+<p>If successful, verify that now you can ping between <em>net2s22c05</em> and <em>csp2s22c04</em>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">NET2S22C05$ ping 10.10.1.2 -c 3</span>
+<span class="go">PING 10.10.1.2 (10.10.1.2) 56(84) bytes of data.</span>
+<span class="go">64 bytes from 10.10.1.2: icmp_seq=1 ttl=63 time=0.239 ms</span>
+<span class="go">64 bytes from 10.10.1.2: icmp_seq=2 ttl=63 time=0.224 ms</span>
+<span class="go">64 bytes from 10.10.1.2: icmp_seq=3 ttl=63 time=0.230 ms</span>
+</pre></div>
+</div>
+<p>We use the <strong>iperf3</strong> utility to measure network bandwidth between hosts. In this
+test, we download the <strong>iperf3</strong> utility tool on both <em>net2s22c05</em> and <em>csp2s22c04</em>.
+On <em>csp2s22c04</em>, we start the <strong>iperf3</strong> server with “iperf3 –s”, and then on <em>net2s22c05</em>,
+we start the <strong>iperf3</strong> client to connect to the server:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">NET2S22C05$ iperf3 -c 10.10.1.2</span>
+<span class="go">Connecting to host 10.10.1.2, port 5201</span>
+<span class="go">[  4] local 10.10.2.2 port 54074 connected to 10.10.1.2 port 5201</span>
+<span class="go">[ ID] Interval           Transfer     Bandwidth       Retr  Cwnd</span>
+<span class="go">[  4]   0.00-1.00   sec   936 MBytes  7.85 Gbits/sec  2120    447 KBytes</span>
+<span class="go">[  4]   1.00-2.00   sec   952 MBytes  7.99 Gbits/sec  1491    611 KBytes</span>
+<span class="go">[  4]   2.00-3.00   sec   949 MBytes  7.96 Gbits/sec  2309    604 KBytes</span>
+<span class="go">[  4]   3.00-4.00   sec   965 MBytes  8.10 Gbits/sec  1786    571 KBytes</span>
+<span class="go">[  4]   4.00-5.00   sec   945 MBytes  7.93 Gbits/sec  1984    424 KBytes</span>
+<span class="go">[  4]   5.00-6.00   sec   946 MBytes  7.94 Gbits/sec  1764    611 KBytes</span>
+<span class="go">[  4]   6.00-7.00   sec   979 MBytes  8.21 Gbits/sec  1499    655 KBytes</span>
+<span class="go">[  4]   7.00-8.00   sec   980 MBytes  8.22 Gbits/sec  1182    867 KBytes</span>
+<span class="go">[  4]   8.00-9.00   sec  1008 MBytes  8.45 Gbits/sec  945    625 KBytes</span>
+<span class="go">[  4]   9.00-10.00  sec  1015 MBytes  8.51 Gbits/sec  1394    611 KBytes</span>
+<span class="go">- - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<span class="go">[ ID] Interval           Transfer     Bandwidth       Retr</span>
+<span class="go">[  4]   0.00-10.00  sec  9.45 GBytes  8.12 Gbits/sec  16474             sender</span>
+<span class="go">[  4]   0.00-10.00  sec  9.44 GBytes  8.11 Gbits/sec                  receiver</span>
+
+<span class="go">iperf Done.</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="iperf31.html" class="btn btn-neutral float-right" title="Using VPP with Iperf3" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="VPP with Iperf3 and TRex" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v21.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

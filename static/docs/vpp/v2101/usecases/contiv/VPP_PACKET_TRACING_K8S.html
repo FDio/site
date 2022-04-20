@@ -1,0 +1,796 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to do VPP Packet Tracing in Kubernetes &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using vpptrace.sh for VPP Packet Tracing" href="VPPTRACE.html" />
+    <link rel="prev" title="Prometheus Statistics" href="Prometheus.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../containers.html">VPP with Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../simpleperf/index.html">VPP with Iperf3 and TRex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vhost/index.html">FD.io VPP with Virtual Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vmxnet3.html">VPP with VMware/Vmxnet3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../acls.html">Access Control Lists (ACLs) with FD.io VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vppcloud.html">VPP inside the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hgw.html">Using VPP as a Home Gateway</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Contiv/VPP</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="K8s_Overview.html">Contiv/VPP Kubernetes Network Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SECURITY.html">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vagrant.html">Contiv-VPP Vagrant Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MANUAL_INSTALL.html">Manual Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPP_CONFIG.html">Creating VPP Startup Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VMWARE_FUSION_HOST.html">Preparing a VmWare Fusion Host</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NETWORKING.html">Contiv/VPP Network Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SINGLE_NIC_SETUP.html">Setting up a Node with a Single NIC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MULTI_NIC_SETUP.html">Setting Up a Node with Multiple NICs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CUSTOM_MGMT_NETWORK.html">Setting Up a Custom Management Network on Multi-Homed Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Prometheus.html">Prometheus Statistics</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">How to do VPP Packet Tracing in Kubernetes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ssh-into-the-node">SSH into the Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-the-vpp-graph-nodes-input-and-output-queues">Check the VPP Graph Nodes (Input and Output Queues)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clear-existing-vpp-packet-trace">Clear Existing VPP Packet Trace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-turn-on-vpp-packet-tracing">How to Turn on VPP Packet Tracing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#send-traffic-to-the-pods">Send Traffic to the Pods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-the-packets-captured-by-vpp">Check the Packets Captured by VPP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#find-ip-addresses-of-gigabitethernet-and-the-tap-interfaces">Find IP Addresses of GigabitEthernet and the Tap Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-useful-vpp-clis">Other Useful VPP CLIs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VPPTRACE.html">Using vpptrace.sh for VPP Packet Tracing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CORE_FILES.html">Capturing VPP core dumps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BUG_REPORTS.html">Debugging and Reporting Bugs in Contiv-VPP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../networksim.html">Network Simulator Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../webapp.html">Building VPP web applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../container_test.html">Container-based network simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trafficgen.html">Vpp Stateless Traffic Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Use Cases</a> &raquo;</li>
+        
+          <li><a href="index.html">Contiv/VPP</a> &raquo;</li>
+        
+      <li>How to do VPP Packet Tracing in Kubernetes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/usecases/contiv/VPP_PACKET_TRACING_K8S.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-do-vpp-packet-tracing-in-kubernetes">
+<h1>How to do VPP Packet Tracing in Kubernetes<a class="headerlink" href="#how-to-do-vpp-packet-tracing-in-kubernetes" title="Permalink to this headline">¶</a></h1>
+<p>This document describes the steps to do <em>manual</em> packet tracing (capture) using
+VPP in Kubernetes. Contiv/VPP also ships with a simple bash script
+<a class="reference external" href="https://github.com/contiv/vpp/blob/master/scripts/vpptrace.sh">vpptrace.sh</a>,
+which allows to <em>continuously</em> trace and
+<em>filter</em> packets incoming through a given set of interface types.
+Documentation for vpptrace.sh is available <a class="reference external" href="https://github.com/contiv/vpp/blob/master/docs/VPPTRACE">here</a>.</p>
+<p>More information about VPP packet tracing is in:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.fd.io/view/VPP/Command-line_Interface_(CLI)_Guide#packet_tracer">https://wiki.fd.io/view/VPP/Command-line_Interface_(CLI)_Guide#packet_tracer</a></p></li>
+<li><p><a class="reference external" href="https://wiki.fd.io/view/VPP/How_To_Use_The_Packet_Generator_and_Packet_Tracer">https://wiki.fd.io/view/VPP/How_To_Use_The_Packet_Generator_and_Packet_Tracer</a></p></li>
+<li><p><a class="reference external" href="https://wiki.fd.io/view/VPP/Tutorial_Routing_and_Switching">https://wiki.fd.io/view/VPP/Tutorial_Routing_and_Switching</a></p></li>
+</ul>
+<div class="section" id="ssh-into-the-node">
+<h2>SSH into the Node<a class="headerlink" href="#ssh-into-the-node" title="Permalink to this headline">¶</a></h2>
+<p>Perform the following commands to SSH into the node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">vpp</span><span class="o">/</span><span class="n">vagrant</span><span class="o">/</span><span class="n">vagrant</span><span class="o">-</span><span class="n">scripts</span><span class="o">/</span>
+<span class="n">vagrant</span> <span class="n">ssh</span> <span class="n">k8s</span><span class="o">-</span><span class="n">worker1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-the-vpp-graph-nodes-input-and-output-queues">
+<h2>Check the VPP Graph Nodes (Input and Output Queues)<a class="headerlink" href="#check-the-vpp-graph-nodes-input-and-output-queues" title="Permalink to this headline">¶</a></h2>
+<p>The following content shows what is running on VPP, via the <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">run</span></code> command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vagrant@k8s-worker1:~$ sudo vppctl
+    _______    _        _   _____  ___ 
+ __/ __/ _ \  (_)__    | | / / _ \/ _ \
+ _/ _// // / / / _ \   | |/ / ___/ ___/
+ /_/ /____(_)_/\___/   |___/_/  /_/    
+
+vpp# show run
+Time 1026791.9, average vectors/node 1.12, last 128 main loops 0.00 per node 0.00
+  vector rates in 1.6459e-4, out 1.5485e-4, drop 1.3635e-5, punt 0.0000e0
+             Name                 State         Calls          Vectors        Suspends         Clocks       Vectors/Call  
+GigabitEthernet0/8/0-output      active                 56              69               0          1.34e3            1.23
+GigabitEthernet0/8/0-tx          active                 54              67               0          8.09e5            1.24
+acl-plugin-fa-cleaner-process  event wait                0               0               1          2.84e4            0.00
+admin-up-down-process          event wait                0               0               1          4.59e3            0.00
+api-rx-from-ring                any wait                 0               0         3316292          1.24e5            0.00
+arp-input                        active                  3               3               0          2.53e5            1.00
+bfd-process                    event wait                0               0               1          5.94e3            0.00
+cdp-process                     any wait                 0               0          145916          1.36e4            0.00
+dhcp-client-process             any wait                 0               0           10268          3.65e4            0.00
+dns-resolver-process            any wait                 0               0            1027          5.86e4            0.00
+dpdk-input                       polling     8211032318951              93               0         1.48e13            0.00
+dpdk-ipsec-process                done                   1               0               0          2.10e5            0.00
+dpdk-process                    any wait                 0               0          342233          9.86e6            0.00
+error-drop                       active                 12              14               0          6.67e3            1.17
+ethernet-input                   active                 60              74               0          5.81e3            1.23
+fib-walk                        any wait                 0               0          513322          1.59e4            0.00
+flow-report-process             any wait                 0               0               1          1.45e3            0.00
+flowprobe-timer-process         any wait                 0               0               1          6.34e3            0.00
+ikev2-manager-process           any wait                 0               0         1026484          1.18e4            0.00
+interface-output                 active                  2               2               0          3.23e3            1.00
+ioam-export-process             any wait                 0               0               1          1.98e3            0.00
+ip-route-resolver-process       any wait                 0               0           10268          3.02e4            0.00
+ip4-arp                          active                  1               1               0          1.49e4            1.00
+ip4-input                        active                223             248               0          3.39e3            1.11
+ip4-load-balance                 active                106             132               0          5.34e3            1.25
+ip4-local                        active                 86              92               0          2.46e3            1.07
+ip4-local-end-of-arc             active                 86              92               0          1.00e3            1.07
+ip4-lookup                       active                223             248               0          3.31e3            1.11
+ip4-rewrite                      active                190             222               0          1.92e3            1.17
+ip4-udp-lookup                   active                 86              92               0          3.76e3            1.07
+ip6-drop                         active                  6               7               0          2.29e3            1.17
+ip6-icmp-neighbor-discovery-ev  any wait                 0               0         1026484          1.13e4            0.00
+ip6-input                        active                  6               7               0          3.33e3            1.17
+l2-flood                         active                  2               2               0          4.42e3            1.00
+l2-fwd                           active                138             157               0          2.13e3            1.14
+l2-input                         active                140             159               0          2.41e3            1.14
+l2-learn                         active                 86              92               0          3.64e4            1.07
+l2-output                        active                 54              67               0          3.05e3            1.24
+l2fib-mac-age-scanner-process  event wait                0               0              85          5.01e4            0.00
+lisp-retry-service              any wait                 0               0          513322          1.62e4            0.00
+lldp-process                   event wait                0               0               1          5.02e4            0.00
+loop0-output                     active                 54              67               0          1.66e3            1.24
+loop0-tx                         active                 54               0               0          2.49e3            0.00
+memif-process                  event wait                0               0               1          1.70e4            0.00
+nat-det-expire-walk               done                   1               0               0          3.79e3            0.00
+nat44-classify                   active                171             183               0          2.49e3            1.07
+nat44-hairpinning                active                 86              92               0          1.80e3            1.07
+nat44-in2out                     active                171             183               0          4.45e3            1.07
+nat44-in2out-slowpath            active                171             183               0          3.98e3            1.07
+nat44-out2in                     active                 52              65               0          1.28e4            1.25
+nat64-expire-walk               any wait                 0               0          102677          5.95e4            0.00
+nat64-expire-worker-walk      interrupt wa          102676               0               0          7.39e3            0.00
+send-garp-na-process           event wait                0               0               1          1.28e3            0.00
+startup-config-process            done                   1               0               1          4.19e3            0.00
+tapcli-0-output                  active                  1               1               0          6.97e3            1.00
+tapcli-0-tx                      active                  1               1               0          7.32e4            1.00
+tapcli-1-output                  active                 57              63               0          1.66e3            1.11
+tapcli-1-tx                      active                 57              63               0          1.35e5            1.11
+tapcli-2-output                  active                 28              28               0          3.26e3            1.00
+tapcli-2-tx                      active                 28              28               0          4.06e5            1.00
+tapcli-rx                     interrupt wa              62              76               0          6.58e4            1.23
+udp-ping-process                any wait                 0               0               1          1.79e4            0.00
+unix-cli-127.0.0.1:43282         active                  2               0             455         1.26e15            0.00
+unix-epoll-input                 polling        8010763239               0               0          8.17e2            0.00
+vhost-user-process              any wait                 0               0               1          1.96e3            0.00
+vhost-user-send-interrupt-proc  any wait                 0               0               1          3.85e3            0.00
+vpe-link-state-process         event wait                0               0               8          9.79e4            0.00
+vpe-oam-process                 any wait                 0               0          503263          1.21e4            0.00
+vxlan-gpe-ioam-export-process   any wait                 0               0               1          2.91e3            0.00
+vxlan4-encap                     active                 54              67               0          3.55e3            1.24
+vxlan4-input                     active                 86              92               0          3.79e3            1.07
+wildcard-ip4-arp-publisher-pro event wait                0               0               1          6.44e3            0.00
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">tapcli-rx</span></code> above is the node-level input queue for incoming packets into all the pods on the node. There is one <code class="docutils literal notranslate"><span class="pre">tapcli-rx</span></code> input queue for every node.</p>
+<p>The following are the input and output queues for each pod and the node:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="n">output</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="n">tx</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">output</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">tx</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">output</span> 
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">tx</span>
+</pre></div>
+</div>
+<p>Each pod and node has two queues, one for rx (<code class="docutils literal notranslate"><span class="pre">tapcli-X-output</span></code>), and one for tx (<code class="docutils literal notranslate"><span class="pre">tapcli-X-tx</span></code>). The above output is with two <code class="docutils literal notranslate"><span class="pre">nginx</span></code> pods in kubernetes.</p>
+</div>
+<div class="section" id="clear-existing-vpp-packet-trace">
+<h2>Clear Existing VPP Packet Trace<a class="headerlink" href="#clear-existing-vpp-packet-trace" title="Permalink to this headline">¶</a></h2>
+<p>Enter the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># clear trace             </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-turn-on-vpp-packet-tracing">
+<h2>How to Turn on VPP Packet Tracing<a class="headerlink" href="#how-to-turn-on-vpp-packet-tracing" title="Permalink to this headline">¶</a></h2>
+<p>Enter the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># trace add &lt;input or output queue name&gt; &lt;number of packets to capture&gt;</span>
+
+<span class="n">vpp</span><span class="c1"># trace add dpdk-input 1000</span>
+
+<span class="n">vpp</span><span class="c1"># trace add tapcli-rx 1000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="send-traffic-to-the-pods">
+<h2>Send Traffic to the Pods<a class="headerlink" href="#send-traffic-to-the-pods" title="Permalink to this headline">¶</a></h2>
+<p>Open another terminal, SSH into the master node, refer the documentation in <code class="docutils literal notranslate"><span class="pre">vpp/vagrant/README.md</span></code> and send traffic to the two <code class="docutils literal notranslate"><span class="pre">nginx</span></code> pods using <code class="docutils literal notranslate"><span class="pre">wget</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd vpp/vagrant/vagrant-scripts/
+vagrant ssh k8s-master
+
+vagrant@k8s-master:~$ kubectl get pods -o wide
+NAME                   READY     STATUS    RESTARTS   AGE       IP         NODE
+nginx-8586cf59-768qw   1/1       Running   0          11d       10.1.2.3   k8s-worker1
+nginx-8586cf59-d27h2   1/1       Running   0          11d       10.1.2.2   k8s-worker1
+
+vagrant@k8s-master:~$ wget 10.1.2.2
+--2018-02-08 16:46:01--  http://10.1.2.2/
+Connecting to 10.1.2.2:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 612 [text/html]
+Saving to: ‘index.html’
+index.html                       100%[=========================================================&gt;]     612  --.-KB/s    in 0.004s  
+2018-02-08 16:46:01 (162 KB/s) - ‘index.html’ saved [612/612]
+
+vagrant@k8s-master:~$ wget 10.1.2.3
+--2018-02-08 16:46:02--  http://10.1.2.3/
+Connecting to 10.1.2.3:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 612 [text/html]
+Saving to: ‘index.html.1’
+index.html.1                     100%[=========================================================&gt;]     612  --.-KB/s    in 0.004s  
+2018-02-08 16:46:02 (143 KB/s) - ‘index.html.1’ saved [612/612]
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-the-packets-captured-by-vpp">
+<h2>Check the Packets Captured by VPP<a class="headerlink" href="#check-the-packets-captured-by-vpp" title="Permalink to this headline">¶</a></h2>
+<p>Back in the first terminal, check the packets captured by VPP.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show trace</span>
+<span class="o">...</span>
+<span class="o">...</span>
+<span class="n">Packet</span> <span class="mi">33</span>
+
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476110</span><span class="p">:</span> <span class="n">tapcli</span><span class="o">-</span><span class="n">rx</span>
+  <span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476115</span><span class="p">:</span> <span class="n">ethernet</span><span class="o">-</span><span class="nb">input</span>
+  <span class="n">IP4</span><span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span> <span class="o">-&gt;</span> <span class="mi">02</span><span class="p">:</span><span class="n">fe</span><span class="p">:</span><span class="mi">72</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="mi">66</span><span class="p">:</span><span class="n">c7</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476117</span><span class="p">:</span> <span class="n">ip4</span><span class="o">-</span><span class="nb">input</span>
+  <span class="n">TCP</span><span class="p">:</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.3</span> <span class="o">-&gt;</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">1.2</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">ttl</span> <span class="mi">64</span><span class="p">,</span> <span class="n">length</span> <span class="mi">52</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x6fb4</span>
+    <span class="n">fragment</span> <span class="nb">id</span> <span class="mh">0x11ec</span><span class="p">,</span> <span class="n">flags</span> <span class="n">DONT_FRAGMENT</span>
+  <span class="n">TCP</span><span class="p">:</span> <span class="mi">80</span> <span class="o">-&gt;</span> <span class="mi">58430</span>
+    <span class="n">seq</span><span class="o">.</span> <span class="mh">0x5db741c8</span> <span class="n">ack</span> <span class="mh">0x709defa7</span>
+    <span class="n">flags</span> <span class="mh">0x11</span> <span class="n">FIN</span> <span class="n">ACK</span><span class="p">,</span> <span class="n">tcp</span> <span class="n">header</span><span class="p">:</span> <span class="mi">32</span> <span class="nb">bytes</span>
+    <span class="n">window</span> <span class="mi">235</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x55c3</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476118</span><span class="p">:</span> <span class="n">nat44</span><span class="o">-</span><span class="n">out2in</span>
+  <span class="n">NAT44_OUT2IN</span><span class="p">:</span> <span class="n">sw_if_index</span> <span class="mi">6</span><span class="p">,</span> <span class="nb">next</span> <span class="n">index</span> <span class="mi">1</span><span class="p">,</span> <span class="n">session</span> <span class="n">index</span> <span class="o">-</span><span class="mi">1</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476120</span><span class="p">:</span> <span class="n">ip4</span><span class="o">-</span><span class="n">lookup</span>
+  <span class="n">fib</span> <span class="mi">0</span> <span class="n">dpo</span><span class="o">-</span><span class="n">idx</span> <span class="mi">23</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:</span> <span class="mh">0x00000000</span>
+  <span class="n">TCP</span><span class="p">:</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.3</span> <span class="o">-&gt;</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">1.2</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">ttl</span> <span class="mi">64</span><span class="p">,</span> <span class="n">length</span> <span class="mi">52</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x6fb4</span>
+    <span class="n">fragment</span> <span class="nb">id</span> <span class="mh">0x11ec</span><span class="p">,</span> <span class="n">flags</span> <span class="n">DONT_FRAGMENT</span>
+  <span class="n">TCP</span><span class="p">:</span> <span class="mi">80</span> <span class="o">-&gt;</span> <span class="mi">58430</span>
+    <span class="n">seq</span><span class="o">.</span> <span class="mh">0x5db741c8</span> <span class="n">ack</span> <span class="mh">0x709defa7</span>
+    <span class="n">flags</span> <span class="mh">0x11</span> <span class="n">FIN</span> <span class="n">ACK</span><span class="p">,</span> <span class="n">tcp</span> <span class="n">header</span><span class="p">:</span> <span class="mi">32</span> <span class="nb">bytes</span>
+    <span class="n">window</span> <span class="mi">235</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x55c3</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476121</span><span class="p">:</span> <span class="n">ip4</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span>
+  <span class="n">fib</span> <span class="mi">0</span> <span class="n">dpo</span><span class="o">-</span><span class="n">idx</span> <span class="mi">23</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:</span> <span class="mh">0x00000000</span>
+  <span class="n">TCP</span><span class="p">:</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.3</span> <span class="o">-&gt;</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">1.2</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">ttl</span> <span class="mi">64</span><span class="p">,</span> <span class="n">length</span> <span class="mi">52</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x6fb4</span>
+    <span class="n">fragment</span> <span class="nb">id</span> <span class="mh">0x11ec</span><span class="p">,</span> <span class="n">flags</span> <span class="n">DONT_FRAGMENT</span>
+  <span class="n">TCP</span><span class="p">:</span> <span class="mi">80</span> <span class="o">-&gt;</span> <span class="mi">58430</span>
+    <span class="n">seq</span><span class="o">.</span> <span class="mh">0x5db741c8</span> <span class="n">ack</span> <span class="mh">0x709defa7</span>
+    <span class="n">flags</span> <span class="mh">0x11</span> <span class="n">FIN</span> <span class="n">ACK</span><span class="p">,</span> <span class="n">tcp</span> <span class="n">header</span><span class="p">:</span> <span class="mi">32</span> <span class="nb">bytes</span>
+    <span class="n">window</span> <span class="mi">235</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x55c3</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476122</span><span class="p">:</span> <span class="n">ip4</span><span class="o">-</span><span class="n">rewrite</span>
+  <span class="n">tx_sw_if_index</span> <span class="mi">3</span> <span class="n">dpo</span><span class="o">-</span><span class="n">idx</span> <span class="mi">5</span> <span class="p">:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.1</span> <span class="n">loop0</span><span class="p">:</span> <span class="mi">1</span><span class="n">a2b3c4d5e011a2b3c4d5e020800</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:</span> <span class="mh">0x00000000</span>
+  <span class="mi">00000000</span><span class="p">:</span> <span class="mi">1</span><span class="n">a2b3c4d5e011a2b3c4d5e0208004500003411ec40003f0670b40a010203ac1e</span>
+  <span class="mi">00000020</span><span class="p">:</span> <span class="mf">01020050e43</span><span class="n">e5db741c8709defa7801100eb55c300000101080a0f4b</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476123</span><span class="p">:</span> <span class="n">loop0</span><span class="o">-</span><span class="n">output</span>
+  <span class="n">loop0</span>
+  <span class="n">IP4</span><span class="p">:</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">02</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">01</span>
+  <span class="n">TCP</span><span class="p">:</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.3</span> <span class="o">-&gt;</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">1.2</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">ttl</span> <span class="mi">63</span><span class="p">,</span> <span class="n">length</span> <span class="mi">52</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x70b4</span>
+    <span class="n">fragment</span> <span class="nb">id</span> <span class="mh">0x11ec</span><span class="p">,</span> <span class="n">flags</span> <span class="n">DONT_FRAGMENT</span>
+  <span class="n">TCP</span><span class="p">:</span> <span class="mi">80</span> <span class="o">-&gt;</span> <span class="mi">58430</span>
+    <span class="n">seq</span><span class="o">.</span> <span class="mh">0x5db741c8</span> <span class="n">ack</span> <span class="mh">0x709defa7</span>
+    <span class="n">flags</span> <span class="mh">0x11</span> <span class="n">FIN</span> <span class="n">ACK</span><span class="p">,</span> <span class="n">tcp</span> <span class="n">header</span><span class="p">:</span> <span class="mi">32</span> <span class="nb">bytes</span>
+    <span class="n">window</span> <span class="mi">235</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x55c3</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476124</span><span class="p">:</span> <span class="n">l2</span><span class="o">-</span><span class="nb">input</span>
+  <span class="n">l2</span><span class="o">-</span><span class="nb">input</span><span class="p">:</span> <span class="n">sw_if_index</span> <span class="mi">3</span> <span class="n">dst</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">01</span> <span class="n">src</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">02</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476125</span><span class="p">:</span> <span class="n">l2</span><span class="o">-</span><span class="n">fwd</span>
+  <span class="n">l2</span><span class="o">-</span><span class="n">fwd</span><span class="p">:</span>   <span class="n">sw_if_index</span> <span class="mi">3</span> <span class="n">dst</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">01</span> <span class="n">src</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">02</span> <span class="n">bd_index</span> <span class="mi">1</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476125</span><span class="p">:</span> <span class="n">l2</span><span class="o">-</span><span class="n">output</span>
+  <span class="n">l2</span><span class="o">-</span><span class="n">output</span><span class="p">:</span> <span class="n">sw_if_index</span> <span class="mi">4</span> <span class="n">dst</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">01</span> <span class="n">src</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">02</span> <span class="n">data</span> <span class="mi">08</span> <span class="mi">00</span> <span class="mi">45</span> <span class="mi">00</span> <span class="mi">00</span> <span class="mi">34</span> <span class="mi">11</span> <span class="n">ec</span> <span class="mi">40</span> <span class="mi">00</span> <span class="mi">3</span><span class="n">f</span> <span class="mi">06</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476126</span><span class="p">:</span> <span class="n">vxlan4</span><span class="o">-</span><span class="n">encap</span>
+  <span class="n">VXLAN</span> <span class="n">encap</span> <span class="n">to</span> <span class="n">vxlan_tunnel0</span> <span class="n">vni</span> <span class="mi">10</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476126</span><span class="p">:</span> <span class="n">ip4</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span>
+  <span class="n">fib</span> <span class="mi">4</span> <span class="n">dpo</span><span class="o">-</span><span class="n">idx</span> <span class="mi">22</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:</span> <span class="mh">0x00000103</span>
+  <span class="n">UDP</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.2</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.1</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">ttl</span> <span class="mi">254</span><span class="p">,</span> <span class="n">length</span> <span class="mi">102</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x1b33</span>
+    <span class="n">fragment</span> <span class="nb">id</span> <span class="mh">0x0000</span>
+  <span class="n">UDP</span><span class="p">:</span> <span class="mi">24320</span> <span class="o">-&gt;</span> <span class="mi">4789</span>
+    <span class="n">length</span> <span class="mi">82</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x0000</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476127</span><span class="p">:</span> <span class="n">ip4</span><span class="o">-</span><span class="n">rewrite</span>
+  <span class="n">tx_sw_if_index</span> <span class="mi">1</span> <span class="n">dpo</span><span class="o">-</span><span class="n">idx</span> <span class="mi">4</span> <span class="p">:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.1</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span><span class="p">:</span> <span class="mi">080027</span><span class="n">b2610908002733fb6f0800</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:</span> <span class="mh">0x00000103</span>
+  <span class="mi">00000000</span><span class="p">:</span> <span class="mi">080027</span><span class="n">b2610908002733fb6f08004500006600000000fd111c33c0a81002c0a8</span>
+  <span class="mi">00000020</span><span class="p">:</span> <span class="mi">10015</span><span class="n">f0012b5005200000800000000000a001a2b3c4d5e011a2b3c4d</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476127</span><span class="p">:</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span><span class="o">-</span><span class="n">output</span>
+  <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span>
+  <span class="n">IP4</span><span class="p">:</span> <span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="n">fb</span><span class="p">:</span><span class="mi">6</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="n">b2</span><span class="p">:</span><span class="mi">61</span><span class="p">:</span><span class="mi">09</span>
+  <span class="n">UDP</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.2</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.1</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">ttl</span> <span class="mi">253</span><span class="p">,</span> <span class="n">length</span> <span class="mi">102</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x1c33</span>
+    <span class="n">fragment</span> <span class="nb">id</span> <span class="mh">0x0000</span>
+  <span class="n">UDP</span><span class="p">:</span> <span class="mi">24320</span> <span class="o">-&gt;</span> <span class="mi">4789</span>
+    <span class="n">length</span> <span class="mi">82</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x0000</span>
+<span class="mi">21</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">476128</span><span class="p">:</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span><span class="o">-</span><span class="n">tx</span>
+  <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span> <span class="n">tx</span> <span class="n">queue</span> <span class="mi">0</span>
+  <span class="n">buffer</span> <span class="mh">0xfa7f</span><span class="p">:</span> <span class="n">current</span> <span class="n">data</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="n">length</span> <span class="mi">116</span><span class="p">,</span> <span class="n">free</span><span class="o">-</span><span class="nb">list</span> <span class="mi">0</span><span class="p">,</span> <span class="n">clone</span><span class="o">-</span><span class="n">count</span> <span class="mi">0</span><span class="p">,</span> <span class="n">totlen</span><span class="o">-</span><span class="n">nifb</span> <span class="mi">0</span><span class="p">,</span> <span class="n">trace</span> <span class="mh">0x20</span>
+                 <span class="n">l2</span><span class="o">-</span><span class="n">hdr</span><span class="o">-</span><span class="n">offset</span> <span class="mi">0</span> <span class="n">l3</span><span class="o">-</span><span class="n">hdr</span><span class="o">-</span><span class="n">offset</span> <span class="mi">14</span> 
+  <span class="n">PKT</span> <span class="n">MBUF</span><span class="p">:</span> <span class="n">port</span> <span class="mi">255</span><span class="p">,</span> <span class="n">nb_segs</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pkt_len</span> <span class="mi">116</span>
+    <span class="n">buf_len</span> <span class="mi">2176</span><span class="p">,</span> <span class="n">data_len</span> <span class="mi">116</span><span class="p">,</span> <span class="n">ol_flags</span> <span class="mh">0x0</span><span class="p">,</span> <span class="n">data_off</span> <span class="mi">78</span><span class="p">,</span> <span class="n">phys_addr</span> <span class="mh">0x569ea040</span>
+    <span class="n">packet_type</span> <span class="mh">0x0</span> <span class="n">l2_len</span> <span class="mi">0</span> <span class="n">l3_len</span> <span class="mi">0</span> <span class="n">outer_l2_len</span> <span class="mi">0</span> <span class="n">outer_l3_len</span> <span class="mi">0</span>
+  <span class="n">IP4</span><span class="p">:</span> <span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="n">fb</span><span class="p">:</span><span class="mi">6</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="n">b2</span><span class="p">:</span><span class="mi">61</span><span class="p">:</span><span class="mi">09</span>
+  <span class="n">UDP</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.2</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.1</span>
+    <span class="n">tos</span> <span class="mh">0x00</span><span class="p">,</span> <span class="n">ttl</span> <span class="mi">253</span><span class="p">,</span> <span class="n">length</span> <span class="mi">102</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x1c33</span>
+    <span class="n">fragment</span> <span class="nb">id</span> <span class="mh">0x0000</span>
+  <span class="n">UDP</span><span class="p">:</span> <span class="mi">24320</span> <span class="o">-&gt;</span> <span class="mi">4789</span>
+    <span class="n">length</span> <span class="mi">82</span><span class="p">,</span> <span class="n">checksum</span> <span class="mh">0x0000</span>
+</pre></div>
+</div>
+<p>In the above captured packet, we can see:</p>
+<ul class="simple">
+<li><p>Input queue name <code class="docutils literal notranslate"><span class="pre">tapcli-rx</span></code></p></li>
+<li><p>Pod’s IP address <code class="docutils literal notranslate"><span class="pre">10.1.2.3</span></code></p></li>
+<li><p>IP address of the master node <code class="docutils literal notranslate"><span class="pre">172.30.1.2</span></code>, which sent the <code class="docutils literal notranslate"><span class="pre">wget</span></code> traffic to the two pods</p></li>
+<li><p>HTTP port <code class="docutils literal notranslate"><span class="pre">80</span></code>, destination port and TCP protocol (<code class="docutils literal notranslate"><span class="pre">TCP:</span> <span class="pre">80</span> <span class="pre">-&gt;</span> <span class="pre">58430</span></code>)</p></li>
+<li><p>NAT queue name <code class="docutils literal notranslate"><span class="pre">nat44-out2in</span></code></p></li>
+<li><p>VXLAN VNI ID <code class="docutils literal notranslate"><span class="pre">VXLAN</span> <span class="pre">encap</span> <span class="pre">to</span> <span class="pre">vxlan_tunnel0</span> <span class="pre">vni</span> <span class="pre">10</span></code></p></li>
+<li><p>VXLAN UDP port <code class="docutils literal notranslate"><span class="pre">4789</span></code></p></li>
+<li><p>IP address of <code class="docutils literal notranslate"><span class="pre">GigabitEthernet0/8/0</span></code> interface (<code class="docutils literal notranslate"><span class="pre">192.168.16.2</span></code>)</p></li>
+<li><p>Packet on the outgoing queue <code class="docutils literal notranslate"><span class="pre">GigabitEthernet0/8/0-tx</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="find-ip-addresses-of-gigabitethernet-and-the-tap-interfaces">
+<h2>Find IP Addresses of GigabitEthernet and the Tap Interfaces<a class="headerlink" href="#find-ip-addresses-of-gigabitethernet-and-the-tap-interfaces" title="Permalink to this headline">¶</a></h2>
+<p>Enter the following commands to find the IP addresses and Tap interfaces:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show int address</span>
+<span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="n">L3</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.2</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">local0</span> <span class="p">(</span><span class="n">dn</span><span class="p">):</span>
+<span class="n">loop0</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="n">L2</span> <span class="n">bridge</span> <span class="n">bd</span><span class="o">-</span><span class="nb">id</span> <span class="mi">1</span> <span class="n">idx</span> <span class="mi">1</span> <span class="n">shg</span> <span class="mi">0</span> <span class="n">bvi</span>
+  <span class="n">L3</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.2</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="n">L3</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">2.1</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="n">L3</span> <span class="mf">10.2</span><span class="o">.</span><span class="mf">1.2</span><span class="o">/</span><span class="mi">32</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="n">L3</span> <span class="mf">10.2</span><span class="o">.</span><span class="mf">1.3</span><span class="o">/</span><span class="mi">32</span>
+<span class="n">vxlan_tunnel0</span> <span class="p">(</span><span class="n">up</span><span class="p">):</span>
+  <span class="n">L2</span> <span class="n">bridge</span> <span class="n">bd</span><span class="o">-</span><span class="nb">id</span> <span class="mi">1</span> <span class="n">idx</span> <span class="mi">1</span> <span class="n">shg</span> <span class="mi">0</span>  
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-useful-vpp-clis">
+<h2>Other Useful VPP CLIs<a class="headerlink" href="#other-useful-vpp-clis" title="Permalink to this headline">¶</a></h2>
+<p>Enter the following commands to see additional information about VPP:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vpp</span><span class="c1"># show int</span>
+              <span class="n">Name</span>               <span class="n">Idx</span>       <span class="n">State</span>          <span class="n">Counter</span>          <span class="n">Count</span>     
+<span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span>              <span class="mi">1</span>         <span class="n">up</span>       <span class="n">rx</span> <span class="n">packets</span>                   <span class="mi">138</span>
+                                                     <span class="n">rx</span> <span class="nb">bytes</span>                   <span class="mi">18681</span>
+                                                     <span class="n">tx</span> <span class="n">packets</span>                   <span class="mi">100</span>
+                                                     <span class="n">tx</span> <span class="nb">bytes</span>                   <span class="mi">29658</span>
+                                                     <span class="n">drops</span>                          <span class="mi">1</span>
+                                                     <span class="n">ip4</span>                          <span class="mi">137</span>
+                                                     <span class="n">tx</span><span class="o">-</span><span class="n">error</span>                       <span class="mi">2</span>
+<span class="n">local0</span>                            <span class="mi">0</span>        <span class="n">down</span>      <span class="n">drops</span>                          <span class="mi">1</span>
+<span class="n">loop0</span>                             <span class="mi">3</span>         <span class="n">up</span>       <span class="n">rx</span> <span class="n">packets</span>                   <span class="mi">137</span>
+                                                     <span class="n">rx</span> <span class="nb">bytes</span>                    <span class="mi">9853</span>
+                                                     <span class="n">tx</span> <span class="n">packets</span>                   <span class="mi">200</span>
+                                                     <span class="n">tx</span> <span class="nb">bytes</span>                   <span class="mi">49380</span>
+                                                     <span class="n">drops</span>                          <span class="mi">1</span>
+                                                     <span class="n">ip4</span>                          <span class="mi">136</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span>                          <span class="mi">2</span>         <span class="n">up</span>       <span class="n">rx</span> <span class="n">packets</span>                     <span class="mi">8</span>
+                                                     <span class="n">rx</span> <span class="nb">bytes</span>                     <span class="mi">600</span>
+                                                     <span class="n">tx</span> <span class="n">packets</span>                     <span class="mi">1</span>
+                                                     <span class="n">tx</span> <span class="nb">bytes</span>                      <span class="mi">42</span>
+                                                     <span class="n">drops</span>                          <span class="mi">9</span>
+                                                     <span class="n">ip6</span>                            <span class="mi">7</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span>                          <span class="mi">5</span>         <span class="n">up</span>       <span class="n">rx</span> <span class="n">packets</span>                    <span class="mi">56</span>
+                                                     <span class="n">rx</span> <span class="nb">bytes</span>                   <span class="mi">13746</span>
+                                                     <span class="n">tx</span> <span class="n">packets</span>                    <span class="mi">78</span>
+                                                     <span class="n">tx</span> <span class="nb">bytes</span>                    <span class="mi">6733</span>
+                                                     <span class="n">drops</span>                          <span class="mi">1</span>
+                                                     <span class="n">ip4</span>                           <span class="mi">56</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span>                          <span class="mi">6</span>         <span class="n">up</span>       <span class="n">rx</span> <span class="n">packets</span>                    <span class="mi">42</span>
+                                                     <span class="n">rx</span> <span class="nb">bytes</span>                   <span class="mi">10860</span>
+                                                     <span class="n">tx</span> <span class="n">packets</span>                    <span class="mi">58</span>
+                                                     <span class="n">tx</span> <span class="nb">bytes</span>                    <span class="mi">4996</span>
+                                                     <span class="n">drops</span>                          <span class="mi">1</span>
+                                                     <span class="n">ip4</span>                           <span class="mi">42</span>
+<span class="n">vxlan_tunnel0</span>                     <span class="mi">4</span>         <span class="n">up</span>       <span class="n">rx</span> <span class="n">packets</span>                   <span class="mi">137</span>
+                                                     <span class="n">rx</span> <span class="nb">bytes</span>                   <span class="mi">11771</span>
+                                                     <span class="n">tx</span> <span class="n">packets</span>                   <span class="mi">100</span>
+                                                     <span class="n">tx</span> <span class="nb">bytes</span>                   <span class="mi">28290</span>
+
+<span class="n">vpp</span><span class="c1"># show hardware</span>
+              <span class="n">Name</span>                <span class="n">Idx</span>   <span class="n">Link</span>  <span class="n">Hardware</span>
+<span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span>               <span class="mi">1</span>     <span class="n">up</span>   <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span>
+  <span class="n">Ethernet</span> <span class="n">address</span> <span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="n">fb</span><span class="p">:</span><span class="mi">6</span><span class="n">f</span>
+  <span class="n">Intel</span> <span class="mi">82540</span><span class="n">EM</span> <span class="p">(</span><span class="n">e1000</span><span class="p">)</span>
+    <span class="n">carrier</span> <span class="n">up</span> <span class="n">full</span> <span class="n">duplex</span> <span class="n">speed</span> <span class="mi">1000</span> <span class="n">mtu</span> <span class="mi">9216</span> 
+    <span class="n">rx</span> <span class="n">queues</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rx</span> <span class="n">desc</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">tx</span> <span class="n">queues</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tx</span> <span class="n">desc</span> <span class="mi">1024</span>
+    <span class="n">cpu</span> <span class="n">socket</span> <span class="mi">0</span>
+
+    <span class="n">tx</span> <span class="n">frames</span> <span class="n">ok</span>                                         <span class="mi">100</span>
+    <span class="n">tx</span> <span class="nb">bytes</span> <span class="n">ok</span>                                        <span class="mi">29658</span>
+    <span class="n">rx</span> <span class="n">frames</span> <span class="n">ok</span>                                         <span class="mi">138</span>
+    <span class="n">rx</span> <span class="nb">bytes</span> <span class="n">ok</span>                                        <span class="mi">19233</span>
+    <span class="n">extended</span> <span class="n">stats</span><span class="p">:</span>
+      <span class="n">rx</span> <span class="n">good</span> <span class="n">packets</span>                                    <span class="mi">138</span>
+      <span class="n">tx</span> <span class="n">good</span> <span class="n">packets</span>                                    <span class="mi">100</span>
+      <span class="n">rx</span> <span class="n">good</span> <span class="nb">bytes</span>                                    <span class="mi">19233</span>
+      <span class="n">tx</span> <span class="n">good</span> <span class="nb">bytes</span>                                    <span class="mi">29658</span>
+<span class="n">local0</span>                             <span class="mi">0</span>    <span class="n">down</span>  <span class="n">local0</span>
+  <span class="n">local</span>
+<span class="n">loop0</span>                              <span class="mi">3</span>     <span class="n">up</span>   <span class="n">loop0</span>
+  <span class="n">Ethernet</span> <span class="n">address</span> <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">02</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span>                           <span class="mi">2</span>     <span class="n">up</span>   <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span>
+  <span class="n">Ethernet</span> <span class="n">address</span> <span class="mi">02</span><span class="p">:</span><span class="n">fe</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="n">df</span><span class="p">:</span><span class="mi">9</span><span class="n">c</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span>                           <span class="mi">5</span>     <span class="n">up</span>   <span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span>
+  <span class="n">Ethernet</span> <span class="n">address</span> <span class="mi">02</span><span class="p">:</span><span class="n">fe</span><span class="p">:</span><span class="mi">3</span><span class="n">f</span><span class="p">:</span><span class="mi">5</span><span class="n">f</span><span class="p">:</span><span class="mi">0</span><span class="n">f</span><span class="p">:</span><span class="mi">9</span><span class="n">a</span>
+<span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span>                           <span class="mi">6</span>     <span class="n">up</span>   <span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span>
+  <span class="n">Ethernet</span> <span class="n">address</span> <span class="mi">02</span><span class="p">:</span><span class="n">fe</span><span class="p">:</span><span class="mi">72</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="mi">66</span><span class="p">:</span><span class="n">c7</span>
+<span class="n">vxlan_tunnel0</span>                      <span class="mi">4</span>     <span class="n">up</span>   <span class="n">vxlan_tunnel0</span>
+  <span class="n">VXLAN</span>
+
+<span class="n">vpp</span><span class="c1"># show bridge-domain         </span>
+  <span class="n">BD</span><span class="o">-</span><span class="n">ID</span>   <span class="n">Index</span>   <span class="n">BSN</span>  <span class="n">Age</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span>  <span class="n">Learning</span>  <span class="n">U</span><span class="o">-</span><span class="n">Forwrd</span>  <span class="n">UU</span><span class="o">-</span><span class="n">Flood</span>  <span class="n">Flooding</span>  <span class="n">ARP</span><span class="o">-</span><span class="n">Term</span>  <span class="n">BVI</span><span class="o">-</span><span class="n">Intf</span>
+    <span class="mi">1</span>       <span class="mi">1</span>      <span class="mi">1</span>     <span class="n">off</span>        <span class="n">on</span>        <span class="n">on</span>        <span class="n">on</span>        <span class="n">on</span>       <span class="n">off</span>      <span class="n">loop0</span>  
+
+<span class="n">vpp</span><span class="c1"># show bridge-domain 1 detail</span>
+  <span class="n">BD</span><span class="o">-</span><span class="n">ID</span>   <span class="n">Index</span>   <span class="n">BSN</span>  <span class="n">Age</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span>  <span class="n">Learning</span>  <span class="n">U</span><span class="o">-</span><span class="n">Forwrd</span>  <span class="n">UU</span><span class="o">-</span><span class="n">Flood</span>  <span class="n">Flooding</span>  <span class="n">ARP</span><span class="o">-</span><span class="n">Term</span>  <span class="n">BVI</span><span class="o">-</span><span class="n">Intf</span>
+    <span class="mi">1</span>       <span class="mi">1</span>      <span class="mi">1</span>     <span class="n">off</span>        <span class="n">on</span>        <span class="n">on</span>        <span class="n">on</span>        <span class="n">on</span>       <span class="n">off</span>      <span class="n">loop0</span>  
+
+           <span class="n">Interface</span>           <span class="n">If</span><span class="o">-</span><span class="n">idx</span> <span class="n">ISN</span>  <span class="n">SHG</span>  <span class="n">BVI</span>  <span class="n">TxFlood</span>        <span class="n">VLAN</span><span class="o">-</span><span class="n">Tag</span><span class="o">-</span><span class="n">Rewrite</span>       
+             <span class="n">loop0</span>               <span class="mi">3</span>     <span class="mi">3</span>    <span class="mi">0</span>    <span class="o">*</span>      <span class="o">*</span>                 <span class="n">none</span>             
+         <span class="n">vxlan_tunnel0</span>           <span class="mi">4</span>     <span class="mi">1</span>    <span class="mi">0</span>    <span class="o">-</span>      <span class="o">*</span>                 <span class="n">none</span>             
+
+<span class="n">vpp</span><span class="c1"># show l2fib verbose         </span>
+    <span class="n">Mac</span><span class="o">-</span><span class="n">Address</span>     <span class="n">BD</span><span class="o">-</span><span class="n">Idx</span> <span class="n">If</span><span class="o">-</span><span class="n">Idx</span> <span class="n">BSN</span><span class="o">-</span><span class="n">ISN</span> <span class="n">Age</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span> <span class="n">static</span> <span class="nb">filter</span> <span class="n">bvi</span>         <span class="n">Interface</span><span class="o">-</span><span class="n">Name</span>        
+ <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">02</span>    <span class="mi">1</span>      <span class="mi">3</span>      <span class="mi">0</span><span class="o">/</span><span class="mi">0</span>      <span class="o">-</span>       <span class="o">*</span>      <span class="o">-</span>     <span class="o">*</span>               <span class="n">loop0</span>            
+ <span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mi">2</span><span class="n">b</span><span class="p">:</span><span class="mi">3</span><span class="n">c</span><span class="p">:</span><span class="mi">4</span><span class="n">d</span><span class="p">:</span><span class="mi">5</span><span class="n">e</span><span class="p">:</span><span class="mi">01</span>    <span class="mi">1</span>      <span class="mi">4</span>      <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>      <span class="o">-</span>       <span class="o">-</span>      <span class="o">-</span>     <span class="o">-</span>           <span class="n">vxlan_tunnel0</span>        
+<span class="n">L2FIB</span> <span class="n">total</span><span class="o">/</span><span class="n">learned</span> <span class="n">entries</span><span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">1</span>  <span class="n">Last</span> <span class="n">scan</span> <span class="n">time</span><span class="p">:</span> <span class="mf">0.0000e0</span><span class="n">sec</span>  <span class="n">Learn</span> <span class="n">limit</span><span class="p">:</span> <span class="mi">4194304</span> 
+
+<span class="n">vpp</span><span class="c1"># show ip fib</span>
+<span class="n">ipv4</span><span class="o">-</span><span class="n">VRF</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">fib_index</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">flow</span> <span class="nb">hash</span><span class="p">:[</span><span class="n">src</span> <span class="n">dst</span> <span class="n">sport</span> <span class="n">dport</span> <span class="n">proto</span> <span class="p">]</span> <span class="n">locks</span><span class="p">:[</span><span class="n">src</span><span class="p">:(</span><span class="n">nil</span><span class="p">):</span><span class="mi">2</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span><span class="n">adjacency</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span><span class="n">default</span><span class="o">-</span><span class="n">route</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="p">]</span>
+<span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">0</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">1</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">21</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">5</span><span class="p">]:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">2.2</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span><span class="p">:</span> <span class="n">def35b93961902fe9507df9c0800</span>
+<span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">2</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">1</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">10.1</span><span class="o">.</span><span class="mf">1.0</span><span class="o">/</span><span class="mi">24</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">24</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">29</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">10</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">23</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">28</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">via</span><span class="p">:[</span><span class="mi">98</span><span class="p">:</span><span class="mi">23234</span><span class="p">]]</span>
+          <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">5</span><span class="p">]:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.1</span> <span class="n">loop0</span><span class="p">:</span> <span class="mi">1</span><span class="n">a2b3c4d5e011a2b3c4d5e020800</span>
+<span class="mf">10.1</span><span class="o">.</span><span class="mf">2.2</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">27</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">12</span> <span class="n">to</span><span class="p">:[</span><span class="mi">78</span><span class="p">:</span><span class="mi">5641</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">5</span><span class="p">]:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.2</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="mi">00000000000202</span><span class="n">fe3f5f0f9a0800</span>
+<span class="mf">10.1</span><span class="o">.</span><span class="mf">2.3</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">29</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">32</span> <span class="n">to</span><span class="p">:[</span><span class="mi">58</span><span class="p">:</span><span class="mi">4184</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">5</span><span class="p">]:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">10.1</span><span class="o">.</span><span class="mf">2.3</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span> <span class="mi">00000000000202</span><span class="n">fe729566c70800</span>
+<span class="mf">10.2</span><span class="o">.</span><span class="mf">1.2</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">26</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">31</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">2</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">receive</span><span class="p">:</span> <span class="mf">10.2</span><span class="o">.</span><span class="mf">1.2</span> <span class="n">on</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">1</span>
+<span class="mf">10.2</span><span class="o">.</span><span class="mf">1.3</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">28</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">33</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">2</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">receive</span><span class="p">:</span> <span class="mf">10.2</span><span class="o">.</span><span class="mf">1.3</span> <span class="n">on</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">2</span>
+<span class="mf">172.30</span><span class="o">.</span><span class="mf">1.0</span><span class="o">/</span><span class="mi">24</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">25</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">29</span> <span class="n">to</span><span class="p">:[</span><span class="mi">98</span><span class="p">:</span><span class="mi">23234</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">10</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">23</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">28</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">via</span><span class="p">:[</span><span class="mi">98</span><span class="p">:</span><span class="mi">23234</span><span class="p">]]</span>
+          <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">5</span><span class="p">]:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.1</span> <span class="n">loop0</span><span class="p">:</span> <span class="mi">1</span><span class="n">a2b3c4d5e011a2b3c4d5e020800</span>
+<span class="mf">172.30</span><span class="o">.</span><span class="mf">2.0</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">14</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">15</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">172.30</span><span class="o">.</span><span class="mf">2.0</span><span class="o">/</span><span class="mi">24</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">13</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">14</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">4</span><span class="p">]:</span> <span class="n">ipv4</span><span class="o">-</span><span class="n">glean</span><span class="p">:</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span>
+<span class="mf">172.30</span><span class="o">.</span><span class="mf">2.1</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">16</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">19</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">2</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">receive</span><span class="p">:</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">2.1</span> <span class="n">on</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span>
+<span class="mf">172.30</span><span class="o">.</span><span class="mf">2.2</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">17</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">18</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">5</span><span class="p">]:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">172.30</span><span class="o">.</span><span class="mf">2.2</span> <span class="n">tapcli</span><span class="o">-</span><span class="mi">0</span><span class="p">:</span> <span class="n">def35b93961902fe9507df9c0800</span>
+<span class="mf">172.30</span><span class="o">.</span><span class="mf">2.255</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">15</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">17</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">16.0</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">10</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">9</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">16.1</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">22</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">34</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">via</span><span class="p">:[</span><span class="mi">100</span><span class="p">:</span><span class="mi">28290</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">5</span><span class="p">]:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.1</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span><span class="p">:</span> <span class="mi">080027</span><span class="n">b2610908002733fb6f0800</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">16.0</span><span class="o">/</span><span class="mi">24</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">9</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">30</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">4</span><span class="p">]:</span> <span class="n">ipv4</span><span class="o">-</span><span class="n">glean</span><span class="p">:</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">16.2</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">12</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">13</span> <span class="n">to</span><span class="p">:[</span><span class="mi">137</span><span class="p">:</span><span class="mi">16703</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">2</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">receive</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">16.2</span> <span class="n">on</span> <span class="n">GigabitEthernet0</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span><span class="mi">0</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">16.255</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">11</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">11</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">30.0</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">19</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">23</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">30.1</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">23</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">28</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">via</span><span class="p">:[</span><span class="mi">98</span><span class="p">:</span><span class="mi">23234</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">5</span><span class="p">]:</span> <span class="n">ipv4</span> <span class="n">via</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.1</span> <span class="n">loop0</span><span class="p">:</span> <span class="mi">1</span><span class="n">a2b3c4d5e011a2b3c4d5e020800</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">30.0</span><span class="o">/</span><span class="mi">24</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">18</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">22</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">4</span><span class="p">]:</span> <span class="n">ipv4</span><span class="o">-</span><span class="n">glean</span><span class="p">:</span> <span class="n">loop0</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">30.2</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">21</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">27</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">2</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">receive</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">30.2</span> <span class="n">on</span> <span class="n">loop0</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">30.255</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">20</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">25</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">224.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">4</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">4</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">3</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">240.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">4</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">3</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">2</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+<span class="mf">255.255</span><span class="o">.</span><span class="mf">255.255</span><span class="o">/</span><span class="mi">32</span>
+  <span class="n">unicast</span><span class="o">-</span><span class="n">ip4</span><span class="o">-</span><span class="n">chain</span>
+  <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">balance</span><span class="p">:</span> <span class="p">[</span><span class="n">proto</span><span class="p">:</span><span class="n">ip4</span> <span class="n">index</span><span class="p">:</span><span class="mi">5</span> <span class="n">buckets</span><span class="p">:</span><span class="mi">1</span> <span class="n">uRPF</span><span class="p">:</span><span class="mi">4</span> <span class="n">to</span><span class="p">:[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">@</span><span class="mi">0</span><span class="p">]:</span> <span class="n">dpo</span><span class="o">-</span><span class="n">drop</span> <span class="n">ip4</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VPPTRACE.html" class="btn btn-neutral float-right" title="Using vpptrace.sh for VPP Packet Tracing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Prometheus.html" class="btn btn-neutral float-left" title="Prometheus Statistics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v21.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

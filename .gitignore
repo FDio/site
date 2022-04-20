@@ -1,2 +1,6 @@
 /public/*
+!/public/_headers
+!/public/_redirects
 resources/_gen/
+.vscode/
+.idea/

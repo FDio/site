@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Adding a plugin &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Getting a Patch Reviewed" href="gitreview.html" />
+    <link rel="prev" title="GDB Examples" href="gdb_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Adding a plugin</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generated-files-in-detail">Generated Files in Detail</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>Adding a plugin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/add_plugin.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adding-a-plugin">
+<span id="add-plugin"></span><h1>Adding a plugin<a class="headerlink" href="#adding-a-plugin" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This section shows how a VPP developer can create a new plugin, and
+add it to VPP. We assume that we are starting from the VPP &lt;top-of-workspace&gt;.</p>
+<p>As an example, we will use the <strong>make-plugin.sh</strong> tool found in
+<strong>./extras/emacs</strong>. make-plugin.sh is a simple wrapper for a comprehensive
+plugin generator constructed from a set of emacs-lisp skeletons.</p>
+<div class="section" id="create-your-new-plugin">
+<h3>Create your new plugin<a class="headerlink" href="#create-your-new-plugin" title="Permalink to this headline">¶</a></h3>
+<p>Change directory to <strong>./src/plugins</strong>, and run the plugin generator:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ./src/plugins
+<span class="gp">$</span> ../../extras/emacs/make-plugin.sh
+<span class="go">&lt;snip&gt;</span>
+<span class="go">Loading /scratch/vpp-docs/extras/emacs/tunnel-c-skel.el (source)...</span>
+<span class="go">Loading /scratch/vpp-docs/extras/emacs/tunnel-decap-skel.el (source)...</span>
+<span class="go">Loading /scratch/vpp-docs/extras/emacs/tunnel-encap-skel.el (source)...</span>
+<span class="go">Loading /scratch/vpp-docs/extras/emacs/tunnel-h-skel.el (source)...</span>
+<span class="go">Loading /scratch/vpp-docs/extras/emacs/elog-4-int-skel.el (source)...</span>
+<span class="go">Loading /scratch/vpp-docs/extras/emacs/elog-4-int-track-skel.el (source)...</span>
+<span class="go">Loading /scratch/vpp-docs/extras/emacs/elog-enum-skel.el (source)...</span>
+<span class="go">Loading /scratch/vpp-docs/extras/emacs/elog-one-datum-skel.el (source)...</span>
+<span class="go">Plugin name: myplugin</span>
+<span class="go">Dispatch type [dual or qs]: dual</span>
+<span class="gp gp-VirtualEnv">(Shell command succeeded with no output)</span>
+
+<span class="go">OK...</span>
+</pre></div>
+</div>
+<p>The plugin generator script asks two questions: the name of the
+plugin, and which of two dispatch types to use. Since the plugin name
+finds its way into quite a number of places - filenames, typedef
+names, graph arc names - it pays to think for a moment.</p>
+<p>The dispatch type refers to the coding pattern used to construct
+<strong>node.c</strong>, the <em>pro forma</em> data-plane node. The <strong>dual</strong> option
+constructs a dual-single loop pair with speculative enqueueing. This
+is the traditional coding pattern for load-store intensive graph
+nodes.</p>
+<p>The <strong>qs</strong> option generates a quad-single loop pair which uses
+vlib_get_buffers(…) and vlib_buffer_enqueue_to_next(…). These
+operators make excellent use of available SIMD vector unit
+operations. It’s very simple to change a quad-single loop-pair to a
+dual-single loop pair if you decide to do so later.</p>
+</div>
+<div class="section" id="generated-files">
+<h3>Generated Files<a class="headerlink" href="#generated-files" title="Permalink to this headline">¶</a></h3>
+<p>Here are the generated files. We’ll go through them in a moment.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> ./myplugin
+<span class="gp">$</span> ls
+<span class="go">CMakeLists.txt        myplugin.c           myplugin_periodic.c  setup.pg</span>
+<span class="go">myplugin_all_api_h.h  myplugin.h           myplugin_test.c</span>
+<span class="go">myplugin.api          myplugin_msg_enum.h  node.c</span>
+</pre></div>
+</div>
+<p>Due to recent build system improvements, you <strong>don’t</strong> need to touch
+any other files to integrate your new plugin into the vpp build. Simply
+rebuild your workspace from scratch, and the new plugin will appear.</p>
+</div>
+<div class="section" id="rebuild-your-workspace">
+<h3>Rebuild your workspace<a class="headerlink" href="#rebuild-your-workspace" title="Permalink to this headline">¶</a></h3>
+<p>This is the straightforward way to reconfigure and rebuild your workspace:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> &lt;top-of-workspace&gt;
+<span class="gp">$</span> make rebuild <span class="o">[</span>or rebuild-release<span class="o">]</span>
+</pre></div>
+</div>
+<p>Thanks to ccache, this operation doesn’t take an annoying amount of time.</p>
+</div>
+<div class="section" id="sanity-check-run-vpp">
+<h3>Sanity check: run vpp<a class="headerlink" href="#sanity-check-run-vpp" title="Permalink to this headline">¶</a></h3>
+<p>As a quick sanity check, run vpp and make sure that
+“myplugin_plugin.so” and “myplugin_test_plugin.so” are loaded:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> &lt;top-of-workspace&gt;
+<span class="gp">$</span> make run
+<span class="go">&lt;snip&gt;</span>
+<span class="go">load_one_plugin:189: Loaded plugin: myplugin_plugin.so (myplugin description goes here)</span>
+<span class="go">&lt;snip&gt;</span>
+<span class="go">load_one_vat_plugin:67: Loaded plugin: myplugin_test_plugin.so</span>
+<span class="go">&lt;snip&gt;</span>
+<span class="go">DBGvpp#</span>
+</pre></div>
+</div>
+<p>If this simple test fails, please seek assistance.</p>
+</div>
+</div>
+<div class="section" id="generated-files-in-detail">
+<h2>Generated Files in Detail<a class="headerlink" href="#generated-files-in-detail" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses the generated files in some detail. It’s fine to
+skim this section, and return later for more detail.</p>
+<div class="section" id="cmakelists-txt">
+<h3>CMakeLists.txt<a class="headerlink" href="#cmakelists-txt" title="Permalink to this headline">¶</a></h3>
+<p>This is the build system recipe for building your plugin. Please fix
+the copyright notice:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Copyright <span class="o">(</span>c<span class="o">)</span> &lt;current-year&gt; &lt;your-organization&gt;
+</pre></div>
+</div>
+<p>The rest of the build recipe is pretty simple:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">add_vpp_plugin (myplugin</span>
+<span class="go">SOURCES</span>
+<span class="go">myplugin.c</span>
+<span class="go">node.c</span>
+<span class="go">myplugin_periodic.c</span>
+<span class="go">myplugin.h</span>
+
+<span class="go">MULTIARCH_SOURCES</span>
+<span class="go">node.c</span>
+
+<span class="go">API_FILES</span>
+<span class="go">myplugin.api</span>
+
+<span class="go">INSTALL_HEADERS</span>
+<span class="go">myplugin_all_api_h.h</span>
+<span class="go">myplugin_msg_enum.h</span>
+
+<span class="go">API_TEST_SOURCES</span>
+<span class="go">myplugin_test.c</span>
+<span class="go">)</span>
+</pre></div>
+</div>
+<p>As you can see, the build recipe consists of several lists of
+files. <strong>SOURCES</strong> is a list of C source files. <strong>API_FILES</strong> is a
+list of the plugin’s binary API definition files [one such file is
+usually plenty], and so forth.</p>
+<p><strong>MULTIARCH_SOURCES</strong> lists data plane graph node dispatch function
+source files considered to be performance-critical. Specific functions
+in these files are compiled multiple times, so that they can leverage
+CPU-specific features. More on this in a moment.</p>
+<p>If you add source files, simply add them to the indicated list(s).</p>
+</div>
+<div class="section" id="myplugin-h">
+<h3>myplugin.h<a class="headerlink" href="#myplugin-h" title="Permalink to this headline">¶</a></h3>
+<p>This is the primary #include file for the new plugin. Among other
+things, it defines the plugin’s <em>main_t</em> data structure. This is the
+right place to add problem-specific data structures. Please <strong>resist
+the temptation</strong> to create a set of static or [worse yet] global
+variables in your plugin. Refereeing name-collisions between plugins
+is not anyone’s idea of a good time.</p>
+</div>
+<div class="section" id="myplugin-c">
+<h3>myplugin.c<a class="headerlink" href="#myplugin-c" title="Permalink to this headline">¶</a></h3>
+<p>For want of a better way to describe it, myplugin.c is the vpp plugin
+equivalent of “main.c”. Its job is to hook the plugin into the vpp
+binary API message dispatcher, and to add its messages to vpp’s global
+“message-name_crc” hash table. See “myplugin_init (…”)”</p>
+<p>Vpp itself uses dlsym(…) to track down the vlib_plugin_registration_t
+generated by the VLIB_PLUGIN_REGISTER macro:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">VLIB_PLUGIN_REGISTER () =</span>
+<span class="go">  {</span>
+<span class="go">    .version = VPP_BUILD_VER,</span>
+<span class="go">    .description = &quot;myplugin plugin description goes here&quot;,</span>
+<span class="go">  };</span>
+</pre></div>
+</div>
+<p>Vpp only loads .so files from the plugin directory which contain an
+instance of this data structure.</p>
+<p>You can enable or disable specific vpp plugins from the command
+line. By default, plugins are loaded. To change that behavior, set
+default_disabled in the macro VLIB_PLUGIN_REGISTER:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">VLIB_PLUGIN_REGISTER () =</span>
+<span class="go">  {</span>
+<span class="go">    .version = VPP_BUILD_VER,</span>
+<span class="go">    .default_disabled = 1</span>
+<span class="go">    .description = &quot;myplugin plugin description goes here&quot;,</span>
+<span class="go">  };</span>
+</pre></div>
+</div>
+<p>The boilerplate generator places the graph node dispatch function
+onto the “device-input” feature arc. This may or may not be useful.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">VNET_FEATURE_INIT (myplugin, static) =</span>
+<span class="go">{</span>
+<span class="go">  .arc_name = &quot;device-input&quot;,</span>
+<span class="go">  .node_name = &quot;myplugin&quot;,</span>
+<span class="go">  .runs_before = VNET_FEATURES (&quot;ethernet-input&quot;),</span>
+<span class="go">};</span>
+</pre></div>
+</div>
+<p>As given by the plugin generator, myplugin.c contains the binary API
+message handler for a generic “please enable my feature on such and
+such an interface” binary API message. As you’ll see, setting up the
+vpp message API tables is simple. Big fat warning: the scheme is
+intolerant of minor mistakes. Example: forgetting to add
+mainp-&gt;msg_id_base can lead to very confusing failures.</p>
+<p>If you stick to modifying the generated boilerplate with care -
+instead of trying to build code from first principles - you’ll save
+yourself a bunch of time and aggravation</p>
+</div>
+<div class="section" id="myplugin-test-c">
+<h3>myplugin_test.c<a class="headerlink" href="#myplugin-test-c" title="Permalink to this headline">¶</a></h3>
+<p>This file contains binary API message <strong>generation</strong> code, which is
+compiled into a separate .so file. The “vpp_api_test” program loads
+these plugins, yielding immediate access to your plugin APIs for
+external client binary API testing.</p>
+<p>vpp itself loads test plugins, and makes the code available via the
+“binary-api” debug CLI. This is a favorite way to unit-test binary
+APIs prior to integration testing.</p>
+</div>
+<div class="section" id="node-c">
+<h3>node.c<a class="headerlink" href="#node-c" title="Permalink to this headline">¶</a></h3>
+<p>This is the generated graph node dispatch function. You’ll need to
+rewrite it to solve the problem at hand. It will save considerable
+time and aggravation to retain the <strong>structure</strong> of the node dispatch
+function.</p>
+<p>Even for an expert, it’s a waste of time to reinvent the <em>loop
+structure</em>, enqueue patterns, and so forth. Simply tear out and
+replace the specimen 1x, 2x, 4x packet processing code with code
+relevant to the problem you’re trying to solve.</p>
+</div>
+<div class="section" id="plugin-friends-with-benefits">
+<h3>Plugin “Friends with Benefits”<a class="headerlink" href="#plugin-friends-with-benefits" title="Permalink to this headline">¶</a></h3>
+<p>In vpp VLIB_INIT_FUNCTION functions, It’s reasonably common to see a
+specific init function invoke other init functions:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">if ((error = vlib_call_init_function (vm, some_other_init_function))</span>
+<span class="go">   return error;</span>
+</pre></div>
+</div>
+<p>In the case where one plugin needs to call a init function in another
+plugin, use the vlib_call_plugin_init_function macro:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">if ((error = vlib_call_plugin_init_function (vm, &quot;otherpluginname&quot;, some_init_function))</span>
+<span class="go">   return error;</span>
+</pre></div>
+</div>
+<p>This allows sequencing between plugin init functions.</p>
+<p>If you wish to obtain a pointer to a symbol in another plugin, use the
+vlib_plugin_get_symbol(…) API:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">void *p = vlib_get_plugin_symbol (&quot;plugin_name&quot;, &quot;symbol&quot;);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-examples">
+<h3>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h3>
+<p>For more information you can read many example plugins in the directory “./src/plugins”.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gitreview.html" class="btn btn-neutral float-right" title="Getting a Patch Reviewed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gdb_examples.html" class="btn btn-neutral float-left" title="GDB Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

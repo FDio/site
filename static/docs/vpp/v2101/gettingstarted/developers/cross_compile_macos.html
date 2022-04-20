@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cross compilation on MacOS &mdash; The Vector Packet Processor 20.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cloud NAT" href="cnat.html" />
+    <link rel="prev" title="QUIC HostStack" href="quic_plugin.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                master
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#sample-run">Sample Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Cross compilation on MacOS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-indent-2-2-11">Installing indent 2.2.11</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>Cross compilation on MacOS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/cross_compile_macos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cross-compilation-on-macos">
+<span id="cross-compile-macos"></span><h1>Cross compilation on MacOS<a class="headerlink" href="#cross-compilation-on-macos" title="Permalink to this headline">¶</a></h1>
+<p>This is a first attempt to support Cross compilation of VPP on MacOS for development (linting, completion, compile_commands.json)</p>
+<p><strong>Prerequisites</strong></p>
+<ul class="simple">
+<li><p>You’ll need to install the following packages</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip3 install ply pyyaml jsonschema
+<span class="gp">$</span> brew install diffutils gnu-sed pkg-config ninja crosstool-ng
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You’ll also need to install <code class="docutils literal notranslate"><span class="pre">gnu-ident</span> <span class="pre">2.2.11</span></code> to be able to <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">checkstyle</span></code>. This can be done with <a class="reference internal" href="#install-indent-2-2-11"><span class="std std-ref">this doc</span></a></p></li>
+<li><p>You should link the binaries to make them available in your path with their original names e.g. :</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ln -s <span class="k">$(</span>which gsed<span class="k">)</span> /usr/local/bin/sed
+<span class="gp">$</span> ln -s <span class="k">$(</span>which gindent<span class="k">)</span> /usr/local/bin/indent
+<span class="gp">$</span> ln -s /usr/local/Cellar/diffutils/3.7/bin/diff /usr/local/bin/diff
+</pre></div>
+</div>
+<p><strong>Setup</strong></p>
+<ul class="simple">
+<li><p>Create a <a class="reference external" href="https://crosstool-ng.github.io/">cross compile toolchain</a></p></li>
+<li><p>Create a case sensitive volume and mount the toolchain in it e.g. in <code class="docutils literal notranslate"><span class="pre">/Volumes/xchain</span></code></p></li>
+<li><p>Create a xchain.toolchain file with <code class="docutils literal notranslate"><span class="pre">$VPP_DIR/extras/scripts/cross_compile_macos.sh</span> <span class="pre">conf</span> <span class="pre">/Volumes/xchan</span></code></p></li>
+</ul>
+<p>For now we don’t support e-build so dpdk, rdma, quicly won’t be compiled as part of <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">build</span></code></p>
+<p>To build with the toolchain do:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nv">$VPP_DIR</span>/extras/scripts/cross_compile_macos.sh build
+</pre></div>
+</div>
+<p>To get the compile_commands.json do</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nv">$VPP_DIR</span>/extras/scripts/cross_compile_macos.sh cc
+<span class="gp">$</span> &gt;&gt; ./build-root/build-vpp<span class="o">[</span>_debug<span class="o">]</span>-native/vpp/compile_commands.json
+</pre></div>
+</div>
+<p>This should build vpp on MacOS</p>
+<p>Good luck :)</p>
+<div class="section" id="installing-indent-2-2-11">
+<span id="install-indent-2-2-11"></span><h2>Installing indent 2.2.11<a class="headerlink" href="#installing-indent-2-2-11" title="Permalink to this headline">¶</a></h2>
+<p>In order to install indent on macos :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wget http://mirror.sergal.org/gnu/indent/indent-2.2.11.tar.gz
+$ tar -xzvf indent-2.2.11.tar.gz
+$ <span class="nb">cd</span> indent-2.2.11
+$ ./configure --disable-dependency-tracking --disable-debug --program-prefix<span class="o">=</span>g --prefix<span class="o">=</span>/usr/local/Cellar/gnu-indent/2.2.11
+</pre></div>
+</div>
+<p>Install will exit with an error code, but indent 2.2.11 will still be installed in <code class="docutils literal notranslate"><span class="pre">/usr/local/bin/gindent</span></code>
+Other mirrors can be found on the <a class="reference external" href="https://www.gnu.org/prep/ftp.html">GNU website</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cnat.html" class="btn btn-neutral float-right" title="Cloud NAT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quic_plugin.html" class="btn btn-neutral float-left" title="QUIC HostStack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v21.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

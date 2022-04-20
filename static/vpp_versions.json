@@ -1,0 +1,34 @@
+[
+	{
+		"name": "master (22.06-rc)",
+		"link": "https://s3-docs.fd.io/vpp/22.06/"
+	},
+	{
+		"name": "22.02",
+		"link": "https://s3-docs.fd.io/vpp/22.02/"
+	},
+	{
+		"name": "21.10",
+		"link": "https://s3-docs.fd.io/vpp/21.10/"
+	},
+	{
+		"name": "21.06",
+		"link": "https://s3-docs.fd.io/vpp/21.06.0/"
+	},
+	{
+		"name": "21.01",
+		"link": "https://fd.io/docs/vpp/v2101/"
+	},
+	{
+		"name": "20.09",
+		"link": "https://fd.io/docs/vpp/v2009/"
+	},
+	{
+		"name": "20.05",
+		"link": "https://fd.io/docs/vpp/v2005/"
+	},
+	{
+		"name": "20.01",
+		"link": "https://fd.io/docs/vpp/v2001/"
+	}
+]

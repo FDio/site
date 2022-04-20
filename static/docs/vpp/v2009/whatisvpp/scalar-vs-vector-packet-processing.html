@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Scalar vs Vector packet processing &mdash; The Vector Packet Processor 20.09 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Packet Processing Graph" href="extensible.html" />
+    <link rel="prev" title="The Vector Packet Processor (VPP)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.09
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Vector Packet Processor (VPP)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scalar vs Vector packet processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensible.html">The Packet Processing Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networkstack.html">Network Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hoststack.html">TCP Host Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html">Features for Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supported.html">Architectures and Operating Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">The Vector Packet Processor (VPP)</a> &raquo;</li>
+        
+      <li>Scalar vs Vector packet processing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/whatisvpp/scalar-vs-vector-packet-processing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scalar-vs-vector-packet-processing">
+<span id="scalar-vector"></span><h1>Scalar vs Vector packet processing<a class="headerlink" href="#scalar-vs-vector-packet-processing" title="Permalink to this headline">¶</a></h1>
+<p>FD.io VPP is developed using vector packet processing, as opposed to
+scalar packet processing.</p>
+<p>Vector packet processing is a common approach among high performance packet
+processing applications such FD.io VPP and <a class="reference external" href="https://en.wikipedia.org/wiki/Data_Plane_Development_Kit">DPDK</a>.
+The scalar based approach tends to be favoured by network stacks that
+don’t necessarily have strict performance requirements.</p>
+<p><strong>Scalar Packet Processing</strong></p>
+<p>A scalar packet processing network stack typically processes one packet at a
+time: an interrupt handling function takes a single packet from a Network
+Interface, and processes it through a set of functions: fooA calls fooB calls
+fooC and so on.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+---&gt; fooA(packet1) +---&gt; fooB(packet1) +---&gt; fooC(packet1)
++---&gt; fooA(packet2) +---&gt; fooB(packet2) +---&gt; fooC(packet2)
+...
++---&gt; fooA(packet3) +---&gt; fooB(packet3) +---&gt; fooC(packet3)
+</pre></div>
+</div>
+<p>Scalar packet processing is simple, but inefficient in these ways:</p>
+<ul class="simple">
+<li><p>When the code path length exceeds the size of the Microprocessor’s instruction
+cache (I-cache), <a class="reference external" href="https://en.wikipedia.org/wiki/Thrashing_(computer_science)">thrashing</a> occurs as the
+Microprocessor is continually loading new instructions. In this model, each
+packet incurs an identical set of I-cache misses.</p></li>
+<li><p>The associated deep call stack will also add load-store-unit pressure as
+stack-locals fall out of the Microprocessor’s Layer 1 Data Cache (D-cache).</p></li>
+</ul>
+<p><strong>Vector Packet Processing</strong></p>
+<p>In contrast, a vector packet processing network stack processes multiple packets
+at a time, called ‘vectors of packets’ or simply a ‘vector’. An interrupt
+handling function takes the vector of packets from a Network Interface, and
+processes the vector through a set of functions: fooA calls fooB calls fooC and
+so on.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+---&gt; fooA([packet1, +---&gt; fooB([packet1, +---&gt; fooC([packet1, +---&gt;
+            packet2,             packet2,             packet2,
+            ...                  ...                  ...
+            packet256])          packet256])          packet256])
+</pre></div>
+</div>
+<p>This approach fixes:</p>
+<ul class="simple">
+<li><p>The I-cache thrashing problem described above, by amortizing the cost of
+I-cache loads across multiple packets.</p></li>
+<li><p>The inefficiencies associated with the deep call stack by receiving vectors
+of up to 256 packets at a time from the Network Interface, and processes them
+using a directed graph of node. The graph scheduler invokes one node dispatch
+function at a time, restricting stack depth to a few stack frames.</p></li>
+</ul>
+<p>The further optimizations that this approaches enables are pipelining and
+prefetching to minimize read latency on table data and parallelize packet loads
+needed to process packets.</p>
+<p>Press next for more on Packet Processing Graphs.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="extensible.html" class="btn btn-neutral float-right" title="The Packet Processing Graph" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="The Vector Packet Processor (VPP)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.09
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

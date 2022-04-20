@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Scale &mdash; The Vector Packet Processor rc2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="How to build a vpp dispatch trace aware Wireshark" href="../buildwireshark.html" />
+    <link rel="prev" title="Fast Convergence" href="fastconvergence.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.01
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="thedatamodel.html">The Data Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tunnels.html">Tunnels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mplsfib.html">MPLS FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="multicast.html">IP Multicast FIB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fastconvergence.html">Fast Convergence</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ip4-heap">IP4 Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ip6-heap">IP6 Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#main-heap">Main Heap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stats-heap">Stats Heap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cross_compile_macos.html">Cross compilation on MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">For Developers</a> &raquo;</li>
+        
+          <li><a href="index.html">FIB 2.0 Hierarchical, Protocol, Independent</a> &raquo;</li>
+        
+      <li>Scale</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/developers/fib20/scale.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scale">
+<span id="id1"></span><h1>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">¶</a></h1>
+<p>The only limiting factor on FIB scale is the amount of memory
+allocated to each heap the FIB uses, and there are 4:</p>
+<ul class="simple">
+<li><p>The IP4 heap</p></li>
+<li><p>The IP6 heap</p></li>
+<li><p>The main heap</p></li>
+<li><p>The stats heap</p></li>
+</ul>
+</div>
+<div class="section" id="ip4-heap">
+<h1>IP4 Heap<a class="headerlink" href="#ip4-heap" title="Permalink to this headline">¶</a></h1>
+<p>The IPv4 heap is used to allocate the memory needed for the
+data-structures within which the IPv4 prefixes are stored. Each
+table, created by the user, i.e. with;</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ip table add <span class="m">1</span>
+</pre></div>
+</div>
+<p>or the default table, comprises 2 <em>ip4_fib_t</em> objects.
+The ‘non-forwarding’ <em>ip4_fib_t</em> contains all the entries in the table
+and, the ‘forwarding’ contains the entries that are matched against in
+the data-plane. The difference between the two sets are the entries
+that should not be matched in the data-plane.
+Each <em>ip4_fib_t</em> comprises an mtrie (for fast lookup in the data-plane)
+and a hash table per-prefix length (for lookup in the control plane).</p>
+<p>To see the amount of memory consumed by the IPv4 tables use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip fib mem</span>
+<span class="go">ipv4-VRF:0 mtrie:333056 hash:3523</span>
+<span class="go">ipv4-VRF:1 mtrie:333056 hash:3523</span>
+<span class="go">totals: mtrie:666112 hash:7046 all:673158</span>
+
+<span class="go">Mtrie Mheap Usage: total: 32.06M, used: 662.44K, free: 31.42M, trimmable: 31.09M</span>
+<span class="go">    free chunks 3 free fastbin blks 0</span>
+<span class="go">    max total allocated 32.06M</span>
+<span class="go">no traced allocations</span>
+</pre></div>
+</div>
+<p>this output shows two ‘empty’ (i.e. no added routes) tables. Each
+mtrie uses about 150k of memory, so each table about 300k. the total
+heap usage statistics for the IP4 heap are shown at the end.</p>
+<p>Below the output having added 1M, 2M and 4M routes respectively:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip fib mem</span>
+<span class="go">ipv4-VRF:0 mtrie:335744 hash:4695</span>
+<span class="go">totals: mtrie:335744 hash:4695 all:340439</span>
+
+<span class="go">Mtrie Mheap Usage: total: 1.00G, used: 335.20K, free: 1023.74M, trimmable: 1023.72M</span>
+<span class="go">    free chunks 3 free fastbin blks 0</span>
+<span class="go">    max total allocated 1.00G</span>
+<span class="go">no traced allocations</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip fib mem</span>
+<span class="go">ipv4-VRF:0 mtrie:5414720 hash:41177579</span>
+<span class="go">totals: mtrie:5414720 hash:41177579 all:46592299</span>
+
+<span class="go">Mtrie Mheap Usage: total: 1.00G, used: 46.87M, free: 977.19M, trimmable: 955.93M</span>
+<span class="go">    free chunks 61 free fastbin blks 0</span>
+<span class="go">    max total allocated 1.00G</span>
+<span class="go">no traced allocations</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip fib mem</span>
+<span class="go">ipv4-VRF:0 mtrie:22452608 hash:168544508</span>
+<span class="go">totals: mtrie:22452608 hash:168544508 all:190997116</span>
+
+<span class="go">Mtrie Mheap Usage: total: 1.00G, used: 198.37M, free: 825.69M, trimmable: 748.24M</span>
+<span class="go">    free chunks 219 free fastbin blks 0</span>
+<span class="go">    max total allocated 1.00G</span>
+<span class="go">no traced allocations</span>
+</pre></div>
+</div>
+<p>VPP was started with a 1G IP4 heap.</p>
+</div>
+<div class="section" id="ip6-heap">
+<h1>IP6 Heap<a class="headerlink" href="#ip6-heap" title="Permalink to this headline">¶</a></h1>
+<p>The IPv6 heap is used to allocate the memory needed for the
+data-structure within which the IPv6 prefixes are stored. IPv6 also
+has the concept of forwarding and non-forwarding entries, however for
+IPv6 all the forwarding entries are stored in a single hash table
+(same goes for the non-forwarding). The key to the hash table includes
+the IPv6 table-id.</p>
+<p>To see the amount of memory consumed by the IPv4 tables use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip6 fib mem</span>
+<span class="go">IPv6 Non-Forwarding Hash Table:</span>
+<span class="go">Hash table ip6 FIB non-fwding table</span>
+<span class="go">    7 active elements 7 active buckets</span>
+<span class="go">    1 free lists</span>
+<span class="go">    0 linear search buckets</span>
+<span class="go">    arena: base 7f2fe28bf000, next 803c0</span>
+<span class="go">           used 525248 b (0 Mbytes) of 33554432 b (32 Mbytes)</span>
+
+<span class="go">IPv6 Forwarding Hash Table:</span>
+<span class="go">Hash table ip6 FIB fwding table</span>
+<span class="go">    7 active elements 7 active buckets</span>
+<span class="go">    1 free lists</span>
+<span class="go">    0 linear search buckets</span>
+<span class="go">    arena: base 7f2fe48bf000, next 803c0</span>
+<span class="go">           used 525248 b (0 Mbytes) of 33554432 b (32 Mbytes)</span>
+</pre></div>
+</div>
+<p>as we scale to 128k IPv6 entries:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip6 fib mem</span>
+<span class="go">IPv6 Non-Forwarding Hash Table:</span>
+<span class="go">Hash table ip6 FIB non-fwding table</span>
+<span class="go">    131079 active elements 32773 active buckets</span>
+<span class="go">    2 free lists</span>
+<span class="go">       [len 1] 2 free elts</span>
+<span class="go">    0 linear search buckets</span>
+<span class="go">    arena: base 7fed7a514000, next 4805c0</span>
+<span class="go">           used 4720064 b (4 Mbytes) of 1073741824 b (1024 Mbytes)</span>
+
+<span class="go">IPv6 Forwarding Hash Table:</span>
+<span class="go">Hash table ip6 FIB fwding table</span>
+<span class="go">    131079 active elements 32773 active buckets</span>
+<span class="go">    2 free lists</span>
+<span class="go">       [len 1] 2 free elts</span>
+<span class="go">    0 linear search buckets</span>
+<span class="go">    arena: base 7fedba514000, next 4805c0</span>
+<span class="go">           used 4720064 b (4 Mbytes) of 1073741824 b (1024 Mbytes)</span>
+</pre></div>
+</div>
+<p>and 256k:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip6 fib mem</span>
+<span class="go">IPv6 Non-Forwarding Hash Table:</span>
+<span class="go">Hash table ip6 FIB non-fwding table</span>
+<span class="go">    262151 active elements 65536 active buckets</span>
+<span class="go">    2 free lists</span>
+<span class="go">       [len 1] 6 free elts</span>
+<span class="go">    0 linear search buckets</span>
+<span class="go">    arena: base 7fed7a514000, next 880840</span>
+<span class="go">           used 8915008 b (8 Mbytes) of 1073741824 b (1024 Mbytes)</span>
+
+<span class="go">IPv6 Forwarding Hash Table:</span>
+<span class="go">Hash table ip6 FIB fwding table</span>
+<span class="go">    262151 active elements 65536 active buckets</span>
+<span class="go">    2 free lists</span>
+<span class="go">       [len 1] 6 free elts</span>
+<span class="go">    0 linear search buckets</span>
+<span class="go">    arena: base 7fedba514000, next 880840</span>
+<span class="go">           used 8915008 b (8 Mbytes) of 1073741824 b (1024 Mbytes)</span>
+</pre></div>
+</div>
+<p>and 1M:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh ip6 fib mem</span>
+<span class="go">IPv6 Non-Forwarding Hash Table:</span>
+<span class="go">Hash table ip6 FIB non-fwding table</span>
+<span class="go">    1048583 active elements 65536 active buckets</span>
+<span class="go">    4 free lists</span>
+<span class="go">       [len 1] 65533 free elts</span>
+<span class="go">       [len 2] 65531 free elts</span>
+<span class="go">       [len 4] 9 free elts</span>
+<span class="go">    0 linear search buckets</span>
+<span class="go">    arena: base 7fed7a514000, next 3882740</span>
+<span class="go">           used 59254592 b (56 Mbytes) of 1073741824 b (1024 Mbytes)</span>
+
+<span class="go">IPv6 Forwarding Hash Table:</span>
+<span class="go">Hash table ip6 FIB fwding table</span>
+<span class="go">    1048583 active elements 65536 active buckets</span>
+<span class="go">    4 free lists</span>
+<span class="go">       [len 1] 65533 free elts</span>
+<span class="go">       [len 2] 65531 free elts</span>
+<span class="go">       [len 4] 9 free elts</span>
+<span class="go">    0 linear search buckets</span>
+<span class="go">    arena: base 7fedba514000, next 3882740</span>
+<span class="go">           used 59254592 b (56 Mbytes) of 1073741824 b (1024 Mbytes)</span>
+</pre></div>
+</div>
+<p>as can be seen from the output the IPv6 heap in this case was scaled
+to 1GB and 1million prefixes has used 56MB of it.</p>
+</div>
+<div class="section" id="main-heap">
+<h1>Main Heap<a class="headerlink" href="#main-heap" title="Permalink to this headline">¶</a></h1>
+<p>The main heap is used to allocate objects that represent the FIB
+entries in the control and data plane (see <a class="reference internal" href="controlplane.html#controlplane"><span class="std std-ref">The Control Plane</span></a> and
+<a class="reference internal" href="dataplane.html#dataplane"><span class="std std-ref">The Data Plane</span></a>) such as <em>fib_entry_t</em> and <em>load_balance_t</em>. These come
+from the main heap because they are not protocol specific
+(i.e. they are used to represent either IPv4, IPv6 or MPLS
+entries).</p>
+<p>With 1M prefixes allocated the memory usage is:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh fib mem</span>
+<span class="go">FIB memory</span>
+<span class="go"> Tables:</span>
+<span class="go">            SAFI              Number     Bytes</span>
+<span class="go">        IPv4 unicast             1     33619968</span>
+<span class="go">        IPv6 unicast             2     118502784</span>
+<span class="go">            MPLS                 0         0</span>
+<span class="go">       IPv4 multicast            1       1175</span>
+<span class="go">       IPv6 multicast            1      525312</span>
+<span class="go"> Nodes:</span>
+<span class="go">            Name               Size  in-use /allocated   totals</span>
+<span class="go">            Entry               72   1048589/ 1048589    75498408/75498408</span>
+<span class="go">        Entry Source            40   1048589/ 1048589    41943560/41943560</span>
+<span class="go">    Entry Path-Extensions       76      0   /    0       0/0</span>
+<span class="go">       multicast-Entry         192      6   /    6       1152/1152</span>
+<span class="go">          Path-list             40     18   /    18      720/720</span>
+<span class="go">          uRPF-list             16     14   /    14      224/224</span>
+<span class="go">            Path                72     22   /    22      1584/1584</span>
+<span class="go">     Node-list elements         20   1048602/ 1048602    20972040/20972040</span>
+<span class="go">       Node-list heads          8      24   /    24      192/192</span>
+</pre></div>
+</div>
+<p>and with 2M</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# sh fib mem</span>
+<span class="go">FIB memory</span>
+<span class="go"> Tables:</span>
+<span class="go">            SAFI              Number     Bytes</span>
+<span class="go">        IPv4 unicast             1     33619968</span>
+<span class="go">        IPv6 unicast             2     252743040</span>
+<span class="go">            MPLS                 0         0</span>
+<span class="go">       IPv4 multicast            1       1175</span>
+<span class="go">       IPv6 multicast            1      525312</span>
+<span class="go"> Nodes:</span>
+<span class="go">            Name               Size  in-use /allocated   totals</span>
+<span class="go">            Entry               72   2097165/ 2097165    150995880/150995880</span>
+<span class="go">        Entry Source            40   2097165/ 2097165    83886600/83886600</span>
+<span class="go">    Entry Path-Extensions       76      0   /    0       0/0</span>
+<span class="go">       multicast-Entry         192      6   /    6       1152/1152</span>
+<span class="go">          Path-list             40     18   /    19      720/760</span>
+<span class="go">          uRPF-list             16     18   /    18      288/288</span>
+<span class="go">            Path                72     22   /    23      1584/1656</span>
+<span class="go">     Node-list elements         20   2097178/ 2097178    41943560/41943560</span>
+<span class="go">       Node-list heads          8      24   /    24      192/192</span>
+</pre></div>
+</div>
+<p>However, the situation is not a simple as that. All of the 1M prefixes
+added above were reachable via the same next-hop, so the path-list
+(and path) they use is shared. As prefixes are added that use
+different (sets of) next-hops, the number of path-lists and paths
+requires will increase.</p>
+</div>
+<div class="section" id="stats-heap">
+<h1>Stats Heap<a class="headerlink" href="#stats-heap" title="Permalink to this headline">¶</a></h1>
+<p>VPP collects statistics for each route. For each route VPP collects
+byte and packet counters for packets sent to the prefix (i.e. the
+route was matched in the data-plane) and packets sent via the prefix (i.e. the
+matching prefix is reachable through it - like a BGP peer). This
+requires 4 counters per route in the stats segment.</p>
+<p>Below shows the size of the stats segment with 1M, 2M and 4M routes.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">total: 1023.99M, used: 127.89M, free: 896.10M, trimmable: 830.94M</span>
+<span class="go">total: 1023.99M, used: 234.14M, free: 789.85M, trimmable: 668.15M</span>
+<span class="go">total: 1023.99M, used: 456.83M, free: 567.17M, trimmable: 388.91M</span>
+</pre></div>
+</div>
+<p>VPP was started with a 1G stats heap.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../buildwireshark.html" class="btn btn-neutral float-right" title="How to build a vpp dispatch trace aware Wireshark" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fastconvergence.html" class="btn btn-neutral float-left" title="Fast Convergence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.01
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

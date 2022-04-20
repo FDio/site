@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to build a vpp dispatch trace aware Wireshark &mdash; The Vector Packet Processor 20.09 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Punting Packets" href="punt.html" />
+    <link rel="prev" title="Scale" href="fib20/scale.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.09
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#sample-run">Sample Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vnet.html">VNET (VPP Network Stack)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">How to build a vpp dispatch trace aware Wireshark</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#download-wireshark-source-code">Download wireshark source code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-prerequisite-packages">Install prerequisite packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compile-wireshark">Compile Wireshark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#make-a-pcap-dispatch-trace">Make a pcap dispatch trace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#display-in-wireshark">Display in Wireshark</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>How to build a vpp dispatch trace aware Wireshark</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/buildwireshark.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-build-a-vpp-dispatch-trace-aware-wireshark">
+<h1>How to build a vpp dispatch trace aware Wireshark<a class="headerlink" href="#how-to-build-a-vpp-dispatch-trace-aware-wireshark" title="Permalink to this headline">¶</a></h1>
+<p>The vpp pcap dispatch trace dissector has been merged into the wireshark
+main branch, so the process is simple. Download wireshark, compile it,
+and install it.</p>
+<div class="section" id="download-wireshark-source-code">
+<h2>Download wireshark source code<a class="headerlink" href="#download-wireshark-source-code" title="Permalink to this headline">¶</a></h2>
+<p>The wireshark git repo is large, so it takes a while to clone.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">code</span><span class="o">.</span><span class="n">wireshark</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">review</span><span class="o">/</span><span class="n">wireshark</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-prerequisite-packages">
+<h2>Install prerequisite packages<a class="headerlink" href="#install-prerequisite-packages" title="Permalink to this headline">¶</a></h2>
+<p>Here is a list of prerequisite packages which must be present in order
+to compile wireshark, beyond what’s typically installed on an Ubuntu
+18.04 system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">libgcrypt11</span><span class="o">-</span><span class="n">dev</span> <span class="n">flex</span> <span class="n">bison</span> <span class="n">qtbase5</span><span class="o">-</span><span class="n">dev</span> <span class="n">qttools5</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">tools</span> <span class="n">qttools5</span><span class="o">-</span><span class="n">dev</span>
+    <span class="n">qtmultimedia5</span><span class="o">-</span><span class="n">dev</span> <span class="n">libqt5svg5</span><span class="o">-</span><span class="n">dev</span> <span class="n">libpcap</span><span class="o">-</span><span class="n">dev</span> <span class="n">qt5</span><span class="o">-</span><span class="n">default</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="compile-wireshark">
+<h2>Compile Wireshark<a class="headerlink" href="#compile-wireshark" title="Permalink to this headline">¶</a></h2>
+<p>Mercifully, Wireshark uses cmake, so it’s relatively easy to build, at
+least on Ubuntu 18.04.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    $ cd wireshark
+    $ mkdir build
+    $ cd build
+    $ cmake -G Ninja ../
+    $ ninja -j 8
+    $ sudo ninja install
+</pre></div>
+</div>
+</div>
+<div class="section" id="make-a-pcap-dispatch-trace">
+<h2>Make a pcap dispatch trace<a class="headerlink" href="#make-a-pcap-dispatch-trace" title="Permalink to this headline">¶</a></h2>
+<p>Configure vpp to pass traffic in some fashion or other, and then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vpp</span><span class="c1"># pcap dispatch trace on max 10000 file vppcapture buffer-trace dpdk-input 1000</span>
+</pre></div>
+</div>
+<p>or similar. Run traffic for long enough to capture some data. Save the
+dispatch trace capture like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vpp</span><span class="c1"># pcap dispatch trace off</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="display-in-wireshark">
+<h2>Display in Wireshark<a class="headerlink" href="#display-in-wireshark" title="Permalink to this headline">¶</a></h2>
+<p>Display /tmp/vppcapture in the vpp-enabled version of wireshark. With
+any luck, normal version of wireshark will refuse to process vpp
+dispatch trace pcap files because they won’t understand the encap type.</p>
+<p>Set wireshark to filter on vpp.bufferindex to watch a single packet
+traverse the forwarding graph. Otherwise, you’ll see a vector of packets
+in e.g. ip4-lookup, then a vector of packets in ip4-rewrite, etc.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="punt.html" class="btn btn-neutral float-right" title="Punting Packets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fib20/scale.html" class="btn btn-neutral float-left" title="Scale" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.09
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

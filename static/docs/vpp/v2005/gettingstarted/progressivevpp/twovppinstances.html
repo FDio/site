@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Connecting Two FD.io VPP Instances &mdash; The Vector Packet Processor 20.05 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Routing" href="routing.html" />
+    <link rel="prev" title="Using the trace command" href="traces.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.05
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Progressive VPP Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="settingupenvironment.html">Setting up your environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="runningvpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interface.html">Creating an Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="traces.html">Using the trace command</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Connecting Two FD.io VPP Instances</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#skills-to-be-learned">Skills to be Learned</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#topology">Topology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initial-state">Initial state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-a-second-fd-io-vpp-instances">Running a second FD.io VPP instances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-memif-interface-on-vpp1">Create memif interface on vpp1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-memif-interface-on-vpp2">Create memif interface on vpp2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ping-from-vpp1-to-vpp2">Ping from vpp1 to vpp2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="routing.html">Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switching.html">Switching</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers/index.html">For Developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">Progressive VPP Tutorial</a> &raquo;</li>
+        
+      <li>Connecting Two FD.io VPP Instances</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/progressivevpp/twovppinstances.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="twovppinstances">
+</div>
+<div class="section" id="connecting-two-fd-io-vpp-instances">
+<h1>Connecting Two FD.io VPP Instances<a class="headerlink" href="#connecting-two-fd-io-vpp-instances" title="Permalink to this headline">¶</a></h1>
+<p id="background-1">memif is a very high performance, direct memory interface type which can
+be used between FD.io VPP instances. It uses a file socket for a control channel
+to set up shared memory.</p>
+<div class="section" id="skills-to-be-learned">
+<span id="skills-to-be-learned-1"></span><h2>Skills to be Learned<a class="headerlink" href="#skills-to-be-learned" title="Permalink to this headline">¶</a></h2>
+<p>You will learn the following new skill in this exercise:</p>
+<ol class="arabic simple">
+<li><p>Create a memif interface between two FD.io VPP instances</p></li>
+</ol>
+<p>You should be able to perform this exercise with the following skills
+learned in previous exercises:</p>
+<ol class="arabic simple">
+<li><p>Run a second FD.io VPP instance</p></li>
+<li><p>Add an ip address to a FD.io VPP interface</p></li>
+<li><p>Ping from FD.io VPP</p></li>
+</ol>
+</div>
+<div class="section" id="topology">
+<span id="topology-1"></span><h2>Topology<a class="headerlink" href="#topology" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id1">
+<img alt="Connect two FD.io VPP topology" src="../../_images/Connecting_two_vpp_instances_with_memif.png" />
+<p class="caption"><span class="caption-text">Connect two FD.io VPP topology</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="initial-state">
+<span id="initial-state-1"></span><h2>Initial state<a class="headerlink" href="#initial-state" title="Permalink to this headline">¶</a></h2>
+<p>The initial state here is presumed to be the final state from the
+exercise <a class="reference external" href="VPP/Progressive_VPP_Tutorial#Exercise:_Create_an_Interface">Create an
+Interface</a></p>
+</div>
+<div class="section" id="running-a-second-fd-io-vpp-instances">
+<span id="action-running-a-second-vpp-instances-1"></span><h2>Running a second FD.io VPP instances<a class="headerlink" href="#running-a-second-fd-io-vpp-instances" title="Permalink to this headline">¶</a></h2>
+<p>You should already have a FD.io VPP instance running named: vpp1.</p>
+<p>Run a second FD.io VPP instance named: vpp2.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /usr/bin/vpp -c startup2.conf
+<span class="go">....</span>
+<span class="gp">$</span> sudo vppctl -s /run/vpp/cli-vpp2.sock
+<span class="go">    _______    _        _   _____  ___</span>
+<span class="go"> __/ __/ _ \  (_)__    | | / / _ \/ _ \</span>
+<span class="go"> _/ _// // / / / _ \   | |/ / ___/ ___/</span>
+<span class="go"> /_/ /____(_)_/\___/   |___/_/  /_/</span>
+
+<span class="go">vpp# show version</span>
+<span class="go">vpp v18.07-release built by root on c469eba2a593 at Mon Jul 30 23:27:03 UTC 2018</span>
+<span class="go">vpp# quit</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-memif-interface-on-vpp1">
+<span id="action-create-memif-interface-on-vpp1-1"></span><h2>Create memif interface on vpp1<a class="headerlink" href="#create-memif-interface-on-vpp1" title="Permalink to this headline">¶</a></h2>
+<p>Create a memif interface on vpp1. To connect to the instance vpp1 use the
+socket <strong>/run/vpp/cli-vpp1.sock</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo vppctl -s /run/vpp/cli-vpp1.sock
+<span class="go">vpp# create interface memif id 0 master</span>
+</pre></div>
+</div>
+<p>This will create an interface on vpp1 memif0/0 using /run/vpp/memif as
+its socket file. The role of vpp1 for this memif interface is ‘master’.</p>
+<p>With what you have learned:</p>
+<ol class="arabic simple">
+<li><p>Set the memif0/0 state to up.</p></li>
+<li><p>Assign IP address 10.10.2.1/24 to memif0/0</p></li>
+<li><p>Examine memif0/0 via show commands</p></li>
+</ol>
+</div>
+<div class="section" id="create-memif-interface-on-vpp2">
+<span id="action-create-memif-interface-on-vpp2-1"></span><h2>Create memif interface on vpp2<a class="headerlink" href="#create-memif-interface-on-vpp2" title="Permalink to this headline">¶</a></h2>
+<p>We want vpp2 to pick up the ‘slave’ role using the same
+run/vpp/memif-vpp1vpp2 socket file</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vpp# create interface memif id 0 slave</span>
+</pre></div>
+</div>
+<p>This will create an interface on vpp2 memif0/0 using /run/vpp/memif as
+its socket file. The role of vpp1 for this memif interface is ‘slave’.</p>
+<p>Use your previously used skills to:</p>
+<ol class="arabic simple">
+<li><p>Set the memif0/0 state to up.</p></li>
+<li><p>Assign IP address 10.10.2.2/24 to memif0/0</p></li>
+<li><p>Examine memif0/0 via show commands</p></li>
+</ol>
+</div>
+<div class="section" id="ping-from-vpp1-to-vpp2">
+<span id="action-ping-from-vpp1-to-vpp2-1"></span><h2>Ping from vpp1 to vpp2<a class="headerlink" href="#ping-from-vpp1-to-vpp2" title="Permalink to this headline">¶</a></h2>
+<p>Ping 10.10.2.2 from vpp1</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ping <span class="m">10</span>.10.2.2
+</pre></div>
+</div>
+<p>Ping 10.10.2.1 from vpp2</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ping <span class="m">10</span>.10.2.1
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="routing.html" class="btn btn-neutral float-right" title="Routing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="traces.html" class="btn btn-neutral float-left" title="Using the trace command" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.05
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

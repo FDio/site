@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tables &mdash; The Vector Packet Processor 20.05 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Labels, References" href="styleguide03.html" />
+    <link rel="prev" title="Bullets, Bold and Italics" href="styleguide02.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.05
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">For Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developers/index.html">For Developers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Writing Documents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../buildingrst.html">Creating VPP Documents</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">reStructured Text Style Guide</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="styleguide.html">Heading 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styleguide02.html">Bullets, Bold and Italics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styleguide02.html#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styleguide02.html#code-blocks">Code Blocks</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styleguide03.html">Labels, References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styleguide03.html#external-links">External Links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styleguide03.html#images">Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styleguide04.html">Including a file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styleguide05.html">Raw HTML</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../styleguidemd/index.html">Markdown Style Guide</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="../index.html">Writing Documents</a> &raquo;</li>
+        
+          <li><a href="index.html">reStructured Text Style Guide</a> &raquo;</li>
+        
+      <li>Tables</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/gettingstarted/writingdocs/styleguide/styleguide02table.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tables">
+<span id="styleguide02table"></span><h1>Tables<a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h1>
+<p>There are two types of tables with different syntax, <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables">Grid Tables</a>, and <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#simple-tables">Simple Tables</a>.</p>
+<div class="section" id="id1">
+<h2>Grid Tables<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables">Grid Tables</a> are described with a visual grid made up of the characters “-“, “=”, “|”, and “+”. The hyphen (“-“) is used for horizontal lines (row separators). The equals sign (“=”) may be used to separate optional header rows from the table body. The vertical bar (“|”) is used for vertical lines (column separators). The plus sign (“+”) is used for intersections of horizontal and vertical lines.</p>
+<p>Here is example code for a grid table in a <em>.rst</em> file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">+------------------------+------------+----------+----------+</span>
+<span class="go">| Header row, column 1   | Header 2   | Header 3 | Header 4 |</span>
+<span class="go">| (header rows optional) |            |          |          |</span>
+<span class="go">+========================+============+==========+==========+</span>
+<span class="go">| body row 1, column 1   | column 2   | column 3 | column 4 |</span>
+<span class="go">+------------------------+------------+----------+----------+</span>
+<span class="go">| body row 2             | Cells may span columns.          |</span>
+<span class="go">+------------------------+------------+---------------------+</span>
+<span class="go">| body row 3             | Cells may  | - Table cells       |</span>
+<span class="go">+------------------------+ span rows. | - contain           |</span>
+<span class="go">| body row 4             |            | - body elements.    |</span>
+<span class="go">+------------------------+------------+---------------------+</span>
+</pre></div>
+</div>
+<p>This example code generates a grid table that looks like this:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 21%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Header row, column 1
+(header rows optional)</p></th>
+<th class="head"><p>Header 2</p></th>
+<th class="head"><p>Header 3</p></th>
+<th class="head"><p>Header 4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>body row 1, column 1</p></td>
+<td><p>column 2</p></td>
+<td><p>column 3</p></td>
+<td><p>column 4</p></td>
+</tr>
+<tr class="row-odd"><td><p>body row 2</p></td>
+<td colspan="3"><p>Cells may span columns.</p></td>
+</tr>
+<tr class="row-even"><td><p>body row 3</p></td>
+<td rowspan="2"><p>Cells may
+span rows.</p></td>
+<td colspan="2" rowspan="2"><ul class="simple">
+<li><p>Table cells</p></li>
+<li><p>contain</p></li>
+<li><p>body elements.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>body row 4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h2>Simple Tables<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#simple-tables">Simple tables</a> are described with horizontal borders made up of “=” and “-” characters. The equals sign (“=”) is used for top and bottom table borders, and to separate optional header rows from the table body. The hyphen (“-“) is used to indicate column spans in a single row by underlining the joined columns, and may optionally be used to explicitly and/or visually separate rows.</p>
+<p>Simple tables are “simpler” to create than grid tables, but are more limited.</p>
+<p>Here is example code for a simple table in a <em>.rst</em> file.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">=====  =====  =======</span>
+<span class="go">  A      B    A and B</span>
+<span class="go">=====  =====  =======</span>
+<span class="go">False  False  False</span>
+<span class="go">True   False  False</span>
+<span class="go">False  True   False</span>
+<span class="go">True   True   True</span>
+<span class="go">=====  =====  =======</span>
+</pre></div>
+</div>
+<p>This example code generates a simple table that looks like this:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 29%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>A and B</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>False</p></td>
+<td><p>False</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-odd"><td><p>True</p></td>
+<td><p>False</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-even"><td><p>False</p></td>
+<td><p>True</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-odd"><td><p>True</p></td>
+<td><p>True</p></td>
+<td><p>True</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="styleguide03.html" class="btn btn-neutral float-right" title="Labels, References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="styleguide02.html" class="btn btn-neutral float-left" title="Bullets, Bold and Italics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.05
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>

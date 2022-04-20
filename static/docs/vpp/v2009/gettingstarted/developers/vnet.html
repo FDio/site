@@ -1,0 +1,1015 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>VNET (VPP Network Stack) &mdash; The Vector Packet Processor 20.09 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/rules.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Feature Arcs" href="featurearcs.html" />
+    <link rel="prev" title="Plugins" href="plugins.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> The Vector Packet Processor
+          
+
+          
+            
+            <img src="../../_static/fd-io_red_white.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20.09
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whatisvpp/index.html">The Vector Packet Processor (VPP)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../installing/index.html">Downloading and Installing VPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../progressivevpp/index.html">Progressive VPP Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../users/index.html">For Users</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">For Developers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="building.html">Building VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_vpp.html">Running VPP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb_examples.html">GDB Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin.html">Adding a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_plugin_goapi.html">Add a plugin’s GO API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitreview.html">Getting a Patch Reviewed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="softwarearchitecture.html">Software Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="infrastructure.html">VPPINFRA (Infrastructure)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html">VLIB (Vector Processing Library)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#packet-generator-input-script">Packet generator input script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#start-vpp-with-2-worker-threads">Start vpp with 2 worker threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#enable-tracing-and-start-the-packet-generator">Enable tracing, and start the packet generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vlib.html#sample-run">Sample Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Plugins</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VNET (VPP Network Stack)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#effective-graph-dispatch-function-coding">Effective graph dispatch function coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#single-dual-loops">Single/dual loops</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-packets-from-scratch">Creating Packets from Scratch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#packet-tracer">Packet tracer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#graph-dispatcher-pcap-tracing">Graph Dispatcher Pcap Tracing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pcap-rx-tx-and-drop-tracing">pcap rx, tx, and drop tracing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#packet-trace-capture-filtering">packet trace capture filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpp-packet-generator">VPP Packet Generator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pg-setup-scripts">PG setup scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debug-cli">Debug CLI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="featurearcs.html">Feature Arcs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html">Buffer Metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metadata.html#buffer-metadata-extensions">Buffer Metadata Extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multiarch/index.html">Multi-architecture support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bihash.html">Bounded-index Extensible Hashing (bihash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vpp_api_module.html">VPP API module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binary_api_support.html">Binary API Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsystem/index.html">Build System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html">Event-logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eventviewer.html#g2-graphical-event-viewer">G2 graphical event viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fib20/index.html">FIB 2.0 Hierarchical, Protocol, Independent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildwireshark.html">How to build a vpp dispatch trace aware Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="punt.html">Punting Packets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quic_plugin.html">QUIC HostStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cross_compile_macos.html">Cross compilation on MacOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cnat.html">Cloud NAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPPAPI.html">VPP API Language    {#api_lang_doc}</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../writingdocs/index.html">Writing Documents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../links/index.html">VPP Wiki, Doxygen and Other Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../featuresbyrelease/index.html">Features by Release</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events/index.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../relatedprojects/index.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">The Vector Packet Processor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Getting Started</a> &raquo;</li>
+        
+          <li><a href="index.html">For Developers</a> &raquo;</li>
+        
+      <li>VNET (VPP Network Stack)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/gettingstarted/developers/vnet.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vnet-vpp-network-stack">
+<h1>VNET (VPP Network Stack)<a class="headerlink" href="#vnet-vpp-network-stack" title="Permalink to this headline">¶</a></h1>
+<p>The files associated with the VPP network stack layer are located in the
+<em>./src/vnet</em> folder. The Network Stack Layer is basically an
+instantiation of the code in the other layers. This layer has a vnet
+library that provides vectorized layer-2 and 3 networking graph nodes, a
+packet generator, and a packet tracer.</p>
+<p>In terms of building a packet processing application, vnet provides a
+platform-independent subgraph to which one connects a couple of
+device-driver nodes.</p>
+<p>Typical RX connections include “ethernet-input” [full software
+classification, feeds ipv4-input, ipv6-input, arp-input etc.] and
+“ipv4-input-no-checksum” [if hardware can classify, perform ipv4 header
+checksum].</p>
+<div class="section" id="effective-graph-dispatch-function-coding">
+<h2>Effective graph dispatch function coding<a class="headerlink" href="#effective-graph-dispatch-function-coding" title="Permalink to this headline">¶</a></h2>
+<p>Over the 15 years, multiple coding styles have emerged: a
+single/dual/quad loop coding model (with variations) and a
+fully-pipelined coding model.</p>
+</div>
+<div class="section" id="single-dual-loops">
+<h2>Single/dual loops<a class="headerlink" href="#single-dual-loops" title="Permalink to this headline">¶</a></h2>
+<p>The single/dual/quad loop model variations conveniently solve problems
+where the number of items to process is not known in advance: typical
+hardware RX-ring processing. This coding style is also very effective
+when a given node will not need to cover a complex set of dependent
+reads.</p>
+<p>Here is an quad/single loop which can leverage up-to-avx512 SIMD vector
+units to convert buffer indices to buffer pointers:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>   <span class="k">static</span> <span class="n">uword</span>
+   <span class="nf">simulated_ethernet_interface_tx</span> <span class="p">(</span><span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span><span class="p">,</span>
+   				 <span class="n">vlib_node_runtime_t</span> <span class="o">*</span>
+   				 <span class="n">node</span><span class="p">,</span> <span class="n">vlib_frame_t</span> <span class="o">*</span> <span class="n">frame</span><span class="p">)</span>
+   <span class="p">{</span>
+     <span class="n">u32</span> <span class="n">n_left_from</span><span class="p">,</span> <span class="o">*</span><span class="n">from</span><span class="p">;</span>
+     <span class="n">u32</span> <span class="n">next_index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+     <span class="n">u32</span> <span class="n">n_bytes</span><span class="p">;</span>
+     <span class="n">u32</span> <span class="n">thread_index</span> <span class="o">=</span> <span class="n">vm</span><span class="o">-&gt;</span><span class="n">thread_index</span><span class="p">;</span>
+     <span class="n">vnet_main_t</span> <span class="o">*</span><span class="n">vnm</span> <span class="o">=</span> <span class="n">vnet_get_main</span> <span class="p">();</span>
+     <span class="n">vnet_interface_main_t</span> <span class="o">*</span><span class="n">im</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">vnm</span><span class="o">-&gt;</span><span class="n">interface_main</span><span class="p">;</span>
+     <span class="n">vlib_buffer_t</span> <span class="o">*</span><span class="n">bufs</span><span class="p">[</span><span class="n">VLIB_FRAME_SIZE</span><span class="p">],</span> <span class="o">**</span><span class="n">b</span><span class="p">;</span>
+     <span class="n">u16</span> <span class="n">nexts</span><span class="p">[</span><span class="n">VLIB_FRAME_SIZE</span><span class="p">],</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+
+     <span class="n">n_left_from</span> <span class="o">=</span> <span class="n">frame</span><span class="o">-&gt;</span><span class="n">n_vectors</span><span class="p">;</span>
+     <span class="n">from</span> <span class="o">=</span> <span class="n">vlib_frame_vector_args</span> <span class="p">(</span><span class="n">frame</span><span class="p">);</span>
+
+     <span class="cm">/*</span>
+<span class="cm">      * Convert up to VLIB_FRAME_SIZE indices in &quot;from&quot; to</span>
+<span class="cm">      * buffer pointers in bufs[]</span>
+<span class="cm">      */</span>
+     <span class="n">vlib_get_buffers</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="n">bufs</span><span class="p">,</span> <span class="n">n_left_from</span><span class="p">);</span>
+     <span class="n">b</span> <span class="o">=</span> <span class="n">bufs</span><span class="p">;</span>
+     <span class="n">next</span> <span class="o">=</span> <span class="n">nexts</span><span class="p">;</span>
+
+     <span class="cm">/*</span>
+<span class="cm">      * While we have at least 4 vector elements (pkts) to process..</span>
+<span class="cm">      */</span>
+     <span class="k">while</span> <span class="p">(</span><span class="n">n_left_from</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">)</span>
+       <span class="p">{</span>
+         <span class="cm">/* Prefetch next quad-loop iteration. */</span>
+         <span class="k">if</span> <span class="p">(</span><span class="n">PREDICT_TRUE</span> <span class="p">(</span><span class="n">n_left_from</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">))</span>
+   	   <span class="p">{</span>
+   	     <span class="n">vlib_prefetch_buffer_header</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">STORE</span><span class="p">);</span>
+   	     <span class="n">vlib_prefetch_buffer_header</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">STORE</span><span class="p">);</span>
+   	     <span class="n">vlib_prefetch_buffer_header</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">STORE</span><span class="p">);</span>
+   	     <span class="n">vlib_prefetch_buffer_header</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">STORE</span><span class="p">);</span>
+           <span class="p">}</span>
+
+         <span class="cm">/*</span>
+<span class="cm">          * $$$ Process 4x packets right here...</span>
+<span class="cm">          * set next[0..3] to send the packets where they need to go</span>
+<span class="cm">          */</span>
+
+          <span class="n">do_something_to</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+          <span class="n">do_something_to</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+          <span class="n">do_something_to</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+          <span class="n">do_something_to</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+
+         <span class="cm">/* Process the next 0..4 packets */</span>
+   	 <span class="n">b</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
+   	 <span class="n">next</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
+   	 <span class="n">n_left_from</span> <span class="o">-=</span> <span class="mi">4</span><span class="p">;</span>
+   	<span class="p">}</span>
+     <span class="cm">/*</span>
+<span class="cm">      * Clean up 0...3 remaining packets at the end of the incoming frame</span>
+<span class="cm">      */</span>
+     <span class="k">while</span> <span class="p">(</span><span class="n">n_left_from</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+       <span class="p">{</span>
+         <span class="cm">/*</span>
+<span class="cm">          * $$$ Process one packet right here...</span>
+<span class="cm">          * set next[0..3] to send the packets where they need to go</span>
+<span class="cm">          */</span>
+          <span class="n">do_something_to</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+         <span class="cm">/* Process the next packet */</span>
+         <span class="n">b</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+         <span class="n">next</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+         <span class="n">n_left_from</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+       <span class="p">}</span>
+
+     <span class="cm">/*</span>
+<span class="cm">      * Send the packets along their respective next-node graph arcs</span>
+<span class="cm">      * Considerable locality of reference is expected, most if not all</span>
+<span class="cm">      * packets in the inbound vector will traverse the same next-node</span>
+<span class="cm">      * arc</span>
+<span class="cm">      */</span>
+     <span class="n">vlib_buffer_enqueue_to_next</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="n">nexts</span><span class="p">,</span> <span class="n">frame</span><span class="o">-&gt;</span><span class="n">n_vectors</span><span class="p">);</span>
+
+     <span class="k">return</span> <span class="n">frame</span><span class="o">-&gt;</span><span class="n">n_vectors</span><span class="p">;</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+<p>Given a packet processing task to implement, it pays to scout around
+looking for similar tasks, and think about using the same coding
+pattern. It is not uncommon to recode a given graph node dispatch function
+several times during performance optimization.</p>
+</div>
+<div class="section" id="creating-packets-from-scratch">
+<h2>Creating Packets from Scratch<a class="headerlink" href="#creating-packets-from-scratch" title="Permalink to this headline">¶</a></h2>
+<p>At times, it’s necessary to create packets from scratch and send
+them. Tasks like sending keepalives or actively opening connections
+come to mind. Its not difficult, but accurate buffer metadata setup is
+required.</p>
+<div class="section" id="allocating-buffers">
+<h3>Allocating Buffers<a class="headerlink" href="#allocating-buffers" title="Permalink to this headline">¶</a></h3>
+<p>Use vlib_buffer_alloc, which allocates a set of buffer indices. For
+low-performance applications, it’s OK to allocate one buffer at a
+time. Note that vlib_buffer_alloc(…) does NOT initialize buffer
+metadata. See below.</p>
+<p>In high-performance cases, allocate a vector of buffer indices,
+and hand them out from the end of the vector; decrement _vec_len(..)
+as buffer indices are allocated. See tcp_alloc_tx_buffers(…) and
+tcp_get_free_buffer_index(…) for an example.</p>
+</div>
+<div class="section" id="buffer-initialization-example">
+<h3>Buffer Initialization Example<a class="headerlink" href="#buffer-initialization-example" title="Permalink to this headline">¶</a></h3>
+<p>The following example shows the <strong>main points</strong>, but is not to be
+blindly cut-‘n-pasted.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>  <span class="n">u32</span> <span class="n">bi0</span><span class="p">;</span>
+  <span class="n">vlib_buffer_t</span> <span class="o">*</span><span class="n">b0</span><span class="p">;</span>
+  <span class="n">ip4_header_t</span> <span class="o">*</span><span class="n">ip</span><span class="p">;</span>
+  <span class="n">udp_header_t</span> <span class="o">*</span><span class="n">udp</span><span class="p">;</span>
+
+  <span class="cm">/* Allocate a buffer */</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">vlib_buffer_alloc</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bi0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">b0</span> <span class="o">=</span> <span class="n">vlib_get_buffer</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">bi0</span><span class="p">);</span>
+
+  <span class="cm">/* Initialize the buffer */</span>
+  <span class="n">VLIB_BUFFER_TRACE_TRAJECTORY_INIT</span> <span class="p">(</span><span class="n">b0</span><span class="p">);</span>
+
+  <span class="cm">/* At this point b0-&gt;current_data = 0, b0-&gt;current_length = 0 */</span>
+
+  <span class="cm">/*</span>
+<span class="cm">   * Copy data into the buffer. This example ASSUMES that data will fit</span>
+<span class="cm">   * in a single buffer, and is e.g. an ip4 packet.</span>
+<span class="cm">   */</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">have_packet_rewrite</span><span class="p">)</span>
+     <span class="p">{</span>
+       <span class="n">clib_memcpy</span> <span class="p">(</span><span class="n">b0</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">data</span><span class="p">));</span>
+       <span class="n">b0</span><span class="o">-&gt;</span><span class="n">current_length</span> <span class="o">=</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">data</span><span class="p">);</span>
+     <span class="p">}</span>
+  <span class="k">else</span>
+     <span class="p">{</span>
+       <span class="cm">/* OR, build a udp-ip packet (for example) */</span>
+       <span class="n">ip</span> <span class="o">=</span> <span class="n">vlib_buffer_get_current</span> <span class="p">(</span><span class="n">b0</span><span class="p">);</span>
+       <span class="n">udp</span> <span class="o">=</span> <span class="p">(</span><span class="n">udp_header_t</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="n">ip</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+       <span class="n">data_dst</span> <span class="o">=</span> <span class="p">(</span><span class="n">u8</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="n">udp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+       <span class="n">ip</span><span class="o">-&gt;</span><span class="n">ip_version_and_header_length</span> <span class="o">=</span> <span class="mh">0x45</span><span class="p">;</span>
+       <span class="n">ip</span><span class="o">-&gt;</span><span class="n">ttl</span> <span class="o">=</span> <span class="mi">254</span><span class="p">;</span>
+       <span class="n">ip</span><span class="o">-&gt;</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">IP_PROTOCOL_UDP</span><span class="p">;</span>
+       <span class="n">ip</span><span class="o">-&gt;</span><span class="n">length</span> <span class="o">=</span> <span class="n">clib_host_to_net_u16</span> <span class="p">(</span><span class="k">sizeof</span> <span class="p">(</span><span class="o">*</span><span class="n">ip</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span> <span class="p">(</span><span class="o">*</span><span class="n">udp</span><span class="p">)</span> <span class="o">+</span>
+                  <span class="n">vec_len</span><span class="p">(</span><span class="n">udp_data</span><span class="p">));</span>
+       <span class="n">ip</span><span class="o">-&gt;</span><span class="n">src_address</span><span class="p">.</span><span class="n">as_u32</span> <span class="o">=</span> <span class="n">src_address</span><span class="o">-&gt;</span><span class="n">as_u32</span><span class="p">;</span>
+       <span class="n">ip</span><span class="o">-&gt;</span><span class="n">dst_address</span><span class="p">.</span><span class="n">as_u32</span> <span class="o">=</span> <span class="n">dst_address</span><span class="o">-&gt;</span><span class="n">as_u32</span><span class="p">;</span>
+       <span class="n">udp</span><span class="o">-&gt;</span><span class="n">src_port</span> <span class="o">=</span> <span class="n">clib_host_to_net_u16</span> <span class="p">(</span><span class="n">src_port</span><span class="p">);</span>
+       <span class="n">udp</span><span class="o">-&gt;</span><span class="n">dst_port</span> <span class="o">=</span> <span class="n">clib_host_to_net_u16</span> <span class="p">(</span><span class="n">dst_port</span><span class="p">);</span>
+       <span class="n">udp</span><span class="o">-&gt;</span><span class="n">length</span> <span class="o">=</span> <span class="n">clib_host_to_net_u16</span> <span class="p">(</span><span class="n">vec_len</span> <span class="p">(</span><span class="n">udp_data</span><span class="p">));</span>
+       <span class="n">clib_memcpy</span> <span class="p">(</span><span class="n">data_dst</span><span class="p">,</span> <span class="n">udp_data</span><span class="p">,</span> <span class="n">vec_len</span><span class="p">(</span><span class="n">udp_data</span><span class="p">));</span>
+
+       <span class="k">if</span> <span class="p">(</span><span class="n">compute_udp_checksum</span><span class="p">)</span>
+         <span class="p">{</span>
+           <span class="cm">/* RFC 7011 section 10.3.2. */</span>
+           <span class="n">udp</span><span class="o">-&gt;</span><span class="n">checksum</span> <span class="o">=</span> <span class="n">ip4_tcp_udp_compute_checksum</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">ip</span><span class="p">);</span>
+           <span class="k">if</span> <span class="p">(</span><span class="n">udp</span><span class="o">-&gt;</span><span class="n">checksum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+             <span class="n">udp</span><span class="o">-&gt;</span><span class="n">checksum</span> <span class="o">=</span> <span class="mh">0xffff</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="n">b0</span><span class="o">-&gt;</span><span class="n">current_length</span> <span class="o">=</span> <span class="n">vec_len</span> <span class="p">(</span><span class="k">sizeof</span> <span class="p">(</span><span class="o">*</span><span class="n">ip</span><span class="p">)</span> <span class="o">+</span> <span class="k">sizeof</span> <span class="p">(</span><span class="o">*</span><span class="n">udp</span><span class="p">)</span> <span class="o">+</span>
+                                   <span class="n">vec_len</span> <span class="p">(</span><span class="n">udp_data</span><span class="p">));</span>
+
+    <span class="p">}</span>
+  <span class="n">b0</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">|=</span> <span class="p">(</span><span class="n">VLIB_BUFFER_TOTAL_LENGTH_VALID</span><span class="p">;</span>
+
+  <span class="cm">/* sw_if_index 0 is the &quot;local&quot; interface, which always exists */</span>
+  <span class="n">vnet_buffer</span> <span class="p">(</span><span class="n">b0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sw_if_index</span><span class="p">[</span><span class="n">VLIB_RX</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="cm">/* Use the default FIB index for tx lookup. Set non-zero to use another fib */</span>
+  <span class="n">vnet_buffer</span> <span class="p">(</span><span class="n">b0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">sw_if_index</span><span class="p">[</span><span class="n">VLIB_TX</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If your use-case calls for large packet transmission, use
+vlib_buffer_chain_append_data_with_alloc(…) to create the requisite
+buffer chain.</p>
+</div>
+<div class="section" id="enqueueing-packets-for-lookup-and-transmission">
+<h3>Enqueueing packets for lookup and transmission<a class="headerlink" href="#enqueueing-packets-for-lookup-and-transmission" title="Permalink to this headline">¶</a></h3>
+<p>The simplest way to send a set of packets is to use
+vlib_get_frame_to_node(…) to allocate fresh frame(s) to
+ip4_lookup_node or ip6_lookup_node, add the constructed buffer
+indices, and dispatch the frame using vlib_put_frame_to_node(…).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="n">vlib_frame_t</span> <span class="o">*</span><span class="n">f</span><span class="p">;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">vlib_get_frame_to_node</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">ip4_lookup_node</span><span class="p">.</span><span class="n">index</span><span class="p">);</span>
+    <span class="n">f</span><span class="o">-&gt;</span><span class="n">n_vectors</span> <span class="o">=</span> <span class="n">vec_len</span><span class="p">(</span><span class="n">buffer_indices_to_send</span><span class="p">);</span>
+    <span class="n">to_next</span> <span class="o">=</span> <span class="n">vlib_frame_vector_args</span> <span class="p">(</span><span class="n">f</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vec_len</span> <span class="p">(</span><span class="n">buffer_indices_to_send</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="n">to_next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">buffer_indices_to_send</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+    <span class="n">vlib_put_frame_to_node</span> <span class="p">(</span><span class="n">vm</span><span class="p">,</span> <span class="n">ip4_lookup_node_index</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>It is inefficient to allocate and schedule single packet frames.
+That’s typical in case you need to send one packet per second, but
+should <strong>not</strong> occur in a for-loop!</p>
+</div>
+</div>
+<div class="section" id="packet-tracer">
+<h2>Packet tracer<a class="headerlink" href="#packet-tracer" title="Permalink to this headline">¶</a></h2>
+<p>Vlib includes a frame element [packet] trace facility, with a simple
+debug CLI interface. The cli is straightforward: “trace add
+input-node-name count” to start capturing packet traces.</p>
+<p>To trace 100 packets on a typical x86_64 system running the dpdk
+plugin: “trace add dpdk-input 100”. When using the packet generator:
+“trace add pg-input 100”</p>
+<p>To display the packet trace: “show trace”</p>
+<p>Each graph node has the opportunity to capture its own trace data. It is
+almost always a good idea to do so. The trace capture APIs are simple.</p>
+<p>The packet capture APIs snapshoot binary data, to minimize processing at
+capture time. Each participating graph node initialization provides a
+vppinfra format-style user function to pretty-print data when required
+by the VLIB “show trace” command.</p>
+<p>Set the VLIB node registration “.format_trace” member to the name of
+the per-graph node format function.</p>
+<p>Here’s a simple example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="n">u8</span> <span class="o">*</span> <span class="nf">my_node_format_trace</span> <span class="p">(</span><span class="n">u8</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">va_list</span> <span class="o">*</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">vlib_main_t</span> <span class="o">*</span> <span class="n">vm</span> <span class="o">=</span> <span class="n">va_arg</span> <span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">vlib_main_t</span> <span class="o">*</span><span class="p">);</span>
+        <span class="n">vlib_node_t</span> <span class="o">*</span> <span class="n">node</span> <span class="o">=</span> <span class="n">va_arg</span> <span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">vlib_node_t</span> <span class="o">*</span><span class="p">);</span>
+        <span class="n">my_node_trace_t</span> <span class="o">*</span> <span class="n">t</span> <span class="o">=</span> <span class="n">va_arg</span> <span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">my_trace_t</span> <span class="o">*</span><span class="p">);</span>
+
+        <span class="n">s</span> <span class="o">=</span> <span class="n">format</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s">&quot;My trace data was: %d&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">-&gt;&lt;</span><span class="n">whatever</span><span class="o">&gt;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>The trace framework hands the per-node format function the data it
+captured as the packet whizzed by. The format function pretty-prints the
+data as desired.</p>
+</div>
+<div class="section" id="graph-dispatcher-pcap-tracing">
+<h2>Graph Dispatcher Pcap Tracing<a class="headerlink" href="#graph-dispatcher-pcap-tracing" title="Permalink to this headline">¶</a></h2>
+<p>The vpp graph dispatcher knows how to capture vectors of packets in pcap
+format as they’re dispatched. The pcap captures are as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">VPP</span> <span class="n">graph</span> <span class="n">dispatch</span> <span class="n">trace</span> <span class="n">record</span> <span class="n">description</span><span class="p">:</span>
+
+        <span class="mi">0</span>                   <span class="mi">1</span>                   <span class="mi">2</span>                   <span class="mi">3</span>
+        <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">0</span> <span class="mi">1</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+       <span class="o">|</span> <span class="n">Major</span> <span class="n">Version</span> <span class="o">|</span> <span class="n">Minor</span> <span class="n">Version</span> <span class="o">|</span> <span class="n">NStrings</span>      <span class="o">|</span> <span class="n">ProtoHint</span>     <span class="o">|</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+       <span class="o">|</span> <span class="n">Buffer</span> <span class="n">index</span> <span class="p">(</span><span class="n">big</span> <span class="n">endian</span><span class="p">)</span>                                     <span class="o">|</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+       <span class="o">+</span> <span class="n">VPP</span> <span class="n">graph</span> <span class="n">node</span> <span class="n">name</span> <span class="o">...</span>     <span class="o">...</span>               <span class="o">|</span> <span class="n">NULL</span> <span class="n">octet</span>    <span class="o">|</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+       <span class="o">|</span> <span class="n">Buffer</span> <span class="n">Metadata</span> <span class="o">...</span> <span class="o">...</span>                       <span class="o">|</span> <span class="n">NULL</span> <span class="n">octet</span>    <span class="o">|</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+       <span class="o">|</span> <span class="n">Buffer</span> <span class="n">Opaque</span> <span class="o">...</span> <span class="o">...</span>                         <span class="o">|</span> <span class="n">NULL</span> <span class="n">octet</span>    <span class="o">|</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+       <span class="o">|</span> <span class="n">Buffer</span> <span class="n">Opaque</span> <span class="mi">2</span> <span class="o">...</span> <span class="o">...</span>                       <span class="o">|</span> <span class="n">NULL</span> <span class="n">octet</span>    <span class="o">|</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+       <span class="o">|</span> <span class="n">VPP</span> <span class="n">ASCII</span> <span class="n">packet</span> <span class="n">trace</span> <span class="p">(</span><span class="k">if</span> <span class="n">NStrings</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span>      <span class="o">|</span> <span class="n">NULL</span> <span class="n">octet</span>    <span class="o">|</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+       <span class="o">|</span> <span class="n">Packet</span> <span class="n">data</span> <span class="p">(</span><span class="n">up</span> <span class="n">to</span> <span class="mi">16</span><span class="n">K</span><span class="p">)</span>                                       <span class="o">|</span>
+       <span class="o">+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+</span>
+</pre></div>
+</div>
+<p>Graph dispatch records comprise a version stamp, an indication of how
+many NULL-terminated strings will follow the record header and preceed
+packet data, and a protocol hint.</p>
+<p>The buffer index is an opaque 32-bit cookie which allows consumers of
+these data to easily filter/track single packets as they traverse the
+forwarding graph.</p>
+<p>Multiple records per packet are normal, and to be expected. Packets
+will appear multiple times as they traverse the vpp forwarding
+graph. In this way, vpp graph dispatch traces are significantly
+different from regular network packet captures from an end-station.
+This property complicates stateful packet analysis.</p>
+<p>Restricting stateful analysis to records from a single vpp graph node
+such as “ethernet-input” seems likely to improve the situation.</p>
+<p>As of this writing: major version = 1, minor version = 0. Nstrings
+SHOULD be 4 or 5. Consumers SHOULD be wary values less than 4 or
+greater than 5. They MAY attempt to display the claimed number of
+strings, or they MAY treat the condition as an error.</p>
+<p>Here is the current set of protocol hints:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>    <span class="k">typedef</span> <span class="k">enum</span>
+      <span class="p">{</span>
+        <span class="n">VLIB_NODE_PROTO_HINT_NONE</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">VLIB_NODE_PROTO_HINT_ETHERNET</span><span class="p">,</span>
+        <span class="n">VLIB_NODE_PROTO_HINT_IP4</span><span class="p">,</span>
+        <span class="n">VLIB_NODE_PROTO_HINT_IP6</span><span class="p">,</span>
+        <span class="n">VLIB_NODE_PROTO_HINT_TCP</span><span class="p">,</span>
+        <span class="n">VLIB_NODE_PROTO_HINT_UDP</span><span class="p">,</span>
+        <span class="n">VLIB_NODE_N_PROTO_HINTS</span><span class="p">,</span>
+      <span class="p">}</span> <span class="n">vlib_node_proto_hint_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Example: VLIB_NODE_PROTO_HINT_IP6 means that the first octet of packet
+data SHOULD be 0x60, and should begin an ipv6 packet header.</p>
+<p>Downstream consumers of these data SHOULD pay attention to the
+protocol hint. They MUST tolerate inaccurate hints, which MAY occur
+from time to time.</p>
+<div class="section" id="dispatch-pcap-trace-debug-cli">
+<h3>Dispatch Pcap Trace Debug CLI<a class="headerlink" href="#dispatch-pcap-trace-debug-cli" title="Permalink to this headline">¶</a></h3>
+<p>To start a dispatch trace capture of up to 10,000 trace records:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">pcap</span> <span class="n">dispatch</span> <span class="n">trace</span> <span class="n">on</span> <span class="nb">max</span> <span class="mi">10000</span> <span class="n">file</span> <span class="n">dispatch</span><span class="o">.</span><span class="n">pcap</span>
+</pre></div>
+</div>
+<p>To start a dispatch trace which will also include standard vpp packet
+tracing for packets which originate in dpdk-input:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">pcap</span> <span class="n">dispatch</span> <span class="n">trace</span> <span class="n">on</span> <span class="nb">max</span> <span class="mi">10000</span> <span class="n">file</span> <span class="n">dispatch</span><span class="o">.</span><span class="n">pcap</span> <span class="n">buffer</span><span class="o">-</span><span class="n">trace</span> <span class="n">dpdk</span><span class="o">-</span><span class="nb">input</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+<p>To save the pcap trace, e.g. in /tmp/dispatch.pcap:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">pcap</span> <span class="n">dispatch</span> <span class="n">trace</span> <span class="n">off</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wireshark-dissection-of-dispatch-pcap-traces">
+<h3>Wireshark dissection of dispatch pcap traces<a class="headerlink" href="#wireshark-dissection-of-dispatch-pcap-traces" title="Permalink to this headline">¶</a></h3>
+<p>It almost goes without saying that we built a companion wireshark
+dissector to display these traces. As of this writing, we have
+upstreamed the wireshark dissector.</p>
+<p>Since it will be a while before wireshark/master/latest makes it into
+all of the popular Linux distros, please see the “How to build a vpp
+dispatch trace aware Wireshark” page for build info.</p>
+<p>Here is a sample packet dissection, with some fields omitted for
+clarity.  The point is that the wireshark dissector accurately
+displays <strong>all</strong> of the vpp buffer metadata, and the name of the graph
+node in question.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    Frame 1: 2216 bytes on wire (17728 bits), 2216 bytes captured (17728 bits)
+        Encapsulation type: USER 13 (58)
+        [Protocols in frame: vpp:vpp-metadata:vpp-opaque:vpp-opaque2:eth:ethertype:ip:tcp:data]
+    VPP Dispatch Trace
+        BufferIndex: 0x00036663
+    NodeName: ethernet-input
+    VPP Buffer Metadata
+        Metadata: flags:
+        Metadata: current_data: 0, current_length: 102
+        Metadata: current_config_index: 0, flow_id: 0, next_buffer: 0
+        Metadata: error: 0, n_add_refs: 0, buffer_pool_index: 0
+        Metadata: trace_index: 0, recycle_count: 0, len_not_first_buf: 0
+        Metadata: free_list_index: 0
+        Metadata:
+    VPP Buffer Opaque
+        Opaque: raw: 00000007 ffffffff 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+        Opaque: sw_if_index[VLIB_RX]: 7, sw_if_index[VLIB_TX]: -1
+        Opaque: L2 offset 0, L3 offset 0, L4 offset 0, feature arc index 0
+        Opaque: ip.adj_index[VLIB_RX]: 0, ip.adj_index[VLIB_TX]: 0
+        Opaque: ip.flow_hash: 0x0, ip.save_protocol: 0x0, ip.fib_index: 0
+        Opaque: ip.save_rewrite_length: 0, ip.rpf_id: 0
+        Opaque: ip.icmp.type: 0 ip.icmp.code: 0, ip.icmp.data: 0x0
+        Opaque: ip.reass.next_index: 0, ip.reass.estimated_mtu: 0
+        Opaque: ip.reass.fragment_first: 0 ip.reass.fragment_last: 0
+        Opaque: ip.reass.range_first: 0 ip.reass.range_last: 0
+        Opaque: ip.reass.next_range_bi: 0x0, ip.reass.ip6_frag_hdr_offset: 0
+        Opaque: mpls.ttl: 0, mpls.exp: 0, mpls.first: 0, mpls.save_rewrite_length: 0, mpls.bier.n_bytes: 0
+        Opaque: l2.feature_bitmap: 00000000, l2.bd_index: 0, l2.l2_len: 0, l2.shg: 0, l2.l2fib_sn: 0, l2.bd_age: 0
+        Opaque: l2.feature_bitmap_input:   none configured, L2.feature_bitmap_output:   none configured
+        Opaque: l2t.next_index: 0, l2t.session_index: 0
+        Opaque: l2_classify.table_index: 0, l2_classify.opaque_index: 0, l2_classify.hash: 0x0
+        Opaque: policer.index: 0
+        Opaque: ipsec.flags: 0x0, ipsec.sad_index: 0
+        Opaque: map.mtu: 0
+        Opaque: map_t.v6.saddr: 0x0, map_t.v6.daddr: 0x0, map_t.v6.frag_offset: 0, map_t.v6.l4_offset: 0
+        Opaque: map_t.v6.l4_protocol: 0, map_t.checksum_offset: 0, map_t.mtu: 0
+        Opaque: ip_frag.mtu: 0, ip_frag.next_index: 0, ip_frag.flags: 0x0
+        Opaque: cop.current_config_index: 0
+        Opaque: lisp.overlay_afi: 0
+        Opaque: tcp.connection_index: 0, tcp.seq_number: 0, tcp.seq_end: 0, tcp.ack_number: 0, tcp.hdr_offset: 0, tcp.data_offset: 0
+        Opaque: tcp.data_len: 0, tcp.flags: 0x0
+        Opaque: sctp.connection_index: 0, sctp.sid: 0, sctp.ssn: 0, sctp.tsn: 0, sctp.hdr_offset: 0
+        Opaque: sctp.data_offset: 0, sctp.data_len: 0, sctp.subconn_idx: 0, sctp.flags: 0x0
+        Opaque: snat.flags: 0x0
+        Opaque:
+    VPP Buffer Opaque2
+        Opaque2: raw: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+        Opaque2: qos.bits: 0, qos.source: 0
+        Opaque2: loop_counter: 0
+        Opaque2: gbp.flags: 0, gbp.src_epg: 0
+        Opaque2: pg_replay_timestamp: 0
+        Opaque2:
+    Ethernet II, Src: 06:d6:01:41:3b:92 (06:d6:01:41:3b:92), Dst: IntelCor_3d:f6    Transmission Control Protocol, Src Port: 22432, Dst Port: 54084, Seq: 1, Ack: 1, Len: 36
+        Source Port: 22432
+        Destination Port: 54084
+        TCP payload (36 bytes)
+    Data (36 bytes)
+
+    0000  cf aa 8b f5 53 14 d4 c7 29 75 3e 56 63 93 9d 11   ....S...)u&gt;Vc...
+    0010  e5 f2 92 27 86 56 4c 21 ce c5 23 46 d7 eb ec 0d   ...&#39;.VL!..#F....
+    0020  a8 98 36 5a                                       ..6Z
+        Data: cfaa8bf55314d4c729753e5663939d11e5f2922786564c21…
+        [Length: 36]
+</pre></div>
+</div>
+<p>It’s a matter of a couple of mouse-clicks in Wireshark to filter the
+trace to a specific buffer index. With that specific kind of filtration,
+one can watch a packet walk through the forwarding graph; noting any/all
+metadata changes, header checksum changes, and so forth.</p>
+<p>This should be of significant value when developing new vpp graph
+nodes. If new code mispositions b-&gt;current_data, it will be completely
+obvious from looking at the dispatch trace in wireshark.</p>
+</div>
+</div>
+<div class="section" id="pcap-rx-tx-and-drop-tracing">
+<h2>pcap rx, tx, and drop tracing<a class="headerlink" href="#pcap-rx-tx-and-drop-tracing" title="Permalink to this headline">¶</a></h2>
+<p>vpp also supports rx, tx, and drop packet capture in pcap format,
+through the “pcap trace” debug CLI command.</p>
+<p>This command is used to start or stop a packet capture, or show the
+status of packet capture. Each of “pcap trace rx”, “pcap trace tx”,
+and “pcap trace drop” is implemented.  Supply one or more of “rx”,
+“tx”, and “drop” to enable multiple simultaneous capture types.</p>
+<p>These commands have the following optional parameters:</p>
+<ul class="simple">
+<li><p><b>rx</b> - trace received packets.</p></li>
+<li><p><b>tx</b> - trace transmitted packets.</p></li>
+<li><p><b>drop</b> - trace dropped packets.</p></li>
+<li><p><b>max <em>nnnn</em></b> - file size, number of packet captures. Once
+<nnnn> packets have been received, the trace buffer buffer is flushed
+to the indicated file. Defaults to 1000. Can only be updated if packet
+capture is off.</p></li>
+<li><p><b>max-bytes-per-pkt <em>nnnn</em></b> - maximum number of bytes to trace
+on a per-packet basis. Must be &gt;32 and less than 9000. Default value:
+512.</p></li>
+<li><p><b>filter</b> - Use the pcap rx / tx / drop trace filter, which must
+be configured. Use <b>classify filter pcap…</b> to configure the
+filter. The filter will only be executed if the per-interface or
+any-interface tests fail.</p></li>
+<li><p><b>intfc <em>interface</em> | <em>any</em></b> - Used to specify a given interface,
+or use ‘<em>any</em>’ to run packet capture on all interfaces.
+‘<em>any</em>’ is the default if not provided. Settings from a previous
+packet capture are preserved, so ‘<em>any</em>’ can be used to reset
+the interface setting.</p></li>
+<li><p><b>file <em>filename</em></b> - Used to specify the output filename. The
+file will be placed in the ‘<em>/tmp</em>’ directory.  If <em>filename</em>
+already exists, file will be overwritten. If no filename is
+provided, ‘<em>/tmp/rx.pcap or tx.pcap</em>’ will be used, depending
+on capture direction. Can only be updated when pcap capture is off.</p></li>
+<li><p><b>status</b> - Displays the current status and configured
+attributes associated with a packet capture. If packet capture is in
+progress, ‘<em>status</em>’ also will return the number of packets
+currently in the buffer. Any additional attributes entered on
+command line with a ‘<em>status</em>’ request will be ignored.</p></li>
+<li><p><b>filter</b> - Capture packets which match the current packet
+trace filter set. See next section. Configure the capture filter
+first.</p></li>
+</ul>
+</div>
+<div class="section" id="packet-trace-capture-filtering">
+<h2>packet trace capture filtering<a class="headerlink" href="#packet-trace-capture-filtering" title="Permalink to this headline">¶</a></h2>
+<p>The “classify filter pcap | <interface-name> | trace” debug CLI command
+constructs an arbitrary set of packet classifier tables for use with
+“pcap rx | tx | drop trace,” and with the vpp packet tracer on a
+per-interface or system-wide basis.</p>
+<p>Packets which match a rule in the classifier table chain will be
+traced. The tables are automatically ordered so that matches in the
+most specific table are tried first.</p>
+<p>It’s reasonably likely that folks will configure a single table with
+one or two matches. As a result, we configure 8 hash buckets and 128K
+of match rule space by default. One can override the defaults by
+specifying “buckets <nnn>” and “memory-size <xxx>” as desired.</p>
+<p>To build up complex filter chains, repeatedly issue the classify
+filter debug CLI command. Each command must specify the desired mask
+and match values. If a classifier table with a suitable mask already
+exists, the CLI command adds a match rule to the existing table.  If
+not, the CLI command add a new table and the indicated mask rule</p>
+<div class="section" id="configure-a-simple-pcap-classify-filter">
+<h3>Configure a simple pcap classify filter<a class="headerlink" href="#configure-a-simple-pcap-classify-filter" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="n">pcap</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.11</span>
+    <span class="n">pcap</span> <span class="n">trace</span> <span class="n">rx</span> <span class="nb">max</span> <span class="mi">100</span> <span class="nb">filter</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-a-simple-per-interface-capture-filter">
+<h3>Configure a simple per-interface capture filter<a class="headerlink" href="#configure-a-simple-per-interface-capture-filter" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="n">GigabitEthernet3</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.11</span><span class="s2">&quot;</span>
+    <span class="n">pcap</span> <span class="n">trace</span> <span class="n">rx</span> <span class="nb">max</span> <span class="mi">100</span> <span class="n">intfc</span> <span class="n">GigabitEthernet3</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Note that per-interface capture filters are <em>always</em> applied.</p>
+</div>
+<div class="section" id="clear-per-interface-capture-filters">
+<h3>Clear per-interface capture filters<a class="headerlink" href="#clear-per-interface-capture-filters" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="n">GigabitEthernet3</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span> <span class="k">del</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-another-fairly-simple-pcap-classify-filter">
+<h3>Configure another fairly simple pcap classify filter<a class="headerlink" href="#configure-another-fairly-simple-pcap-classify-filter" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">classify</span> <span class="nb">filter</span> <span class="n">pcap</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">dst</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.10</span> <span class="n">dst</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">2.10</span>
+   <span class="n">pcap</span> <span class="n">trace</span> <span class="n">tx</span> <span class="nb">max</span> <span class="mi">100</span> <span class="nb">filter</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-a-vpp-packet-tracer-filter">
+<h3>Configure a vpp packet tracer filter<a class="headerlink" href="#configure-a-vpp-packet-tracer-filter" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">classify</span> <span class="nb">filter</span> <span class="n">trace</span> <span class="n">mask</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="n">dst</span> <span class="n">match</span> <span class="n">l3</span> <span class="n">ip4</span> <span class="n">src</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.10</span> <span class="n">dst</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">2.10</span>
+   <span class="n">trace</span> <span class="n">add</span> <span class="n">dpdk</span><span class="o">-</span><span class="nb">input</span> <span class="mi">100</span> <span class="nb">filter</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="clear-all-current-classifier-filters">
+<h3>Clear all current classifier filters<a class="headerlink" href="#clear-all-current-classifier-filters" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">classify</span> <span class="nb">filter</span> <span class="p">[</span><span class="n">pcap</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">interface</span><span class="o">&gt;</span> <span class="o">|</span> <span class="n">trace</span><span class="p">]</span> <span class="k">del</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="to-inspect-the-classifier-tables">
+<h3>To inspect the classifier tables<a class="headerlink" href="#to-inspect-the-classifier-tables" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">show</span> <span class="n">classify</span> <span class="n">table</span> <span class="p">[</span><span class="n">verbose</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The verbose form displays all of the match rules, with hit-counters.</p>
+</div>
+<div class="section" id="terse-description-of-the-mask-xxx-syntax">
+<h3>Terse description of the “mask <xxx>” syntax:<a class="headerlink" href="#terse-description-of-the-mask-xxx-syntax" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">l2</span> <span class="n">src</span> <span class="n">dst</span> <span class="n">proto</span> <span class="n">tag1</span> <span class="n">tag2</span> <span class="n">ignore</span><span class="o">-</span><span class="n">tag1</span> <span class="n">ignore</span><span class="o">-</span><span class="n">tag2</span> <span class="n">cos1</span> <span class="n">cos2</span> <span class="n">dot1q</span> <span class="n">dot1ad</span>
+    <span class="n">l3</span> <span class="n">ip4</span> <span class="o">&lt;</span><span class="n">ip4</span><span class="o">-</span><span class="n">mask</span><span class="o">&gt;</span> <span class="n">ip6</span> <span class="o">&lt;</span><span class="n">ip6</span><span class="o">-</span><span class="n">mask</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">ip4</span><span class="o">-</span><span class="n">mask</span><span class="o">&gt;</span> <span class="n">version</span> <span class="n">hdr_length</span> <span class="n">src</span><span class="p">[</span><span class="o">/</span><span class="n">width</span><span class="p">]</span> <span class="n">dst</span><span class="p">[</span><span class="o">/</span><span class="n">width</span><span class="p">]</span>
+               <span class="n">tos</span> <span class="n">length</span> <span class="n">fragment_id</span> <span class="n">ttl</span> <span class="n">protocol</span> <span class="n">checksum</span>
+    <span class="o">&lt;</span><span class="n">ip6</span><span class="o">-</span><span class="n">mask</span><span class="o">&gt;</span> <span class="n">version</span> <span class="n">traffic</span><span class="o">-</span><span class="k">class</span> <span class="nc">flow</span><span class="o">-</span><span class="n">label</span> <span class="n">src</span> <span class="n">dst</span> <span class="n">proto</span>
+               <span class="n">payload_length</span> <span class="n">hop_limit</span> <span class="n">protocol</span>
+    <span class="n">l4</span> <span class="n">tcp</span> <span class="o">&lt;</span><span class="n">tcp</span><span class="o">-</span><span class="n">mask</span><span class="o">&gt;</span> <span class="n">udp</span> <span class="o">&lt;</span><span class="n">udp_mask</span><span class="o">&gt;</span> <span class="n">src_port</span> <span class="n">dst_port</span>
+    <span class="o">&lt;</span><span class="n">tcp</span><span class="o">-</span><span class="n">mask</span><span class="o">&gt;</span> <span class="n">src</span> <span class="n">dst</span>  <span class="c1"># ports</span>
+    <span class="o">&lt;</span><span class="n">udp</span><span class="o">-</span><span class="n">mask</span><span class="o">&gt;</span> <span class="n">src_port</span> <span class="n">dst_port</span>
+</pre></div>
+</div>
+<p>To construct <strong>matches</strong>, add the values to match after the indicated
+keywords in the mask syntax. For example: “… mask l3 ip4 src” -&gt;
+“… match l3 ip4 src 192.168.1.11”</p>
+</div>
+</div>
+<div class="section" id="vpp-packet-generator">
+<h2>VPP Packet Generator<a class="headerlink" href="#vpp-packet-generator" title="Permalink to this headline">¶</a></h2>
+<p>We use the VPP packet generator to inject packets into the forwarding
+graph. The packet generator can replay pcap traces, and generate packets
+out of whole cloth at respectably high performance.</p>
+<p>The VPP pg enables quite a variety of use-cases, ranging from functional
+testing of new data-plane nodes to regression testing to performance
+tuning.</p>
+</div>
+<div class="section" id="pg-setup-scripts">
+<h2>PG setup scripts<a class="headerlink" href="#pg-setup-scripts" title="Permalink to this headline">¶</a></h2>
+<p>PG setup scripts describe traffic in detail, and leverage vpp debug
+CLI mechanisms. It’s reasonably unusual to construct a pg setup script
+which doesn’t include a certain amount of interface and FIB configuration.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">loop</span> <span class="n">create</span>
+    <span class="nb">set</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">address</span> <span class="n">loop0</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span><span class="o">/</span><span class="mi">24</span>
+    <span class="nb">set</span> <span class="nb">int</span> <span class="n">state</span> <span class="n">loop0</span> <span class="n">up</span>
+
+    <span class="n">packet</span><span class="o">-</span><span class="n">generator</span> <span class="n">new</span> <span class="p">{</span>
+        <span class="n">name</span> <span class="n">pg0</span>
+        <span class="n">limit</span> <span class="mi">100</span>
+        <span class="n">rate</span> <span class="mf">1e6</span>
+        <span class="n">size</span> <span class="mi">300</span><span class="o">-</span><span class="mi">300</span>
+        <span class="n">interface</span> <span class="n">loop0</span>
+        <span class="n">node</span> <span class="n">ethernet</span><span class="o">-</span><span class="nb">input</span>
+        <span class="n">data</span> <span class="p">{</span> <span class="n">IP4</span><span class="p">:</span> <span class="mf">1.2</span><span class="o">.</span><span class="mi">3</span> <span class="o">-&gt;</span> <span class="mf">4.5</span><span class="o">.</span><span class="mi">6</span>
+               <span class="n">UDP</span><span class="p">:</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.10</span> <span class="o">-</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.254</span> <span class="o">-&gt;</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">2.10</span>
+               <span class="n">UDP</span><span class="p">:</span> <span class="mi">1234</span> <span class="o">-&gt;</span> <span class="mi">2345</span>
+               <span class="n">incrementing</span> <span class="mi">286</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>A packet generator stream definition includes two major sections:</p>
+<ul class="simple">
+<li><p>Stream Parameter Setup</p></li>
+<li><p>Packet Data</p></li>
+</ul>
+<div class="section" id="stream-parameter-setup">
+<h3>Stream Parameter Setup<a class="headerlink" href="#stream-parameter-setup" title="Permalink to this headline">¶</a></h3>
+<p>Given the example above, let’s look at how to set up stream
+parameters:</p>
+<ul class="simple">
+<li><p><strong>name pg0</strong> - Name of the stream, in this case “pg0”</p></li>
+<li><p><strong>limit 1000</strong> - Number of packets to send when the stream is
+enabled. “limit 0” means send packets continuously.</p></li>
+<li><p><strong>maxframe &lt;nnn&gt;</strong> - Maximum frame size. Handy for injecting
+multiple frames no larger than &lt;nnn&gt;. Useful for checking dual /
+quad loop codes</p></li>
+<li><p><strong>rate 1e6</strong> - Packet injection rate, in this case 1 MPPS. When not
+specified, the packet generator injects packets as fast as possible</p></li>
+<li><p><strong>size 300-300</strong> - Packet size range, in this case send 300-byte packets</p></li>
+<li><p><strong>interface loop0</strong> - Packets appear as if they were received on the
+specified interface. This datum is used in multiple ways: to select
+graph arc feature configuration, to select IP FIBs.  Configure
+features e.g. on loop0 to exercise those features.</p></li>
+<li><p><strong>tx-interface &lt;name&gt;</strong> - Packets will be transmitted on the
+indicated interface. Typically required only when injecting packets
+into post-IP-rewrite graph nodes.</p></li>
+<li><p><strong>pcap &lt;filename&gt;</strong> - Replay packets from the indicated pcap
+capture file. “make test” makes extensive use of this feature:
+generate packets using scapy, save them in a .pcap file, then inject
+them into the vpp graph via a vpp pg “pcap &lt;filename&gt;” stream
+definition</p></li>
+<li><p><strong>worker &lt;nn&gt;</strong> - Generate packets for the stream using the
+indicated vpp worker thread. The vpp pg generates and injects O(10
+MPPS / core).  Use multiple stream definitions and worker threads to
+generate and inject enough traffic to easily fill a 40 gbit pipe with
+small packets.</p></li>
+</ul>
+</div>
+<div class="section" id="data-definition">
+<h3>Data definition<a class="headerlink" href="#data-definition" title="Permalink to this headline">¶</a></h3>
+<p>Packet generator data definitions make use of a layered implementation
+strategy. Networking layers are specified in order, and the notation can
+seem a bit counter-intuitive. In the example above, the data
+definition stanza constructs a set of L2-L4 headers layers, and
+uses an incrementing fill pattern to round out the requested 300-byte
+packets.</p>
+<ul class="simple">
+<li><p><strong>IP4: 1.2.3 -&gt; 4.5.6</strong> - Construct an L2 (MAC) header with the ip4
+ethertype (0x800), src MAC address of 00:01:00:02:00:03 and dst MAC
+address of 00:04:00:05:00:06. Mac addresses may be specified in either
+<em>xxxx.xxxx.xxxx</em> format or <em>xx:xx:xx:xx:xx:xx</em> format.</p></li>
+<li><p><strong>UDP: 192.168.1.10 - 192.168.1.254 -&gt; 192.168.2.10</strong> - Construct an
+incrementing set of L3 (IPv4) headers for successive packets with
+source addresses ranging from .10 to .254. All packets in the stream
+have a constant dest address of 192.168.2.10. Set the protocol field
+to 17, UDP.</p></li>
+<li><p><strong>UDP: 1234 -&gt; 2345</strong> - Set the UDP source and destination ports to
+1234 and 2345, respectively</p></li>
+<li><p><strong>incrementing 256</strong> - Insert up to 256 incrementing data bytes.</p></li>
+</ul>
+<p>Obvious variations involve “s/IP4/IP6/” in the above, along with
+changing from IPv4 to IPv6 address notation.</p>
+<p>The vpp pg can set any / all IPv4 header fields, including tos, packet
+length, mf / df / fragment id and offset, ttl, protocol, checksum, and
+src/dst addresses. Take a look at ../src/vnet/ip/ip[46]_pg.c for
+details.</p>
+<p>If all else fails, specify the entire packet data in hex:</p>
+<ul class="simple">
+<li><p><strong>hex 0xabcd…</strong> - copy hex data verbatim into the packet</p></li>
+</ul>
+<p>When replaying pcap files (“<strong>pcap &lt;filename&gt;</strong>”), do not specify a
+data stanza.</p>
+</div>
+<div class="section" id="diagnosing-packet-generator-new-parse-failures">
+<h3>Diagnosing “packet-generator new” parse failures<a class="headerlink" href="#diagnosing-packet-generator-new-parse-failures" title="Permalink to this headline">¶</a></h3>
+<p>If you want to inject packets into a brand-new graph node, remember
+to tell the packet generator debug CLI how to parse the packet
+data stanza.</p>
+<p>If the node expects L2 Ethernet MAC headers, specify “.unformat_buffer
+= unformat_ethernet_header”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">/*</span> <span class="o">*</span><span class="n">INDENT</span><span class="o">-</span><span class="n">OFF</span><span class="o">*</span> <span class="o">*/</span>
+    <span class="n">VLIB_REGISTER_NODE</span> <span class="p">(</span><span class="n">ethernet_input_node</span><span class="p">)</span> <span class="o">=</span>
+    <span class="p">{</span>
+      <span class="o">&lt;</span><span class="n">snip</span><span class="o">&gt;</span>
+      <span class="o">.</span><span class="n">unformat_buffer</span> <span class="o">=</span> <span class="n">unformat_ethernet_header</span><span class="p">,</span>
+      <span class="o">&lt;</span><span class="n">snip</span><span class="o">&gt;</span>
+    <span class="p">};</span>
+</pre></div>
+</div>
+<p>Beyond that, it may be necessary to set breakpoints in
+…/src/vnet/pg/cli.c. Debug image suggested.</p>
+<p>When debugging new nodes, it may be far simpler to directly inject
+ethernet frames - and add a corresponding vlib_buffer_advance in the
+new node - than to modify the packet generator.</p>
+</div>
+</div>
+<div class="section" id="debug-cli">
+<h2>Debug CLI<a class="headerlink" href="#debug-cli" title="Permalink to this headline">¶</a></h2>
+<p>The descriptions above describe the “packet-generator new” debug CLI in
+detail.</p>
+<p>Additional debug CLI commands include:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vpp</span><span class="c1"># packet-generator enable [&lt;stream-name&gt;]</span>
+</pre></div>
+</div>
+<p>which enables the named stream, or all streams.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vpp</span><span class="c1"># packet-generator disable [&lt;stream-name&gt;]</span>
+</pre></div>
+</div>
+<p>disables the named stream, or all streams.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vpp</span><span class="c1"># packet-generator delete &lt;stream-name&gt;</span>
+</pre></div>
+</div>
+<p>Deletes the named stream.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">vpp</span><span class="c1"># packet-generator configure &lt;stream-name&gt; [limit &lt;nnn&gt;]</span>
+         <span class="p">[</span><span class="n">rate</span> <span class="o">&lt;</span><span class="n">f64</span><span class="o">-</span><span class="n">pps</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">size</span> <span class="o">&lt;</span><span class="n">nn</span><span class="o">&gt;-&lt;</span><span class="n">nn</span><span class="o">&gt;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Changes stream parameters without having to recreate the entire stream
+definition. Note that re-issuing a “packet-generator new” command will
+correctly recreate the named stream.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="featurearcs.html" class="btn btn-neutral float-right" title="Feature Arcs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="plugins.html" class="btn btn-neutral float-left" title="Plugins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-2020, Linux Foundation
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> VPP versions</span>
+    
+    v20.09
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl id="version-container">
+      <!-- versions will end up here -->
+    </dl>
+    <dl>
+      <dt>Other links</dt>
+      <dd>
+        <a href="https://fd.io">Project Home</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.getJSON( "https://fd.io/vpp_versions.json", function( data ) {
+    let cont = $("#version-container");
+    cont.empty();
+    cont.append('<dt>Versions</dt>');
+    $.each( data, function( key, val ) {
+      cont.append('<dd><a href="' + val.link + '">' + val.name + '</a></dd>');
+    });
+  });
+});
+</script><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  
+  
+    
+   
+
+</body>
+</html>
