@@ -2,7 +2,7 @@
 title = "FD.io Customer Solutions"
 +++
 
-### Customers using FD.io include Cisco, Alibaba, Netgate, Inocybe, ZTE, Yahoo and more.
+### Customers using FD.io include Cisco, Alibaba, Netgate, Inocybe, ZTE, Yahoo, and more.
 
 {{% img src="/img/cisco.png" txt="Cisco Systems" %}}
 
@@ -34,6 +34,12 @@ title = "FD.io Customer Solutions"
 {{% img src="/img/openstack02.png" txt="Openstack" %}}
 
 * Cisco VIM (CVIM) using VPP
+
+---
+
+{{% img src="/img/pantheontech.png" txt="PANTHEON.tech" %}}
+
+* StoneWork Enterprise - performant & modular networking solution
 
 ---
 
