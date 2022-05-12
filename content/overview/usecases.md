@@ -12,7 +12,7 @@ providers and equipment manufactures to build world-class network functions.
 
 ## <img src="/img/universalcpe.png" width=5% >  Routers/Universal CPE etc. 
 
-FD.io VPP supports entry hardware options from number of hardware vendors for building Customer Premise Equipment devices. FD.io based commercial options are available from vendors such as Netgate with TNSR, Cisco with the ASR 9000 and Carrier Grade Services Engine and many more.
+FD.io VPP supports entry hardware options from number of hardware vendors for building Customer Premise Equipment devices. FD.io based commercial options are available from vendors such as Netgate with TNSR, Cisco with the ASR 9000 and Carrier Grade Services Engine, PANTHEON.tech with StoneWork Enterprise, and many more.
 
 Commercial implementations integrate Strong Swan for IKE.
 
