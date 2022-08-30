@@ -58,8 +58,8 @@ $ sudo bash
 ```
 
 {{% btn-dropdown "Developing with VPP" %}}
-{{% btn-dropelem txt="Latest Release" link="/docs/vpp/latest/gettingstarted/developers" %}}
+{{% btn-dropelem txt="Latest Release" link="/docs/vpp/master/gettingstarted/developers" %}}
 {{% btn-dropdiv %}}
-{{% btn-dropelem txt="version 21.06" link="/docs/vpp/v2106/gettingstarted/developers" %}}
-{{% btn-dropelem txt="version 21.01" link="/docs/vpp/v2101/gettingstarted/developers" %}}
+{{% btn-dropelem txt="version 22.06" link="/docs/vpp/v2206/gettingstarted/developers" %}}
+{{% btn-dropelem txt="version 22.01" link="/docs/vpp/v2201/gettingstarted/developers" %}}
 {{%/ btn-dropdown %}}

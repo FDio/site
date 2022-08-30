@@ -59,8 +59,8 @@ Uninstall the  packages by running the following command:
 ```
 
 {{% btn-dropdown "More About Installing VPP" %}}
-{{% btn-dropelem txt="Latest Release" link="/docs/vpp/latest/gettingstarted/installing" %}}
+{{% btn-dropelem txt="Latest Release" link="/docs/vpp/master/gettingstarted/installing" %}}
 {{% btn-dropdiv %}}
-{{% btn-dropelem txt="version 21.06" link="/docs/vpp/v2106/gettingstarted/installing" %}}
-{{% btn-dropelem txt="version 21.01" link="/docs/vpp/v2101/gettingstarted/installing" %}}
+{{% btn-dropelem txt="version 22.06" link="/docs/vpp/v2206/gettingstarted/installing" %}}
+{{% btn-dropelem txt="version 22.02" link="/docs/vpp/v2202/gettingstarted/installing" %}}
 {{%/ btn-dropdown %}}
