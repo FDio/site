@@ -50,7 +50,7 @@ $ make build-release
 ### Running VPP
 
 After building the VPP binaries, you now have several images built. Run these VPP
-with the follwoing
+with the following
 
 ``` console
 $ sudo bash
@@ -58,8 +58,8 @@ $ sudo bash
 ```
 
 {{% btn-dropdown "Developing with VPP" %}}
-{{% btn-dropelem txt="Latest Release" link="/docs/vpp/master/gettingstarted/developers" %}}
+{{% btn-dropelem txt="Latest Release" link="/docs/vpp/master/developer/build-run-debug/index.html" %}}
 {{% btn-dropdiv %}}
-{{% btn-dropelem txt="version 22.06" link="/docs/vpp/v2206/gettingstarted/developers" %}}
-{{% btn-dropelem txt="version 22.01" link="/docs/vpp/v2201/gettingstarted/developers" %}}
+{{% btn-dropelem txt="version 22.06" link="/docs/vpp/v2206/developer/build-run-debug/index.html" %}}
+{{% btn-dropelem txt="version 22.02" link="/docs/vpp/v2202/developer/build-run-debug/index.html" %}}
 {{%/ btn-dropdown %}}
