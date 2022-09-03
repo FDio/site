@@ -1,8 +1,8 @@
 +++
 title = "Cisco Blogs: A Bigger Helping of Internet Please!"
-author = "Jeska Duman"
+author = "Maciek Konstantynowicz and David Ward"
 
-date = "2016-04-07"
+date = "2016-04-04"
 +++
 
 “Holy Sh*t, that’s fast and feature rich” is the most common response we’ve heard from folks that

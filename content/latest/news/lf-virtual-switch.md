@@ -1,10 +1,10 @@
 +++
 title = "FierceTelecom: Linux Foundation’s FD.io virtual switch project doubles packet throughput to terabit speed"
-author = "Jeska Duman"
+author = "Sean Buckley"
 link = "https://www.fiercetelecom.com/telecom/linux-foundation-s-fd-io-virtual-switch-project-doubles-packet-throughput-to-terabit-speeds"
 linkText = "Read More at Fierce Telecom"
 
-date = "2017-07-19"
+date = "2017-07-11"
 +++
 
 The Linux Foundation’s Fast Data (FD.io, or Fido) collaborative software project is
