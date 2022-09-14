@@ -10,7 +10,7 @@ The TSC is responsible for all technical oversight of the FD.io open source Proj
 
 --------------------------
 
-## <img src="/img/ew.jpg" width=10% > 
+## <img src="/img/ew.jpg" width=10% >
 **Ed Warnicke**, *Distinguished Engineer - Cisco Systems*
 
 Ed Warnicke is a Distinguished Consulting Engineer in the Chief Technology
@@ -23,19 +23,17 @@ member at ONAP. Ed has a masters in Physics (String Theory) from Rutgers Univers
 --------------------------
 
 
-## <img src="/img/rk.png" width=10% > 
-**Ray Kinsella**, *Platform Solutions Architect, Intel Corporation*
+## <img src="/img/jd.jpg" width=10% >
+**John DiGiglio**, *Software Product Manager, Intel Corporation*
 
-Ray Kinsella is a Software Architect at Intel, where he has been working
-on the software defined data plane projects for more than 10 years. He has
-been interested in and working on open source technologies in various roles
-for more than twenty years. He has been recently most active in the FD.io
-community, but is a pretty constant lurker in many others. Ray holds a M.Sc.
-in Advanced Software Engineering from University College Dublin.
+John DiGiglio is a Software Product Manager within Intel’s Network and Edge Group.
+John has worked in the telecom industry for over 25 years.  His career started with the development of microprocessor-based communications equipment while employed by AT&T Bell Labs and Digital Sound.
+After joining Intel, he has held a variety of marketing positions with a focus on enabling the consolidation of networking workloads on Intel® architecture.  His current focus is on enabling software to support the transition to Cloud Native infrastructure as well as the application of Artificial Intelligence to network infrastructure.
+John holds a Bachelor of Science in E.E./C.S. from the Polytechnic Institute of NY and an MBA from Rutgers University.
 
 --------------------------
 
-## <img src="/img/jh.jpg" width=10% > 
+## <img src="/img/jh.jpg" width=10% >
 **Joel Halpern**, *Distinguished Engineer - Ericsson*
 
 Joel Halpern is a Distinguished Engineer with Ericsson. He has been involved
@@ -46,14 +44,14 @@ protocols for forwarding plane control dating back to the mid 1990s.
 
 --------------------------
 
-## <img src="/img/lz.png" width=10% > 
+## <img src="/img/lz.png" width=10% >
 **Lijian Zhang**, *Staff Software Engineer - Arm China*
 
 Lijian Zhang is a staff software engineer from Arm open source software group, where he works on networking open source projects on Arm ecosystem. He has been working on supporting FD.io projects on various aarch64 architectures since 2018. Prior to working on open source software, he developed ASIC based software for Switch and Router for more than 10 years. Lijian has a master's degree in Mechatronics from Zhejiang University.
 
 --------------------------
 
-## <img src="/img/dw.jpg" width=10% > 
+## <img src="/img/dw.jpg" width=10% >
 **Dave Wallace**, *Technical Leader - Cisco*
 
 Dave Wallace is a software technical leader at Cisco with 30+ years of software development experience in the communications industry. He has
@@ -62,21 +60,21 @@ FD.io community. Appointed by Damjan Marion, VPP Project Technical Lead, to repr
 
 --------------------------
 
-## <img src="/img/mk.jpg" width=10% > 
+## <img src="/img/mk.jpg" width=10% >
 **Maciek Konstantynowicz**, *Distinguished Engineer - Cisco*
 
 Maciek Konstantynowicz, Distinguished Engineer at Cisco, focuses on developing Internet technologies and systems that enable deployments of distributed applications. His work areas include performance-centric design engineering, IP networking, cloud-networking, compute x86/Arm optimizations for network data planes and benchmarking. Active in IETF and LFN FD.io open-source. Technical project lead of FD.io CSIT open-source benchmarking project.
 
 --------------------------
 
-## <img src="/img/ms.jpg" width=10% > 
+## <img src="/img/ms.jpg" width=10% >
 **Matthew Smith**, *Netgate*
 
 Matthew Smith is a Software Engineer at Netgate, where he designs and implements firewall and router appliances which are based on open-source software. He has been a contributor to VPP since 2016 and a committer since 2020.
 
 --------------------------
 
-## <img src="/img/nr.jpg" width=10% > 
+## <img src="/img/nr.jpg" width=10% >
 **Neale Ranns**, *Graphiant*
 
 Neale Ranns is a data-plane software engineer at Graphiant. He has spent 20+ years in the networking world building low level router functions and data-planes. He has contributed to VPP since 2016 and been a committer since 2017.
@@ -87,6 +85,17 @@ Neale Ranns is a data-plane software engineer at Graphiant. He has spent 20+ yea
 
 ### Past members
 
+## <img src="/img/rk.png" width=10% >
+**Ray Kinsella**, *Platform Solutions Architect, Intel Corporation*
+
+Ray Kinsella is a Software Architect at Intel, where he has been working
+on the software defined data plane projects for more than 10 years. He has
+been interested in and working on open source technologies in various roles
+for more than twenty years. He has been recently most active in the FD.io
+community, but is a pretty constant lurker in many others. Ray holds a M.Sc.
+in Advanced Software Engineering from University College Dublin.
+
+--------------------------
 ## <img src="/img/dm.jpg" width=10% >
 **Damjan Marion**, *Principal Engineer - Cisco*
 
@@ -94,7 +103,7 @@ Damjan Marion is a Principal Engineer at Cisco and is the Project Technical Lead
 
 --------------------------
 
-## <img src="/img/db.png" width=10% > 
+## <img src="/img/db.png" width=10% >
 **Dave Barach**, *Cisco Fellow*
 
 Dave Barach is a Cisco Fellow specializing in high-speed packet processing on
@@ -104,7 +113,7 @@ all sorts of high performance software as well as highly scalable performance an
 tooling.
 
 --------------------------
-## <img src="/img/gz.jpg" width=10% > 
+## <img src="/img/gz.jpg" width=10% >
 **George Zhao**, *Director of Open Source and Ecosystem, Huawei Technologies Co., Ltd.*
 
 George has 25 years of working experience in networking, software architecture
@@ -115,7 +124,7 @@ computer engineering from the University of Toronto.
 
 --------------------------
 
-## <img src="/img/vv.png" width=10% > 
+## <img src="/img/vv.png" width=10% >
 **Venky Venkatesan**, *In Memoriam*
 
 It is with a heavy heart that we share news that the DPDK and FD.io communities
@@ -147,11 +156,9 @@ Traveling with him was an adventure. Debating with him was a lesson. We will so 
 In addition to many friends and colleagues, Venky left behind a wife and two young daughters. A
 GoFundMe memorial fund to establish a college fund for his daughters has been set up to honor
 his legacy of mentoring and developing the next generation of engineers and scientists:
-https://www.gofundme.com/venky-venkatesan-memorial-fund   
+https://www.gofundme.com/venky-venkatesan-memorial-fund
 
 The DPDK release, 18.05, and the FD.io release, 18.04, were named in Venky’s honor as well.
 
 Please join us in expressing our gratitude for all that Venky gave to the world during the
 too-short time he was here, as well as our deep sadness in losing a great friend, colleague, and mentor.
-
-
