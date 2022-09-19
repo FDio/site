@@ -57,6 +57,6 @@ SW - IPSEC tunnel termination, with standard protocol checks.
 
 
 {{% btn-dropdown "For All the CSIT Test Reports" %}}
-{{% btn-dropelem txt="Latest Release (2206)" link="https://s3-docs.fd.io/csit/master/report/" %}}
+{{% btn-dropelem txt="Latest Release (2206)" link="https://s3-docs.fd.io/csit/rls2206/report/" %}}
 {{% btn-dropdiv %}}
 {{%/ btn-dropdown %}}
