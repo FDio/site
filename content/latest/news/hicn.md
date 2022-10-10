@@ -18,4 +18,4 @@ Additionally, applications can take advantage of a new set of name-based transpo
 
 While the project is use case-agnostic, the development is made to support some key industrial applications such as 5G, Internet of Things (IoT), Mobile Edge Computing and Cloud native applications.
 
-If you aren’t going to make it to this year's Mobile World Congress, you can also come and talk to us in early 2023 at [KubeCon/CloudNativeCon](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/) in Amsterdam, April 17-21. Stay tuned for other chances to see us throughout the year!
+More details on FD.io’s  hICN project will be available onsite  at Mobile World Congress, February 25-28th in Barcelona, at the Cisco booth Hall 3 Stand 3E30. If you aren’t going to make it to Mobile World Congress, you can also come and talk to us at  [IETF 104](https://www.ietf.org/how/meetings/104/?gclid=EAIaIQobChMIj5LT_Za84AIVUhx9Ch01xg_7EAAYASAAEgJ2FPD_BwE) in Prague, March 23-29 and [KubeCon/CloudNativeCon](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2019/) in Barcelona, May 20-23. Stay tuned for other chances to see us throughout the year!  
