@@ -1,6 +1,6 @@
 +++
 title = "SDXCentral: Un-Masking FD.io – the Open Source Project that Processes Packets"
-author = "Jeska Duman"
+author = "Linda Hardesty"
 link = "https://www.sdxcentral.com/articles/news/un-masking-fd-io-open-source-project-processes-packets/2017/04/"
 linkText = "Read More at SDX Central"
 

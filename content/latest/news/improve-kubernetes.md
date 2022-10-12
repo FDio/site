@@ -1,6 +1,6 @@
 +++
 title = "FierceTelecom: FD.io improves Kubernetes networking in sixth software release"
-author = "Jill Lovato"
+author = "Sean Buckley"
 link = "https://www.fiercetelecom.com/telecom/fd-io-improves-kubernetes-networking-sixth-software-release"
 linkText = "Read More at Fierce Telecom"
 

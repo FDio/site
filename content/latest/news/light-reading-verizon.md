@@ -1,6 +1,6 @@
 +++
 title = "Light Reading: Verizon, Cisco Lab Test ‘Information-Centric Networking’"
-author = "Jill Lovato"
+author = "Mari Silbey"
 link = "https://www.lightreading.com/video/video-storage-delivery/verizon-cisco-lab-test-information-centric-networking/d/d-id/741539"
 linkText = "Read More at Light Reading"
 

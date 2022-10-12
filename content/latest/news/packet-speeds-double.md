@@ -1,10 +1,10 @@
 +++
 title = "SDxCentral: FD.io Sees Packet Speeds Double with Intel’s New Chips"
-author = "Jeska Duman"
+author = "Linda Hardesty"
 link = "https://www.sdxcentral.com/articles/news/fd-io-sees-packet-speeds-double-intels-new-chips/2017/07/"
 linkText = "Read More at SDX Central"
 
-date = "2017-07-19"
+date = "2017-07-13"
 +++
 
 The open source Fast Data Project (FD.io) announced double performance gains made

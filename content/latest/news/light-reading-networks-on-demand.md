@@ -1,6 +1,6 @@
 +++
 title = "Light Reading: The Future Is Networks on Demand, Says Cisco Chief Architect"
-author = "Jeska Duman"
+author = "Mitch Wagner"
 
 date = "2016-03-09"
 +++

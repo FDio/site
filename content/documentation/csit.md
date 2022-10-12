@@ -6,13 +6,13 @@ title = "CSIT Documentation"
 The FD.io software is being continuosly be tested with the tools and
 framework provided by the CSIT project (Continuous System Integration and Testing).
 
-The project description can be found here [CSIT Project](https://s3-docs.fd.io/csit/master/docs/).
+The project description can be found here [CSIT Project](https://s3-docs.fd.io/csit/master/docs/overview.html).
 
 Reports are published on a release basis at [CSIT Report](https://s3-docs.fd.io/csit/master/report/).
 
 Data on FD.io trending performance is found at [CSIT Trending](https://s3-docs.fd.io/csit/master/trending/).
 
-The archive of all the CSIT documents is at [CSIT Archive](https://docs.fd.io/csit/)
+<!-- The archive of all the CSIT documents is at [CSIT Archive](https://docs.fd.io/csit/) -->
 
 ----------------------
 
@@ -57,7 +57,6 @@ SW - IPSEC tunnel termination, with standard protocol checks.
 
 
 {{% btn-dropdown "For All the CSIT Test Reports" %}}
-{{% btn-dropelem txt="Latest Release (2106)" link="https://s3-docs.fd.io/csit/rls2106/report/" %}}
+{{% btn-dropelem txt="Latest Release (2206)" link="https://s3-docs.fd.io/csit/rls2206/report/" %}}
 {{% btn-dropdiv %}}
-{{% btn-dropelem txt="Master" link="https://s3-docs.fd.io/csit/master/report/" %}}
 {{%/ btn-dropdown %}}
