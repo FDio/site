@@ -1,7 +1,6 @@
 +++
 title = "Calico/VPP : Kubernetes networking with boosters"
 
-publishDate = "2021-06-22"
 date = "2021-07-22"
 time_slot = "09:00am - 08:00am PST"
 type = "webinar"
