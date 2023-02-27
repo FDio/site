@@ -18,11 +18,11 @@ available technologies.
 
 VPP reads the largest available vector of packets from the network IO layer.
 
-{{% centerimg "/img/tech-01.png" %}}
+{{% centerimg "/img/technology/tech-01.png" %}}
 
 VPP then processes the vector of packets through a Packet Processing graph.
 
-{{% centerimg "/img/tech-02.png" %}}
+{{% centerimg "/img/technology/tech-02.png" %}}
 
 Rather than processing the first packet through the whole graph, and then the second
 packet through the whole graph, VPP instead processes the entire vector of packets through
@@ -50,7 +50,7 @@ from the plugin directory. A plugin for VPP can rearrange the packet graph and i
 nodes. This allows new features to be introduced via the plugin, without needing to change the core
 infrastructure code.
 
-{{% centerimg "/img/tech-03.png" %}}
+{{% centerimg "/img/technology/tech-03.png" %}}
 
 ### Hardware Acceleration
 
@@ -66,4 +66,4 @@ software processing is finished.  In this way, accelerating hardware can be used
 continues if it is missing or its resources are exhausted.  This architecture allows maximum space for
 innovation by hardware accelerators.
 
-{{% centerimg "/img/tech-04.png" %}}
+{{% centerimg "/img/technology/tech-04.png" %}}

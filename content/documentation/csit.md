@@ -25,7 +25,7 @@ The [CSIT Trending Report](https://s3-docs.fd.io/csit/master/trending) is a repo
 
 ### A Small Subset of the CSIT Perfomance Results
 
-<img src="/img/performance.png" width=60% >
+<img src="/img/documentation/csit_doc_performance.jpg" width=60% >
 
 ### Tests Cases Summary
 
@@ -54,9 +54,3 @@ IPv6 VXLan - IPv6 VXLan tunnel termination, with standard protocol checks.
 QAT - IPSEC tunnel termination, with standard protocol checks accelerated by Intel Quick Assist Cryptography Accelerator. Scale: 1 to 1000 tunnels.
 
 SW - IPSEC tunnel termination, with standard protocol checks.
-
-
-{{% btn-dropdown "For All the CSIT Test Reports" %}}
-{{% btn-dropelem txt="Latest Release (2206)" link="https://s3-docs.fd.io/csit/rls2206/report/" %}}
-{{% btn-dropdiv %}}
-{{%/ btn-dropdown %}}
