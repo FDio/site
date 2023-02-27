@@ -1,4 +1,0 @@
-+++
-title="Webinars"
-type = "webinar"
-+++

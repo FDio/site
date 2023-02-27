@@ -2,7 +2,11 @@
 !/public/_headers
 !/public/_redirects
 resources/_gen/
+node_modules
+
 .vscode/
 .idea/
 node_modules/
 .hugo_build.lock
+.DS_Store
+yarn-error.log

@@ -1,7 +1,6 @@
 title = "FDio - The Universal Dataplane"
 baseURL = "/"
 languageCode = "en-us"
-theme = "airspace-hugo"
 
 publishDir = "public"
 
@@ -24,25 +23,7 @@ publishDir = "public"
     weight = 1
     name = "Use Cases"
     identifier = "usecases"
-    url = ""
-
-  [[menu.header]]
-    weight = 10
-    name = "Use Cases"
-    parent = "usecases"
-    url = "/overview/usecases"
-
-  [[menu.header]]
-    weight = 11
-    name = "Solutions"
-    parent = "usecases"
-    url = "/overview/solutions"
-
-  [[menu.header]]
-    weight = 12
-    name = "User Feedback"
-    parent = "usecases"
-    url = "/overview/userfeedback"
+    url = "/usecases"
 
   #
   # ------ Getting Started ------
@@ -50,33 +31,9 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 2
-    identifier = "gettingstarted"
-    name = "Get Started"
-    url = ""
-
-  [[menu.header]]
-    weight = 21
-    parent = "gettingstarted"
+    identifier = "technology"
     name = "Technology"
-    url = "/gettingstarted/technology"
-
-  [[menu.header]]
-    weight = 22
-    parent = "gettingstarted"
-    name = "Installing"
-    url = "/gettingstarted/installing"
-
-  [[menu.header]]
-    weight = 23
-    parent = "gettingstarted"
-    name = "Building"
-    url = "/gettingstarted/building"
-
-  [[menu.header]]
-    weight = 24
-    parent = "gettingstarted"
-    name = "Videos"
-    url = "/gettingstarted/videos"
+    url = "/technology"
 
   #
   # ------ Documentation ------
@@ -118,27 +75,28 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 4
-    name = "The Latest"
-    identifier = "latest"
+    name = "News"
+    identifier = "news"
     url = ""
 
   [[menu.header]]
     weight = 41
-    name = "Latest news"
-    parent = "latest"
-    url = "/latest/news"
+    name = "Press"
+    parent = "news"
+    url = "/news/press"
 
   [[menu.header]]
     weight = 42
     name = "Webinars"
-    parent = "latest"
-    url = "/latest/webinars"
+    parent = "news"
+    url = "/news/webinars"
 
   [[menu.header]]
     weight = 43
     name = "Whitepapers"
-    parent = "latest"
-    url = "/latest/whitepapers"
+    parent = "news"
+    url = "/news/whitepapers"
+
 
   #
   # ------ Get Involved ------
@@ -146,27 +104,9 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 5
-    name = "Get Involved"
-    identifier = "getinvolved"
-    url = ""
-
-  [[menu.header]]
-    weight = 51
     name = "Community"
-    parent = "getinvolved"
-    url = "/getinvolved/community"
-
-  [[menu.header]]
-    weight = 52
-    name = "Technical Steering Commitee (TSC)"
-    parent = "getinvolved"
-    url = "/getinvolved/tsc"
-
-  [[menu.header]]
-    weight = 53
-    name = "TSC Documentation"
-    parent = "getinvolved"
-    url = "/getinvolved/tscdocs"
+    identifier = "community"
+    url = "/community"
 
 
 [markup]
@@ -188,22 +128,7 @@ publishDir = "public"
 # The site's parameters
 [params]
 
-  # If you want to remove the copyright text you need a Themefisher license.
-  # This license is offered with a 50% discount for all Hugo users.
-  # For information see https://github.com/gohugoio/hugoThemes/issues/260
-
   dateFormat = "6 January 2006"
   bgImage = "img/fdio_bg.jpg"
 
   home = "Home"
-  fontawesomeversion = "5.8.1"
-
-[[params.fonts]]
-name = "Nunito Sans"
-sizes = [300, 400, 600, 700]
-type = "sans_serif"
-
-[[params.fonts]]
-name = "Roboto Mono"
-sizes = [300, 400, 600, 700]
-type = "monospace"

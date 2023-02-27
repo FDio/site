@@ -1,0 +1,30 @@
+<div>
+    {{ with .Params.Youtubeurl }}
+    <a class="text-decoration-none text-black" href="{{.}}"><span class="icon-text">
+        <span class="icon"><i class="fab fa-youtube"></i></span>
+        <span class="divider is-vertical"></span>
+        <span>Video</span>
+    </span></a>
+    {{ end }}
+    {{ with .Params.Pdfurl }}
+    <a class="text-decoration-none text-black" href="{{.}}"><span class="icon-text">
+        <span class="icon"><i class="far fa-file-pdf"></i></span>
+        <span class="divider is-vertical"></span>
+        <span>PDF</span>
+    </span></a>
+    {{ end }}
+    {{ with .Params.Ppturl }}
+    <a class="text-decoration-none text-black" href="{{.}}"><span class="icon-text">
+        <span class="icon"><i class="fas fa-file-powerpoint"></i></span>
+        <span class="divider is-vertical"></span>
+        <span>PPT</span>
+    </span></a>
+    {{ end }}
+    {{ with .Params.Eventurl }}
+    <a class="text-decoration-none text-black" href="{{.}}"><span class="icon-text">
+        <span class="icon"><i class="fas fa-link"></i></span>
+        <span class="divider is-vertical"></span>
+        <span>Event link</span>
+    </span></a>
+    {{ end }}
+</div>

@@ -1,0 +1,167 @@
+/*
+ Generics
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.text-black {
+    color: #333;
+}
+
+footer {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+/* this ensures the menu still fits on smaller
+ * screens e.g. tablets */
+@media (max-width: 900px) {
+    header .navbar-default .navbar-nav li a {
+        padding: 10px 15px;
+    }
+}
+
+@media (min-width: 767px) {
+        img.centered {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 25%;
+        width: 50%;
+    }
+}
+
+.navbar-brand img {
+    height: 150%;
+}
+
+/*
+ * Buttons
+ */
+
+.btn-main {
+    background: #ED1C24;
+    color: #fff;
+}
+
+.btn {
+    border-radius: 0;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.btn:hover {
+    color: #fff;
+}
+
+/*
+ * Image widgets
+ */
+
+.img-widget img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.img-widget span {
+    font-size: large;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.horizontal-space {
+    height: 40px;
+}
+
+.circle {
+    height: 80px;
+    width: 80px;
+    background: #1b2035;
+    border-radius: 50%;
+    text-align: center;
+    margin-left: calc(50% - 40px);
+}
+
+a:hover > .circle > i {
+    color: #f00;
+}
+
+.circle > i {
+    font-size: 1.8rem;
+    padding-top: 24px;
+    color: #fff;
+}
+
+.page-header {
+    background: url("../img/fdio_bg.jpg") no-repeat;
+    background-size: cover;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    margin-top: 0;
+    position: relative;
+    text-align: center;
+}
+
+.page-header h1 {
+    color: #fff;
+    font-family: 'open', sans-serif;
+    margin-bottom: 20px;
+}
+
+/* Action widgets on the landing page */
+
+.action-widget {
+    font-size: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.action-widget .widget-title {
+    padding-top: 10px;
+}
+
+.action-widget .arrow {
+    position: absolute;
+    top: 20px;
+    font-size: 3rem;
+    color: #ccc;
+    margin-left: 75px;
+}
+
+.usecase {
+    margin-bottom: 20px;
+    height: 260px;
+}
+
+.usecase img {
+    margin: auto;
+    height: 70px;
+    width: auto;
+    margin-top: 10px;
+}
+
+.pagination-center > ul {
+    justify-content: center !important;
+}
+
+.page-header h1 {
+    margin-bottom: 0;
+}

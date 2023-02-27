@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
 	{{ partial "head.html" . }}
     </head>
-    <body>
-	{{ partial "header.html" . }}
-	{{ partial "page_title.html" . }}
-	<div class="container">
-	    {{ range (.Paginator 6).Pages.ByDate.Reverse }}
-	    <div class="col-md-12">
-			<article class="blog-post">
-				{{ partial "webinar-header.html" . }}
-				<p>
-					{{ .Summary }}
-				</p>
-				<p>
-					<a class="btn btn-main" href="{{ .RelPermalink }}">Learn More...</a>
-				</p>
-			</article>
-	    </div>
-	    {{ end }}
-	</div>
-	<div class="col-12 text-center">
-	    {{ template "_internal/pagination.html" . }}
-	</div>
-	{{ partial "footer.html" . }}
-</body>
+    <body class="d-flex flex-column h-100">
+		{{ partial "header.html" . }}
+		{{ partial "page_title.html" . }}
+		<div class="container">
+			<div class="row g-2">
+	    	{{ range (.Paginator 12).Pages.ByDate.Reverse }}
+				<div class="col-md-3 col-sm-4">
+    				<a href="{{ .RelPermalink }}">
+    				<img class="img-fluid" src="{{ .Params.Previewimage | default "/img/webinars/fdio-webinar.svg" }}">
+    				</a>
+				</div>
+				<div class="col-md-9 col-sm-8">
+    				<a class="text-decoration-none text-black" href="{{ .RelPermalink }}"><h2>{{.Params.title}}</h2></a>
+    				<div class="text-muted">{{.Params.Date.Format "January 2, 2006" }} {{.Params.time_slot}}</div>
+					{{ partial "webinar-buttons.html" . }}
+    				<a class="text-decoration-none text-black" href="{{ .RelPermalink }}">
+					<p>
+						{{ .Summary | truncate 150 }}
+					</p>
+					</a>
+				</div>
+	    	     	       <hr>
+	    	{{ end }}
+	    	</div>
+		</div>
+		<nav class="pagination-center">
+	    	{{ template "_internal/pagination.html" . }}
+		</nav>
+		{{ partial "footer.html" . }}
+	</body>
 </html>
