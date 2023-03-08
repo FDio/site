@@ -85,119 +85,132 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/cisco.png" class="card-img-top" alt="Cisco Systems (image)" height="100">
-					<div class="card-body">
-    					<h5 class="card-title">Cisco Systems</h5>
-    					<p class="card-text">
-							ASR 9000 - Router<br>
-							Carrier Grade Services Engine
-    					</p>
-					</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/alibaba.png" class="card-img-top" alt="Alibaba (image)">
-					<div class="card-body">
-    					<h5 class="card-title">Alibaba Cloud</h5>
-    					<p class="card-text">
-							uCPE<br>
-							Network Virtual Functions<br>
-							Load Balancer
-    					</p>
-					</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/netgate.png" class="card-img-top" alt="Netgate (image)">
-					<div class="card-body">
-    					<h5 class="card-title">Netgate</h5>
-    					<p class="card-text">
-							TNSR : High-performance Secure Networking Software
-    					</p>
-					</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/inocybe.png" class="card-img-top" alt="Inocybe (image)">
-					<div class="card-body">
-    					<h5 class="card-title">Inocybe</h5>
-    					<p class="card-text">
-							An Open Networking Platform
-    					</p>
-					</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/openstack02.png" class="card-img-top" alt="Openstack (image)">
-					<div class="card-body">
-    					<h5 class="card-title">Openstack</h5>
-    					<p class="card-text">
-    						Cisco VIM (CVIM) using VPP
-    					</p>
-					</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/pantheontech.png" class="card-img-top" alt="PANTHEON.tech (image)">
-					<div class="card-body">
-    					<h5 class="card-title">PANTHEON.tech</h5>
-    					<p class="card-text">
-    						StoneWork Enterprise - performant & modular networking solution
-    					</p>
-					</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/yahoo.png" class="card-img-top" alt="Yahoo (image)">
-					<div class="card-body">
-    					<h5 class="card-title">Yahoo</h5>
-    					<p class="card-text">
-    						The JP Cloud Balancer
-    					</p>
-					</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/zte.png" class="card-img-top" alt="ZTE (image)">
-					<div class="card-body">
-    					<h5 class="card-title">ZTE</h5>
-    					<p class="card-text">
-							IoT Gateway<br>
-							MEC Platform<br>
-							PaaS Platform
-    					</p>
-					</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-6">
-					<div class="card usecase text-dark">
-					<img src="/img/logos/kubernetes.png" class="card-img-top" alt="Kubernetes (image)">
-					<div class="card-body">
-    					<h5 class="card-title">Kubernetes</h5>
-    					<p class="card-text">
-    						A Cisco Container Platform
-    					</p>
-					</div>
-					</div>
-				</div>
-
+				{{ partial "usecases.html" (dict
+					"href" ""
+					"img" "/img/logos/cisco.png"
+					"title" "Cisco Systems"
+					"content" "ASR 9000 - Router<br>Carrier Grade Services Engine"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://www.alibabacloud.com/blog/network-service-optimization-with-the-vpp-platform_593985"
+					"img" "/img/logos/alibaba.png"
+					"title" "Alibaba Cloud"
+					"content" "uCPE<br>Network Virtual Functions<br>Load Balancer"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "http://www.netgate.com/tnsr-software/performance"
+					"img" "/img/logos/netgate.png"
+					"title" "Netgate"
+					"content" "TNSR : High-performance Secure Networking Software"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" ""
+					"img" "/img/logos/inocybe.png"
+					"title" "Inocybe"
+					"content" "An Open Networking Platform"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" ""
+					"img" "/img/logos/openstack02.png"
+					"title" "Openstack"
+					"content" "Cisco VIM (CVIM) using VPP"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://pantheon.tech/products/stonework/"
+					"img" "/img/logos/pantheontech.png"
+					"title" "PANTHEON.tech"
+					"content" "StoneWork Enterprise - performant & modular networking solution"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://static.sched.com/hosted_files/onsna19/73/ONS.NA.2019.VPP_LB_public.pdf"
+					"img" "/img/logos/yahoo.png"
+					"title" "Yahoo"
+					"content" "The JP Cloud Balancer"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://sdnfv.zte.com.cn/en/insights/2019/8/Acceleration-Road-of-5G-User-Plane"
+					"img" "/img/logos/zte.png"
+					"title" "ZTE"
+					"content" "IoT Gateway<br>MEC Platform<br>PaaS Platform"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://docs.tigera.io/calico/latest/getting-started/kubernetes/vpp/"
+					"img" "/img/logos/calico.png"
+					"title" "Calico/VPP dataplane"
+					"content" "An integration allowing the Calico Kubernetes CNI to leverage VPP as its dataplane"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://www.netadvia.com/vpp-financial-trading/"
+					"img" "/img/logos/netadvia.png"
+					"title" "Netadvia"
+					"content" "Latency-Optimised High-Frequency Financial Trading with VPP"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://www.thefastmode.com/technology-solutions/28658-graphiant-join-hands-with-rohde-schwarz-to-deploy-ipoque-s-new-vpp-dpi-software"
+					"img" "/img/logos/graphiant.png"
+					"title" "Graphiant"
+					"content" "Vector packet processing (VPP)-based deep packet inspection (DPI) software"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://www.mavenir.com/portfolio/mavcore/converged-packet-core/"
+					"img" "/img/logos/mavenir.png"
+					"title" "Mavenir"
+					"content" "Converged packet core"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://apps.juniper.net/feature-explorer/feature-info.html?fKey=8665&fn=PowerMode%20IPsec"
+					"img" "/img/logos/juniper.png"
+					"title" "Juniper Networks"
+					"content" "IPsec performance improvements using Vector Packet Processing (VPP) and Intel AES-NI instructions"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://github.com/travelping/upg-vpp"
+					"img" "/img/logos/travelping.png"
+					"title" "TravelPing"
+					"content" "User Plane Gateway (UPG) based on VPP"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://www.affirmednetworks.com/pdfs/enabling-communications-service-providers-to-meet-5g.pdf/"
+					"img" "/img/logos/affirmed_networks.png"
+					"title" "Affirmed Networks"
+					"content" "5GCN cloud-native network function"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://github.com/sonic-net/sonic-platform-vpp"
+					"img" "/img/logos/sonic.jpg"
+					"title" "Software for Open Networking in the Cloud (SONiC)"
+					"content" "SONiC-VPP is a platform under SONIC that supports VPP data plane"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://terragraph.com/docs/developer/VPP_Implementation"
+					"img" "/img/logos/terragraph.png"
+					"title" "Terragraph"
+					"content" "Terragraph's datapath implementation using VPP"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://docs.equinix.com/en-us/Content/Interconnection/NE/deploy-guide/NE-platform-architecture.htm"
+					"img" "/img/logos/equinix.png"
+					"title" "Equinix"
+					"content" "Network Edge"
+					)
+				}}
 			</div>
 		</div>
 	</section>

@@ -1,0 +1,19 @@
+<div class="col-md-3 col-6">
+	<a class="text-decoration-none" href="{{ .href }}">
+		<div class="card usecase text-dark">
+    		 <div class="card-header">
+    			 <div class="text-center">
+					<img src="{{ .img }}" class="card-img-top img-fluid" alt="{{ .title }} (image)" height="100">
+				</div>
+    			 <div class="text-center mt-3">
+    				 <h5>{{ .title }}</h5>
+    			 </div>
+    		 </div>
+			<div class="card-body">
+    			 <p class="card-text">
+					{{ .content | safeHTML }}
+    			 </p>
+			</div>
+		</div>
+	</a>
+</div>
