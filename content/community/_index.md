@@ -34,8 +34,8 @@ collaborate on this opportunity.
 Developer Resources
 
 [![FD.io Gerrit Repo](https://img.shields.io/badge/Code-Gerrit-brightgreen.svg?style=for-the-badge&logo=gerrit)](https://gerrit.fd.io)
-[![GoVPP GitHub Repo](https://img.shields.io/badge/Code-GitHub-brightgreen.svg?style=for-the-badge&logo=github)](https://gerrit.fd.io)
 [![FD.io Jira issues](https://img.shields.io/badge/Jira-Issues-shields.svg?style=for-the-badge&logo=jira)](https://jira.fd.io)
+[![GoVPP GitHub Repo](https://img.shields.io/badge/Code-GoVPP%20GitHub-brightgreen.svg?style=for-the-badge&logo=github)](https://github.com/fdio/govpp)
 
 Developer Communications
 
