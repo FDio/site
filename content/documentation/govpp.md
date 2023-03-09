@@ -8,6 +8,6 @@ Apart from the packages providing the API and tools allowing to write VPP manage
 
 To get started with GoVPP check out the [Introduction Slides](https://wiki.fd.io/images/f/fa/GoVPP-intro.pdf).
 
-The Developer Wiki is at [hICN Wiki](https://wiki.fd.io/view/GoVPP).
-
 The GoVPP Docs are on the GitHub wiki -- [GoVPP Docs](https://github.com/FDio/govpp/wiki).
+
+The original FD.io GoVPP wiki is at [GoVPP Wiki](https://wiki.fd.io/view/GoVPP).
