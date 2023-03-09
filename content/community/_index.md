@@ -51,7 +51,7 @@ Community Meetings
 
 [![VPP Meeting](https://img.shields.io/badge/VPP-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://wiki.fd.io/view/VPP/Meeting#Meeting_Details)
 [![CSIT Meeting](https://img.shields.io/badge/CSIT-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://wiki.fd.io/view/CSIT/Meeting#Meeting_Details)
-[![GoVPP Meeting](https://img.shields.io/badge/GoVPP-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://github.com/FDio/govpp/discussions/46)
+[![GoVPP Meeting](https://img.shields.io/badge/GoVPP-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://github.com/FDio/govpp/wiki)
 [![TSC Meeting](https://img.shields.io/badge/TSC-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://wiki.fd.io/view/TSC#Meeting_Schedule_and_Logistics)
 
 FD.io Communications
