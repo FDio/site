@@ -59,14 +59,14 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 33
-    name = "HICN documentation"
-    url = "/documentation/hicn"
+    name = "GoVPP documentation"
+    url = "https://github.com/FDio/govpp/tree/master/docs"
     parent = "documentation"
 
   [[menu.header]]
-    weight = 34
-    name = "Other projects"
-    url = "/documentation/others"
+    weight = 33
+    name = "HICN documentation"
+    url = "/documentation/hicn"
     parent = "documentation"
 
   #
