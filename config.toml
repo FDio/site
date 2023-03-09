@@ -64,7 +64,7 @@ publishDir = "public"
     parent = "documentation"
 
   [[menu.header]]
-    weight = 33
+    weight = 34
     name = "HICN documentation"
     url = "/documentation/hicn"
     parent = "documentation"
