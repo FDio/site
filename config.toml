@@ -60,7 +60,7 @@ publishDir = "public"
   [[menu.header]]
     weight = 33
     name = "GoVPP documentation"
-    url = "https://github.com/FDio/govpp/tree/master/docs"
+    url = "https://github.com/FDio/govpp/wiki"
     parent = "documentation"
 
   [[menu.header]]
