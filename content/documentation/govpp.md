@@ -10,4 +10,4 @@ To get started with GoVPP check out the [Introduction Slides](https://wiki.fd.io
 
 The GoVPP Docs are on the GitHub wiki -- [GoVPP Docs](https://github.com/FDio/govpp/wiki).
 
-The original FD.io GoVPP wiki is at [GoVPP Wiki](https://wiki.fd.io/view/GoVPP).
+The original wiki is at [FD.io GoVPP Wiki](https://wiki.fd.io/view/GoVPP).
