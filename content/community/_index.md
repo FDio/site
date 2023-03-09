@@ -41,9 +41,9 @@ Developer Communications
 
 [![vpp-dev Mailing List](https://img.shields.io/badge/VPP-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/vpp-dev)
 [![CSIT Mailing List](https://img.shields.io/badge/CSIT-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/csit-dev)
-[![GoVPP Slack (preferred)](https://img.shields.io/badge/Slack-yellow.svg?style=for-the-badge&logo=slack)](https://fdio-project.slack.com/archives/C01905FGAQ0)
+[![GoVPP Slack](https://img.shields.io/badge/GoVPP-Slack-yellow.svg?style=for-the-badge&logo=slack)](https://fdio-project.slack.com/archives/C01905FGAQ0)
 [![GoVPP Mailing List](https://img.shields.io/badge/GoVPP-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/govpp-dev)
-[![HICN Slack (preferred)](https://img.shields.io/badge/Slack-yellow.svg?style=for-the-badge&logo=slack)](https://fdio-project.slack.com/archives/CP32FEKKQ)
+[![HICN Slack](https://img.shields.io/badge/HICN-Slack-yellow.svg?style=for-the-badge&logo=slack)](https://fdio-project.slack.com/archives/CP32FEKKQ)
 [![HICN Mailing List](https://img.shields.io/badge/HICN-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/hicn-dev)
 [![TSC Mailing List](https://img.shields.io/badge/TSC-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/tsc)
 
@@ -51,7 +51,7 @@ Community Meetings
 
 [![VPP Meeting](https://img.shields.io/badge/VPP-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://wiki.fd.io/view/VPP/Meeting#Meeting_Details)
 [![CSIT Meeting](https://img.shields.io/badge/CSIT-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://wiki.fd.io/view/CSIT/Meeting#Meeting_Details)
-[![GoVPP Meeting](https://img.shields.io/badge/TSC-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://github.com/FDio/govpp/discussions/46)
+[![GoVPP Meeting](https://img.shields.io/badge/GoVPP-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://github.com/FDio/govpp/discussions/46)
 [![TSC Meeting](https://img.shields.io/badge/TSC-Commumity%20Meeting-blue.svg?style=for-the-badge)](https://wiki.fd.io/view/TSC#Meeting_Schedule_and_Logistics)
 
 FD.io Communications
