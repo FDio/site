@@ -170,13 +170,6 @@
 					)
 				}}
 				{{ partial "usecases.html" (dict
-					"href" "https://apps.juniper.net/feature-explorer/feature-info.html?fKey=8665&fn=PowerMode%20IPsec"
-					"img" "/img/logos/juniper.png"
-					"title" "Juniper Networks"
-					"content" "IPsec performance improvements using Vector Packet Processing (VPP) and Intel AES-NI instructions"
-					)
-				}}
-				{{ partial "usecases.html" (dict
 					"href" "https://github.com/travelping/upg-vpp"
 					"img" "/img/logos/travelping.png"
 					"title" "TravelPing"
@@ -215,51 +208,7 @@
 		</div>
 	</section>
 
-	<section class="section py-5" >
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h2 class="pb-4">Users say</h2>
-				</div>
-
-				<div class="col-md-2"><img class="img-fluid" src="/img/logos/cisco.png"></div>
-				<div class="col-md-10">
-					<h5>David Ward, CTO and Chief architect of Engineering, Cisco</h5>
-					Cisco FD.io VPP, in deployment at Cisco since 2002.<br>
-					<i>Source: FD.io Press Release – Forth Release Announcement</i>
-				</div>
-				<div class="col-md-12 py-5 text-bold">
-					“FD.io is helping enable the developer community achieve the highest performance, throughput, and resource efficiency in networking across all deployment environments."
-				</div>
-
-				<hr>
-
-				<div class="col-md-2"><img class="img-fluid" src="/img/logos/zte.png"></div>
-				<div class="col-md-10">
-					<h5>Binbin Xu, ZTE Software Engineer</h5>
-					FD.io VPP, in deployment at ZTE since 2017.<br>
-					<i>Source: ZTE's Experience of VPP in PaaS, OpenStack Summit Boston 2017</i>
-				</div>
-				<div class="col-md-12 py-5">
-					“VPP/DPDK is a fantastic development platform.”
-				</div>
-
-				<hr>
-
-				<div class="col-md-2"><img class="img-fluid" src="/img/logos/huawei.png"></div>
-				<div class="col-md-10">
-					<h4>Chenxi Wang, VP, Network Strategy and Ecosystem, Huawei</h4>
-					FD.io DMM, in deployment at Huawei since 2015.<br>
-					<i>Source: FD.io Press Release - Huawei Deepens Commitment to FD.io, as Newest Platinum Member</i>
-				</div>
-				<div class="col-md-12 py-5">
-					“One of our focuses is to build a sound ecosystem with our community partners in order to enable Cloud Native Networking, and we truly believe that community collaboration will drive FD.io to a new level."
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="section py-5 text-white" style="background-image: url('{{ .Site.Params.bgImage | absURL }}');">
+	<section class="section py-5">
     	<div class="container">
     		<div class="row">
 				<div class="col-md-6">
@@ -271,7 +220,7 @@
 				{{ with .Site.GetPage "/news/press" }}
 	    		{{ range .Pages.ByDate.Reverse | first 3 }}
 				<div class="col-md-4">
-				<a class="text-decoration-none text-white" href="{{ .Permalink }}">
+				<a class="text-decoration-none text-black" href="{{ .Permalink }}">
 					<h4>{{ .Title }}</h4>
 					<p>{{ .Date.Format "1 January 2006" }}</p>
 					<p>{{ .Content | truncate 200 | plainify | htmlUnescape }}</p>
