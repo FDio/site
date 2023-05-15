@@ -153,7 +153,7 @@ a:hover > .circle > i {
 
 .usecase img {
     margin: auto;
-    height: 70px;
+    max-height: 70px;
     width: auto;
     margin-top: 10px;
 }
