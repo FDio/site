@@ -208,7 +208,7 @@
 		</div>
 	</section>
 
-	<section class="section py-5 text-white" style="background-image: url('{{ .Site.Params.bgImage | absURL }}');">
+	<section class="section py-5">
     	<div class="container">
     		<div class="row">
 				<div class="col-md-6">
@@ -220,7 +220,7 @@
 				{{ with .Site.GetPage "/news/press" }}
 	    		{{ range .Pages.ByDate.Reverse | first 3 }}
 				<div class="col-md-4">
-				<a class="text-decoration-none text-white" href="{{ .Permalink }}">
+				<a class="text-decoration-none text-black" href="{{ .Permalink }}">
 					<h4>{{ .Title }}</h4>
 					<p>{{ .Date.Format "1 January 2006" }}</p>
 					<p>{{ .Content | truncate 200 | plainify | htmlUnescape }}</p>
