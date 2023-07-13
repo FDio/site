@@ -3,24 +3,21 @@ title = "CSIT Documentation"
 
 +++
 
-The FD.io software is being continuosly be tested with the tools and
-framework provided by the CSIT project (Continuous System Integration and Testing).
+The FD.io software is being continuously tested with the tools and framework provided by the CSIT project (Continuous System Integration and Testing).
 
-The project description can be found here [CSIT Project](https://s3-docs.fd.io/csit/master/docs/overview.html).
+The project description can be found here [CSIT Project](https://csit.fd.io/cdocs/overview/csit/).
 
-Reports are published on a release basis at [CSIT Report](https://s3-docs.fd.io/csit/master/report/).
+Reports are published on a release basis at [CSIT Report](https://csit.fd.io/cdocs/release_notes/current/).
 
-Data on FD.io trending performance is found at [CSIT Trending](https://s3-docs.fd.io/csit/master/trending/).
-
-<!-- The archive of all the CSIT documents is at [CSIT Archive](https://docs.fd.io/csit/) -->
+Data on FD.io trending performance is found at [CSIT Trending](https://csit.fd.io/trending/).
 
 ----------------------
 
 ## About performance
 
-FD.io Complete System Integration Testing (CSIT) is software written for fully automated FD.io VPP code testing, functionality, performance, regression and new functions.
+FD.io Continuous System Integration Testing (CSIT) is software written for fully automated FD.io VPP code testing, functionality, performance, regression and new functions.
 
-The [CSIT Trending Report](https://s3-docs.fd.io/csit/master/trending) is a report that shows the FD.io performance over time. This report insures that over time FD.io will not have perfomance regressions.
+The [CSIT Trending](https://csit.fd.io/trending/) is a report that shows the FD.io performance over time. This report insures that over time FD.io will not have perfomance regressions.
 
 
 ### A Small Subset of the CSIT Perfomance Results
