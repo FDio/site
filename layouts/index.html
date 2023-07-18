@@ -271,7 +271,7 @@
 				<div class="col-md-4">
 				<a class="text-decoration-none text-black" href="{{ .Permalink }}">
 					<h4>{{ .Title }}</h4>
-					<p>{{ .Date.Format "1 January 2006" }}</p>
+					<p>{{ humanize .Date.Day }} of {{ .Date.Format "January 2006" }}</p>
 					<p>{{ .Content | truncate 200 | plainify | htmlUnescape }}</p>
     			</a>
     			</div>
