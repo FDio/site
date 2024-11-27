@@ -22,17 +22,6 @@ member at ONAP. Ed has a masters in Physics (String Theory) from Rutgers Univers
 
 --------------------------
 
-
-## <img src="/img/people/jd.jpg" width=10% >
-**John DiGiglio**, *Software Product Manager, Intel Corporation*
-
-John DiGiglio is a Software Product Manager within Intel’s Network and Edge Group.
-John has worked in the telecom industry for over 25 years.  His career started with the development of microprocessor-based communications equipment while employed by AT&T Bell Labs and Digital Sound.
-After joining Intel, he has held a variety of marketing positions with a focus on enabling the consolidation of networking workloads on Intel® architecture.  His current focus is on enabling software to support the transition to Cloud Native infrastructure as well as the application of Artificial Intelligence to network infrastructure.
-John holds a Bachelor of Science in E.E./C.S. from the Polytechnic Institute of NY and an MBA from Rutgers University.
-
---------------------------
-
 ## <img src="/img/people/jh.jpg" width=10% >
 **Joel Halpern**, *Distinguished Engineer - Ericsson*
 
@@ -44,33 +33,71 @@ protocols for forwarding plane control dating back to the mid 1990s.
 
 --------------------------
 
-## <img src="/img/people/lz.png" width=10% >
-**Lijian Zhang**, *Staff Software Engineer - Arm China*
-
-Lijian Zhang is a staff software engineer from Arm open source software group, where he works on networking open source projects on Arm ecosystem. He has been working on supporting FD.io projects on various aarch64 architectures since 2018. Prior to working on open source software, he developed ASIC based software for Switch and Router for more than 10 years. Lijian has a master's degree in Mechatronics from Zhejiang University.
-
---------------------------
-
 ## <img src="/img/people/dw.jpg" width=10% >
 **Dave Wallace**, *Technical Leader - Cisco*
 
-Dave Wallace is a software technical leader at Cisco with 30+ years of software development experience in the communications industry. He has
-worked on the vpp codebase since 2013 and is a contributor and committer on the VPP, CSIT, Honeycomb (archived), and ci-management projects in the
-FD.io community. Appointed by Damjan Marion, VPP Project Technical Lead, to represent the VPP project on the TSC.
+Dave Wallace is a software technical leader at Cisco with 30+ years of software development experience in the
+communications industry. He has worked on the vpp codebase since 2013 and is a contributor and committer on 
+the VPP, CSIT, Honeycomb (archived), and ci-management projects in the FD.io community. Appointed by Damjan Marion,
+VPP Project Technical Lead, to represent the VPP project on the TSC.
 
 --------------------------
 
 ## <img src="/img/people/mk.jpg" width=10% >
 **Maciek Konstantynowicz**, *Distinguished Engineer - Cisco*
 
-Maciek Konstantynowicz, Distinguished Engineer at Cisco, focuses on developing Internet technologies and systems that enable deployments of distributed applications. His work areas include performance-centric design engineering, IP networking, cloud-networking, compute x86/Arm optimizations for network data planes and benchmarking. Active in IETF and LFN FD.io open-source. Technical project lead of FD.io CSIT open-source benchmarking project.
+Maciek Konstantynowicz, Distinguished Engineer at Cisco, focuses on developing Internet technologies and systems
+that enable deployments of distributed applications. His work areas include performance-centric design engineering,
+IP networking, cloud-networking, compute x86/Arm optimizations for network data planes and benchmarking. Active in
+IETF and LFN FD.io open-source. Technical project lead of FD.io CSIT open-source benchmarking project.
 
 --------------------------
 
 ## <img src="/img/people/ms.jpg" width=10% >
 **Matthew Smith**, *Netgate*
 
-Matthew Smith is a Software Engineer at Netgate, where he designs and implements firewall and router appliances which are based on open-source software. He has been a contributor to VPP since 2016 and a committer since 2020.
+Matthew Smith is a Software Engineer at Netgate, where he designs and implements firewall and router appliances
+which are based on open-source software. He has been a contributor to VPP since 2016 and a committer since 2020.
+
+--------------------------
+
+## <img src="/img/people/js.jpg" width=10% >
+**Jeff Shaw**, *Software Architect - Intel*
+
+Jeff Shaw is a Software Architect at Intel Corporation. For more than 15 years
+he has worked to develop packet processing hardware and software with an
+emphasis on high performance network dataplanes.
+
+--------------------------
+
+## <img src="/img/people/dt.jpg" width=10% >
+**Dhruv Tripathi**, *Principal Software Engineer - Arm*
+
+Dhruv Tripathi is a Principal Software Engineer at Arm with 23 years of experience in design and development of
+Data Plane software in companies such as LSI, Cisco, Intel and now Arm. He has worked across multiple platforms/SoCs
+and DPUs to develop software products ranging from DSLAM to LTE/5G transport to Kubernetes Networking offload.
+At Arm, he is driving multiple open-source projects such as DPDK, VPP for Arm platform.
+
+--------------------------
+
+
+
+### Past members
+
+## <img src="/img/people/jd.jpg" width=10% >
+**John DiGiglio**, *Software Product Manager, Intel Corporation*
+
+John DiGiglio is a Software Product Manager within Intel’s Network and Edge Group.
+John has worked in the telecom industry for over 25 years.  His career started with the development of microprocessor-based communications equipment while employed by AT&T Bell Labs and Digital Sound.
+After joining Intel, he has held a variety of marketing positions with a focus on enabling the consolidation of networking workloads on Intel® architecture.  His current focus is on enabling software to support the transition to Cloud Native infrastructure as well as the application of Artificial Intelligence to network infrastructure.
+John holds a Bachelor of Science in E.E./C.S. from the Polytechnic Institute of NY and an MBA from Rutgers University.
+
+--------------------------
+
+## <img src="/img/people/lz.png" width=10% >
+**Lijian Zhang**, *Staff Software Engineer - Arm China*
+
+Lijian Zhang is a staff software engineer from Arm open source software group, where he works on networking open source projects on Arm ecosystem. He has been working on supporting FD.io projects on various aarch64 architectures since 2018. Prior to working on open source software, he developed ASIC based software for Switch and Router for more than 10 years. Lijian has a master's degree in Mechatronics from Zhejiang University.
 
 --------------------------
 
@@ -80,10 +107,6 @@ Matthew Smith is a Software Engineer at Netgate, where he designs and implements
 Neale Ranns is a data-plane software engineer at Graphiant. He has spent 20+ years in the networking world building low level router functions and data-planes. He has contributed to VPP since 2016 and been a committer since 2017.
 
 --------------------------
-
-
-
-### Past members
 
 ## <img src="/img/people/rk.png" width=10% >
 **Ray Kinsella**, *Platform Solutions Architect, Intel Corporation*
@@ -96,6 +119,7 @@ community, but is a pretty constant lurker in many others. Ray holds a M.Sc.
 in Advanced Software Engineering from University College Dublin.
 
 --------------------------
+
 ## <img src="/img/people/dm.jpg" width=10% >
 **Damjan Marion**, *Principal Engineer - Cisco*
 
@@ -113,6 +137,7 @@ all sorts of high performance software as well as highly scalable performance an
 tooling.
 
 --------------------------
+
 ## <img src="/img/people/gz.jpg" width=10% >
 **George Zhao**, *Director of Open Source and Ecosystem, Huawei Technologies Co., Ltd.*
 
