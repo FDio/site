@@ -14,3 +14,5 @@ runtime security, make it easier to use, and extend Calico’s strong network se
 to VMs and hosts that are not part of Kubernetes clusters. Whether you’re managing Kubernetes clusters, transitioning
 to a new Linux data plane, or seeking a unified network security solution across your Kubernetes and non-Kubernetes
 workloads on-premises or in the cloud, Calico’s latest enhancements have you covered.
+
+Read the full article [here](https://www.tigera.io/blog/whats-new-in-calico-fall-2024-enhancements-for-kubernetes-networking-and-security/)!
