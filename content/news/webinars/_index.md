@@ -1,4 +1,4 @@
 +++
-title="Fd.io Webinars"
+title="Fd.io Talks & Webinars"
 type = "webinar"
 +++
