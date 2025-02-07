@@ -15,14 +15,14 @@ The Calico VPP dataplane, introduced during last year’s KubeCon, adds a new ne
 
 ### Speakers
 
-{{< speaker name="Chris Tomkins - Developer Advocate @ Project Calico/Tigera" twitter="TomkinsDa" linkedin="cdtomkins" img="/img/webinars/calico_vpp/chris_tomkins.jpeg">}}
+{{< speaker name="Chris Tomkins - Developer Advocate @ Project Calico/Tigera" twitter="TomkinsDa" linkedin="cdtomkins" img="/img/speakers/chris_tomkins.jpg">}}
 Chris is a developer advocate at Tigera, where he champions user needs to support Project Calico’s users and 
 contributor community. He has worked in networking since 2000. After realising that a per-device CLI is not a 
 scalable solution for a large environment, he took an early interest in infrastructure-as-code approaches and 
 large-scale automation and continues to have a special interest in pursuing technologies in these areas.
 {{< /speaker >}}
 
-{{< speaker name="Aloys Augustin - Software Engineer @ Cisco" twitter="alogusse" github="AloysAugustin" img="/img/webinars/calico_vpp/aloys_augustin.jpg">}}
+{{< speaker name="Aloys Augustin - Software Engineer @ Cisco" twitter="alogusse" github="AloysAugustin" img="/img/speakers/aloys_augustin.jpg">}}
 Aloys Augustin is the main author of the Calico/VPP integration, and he has worked on cloud infrastructure technologies since 2016. He joined the VPP team at Cisco in 2018 where he focuses on container networking. He is also the maintainer of the QUIC stack in VPP.
 {{< /speaker >}}
 

@@ -17,14 +17,14 @@ As we're learning from the other sessions at this summit, Kubernetes has many ap
 
 ### Speakers
 
-{{< speaker name="Chris Tomkins - Developer Advocate @ Project Calico/Tigera" twitter="TomkinsDa" linkedin="cdtomkins" img="/img/webinars/calico_vpp/chris_tomkins.jpeg">}}
+{{< speaker name="Chris Tomkins - Developer Advocate @ Project Calico/Tigera" twitter="TomkinsDa" linkedin="cdtomkins" img="/img/speakers/chris_tomkins.jpg">}}
 Chris is a developer advocate at Tigera, where he champions user needs to support Project Calico’s users and 
 contributor community. He has worked in networking since 2000. After realising that a per-device CLI is not a 
 scalable solution for a large environment, he took an early interest in infrastructure-as-code approaches and 
 large-scale automation and continues to have a special interest in pursuing technologies in these areas.
 {{< /speaker >}}
 
-{{< speaker name="Nathan Skrzypczak - Software Engineer @ Cisco" linkedin="sknat" twitter="skrnat" github="sknat" img="/img/webinars/calico_vpp/nathan_skrzypczak.jpeg">}}
+{{< speaker name="Nathan Skrzypczak - Software Engineer @ Cisco" linkedin="sknat" twitter="skrnat" github="sknat" img="/img/speakers/nathan_skrzypczak.jpg">}}
 Nathan is a software engineering at Cisco focusing on container networking & cloud app performance. After spending 
 time deploying & scaling web apps he took interest in converting his love for script based infras into cloud native 
 approaches, and now contributes to the building blocks of line rate container networking. He's a maintainer of the 
