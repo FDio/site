@@ -17,6 +17,6 @@ There are classes of workloads that are notoriously hungry when it comes to netw
 Casey Davenport is one of the lead maintainers for Project Calico and has worked on software defined networking solutions since 2012. He is an active Kubernetes community member and currently co-chairs the Kubernetes networking special interest group.
 {{< /speaker >}}
 
-{{< speaker name="Aloys Augustin - Software Engineer @ Cisco" twitter="alogusse" github="AloysAugustin" img="/img/webinars/calico_vpp/aloys_augustin.jpg">}}
+{{< speaker name="Aloys Augustin - Software Engineer @ Cisco" twitter="alogusse" github="AloysAugustin" img="/img/speakers/aloys_augustin.jpg">}}
 Aloys Augustin is the main author of the Calico/VPP integration, and he has worked on cloud infrastructure technologies since 2016. He joined the VPP team at Cisco in 2018 where he focuses on container networking. He is also the maintainer of the QUIC stack in VPP.
 {{< /speaker >}}

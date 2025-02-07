@@ -81,13 +81,13 @@ publishDir = "public"
 
   [[menu.header]]
     weight = 41
-    name = "Press"
+    name = "In the Press"
     parent = "news"
     url = "/news/press"
 
   [[menu.header]]
     weight = 42
-    name = "Webinars"
+    name = "Talks & Webinars"
     parent = "news"
     url = "/news/webinars"
 

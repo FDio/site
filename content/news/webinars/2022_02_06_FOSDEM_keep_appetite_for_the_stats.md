@@ -30,10 +30,10 @@ During the presentation, you will have a quick demo of these components.
 
 ### Speakers
 
-{{< speaker name="Arthur de Kerhor - Software Engineer @ Cisco" img="/img/webinars/calico_vpp/arthur_de_kerhor.jpg">}}
+{{< speaker name="Arthur de Kerhor - Software Engineer @ Cisco" img="/img/speakers/arthur_de_kerhor.jpg">}}
 Arthur is a software engineer who has been working at Cisco since February 2021 in fast cloud-native data plane applications. He is currently involved in the open source project VPP (Vector Packet Processing), which is a fast and scalable network stack running in Linux userspace.
 {{< /speaker >}}
 
-{{< speaker name="Hedi Bouattour - Software Engineer @ Cisco" img="/img/webinars/calico_vpp/hedi_bouattour.jpg">}}
+{{< speaker name="Hedi Bouattour - Software Engineer @ Cisco" img="/img/speakers/hedi_bouattour.jpg">}}
 Hedi is a software engineer at Cisco, and since May 2021, a member of VPP (Vector Packet Processing) team, which is a very fast and scalable userspace packet processing software running in Linux. He is currently contributing in the Calico/VPP integration project, where VPP is combined with Calico, the popular cloud native Kubernetes network plugin.
 {{< /speaker >}}

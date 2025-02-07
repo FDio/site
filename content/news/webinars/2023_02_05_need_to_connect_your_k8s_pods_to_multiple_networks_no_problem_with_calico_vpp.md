@@ -11,10 +11,6 @@ previewimage = "/img/webinars/video_2023_02_05_need_to_connect_your_k8s_pods_to_
 
 +++
 
-## Need to connect your k8s pods to multiple networks? No problem [with calico/vpp]!
-### Multi-legged containers running wild with calico/vpp
-
-
 Kubernetes is a great solution for hosting highly available endpoint applications, but network functions can still prove challenging. VPN gateways are notably tricky, with overlay and underlay conflicts making their deployment an interesting dance. Performance is also a challenging topic when speaking about scale, most importantly when common optimizations like GSO don't really apply.
 
 Leveraging the Calico CNI with a VPP dataplane mixed with multus, allowed us exposing multiple k8s managed interfaces to pods, and thus building complex network functions that still benefit from k8s constructs (HA, service discovery, ...). In the end building an highly available Wireguard gateway gets as easy as building any other application. And it can even leverage accelerated interfaces and cryptographic engines, to reach multiple Gbps without hassle.
@@ -26,7 +22,7 @@ Hoping this architecture could benefit Kubernetes at large, we started drafting 
 
 ### Speakers
 
-{{< speaker name="Nathan Skrzypczak - Software Engineer @ Cisco" linkedin="sknat" twitter="skrnat" github="sknat" img="/img/webinars/calico_vpp/nathan_skrzypczak.jpeg">}}
+{{< speaker name="Nathan Skrzypczak - Software Engineer @ Cisco" linkedin="sknat" twitter="skrnat" github="sknat" img="/img/speakers/nathan_skrzypczak.jpg">}}
 Nathan is a software engineering at Cisco focusing on container networking & cloud app performance. After spending 
 time deploying & scaling web apps he took interest in converting his love for script based infras into cloud native 
 approaches, and now contributes to the building blocks of line rate container networking. He's a maintainer of the 
