@@ -1,6 +1,10 @@
 [
 	{
-		"name": "master (25.02-rc)",
+		"name": "master (25.06-rc)",
+		"link": "https://s3-docs.fd.io/vpp/25.06/"
+	},
+	{
+		"name": "25.02",
 		"link": "https://s3-docs.fd.io/vpp/25.02/"
 	},
 	{
