@@ -7,12 +7,11 @@ linkText = "Read More About Decentralized Autonomous Wireless Networks (DAWN) us
 date = "2024-08-07"
 +++
 
-**DAWN Internet - A New Dawn for the Internet** 
-
-Imagine a shift from a centralized to a decentralized Internet infrastructure—transforming who controls both
-connectivity and cloud infrastructure. What if this shift was not only feasible but also immediately profitable?
-Each incremental change could save money and generate profit since it doesn’t require enormous infrastructure investments.
-This article aims to make that case, centering on a pivotal development: multi-gigabit wireless technology.
+**DAWN Internet - A New Dawn for the Internet** -- Imagine a shift from a centralized to a decentralized Internet
+infrastructure—transforming who controls both connectivity and cloud infrastructure. What if this shift was not only
+feasible but also immediately profitable? Each incremental change could save money and generate profit since it doesn’t
+require enormous infrastructure investments. This article aims to make that case, centering on a pivotal development:
+multi-gigabit wireless technology.
 
 Wireless radios allow us to beam Internet through the air, at a fraction of the cost of alternatives like fiber.
 And for the first time in history (2024), wireless matches fiber in terms of performance at the last-mile and exceeds

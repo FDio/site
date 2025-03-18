@@ -77,6 +77,29 @@
 	</section>
 
 	<section class="section py-5 text-white" style="background-image: url('{{ .Site.Params.bgImage | absURL }}');">
+    	<div class="container">
+    		<div class="row">
+				<div class="col-md-6">
+					<h2 class="pb-4">Latest FD.io News</h2>
+					{{ with .Site.GetPage "/news/press" }}<a href="{{ .Permalink }}" class="btn btn-main">View All FD.io News</a>{{ end }}
+					<div class="horizontal-space"></div>
+				</div>
+				<div class="clearfix hidden-sm"></div>
+				{{ with .Site.GetPage "/news/press" }}
+	    		{{ range .Pages.ByDate.Reverse | first 6 }}
+				<div class="col-md-4">
+				<a class="text-decoration-none text-white" href="{{ .Permalink }}">
+					<h4>{{ .Title }}</h4>
+					<p>{{ humanize .Date.Day }} of {{ .Date.Format "January 2006" }}</p>
+					<p>{{ .Content | truncate 200 | plainify | htmlUnescape }}</p>
+    			</a>
+    			</div>
+    			{{ end }}
+    			{{ end }}
+    		</div>
+	</section>
+
+	<section class="section py-5">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -179,7 +202,7 @@
 				{{ partial "usecases.html" (dict
 					"href" "https://www.affirmednetworks.com/pdfs/enabling-communications-service-providers-to-meet-5g.pdf/"
 					"img" "/img/logos/affirmed_networks.png"
-					"title" "Affirmed Networks"
+					"title" "Affirmed Networks, a Microsoft company"
 					"content" "5GCN cloud-native network function"
 					)
 				}}
@@ -292,7 +315,7 @@
 					"href" "https://www.sandya.net.id/about-us/our-topology/"
 					"img" "/img/logos/sandya.png"
 					"title" "Sandya Networks"
-					"content" "Sandya Networks provides highly available Internet Connectivity with full mesh redudancy utilizing VPP for Routing Engine."
+					"content" "Sandya Networks provides highly available Internet Connectivity with full mesh redudancy utilizing VPP for Routing Engine"
 					)
 				}}
 				{{ partial "usecases.html" (dict
@@ -316,31 +339,36 @@
 					"content" "Dawn Internet utilizes VPP for Decentralized·Autonomous·Wireless·Networks"
 					)
 				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://www.46labs.com/blogs/supporting-carriers-in-routing-rating-and-fraud-prevention-with-deep-network-intelligence"
+					"img" "/img/logos/46Labs.png"
+					"title" "46 Labs"
+					"content" "46 Labs uses VPP for host-based NOS and Edge forwarding services"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://www.amd.com/en/products/accelerators/pensando.html"
+					"img" "/img/logos/amd.png"
+					"title" "AMD Pensando(tm) Networking"
+					"content" "AMD utilizes VPP in AMD Pensando(tm) Networking DPUs"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://codilime.com/blog/fdios-vpp-mechanical-sympathy/"
+					"img" "/img/logos/codilime.png"
+					"title" "Codilime"
+					"content" "Codilime explains VPP thread and memory management techniques"
+					)
+				}}
+				{{ partial "usecases.html" (dict
+					"href" "https://cndp.io/assets/papers/CNDP_5G_Mobility_Edge.pdf"
+					"img" "/img/logos/highway9.png"
+					"title" "Highway 9 Networks"
+					"content" "Highway9 Networks leverages VPP to achieve low latency and high speed for its 5G Mobility Edge instances"
+					)
+				}}
 			</div>
 		</div>
-	</section>
-
-	<section class="section py-5">
-    	<div class="container">
-    		<div class="row">
-				<div class="col-md-6">
-					<h2 class="pb-4">Latest FD.io News</h2>
-					{{ with .Site.GetPage "/news/press" }}<a href="{{ .Permalink }}" class="btn btn-main">View All FD.io News</a>{{ end }}
-					<div class="horizontal-space"></div>
-				</div>
-				<div class="clearfix hidden-sm"></div>
-				{{ with .Site.GetPage "/news/press" }}
-	    		{{ range .Pages.ByDate.Reverse | first 6 }}
-				<div class="col-md-4">
-				<a class="text-decoration-none text-black" href="{{ .Permalink }}">
-					<h4>{{ .Title }}</h4>
-					<p>{{ humanize .Date.Day }} of {{ .Date.Format "January 2006" }}</p>
-					<p>{{ .Content | truncate 200 | plainify | htmlUnescape }}</p>
-    			</a>
-    			</div>
-    			{{ end }}
-    			{{ end }}
-    		</div>
 	</section>
 
 	<section class="section py-5">
