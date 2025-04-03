@@ -43,8 +43,6 @@ Developer Communications
 [![CSIT Mailing List](https://img.shields.io/badge/CSIT-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/csit-dev)
 [![GoVPP Slack](https://img.shields.io/badge/GoVPP-Slack-yellow.svg?style=for-the-badge&logo=slack)](https://fdio-project.slack.com/archives/C01905FGAQ0)
 [![GoVPP Mailing List](https://img.shields.io/badge/GoVPP-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/govpp-dev)
-[![HICN Slack](https://img.shields.io/badge/HICN-Slack-yellow.svg?style=for-the-badge&logo=slack)](https://fdio-project.slack.com/archives/CP32FEKKQ)
-[![HICN Mailing List](https://img.shields.io/badge/HICN-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/hicn-dev)
 [![TSC Mailing List](https://img.shields.io/badge/TSC-Mailing%20List-blue.svg?style=for-the-badge)](https://lists.fd.io/g/tsc)
 
 Community Meetings

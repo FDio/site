@@ -7,5 +7,4 @@
 /docs/vpp/v2202/*      https://s3-docs.fd.io/vpp/22.02/:splat            302
 /docs/vpp/v2110/*      https://s3-docs.fd.io/vpp/21.10/:splat            302
 /docs/vpp/v2106/*      https://s3-docs.fd.io/vpp/21.06.0/:splat          302
-/docs/hicn/latest/*    https://hicn.readthedocs.io/:splat                302
 /govpp-meeting         https://github.com/FDio/govpp/discussions/46      302
