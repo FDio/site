@@ -33,19 +33,13 @@ Those representatives can merge changes to the site, and manage the [Netlify](ht
 
 | Name | Github ID | FD.io Project |
 | --- | --- | --- |
-| Luca Muscariello | [@muscariello](https://github.com/muscariello) | [HICN](https://wiki.fd.io/view/HICN) |
 | Dave Barach | [@dbarach](https://github.com/dbarach) | [VPP](https://wiki.fd.io/view/VPP) |
-| Mauro Sardara | [@msardara](https://github.com/msardara) | [HICN](https://wiki.fd.io/view/HICN) |
-| Michal Cmarada | [@mcmarada](https://github.com/mcmarada) | [JVPP](https://wiki.fd.io/view/JVPP), [Honeycomb](https://wiki.fd.io/view/Honeycomb), [HC2VPP](https://wiki.fd.io/view/Hc2vpp) |
-| Rastislav Szabo| [@rastislavszabo](https://github.com/rastislavszabo) | [GoVPP](https://wiki.fd.io/view/GoVPP) |
 | Ondrej Fabry | [@ondrej-fabry](https://github.com/ondrej-fabry) | [GoVPP](https://wiki.fd.io/view/GoVPP) |
 | Ole Troan | [@otroan](https://github.com/otroan) | [VPP](https://wiki.fd.io/view/VPP) |
-| Hongjun Ni | [@HongjunNi](https://github.com/HongjunNi) | [Sweetcomb](https://wiki.fd.io/view/Sweetcomb) |
 | Peter Mikus | [@pmikus](https://github.com/pmikus) | [CSIT](https://wiki.fd.io/view/CSIT) |
 | Tibor Frank | [@tiborfrank](https://github.com/tiborfrank) | [CSIT](https://wiki.fd.io/view/CSIT) |
 | Ed Warnicke | [@edwarnicke](https://github.com/edwarnicke) | [TSC](https://wiki.fd.io/view/TSC) |
-| John DiGiglio | [@JDiGiglio](https://github.com/JDiGiglio) | FD.io Marketing Committee |
-| Neal Hartsell | [@nealtex01](https://github.com/nealtex01)  | FD.io Marketing Committee | 
+| Dave Wallace | [@dwallacelf](https://github.com/dwallacelf/) | [TSC](https://wiki.fd.io/view/TSC) |
 
 ## Handling of frontpage, NEWs, etc
 
