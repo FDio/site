@@ -1,7 +1,7 @@
 +++
 title = "LFN Developer & Testing Forum, June 2023"
 author = "lfnetworking"
-link = "https://wiki.lfnetworking.org/pages/viewpage.action?pageId=82905276"
+link = "https://www.youtube.com/playlist?list=PL0bkBeEamheCKGzlN_Rz0cGGmjnjhes3C"
 linkText = "Read More About LFN Developer & Testing Forum"
 
 date = "2023-06-07"
