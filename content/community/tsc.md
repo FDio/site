@@ -23,9 +23,9 @@ member at ONAP. Ed has a masters in Physics (String Theory) from Rutgers Univers
 --------------------------
 
 ## <img src="/img/people/jh.jpg" width=10% >
-**Joel Halpern**, *Distinguished Engineer - Ericsson*
+**Joel Halpern**, *Distinguished Engineer - HPE*
 
-Joel Halpern is a Distinguished Engineer with Ericsson. He has been involved
+Joel Halpern is a Distinguished Engineer with HPE. He has been involved
 with Router implementation, architecture, and design since the late 1980s. He
 has been an active member of the IETF, and has written or coauthored RFCs
 across a range of topics. He has significant experience with many different
