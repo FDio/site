@@ -6,7 +6,7 @@ The TSC is responsible for all technical oversight of the FD.io open source Proj
 
 ### The TSC Members
 
-**TSC Chairperson** (elected March 2022): Dave Wallace
+**TSC Chairperson** (elected April 2026): Dave Wallace
 
 --------------------------
 
