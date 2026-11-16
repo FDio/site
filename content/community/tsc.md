@@ -34,9 +34,9 @@ protocols for forwarding plane control dating back to the mid 1990s.
 --------------------------
 
 ## <img src="/img/people/dw.jpg" width=10% >
-**Dave Wallace**, *Technical Leader - Cisco*
+**Dave Wallace**, *Staff Engineer - Netgate*
 
-Dave Wallace is a software technical leader at Cisco with 30+ years of software development experience in the
+Dave Wallace is a staff engineer at Netgate with 35+ years of software development experience in the
 communications industry. He has worked on the vpp codebase since 2013 and is a contributor and committer on 
 the VPP, CSIT, Honeycomb (archived), and ci-management projects in the FD.io community. Appointed by Damjan Marion,
 VPP Project Technical Lead, to represent the VPP project on the TSC.
