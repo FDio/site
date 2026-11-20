@@ -92,3 +92,8 @@ You can use it by configure the Calico CNI to use VPP as its dataplane.
 <!-- Previous projects addressing this were [Ligato](https://ligato.io/) and [Contiv/VPP](https://github.com/contiv/vpp) as your Kubernetes CNI providers. -->
 
 
+### Network Simulation Labs
+
+[Containerlab's FD.io VPP integration](https://containerlab.dev/manual/kinds/fdio_vpp/) provides a VPP container image for building and testing network lab topologies.
+
+Pim van Pelt's articles describe the original VPP container setup ([Part 1](https://ipng.ch/s/articles/2025/05/03/vpp-in-containerlab-part-1/)) and its integration with Containerlab ([Part 2](https://ipng.ch/s/articles/2025/05/04/vpp-in-containerlab-part-2/)).
